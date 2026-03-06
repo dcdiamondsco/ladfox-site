@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beat a Price Quote | Ladfox</title>
+
+  <meta name="description" content="Send us a quote and we will try to beat it. Family Run London Jewellers. Free insured worldwide shipping and lifetime workmanship guarantee." />
+  <link rel="canonical" href="https://ladfox-site.netlify.app/price-beater.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Beat a Price Quote | Ladfox" />
+  <meta property="og:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
+  <meta property="og:url" content="https://ladfox-site.netlify.app/price-beater.html" />
+  <meta property="og:image" content="https://ladfox-site.netlify.app/Images/comparison.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Beat a Price Quote | Ladfox" />
+  <meta name="twitter:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
+  <meta name="twitter:image" content="https://ladfox-site.netlify.app/Images/comparison.png" />
+
+  <style>
+
+    html{
+      background:#000;
+      overscroll-behavior-y:none;
+    }
+
+    body{
+      font-family:'Georgia', serif;
+      margin:0;
+      padding:0;
+      background:#000;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    header{
+      text-align:center;
+      padding:20px 0 10px;
+    }
+    header img{
+      max-width:200px;
+      display:block;
+      margin:0 auto;
+    }
+
+    .form-section{
+      flex:1;
+      background:transparent;
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .step-form{
+      width:100%;
+      max-width:460px;
+      background:#0b0b0b;
+      padding:30px;
+      border-radius:10px;
+      text-align:center;
+      position:relative;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 12px 30px rgba(0,0,0,.28);
+    }
+
+    .step-form label{
+      display:block;
+      margin-bottom:10px;
+      font-weight:600;
+      text-align:left;
+      color:#fff;
+    }
+
+    .step-form input,
+    .step-form select,
+    .step-form textarea{
+      width:100%;
+      padding:14px;
+      margin-bottom:18px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:8px;
+      font-size:1em;
+      background:#111;
+      color:#fff;
+      font-family:inherit;
+      box-sizing:border-box;
+    }
+
+    .step-form textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .step-form button{
+      background:#000;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+      transition:background .3s ease;
+      padding:14px;
+      font-size:1em;
+      width:100%;
+      border-radius:8px;
+    }
+    .step-form button:hover{ background:#333; }
+
+    .hint{
+      font-size:.92em;
+      opacity:.85;
+      margin:-8px 0 16px;
+      text-align:left;
+      line-height:1.35;
+    }
+
+    .thank-you{
+      display:none;
+      font-size:1.05em;
+      line-height:1.5;
+      margin-top:12px;
+    }
+
+    .status{
+      display:none;
+      margin-top:10px;
+      font-size:.95em;
+      text-align:center;
+    }
+    .status.show{ display:block; }
+    .status.ok{ color:#116611; }
+    .status.bad{ color:#b00020; }
+
+    .file-note{
+      font-size:.9em;
+      opacity:.85;
+      margin-top:-10px;
+      margin-bottom:16px;
+      text-align:left;
+      line-height:1.35;
+    }
+
+    .subtle{
+      font-size:.9em;
+      opacity:.75;
+      text-align:left;
+    }
+
+    @media (max-width:700px){
+      header img{
+        max-width:220px;
+      }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17882921888"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17882921888');
+  </script></head>
+
+<body>
+
+  <header>
+    <a href="index.html" aria-label="Ladfox home">
+      <img
+        src="Images/ladfox-logo.png"
+        alt="Ladfox"
+        decoding="async"
+        loading="eager"
+        onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
+      />
+    </a>
+  </header>
+
+  <section class="form-section">
+
+    <form id="nf"
+          name="beat-price-quote"
+          method="POST"
+          action="/"
+          enctype="multipart/form-data"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+
+      <input type="hidden" name="form-name" value="beat-price-quote" />
+      <p hidden>
+        <label>Do not fill this out <input name="bot-field" /></label>
+      </p>
+
+      <input type="hidden" name="page" id="nf_page" />
+      <input type="hidden" name="time" id="nf_time" />
+      <input type="hidden" name="location" id="nf_location" />
+      <input type="hidden" name="ip" id="nf_ip" />
+
+      <input type="hidden" name="itemType" id="nf_itemType" />
+      <input type="hidden" name="productLink" id="nf_link" />
+      <input type="hidden" name="certificateNumber" id="nf_cert" />
+      <input type="hidden" name="email" id="nf_email" />
+      <input type="hidden" name="details" id="nf_details" />
+
+      <input type="file" name="quoteImage" id="nf_file" accept="image/*,.pdf" />
+    </form>
+
+    <div class="step-form" id="form-container">
+      <div class="thank-you" id="thank-you">
+        <strong>Thank you.</strong><br><br>
+        We have received your request and we will reply shortly with your best price.
+      </div>
+
+      <div class="status" id="statusMsg"></div>
+    </div>
+
+  </section>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    const container = document.getElementById('form-container');
+    const thankYou  = document.getElementById('thank-you');
+    const statusMsg = document.getElementById('statusMsg');
+
+    const nfForm = document.getElementById('nf');
+    const nfFile = document.getElementById('nf_file');
+
+    const steps = [
+      { kind: 'type+link+file' },
+      { kind: 'email' }
+    ];
+
+    let current = 0;
+
+    const formValues = {
+      itemType: 'Ring',
+      productLink: '',
+      certificateNumber: '',
+      details: '',
+      email: ''
+    };
+
+    const geo = { location:'', ip:'' };
+
+    try{
+      fetch('https://ipapi.co/json/')
+        .then(r => r.json())
+        .then(loc => {
+          geo.location = [loc && loc.city, loc && loc.region, loc && loc.country_name].filter(Boolean).join(', ');
+          geo.ip = (loc && loc.ip) ? loc.ip : '';
+        })
+        .catch(() => {});
+    }catch(_){}
+
+    function setStatus(text, ok){
+      statusMsg.textContent = text || '';
+      statusMsg.classList.remove('ok','bad','show');
+      if(!text) return;
+      statusMsg.classList.add('show');
+      statusMsg.classList.add(ok ? 'ok' : 'bad');
+    }
+
+    function clearUI(){
+      [...container.querySelectorAll('label,input,select,textarea,button,div.hint,div.file-note,div.subtle')].forEach(el => el.remove());
+    }
+
+    function buildHint(text){
+      if(!text) return null;
+      const hint = document.createElement('div');
+      hint.className = 'hint';
+      hint.textContent = text;
+      return hint;
+    }
+
+    function styleFileInput(input){
+      input.style.position='static';
+      input.style.left='auto';
+      input.style.width='100%';
+      input.style.height='auto';
+      input.style.overflow='visible';
+      input.style.marginBottom='10px';
+      input.style.padding='10px';
+      input.style.border='1px solid #ccc';
+      input.style.borderRadius='8px';
+      input.style.background='#fff';
+      input.style.fontFamily='inherit';
+      input.style.boxSizing='border-box';
+    }
+
+    function render(){
+      thankYou.style.display='none';
+      setStatus('', true);
+      clearUI();
+
+      const step = steps[current];
+
+      if(step.kind === 'type+link+file'){
+        const lblType = document.createElement('label');
+        lblType.textContent = 'What are we beating the price on?';
+        lblType.htmlFor = 'itemTypeSelect';
+
+        const select = document.createElement('select');
+        select.id = 'itemTypeSelect';
+
+        const options = ['Ring','Diamond','Gemstone','Necklace','Bracelet','Earrings','Pendant','Watch','Other'];
+        options.forEach(opt => {
+          const o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt;
+          if(formValues.itemType === opt) o.selected = true;
+          select.appendChild(o);
+        });
+
+        const lblCert = document.createElement('label');
+        lblCert.textContent = 'Stone certificate number (optional)';
+        lblCert.htmlFor = 'certificateNumber';
+
+        const inputCert = document.createElement('input');
+        inputCert.type = 'text';
+        inputCert.id = 'certificateNumber';
+        inputCert.placeholder = 'Example GIA 1234567890 or IGI LG123456789';
+        inputCert.value = formValues.certificateNumber || '';
+
+        const certHint = buildHint('If you have a certificate number, we can match like for like faster.');
+
+        function shouldShowCert(){
+          const v = (select.value || '').toLowerCase();
+          return v === 'diamond' || v === 'gemstone';
+        }
+
+        function updateCertVisibility(){
+          const show = shouldShowCert();
+          lblCert.style.display = show ? 'block' : 'none';
+          inputCert.style.display = show ? 'block' : 'none';
+          if(certHint) certHint.style.display = show ? 'block' : 'none';
+          if(!show){
+            inputCert.value = '';
+            formValues.certificateNumber = '';
+          }
+        }
+
+        select.addEventListener('change', () => {
+          updateCertVisibility();
+        });
+
+        const lblLink = document.createElement('label');
+        lblLink.textContent = 'Link to the quote or item (optional)';
+        lblLink.htmlFor = 'productLink';
+
+        const inputLink = document.createElement('input');
+        inputLink.type = 'text';
+        inputLink.id = 'productLink';
+        inputLink.placeholder = 'Paste a link or store name';
+        inputLink.required = false;
+        inputLink.value = formValues.productLink || '';
+
+        const linkNote = document.createElement('div');
+        linkNote.className = 'subtle';
+        linkNote.style.marginTop = '-10px';
+        linkNote.style.marginBottom = '16px';
+        linkNote.textContent = 'If you do not have a link, type the store name and what you were quoted.';
+
+        const lblDetails = document.createElement('label');
+        lblDetails.textContent = 'Tell us what you are looking for (optional)';
+        lblDetails.htmlFor = 'details';
+
+        const textarea = document.createElement('textarea');
+        textarea.id = 'details';
+        textarea.placeholder = 'Metal, style, diamond shape, sizes, and any preferences';
+        textarea.value = formValues.details || '';
+
+        const hint2 = buildHint('More detail means a more accurate price beat.');
+
+        const lblFile = document.createElement('label');
+        lblFile.textContent = 'Attach screenshot or PDF (optional)';
+
+        styleFileInput(nfFile);
+
+        const fileNote = document.createElement('div');
+        fileNote.className = 'file-note';
+        fileNote.textContent = 'Screenshots help us verify the quote faster.';
+
+        const fileChosen = document.createElement('div');
+        fileChosen.className = 'subtle';
+        fileChosen.style.marginTop = '-4px';
+        fileChosen.style.marginBottom = '16px';
+        fileChosen.textContent = nfFile.files && nfFile.files.length
+          ? `Attached: ${Array.from(nfFile.files).map(f => f.name).join(', ')}`
+          : 'No file attached';
+
+        nfFile.addEventListener('change', () => {
+          fileChosen.textContent = nfFile.files && nfFile.files.length
+            ? `Attached: ${Array.from(nfFile.files).map(f => f.name).join(', ')}`
+            : 'No file attached';
+        });
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Next';
+        btn.addEventListener('click', onNext);
+
+        container.insertBefore(lblType, statusMsg);
+        container.insertBefore(select, statusMsg);
+
+        container.insertBefore(lblCert, statusMsg);
+        container.insertBefore(inputCert, statusMsg);
+        if(certHint) container.insertBefore(certHint, statusMsg);
+
+        container.insertBefore(lblLink, statusMsg);
+        container.insertBefore(inputLink, statusMsg);
+        container.insertBefore(linkNote, statusMsg);
+
+        container.insertBefore(lblDetails, statusMsg);
+        container.insertBefore(textarea, statusMsg);
+        if(hint2) container.insertBefore(hint2, statusMsg);
+
+        container.insertBefore(lblFile, statusMsg);
+        container.insertBefore(nfFile, statusMsg);
+        container.insertBefore(fileNote, statusMsg);
+        container.insertBefore(fileChosen, statusMsg);
+
+        container.insertBefore(btn, statusMsg);
+
+        updateCertVisibility();
+
+        setTimeout(() => inputLink.focus(), 0);
+        return;
+      }
+
+      if(step.kind === 'email'){
+        const lbl = document.createElement('label');
+        lbl.textContent = 'Your email';
+        lbl.htmlFor = 'email';
+
+        const input = document.createElement('input');
+        input.type = 'email';
+        input.id = 'email';
+        input.placeholder = 'you@example.com';
+        input.required = true;
+        input.value = formValues.email || '';
+
+        const hint = buildHint('We will reply with your best price.');
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Submit';
+        btn.addEventListener('click', onNext);
+
+        container.insertBefore(lbl, statusMsg);
+        container.insertBefore(input, statusMsg);
+        if(hint) container.insertBefore(hint, statusMsg);
+        container.insertBefore(btn, statusMsg);
+
+        setTimeout(() => input.focus(), 0);
+        return;
+      }
+    }
+
+    function onNext(e){
+      e.preventDefault();
+      const step = steps[current];
+
+      if(step.kind === 'type+link+file'){
+        const typeSel = document.getElementById('itemTypeSelect');
+        const certEl  = document.getElementById('certificateNumber');
+        const linkEl  = document.getElementById('productLink');
+        const detEl   = document.getElementById('details');
+
+        formValues.itemType = (typeSel.value || 'Other').trim();
+        formValues.certificateNumber = certEl ? (certEl.value || '').trim() : '';
+        formValues.productLink = (linkEl.value || '').trim();
+        formValues.details = (detEl.value || '').trim();
+
+        const needsCertField = ['diamond','gemstone'].includes((formValues.itemType || '').toLowerCase());
+
+        if(needsCertField && formValues.certificateNumber){
+          if(!/^[A-Za-z0-9\s-]{4,40}$/.test(formValues.certificateNumber)){
+            alert('Please enter a valid certificate number using letters and numbers.');
+            certEl.focus();
+            return;
+          }
+        }
+
+        /* Require at least one of: link OR details OR file */
+        const hasLink = !!formValues.productLink;
+        const hasDetails = !!formValues.details;
+        const hasFile = nfFile && nfFile.files && nfFile.files.length > 0;
+
+        if(!hasLink && !hasDetails && !hasFile){
+          alert('Please add a link, details, or attach a screenshot/PDF so we have something to beat.');
+          (linkEl && linkEl.focus) ? linkEl.focus() : null;
+          return;
+        }
+
+        current++;
+        render();
+        return;
+      }
+
+      if(step.kind === 'email'){
+        const emailEl = document.getElementById('email');
+        const emailVal = (emailEl.value || '').trim();
+
+        if(!emailVal){
+          alert('Please enter your email address.');
+          emailEl.focus();
+          return;
+        }
+
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){
+          alert('Please enter a valid email address.');
+          emailEl.focus();
+          return;
+        }
+
+        formValues.email = emailVal;
+        submitToNetlifyAjax();
+      }
+    }
+
+    function mapToHiddenInputs(){
+      const qs = id => document.getElementById(id);
+
+      qs('nf_page').value = location.href;
+      qs('nf_time').value = new Date().toISOString();
+      qs('nf_location').value = geo.location || '';
+      qs('nf_ip').value = geo.ip || '';
+
+      qs('nf_itemType').value = formValues.itemType || 'Other';
+      qs('nf_link').value = formValues.productLink || '';
+      qs('nf_cert').value = formValues.certificateNumber || '';
+      qs('nf_email').value = formValues.email || '';
+      qs('nf_details').value = formValues.details || '';
+    }
+
+    async function submitToNetlifyAjax(){
+      setStatus('Sending…', true);
+      mapToHiddenInputs();
+
+      const fd = new FormData(nfForm);
+
+      try{
+        const res = await fetch('/', { method:'POST', body: fd });
+        if(!res.ok) throw new Error('Bad response');
+        redirectToThankYou();
+      }catch(_){
+        setStatus('There was a problem sending your request. Please try again.', false);
+      }
+    }
+
+    function redirectToThankYou(){
+      const target = '/thank-you.html' + (window.location.search || '');
+      window.location.assign(target);
+    }
+
+    render();
+  });
+  </script>
+
+</body>
+</html>
+w
+
+
+
+
+

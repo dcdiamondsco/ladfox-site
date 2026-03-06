@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Engagement Ring Design Form | Ladfox</title>
+  <meta name="description" content="Share your engagement ring preferences in a calm, guided form. Shape, style, metal, and lab grown or Natural options."/>
+  <link rel="canonical" href="https://ladfox-site.netlify.app/ring-form.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Engagement Ring Design Form | Ladfox"/>
+  <meta property="og:description" content="A calm, guided form to capture engagement ring preferences, style, and stone choices."/>
+  <meta property="og:url" content="https://ladfox-site.netlify.app/ring-form.html"/>
+  <meta property="og:image" content="https://ladfox-site.netlify.app/Images/petal%20prong.png"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Engagement Ring Design Form | Ladfox"/>
+  <meta name="twitter:description" content="Capture engagement ring preferences with a calm, guided form."/>
+  <meta name="twitter:image" content="https://ladfox-site.netlify.app/Images/petal%20prong.png"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --headerH: 104px;
+      --ringVW: 8vw;
+      --ringMax: 110px;
+      --bg:#040404;
+      --surface:rgba(12,12,12,.9);
+      --surface-strong:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.14);
+      --text:#fff;
+      --muted:rgba(255,255,255,.68);
+      --accent:#f5f5f5;
+      --heading:"Syne", sans-serif;
+      --body:"Manrope", sans-serif;
+      --shadow:0 28px 70px rgba(0,0,0,.36);
+    }
+    html, body { height: 100svh; overflow: hidden; }
+    @supports not (height: 100svh) { html, body { height: 100dvh; } }
+    body {
+      font-family: var(--body);
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.06), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,.04), transparent 20%),
+        linear-gradient(180deg, #090909 0%, #000 100%);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 18px 20px 12px;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(14px);
+      position: relative;
+      z-index: 2;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    header a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    header img { width: min(220px, 48vw); display: block; margin: 0 auto; height: auto; }
+
+    .form-section {
+      height: calc(100% - var(--headerH));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      position: relative;
+    }
+    .bg-rings { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bg-rings::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.12), transparent 42%),
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.5) 100%);
+    }
+    .ring-float { position: absolute; width: clamp(72px, var(--ringVW), var(--ringMax)); aspect-ratio: 1 / 1; padding: 6px; border-radius: 999px; background: rgba(255,255,255,.94); border: 1px solid rgba(16,24,40,.06); box-shadow: 0 18px 36px rgba(0,0,0,.18), 0 2px 6px rgba(16,24,40,.06); opacity: 0; will-change: transform, opacity; animation: fadeCycle var(--dur, 28s) ease-in-out var(--delay, 0s) infinite, drift var(--dur, 28s) linear var(--delay, 0s) infinite alternate; transform: translateZ(0); }
+    @keyframes fadeCycle { 0%{opacity:0;} 12%{opacity:.95;} 60%{opacity:.95;} 72%{opacity:0;} 100%{opacity:0;} }
+    @keyframes drift { from { transform: translate(0,0) rotate(0.5deg) scale(1); } to { transform: translate(var(--dx, 80px), var(--dy, 80px)) rotate(2deg) scale(1.02); } }
+
+    .shell { position: relative; z-index: 1; width: min(840px, 100%); display: grid; place-items: center; }
+    .card {
+      width: 100%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        var(--surface);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .progress { height: 4px; background: rgba(255,255,255,.08); }
+    .progress > div { height: 4px; width: 0; background: linear-gradient(90deg, #ffffff 0%, #c7d0d8 100%); transition: width .25s ease; }
+
+    .qa { display: grid; grid-template-rows: auto auto 1fr; min-height: 0; }
+    .qa.centered { min-height: 56vh; align-content: center; justify-items: center; }
+    .qa.centered .question { font-size: 1.35rem; }
+    .qa.centered .input-area { width: min(520px, 92%); }
+
+    .question {
+      padding: 28px 28px 10px;
+      font-family: var(--heading);
+      font-weight: 700;
+      text-align: center;
+      font-size: clamp(1.2rem, 2.1vw, 1.8rem);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+    }
+    .input-area { padding: 0 28px 28px; display: grid; gap: 14px; align-content: start; }
+
+    .input-area input, .input-area select, .input-area textarea {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      font-size: 1rem;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-align: center;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+      font-family: var(--body);
+      outline: none;
+      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .input-area input:focus, .input-area select:focus, .input-area textarea:focus{
+      border-color: rgba(255,255,255,.3);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .input-area textarea { min-height: 120px; resize: vertical; }
+
+    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .pill {
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.03);
+      color:#fff;
+      border-radius: 999px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .95rem;
+      font-family: var(--body);
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.28); }
+    .pill[aria-pressed="true"]{
+      background:#fff;
+      color:#0b0b0b;
+      border-color:#fff;
+    }
+
+    .unit-input { display:grid; grid-template-columns: 1fr auto; gap: 10px; align-items:center; }
+    .unit-input .unit { padding: 14px 16px; border:1px solid rgba(255,255,255,.16); border-radius:18px; background:rgba(255,255,255,.04); color:#fff; min-width: 78px; text-align:center; }
+
+    .budget-row { display:grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items:center; }
+    .budget-row select { min-width: 86px; }
+
+    .inline-next {
+      background:#fff;
+      color:#0b0b0b;
+      border:1px solid #fff;
+      padding:13px 18px;
+      border-radius:18px;
+      cursor:pointer;
+      justify-self:center;
+      width: min(220px, 100%);
+      font-weight:800;
+      font-family: var(--body);
+    }
+    .inline-next[disabled]{ opacity:.5; cursor:not-allowed; }
+
+    .inline-actions { display:grid; gap:10px; justify-items:center; margin-top: 6px; }
+    .hint-btn {
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.16);
+      padding:12px 16px;
+      border-radius:18px;
+      cursor:pointer;
+      width: min(260px, 100%);
+      font-family: var(--body);
+      font-weight:700;
+    }
+    .subtle { font-size:.92rem; color:var(--muted); text-align:center; font-family: var(--body); line-height:1.55; }
+
+    .error-line { font-size:.95rem; color:#ff8a8a; text-align:center; min-height: 1.2em; font-family: var(--body); }
+
+    .ring-float img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; filter: saturate(.95) contrast(1.08) brightness(1.02); }
+    @media (prefers-reduced-motion: reduce) { .ring-float { animation: none; opacity: .85; } }
+
+    .thank-you { display: none; position: absolute; inset: 18px; z-index: 2; align-items: center; justify-content: center; text-align: center; border-radius: 28px; background: rgba(11,11,11,.96); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 12px 30px rgba(0,0,0,.28); padding: 40px 20px; }
+    .thank-you h2 { font-size: 2.1rem; margin-bottom: 10px; font-family: var(--heading); }
+    .thank-you p  { font-size: 1.05rem; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      :root { --headerH: 96px; }
+      header img { width:min(244px, 68vw); }
+      .form-section{ padding: 16px; }
+      .card, .thank-you{ border-radius: 24px; }
+      .question{ padding: 24px 18px 10px; }
+      .input-area{ padding: 0 18px 22px; }
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z6GT6RVQN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2Z6GT6RVQN');
+    gtag('config', 'AW-17882921888');
+  </script>
+</head>
+<body>
+  <header>
+    <a href="index.html" aria-label="Ladfox home">
+      <img
+        src="Images/ladfox-logo.png"
+        alt="Ladfox"
+        decoding="async"
+        loading="eager"
+        onerror="
+          this.onerror=null;
+          if (this.src.includes('Images/ladfox-logo.png')) { this.src='/Images/ladfox-logo.png'; return; }
+          if (this.src.includes('/Images/ladfox-logo.png')) { this.src='Images/ladfox-logo.png'; return; }
+          this.src='Images/ladfox-logo.png';
+        "
+      />
+    </a>
+  </header>
+
+  <section class="form-section" id="formSection">
+    <div class="bg-rings" id="bgRings" aria-hidden="true"></div>
+
+    <form id="nf"
+          name="diamond-concierge"
+          method="POST"
+          action="/thank-you.html"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          enctype="multipart/form-data"
+          style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+      <input type="hidden" name="form-name" value="diamond-concierge" />
+      <p hidden><label>Do not fill this out <input name="bot-field" /></label></p>
+
+      <input type="hidden" name="subject" id="hiddenSubject" />
+      <input type="hidden" name="email" id="hiddenEmail" />
+      <input type="hidden" name="customer_name" id="hiddenCustomerName" />
+      <textarea name="summary" id="hiddenSummary" hidden></textarea>
+
+      <input type="hidden" name="loc_city" id="locCity" />
+      <input type="hidden" name="loc_region" id="locRegion" />
+      <input type="hidden" name="loc_country" id="locCountry" />
+
+      <input id="uploadInput" name="references" type="file" accept="image/*,video/*" multiple />
+    </form>
+
+    <div class="shell">
+      <div class="card qa" id="qaCard">
+        <div class="progress"><div id="progressBar"></div></div>
+
+        <div class="question" id="questionText"></div>
+        <div class="input-area" id="inputArea"></div>
+      </div>
+    </div>
+
+    <div class="thank-you" id="thankYouPane">
+      <div>
+        <h2>Thank you</h2>
+        <p>We will start pricing up your dream ring now.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputArea  = document.getElementById('inputArea');
+    const questionEl = document.getElementById('questionText');
+    const progressEl = document.getElementById('progressBar');
+    const qaCard     = document.getElementById('qaCard');
+    const formEl     = document.getElementById('nf');
+
+    function safeGtagEvent(name, params){
+      try{
+        if(typeof gtag === 'function'){
+          gtag('event', name, params || {});
+        }
+      }catch(_){}
+    }
+
+    const ringStyles = [
+      'Solitaire','Halo','Hidden halo','Three stone','Bezel','Cathedral','Pavé','Modern minimalist','Other'
+    ];
+
+    const gemstoneOptions = ['Sapphire','Emerald','Ruby','Tourmaline','Tanzanite','Aquamarine','Alexandrite','Spinel','Opal','Topaz','Garnet','Morganite','Peridot','Zircon','Amethyst','Kunzite','Grandidierite','Ametrine','Jade','Citrine','Moonstone','Sodalite','Quartz','Chrysoberyl','Beryl','Apatite','Sphene','Heliodor','Prehnite','Spectrolite','Other'];
+    const diamondShapes = ['Round','Cushion','Oval','Emerald','Radiant','Princess','Asscher','Pear','Marquise','Other'];
+    const diamondColour = ['D-F','D','E','F','G','H','I','J','K+'];
+    const diamondClarity = ['Eye Clean','FL','IF','VVS1','VVS2','VS1','VS2','SI1','SI2','I1+'];
+
+    const steps = [
+      { key: 'materialType', type: 'choice', label: 'Would you like a Diamond or a Gemstone', options: [
+        { label: 'Diamond', value: 'diamond' },
+        { label: 'Gemstone', value: 'gemstone' }
+      ]},
+
+      { key: 'diamondOrigin', type: 'choice', path: 'diamond', label: 'Lab grown or Natural', options: [
+        { label: 'Lab Grown', value: 'lab' },
+        { label: 'Natural', value: 'natural' }
+      ]},
+
+      { key: 'shape', type: 'select', path: 'diamond', label: 'What shape diamond are you after', options: diamondShapes },
+      { key: 'ring_style', type: 'select', path: 'diamond', label: 'Do you know what style of ring you are looking for', options: ringStyles },
+      { key: 'caratSize', type: 'number', path: 'diamond', label: 'What size diamond in carats', placeholder: 'e.g. 1.25', step: '0.01' },
+      { key: 'colour', type: 'select', path: 'diamond', label: 'Diamond colour preference', options: diamondColour },
+      { key: 'clarity', type: 'select', path: 'diamond', label: 'Diamond clarity preference', options: diamondClarity },
+
+      { key: 'gemstone', type: 'select', path: 'gemstone', label: 'Which gemstone', options: gemstoneOptions },
+      { key: 'shape', type: 'select', path: 'gemstone', label: 'What shape stone are you after', options: diamondShapes },
+      { key: 'ring_style', type: 'select', path: 'gemstone', label: 'Do you know what style of ring you are looking for', options: ringStyles },
+      { key: 'caratSize', type: 'number', path: 'gemstone', label: 'What size stone in carats', placeholder: 'e.g. 1.25', step: '0.01' },
+
+      { key: 'metal', type: 'choice', label: 'Choose a metal for the setting', options: [
+        { label: 'Yellow Gold', value: 'Yellow Gold' },
+        { label: 'White Gold', value: 'White Gold' },
+        { label: 'Rose Gold', value: 'Rose Gold' },
+        { label: 'Platinum', value: 'Platinum' }
+      ]},
+      { key: 'gold_karat', type: 'choice', path: 'gold', label: 'Choose gold karat, or Not sure', options: [
+        { label: '9k', value: '9k' }, { label: '14k', value: '14k' }, { label: '18k', value: '18k' }, { label: 'Not sure', value: 'Not sure' }
+      ]},
+
+      { key: 'budget', type: 'budget', label: 'What budget feels comfortable for the finished ring', },
+      { key: 'deadline', type: 'date', label: 'Any deadline, or no rush' },
+
+      { key: 'email', type: 'email', label: 'What email should we send your price estimate to' },
+
+      { key: 'heard_about', type: 'select', label: 'Where did you first hear about us', options: ['Instagram','TikTok','Google','Friends and Family','Reddit','YouTube','Walk in','Other'] },
+
+      { key: 'references', type: 'file', label: 'Upload inspiration photos, optional' },
+      { key: 'notes', type: 'textarea', label: 'Any additional notes, optional' },
+
+      {
+        key: 'ring_size',
+        type: 'select',
+        label: 'Select the ring size, UK or US',
+        options: [
+          'UK A','UK A½','UK B','UK B½','UK C','UK C½','UK D','UK D½','UK E','UK E½','UK F','UK F½','UK G','UK G½','UK H','UK H½','UK I','UK I½','UK J','UK J½','UK K','UK K½','UK L','UK L½','UK M','UK M½','UK N','UK N½','UK O','UK O½','UK P','UK P½','UK Q','UK Q½','UK R','UK R½','UK S','UK S½','UK T','UK T½','UK U','UK U½','UK V','UK V½','UK W','UK W½','UK X','UK X½','UK Y','UK Y½','UK Z',
+          'US 3','US 3¼','US 3½','US 3¾','US 4','US 4¼','US 4½','US 4¾','US 5','US 5¼','US 5½','US 5¾','US 6','US 6¼','US 6½','US 6¾','US 7','US 7¼','US 7½','US 7¾','US 8','US 8¼','US 8½','US 8¾','US 9','US 9¼','US 9½','US 9¾','US 10','US 10¼','US 10½','US 10¾','US 11','US 11¼','US 11½','US 11¾','US 12','US 12¼','US 12½','US 12¾','US 13',
+          'Not sure'
+        ]
+      },
+
+      { key: 'name', type: 'text', label: 'What is your first name' }
+    ];
+
+    const formData = {};
+    let index = 0;
+
+    function isGold(m){ return m === 'Yellow Gold' || m === 'White Gold' || m === 'Rose Gold'; }
+
+    function applicable(step){
+      if(step.key === 'gold_karat') return isGold(formData.metal);
+      if(!step.path) return true;
+      if(step.path === 'gold') return isGold(formData.metal);
+      if(step.path === 'diamond') return formData.materialType === 'diamond';
+      if(step.path === 'gemstone') return formData.materialType === 'gemstone';
+      return true;
+    }
+
+    function nextIndex(from){
+      let i = from + 1;
+      while(i < steps.length && !applicable(steps[i])) i++;
+      return i;
+    }
+
+    function visibleSteps(){ return steps.filter(applicable); }
+    function totalSteps(){ return visibleSteps().length; }
+
+    function currentVisibleIndex(){
+      const vis = visibleSteps();
+      const cur = steps[index];
+      const pos = vis.findIndex(s => s === cur);
+      return pos >= 0 ? pos : 0;
+    }
+
+    function updateProgress(){
+      const total = totalSteps();
+      const current = currentVisibleIndex();
+      const done = Math.max(0, current);
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      progressEl.style.width = pct + '%';
+    }
+
+    function isValidEmail(s){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || '').trim());
+    }
+
+    function currencySymbol(code){
+      if(code === 'GBP') return '�';
+      if(code === 'USD') return '$';
+      if(code === 'EUR') return '�';
+      return '';
+    }
+
+    function composeSummary(){
+      const isDiamond = formData.materialType === 'diamond';
+      const isGem     = formData.materialType === 'gemstone';
+      const prettyOrigin = formData.diamondOrigin === 'lab' ? 'Lab Grown'
+                          : formData.diamondOrigin === 'natural' ? 'Natural' : '';
+
+      const fi = document.getElementById('uploadInput');
+      const refNames = fi && fi.files && fi.files.length
+        ? Array.from(fi.files).map(f => f.name)
+        : [];
+
+      const lines = [];
+
+      if(formData.ring_style) lines.push(`Ring style:\n${formData.ring_style}`);
+      if(formData.heard_about) lines.push(`Where did they find us:\n${formData.heard_about}`);
+
+      if(formData.metal) lines.push(`Metal:\n${formData.metal}`);
+      if(isGold(formData.metal) && formData.gold_karat) lines.push(`Gold Karat:\n${formData.gold_karat}`);
+
+      if(formData.budget_amount){
+        const sym = currencySymbol(formData.budget_currency || 'GBP');
+        lines.push(`Budget:\n${sym}${formData.budget_amount}`);
+      }
+
+      if(isDiamond) lines.push(`Stone:\nDiamond`);
+      if(isGem && formData.gemstone) lines.push(`Stone:\n${formData.gemstone}`);
+
+      if(isDiamond && prettyOrigin) lines.push(`Type:\n${prettyOrigin}`);
+
+      if(formData.shape) lines.push(`Shape:\n${formData.shape}`);
+      if(formData.caratSize) lines.push(`carat:\n${formData.caratSize}`);
+
+      if(isDiamond && formData.colour) lines.push(`Colour:\n${formData.colour}`);
+      if(isDiamond && formData.clarity) lines.push(`Clarity:\n${formData.clarity}`);
+
+      if(formData.deadline) lines.push(`Need by:\n${formData.deadline}`);
+      if(formData.ring_size) lines.push(`Ring size:\n${formData.ring_size}`);
+
+      if(refNames.length) lines.push(`Inspiration:\n${refNames.join(', ')}`);
+      if(formData.inspiration_notes) lines.push(`Describe:\n${formData.inspiration_notes}`);
+      if(formData.notes) lines.push(`Notes:\n${formData.notes}`);
+      if(formData.name) lines.push(`Name:\n${formData.name}`);
+
+      return lines.join('\n\n');
+    }
+
+    function buildSubject(){
+      return `Diamond Concierge${formData.name ? ` for ${formData.name}` : ''}`;
+    }
+
+    function setHiddenFields(subject, summary){
+      const hs = document.getElementById('hiddenSubject');
+      const he = document.getElementById('hiddenEmail');
+      const hm = document.getElementById('hiddenSummary');
+      const hn = document.getElementById('hiddenCustomerName');
+      if(hs) hs.value = subject || '';
+      if(he) he.value = formData.email || '';
+      if(hm) hm.value = summary || '';
+      if(hn) hn.value = formData.name || '';
+    }
+
+    function buildFormData(){
+      const fd = new FormData(formEl);
+      const fi = document.getElementById('uploadInput');
+      if (fi && fi.files){
+        fd.delete('references');
+        Array.from(fi.files).forEach(file => {
+          fd.append('references', file, file.name);
+        });
+      }
+      return fd;
+    }
+
+    let hasFinalSent = false;
+    let hasPartialSent = false;
+
+    function showSendingState(){
+      if(qaCard){
+        qaCard.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+      }
+      if(questionEl) questionEl.textContent = 'Sending your details';
+      inputArea.innerHTML = '<div class="subtle">Please keep this page open for a moment.</div>';
+    }
+
+    function redirectToThankYou(){
+      const dest = '/thank-you.html' + (window.location.search || '');
+      window.location.assign(dest);
+    }
+
+    async function sendFinal(){
+      if(hasFinalSent) return;
+      hasFinalSent = true;
+
+      showSendingState();
+
+      const subject = buildSubject();
+      const summary = composeSummary();
+      setHiddenFields(subject, summary);
+
+      safeGtagEvent('form_submit_attempt', { page_location: window.location.href });
+
+      try {
+        const fd = buildFormData();
+        const res = await fetch('/thank-you.html', { method: 'POST', body: fd });
+        if(!res.ok) throw new Error('Bad response');
+        safeGtagEvent('form_submit_success', { page_location: window.location.href });
+        redirectToThankYou();
+      } catch(e){
+        hasFinalSent = false;
+        renderStep('There was a problem sending your request. Please try again.');
+        safeGtagEvent('form_submit_error', { page_location: window.location.href });
+      }
+    }
+
+    async function sendPartialOnce(){
+      if(hasPartialSent || hasFinalSent) return;
+      if(!isValidEmail(formData.email || '')) return;
+
+      hasPartialSent = true;
+      try{
+        const subject = buildSubject();
+        const summary = composeSummary();
+        setHiddenFields(subject, summary);
+
+        const fd = buildFormData();
+
+        if(navigator.sendBeacon){
+          const ok = navigator.sendBeacon('/thank-you.html', fd);
+          if(ok) return;
+        }
+        await fetch('/thank-you.html', { method: 'POST', body: fd, keepalive: true });
+      } catch(_){}
+    }
+
+    let idleTimer = null;
+    function resetIdleOneShot(){
+      if(idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(sendPartialOnce, 90000);
+    }
+
+    document.addEventListener('input', resetIdleOneShot, true);
+    document.addEventListener('pointerdown', resetIdleOneShot, true);
+    document.addEventListener('visibilitychange', () => { if(document.hidden) sendPartialOnce(); });
+    window.addEventListener('pagehide', () => { sendPartialOnce(); });
+    window.addEventListener('beforeunload', () => { sendPartialOnce(); });
+
+    function selectChoice(value, btn, row){
+      Array.from(row.children).forEach(el => el.setAttribute('aria-pressed','false'));
+      btn.setAttribute('aria-pressed','true');
+      commitAnswer(value);
+    }
+
+    function readCurrentInput(){
+      const step = steps[index];
+      if(step.type === 'choice') return null;
+      if(step.type === 'file') return '';
+      if(step.type === 'number' || step.type === 'email' || step.type === 'text' || step.type === 'date'){
+        const ctrl = inputArea.querySelector('input');
+        return ctrl ? ctrl.value.trim() : '';
+      }
+      if(step.type === 'textarea'){
+        const ctrl = inputArea.querySelector('textarea');
+        return ctrl ? ctrl.value.trim() : '';
+      }
+      if(step.type === 'select'){
+        const ctrl = inputArea.querySelector('select');
+        return ctrl ? ctrl.value.trim() : '';
+      }
+      return '';
+    }
+
+    function commitAnswer(value){
+      const step = steps[index];
+
+      if(step.type === 'budget' && value === 'BUDGET_CONFIRMED'){
+      } else if(step.type === 'file'){
+      } else {
+        let v = value != null ? value : readCurrentInput();
+
+        if(step.key === 'email'){
+          if(!isValidEmail(v)) return;
+          formData.email = String(v).trim();
+          safeGtagEvent('email_captured', { page_location: window.location.href });
+          requestLocationLookupOnce();
+        }
+
+        if(step.key === 'metal') formData.metal = v;
+
+        if(step.type !== 'budget'){
+          formData[step.key] = v;
+        }
+      }
+
+      resetIdleOneShot();
+
+      safeGtagEvent('step_complete', { step_key: step.key, page_location: window.location.href });
+
+      index = nextIndex(index);
+      if(index >= steps.length){ sendFinal(); return; }
+      renderStep();
+    }
+
+    let didLocationLookup = false;
+    function requestLocationLookupOnce(){
+      if(didLocationLookup) return;
+      didLocationLookup = true;
+
+      try {
+        fetch('https://ipapi.co/json/')
+          .then(r => r.json())
+          .then(loc => {
+            if(!loc) return;
+            const c = document.getElementById('locCity');
+            const r = document.getElementById('locRegion');
+            const k = document.getElementById('locCountry');
+            if(c) c.value = loc.city || '';
+            if(r) r.value = loc.region || '';
+            if(k) k.value = loc.country_name || '';
+          })
+          .catch(()=>{});
+      } catch(_){}
+    }
+
+    function renderStep(errorText){
+      const step = steps[index];
+
+      safeGtagEvent('step_view', { step_key: step.key, page_location: window.location.href });
+
+      if(qaCard){
+        if(step.key === 'email') qaCard.classList.add('centered');
+        else qaCard.classList.remove('centered');
+      }
+
+      const labelText = step.label.endsWith('?') || step.label.endsWith(':') ? step.label : (step.label + '?');
+      questionEl.textContent = labelText;
+
+      inputArea.innerHTML = '';
+
+      const errorLine = document.createElement('div');
+      errorLine.className = 'error-line';
+      errorLine.textContent = errorText || '';
+      inputArea.appendChild(errorLine);
+
+      let inputEl = null;
+
+      if(step.type === 'choice'){
+        const row = document.createElement('div');
+        row.className = 'pill-row';
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'pill';
+          btn.textContent = opt.label;
+          btn.addEventListener('click', () => selectChoice(opt.value, btn, row));
+          row.appendChild(btn);
+        });
+        inputArea.appendChild(row);
+      }
+
+      if(step.type === 'select'){
+        inputEl = document.createElement('select');
+        inputEl.setAttribute('aria-label', step.label);
+
+        const blank = document.createElement('option');
+        blank.value = '';
+        blank.textContent = 'Select';
+        inputEl.appendChild(blank);
+
+        step.options.forEach(opt => {
+          const o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt;
+          inputEl.appendChild(o);
+        });
+
+        inputEl.addEventListener('change', () => { if(inputEl.value) commitAnswer(); });
+        inputArea.appendChild(inputEl);
+
+        const actions = document.createElement('div');
+        actions.className = 'inline-actions';
+
+        if(step.key === 'colour' || step.key === 'clarity'){
+          const helpBtn = document.createElement('button');
+          helpBtn.type = 'button';
+          helpBtn.className = 'hint-btn';
+          helpBtn.textContent = 'Need help';
+          helpBtn.addEventListener('click', () => commitAnswer('Need help'));
+          actions.appendChild(helpBtn);
+        }
+
+        if(step.key === 'ring_style' || step.key === 'shape'){
+          const idkBtn = document.createElement('button');
+          idkBtn.type = 'button';
+          idkBtn.className = 'hint-btn';
+          idkBtn.textContent = "I don't know";
+          idkBtn.addEventListener('click', () => commitAnswer("I don't know"));
+          actions.appendChild(idkBtn);
+        }
+
+        if(step.key === 'ring_size'){
+          const idkBtn = document.createElement('button');
+          idkBtn.type = 'button';
+          idkBtn.className = 'hint-btn';
+          idkBtn.textContent = 'Not sure';
+          idkBtn.addEventListener('click', () => commitAnswer('Not sure'));
+          actions.appendChild(idkBtn);
+        }
+
+        if(actions.children.length) inputArea.appendChild(actions);
+      }
+
+      if(step.type === 'budget'){
+        const wrap = document.createElement('div');
+        wrap.className = 'budget-row';
+
+        const cur = document.createElement('select');
+        cur.setAttribute('aria-label','Currency');
+
+        ['GBP','USD','EUR'].forEach(c => {
+          const o = document.createElement('option');
+          o.value = c;
+          o.textContent = c;
+          cur.appendChild(o);
+        });
+        cur.value = 'GBP';
+
+        const amount = document.createElement('input');
+        amount.type = 'number';
+        amount.placeholder = 'e.g. 2500';
+        amount.step = '1';
+        amount.setAttribute('aria-label','Budget amount');
+
+        const inlineNext = document.createElement('button');
+        inlineNext.type = 'button';
+        inlineNext.className = 'inline-next';
+        inlineNext.textContent = 'Next';
+        inlineNext.disabled = true;
+
+        const enableCheck = () => { inlineNext.disabled = !(amount.value && String(amount.value).trim().length > 0); };
+        amount.addEventListener('input', enableCheck);
+        cur.addEventListener('change', enableCheck);
+
+        inlineNext.addEventListener('click', () => {
+          formData.budget_amount = (amount.value || '').trim();
+          formData.budget_currency = cur.value;
+          if(formData.budget_amount) commitAnswer('BUDGET_CONFIRMED');
+        });
+
+        amount.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); inlineNext.click(); } });
+
+        wrap.appendChild(cur);
+        wrap.appendChild(amount);
+        wrap.appendChild(inlineNext);
+        inputArea.appendChild(wrap);
+
+        const unsure = document.createElement('button');
+        unsure.type = 'button';
+        unsure.className = 'hint-btn';
+        unsure.textContent = 'Not sure';
+        unsure.addEventListener('click', () => {
+          formData.budget_amount = 'Not sure';
+          formData.budget_currency = cur.value;
+          commitAnswer('BUDGET_CONFIRMED');
+        });
+        inputArea.appendChild(unsure);
+
+        inputEl = amount;
+      }
+
+      if(step.type === 'email' || step.type === 'text' || step.type === 'number' || step.type === 'date'){
+        if(step.key === 'caratSize'){
+          const wrap = document.createElement('div');
+          wrap.className = 'unit-input';
+
+          inputEl = document.createElement('input');
+          inputEl.type = 'number';
+          inputEl.step = step.step || '0.01';
+          if(step.placeholder) inputEl.placeholder = step.placeholder;
+          inputEl.setAttribute('aria-label', step.label);
+
+          const unit = document.createElement('div');
+          unit.className = 'unit';
+          unit.textContent = 'ct';
+
+          wrap.appendChild(inputEl);
+          wrap.appendChild(unit);
+          inputArea.appendChild(wrap);
+        } else {
+          inputEl = document.createElement('input');
+          inputEl.type = step.type === 'number' ? 'number' : (step.type === 'date' ? 'date' : step.type);
+          if(step.step) inputEl.step = step.step;
+          if(step.placeholder) inputEl.placeholder = step.placeholder;
+          inputEl.setAttribute('aria-label', step.label);
+          inputArea.appendChild(inputEl);
+        }
+
+        if(step.key === 'email'){
+          const reassurance = document.createElement('div');
+          reassurance.className = 'subtle';
+          reassurance.textContent = 'Used only to send your estimate and save your progress. No marketing.';
+          inputArea.appendChild(reassurance);
+        }
+
+        const actions = document.createElement('div');
+        actions.className = 'inline-actions';
+
+        if(step.key === 'deadline'){
+          const noneBtn = document.createElement('button');
+          noneBtn.type = 'button';
+          noneBtn.className = 'hint-btn';
+          noneBtn.textContent = 'No rush';
+          noneBtn.addEventListener('click', () => commitAnswer('No rush'));
+          actions.appendChild(noneBtn);
+        }
+
+        if(step.key === 'caratSize'){
+          const unsureBtn = document.createElement('button');
+          unsureBtn.type = 'button';
+          unsureBtn.className = 'hint-btn';
+          unsureBtn.textContent = 'Not sure';
+          unsureBtn.addEventListener('click', () => commitAnswer('Not sure'));
+          actions.appendChild(unsureBtn);
+        }
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'inline-next';
+        nextBtn.textContent = 'Next';
+        nextBtn.disabled = (step.key === 'email');
+
+        nextBtn.addEventListener('click', () => {
+          const v = readCurrentInput();
+          if(step.key === 'email' && !isValidEmail(v)){
+            errorLine.textContent = 'Please enter a valid email address.';
+            return;
+          }
+          commitAnswer();
+        });
+
+        if(step.key === 'email'){
+          inputEl.addEventListener('input', () => {
+            const v = String(inputEl.value || '').trim();
+            const ok = isValidEmail(v);
+            nextBtn.disabled = !ok;
+            formData.email = ok ? v : '';
+            if(ok) errorLine.textContent = '';
+          });
+        }
+
+        actions.appendChild(nextBtn);
+        inputArea.appendChild(actions);
+      }
+
+      if(step.type === 'textarea'){
+        inputEl = document.createElement('textarea');
+        inputEl.setAttribute('aria-label', step.label);
+        inputArea.appendChild(inputEl);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'inline-next';
+        nextBtn.textContent = 'Next';
+        nextBtn.addEventListener('click', () => commitAnswer());
+        inputArea.appendChild(nextBtn);
+      }
+
+      if(step.type === 'file'){
+        const fi = document.getElementById('uploadInput');
+
+        const pick = document.createElement('button');
+        pick.type = 'button';
+        pick.className = 'hint-btn';
+        pick.textContent = 'Choose files';
+        pick.addEventListener('click', () => fi.click());
+        inputArea.appendChild(pick);
+
+        const list = document.createElement('div');
+        list.className = 'subtle';
+        list.textContent = fi.files && fi.files.length ? Array.from(fi.files).map(f => f.name).join(', ') : 'No files chosen';
+        fi.addEventListener('change', () => {
+          list.textContent = fi.files && fi.files.length ? Array.from(fi.files).map(f => f.name).join(', ') : 'No files chosen';
+        });
+        inputArea.appendChild(list);
+
+        const line = document.createElement('div');
+        line.className = 'subtle';
+        line.textContent = 'Add a short note, optional';
+        inputArea.appendChild(line);
+
+        const describe = document.createElement('textarea');
+        describe.placeholder = 'Optional';
+        describe.setAttribute('aria-label','Describe what you are looking for');
+        inputArea.appendChild(describe);
+
+        const actions = document.createElement('div');
+        actions.className = 'inline-actions';
+
+        const skip = document.createElement('button');
+        skip.type = 'button';
+        skip.className = 'hint-btn';
+        skip.textContent = 'Skip';
+        skip.addEventListener('click', () => {
+          formData.inspiration_notes = '';
+          commitAnswer('FILE_STEP_DONE');
+        });
+
+        const inlineNext = document.createElement('button');
+        inlineNext.type = 'button';
+        inlineNext.className = 'inline-next';
+        inlineNext.textContent = 'Next';
+        inlineNext.addEventListener('click', () => {
+          formData.inspiration_notes = (describe.value || '').trim();
+          commitAnswer('FILE_STEP_DONE');
+        });
+
+        actions.appendChild(skip);
+        actions.appendChild(inlineNext);
+        inputArea.appendChild(actions);
+
+        inputEl = pick;
+      }
+
+      inputArea.onkeydown = (e) => {
+        const tag = e.target && e.target.tagName;
+        if(e.key === 'Enter' && tag !== 'TEXTAREA' && step.type !== 'budget' && step.type !== 'file' && step.type !== 'choice' && step.type !== 'select'){
+          e.preventDefault();
+          const v = readCurrentInput();
+          if(step.key === 'email' && !isValidEmail(v)){
+            errorLine.textContent = 'Please enter a valid email address.';
+            return;
+          }
+          commitAnswer();
+        }
+      };
+
+      updateProgress();
+
+      if(inputEl){
+        setTimeout(() => {
+          try{
+            inputEl.focus({ preventScroll: true });
+            if(inputEl.select) inputEl.select();
+          } catch(_){}
+        }, 50);
+      }
+    }
+
+    renderStep();
+  });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Engagement Ring Design Form",
+    "url":"https://ladfox-site.netlify.app/ring-form.html",
+    "description":"A calm, guided form to capture engagement ring preferences, style, and stone choices."
+  }
+  </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DC Diamonds Co.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background-color: #000;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .top-banner {
+      background: #000;
+      color: #fff;
+      font-size: 1.1em;
+      padding: 10px 0;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      white-space: nowrap;
+      letter-spacing: 1px;
+    }
+
+    .top-banner-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll 30s linear infinite;
+    }
+
+    .top-banner-content div {
+      display: inline-block;
+      margin-right: 150px;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    header {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .site-title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4em;
+      font-weight: normal;
+      letter-spacing: 2px;
+      color: white;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 2px 2px 6px rgba(0, 0, 0, 0.7);
+      opacity: 0.95;
+    }
+
+    .site-title .dc {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.3em;
+    }
+
+    .site-title .diamonds {
+      font-family: 'Georgia', serif;
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+
+    .site-title .co {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.8;
+      margin-left: 5px;
+    }
+
+    .header-left {
+      position: absolute;
+      top: 70%;
+      left: 5%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 1.3em;
+      font-weight: bold;
+      max-width: 40%;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-button a {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      margin: 5px 0;
+    }
+
+    .header-button a:hover {
+      background-color: #444;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #222;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1em;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .feature {
+      background: #fafafa;
+      padding: 25px;
+      border-radius: 8px;
+      flex: 1 1 250px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .img-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .img-right img {
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #444;
+    }
+
+    .see-every-angle {
+      padding: 60px 20px;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+    }
+
+    .angle-container {
+      position: relative;
+      max-width: 1000px;
+    }
+
+    .angle-container img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .see-every-angle-text {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      color: white;
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      max-width: 40%;
+    }
+
+    .testimonial-section {
+      background: #fafafa;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .testimonial-block {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-slide {
+      display: none;
+      font-size: 1.1em;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .testimonial-slide.active {
+      display: block;
+      animation: fadeIn 1s;
+    }
+
+    .testimonial-slide strong {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      font-style: normal;
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.95em;
+    }
+
+    footer p {
+      margin: 10px 0;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .contact-buttons .btn {
+      background-color: #000;
+      font-size: 1em;
+    }
+
+    .contact-buttons .btn.whatsapp {
+      background-color: #25D366;
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 2.5em;
+        top: 10px;
+      }
+
+      .header-left {
+        top: 60%;
+        font-size: 1em;
+        max-width: 90%;
+      }
+
+      .header-button {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .see-every-angle-text {
+        font-size: 1.2em;
+        max-width: 80%;
+      }
+
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-banner">
+  <div class="top-banner-content">
+    <div>Best Prices Guaranteed — Find Your Perfect Diamond Today!</div>
+    <div>Free World Wide Shipping</div>
+    <div>100% Conflict-Free</div>
+    <div>Certified by IGI and GIA</div>
+    <div>Any questions? Drop us a message!</div>
+  </div>
+</div>
+
+<header>
+  <img src="images/banner.jpg" alt="Diamond Banner">
+  <div class="site-title">
+    <span class="dc">DC</span> <span class="diamonds">Diamonds</span> <span class="co">Co.</span>
+  </div>
+  <div class="header-left">
+    Premium Lab-Grown Diamonds<br>
+    Fully Certified by IGI or GIA<br>
+    360° Diamond Views<br>
+    Best Price Guarantee
+  </div>
+  <div class="header-button">
+    <a href="diamonds.html">Browse Diamonds</a>
+    <a href="rings.html">Shop Rings</a>
+  </div>
+</header>
+
+<section>
+  <h2>Why Choose Lab-Grown?</h2>
+  <p>Luxury without compromise. Lab-grown diamonds are chemically, physically, and optically identical to mined diamonds — but kinder to the planet and your wallet.</p>
+  <div class="features">
+    <div class="feature">
+      <strong>Affordable Elegance</strong><br>
+      Up to 70% less than mined diamonds.
+    </div>
+    <div class="feature">
+      <strong>Indistinguishable Beauty</strong><br>
+      Certified and visually identical.
+    </div>
+    <div class="feature">
+      <strong>Responsibly Made</strong><br>
+      Conflict-free and sustainable.
+    </div>
+  </div>
+</section>
+
+<section class="see-every-angle">
+  <div class="angle-container">
+    <img src="images/360.jpg" alt="360 View">
+    <div class="see-every-angle-text">
+      See Every Sparkle<br>From Every Angle
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Best Price Promise</h2>
+  <p>Found a diamond elsewhere? Let us know — we'll beat the price while offering superior certification, service, and sparkle. No pressure. No gimmicks. Just unbeatable value.</p>
+  <div style="text-align:center;">
+    <a href="diamonds.html" class="btn">Browse Diamonds for Sale</a>
+  </div>
+</section>
+
+<section>
+  <h2>Our Mission</h2>
+  <p>DC Diamonds Co. was founded with one mission: to make luxury accessible. We believe everyone deserves to celebrate life's milestones with a brilliant diamond — without compromise or inflated costs.</p>
+</section>
+
+<section class="testimonial-section">
+  <h2>What Our Customers Say</h2>
+  <div class="testimonial-block">
+    <div class="testimonial-slide active">
+      "I was nervous about buying a lab diamond online, but DC Diamonds made the whole process so easy. They answered all my questions, sent extra videos, and my ring is absolutely breathtaking."
+      <strong>- Jessica T.</strong>
+    </div>
+    <div class="testimonial-slide">
+      "The quality blew me away. I had compared with several high street stores and the diamond I bought from DC was brighter, bigger, and way better value. I get compliments every day!"
+      <strong>- Daniel S.</strong>
+    </div>
+    <div class="testimonial-slide">
+      "Being able to see the diamond from every angle was a game-changer. It arrived quickly, in beautiful packaging, and exceeded all my expectations. Couldn’t be happier."
+      <strong>- Claire B.</strong>
+    </div>
+    <div class="testimonial-slide">
+      "DC Diamonds were honest, transparent, and genuinely cared about finding the perfect stone for me. No upselling, just great service and stunning quality."
+      <strong>- Michael R.</strong>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Contact Us</h2>
+  <p>Have questions or need help finding your perfect stone? We're here for you.</p>
+  <div class="contact-buttons">
+    <a href="mailto:dcdiamondsco@gmail.com" class="btn">Email Us</a>
+    <a href="https://wa.me/447919843337" target="_blank" class="btn whatsapp">WhatsApp Us</a>
+    <a href="tel:01494926181" class="btn">Give Us a Call</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 DC Diamonds Co. All rights reserved.</p>
+  <p>Crafted with care for life's brightest moments.</p>
+</footer>
+
+<script>
+  const slides = document.querySelectorAll('.testimonial-slide');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+  }
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 6000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+[
+  {
+    "id": "LG696581247",
+    "image": "images/diamond2.jpg",
+    "price": "$1,223",
+    "shape": "Cushion Modified Brilliant",
+    "carat": "2.57Ct",
+    "color": "D",
+    "clarity": "VVS 1",
+    "url": "products/LG696581247/LG696581247.html"
+  },
+  {
+    "image": "images/diamond1.jpg",
+    "sold": true
+  },
+  {
+    "image": "images/diamond3.jpg",
+    "sold": true
+  }
+  // Add more as needed
+]

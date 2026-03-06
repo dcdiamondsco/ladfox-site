@@ -1,0 +1,11 @@
+final-clean-deploy/
+*.zip
+dc-diamonds-server/
+mid-deploy/
+test-deploy/
+ring-deploy/
+dream-deploy/
+gallery-deploy/
+netlify-deploy/
+Images/online return center.html
+Images/Online Return Center_files/

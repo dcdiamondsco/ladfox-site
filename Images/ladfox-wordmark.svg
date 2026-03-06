@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="220" viewBox="0 0 820 220" role="img" aria-labelledby="title desc">
+  <title id="title">Ladfox wordmark</title>
+  <desc id="desc">Stylized Ladfox brand wordmark with geometric letterforms and a warm gradient accent.</desc>
+  <rect width="820" height="220" rx="28" fill="#15110f"/>
+  <g fill="#f8efe4">
+    <path d="M76 58h24v84h95v20H76z"/>
+    <path d="M236 80c16 0 29 4 39 13 10 9 15 22 15 39v30h-22v-10c-8 9-20 14-36 14-13 0-24-3-32-10-8-7-12-16-12-27 0-12 4-21 13-28 9-6 21-10 38-10h27v-3c0-7-2-12-8-16-5-4-12-6-21-6-14 0-27 4-38 12l-9-16c14-12 30-18 46-18zm-4 69c-13 0-20 5-20 14 0 5 2 9 6 12 4 3 10 5 17 5 9 0 17-2 23-7 6-5 10-11 10-19v-5z"/>
+    <path d="M340 40h23v122h-23z"/>
+    <path d="M428 80c12 0 22 3 31 8 9 5 16 13 22 22v-70h23v122h-22v-13c-6 10-13 17-22 22-9 5-20 8-32 8-16 0-30-5-40-15-11-11-16-25-16-42 0-18 5-32 16-42 10-10 24-15 40-15zm4 20c-10 0-19 3-26 10-7 7-10 16-10 28 0 12 3 22 10 29 7 7 16 10 26 10 11 0 20-3 27-10 7-7 10-17 10-29 0-12-3-21-10-28-7-7-16-10-27-10z"/>
+  </g>
+  <g fill="#f8efe4">
+    <path d="M573 82h84v18h-61v22h55v18h-55v22h64v18h-87z"/>
+    <path d="M699 82l27 31 27-31h28l-41 48 44 50h-28l-30-34-30 34h-28l44-50-41-48z"/>
+  </g>
+</svg>

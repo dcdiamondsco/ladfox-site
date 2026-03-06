@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diamond Gallery</title>
+  <meta name="description" content="A simple diamond gallery with preview images and details from Ladfox"/>
+  <link rel="canonical" href="https://www.dcdiamondsco.com/Images/gallery.html"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Diamond Gallery"/>
+  <meta property="og:description" content="A simple diamond gallery with preview images and details."/>
+  <meta property="og:url" content="https://www.dcdiamondsco.com/Images/gallery.html"/>
+  <meta property="og:image" content="https://www.dcdiamondsco.com/Images/banner.jpg"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Diamond Gallery"/>
+  <meta name="twitter:description" content="A simple diamond gallery with preview images and details."/>
+  <meta name="twitter:image" content="https://www.dcdiamondsco.com/Images/banner.jpg"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #fafafa;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 250px;
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 15px 10px 20px;
+    }
+    .product-price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 10px 0 5px;
+      color: #0070ba;
+    }
+    .product-description {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .sold-overlay {
+      position: absolute;
+      background: rgba(255,0,0,0.7);
+      color: white;
+      padding: 5px 10px;
+      font-weight: bold;
+      top: 10px;
+      right: 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    .card-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 250px;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17882921888"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17882921888');
+  </script></head>
+<body>
+
+<h1>Diamond Gallery</h1>
+
+<div id="gallery" class="gallery"></div>
+
+<script>
+  // Embedded product data (replace with fetch if needed)
+  const products = [
+    {
+      "id": "LG696581247",
+      "image": "images/diamond2.jpg",
+      "price": "$1,223",
+      "shape": "Cushion Modified Brilliant",
+      "carat": "2.57Ct",
+      "color": "D",
+      "clarity": "VVS 1",
+      "url": "products/LG696581247/LG696581247.html"
+    },
+    {
+      "image": "images/diamond1.jpg",
+      "sold": true
+    },
+    {
+      "image": "images/diamond3.jpg",
+      "sold": true
+    }
+  ];
+
+  const gallery = document.getElementById('gallery');
+
+  products.forEach(product => {
+    const cardWrapper = document.createElement('div');
+    cardWrapper.className = 'card-wrapper';
+
+    if (product.sold) {
+      // Sold item - image + sold label, no link
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = "Sold Diamond";
+      img.className = 'product-image';
+      cardWrapper.appendChild(img);
+
+      const soldLabel = document.createElement('div');
+      soldLabel.className = 'sold-overlay';
+      soldLabel.textContent = 'SOLD';
+      cardWrapper.appendChild(soldLabel);
+    } else {
+      // Available product - clickable card
+      const link = document.createElement('a');
+      link.href = product.url;
+      link.className = 'product-card';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = product.shape || 'Diamond';
+      img.className = 'product-image';
+      link.appendChild(img);
+
+      const info = document.createElement('div');
+      info.className = 'product-info';
+
+      const price = document.createElement('div');
+      price.className = 'product-price';
+      price.textContent = product.price;
+      info.appendChild(price);
+
+      const description = document.createElement('div');
+      description.className = 'product-description';
+      description.textContent = `${product.shape} · ${product.carat} · Color ${product.color} · Clarity ${product.clarity}`;
+      info.appendChild(description);
+
+      link.appendChild(info);
+      cardWrapper.appendChild(link);
+    }
+
+    gallery.appendChild(cardWrapper);
+  });
+</script>
+
+</body>
+</html>
+

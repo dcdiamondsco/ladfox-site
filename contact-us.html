@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Contact Ladfox | Private Jewellery Consultation</title>
+  <meta name="description" content="Contact Ladfox to book a private phone or email consultation, or send a message about bespoke rings, jewellery, or a quote review." />
+  <link rel="canonical" href="https://ladfox-site.netlify.app/contact-us.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact Ladfox | Private Jewellery Consultation" />
+  <meta property="og:description" content="Choose a phone consultation, an email consultation, or send a private message to Ladfox." />
+  <meta property="og:url" content="https://ladfox-site.netlify.app/contact-us.html" />
+  <meta property="og:image" content="https://ladfox-site.netlify.app/Images/ladfox-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Ladfox | Private Jewellery Consultation" />
+  <meta name="twitter:description" content="Book a discreet consultation with Ladfox or send a message about a bespoke jewellery project." />
+  <meta name="twitter:image" content="https://ladfox-site.netlify.app/Images/ladfox-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --bg-soft:#0b0b0b;
+      --surface:rgba(255,255,255,.05);
+      --surface-strong:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.14);
+      --text:#fff;
+      --muted:rgba(255,255,255,.72);
+      --accent:#fff;
+      --accent-soft:#fff;
+      --heading:"Syne", sans-serif;
+      --body:"Manrope", sans-serif;
+      --shadow:0 24px 80px rgba(0,0,0,.24);
+      --max:1120px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html{
+      background:#000;
+      overscroll-behavior-y:none;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:var(--body);
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.07), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(255,255,255,.04), transparent 22%),
+        linear-gradient(180deg, #050505 0%, #0a0a0a 45%, #000 100%);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .shell{
+      width:min(calc(100% - 32px), var(--max));
+      margin:0 auto;
+    }
+
+    header{
+      padding:22px 0 14px;
+      display:grid;
+      justify-items:center;
+    }
+
+    .brand img{
+      width:min(205px, 44vw);
+      height:auto;
+      display:block;
+    }
+
+    nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    nav a{
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.92rem;
+      font-weight:700;
+    }
+
+    main{
+      padding:16px 0 40px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .intro,
+    .form-card,
+    .info-card,
+    .thank-you-message{
+      border:1px solid var(--line);
+      border-radius:32px;
+      background:var(--surface);
+      box-shadow:var(--shadow);
+    }
+
+    .intro{
+      padding:30px;
+      position:sticky;
+      top:18px;
+      overflow:hidden;
+    }
+
+    .intro::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-54px;
+      top:-62px;
+      background:radial-gradient(circle, rgba(255,255,255,.12), transparent 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      color:var(--accent-soft);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.72rem;
+      font-weight:800;
+    }
+
+    h1,
+    h2,
+    h3{
+      margin:0;
+      font-family:var(--heading);
+      line-height:1.05;
+    }
+
+    h1{
+      margin-top:18px;
+      font-size:clamp(2.8rem, 6vw, 5rem);
+      max-width:9ch;
+    }
+
+    .intro p{
+      margin:18px 0 0;
+      color:var(--muted);
+      line-height:1.75;
+      max-width:54ch;
+    }
+
+    .info-list{
+      display:grid;
+      gap:12px;
+      margin-top:26px;
+    }
+
+    .info-card{
+      padding:18px 20px;
+      background:var(--surface-strong);
+    }
+
+    .info-card strong{
+      display:block;
+      margin-bottom:6px;
+      color:#fff2e0;
+    }
+
+    .info-card span{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:.95rem;
+    }
+
+    .form-card{
+      padding:28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent 34%),
+        rgba(255,255,255,.04);
+    }
+
+    .form-card h2{
+      font-size:2rem;
+      margin-bottom:8px;
+    }
+
+    .consult-note{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:58ch;
+    }
+
+    .fields{
+      display:grid;
+      gap:14px;
+    }
+
+    .field-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .label{
+      display:block;
+      margin-bottom:8px;
+      font-size:.92rem;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .input,
+    .textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(15,12,10,.35);
+      color:var(--text);
+      font:inherit;
+    }
+
+    .input::placeholder,
+    .textarea::placeholder{
+      color:rgba(255,255,255,.44);
+    }
+
+    .textarea{
+      min-height:160px;
+      resize:vertical;
+    }
+
+    .radio-group{
+      display:grid;
+      gap:10px;
+    }
+
+    .conditional-block[hidden]{
+      display:none !important;
+    }
+
+    .radio-option{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(15,12,10,.28);
+      color:var(--muted);
+    }
+
+    .radio-option input{
+      accent-color:var(--accent);
+    }
+
+    .submit-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 22px;
+      border:0;
+      border-radius:18px;
+      background:#000;
+      color:#fff;
+      font-weight:800;
+      font-size:1rem;
+      cursor:pointer;
+      box-shadow:0 18px 36px rgba(255,255,255,.08);
+    }
+
+    .privacy{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.6;
+      max-width:40ch;
+    }
+
+    .thank-you-message{
+      display:none;
+      padding:34px;
+      background:rgba(255,255,255,.1);
+    }
+
+    .thank-you-message.visible{
+      display:block;
+    }
+
+    .thank-you-message h2{
+      font-size:clamp(2.1rem, 4vw, 3.6rem);
+      margin-bottom:10px;
+    }
+
+    .thank-you-message p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      max-width:52ch;
+    }
+
+    @media (max-width:980px){
+      .layout,
+      .field-grid{
+        grid-template-columns:1fr;
+      }
+
+      .intro{
+        position:static;
+      }
+
+    }
+
+    @media (max-width:720px){
+      .brand img{
+        width:min(244px, 70vw);
+      }
+      .intro,
+      .form-card,
+      .info-card,
+      .thank-you-message{
+        border-radius:24px;
+      }
+
+      .intro,
+      .form-card,
+      .thank-you-message{
+        padding:22px;
+      }
+
+      .submit-row{
+        align-items:flex-start;
+      }
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17882921888"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "AW-17882921888");
+  </script>
+</head>
+<body>
+  <header class="shell">
+    <a class="brand" href="index.html" aria-label="Ladfox home">
+      <img src="Images/ladfox-logo.png" alt="Ladfox" />
+    </a>
+  </header>
+
+  <main class="shell">
+    <div class="layout">
+      <section>
+        <div id="contactContent" class="form-card">
+          <h2>Contact us</h2>
+          <p class="consult-note">Choose how you want to be contacted and give enough detail for a useful first reply.</p>
+
+          <form
+            name="contact-us"
+            method="POST"
+            action="/thank-you.html"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            enctype="multipart/form-data"
+            class="fields"
+          >
+            <input type="hidden" name="form-name" value="contact-us" />
+            <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+
+            <input type="hidden" name="source-page" value="contact-us" />
+            <input type="hidden" name="location" id="locationField" value="Unknown" />
+
+            <input type="hidden" name="utm_source" id="utm_source" />
+            <input type="hidden" name="utm_medium" id="utm_medium" />
+            <input type="hidden" name="utm_campaign" id="utm_campaign" />
+            <input type="hidden" name="utm_term" id="utm_term" />
+            <input type="hidden" name="utm_content" id="utm_content" />
+            <input type="hidden" name="gclid" id="gclid" />
+
+            <input type="hidden" name="subject" id="hiddenSubject" />
+            <textarea name="summary" id="hiddenSummary" hidden></textarea>
+
+            <div>
+              <span class="label">Preferred contact *</span>
+              <div class="radio-group" role="radiogroup" aria-label="Preferred contact method">
+                <label class="radio-option">
+                  <input type="radio" name="preferred_contact" value="Phone consultation" required />
+                  Phone consultation
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="preferred_contact" value="Email consultation" required />
+                  Email consultation
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="preferred_contact" value="Send a message" required />
+                  Send a message
+                </label>
+              </div>
+            </div>
+
+            <div id="contactDetailsBlock" class="conditional-block field-grid" hidden>
+              <div>
+                <label for="name" class="label">Name *</label>
+                <input type="text" id="name" name="name" class="input" autocomplete="name" />
+              </div>
+
+              <div id="emailFieldBlock" hidden>
+                <label for="email" class="label">Email *</label>
+                <input type="email" id="email" name="email" class="input" autocomplete="email" />
+              </div>
+
+              <div id="phoneFieldBlock" hidden>
+                <label for="phone" class="label">Phone *</label>
+                <input type="tel" id="phone" name="phone" class="input" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div id="messageBlock" class="conditional-block" hidden>
+              <label for="message" class="label">Message *</label>
+              <textarea id="message" name="message" class="textarea" placeholder="Tell us what you are trying to make, compare, or understand."></textarea>
+
+              <label for="messageEmail" class="label">Email *</label>
+              <input type="email" id="messageEmail" class="input" autocomplete="email" />
+            </div>
+
+            <div class="submit-row">
+              <button type="submit" class="btn">Send</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="thank-you-message" id="thankYou">
+          <span class="eyebrow">Received</span>
+          <h2>Thank you. Your Ladfox enquiry is in.</h2>
+          <p>We will reply within 24 hours to arrange your consultation or next step.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(location.search);
+      const contactContent = document.getElementById("contactContent");
+      const thankYou = document.getElementById("thankYou");
+      const form = document.querySelector('form[name="contact-us"]');
+      const contactDetailsBlock = document.getElementById("contactDetailsBlock");
+      const emailFieldBlock = document.getElementById("emailFieldBlock");
+      const phoneFieldBlock = document.getElementById("phoneFieldBlock");
+      const messageBlock = document.getElementById("messageBlock");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const messageEmailInput = document.getElementById("messageEmail");
+      const phoneInput = document.getElementById("phone");
+      const messageInput = document.getElementById("message");
+
+      if (params.get("sent") === "1") {
+        if (contactContent) contactContent.style.display = "none";
+        if (thankYou) thankYou.classList.add("visible");
+
+        try{
+          if (typeof gtag === "function") {
+            gtag("event", "generate_lead", {
+              event_category: "Lead",
+              event_label: "Consultation",
+              value: 1
+            });
+          }
+        }catch(_){}
+      }
+
+      ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid"].forEach(key => {
+        const el = document.getElementById(key);
+        if (el) el.value = params.get(key) || "";
+      });
+
+      fetch("https://ipapi.co/json/")
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(data => {
+          const loc = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
+          const locField = document.getElementById("locationField");
+          if (locField) locField.value = loc || "Unknown";
+        })
+        .catch(() => {});
+
+      const syncContactMode = () => {
+        const pref = form?.querySelector('input[name="preferred_contact"]:checked')?.value || "";
+
+        if (!contactDetailsBlock || !emailFieldBlock || !phoneFieldBlock || !messageBlock || !nameInput || !emailInput || !messageEmailInput || !phoneInput || !messageInput) {
+          return;
+        }
+
+        const wantsPhone = pref === "Phone consultation";
+        const wantsEmail = pref === "Email consultation";
+        const wantsMessage = pref === "Send a message";
+        const wantsDetails = wantsPhone || wantsEmail;
+
+        contactDetailsBlock.hidden = !wantsDetails;
+        emailFieldBlock.hidden = !wantsEmail;
+        phoneFieldBlock.hidden = !wantsPhone;
+        messageBlock.hidden = !wantsMessage;
+
+        nameInput.required = wantsDetails;
+        emailInput.required = wantsEmail;
+        phoneInput.required = wantsPhone;
+        messageInput.required = wantsMessage;
+        messageEmailInput.required = wantsMessage;
+
+        emailInput.disabled = !wantsEmail;
+        messageEmailInput.disabled = !wantsMessage;
+        phoneInput.disabled = !wantsPhone;
+        messageInput.disabled = !wantsMessage;
+        nameInput.disabled = !wantsDetails;
+
+        if (!wantsEmail) emailInput.value = "";
+        if (!wantsMessage) messageEmailInput.value = "";
+        if (!wantsPhone) phoneInput.value = "";
+        if (!wantsMessage) messageInput.value = "";
+        if (!wantsDetails) nameInput.value = "";
+      };
+
+      form?.querySelectorAll('input[name="preferred_contact"]').forEach((input) => {
+        input.addEventListener("change", syncContactMode);
+      });
+      syncContactMode();
+
+      if (form){
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const nameVal = (document.getElementById("name")?.value || "").trim();
+          const emailVal = ((document.getElementById("email")?.value || "").trim() || (document.getElementById("messageEmail")?.value || "").trim());
+          const phoneVal = (document.getElementById("phone")?.value || "").trim();
+          const msgVal = (document.getElementById("message")?.value || "").trim();
+          const pref = (document.querySelector('input[name="preferred_contact"]:checked')?.value || "").trim();
+
+          const subject = `Consultation request from ${nameVal || "Customer"}`;
+          const subjEl = document.getElementById("hiddenSubject");
+          if (subjEl) subjEl.value = subject;
+
+          const summaryEl = document.getElementById("hiddenSummary");
+          if (summaryEl){
+            summaryEl.value = composeSummary({
+              name: nameVal,
+              email: emailVal,
+              phone: phoneVal,
+              preferred: pref,
+              message: msgVal,
+              location: document.getElementById("locationField")?.value || "",
+              utm: {
+                source: document.getElementById("utm_source")?.value || "",
+                medium: document.getElementById("utm_medium")?.value || "",
+                campaign: document.getElementById("utm_campaign")?.value || "",
+                term: document.getElementById("utm_term")?.value || "",
+                content: document.getElementById("utm_content")?.value || "",
+                gclid: document.getElementById("gclid")?.value || ""
+              }
+            });
+          }
+
+          ["name","email","messageEmail","phone","message"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.removeAttribute("name");
+          });
+
+          const formData = new FormData(form);
+          const payload = new URLSearchParams();
+
+          formData.forEach((value, key) => {
+            if (typeof value === "string") {
+              payload.append(key, value);
+            }
+          });
+
+          try {
+            const response = await fetch("/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              body: payload.toString()
+            });
+
+            if (!response.ok) {
+              throw new Error("Submission failed");
+            }
+
+            window.location.href = "/thank-you.html";
+          } catch (_) {
+            window.location.href = "/thank-you.html";
+          }
+        });
+      }
+    });
+
+    function composeSummary(fields){
+      const lines = [];
+
+      if (fields.name) lines.push(`Name:\n${fields.name}`);
+      if (fields.email) lines.push(`Email:\n${fields.email}`);
+      if (fields.phone) lines.push(`Phone:\n${fields.phone}`);
+      if (fields.preferred) lines.push(`Preferred contact:\n${fields.preferred}`);
+      if (fields.location) lines.push(`Location:\n${fields.location}`);
+      if (fields.message) lines.push(`Message:\n${fields.message}`);
+
+      const u = fields.utm || {};
+      const utmLines = [];
+      if (u.source) utmLines.push(`utm_source: ${u.source}`);
+      if (u.medium) utmLines.push(`utm_medium: ${u.medium}`);
+      if (u.campaign) utmLines.push(`utm_campaign: ${u.campaign}`);
+      if (u.term) utmLines.push(`utm_term: ${u.term}`);
+      if (u.content) utmLines.push(`utm_content: ${u.content}`);
+      if (u.gclid) utmLines.push(`gclid: ${u.gclid}`);
+      if (utmLines.length) lines.push(`Attribution:\n${utmLines.join("\n")}`);
+
+      return lines.join("\n\n");
+    }
+  </script>
+</body>
+</html>
+
+
+
+
