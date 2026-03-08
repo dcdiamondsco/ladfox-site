@@ -854,6 +854,14 @@
       width:100%;
     }
 
+    .quick-message-status{
+      min-height:1.2em;
+      margin:0;
+      color:#ffb3b3;
+      font-size:.84rem;
+      line-height:1.4;
+    }
+
     .site-footer{
       padding:18px 0 46px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -1307,7 +1315,8 @@
     <div class="shell">
       <div>
         <strong>LADFOX Ltd.</strong><br />
-        <span>Company No. 17071630</span>
+        <span>Company No. 17071630</span><br />
+        <a href="mailto:info@ladfox.com">info@ladfox.com</a>
       </div>
     </div>
   </footer>
@@ -1337,6 +1346,7 @@
         <input id="quickMessageEmail" name="email" type="email" placeholder="you@example.com" required />
       </label>
 
+      <p class="quick-message-status" id="quickMessageStatus" aria-live="polite"></p>
       <button class="btn btn-primary" type="submit">Send message</button>
     </form>
   </div>
@@ -1382,6 +1392,7 @@
       const quickMessageClose = document.getElementById("quickMessageClose");
       const quickMessageEmail = document.getElementById("quickMessageEmail");
       const quickMessageForm = document.querySelector(".quick-message-form");
+      const quickMessageStatus = document.getElementById("quickMessageStatus");
 
       if (!heroVisual || !heroCopy || !topbar || !processSection) {
         return;
@@ -1491,6 +1502,9 @@
       if (quickMessageForm) {
         quickMessageForm.addEventListener("submit", async (event) => {
           event.preventDefault();
+          if (quickMessageStatus) {
+            quickMessageStatus.textContent = "";
+          }
           const submitButton = quickMessageForm.querySelector('button[type="submit"]');
           if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
@@ -1511,6 +1525,9 @@
 
             window.location.assign(quickMessageForm.getAttribute("action") || "/thank-you.html");
           } catch (error) {
+            if (quickMessageStatus) {
+              quickMessageStatus.textContent = "There was a problem sending your message. Please try again.";
+            }
             if (submitButton instanceof HTMLButtonElement) {
               submitButton.disabled = false;
               submitButton.textContent = "Send message";

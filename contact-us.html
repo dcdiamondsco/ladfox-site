@@ -282,6 +282,15 @@
       margin-top:4px;
     }
 
+    .submit-status{
+      min-height:1.25em;
+      margin:0;
+      color:#ffb3b3;
+      font-size:.92rem;
+      line-height:1.5;
+      flex:1 1 220px;
+    }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -450,10 +459,11 @@
               <textarea id="message" name="message" class="textarea" placeholder="Tell us what you are trying to make, compare, or understand."></textarea>
 
               <label for="messageEmail" class="label">Email *</label>
-              <input type="email" id="messageEmail" class="input" autocomplete="email" />
+              <input type="email" id="messageEmail" name="email" class="input" autocomplete="email" />
             </div>
 
             <div class="submit-row">
+              <p class="submit-status" id="submitStatus" aria-live="polite"></p>
               <button type="submit" class="btn">Send</button>
             </div>
           </form>
@@ -483,6 +493,8 @@
       const messageEmailInput = document.getElementById("messageEmail");
       const phoneInput = document.getElementById("phone");
       const messageInput = document.getElementById("message");
+      const submitStatus = document.getElementById("submitStatus");
+      const submitButton = form?.querySelector('button[type="submit"]');
 
       if (params.get("sent") === "1") {
         if (contactContent) contactContent.style.display = "none";
@@ -557,6 +569,11 @@
       if (form){
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
+          if (submitStatus) submitStatus.textContent = "";
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+          }
           const nameVal = (document.getElementById("name")?.value || "").trim();
           const emailVal = ((document.getElementById("email")?.value || "").trim() || (document.getElementById("messageEmail")?.value || "").trim());
           const phoneVal = (document.getElementById("phone")?.value || "").trim();
@@ -587,11 +604,6 @@
             });
           }
 
-          ["name","email","messageEmail","phone","message"].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.removeAttribute("name");
-          });
-
           const payload = new URLSearchParams(new FormData(form));
 
           try {
@@ -609,6 +621,13 @@
 
             window.location.href = "/thank-you.html";
           } catch (error) {
+            if (submitStatus) {
+              submitStatus.textContent = "There was a problem sending your message. Please try again.";
+            }
+            if (submitButton instanceof HTMLButtonElement) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Send";
+            }
             console.error(error);
           }
         });

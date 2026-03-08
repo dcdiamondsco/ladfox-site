@@ -304,6 +304,14 @@
       outline:none;
     }
 
+    .quick-start-status{
+      min-height:1.25em;
+      margin:10px 0 0;
+      font-family:var(--ui-font);
+      font-size:.9rem;
+      color:#ffb3b3;
+    }
+
     .reassure{
       margin:10px auto 0;
       max-width:760px;
@@ -799,6 +807,7 @@
                   <textarea id="notes" name="notes" placeholder="For example: setting style, metal preference, screenshots, or a link to a ring you like"></textarea>
                 </div>
 
+                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
                 <button class="btn" id="quickStartSubmit" type="submit">Submit</button>
               </form>
             </div>
@@ -927,6 +936,7 @@
       const form = document.querySelector('form[name="ringpage-quick-start"]');
       if (!form) return;
       const quickStartLocation = document.getElementById("quickStartLocation");
+      const quickStartStatus = document.getElementById("quickStartStatus");
 
       const budgetSelect = document.getElementById("budget");
 
@@ -956,6 +966,9 @@
         event.preventDefault();
         if (isSubmitting) return;
         isSubmitting = true;
+        if (quickStartStatus) {
+          quickStartStatus.textContent = "";
+        }
 
         if (typeof gtag === "function"){
           gtag("event", "lead_submit", {
@@ -985,6 +998,9 @@
           window.location.assign(form.getAttribute("action") || "/thank-you.html");
         } catch (error) {
           isSubmitting = false;
+          if (quickStartStatus) {
+            quickStartStatus.textContent = "There was a problem sending your request. Please try again.";
+          }
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = "Submit";
