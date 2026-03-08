@@ -1314,8 +1314,7 @@
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
       <div>
-        <strong>LADFOX Ltd.</strong><br />
-        <span>Company No. 17071630</span><br />
+        <span>&copy; 2026 LADFOX Ltd Company No.16416135. All rights reserved.</span><br />
         <a href="mailto:info@ladfox.com">info@ladfox.com</a>
       </div>
     </div>
@@ -1500,8 +1499,7 @@
       }
 
       if (quickMessageForm) {
-        quickMessageForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
+        quickMessageForm.addEventListener("submit", () => {
           if (quickMessageStatus) {
             quickMessageStatus.textContent = "";
           }
@@ -1509,30 +1507,6 @@
           if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
             submitButton.textContent = "Sending...";
-          }
-
-          try {
-            const body = new URLSearchParams(new FormData(quickMessageForm));
-            const response = await fetch("/", {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: body.toString()
-            });
-
-            if (!response.ok) {
-              throw new Error("Quick message submission failed");
-            }
-
-            window.location.assign(quickMessageForm.getAttribute("action") || "/thank-you.html");
-          } catch (error) {
-            if (quickMessageStatus) {
-              quickMessageStatus.textContent = "There was a problem sending your message. Please try again.";
-            }
-            if (submitButton instanceof HTMLButtonElement) {
-              submitButton.disabled = false;
-              submitButton.textContent = "Send message";
-            }
-            console.error(error);
           }
         });
       }

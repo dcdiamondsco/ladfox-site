@@ -567,8 +567,7 @@
       syncContactMode();
 
       if (form){
-        form.addEventListener("submit", async (event) => {
-          event.preventDefault();
+        form.addEventListener("submit", () => {
           if (submitStatus) submitStatus.textContent = "";
           if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
@@ -604,32 +603,6 @@
             });
           }
 
-          const payload = new URLSearchParams(new FormData(form));
-
-          try {
-            const response = await fetch("/", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              body: payload.toString()
-            });
-
-            if (!response.ok) {
-              throw new Error("Submission failed");
-            }
-
-            window.location.href = "/thank-you.html";
-          } catch (error) {
-            if (submitStatus) {
-              submitStatus.textContent = "There was a problem sending your message. Please try again.";
-            }
-            if (submitButton instanceof HTMLButtonElement) {
-              submitButton.disabled = false;
-              submitButton.textContent = "Send";
-            }
-            console.error(error);
-          }
         });
       }
     });
