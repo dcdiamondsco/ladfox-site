@@ -970,13 +970,6 @@
           quickStartStatus.textContent = "";
         }
 
-        if (typeof gtag === "function"){
-          gtag("event", "lead_submit", {
-            form_name: "ringpage-quick-start",
-            page_location: window.location.href
-          });
-        }
-
         const submitBtn = document.getElementById("quickStartSubmit");
         if (submitBtn) {
           submitBtn.disabled = true;

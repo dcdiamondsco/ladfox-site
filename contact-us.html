@@ -484,8 +484,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(location.search);
-      const contactContent = document.getElementById("contactContent");
-      const thankYou = document.getElementById("thankYou");
       const form = document.querySelector('form[name="contact-us"]');
       const contactDetailsBlock = document.getElementById("contactDetailsBlock");
       const emailFieldBlock = document.getElementById("emailFieldBlock");
@@ -498,21 +496,6 @@
       const messageInput = document.getElementById("message");
       const submitStatus = document.getElementById("submitStatus");
       const submitButton = form?.querySelector('button[type="submit"]');
-
-      if (params.get("sent") === "1") {
-        if (contactContent) contactContent.style.display = "none";
-        if (thankYou) thankYou.classList.add("visible");
-
-        try{
-          if (typeof gtag === "function") {
-            gtag("event", "generate_lead", {
-              event_category: "Lead",
-              event_label: "Consultation",
-              value: 1
-            });
-          }
-        }catch(_){}
-      }
 
       ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid"].forEach(key => {
         const el = document.getElementById(key);
