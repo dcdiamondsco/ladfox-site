@@ -616,8 +616,8 @@
             }
 
             window.location.href = "/thank-you.html";
-          } catch (_) {
-            window.location.href = "/thank-you.html";
+          } catch (error) {
+            console.error(error);
           }
         });
       }
