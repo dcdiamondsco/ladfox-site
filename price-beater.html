@@ -187,7 +187,7 @@
     <form id="nf"
           name="beat-price-quote"
           method="POST"
-          action="/thank-you.html"
+          action="/"
           enctype="multipart/form-data"
           data-netlify="true"
           netlify-honeypot="bot-field"
@@ -544,7 +544,16 @@
     async function submitToNetlifyAjax(){
       setStatus('Sending…', true);
       mapToHiddenInputs();
-      nfForm.submit();
+
+      const fd = new FormData(nfForm);
+
+      try{
+        const res = await fetch('/', { method:'POST', body: fd });
+        if(!res.ok) throw new Error('Bad response');
+        redirectToThankYou();
+      }catch(_){
+        setStatus('There was a problem sending your request. Please try again.', false);
+      }
     }
 
     function redirectToThankYou(){
