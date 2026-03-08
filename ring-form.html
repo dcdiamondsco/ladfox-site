@@ -522,17 +522,8 @@
 
       safeGtagEvent('form_submit_attempt', { page_location: window.location.href });
 
-      try {
-        const fd = buildFormData();
-        const res = await fetch('/', { method: 'POST', body: fd });
-        if(!res.ok) throw new Error('Bad response');
-        safeGtagEvent('form_submit_success', { page_location: window.location.href });
-        redirectToThankYou();
-      } catch(e){
-        hasFinalSent = false;
-        renderStep('There was a problem sending your request. Please try again.');
-        safeGtagEvent('form_submit_error', { page_location: window.location.href });
-      }
+      safeGtagEvent('form_submit_success', { page_location: window.location.href });
+      formEl.submit();
     }
 
     async function sendPartialOnce(){

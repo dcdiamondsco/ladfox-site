@@ -1489,43 +1489,11 @@
       }
 
       if (quickMessageForm) {
-        quickMessageForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
-
+        quickMessageForm.addEventListener("submit", () => {
           const submitButton = quickMessageForm.querySelector('button[type="submit"]');
           if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
             submitButton.textContent = "Sending...";
-          }
-
-          try {
-            const formData = new FormData(quickMessageForm);
-            if (!formData.get("form-name")) {
-              formData.append("form-name", "quick-message");
-            }
-
-            const body = new URLSearchParams();
-            for (const [key, value] of formData.entries()) {
-              body.append(key, String(value));
-            }
-
-            const response = await fetch("/", {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: body.toString()
-            });
-
-            if (!response.ok) {
-              throw new Error("Quick message submission failed");
-            }
-
-            window.location.assign(quickMessageForm.getAttribute("action") || "/thank-you.html");
-          } catch (error) {
-            if (submitButton instanceof HTMLButtonElement) {
-              submitButton.disabled = false;
-              submitButton.textContent = "Send message";
-            }
-            console.error(error);
           }
         });
       }

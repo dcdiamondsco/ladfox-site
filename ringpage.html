@@ -952,8 +952,7 @@
 
       let isSubmitting = false;
 
-      form.addEventListener("submit", async function(event){
-        event.preventDefault();
+      form.addEventListener("submit", function(){
         if (isSubmitting) return;
         isSubmitting = true;
 
@@ -968,37 +967,6 @@
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = "Sending...";
-        }
-
-        try {
-          const formData = new FormData(form);
-          if (!formData.get("form-name")) {
-            formData.append("form-name", "ringpage-quick-start");
-          }
-
-          const body = new URLSearchParams();
-          for (const [key, value] of formData.entries()) {
-            body.append(key, String(value));
-          }
-
-          const response = await fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: body.toString()
-          });
-
-          if (!response.ok) {
-            throw new Error("Netlify form submission failed");
-          }
-
-          window.location.assign(form.getAttribute("action") || "/thank-you.html");
-        } catch (error) {
-          isSubmitting = false;
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Submit";
-          }
-          console.error(error);
         }
       });
     })();

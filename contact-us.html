@@ -555,9 +555,7 @@
       syncContactMode();
 
       if (form){
-        form.addEventListener("submit", async (event) => {
-          event.preventDefault();
-
+        form.addEventListener("submit", () => {
           const nameVal = (document.getElementById("name")?.value || "").trim();
           const emailVal = ((document.getElementById("email")?.value || "").trim() || (document.getElementById("messageEmail")?.value || "").trim());
           const phoneVal = (document.getElementById("phone")?.value || "").trim();
@@ -592,33 +590,6 @@
             const el = document.getElementById(id);
             if (el) el.removeAttribute("name");
           });
-
-          const formData = new FormData(form);
-          const payload = new URLSearchParams();
-
-          formData.forEach((value, key) => {
-            if (typeof value === "string") {
-              payload.append(key, value);
-            }
-          });
-
-          try {
-            const response = await fetch("/", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              body: payload.toString()
-            });
-
-            if (!response.ok) {
-              throw new Error("Submission failed");
-            }
-
-            window.location.href = "/thank-you.html";
-          } catch (error) {
-            console.error(error);
-          }
         });
       }
     });
