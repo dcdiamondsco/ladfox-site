@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /private/
 Allow: /
 
-Sitemap: https://ladfox-site.netlify.app/sitemap.xml
+Sitemap: https://ladfox.com/sitemap.xml

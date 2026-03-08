@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Engagement Ring Design Form | Ladfox</title>
   <meta name="description" content="Share your engagement ring preferences in a calm, guided form. Shape, style, metal, and lab grown or Natural options."/>
-  <link rel="canonical" href="https://ladfox-site.netlify.app/ring-form.html" />
+  <link rel="canonical" href="https://ladfox.com/ring-form.html" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
@@ -13,13 +13,13 @@
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Engagement Ring Design Form | Ladfox"/>
   <meta property="og:description" content="A calm, guided form to capture engagement ring preferences, style, and stone choices."/>
-  <meta property="og:url" content="https://ladfox-site.netlify.app/ring-form.html"/>
-  <meta property="og:image" content="https://ladfox-site.netlify.app/Images/petal%20prong.png"/>
+  <meta property="og:url" content="https://ladfox.com/ring-form.html"/>
+  <meta property="og:image" content="https://ladfox.com/Images/petal%20prong.png"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Engagement Ring Design Form | Ladfox"/>
   <meta name="twitter:description" content="Capture engagement ring preferences with a calm, guided form."/>
-  <meta name="twitter:image" content="https://ladfox-site.netlify.app/Images/petal%20prong.png"/>
+  <meta name="twitter:image" content="https://ladfox.com/Images/petal%20prong.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -254,7 +254,7 @@
     <form id="nf"
           name="diamond-concierge"
           method="POST"
-          action="/thank-you/"
+          action="/thank-you.html"
           data-netlify="true"
           netlify-honeypot="bot-field"
           enctype="multipart/form-data"
@@ -506,7 +506,7 @@
     }
 
     function redirectToThankYou(){
-      const dest = '/thank-you/' + (window.location.search || '');
+      const dest = '/thank-you.html' + (window.location.search || '');
       window.location.assign(dest);
     }
 
@@ -522,37 +522,12 @@
 
       safeGtagEvent('form_submit_attempt', { page_location: window.location.href });
 
-      try {
-        const fd = buildFormData();
-        const res = await fetch('/', { method: 'POST', body: fd });
-        if(!res.ok) throw new Error('Bad response');
-        safeGtagEvent('form_submit_success', { page_location: window.location.href });
-        redirectToThankYou();
-      } catch(e){
-        hasFinalSent = false;
-        renderStep('There was a problem sending your request. Please try again.');
-        safeGtagEvent('form_submit_error', { page_location: window.location.href });
-      }
+      safeGtagEvent('form_submit_success', { page_location: window.location.href });
+      formEl.submit();
     }
 
     async function sendPartialOnce(){
-      if(hasPartialSent || hasFinalSent) return;
-      if(!isValidEmail(formData.email || '')) return;
-
-      hasPartialSent = true;
-      try{
-        const subject = buildSubject();
-        const summary = composeSummary();
-        setHiddenFields(subject, summary);
-
-        const fd = buildFormData();
-
-        if(navigator.sendBeacon){
-          const ok = navigator.sendBeacon('/', fd);
-          if(ok) return;
-        }
-        await fetch('/', { method: 'POST', body: fd, keepalive: true });
-      } catch(_){}
+      return;
     }
 
     let idleTimer = null;
@@ -977,7 +952,7 @@
     "@context":"https://schema.org",
     "@type":"WebPage",
     "name":"Engagement Ring Design Form",
-    "url":"https://ladfox-site.netlify.app/ring-form.html",
+    "url":"https://ladfox.com/ring-form.html",
     "description":"A calm, guided form to capture engagement ring preferences, style, and stone choices."
   }
   </script>

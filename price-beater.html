@@ -6,7 +6,7 @@
   <title>Beat a Price Quote | Ladfox</title>
 
   <meta name="description" content="Send us a quote and we will try to beat it. Family Run London Jewellers. Free insured worldwide shipping and lifetime workmanship guarantee." />
-  <link rel="canonical" href="https://ladfox-site.netlify.app/price-beater.html" />
+  <link rel="canonical" href="https://ladfox.com/price-beater.html" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
@@ -14,13 +14,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Beat a Price Quote | Ladfox" />
   <meta property="og:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
-  <meta property="og:url" content="https://ladfox-site.netlify.app/price-beater.html" />
-  <meta property="og:image" content="https://ladfox-site.netlify.app/Images/comparison.png" />
+  <meta property="og:url" content="https://ladfox.com/price-beater.html" />
+  <meta property="og:image" content="https://ladfox.com/Images/comparison.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Beat a Price Quote | Ladfox" />
   <meta name="twitter:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
-  <meta name="twitter:image" content="https://ladfox-site.netlify.app/Images/comparison.png" />
+  <meta name="twitter:image" content="https://ladfox.com/Images/comparison.png" />
 
   <style>
 
@@ -187,7 +187,7 @@
     <form id="nf"
           name="beat-price-quote"
           method="POST"
-          action="/thank-you/"
+          action="/thank-you.html"
           enctype="multipart/form-data"
           data-netlify="true"
           netlify-honeypot="bot-field"
@@ -545,19 +545,11 @@
       setStatus('Sending…', true);
       mapToHiddenInputs();
 
-      const fd = new FormData(nfForm);
-
-      try{
-        const res = await fetch('/', { method:'POST', body: fd });
-        if(!res.ok) throw new Error('Bad response');
-        redirectToThankYou();
-      }catch(_){
-        setStatus('There was a problem sending your request. Please try again.', false);
-      }
+      nfForm.submit();
     }
 
     function redirectToThankYou(){
-      const target = '/thank-you/' + (window.location.search || '');
+      const target = '/thank-you.html' + (window.location.search || '');
       window.location.assign(target);
     }
 
