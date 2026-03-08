@@ -254,7 +254,7 @@
     <form id="nf"
           name="diamond-concierge"
           method="POST"
-          action="/thank-you.html"
+          action="/thank-you/"
           data-netlify="true"
           netlify-honeypot="bot-field"
           enctype="multipart/form-data"
@@ -506,7 +506,7 @@
     }
 
     function redirectToThankYou(){
-      const dest = '/thank-you.html' + (window.location.search || '');
+      const dest = '/thank-you/' + (window.location.search || '');
       window.location.assign(dest);
     }
 

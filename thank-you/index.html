@@ -22,7 +22,6 @@
   <meta name="twitter:description" content="Thank you for your enquiry. A member of the Ladfox team will be in touch shortly." />
   <meta name="twitter:image" content="https://ladfox-site.netlify.app/Images/ladfox-logo.png" />
 
-  <!-- Google tag (gtag.js) for Google Ads and GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17882921888"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -88,11 +87,6 @@
       color:rgba(255,255,255,.82);
     }
 
-    .note{
-      font-size:0.9rem;
-      color:rgba(255,255,255,.62);
-    }
-
     a{
       color:#fff;
       text-decoration:underline;
@@ -102,18 +96,12 @@
 
 <body>
   <main class="wrap">
-    <a class="brand" href="index.html" aria-label="Ladfox home">
+    <a class="brand" href="/index.html" aria-label="Ladfox home">
       <img
-        src="Images/ladfox-logo.png"
+        src="/Images/ladfox-logo.png"
         alt="Ladfox"
         decoding="async"
         loading="eager"
-        onerror="
-          this.onerror=null;
-          if (this.src.includes('Images/ladfox-logo.png')) { this.src='/Images/ladfox-logo.png'; return; }
-          if (this.src.includes('/Images/ladfox-logo.png')) { this.src='Images/ladfox-logo.png'; return; }
-          this.src='Images/ladfox-logo.png';
-        "
       />
     </a>
     <h1>Thank you</h1>
@@ -121,8 +109,3 @@
   </main>
 </body>
 </html>
-
-
-
-
-
