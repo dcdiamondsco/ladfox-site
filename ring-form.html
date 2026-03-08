@@ -524,7 +524,7 @@
 
       try {
         const fd = buildFormData();
-        const res = await fetch('/thank-you.html', { method: 'POST', body: fd });
+        const res = await fetch('/', { method: 'POST', body: fd });
         if(!res.ok) throw new Error('Bad response');
         safeGtagEvent('form_submit_success', { page_location: window.location.href });
         redirectToThankYou();
@@ -548,10 +548,10 @@
         const fd = buildFormData();
 
         if(navigator.sendBeacon){
-          const ok = navigator.sendBeacon('/thank-you.html', fd);
+          const ok = navigator.sendBeacon('/', fd);
           if(ok) return;
         }
-        await fetch('/thank-you.html', { method: 'POST', body: fd, keepalive: true });
+        await fetch('/', { method: 'POST', body: fd, keepalive: true });
       } catch(_){}
     }
 

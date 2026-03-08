@@ -1052,13 +1052,17 @@
 
       h1{
         max-width:10ch;
-        font-size:clamp(2.1rem, 9vw, 3rem);
+        font-size:clamp(1.9rem, 8.2vw, 2.7rem);
       }
 
       .hero-subcopy{
         margin-top:14px;
         font-size:.96rem;
         line-height:1.65;
+      }
+
+      .hero-overlay .eyebrow-hero{
+        display:none;
       }
 
       .hero-actions{
@@ -1204,7 +1208,7 @@
 
             <div class="hero-overlay">
               <span class="eyebrow-hero">Private Hatton Garden Jeweller</span>
-              <h1>Bespoke engagement rings by a private Hatton Garden jeweller</h1>
+              <h1>Bespoke engagement rings<br />Private Hatton Garden jeweller</h1>
               <p class="hero-subcopy">
                 Thoughtfully designed rings, one to one guidance, and a calmer bespoke experience from first sketch to final piece.
               </p>
@@ -1377,6 +1381,7 @@
       const quickMessagePanel = document.getElementById("quickMessagePanel");
       const quickMessageClose = document.getElementById("quickMessageClose");
       const quickMessageEmail = document.getElementById("quickMessageEmail");
+      const quickMessageForm = document.querySelector(".quick-message-form");
 
       if (!heroVisual || !heroCopy || !topbar || !processSection) {
         return;
@@ -1399,30 +1404,6 @@
       scrollBlackoutTargets.forEach((element) => {
         element.classList.add("scroll-blackout");
       });
-
-      if ("IntersectionObserver" in window) {
-        const blackoutObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          });
-        }, {
-          threshold: 0.18,
-          rootMargin: "0px 0px -12% 0px"
-        });
-
-        scrollBlackoutTargets.forEach((element) => {
-          blackoutObserver.observe(element);
-        });
-      } else {
-        scrollBlackoutTargets.forEach((element) => {
-          element.classList.add("is-visible");
-        });
-      }
 
       const updateHeroFade = () => {
         const processRect = processSection.getBoundingClientRect();
@@ -1456,6 +1437,12 @@
           const revealStart = mobileQuery.matches ? 80 : 160;
           const visible = window.scrollY > revealStart && rect.top < (window.innerHeight * 0.84);
           block.classList.toggle("is-visible", visible);
+        });
+
+        scrollBlackoutTargets.forEach((element) => {
+          const rect = element.getBoundingClientRect();
+          const visible = rect.top < (window.innerHeight * 0.82) && rect.bottom > (window.innerHeight * 0.18);
+          element.classList.toggle("is-visible", visible);
         });
       };
 
@@ -1497,6 +1484,48 @@
         document.addEventListener("keydown", (event) => {
           if (event.key === "Escape") {
             setQuickMessageState(false);
+          }
+        });
+      }
+
+      if (quickMessageForm) {
+        quickMessageForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const submitButton = quickMessageForm.querySelector('button[type="submit"]');
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+          }
+
+          try {
+            const formData = new FormData(quickMessageForm);
+            if (!formData.get("form-name")) {
+              formData.append("form-name", "quick-message");
+            }
+
+            const body = new URLSearchParams();
+            for (const [key, value] of formData.entries()) {
+              body.append(key, String(value));
+            }
+
+            const response = await fetch("/", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: body.toString()
+            });
+
+            if (!response.ok) {
+              throw new Error("Quick message submission failed");
+            }
+
+            window.location.assign(quickMessageForm.getAttribute("action") || "/thank-you.html");
+          } catch (error) {
+            if (submitButton instanceof HTMLButtonElement) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Send message";
+            }
+            console.error(error);
           }
         });
       }
