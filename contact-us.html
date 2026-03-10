@@ -465,6 +465,17 @@
               <input type="email" id="messageEmail" name="email" class="input" autocomplete="email" />
             </div>
 
+            <div>
+              <label for="heardAbout" class="label">How did you hear about us?</label>
+              <select id="heardAbout" name="heard_about" class="input">
+                <option value="">Select</option>
+                <option>Google</option>
+                <option>Reddit</option>
+                <option>Friends and family</option>
+                <option>Other</option>
+              </select>
+            </div>
+
             <div class="submit-row">
               <p class="submit-status" id="submitStatus" aria-live="polite"></p>
               <button type="submit" class="btn">Send</button>
@@ -564,6 +575,7 @@
           const phoneVal = (document.getElementById("phone")?.value || "").trim();
           const msgVal = (document.getElementById("message")?.value || "").trim();
           const pref = (document.querySelector('input[name="preferred_contact"]:checked')?.value || "").trim();
+          const heardAboutVal = (document.getElementById("heardAbout")?.value || "").trim();
 
           const subject = `Consultation request from ${nameVal || "Customer"}`;
           const subjEl = document.getElementById("hiddenSubject");
@@ -576,6 +588,7 @@
               email: emailVal,
               phone: phoneVal,
               preferred: pref,
+              heardAbout: heardAboutVal,
               message: msgVal,
               location: document.getElementById("locationField")?.value || "",
               utm: {
@@ -600,6 +613,7 @@
       if (fields.email) lines.push(`Email:\n${fields.email}`);
       if (fields.phone) lines.push(`Phone:\n${fields.phone}`);
       if (fields.preferred) lines.push(`Preferred contact:\n${fields.preferred}`);
+      if (fields.heardAbout) lines.push(`How did they hear about us:\n${fields.heardAbout}`);
       if (fields.location) lines.push(`Location:\n${fields.location}`);
       if (fields.message) lines.push(`Message:\n${fields.message}`);
 

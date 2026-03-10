@@ -301,14 +301,29 @@
       border-radius:0;
     }
 
+    .hero-visual::before,
     .hero-visual::after{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.16) 30%, rgba(0,0,0,.68) 72%, #000 100%);
-      opacity:calc(.4 + (var(--hero-fade, 0) * .6));
       pointer-events:none;
+    }
+
+    .hero-visual::before{
+      z-index:1;
+      background:
+        linear-gradient(90deg, #000 0%, rgba(0,0,0,.78) 10%, rgba(0,0,0,.18) 24%, rgba(0,0,0,0) 40%),
+        linear-gradient(270deg, #000 0%, rgba(0,0,0,.72) 10%, rgba(0,0,0,.14) 26%, rgba(0,0,0,0) 42%),
+        radial-gradient(circle at 50% 0%, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 34%, rgba(0,0,0,0) 62%);
+      opacity:.95;
+    }
+
+    .hero-visual::after{
+      z-index:1;
+      background:
+        linear-gradient(180deg, #000 0%, rgba(0,0,0,.28) 16%, rgba(0,0,0,.12) 32%, rgba(0,0,0,.54) 72%, #000 100%),
+        radial-gradient(circle at 50% 88%, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 36%, rgba(0,0,0,.82) 72%, #000 100%);
+      opacity:calc(.4 + (var(--hero-fade, 0) * .6));
     }
 
     .hero-image{
@@ -333,16 +348,15 @@
     .eyebrow-hero{
       display:inline-flex;
       margin-bottom:18px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.08);
+      padding:0;
+      border:none;
+      background:transparent;
       color:#fff;
-      font-size:.78rem;
+      font-size:.72rem;
       font-weight:800;
       letter-spacing:.16em;
       text-transform:uppercase;
-      backdrop-filter:blur(8px);
+      text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
     h1, h2, h3{
@@ -665,6 +679,19 @@
       padding:82px 0 108px;
     }
 
+    .bottom-email{
+      margin-top:24px;
+      text-align:center;
+      font-size:.98rem;
+      color:var(--muted);
+    }
+
+    .bottom-email a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
     .journey-cta{
       position:relative;
       overflow:hidden;
@@ -828,6 +855,7 @@
     }
 
     .quick-message-form input,
+    .quick-message-form select,
     .quick-message-form textarea{
       width:100%;
       padding:12px 14px;
@@ -850,6 +878,11 @@
       color:rgba(255,255,255,.46);
     }
 
+    .quick-message-form select option{
+      color:#ffffff;
+      background:#101218;
+    }
+
     .quick-message-form .btn{
       width:100%;
     }
@@ -870,11 +903,25 @@
 
     .site-footer .shell{
       display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:18px;
+      gap:8px;
       flex-wrap:wrap;
       text-align:center;
+    }
+
+    .footer-meta,
+    .footer-email{
+      margin:0;
+      font-size:.94rem;
+      line-height:1.6;
+    }
+
+    .footer-email a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .reveal-block{
@@ -1054,8 +1101,8 @@
       }
 
       .eyebrow-hero{
-        font-size:.72rem;
-        letter-spacing:.14em;
+        font-size:.62rem;
+        letter-spacing:.13em;
       }
 
       h1{
@@ -1067,10 +1114,6 @@
         margin-top:14px;
         font-size:.96rem;
         line-height:1.65;
-      }
-
-      .hero-overlay .eyebrow-hero{
-        display:none;
       }
 
       .hero-actions{
@@ -1216,8 +1259,8 @@
             />
 
             <div class="hero-overlay">
-              <span class="eyebrow-hero">Private Hatton Garden Jeweller</span>
-              <h1>Bespoke Engagement Rings<br />Private Hatton Garden Jeweller</h1>
+              <span class="eyebrow-hero">Bespoke Engagement Rings Private Hatton Garden Jeweller</span>
+              <h1>We do things differently around here</h1>
               <p class="hero-subcopy">
                 Thoughtfully designed rings, one to one guidance, and a calmer bespoke experience from first sketch to final piece.
               </p>
@@ -1238,7 +1281,7 @@
             />
             <div class="comparison-caption">
               <span class="comparison-caption-desktop">
-                Where your budget actually goes. More goes into the ring, less into showroom overhead.
+                We do things differently around here.
                 <a href="price-beater.html">Have a quote you want us to review? Send it through.</a>
               </span>
               <a class="comparison-caption-mobile" href="price-beater.html">Have a quote you want us to review?</a>
@@ -1311,6 +1354,9 @@
         <p>
           Insured delivery, engraving, and long term aftercare are included.
         </p>
+        <p class="bottom-email">
+          <a href="mailto:info@ladfox.com">info@ladfox.com</a>
+        </p>
         <div class="bottom-cta">
           <a class="btn btn-primary journey-cta" href="ringpage.html#start-heading"><span>Begin your journey</span></a>
         </div>
@@ -1320,9 +1366,8 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <div>
-        <span>&copy; 2026 LADFOX Ltd Company No. 17071630. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></span>
-      </div>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. All rights reserved.</p>
+      <p class="footer-email"><a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>
 
@@ -1349,6 +1394,17 @@
       <label for="quickMessageEmail">
         Email
         <input id="quickMessageEmail" name="email" type="email" placeholder="you@example.com" required />
+      </label>
+
+      <label for="quickMessageHeardAbout">
+        How did you hear about us?
+        <select id="quickMessageHeardAbout" name="heard_about" required>
+          <option value="" selected disabled>Select</option>
+          <option>Google</option>
+          <option>Reddit</option>
+          <option>Friends and family</option>
+          <option>Other</option>
+        </select>
       </label>
 
       <p class="quick-message-status" id="quickMessageStatus" aria-live="polite"></p>

@@ -3,8 +3,13 @@
   "short_name": "Ladfox",
   "icons": [
     {
-      "src": "/Images/Logo%20Inverted.png",
-      "sizes": "1024x1024",
+      "src": "/Images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Images/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],

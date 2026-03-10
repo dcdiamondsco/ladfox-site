@@ -209,6 +209,7 @@
       <input type="hidden" name="productLink" id="nf_link" />
       <input type="hidden" name="certificateNumber" id="nf_cert" />
       <input type="hidden" name="email" id="nf_email" />
+      <input type="hidden" name="heard_about" id="nf_heard_about" />
       <input type="hidden" name="details" id="nf_details" />
 
       <input type="file" name="quoteImage" id="nf_file" accept="image/*,.pdf" />
@@ -237,7 +238,8 @@
 
     const steps = [
       { kind: 'type+link+file' },
-      { kind: 'email' }
+      { kind: 'email' },
+      { kind: 'heard-about' }
     ];
 
     let current = 0;
@@ -247,7 +249,8 @@
       productLink: '',
       certificateNumber: '',
       details: '',
-      email: ''
+      email: '',
+      heard_about: ''
     };
 
     const geo = { location:'', ip:'' };
@@ -464,6 +467,36 @@
         setTimeout(() => input.focus(), 0);
         return;
       }
+
+      if(step.kind === 'heard-about'){
+        const lbl = document.createElement('label');
+        lbl.textContent = 'How did you hear about us?';
+        lbl.htmlFor = 'heardAbout';
+
+        const select = document.createElement('select');
+        select.id = 'heardAbout';
+
+        ['', 'Google', 'Reddit', 'Friends and family', 'Other'].forEach(opt => {
+          const o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt || 'Select';
+          if(formValues.heard_about === opt) o.selected = true;
+          if(!opt) o.disabled = true;
+          select.appendChild(o);
+        });
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Submit';
+        btn.addEventListener('click', onNext);
+
+        container.insertBefore(lbl, statusMsg);
+        container.insertBefore(select, statusMsg);
+        container.insertBefore(btn, statusMsg);
+
+        setTimeout(() => select.focus(), 0);
+        return;
+      }
     }
 
     function onNext(e){
@@ -524,6 +557,22 @@
         }
 
         formValues.email = emailVal;
+        current++;
+        render();
+        return;
+      }
+
+      if(step.kind === 'heard-about'){
+        const heardEl = document.getElementById('heardAbout');
+        const heardVal = (heardEl.value || '').trim();
+
+        if(!heardVal){
+          alert('Please select how you heard about us.');
+          heardEl.focus();
+          return;
+        }
+
+        formValues.heard_about = heardVal;
         submitToNetlifyAjax();
       }
     }
@@ -540,6 +589,7 @@
       qs('nf_link').value = formValues.productLink || '';
       qs('nf_cert').value = formValues.certificateNumber || '';
       qs('nf_email').value = formValues.email || '';
+      qs('nf_heard_about').value = formValues.heard_about || '';
       qs('nf_details').value = formValues.details || '';
     }
 
