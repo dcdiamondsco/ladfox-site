@@ -490,46 +490,6 @@
       padding:14px 0 20px;
     }
 
-    .comparison-panel{
-      margin-top:52px;
-      position:relative;
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      overflow:hidden;
-    }
-
-    .comparison-panel img{
-      width:100%;
-      height:auto;
-    }
-
-    .comparison-caption{
-      position:absolute;
-      left:22px;
-      right:22px;
-      bottom:22px;
-      color:rgba(255,255,255,.78);
-      line-height:1.7;
-      text-shadow:0 6px 18px rgba(0,0,0,.55);
-      max-width:72ch;
-      white-space:normal;
-    }
-
-    .comparison-caption-mobile{
-      display:none;
-    }
-
-    .comparison-caption a{
-      color:var(--text);
-      font-weight:800;
-      text-decoration:none;
-    }
-
-    .comparison-caption a:hover,
-    .comparison-caption a:focus-visible{
-      outline:none;
-    }
-
     .hero-copy{
       width:min(1120px, calc(100vw - 48px));
       margin:68px auto 0;
@@ -1146,36 +1106,6 @@
         grid-template-columns:1fr;
       }
 
-      .comparison-panel{
-        margin-top:32px;
-      }
-
-      .comparison-panel img{
-        transform:scale(1.14);
-        transform-origin:center;
-      }
-
-      .comparison-caption{
-        left:16px;
-        right:16px;
-        bottom:6px;
-        max-width:none;
-        padding:0;
-        font-size:.82rem;
-        line-height:1.35;
-        color:#fff;
-        text-shadow:0 6px 18px rgba(0,0,0,.55);
-        white-space:normal;
-      }
-
-      .comparison-caption-desktop{
-        display:none;
-      }
-
-      .comparison-caption-mobile{
-        display:inline;
-      }
-
       .hero-copy{
         width:min(calc(100vw - 32px), 100%);
         margin-top:48px;
@@ -1260,7 +1190,7 @@
 
             <div class="hero-overlay">
               <span class="eyebrow-hero">Bespoke Engagement Rings Private Hatton Garden Jeweller</span>
-              <h1>We do things differently around here</h1>
+              <h1>We do things differently here</h1>
               <p class="hero-subcopy">
                 Thoughtfully designed rings, one to one guidance, and a calmer bespoke experience from first sketch to final piece.
               </p>
@@ -1270,24 +1200,6 @@
         </aside>
 
         <div class="hero-trust">All our pieces include international shipping, engraving, and a lifetime warranty.</div>
-
-        <section class="section reveal-block" aria-label="Pricing comparison">
-          <div class="comparison-panel">
-            <img
-              src="Images/comparison.png"
-              alt="Comparison showing where more of your budget goes into the ring rather than showroom markup"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="comparison-caption">
-              <span class="comparison-caption-desktop">
-                We do things differently around here.
-                <a href="price-beater.html">Have a quote you want us to review? Send it through.</a>
-              </span>
-              <a class="comparison-caption-mobile" href="price-beater.html">Have a quote you want us to review?</a>
-            </div>
-          </div>
-        </section>
 
         <div class="hero-copy">
           <span class="eyebrow">Our process</span>
@@ -1354,9 +1266,6 @@
         <p>
           Insured delivery, engraving, and long term aftercare are included.
         </p>
-        <p class="bottom-email">
-          <a href="mailto:info@ladfox.com">info@ladfox.com</a>
-        </p>
         <div class="bottom-cta">
           <a class="btn btn-primary journey-cta" href="ringpage.html#start-heading"><span>Begin your journey</span></a>
         </div>
@@ -1366,7 +1275,7 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. All rights reserved.</p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd. Companies House No. 17071630. All rights reserved.</p>
       <p class="footer-email"><a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>
@@ -1436,7 +1345,6 @@
         "main .section p",
         "main .section img",
         "main .section a",
-        "main .section .comparison-panel",
         "main .section .process-card",
         "main .section .quote-panel",
         "main .section .content-block",

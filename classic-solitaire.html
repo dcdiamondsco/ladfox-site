@@ -13,141 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --bg:#030303;
-      --surface:rgba(255,255,255,.04);
-      --line:rgba(255,255,255,.12);
-      --text:#fff;
-      --muted:rgba(255,255,255,.72);
-      --shadow:0 24px 80px rgba(0,0,0,.34);
-      --max:1180px;
-      --heading:"Syne", sans-serif;
-      --body:"Manrope", sans-serif;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      color:var(--text);
-      font-family:var(--body);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.05), transparent 24%),
-        linear-gradient(180deg, #050505 0%, #000 100%);
-    }
-    a{ color:inherit; text-decoration:none; }
-    img{ display:block; max-width:100%; height:auto; }
-    .shell{ width:min(calc(100% - 32px), var(--max)); margin:0 auto; }
-    .topbar{ padding:14px 0 0; }
-    .topbar .shell{ display:flex; justify-content:center; }
-    .brand img{ width:min(220px, 52vw); }
-    .page{ padding:28px 0 64px; }
-    .crumb{ color:var(--muted); font-size:.95rem; }
-    .crumb a{ color:#fff; }
-    .layout{ display:grid; grid-template-columns:1.02fr .98fr; gap:22px; margin-top:18px; }
-    .panel{
-      border:1px solid var(--line);
-      border-radius:30px;
-      background:var(--surface);
-      box-shadow:var(--shadow);
-    }
-    .media{
-      padding:30px 26px 46px;
-      min-height:640px;
-      display:grid;
-      place-items:center;
-      background:#090909;
-    }
-    .media img{ width:100%; height:100%; object-fit:contain; object-position:center center; }
-    .copy{ padding:30px; }
-    .eyebrow{
-      display:inline-flex;
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:999px;
-      color:var(--muted);
-      font-size:.72rem;
-      font-weight:800;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-    }
-    h1,h2{ margin:0; font-family:var(--heading); line-height:1.03; }
-    h1{ margin-top:16px; font-size:clamp(2.6rem, 5vw, 4.8rem); max-width:10ch; }
-    .lead{ margin:18px 0 0; color:var(--muted); line-height:1.8; font-size:1.02rem; }
-    .price{ margin:18px 0 0; font-size:1rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
-    .meta{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:24px; }
-    .meta div, .detail{
-      padding:16px 18px;
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:rgba(255,255,255,.03);
-    }
-    .meta strong, .detail strong{ display:block; margin-bottom:6px; font-family:var(--heading); }
-    .meta span, .detail p{ color:var(--muted); line-height:1.7; }
-    .details{ display:grid; gap:12px; margin-top:22px; }
-    .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:52px;
-      padding:0 20px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.16);
-      font-weight:800;
-    }
-    .btn-primary{ background:#fff; color:#050505; border-color:#fff; }
-    .btn-secondary{ background:transparent; color:#fff; }
-    .enquiry{
-      margin-top:22px;
-      padding:22px;
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:rgba(255,255,255,.03);
-    }
-    .enquiry h2{
-      font-size:1.4rem;
-      margin-bottom:10px;
-    }
-    .enquiry p{
-      margin:0 0 14px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-    .form-grid{
-      display:grid;
-      gap:12px;
-    }
-    .form-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    label{
-      display:grid;
-      gap:6px;
-      font-size:.92rem;
-      font-weight:700;
-    }
-    input, select, textarea{
-      width:100%;
-      padding:13px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background:#111;
-      color:#fff;
-      font:inherit;
-    }
-    select option{ background:#111; color:#fff; }
-    textarea{
-      min-height:110px;
-      resize:vertical;
-    }
-    @media (max-width:900px){
-      .layout{ grid-template-columns:1fr; }
-      .media{ min-height:420px; }
-      .form-row{ grid-template-columns:1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="product-page.css" />
 </head>
 <body>
   <header class="topbar">
@@ -166,10 +32,9 @@
           <img src="Images/classic.png" alt="Classic solitaire engagement ring by Ladfox" />
         </div>
         <div class="panel copy">
-          <span class="eyebrow">Signature collection</span>
           <h1>Classic solitaire</h1>
           <p class="lead">A cleaner, timeless solitaire with a refined platinum profile and a balanced round centre stone. Built for clients who want the proportions to feel elegant rather than overstated.</p>
-          <p class="price">From £1495</p>
+          <p class="price">From &#163;1495</p>
 
           <div class="meta">
             <div><strong>Setting style</strong><span>Round solitaire</span></div>
@@ -193,6 +58,106 @@
             </div>
           </div>
 
+          <section class="options" data-product-config data-config-form="classicSolitaireEnquiry" aria-labelledby="classicOptionsHeading">
+            <div class="options-head">
+              <h2 id="classicOptionsHeading">Configure your ring</h2>
+              <p>Choose the ring options you already know and leave the rest for us to refine with you.</p>
+            </div>
+
+            <div class="options-grid">
+              <div class="option-group" data-span="full">
+                <div class="option-label"><span>Metal</span><span class="option-hint">Select one</span></div>
+                <div class="choice-grid">
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="9k White Gold" data-config-input="metal" checked /><span class="choice-button"><strong>9k White Gold</strong><span>Bright white finish</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="9k Yellow Gold" data-config-input="metal" /><span class="choice-button"><strong>9k Yellow Gold</strong><span>Warm classic tone</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="9k Rose Gold" data-config-input="metal" /><span class="choice-button"><strong>9k Rose Gold</strong><span>Soft blush tone</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="14k White Gold" data-config-input="metal" /><span class="choice-button"><strong>14k White Gold</strong><span>Brighter premium alloy</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="14k Yellow Gold" data-config-input="metal" /><span class="choice-button"><strong>14k Yellow Gold</strong><span>Richer gold tone</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="14k Rose Gold" data-config-input="metal" /><span class="choice-button"><strong>14k Rose Gold</strong><span>Warm rosy finish</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="18k White Gold" data-config-input="metal" /><span class="choice-button"><strong>18k White Gold</strong><span>High-luxury white gold</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="18k Yellow Gold" data-config-input="metal" /><span class="choice-button"><strong>18k Yellow Gold</strong><span>Deep rich yellow</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="18k Rose Gold" data-config-input="metal" /><span class="choice-button"><strong>18k Rose Gold</strong><span>Deeper blush metal</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-metal" value="Platinum 950" data-config-input="metal" /><span class="choice-button"><strong>Platinum 950</strong><span>Dense natural white metal</span></span></label>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <label class="option-label" for="classicConfigRingSize"><span>Ring size</span><span class="option-hint">Optional</span></label>
+                <select id="classicConfigRingSize" data-config-input="ring_size">
+                  <option value="">Select ring size</option>
+                  <option>UK H</option><option>UK I</option><option>UK J</option><option>UK K</option><option>UK L</option><option>UK M</option><option>UK N</option><option>UK O</option><option>UK P</option><option>UK Q</option><option>UK R</option><option>UK S</option><option>Not sure</option>
+                </select>
+              </div>
+
+              <div class="option-group">
+                <div class="option-label"><span>Diamond</span><span class="option-hint">Select one</span></div>
+                <div class="choice-grid choice-grid--dense">
+                  <label class="choice"><input type="radio" name="classic-config-diamond" value="Lab diamond" data-config-input="diamond_type" checked /><span class="choice-button"><strong>Lab diamond</strong><span>Modern value</span></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-diamond" value="Natural diamond" data-config-input="diamond_type" /><span class="choice-button"><strong>Natural diamond</strong><span>Earth-mined</span></span></label>
+                </div>
+              </div>
+
+              <div class="option-group" data-span="full">
+                <div class="option-label"><span>Shape</span><span class="option-hint">Select one</span></div>
+                <div class="choice-grid choice-grid--shapes">
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Round" data-config-input="shape" checked /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/round.png" alt="" /><strong>Round</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Oval" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/oval.png" alt="" /><strong>Oval</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Emerald" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/emerald.png" alt="" /><strong>Emerald</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Radiant" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/radiant.png" alt="" /><strong>Radiant</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Princess" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/princess.png" alt="" /><strong>Princess</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Cushion" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/cushion.png" alt="" /><strong>Cushion</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Pear" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/pear.png" alt="" /><strong>Pear</strong></span></label>
+                  <label class="choice"><input type="radio" name="classic-config-shape" value="Marquise" data-config-input="shape" /><span class="choice-button choice-button--shape"><img src="Images/Ui/diamonds/marquis.png" alt="" /><strong>Marquise</strong></span></label>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <label class="option-label" for="classicConfigCarat"><span>Total carat</span><span class="option-hint">Optional</span></label>
+                <select id="classicConfigCarat" data-config-input="total_carat">
+                  <option value="">Select carat</option>
+                  <option>0.20</option><option>0.30</option><option>0.40</option><option>0.50</option><option>0.60</option><option>0.70</option><option>0.80</option><option>0.90</option><option>1.00</option><option>1.20</option><option>1.50</option><option>1.70</option><option>2.00</option><option>2.50</option><option>3.00</option>
+                </select>
+              </div>
+
+              <div class="option-group">
+                <label class="option-label" for="classicConfigClarity"><span>Clarity</span><span class="option-hint">Optional</span></label>
+                <select id="classicConfigClarity" data-config-input="clarity">
+                  <option value="">Select clarity</option>
+                  <option>FL</option><option>IF</option><option>VVS1</option><option>VVS2</option><option>VS1</option><option>VS2</option><option>SI1</option><option>SI2</option><option>I1</option>
+                </select>
+              </div>
+
+              <div class="option-group">
+                <label class="option-label" for="classicConfigColour"><span>Colour</span><span class="option-hint">Optional</span></label>
+                <select id="classicConfigColour" data-config-input="colour">
+                  <option value="">Select colour</option>
+                  <option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option><option>K</option><option>L</option>
+                </select>
+              </div>
+
+              <div class="option-group">
+                <label class="option-label" for="classicConfigCut"><span>Cut grade</span><span class="option-hint">Optional</span></label>
+                <select id="classicConfigCut" data-config-input="cut_grade">
+                  <option value="">Select cut grade</option>
+                  <option>Excellent</option><option>Very Good</option><option>Good</option><option>Fair</option>
+                </select>
+              </div>
+
+              <div class="option-group">
+                <label class="option-label" for="classicConfigCertificate"><span>Certificate</span><span class="option-hint">Optional</span></label>
+                <select id="classicConfigCertificate" data-config-input="certificate">
+                  <option value="">Select certificate</option>
+                  <option>AB</option><option>IGI/HRD</option><option>GIA</option><option>EGL/SGL</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="options-summary">
+              <strong>Your current spec</strong>
+              <p data-config-summary></p>
+            </div>
+          </section>
+
           <div class="actions">
             <a class="btn btn-primary" href="ringpage.html#start-heading">Enquire about this ring</a>
             <a class="btn btn-secondary" href="ring-gallery.html">Back to gallery</a>
@@ -201,9 +166,18 @@
           <div class="enquiry">
             <h2>Enquire about this design</h2>
             <p>Send the details below and we will come back with guidance and next steps.</p>
-            <form name="classic-solitaire-enquiry" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" class="form-grid">
+            <form id="classicSolitaireEnquiry" name="classic-solitaire-enquiry" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" class="form-grid">
               <input type="hidden" name="form-name" value="classic-solitaire-enquiry" />
               <input type="hidden" name="product_name" value="Classic solitaire" />
+              <input type="hidden" name="selected_metal" data-config-hidden="metal" />
+              <input type="hidden" name="selected_ring_size" data-config-hidden="ring_size" />
+              <input type="hidden" name="selected_diamond_type" data-config-hidden="diamond_type" />
+              <input type="hidden" name="selected_shape" data-config-hidden="shape" />
+              <input type="hidden" name="selected_total_carat" data-config-hidden="total_carat" />
+              <input type="hidden" name="selected_clarity" data-config-hidden="clarity" />
+              <input type="hidden" name="selected_colour" data-config-hidden="colour" />
+              <input type="hidden" name="selected_cut_grade" data-config-hidden="cut_grade" />
+              <input type="hidden" name="selected_certificate" data-config-hidden="certificate" />
               <p hidden><label>Do not fill this out <input name="bot-field" /></label></p>
 
               <div class="form-row">
@@ -216,33 +190,6 @@
               </div>
 
               <div class="form-row">
-                <label for="classicRingSize">Ring size
-                  <select id="classicRingSize" name="ring_size" required>
-                    <option value="" selected disabled>Select</option>
-                    <option>UK H</option><option>UK I</option><option>UK J</option><option>UK K</option><option>UK L</option><option>UK M</option><option>UK N</option><option>UK O</option><option>UK P</option><option>UK Q</option><option>UK R</option><option>UK S</option><option>Not sure</option>
-                  </select>
-                </label>
-                <label for="classicMetal">Metal
-                  <select id="classicMetal" name="metal" required>
-                    <option value="" selected disabled>Select</option>
-                    <option>Gold</option>
-                    <option>White Gold</option>
-                    <option>Rose Gold</option>
-                    <option>Platinum</option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="form-row">
-                <label for="classicKarat">Gold karat
-                  <select id="classicKarat" name="gold_karat">
-                    <option value="" selected disabled>Select</option>
-                    <option>9k</option>
-                    <option>14k</option>
-                    <option>18k</option>
-                    <option>Not sure</option>
-                  </select>
-                </label>
                 <label for="classicTimeline">Timeline
                   <select id="classicTimeline" name="timeline" required>
                     <option value="" selected disabled>Select</option>
@@ -252,19 +199,19 @@
                     <option>Just researching</option>
                   </select>
                 </label>
-              </div>
-
-              <div class="form-row">
                 <label for="classicBudget">Budget range
                   <select id="classicBudget" name="budget" required>
                     <option value="" selected disabled>Select</option>
-                    <option>Under £1,500</option>
-                    <option>£1,500 to £2,500</option>
-                    <option>£2,500 to £4,000</option>
-                    <option>£4,000 to £7,000</option>
-                    <option>£7,000 plus</option>
+                    <option>Under &#163;1,500</option>
+                    <option>&#163;1,500 to &#163;2,500</option>
+                    <option>&#163;2,500 to &#163;4,000</option>
+                    <option>&#163;4,000 to &#163;7,000</option>
+                    <option>&#163;7,000 plus</option>
                   </select>
                 </label>
+              </div>
+
+              <div class="form-row">
                 <label for="classicHeardAbout">How did you hear about us?
                   <select id="classicHeardAbout" name="heard_about" required>
                     <option value="" selected disabled>Select</option>
@@ -274,11 +221,10 @@
                     <option>Other</option>
                   </select>
                 </label>
+                <label for="classicNotes">Anything else we should know?
+                  <textarea id="classicNotes" name="notes" placeholder="Preferred diamond size, design changes, inspiration links, or any deadline notes"></textarea>
+                </label>
               </div>
-
-              <label for="classicNotes">Anything else we should know?
-                <textarea id="classicNotes" name="notes" placeholder="Preferred diamond size, changes you want, inspiration, or any deadline notes"></textarea>
-              </label>
 
               <button class="btn btn-primary" type="submit">Send enquiry</button>
             </form>
@@ -287,20 +233,6 @@
       </section>
     </div>
   </main>
-  <script>
-    (() => {
-      const metal = document.getElementById("classicMetal");
-      const karat = document.getElementById("classicKarat");
-      if (!metal || !karat) return;
-      const sync = () => {
-        const isPlatinum = metal.value === "Platinum";
-        karat.disabled = isPlatinum || !metal.value;
-        karat.required = !isPlatinum && !!metal.value;
-        if (isPlatinum) karat.value = "";
-      };
-      metal.addEventListener("change", sync);
-      sync();
-    })();
-  </script>
+  <script src="product-page.js"></script>
 </body>
 </html>
