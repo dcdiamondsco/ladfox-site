@@ -1,8 +1,8 @@
 document.querySelectorAll("[data-product-config]").forEach((config) => {
   const formId = config.getAttribute("data-config-form");
   const form = formId ? document.getElementById(formId) : config.closest(".copy")?.querySelector("form");
-  const summary = config.querySelector("[data-config-summary]");
-  const productImage = config.closest(".layout")?.querySelector("[data-product-image]");
+  const mediaPanel = config.closest(".layout")?.querySelector(".media");
+  const productImage = mediaPanel?.querySelector("[data-product-image]");
   const metalTarget = form?.querySelector('[data-config-hidden="metal"]');
   const metalOptions = config.querySelectorAll('[data-config-input="metal_base"]');
   const karatOptions = config.querySelectorAll('[data-config-input="metal_karat"]');
@@ -10,6 +10,7 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
   const rangeFields = config.querySelectorAll("[data-config-range]");
   let imageView = "front";
   let imageRequest = 0;
+  let mobileToggleButtons = [];
 
   const getRangeValues = (field) => (field.dataset.configValues || "").split("|");
   const getRangeLabels = (field) => (field.dataset.configLabels || "").split("|");
@@ -54,6 +55,41 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       productImage.src = src;
     }
   };
+  const loadFirstAvailableImage = (sources, fallback) => {
+    if (!sources.length) {
+      applyImageSource(fallback);
+      return;
+    }
+
+    const requestId = ++imageRequest;
+    const trySource = (index) => {
+      if (index >= sources.length) {
+        if (requestId === imageRequest) {
+          applyImageSource(fallback);
+        }
+        return;
+      }
+
+      const candidate = sources[index];
+      const probe = new Image();
+
+      probe.onload = () => {
+        if (requestId === imageRequest) {
+          applyImageSource(candidate);
+        }
+      };
+
+      probe.onerror = () => {
+        if (requestId === imageRequest) {
+          trySource(index + 1);
+        }
+      };
+
+      probe.src = candidate;
+    };
+
+    trySource(0);
+  };
   const syncProductImage = () => {
     if (!productImage) return;
 
@@ -66,28 +102,35 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
     const shapeSlug = getShapeSlug(selectedShape);
 
     if (!productSlug || !metalSlug || !shapeSlug) {
-      applyImageSource(imageView === "back" ? defaultBack : defaultFront);
+      const fallback = imageView === "back" ? defaultBack : defaultFront;
+      const metalBase = metalSlug
+        ? `Images/products/${productSlug}/${metalSlug}/_base-${imageView}.png`
+        : "";
+      loadFirstAvailableImage(metalBase ? [metalBase] : [], fallback);
       return;
     }
 
-    const requestId = ++imageRequest;
     const variantSuffix = imageView === "back" ? "-back" : "";
-    const candidate = `Images/products/${productSlug}/${metalSlug}/${shapeSlug}${variantSuffix}.png`;
-    const probe = new Image();
+    const fallback = imageView === "back" ? defaultBack : defaultFront;
+    const candidates = [
+      `Images/products/${productSlug}/${metalSlug}/${shapeSlug}${variantSuffix}.png`,
+      `Images/products/${productSlug}/${metalSlug}/_base-${imageView}.png`
+    ];
 
-    probe.onload = () => {
-      if (requestId === imageRequest) {
-        applyImageSource(candidate);
-      }
-    };
+    loadFirstAvailableImage(candidates, fallback);
+  };
+  const syncMobileToggleState = () => {
+    const nextViewLabel = imageView === "front" ? "rear" : "front";
 
-    probe.onerror = () => {
-      if (requestId === imageRequest) {
-        applyImageSource(imageView === "back" ? defaultBack : defaultFront);
-      }
-    };
-
-    probe.src = candidate;
+    mobileToggleButtons.forEach((button) => {
+      button.setAttribute("aria-label", `Show ${nextViewLabel} view`);
+      button.setAttribute("title", `Show ${nextViewLabel} view`);
+    });
+  };
+  const toggleImageView = () => {
+    imageView = imageView === "front" ? "back" : "front";
+    syncProductImage();
+    syncMobileToggleState();
   };
 
   const syncMetalOptions = () => {
@@ -138,23 +181,6 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       metalTarget.value = values.metal;
     }
 
-    if (summary) {
-      const pieces = [
-        values.metal,
-        values.ring_size && `size ${values.ring_size}`,
-        values.diamond_type,
-        values.shape,
-        values.total_carat && `${values.total_carat} ct`,
-        values.clarity,
-        values.colour,
-        values.cut_grade
-      ].filter(Boolean);
-
-      summary.textContent = pieces.length
-        ? pieces.join(" / ")
-        : "Select the ring options you already know and leave the rest for us to refine.";
-    }
-
     syncProductImage();
   };
 
@@ -196,6 +222,30 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
   if (productImage) {
     const mobileQuery = window.matchMedia("(max-width: 900px)");
 
+    if (mediaPanel) {
+      const prevButton = document.createElement("button");
+      const nextButton = document.createElement("button");
+
+      prevButton.type = "button";
+      nextButton.type = "button";
+      prevButton.className = "media-toggle media-toggle--prev";
+      nextButton.className = "media-toggle media-toggle--next";
+      prevButton.innerHTML = "&#8249;";
+      nextButton.innerHTML = "&#8250;";
+
+      [prevButton, nextButton].forEach((button) => {
+        button.addEventListener("click", () => {
+          if (mobileQuery.matches) {
+            toggleImageView();
+          }
+        });
+        mediaPanel.appendChild(button);
+      });
+
+      mobileToggleButtons = [prevButton, nextButton];
+      syncMobileToggleState();
+    }
+
     productImage.addEventListener("mouseenter", () => {
       if (!mobileQuery.matches) {
         imageView = "back";
@@ -212,8 +262,7 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
 
     productImage.addEventListener("click", () => {
       if (mobileQuery.matches) {
-        imageView = imageView === "front" ? "back" : "front";
-        syncProductImage();
+        toggleImageView();
       }
     });
 
@@ -221,6 +270,7 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       if (!mobileQuery.matches) {
         imageView = "front";
         syncProductImage();
+        syncMobileToggleState();
       }
     };
 
