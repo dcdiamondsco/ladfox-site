@@ -132,6 +132,19 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
     syncProductImage();
     syncMobileToggleState();
   };
+  const handleMobileViewToggle = (event) => {
+    if (!productImage) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 900px)");
+    if (!mobileQuery.matches) return;
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    toggleImageView();
+  };
 
   const syncMetalOptions = () => {
     if (!metalOptions.length || !karatOptions.length || !karatGroup) return;
@@ -234,11 +247,8 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       nextButton.innerHTML = "&#8250;";
 
       [prevButton, nextButton].forEach((button) => {
-        button.addEventListener("click", () => {
-          if (mobileQuery.matches) {
-            toggleImageView();
-          }
-        });
+        button.addEventListener("pointerup", handleMobileViewToggle);
+        button.addEventListener("click", handleMobileViewToggle);
         mediaPanel.appendChild(button);
       });
 
@@ -260,11 +270,8 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       }
     });
 
-    productImage.addEventListener("click", () => {
-      if (mobileQuery.matches) {
-        toggleImageView();
-      }
-    });
+    productImage.addEventListener("pointerup", handleMobileViewToggle);
+    productImage.addEventListener("click", handleMobileViewToggle);
 
     const resetImageView = () => {
       if (!mobileQuery.matches) {
