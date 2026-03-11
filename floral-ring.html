@@ -48,16 +48,19 @@
               <div class="option-group" data-span="full">
                 <div class="option-label"><span>Metal</span><span class="option-hint">Select one</span></div>
                 <div class="choice-grid">
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="9k White Gold" data-config-input="metal" checked /><span class="choice-button"><strong>9k White Gold</strong><span>Bright white finish</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="9k Yellow Gold" data-config-input="metal" /><span class="choice-button"><strong>9k Yellow Gold</strong><span>Warm classic tone</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="9k Rose Gold" data-config-input="metal" /><span class="choice-button"><strong>9k Rose Gold</strong><span>Soft blush tone</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="14k White Gold" data-config-input="metal" /><span class="choice-button"><strong>14k White Gold</strong><span>Brighter premium alloy</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="14k Yellow Gold" data-config-input="metal" /><span class="choice-button"><strong>14k Yellow Gold</strong><span>Richer gold tone</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="14k Rose Gold" data-config-input="metal" /><span class="choice-button"><strong>14k Rose Gold</strong><span>Warm rosy finish</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="18k White Gold" data-config-input="metal" /><span class="choice-button"><strong>18k White Gold</strong><span>High-luxury white gold</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="18k Yellow Gold" data-config-input="metal" /><span class="choice-button"><strong>18k Yellow Gold</strong><span>Deep rich yellow</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="18k Rose Gold" data-config-input="metal" /><span class="choice-button"><strong>18k Rose Gold</strong><span>Deeper blush metal</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-metal" value="Platinum 950" data-config-input="metal" /><span class="choice-button"><strong>Platinum 950</strong><span>Dense natural white metal</span></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-metal-base" value="Gold" data-config-input="metal_base" /><span class="choice-button"><strong>Gold</strong></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-metal-base" value="White Gold" data-config-input="metal_base" checked /><span class="choice-button"><strong>White Gold</strong></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-metal-base" value="Rose Gold" data-config-input="metal_base" /><span class="choice-button"><strong>Rose Gold</strong></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-metal-base" value="Platinum" data-config-input="metal_base" /><span class="choice-button"><strong>Platinum</strong></span></label>
+                </div>
+              </div>
+
+              <div class="option-group choice-group-toggle" data-metal-karat-group data-span="full">
+                <div class="option-label"><span>Gold purity</span><span class="option-hint">Appears for gold options</span></div>
+                <div class="choice-grid choice-grid--dense">
+                  <label class="choice"><input type="radio" name="floral-config-metal-karat" value="9k" data-config-input="metal_karat" checked /><span class="choice-button"><strong>9k</strong></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-metal-karat" value="14k" data-config-input="metal_karat" /><span class="choice-button"><strong>14k</strong></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-metal-karat" value="18k" data-config-input="metal_karat" /><span class="choice-button"><strong>18k</strong></span></label>
                 </div>
               </div>
 
@@ -65,15 +68,15 @@
                 <label class="option-label" for="floralConfigRingSize"><span>Ring size</span><span class="option-hint">Optional</span></label>
                 <select id="floralConfigRingSize" data-config-input="ring_size">
                   <option value="">Select ring size</option>
-                  <option>UK H</option><option>UK I</option><option>UK J</option><option>UK K</option><option>UK L</option><option>UK M</option><option>UK N</option><option>UK O</option><option>UK P</option><option>UK Q</option><option>UK R</option><option>UK S</option><option>Not sure</option>
+                  <option>UK D</option><option>UK D 1/2</option><option>UK E</option><option>UK E 1/2</option><option>UK F</option><option>UK F 1/2</option><option>UK G</option><option>UK G 1/2</option><option>UK H</option><option>UK H 1/2</option><option>UK I</option><option>UK I 1/2</option><option>UK J</option><option>UK J 1/2</option><option>UK K</option><option>UK K 1/2</option><option>UK L</option><option>UK L 1/2</option><option>UK M</option><option>UK M 1/2</option><option>UK N</option><option>UK N 1/2</option><option>UK O</option><option>UK O 1/2</option><option>UK P</option><option>UK P 1/2</option><option>UK Q</option><option>UK Q 1/2</option><option>UK R</option><option>UK R 1/2</option><option>UK S</option><option>UK S 1/2</option><option>UK T</option><option>UK T 1/2</option><option>UK U</option><option>UK U 1/2</option><option>UK V</option><option>UK V 1/2</option><option>UK W</option><option>UK W 1/2</option><option>UK X</option><option>UK X 1/2</option><option>UK Y</option><option>UK Y 1/2</option><option>UK Z</option><option>UK Z+1</option><option>UK Z+2</option><option>Not sure</option>
                 </select>
               </div>
 
               <div class="option-group">
                 <div class="option-label"><span>Diamond</span><span class="option-hint">Select one</span></div>
                 <div class="choice-grid choice-grid--dense">
-                  <label class="choice"><input type="radio" name="floral-config-diamond" value="Lab diamond" data-config-input="diamond_type" checked /><span class="choice-button"><strong>Lab diamond</strong><span>Modern value</span></span></label>
-                  <label class="choice"><input type="radio" name="floral-config-diamond" value="Natural diamond" data-config-input="diamond_type" /><span class="choice-button"><strong>Natural diamond</strong><span>Earth-mined</span></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-diamond" value="Lab diamond" data-config-input="diamond_type" checked /><span class="choice-button"><strong>Lab diamond</strong></span></label>
+                  <label class="choice"><input type="radio" name="floral-config-diamond" value="Natural diamond" data-config-input="diamond_type" /><span class="choice-button"><strong>Natural diamond</strong></span></label>
                 </div>
               </div>
 
@@ -95,7 +98,7 @@
                 <label class="option-label" for="floralConfigCarat"><span>Total carat</span><span class="option-hint">Optional</span></label>
                 <select id="floralConfigCarat" data-config-input="total_carat">
                   <option value="">Select carat</option>
-                  <option>0.20</option><option>0.30</option><option>0.40</option><option>0.50</option><option>0.60</option><option>0.70</option><option>0.80</option><option>0.90</option><option>1.00</option><option>1.20</option><option>1.50</option><option>1.70</option><option>2.00</option><option>2.50</option><option>3.00</option>
+                  <option>0.20</option><option>0.30</option><option>0.40</option><option>0.50</option><option>0.60</option><option>0.70</option><option>0.80</option><option>0.90</option><option>1.00</option><option>1.20</option><option>1.50</option><option>1.70</option><option>2.00</option><option>2.50</option><option>3.00</option><option>3.50</option><option>4.00</option><option>4.50</option><option>5.00</option><option>5.50</option><option>6.00</option><option>6.50</option><option>7.00</option><option>7.50</option><option>8.00+</option>
                 </select>
               </div>
 
@@ -123,13 +126,6 @@
                 </select>
               </div>
 
-              <div class="option-group">
-                <label class="option-label" for="floralConfigCertificate"><span>Certificate</span><span class="option-hint">Optional</span></label>
-                <select id="floralConfigCertificate" data-config-input="certificate">
-                  <option value="">Select certificate</option>
-                  <option>AB</option><option>IGI/HRD</option><option>GIA</option><option>EGL/SGL</option>
-                </select>
-              </div>
             </div>
 
             <div class="options-summary">
@@ -156,7 +152,6 @@
               <input type="hidden" name="selected_clarity" data-config-hidden="clarity" />
               <input type="hidden" name="selected_colour" data-config-hidden="colour" />
               <input type="hidden" name="selected_cut_grade" data-config-hidden="cut_grade" />
-              <input type="hidden" name="selected_certificate" data-config-hidden="certificate" />
               <p hidden><label>Do not fill this out <input name="bot-field" /></label></p>
               <div class="form-row">
                 <label for="floralName">Name<input id="floralName" name="name" autocomplete="name" required /></label>

@@ -627,10 +627,14 @@
     }
 
     .content-block p{
-      margin:0;
+      margin:0 0 22px;
       color:var(--muted);
       line-height:1.8;
       font-size:1rem;
+    }
+
+    .content-block p:last-of-type{
+      margin-bottom:0;
     }
 
     .bottom-cta{
@@ -856,22 +860,25 @@
     }
 
     .site-footer{
-      padding:18px 0 46px;
+      padding:26px 0 46px;
       border-top:1px solid rgba(255,255,255,.08);
       color:rgba(255,255,255,.70);
     }
 
     .site-footer .shell{
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      flex-wrap:wrap;
       text-align:center;
     }
 
-    .footer-meta,
+    .footer-meta{
+      margin:0;
+      font-size:.94rem;
+      line-height:1.6;
+      letter-spacing:.03em;
+    }
+
     .footer-email{
       margin:0;
       font-size:.94rem;
@@ -899,16 +906,16 @@
 
     .scroll-blackout{
       opacity:0;
-      transform:translateY(28px);
-      filter:brightness(0) blur(10px);
-      transition:opacity .55s ease, transform .55s ease, filter .55s ease;
+      transform:translateY(32px);
+      filter:brightness(0) saturate(0) blur(12px);
+      transition:opacity .7s ease, transform .7s ease, filter .7s ease;
       will-change:opacity, transform, filter;
     }
 
     .scroll-blackout.is-visible{
       opacity:1;
       transform:translateY(0);
-      filter:brightness(1) blur(0);
+      filter:brightness(1) saturate(1) blur(0);
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -1275,7 +1282,7 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd. Companies House No. 17071630. All rights reserved.</p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved.</p>
       <p class="footer-email"><a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>
@@ -1338,15 +1345,22 @@
       const heroCopy = document.querySelector(".hero-copy");
       const revealBlocks = Array.from(document.querySelectorAll(".reveal-block"));
       const scrollBlackoutSelectors = [
+        ".topbar .brand-block > *",
+        ".topbar .nav a",
         "main aside .hero-visual",
         "main aside .hero-overlay > *",
+        "main .hero-trust",
+        "main .hero-copy > *",
+        "main .routes .route",
+        "main .routes .route-top > *",
+        "main .routes .route-media img",
+        "main .routes .route-caption",
+        "main .section",
         "main .section h2",
         "main .section h3",
         "main .section p",
         "main .section img",
         "main .section a",
-        "main .section .process-card",
-        "main .section .quote-panel",
         "main .section .content-block",
         "main .section .bottom-cta",
         "footer.site-footer .shell > *"
@@ -1421,7 +1435,7 @@
 
         scrollBlackoutTargets.forEach((element) => {
           const rect = element.getBoundingClientRect();
-          const visible = rect.top < (window.innerHeight * 0.82) && rect.bottom > (window.innerHeight * 0.18);
+          const visible = rect.top < (window.innerHeight * 0.9) && rect.bottom > (window.innerHeight * 0.08);
           element.classList.toggle("is-visible", visible);
         });
       };
