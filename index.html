@@ -431,7 +431,7 @@
 
     .hero-trust{
       width:min(860px, calc(100vw - 48px));
-      margin:38px auto 0;
+      margin:12px auto 0;
       padding:0;
       color:#ffffff;
       text-align:center;
@@ -444,6 +444,63 @@
       filter:brightness(calc(.08 + (var(--trust-opacity, 0) * .92))) blur(calc((1 - var(--trust-opacity, 0)) * 2px));
       transition:opacity .3s ease, transform .3s ease, filter .3s ease;
       text-shadow:0 12px 30px rgba(0,0,0,.46);
+    }
+
+    .hero-trust-stack{
+      width:min(860px, calc(100vw - 48px));
+      margin:-8px auto 0;
+      display:grid;
+      justify-items:center;
+      gap:18px;
+    }
+
+    .dream-ring-cta{
+      min-width:min(320px, 100%);
+      padding:0 28px;
+      color:#fff;
+      background:linear-gradient(180deg, rgba(10,10,10,.98), rgba(0,0,0,.98));
+      border-color:rgba(255,255,255,.92);
+      box-shadow:0 20px 44px rgba(0,0,0,.42);
+      position:relative;
+      overflow:hidden;
+      animation:dream-ring-pulse 2.6s ease-in-out infinite;
+    }
+
+    .dream-ring-cta::before{
+      content:"";
+      position:absolute;
+      inset:-20% auto -20% -32%;
+      width:38%;
+      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.34), rgba(255,255,255,0));
+      transform:skewX(-18deg);
+      opacity:.8;
+      animation:dream-ring-sheen 3.2s ease-in-out infinite;
+    }
+
+    .dream-ring-cta:hover,
+    .dream-ring-cta:focus-visible{
+      color:#fff;
+      background:#000;
+      border-color:#fff;
+      box-shadow:0 24px 52px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.18);
+      transform:translateY(-2px) scale(1.01);
+    }
+
+    .dream-ring-cta span,
+    .dream-ring-cta{
+      z-index:0;
+    }
+
+    @keyframes dream-ring-pulse{
+      0%, 100%{ box-shadow:0 20px 44px rgba(0,0,0,.42), 0 0 0 0 rgba(255,255,255,.10); }
+      50%{ box-shadow:0 26px 58px rgba(0,0,0,.54), 0 0 0 8px rgba(255,255,255,0); }
+    }
+
+    @keyframes dream-ring-sheen{
+      0%, 18%{ transform:translateX(-140%) skewX(-18deg); opacity:0; }
+      28%{ opacity:.9; }
+      48%{ transform:translateX(360%) skewX(-18deg); opacity:0; }
+      100%{ transform:translateX(360%) skewX(-18deg); opacity:0; }
     }
 
     .trust-strip{
@@ -1206,7 +1263,10 @@
           </div>
         </aside>
 
-        <div class="hero-trust">All our pieces include international shipping, engraving, and a lifetime warranty.</div>
+        <div class="hero-trust-stack">
+          <a class="btn btn-primary dream-ring-cta" href="ringpage.html">Find your dream ring</a>
+          <div class="hero-trust">All our pieces include international shipping, engraving, and a lifetime warranty.</div>
+        </div>
 
         <div class="hero-copy">
           <span class="eyebrow">Our process</span>
@@ -1282,8 +1342,7 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved.</p>
-      <p class="footer-email"><a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>
 
@@ -1310,17 +1369,6 @@
       <label for="quickMessageEmail">
         Email
         <input id="quickMessageEmail" name="email" type="email" placeholder="you@example.com" required />
-      </label>
-
-      <label for="quickMessageHeardAbout">
-        How did you hear about us?
-        <select id="quickMessageHeardAbout" name="heard_about" required>
-          <option value="" selected disabled>Select</option>
-          <option>Google</option>
-          <option>Reddit</option>
-          <option>Friends and family</option>
-          <option>Other</option>
-        </select>
       </label>
 
       <p class="quick-message-status" id="quickMessageStatus" aria-live="polite"></p>

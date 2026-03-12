@@ -122,6 +122,22 @@
       padding:10px 0 26px;
     }
 
+    .intro-visual{
+      width:min(620px, 82%);
+      margin:6px auto 18px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+
+    .intro-visual img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
     .grid-2{
       display:grid;
       grid-template-columns:1.12fr .88fr;
@@ -599,6 +615,20 @@
       line-height:1.45;
     }
 
+    .form-intro{
+      margin:0 auto 8px;
+      max-width:720px;
+      text-align:center;
+      font-family:var(--ui-font);
+      font-size:.92rem;
+      color:#bdbdbd;
+      line-height:1.55;
+    }
+
+    .conditional-field[hidden]{
+      display:none;
+    }
+
     .faq{
       margin-top:18px;
     }
@@ -688,6 +718,10 @@
     @media(max-width:560px){
       .btn{ min-width:unset; width:100%; max-width:520px; }
       #quickStartSubmit{ width:100%; justify-self:stretch; }
+      .intro-visual{
+        padding:12px;
+        margin-bottom:14px;
+      }
     }
 
     @keyframes rise{
@@ -726,9 +760,13 @@
   </header>
 
   <main class="wrap">
+    <figure class="intro-visual">
+      <img src="Images/3 rings.png" alt="Three Ladfox engagement rings" />
+    </figure>
+
     <section class="section" id="start" aria-label="Start your design">
       <div class="copy">
-        <h2 id="start-heading">Share a few details and we will guide the next steps</h2>
+        <h2 id="start-heading">Design your ring</h2>
 
         <div class="form-wrap">
           <div class="card">
@@ -739,41 +777,6 @@
                 <p style="display:none;">
                   <label>Do not fill this in <input name="bot-field" /></label>
                 </p>
-
-                <div class="form-row">
-                  <div>
-                    <label for="name">Your name</label>
-                    <input id="name" name="name" autocomplete="name" required />
-                  </div>
-                  <div>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" minlength="5" required aria-required="true" />
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div>
-                    <label for="timeline">Timeline</label>
-                    <select id="timeline" name="timeline" required>
-                      <option value="" selected disabled>Select</option>
-                      <option>ASAP</option>
-                      <option>Within 2 to 4 weeks</option>
-                      <option>Within 1 to 2 months</option>
-                      <option>Just researching</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label for="budget">Budget range</label>
-                    <select id="budget" name="budget" required>
-                      <option value="" selected disabled>Select</option>
-                      <option data-gbp="Under &#163;1,500" data-usd="Under $1,500">Under &#163;1,500</option>
-                      <option data-gbp="&#163;1,500 to &#163;2,500" data-usd="$1,500 to $2,500">&#163;1,500 to &#163;2,500</option>
-                      <option data-gbp="&#163;2,500 to &#163;4,000" data-usd="$2,500 to $4,000">&#163;2,500 to &#163;4,000</option>
-                      <option data-gbp="&#163;4,000 to &#163;7,000" data-usd="$4,000 to $7,000">&#163;4,000 to &#163;7,000</option>
-                      <option data-gbp="&#163;7,000 plus" data-usd="$7,000 plus">&#163;7,000 plus</option>
-                    </select>
-                  </div>
-                </div>
 
                 <div class="form-row">
                   <div>
@@ -803,24 +806,51 @@
                   </div>
                 </div>
 
+                <div class="form-row conditional-field" id="elongatedRow" hidden>
+                  <div>
+                    <label for="elongated">Elongated?</label>
+                    <select id="elongated" name="elongated">
+                      <option value="" selected disabled>Select</option>
+                      <option>Yes</option>
+                      <option>No</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+                  <div class="small">This helps us narrow the right stone proportions for you.</div>
+                </div>
+
+                <div class="form-row" id="budgetRow">
+                  <div>
+                    <label for="budget">Budget range</label>
+                    <select id="budget" name="budget" required>
+                      <option value="" selected disabled>Select</option>
+                      <option data-gbp="Under &#163;1,500" data-usd="Under $1,500">Under &#163;1,500</option>
+                      <option data-gbp="&#163;1,500 to &#163;2,500" data-usd="$1,500 to $2,500">&#163;1,500 to &#163;2,500</option>
+                      <option data-gbp="&#163;2,500 to &#163;4,000" data-usd="$2,500 to $4,000">&#163;2,500 to &#163;4,000</option>
+                      <option data-gbp="&#163;4,000 to &#163;7,000" data-usd="$4,000 to $7,000">&#163;4,000 to &#163;7,000</option>
+                      <option data-gbp="&#163;7,000 plus" data-usd="$7,000 plus">&#163;7,000 plus</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div>
                   <label for="notes">Any notes or links</label>
                   <textarea id="notes" name="notes" placeholder="For example: setting style, metal preference, screenshots, or a link to a ring you like"></textarea>
                 </div>
 
-                <div>
-                  <label for="heardAbout">How did you hear about us?</label>
-                  <select id="heardAbout" name="heard_about" required>
-                    <option value="" selected disabled>Select</option>
-                    <option>Google</option>
-                    <option>Reddit</option>
-                    <option>Friends and family</option>
-                    <option>Other</option>
-                  </select>
+                <div class="form-row">
+                  <div>
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" autocomplete="name" required />
+                  </div>
+                  <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" minlength="5" required aria-required="true" />
+                  </div>
                 </div>
 
                 <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
-                <button class="btn" id="quickStartSubmit" type="submit">Submit</button>
+                <button class="btn" id="quickStartSubmit" type="submit">Start your dream ring</button>
               </form>
             </div>
           </div>
@@ -949,8 +979,10 @@
       if (!form) return;
       const quickStartLocation = document.getElementById("quickStartLocation");
       const quickStartStatus = document.getElementById("quickStartStatus");
-
       const budgetSelect = document.getElementById("budget");
+      const shapeSelect = document.getElementById("shape");
+      const elongatedRow = document.getElementById("elongatedRow");
+      const elongatedSelect = document.getElementById("elongated");
 
       function updateBudgetCurrency(useUsd){
         if (!budgetSelect) return;
@@ -960,7 +992,25 @@
         });
       }
 
+      function updateElongatedField(){
+        if (!shapeSelect || !elongatedRow || !elongatedSelect) return;
+
+        const showElongated = ["Radiant", "Cushion", "Marquise"].includes(shapeSelect.value);
+        elongatedRow.hidden = !showElongated;
+        elongatedSelect.required = showElongated;
+
+        if (!showElongated) {
+          elongatedSelect.value = "";
+        }
+      }
+
       updateBudgetCurrency(false);
+      updateElongatedField();
+
+      if (shapeSelect) {
+        shapeSelect.addEventListener("change", updateElongatedField);
+      }
+
       if (quickStartLocation) {
         fetch("https://ipapi.co/json/")
           .then((response) => response.ok ? response.json() : Promise.reject())

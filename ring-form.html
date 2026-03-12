@@ -355,8 +355,6 @@
 
       { key: 'email', type: 'email', label: 'What email should we send your price estimate to' },
 
-      { key: 'heard_about', type: 'select', label: 'Where did you first hear about us', options: ['Google','Reddit','Friends and family','Other'] },
-
       { key: 'references', type: 'file', label: 'Upload inspiration photos, optional' },
       { key: 'notes', type: 'textarea', label: 'Any additional notes, optional' },
 
@@ -437,7 +435,6 @@
       const lines = [];
 
       if(formData.ring_style) lines.push(`Ring style:\n${formData.ring_style}`);
-      if(formData.heard_about) lines.push(`Where did they find us:\n${formData.heard_about}`);
 
       if(formData.metal) lines.push(`Metal:\n${formData.metal}`);
       if(isGold(formData.metal) && formData.gold_karat) lines.push(`Gold Karat:\n${formData.gold_karat}`);

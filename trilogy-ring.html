@@ -64,6 +64,15 @@
                 </div>
               </div>
 
+              <div class="option-group">
+                <div class="option-label"><span>Band thickness</span></div>
+                <div class="choice-grid choice-grid--triple">
+                  <label class="choice"><input type="radio" name="trilogy-config-band-thickness" value="Elegant" data-config-input="band_thickness" /><span class="choice-button"><strong>Elegant</strong></span></label>
+                  <label class="choice"><input type="radio" name="trilogy-config-band-thickness" value="Classic" data-config-input="band_thickness" /><span class="choice-button"><strong>Classic</strong></span></label>
+                  <label class="choice"><input type="radio" name="trilogy-config-band-thickness" value="Bold" data-config-input="band_thickness" /><span class="choice-button"><strong>Bold</strong></span></label>
+                </div>
+              </div>
+
               <div class="option-group" data-span="full">
                 <div class="option-label"><span>Shape</span></div>
                 <div class="choice-grid choice-grid--shapes">
@@ -98,16 +107,19 @@
                 <label class="option-label" for="trilogyConfigColour"><span>Colour</span></label>
                 <select id="trilogyConfigColour" data-config-input="colour">
                   <option value="">Select colour</option>
-                  <option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option><option>K</option><option>L</option>
+                  <option>D</option><option>E</option><option>F</option><option>G</option><option>H</option>
                 </select>
               </div>
 
               <div class="option-group">
-                <label class="option-label" for="trilogyConfigCut"><span>Cut grade</span></label>
-                <select id="trilogyConfigCut" data-config-input="cut_grade">
-                  <option value="">Select cut grade</option>
-                  <option>Excellent</option><option>Very Good</option><option>Good</option><option>Fair</option>
-                </select>
+                <div class="option-label"><span>Cut grade</span></div>
+                <div class="choice-grid choice-grid--dense">
+                  <label class="choice"><input type="radio" name="trilogy-config-cut-locked" value="Excellent" checked disabled /><span class="choice-button"><strong>Excellent</strong></span></label>
+                  <label class="choice"><input type="radio" name="trilogy-config-cut-locked" value="Very Good" disabled /><span class="choice-button"><strong>Very Good</strong></span></label>
+                  <label class="choice"><input type="radio" name="trilogy-config-cut-locked" value="Good" disabled /><span class="choice-button"><strong>Good</strong></span></label>
+                </div>
+                <div class="option-hint">All of our stones are the perfect cut.</div>
+                <input type="hidden" value="Excellent" data-config-input="cut_grade" />
               </div>
 
             </div>
@@ -127,6 +139,7 @@
               <input type="hidden" name="selected_metal" data-config-hidden="metal" />
               <input type="hidden" name="selected_ring_size" data-config-hidden="ring_size" />
               <input type="hidden" name="selected_diamond_type" data-config-hidden="diamond_type" />
+              <input type="hidden" name="selected_band_thickness" data-config-hidden="band_thickness" />
               <input type="hidden" name="selected_shape" data-config-hidden="shape" />
               <input type="hidden" name="selected_total_carat" data-config-hidden="total_carat" />
               <input type="hidden" name="selected_clarity" data-config-hidden="clarity" />
@@ -152,12 +165,6 @@
                 </label>
               </div>
               <div class="form-row">
-                <label for="trilogyHeardAbout">How did you hear about us?
-                  <select id="trilogyHeardAbout" name="heard_about" required>
-                    <option value="" selected disabled>Select</option>
-                    <option>Google</option><option>Reddit</option><option>Friends and family</option><option>Other</option>
-                  </select>
-                </label>
                 <label for="trilogyNotes">Anything else we should know?
                   <textarea id="trilogyNotes" name="notes" placeholder="Preferred centre size, stone preference, tweaks, or deadline notes"></textarea>
                 </label>

@@ -120,15 +120,17 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
     loadFirstAvailableImage(candidates, fallback);
   };
   const syncMobileToggleState = () => {
-    const nextViewLabel = imageView === "front" ? "rear" : "front";
-
     mobileToggleButtons.forEach((button) => {
-      button.setAttribute("aria-label", `Show ${nextViewLabel} view`);
-      button.setAttribute("title", `Show ${nextViewLabel} view`);
+      const requestedView = button.dataset.view || "front";
+      const label = requestedView === "back" ? "Show next image" : "Show previous image";
+
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
+      button.disabled = imageView === requestedView;
     });
   };
-  const toggleImageView = () => {
-    imageView = imageView === "front" ? "back" : "front";
+  const setImageView = (nextView) => {
+    imageView = nextView === "back" ? "back" : "front";
     syncProductImage();
     syncMobileToggleState();
   };
@@ -143,7 +145,14 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       event.stopPropagation();
     }
 
-    toggleImageView();
+    const requestedView = event?.currentTarget?.dataset?.view;
+
+    if (requestedView) {
+      setImageView(requestedView);
+      return;
+    }
+
+    setImageView(imageView === "front" ? "back" : "front");
   };
 
   const syncMetalOptions = () => {
@@ -243,6 +252,8 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       nextButton.type = "button";
       prevButton.className = "media-toggle media-toggle--prev";
       nextButton.className = "media-toggle media-toggle--next";
+      prevButton.dataset.view = "front";
+      nextButton.dataset.view = "back";
       prevButton.innerHTML = "&#8249;";
       nextButton.innerHTML = "&#8250;";
 
@@ -258,15 +269,13 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
 
     productImage.addEventListener("mouseenter", () => {
       if (!mobileQuery.matches) {
-        imageView = "back";
-        syncProductImage();
+        setImageView("back");
       }
     });
 
     productImage.addEventListener("mouseleave", () => {
       if (!mobileQuery.matches) {
-        imageView = "front";
-        syncProductImage();
+        setImageView("front");
       }
     });
 
@@ -275,9 +284,7 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
 
     const resetImageView = () => {
       if (!mobileQuery.matches) {
-        imageView = "front";
-        syncProductImage();
-        syncMobileToggleState();
+        setImageView("front");
       }
     };
 
