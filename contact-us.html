@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scroll-reveal.css" />
 
   <style>
     :root{
@@ -97,6 +98,28 @@
 
     main{
       padding:16px 0 40px;
+    }
+
+    .site-footer{
+      padding:26px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .site-footer .shell{
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .layout{
@@ -481,6 +504,12 @@
     </div>
   </main>
 
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="shell">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(location.search);
@@ -615,6 +644,7 @@
       return lines.join("\n\n");
     }
   </script>
+  <script src="scroll-reveal.js"></script>
 </body>
 </html>
 

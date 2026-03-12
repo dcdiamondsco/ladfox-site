@@ -21,6 +21,7 @@
   <meta name="twitter:title" content="Beat a Price Quote | Ladfox" />
   <meta name="twitter:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
   <meta name="twitter:image" content="https://ladfox.com/Images/comparison.png" />
+  <link rel="stylesheet" href="scroll-reveal.css" />
 
   <style>
 
@@ -125,6 +126,25 @@
       font-size:1.05em;
       line-height:1.5;
       margin-top:12px;
+    }
+
+    .site-footer{
+      padding:26px 20px 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      color:rgba(255,255,255,.72);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .status{
@@ -559,6 +579,11 @@
     render();
   });
   </script>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+  </footer>
+  <script src="scroll-reveal.js"></script>
 
 </body>
 </html>

@@ -20,6 +20,7 @@
   <meta name="twitter:title" content="Engagement Ring Design Form | Ladfox"/>
   <meta name="twitter:description" content="Capture engagement ring preferences with a calm, guided form."/>
   <meta name="twitter:image" content="https://ladfox.com/Images/petal%20prong.png"/>
+  <link rel="stylesheet" href="scroll-reveal.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,8 +42,8 @@
       --body:"Manrope", sans-serif;
       --shadow:0 28px 70px rgba(0,0,0,.36);
     }
-    html, body { height: 100svh; overflow: hidden; }
-    @supports not (height: 100svh) { html, body { height: 100dvh; } }
+    html, body { min-height: 100svh; overflow-x: hidden; }
+    @supports not (height: 100svh) { html, body { min-height: 100dvh; } }
     body {
       font-family: var(--body);
       margin: 0;
@@ -72,11 +73,35 @@
     header img { width: min(220px, 48vw); display: block; margin: 0 auto; height: auto; }
 
     .form-section {
-      height: calc(100% - var(--headerH));
+      flex: 1;
+      min-height: calc(100svh - var(--headerH) - 96px);
       display: grid;
       place-items: center;
       padding: 24px;
       position: relative;
+    }
+
+    .site-footer{
+      padding:26px 20px 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+      text-align:center;
+      position:relative;
+      z-index:2;
+      background:#000;
+    }
+
+    .footer-meta{
+      margin:0 auto;
+      max-width:760px;
+      color:var(--muted);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
     .bg-rings { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .bg-rings::after {
@@ -128,27 +153,173 @@
     .input-area input, .input-area select, .input-area textarea {
       width: 100%;
       padding: 15px 16px;
-      border: 1px solid rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 18px;
       font-size: 1rem;
-      background: rgba(255,255,255,.04);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
+        rgba(7,7,7,.88);
       color: var(--text);
-      text-align: center;
+      text-align: left;
       box-sizing: border-box;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 10px 28px rgba(0,0,0,.18);
       font-family: var(--body);
       outline: none;
-      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+      transition: border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+    .input-area select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      min-height:56px;
+      padding-right:56px;
+      border-color: rgba(255,255,255,.14);
+      background-image:
+        radial-gradient(circle at center, rgba(255,255,255,.08), rgba(255,255,255,0) 68%),
+        linear-gradient(45deg, transparent 50%, rgba(255,255,255,.92) 50%),
+        linear-gradient(135deg, rgba(255,255,255,.92) 50%, transparent 50%);
+      background-position:
+        calc(100% - 26px) 50%,
+        calc(100% - 22px) calc(50% - 3px),
+        calc(100% - 16px) calc(50% - 3px);
+      background-size:30px 30px, 6px 6px, 6px 6px;
+      background-repeat:no-repeat;
+      color-scheme:dark;
+      font-weight:600;
+      letter-spacing:.01em;
+    }
+    .input-area select option{
+      background:#0d0d0d;
+      color:#fff;
     }
     .input-area input:focus, .input-area select:focus, .input-area textarea:focus{
-      border-color: rgba(255,255,255,.3);
-      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.24);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)),
+        rgba(10,10,10,.94);
       transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 0 0 1px rgba(255,255,255,.06),
+        0 14px 34px rgba(0,0,0,.24);
     }
 
     .input-area textarea { min-height: 120px; resize: vertical; }
 
     .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .choice-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:12px;
+    }
+    .shape-btn{
+      display:grid;
+      gap:10px;
+      justify-items:center;
+      padding:14px 10px 12px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:22px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      font:inherit;
+      font-weight:700;
+    }
+    .shape-btn:hover,
+    .shape-btn:focus-visible{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.28);
+      background:rgba(255,255,255,.06);
+      outline:none;
+    }
+    .shape-btn[aria-pressed="true"]{
+      background:#fff;
+      color:#0b0b0b;
+      border-color:#fff;
+    }
+    .shape-btn img{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      filter:brightness(0) invert(1);
+      transition:filter .18s ease;
+      pointer-events:none;
+    }
+    .shape-btn[aria-pressed="true"] img{
+      filter:none;
+    }
+    .shape-btn span{
+      font-size:.9rem;
+      line-height:1.2;
+      text-align:center;
+      pointer-events:none;
+    }
+    .range-wrap{
+      display:grid;
+      gap:12px;
+    }
+    .range-readout{
+      display:grid;
+      place-items:center;
+      min-height:56px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font-size:1.05rem;
+      font-weight:800;
+      letter-spacing:.01em;
+    }
+    .range-wrap input[type="range"]{
+      padding:0;
+      border:0;
+      background:transparent;
+      box-shadow:none;
+      transform:none;
+    }
+    .range-wrap input[type="range"]:focus{
+      background:transparent;
+      transform:none;
+    }
+    .range-wrap input[type="range"]::-webkit-slider-runnable-track{
+      height:6px;
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
+    }
+    .range-wrap input[type="range"]::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      appearance:none;
+      width:20px;
+      height:20px;
+      margin-top:-7px;
+      border-radius:999px;
+      background:#fff;
+      border:0;
+      box-shadow:0 6px 14px rgba(0,0,0,.24);
+    }
+    .range-wrap input[type="range"]::-moz-range-track{
+      height:6px;
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
+    }
+    .range-wrap input[type="range"]::-moz-range-thumb{
+      width:20px;
+      height:20px;
+      border:none;
+      border-radius:999px;
+      background:#fff;
+      box-shadow:0 6px 14px rgba(0,0,0,.24);
+    }
+    .range-scale{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      color:var(--muted);
+      font-size:.82rem;
+    }
     .pill {
       border: 1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.03);
@@ -218,6 +389,7 @@
       .card, .thank-you{ border-radius: 24px; }
       .question{ padding: 24px 18px 10px; }
       .input-area{ padding: 0 18px 22px; }
+      .choice-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
     }
   </style>
 
@@ -293,6 +465,10 @@
     </div>
   </section>
 
+  <footer class="site-footer" aria-label="Legal information">
+    <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+  </footer>
+
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const inputArea  = document.getElementById('inputArea');
@@ -315,6 +491,17 @@
 
     const gemstoneOptions = ['Sapphire','Emerald','Ruby','Tourmaline','Tanzanite','Aquamarine','Alexandrite','Spinel','Opal','Topaz','Garnet','Morganite','Peridot','Zircon','Amethyst','Kunzite','Grandidierite','Ametrine','Jade','Citrine','Moonstone','Sodalite','Quartz','Chrysoberyl','Beryl','Apatite','Sphene','Heliodor','Prehnite','Spectrolite','Other'];
     const diamondShapes = ['Round','Cushion','Oval','Emerald','Radiant','Princess','Asscher','Pear','Marquise','Other'];
+    const shapeImageMap = {
+      Round: 'Images/Ui/diamonds/round.png',
+      Cushion: 'Images/Ui/diamonds/cushion.png',
+      Oval: 'Images/Ui/diamonds/oval.png',
+      Emerald: 'Images/Ui/diamonds/emerald.png',
+      Radiant: 'Images/Ui/diamonds/radiant.png',
+      Princess: 'Images/Ui/diamonds/princess.png',
+      Asscher: 'Images/Ui/diamonds/asscher.png',
+      Pear: 'Images/Ui/diamonds/pear.png',
+      Marquise: 'Images/Ui/diamonds/marquis.png'
+    };
     const diamondColour = ['D-F','D','E','F','G','H','I','J','K+'];
     const diamondClarity = ['Eye Clean','FL','IF','VVS1','VVS2','VS1','VS2','SI1','SI2','I1+'];
 
@@ -329,16 +516,16 @@
         { label: 'Natural', value: 'natural' }
       ]},
 
-      { key: 'shape', type: 'select', path: 'diamond', label: 'What shape diamond are you after', options: diamondShapes },
+      { key: 'shape', type: 'shape-grid', path: 'diamond', label: 'What shape diamond are you after', options: diamondShapes },
       { key: 'ring_style', type: 'select', path: 'diamond', label: 'Do you know what style of ring you are looking for', options: ringStyles },
-      { key: 'caratSize', type: 'number', path: 'diamond', label: 'What size diamond in carats', placeholder: 'e.g. 1.25', step: '0.01' },
+      { key: 'caratSize', type: 'range', path: 'diamond', label: 'What size diamond in carats', min: 0.5, max: 5, step: 0.1, defaultValue: 1.5 },
       { key: 'colour', type: 'select', path: 'diamond', label: 'Diamond colour preference', options: diamondColour },
       { key: 'clarity', type: 'select', path: 'diamond', label: 'Diamond clarity preference', options: diamondClarity },
 
       { key: 'gemstone', type: 'select', path: 'gemstone', label: 'Which gemstone', options: gemstoneOptions },
-      { key: 'shape', type: 'select', path: 'gemstone', label: 'What shape stone are you after', options: diamondShapes },
+      { key: 'shape', type: 'shape-grid', path: 'gemstone', label: 'What shape stone are you after', options: diamondShapes },
       { key: 'ring_style', type: 'select', path: 'gemstone', label: 'Do you know what style of ring you are looking for', options: ringStyles },
-      { key: 'caratSize', type: 'number', path: 'gemstone', label: 'What size stone in carats', placeholder: 'e.g. 1.25', step: '0.01' },
+      { key: 'caratSize', type: 'range', path: 'gemstone', label: 'What size stone in carats', min: 0.5, max: 5, step: 0.1, defaultValue: 1.5 },
 
       { key: 'metal', type: 'choice', label: 'Choose a metal for the setting', options: [
         { label: 'Yellow Gold', value: 'Yellow Gold' },
@@ -374,6 +561,17 @@
 
     const formData = {};
     let index = 0;
+
+    (function hydrateReferenceFromQuery(){
+      const params = new URLSearchParams(window.location.search);
+      const referenceRing = params.get('ring') || params.get('reference') || '';
+      const referenceProduct = params.get('product') || '';
+      const referenceSize = params.get('size') || '';
+
+      if (referenceRing) formData.reference_ring = referenceRing;
+      if (referenceProduct) formData.reference_product = referenceProduct;
+      if (referenceSize) formData.reference_size = referenceSize;
+    })();
 
     function isGold(m){ return m === 'Yellow Gold' || m === 'White Gold' || m === 'Rose Gold'; }
 
@@ -433,6 +631,10 @@
         : [];
 
       const lines = [];
+
+      if(formData.reference_product) lines.push(`Reference product:\n${formData.reference_product}`);
+      if(formData.reference_ring) lines.push(`Reference slug:\n${formData.reference_ring}`);
+      if(formData.reference_size) lines.push(`Requested size:\n${formData.reference_size}`);
 
       if(formData.ring_style) lines.push(`Ring style:\n${formData.ring_style}`);
 
@@ -549,9 +751,14 @@
     function readCurrentInput(){
       const step = steps[index];
       if(step.type === 'choice') return null;
+      if(step.type === 'shape-grid') return null;
       if(step.type === 'file') return '';
       if(step.type === 'number' || step.type === 'email' || step.type === 'text' || step.type === 'date'){
         const ctrl = inputArea.querySelector('input');
+        return ctrl ? ctrl.value.trim() : '';
+      }
+      if(step.type === 'range'){
+        const ctrl = inputArea.querySelector('input[type="range"]');
         return ctrl ? ctrl.value.trim() : '';
       }
       if(step.type === 'textarea'){
@@ -651,6 +858,45 @@
           row.appendChild(btn);
         });
         inputArea.appendChild(row);
+      }
+
+      if(step.type === 'shape-grid'){
+        const grid = document.createElement('div');
+        grid.className = 'choice-grid';
+
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'shape-btn';
+          btn.setAttribute('aria-pressed', 'false');
+          btn.setAttribute('aria-label', opt);
+
+          const imagePath = shapeImageMap[opt];
+          if(imagePath){
+            const image = document.createElement('img');
+            image.src = imagePath;
+            image.alt = '';
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            btn.appendChild(image);
+          }
+
+          const label = document.createElement('span');
+          label.textContent = opt;
+          btn.appendChild(label);
+
+          btn.addEventListener('click', () => selectChoice(opt, btn, grid));
+          grid.appendChild(btn);
+        });
+
+        inputArea.appendChild(grid);
+
+        const idkBtn = document.createElement('button');
+        idkBtn.type = 'button';
+        idkBtn.className = 'hint-btn';
+        idkBtn.textContent = "I don't know";
+        idkBtn.addEventListener('click', () => commitAnswer("I don't know"));
+        inputArea.appendChild(idkBtn);
       }
 
       if(step.type === 'select'){
@@ -763,23 +1009,35 @@
         inputEl = amount;
       }
 
-      if(step.type === 'email' || step.type === 'text' || step.type === 'number' || step.type === 'date'){
-        if(step.key === 'caratSize'){
+      if(step.type === 'email' || step.type === 'text' || step.type === 'number' || step.type === 'date' || step.type === 'range'){
+        if(step.type === 'range'){
           const wrap = document.createElement('div');
-          wrap.className = 'unit-input';
+          wrap.className = 'range-wrap';
+
+          const readout = document.createElement('div');
+          readout.className = 'range-readout';
 
           inputEl = document.createElement('input');
-          inputEl.type = 'number';
-          inputEl.step = step.step || '0.01';
-          if(step.placeholder) inputEl.placeholder = step.placeholder;
+          inputEl.type = 'range';
+          inputEl.min = String(step.min ?? 0.5);
+          inputEl.max = String(step.max ?? 5);
+          inputEl.step = String(step.step ?? 0.1);
+          inputEl.value = String(step.defaultValue ?? 1.5);
           inputEl.setAttribute('aria-label', step.label);
 
-          const unit = document.createElement('div');
-          unit.className = 'unit';
-          unit.textContent = 'ct';
+          const updateReadout = () => {
+            readout.textContent = `${Number(inputEl.value).toFixed(1)} ct`;
+          };
+          updateReadout();
+          inputEl.addEventListener('input', updateReadout);
 
+          const scale = document.createElement('div');
+          scale.className = 'range-scale';
+          scale.innerHTML = `<span>${inputEl.min} ct</span><span>${inputEl.max} ct+</span>`;
+
+          wrap.appendChild(readout);
           wrap.appendChild(inputEl);
-          wrap.appendChild(unit);
+          wrap.appendChild(scale);
           inputArea.appendChild(wrap);
         } else {
           inputEl = document.createElement('input');
@@ -918,7 +1176,7 @@
 
       inputArea.onkeydown = (e) => {
         const tag = e.target && e.target.tagName;
-        if(e.key === 'Enter' && tag !== 'TEXTAREA' && step.type !== 'budget' && step.type !== 'file' && step.type !== 'choice' && step.type !== 'select'){
+        if(e.key === 'Enter' && tag !== 'TEXTAREA' && step.type !== 'budget' && step.type !== 'file' && step.type !== 'choice' && step.type !== 'select' && step.type !== 'shape-grid'){
           e.preventDefault();
           const v = readCurrentInput();
           if(step.key === 'email' && !isValidEmail(v)){
@@ -954,6 +1212,7 @@
     "description":"A calm, guided form to capture engagement ring preferences, style, and stone choices."
   }
   </script>
+  <script src="scroll-reveal.js"></script>
 </body>
 </html>
 

@@ -15,15 +15,16 @@
   <meta property="og:title" content="Ring Design Gallery | Ladfox" />
   <meta property="og:description" content="A sharper Ladfox gallery of ring directions, signature settings, and premium diamond standards." />
   <meta property="og:url" content="https://ladfox.com/ring-gallery.html" />
-  <meta property="og:image" content="https://ladfox.com/Images/products/classic-solitaire/platinum/_base-front.png" />
+  <meta property="og:image" content="https://ladfox.com/Images/products/classic-solitaire/classic.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ring Design Gallery | Ladfox" />
   <meta name="twitter:description" content="Ladfox ring design references with premium setting direction and VVS clarity or above typically sourced as standard." />
-  <meta name="twitter:image" content="https://ladfox.com/Images/products/classic-solitaire/platinum/_base-front.png" />
+  <meta name="twitter:image" content="https://ladfox.com/Images/products/classic-solitaire/classic.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scroll-reveal.css" />
 
   <script type="application/ld+json">
   {
@@ -327,7 +328,8 @@
 
     .section-head h2{
       font-size:clamp(2rem, 4vw, 3.4rem);
-      max-width:10ch;
+      max-width:none;
+      white-space:nowrap;
     }
 
     .section-head p{
@@ -350,15 +352,13 @@
 
     .card{
       overflow:hidden;
-      display:grid;
-      grid-template-rows:minmax(360px, auto) auto;
+      display:block;
       background:rgba(255,255,255,.03);
       transition:transform .22s ease, border-color .22s ease, background .22s ease;
     }
 
     .card-link{
-      display:grid;
-      grid-template-rows:minmax(360px, auto) auto;
+      display:block;
       min-height:100%;
       height:100%;
       position:relative;
@@ -374,14 +374,10 @@
     }
 
     .card-media{
+      position:relative;
+      min-height:360px;
       background:#000;
-    }
-
-    .card-media{
-      padding:18px 18px 32px;
-      display:grid;
-      align-items:center;
-      overflow:visible;
+      overflow:hidden;
     }
 
     .card-media img{
@@ -390,7 +386,6 @@
       object-fit:cover;
       object-position:center center;
       display:block;
-      border-radius:22px;
       background:#000;
     }
 
@@ -401,23 +396,27 @@
     .card-media-empty{
       width:100%;
       height:100%;
-      border-radius:22px;
       background:#000;
     }
 
-    .card-body{
+    .card-overlay{
       position:relative;
-      z-index:1;
-      padding:22px;
+      z-index:2;
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:24px 22px 20px;
       display:grid;
-      gap:12px;
-      background:rgba(255,255,255,.03);
+      gap:8px;
+      align-content:end;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 24%, rgba(0,0,0,.82) 100%);
     }
 
-    .card-body h3{
+    .card-overlay h3{
       margin:0;
       color:#ffffff;
-      font-size:1.05rem;
+      font-size:1.1rem;
       line-height:1.2;
       text-transform:none;
     }
@@ -480,16 +479,23 @@
       line-height:1.7;
     }
 
-    .card-links{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:4px;
-    }
-
     .text-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       font-weight:800;
       color:#fff;
+      font-size:.88rem;
+      width:max-content;
+    }
+
+    .text-link::after{
+      content:"";
+      width:14px;
+      height:14px;
+      border-top:1.5px solid currentColor;
+      border-right:1.5px solid currentColor;
+      transform:rotate(45deg) translateY(1px);
     }
 
     .cta{
@@ -509,6 +515,28 @@
       color:var(--muted);
       max-width:58ch;
       line-height:1.7;
+    }
+
+    .site-footer{
+      padding:26px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .site-footer .shell{
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     @media (min-width:1021px){
@@ -540,23 +568,22 @@
       }
 
       .card{
-        grid-template-rows:minmax(290px, auto) auto;
+        display:block;
       }
 
       .card-link{
-        grid-template-rows:minmax(290px, auto) auto;
+        display:block;
       }
 
       .card-media{
-        padding:14px;
+        min-height:290px;
       }
 
-      .card-body{
-        padding:16px 18px;
-        gap:8px;
+      .card-overlay{
+        padding:20px 18px 18px;
       }
 
-      .card-body h3{
+      .card-overlay h3{
         font-size:1rem;
       }
 
@@ -640,14 +667,11 @@
 
       <div class="grid">
         <article class="card card-soft">
-          <a class="card-link" href="classic-solitaire.html" aria-label="View Classic solitaire details">
+          <a class="card-link" href="classic-solitaire.html" aria-label="View classic solitaire ring details">
             <div class="card-media">
-              <img src="Images/products/classic-solitaire/platinum/_base-front.png" alt="1.5 carat round solitaire ring in platinum with VVS1 diamond" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <h3>Classic solitaire</h3>
-              <p class="card-price">&#163;1495</p>
-              <div class="card-links">
+              <img src="Images/products/classic-solitaire/classic.png" alt="Classic solitaire engagement ring" loading="lazy" decoding="async" />
+              <div class="card-overlay">
+                <h3>Classic solitaire</h3>
                 <span class="text-link">View details</span>
               </div>
             </div>
@@ -655,14 +679,11 @@
         </article>
 
         <article class="card">
-          <a class="card-link" href="trilogy-ring.html" aria-label="View Trilogy ring details">
+          <a class="card-link" href="trilogy-ring.html" aria-label="View trilogy ring details">
             <div class="card-media">
-              <img class="is-flipped" src="Images/trilogy.png" alt="Trilogy engagement ring design" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <h3>Trilogy</h3>
-              <p class="card-price">&#163;1995</p>
-              <div class="card-links">
+              <img class="is-flipped" src="Images/products/trilogy-ring/trilogy.png" alt="Trilogy engagement ring design" loading="lazy" decoding="async" />
+              <div class="card-overlay">
+                <h3>Trilogy</h3>
                 <span class="text-link">View details</span>
               </div>
             </div>
@@ -670,14 +691,11 @@
         </article>
 
         <article class="card">
-          <a class="card-link" href="floral-ring.html" aria-label="View Floral ring details">
+          <a class="card-link" href="floral-ring.html" aria-label="View floral ring details">
             <div class="card-media">
-              <img src="Images/petal prong.png" alt="Petal prong engagement ring design" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <h3>Floral</h3>
-              <p class="card-price">&#163;1695</p>
-              <div class="card-links">
+              <img src="Images/products/floral-ring/floral.png" alt="Floral engagement ring design" loading="lazy" decoding="async" />
+              <div class="card-overlay">
+                <h3>Floral</h3>
                 <span class="text-link">View details</span>
               </div>
             </div>
@@ -692,6 +710,13 @@
     </section>
 
   </main>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="shell">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+  <script src="scroll-reveal.js"></script>
 </body>
 </html>
 

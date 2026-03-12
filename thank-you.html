@@ -21,6 +21,7 @@
   <meta name="twitter:title" content="Thank You | Ladfox" />
   <meta name="twitter:description" content="Thank you for your enquiry. A member of the Ladfox team will be in touch shortly." />
   <meta name="twitter:image" content="https://ladfox.com/Images/ladfox-logo.png" />
+  <link rel="stylesheet" href="scroll-reveal.css" />
 
   <style>
     html{
@@ -34,8 +35,9 @@
       background:#000;
       color:#fff;
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:center;
+      justify-content:flex-start;
       min-height:100vh;
       text-align:center;
     }
@@ -43,6 +45,11 @@
     .wrap{
       max-width:520px;
       padding:24px;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
     }
 
     .brand{
@@ -86,6 +93,26 @@
       color:#fff;
       text-decoration:underline;
     }
+
+    .site-footer{
+      width:100%;
+      padding:26px 24px 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-meta{
+      margin:0 auto;
+      max-width:640px;
+      color:rgba(255,255,255,.72);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V60YKFJX73"></script>
@@ -127,6 +154,11 @@
     <h1>Thank you</h1>
     <p>Your enquiry has been received successfully. We will be in touch shortly.</p>
   </main>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+  </footer>
+  <script src="scroll-reveal.js"></script>
 </body>
 </html>
 

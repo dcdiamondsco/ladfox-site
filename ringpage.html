@@ -25,6 +25,7 @@
 
   <link rel="preload" as="image" href="Images/hero%20image.png" />
   <link rel="preload" as="image" href="Images/bench.jpg" />
+  <link rel="stylesheet" href="scroll-reveal.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet" />
 
@@ -76,16 +77,43 @@
     body{
       margin:0;
       min-height:100svh;
-      background:
-        radial-gradient(1200px 520px at 10% 0%, #171717 0%, #050505 55%),
-        radial-gradient(900px 520px at 90% 10%, #121212 0%, #050505 55%),
-        linear-gradient(180deg, #0b0b0b 0%, #000000 45%);
+      background:#000;
       color:var(--text);
       font-family:var(--body-font);
       line-height:1.45;
       overflow-x:hidden;
       padding-top:env(safe-area-inset-top, 0);
       padding-bottom:env(safe-area-inset-bottom, 0);
+    }
+
+    .topbar{
+      padding:18px 0 0;
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:5;
+      pointer-events:none;
+    }
+
+    .topbar__inner{
+      display:flex;
+      justify-content:center;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      line-height:0;
+      pointer-events:auto;
+    }
+
+    .brand img{
+      width:min(205px, 44vw);
+      height:auto;
+      display:block;
+      filter:drop-shadow(0 10px 22px rgba(0,0,0,.42));
     }
 
     @media(max-width:560px){
@@ -104,25 +132,42 @@
     }
 
     .wrap{
-      width:min(1200px,94%);
+      width:min(1040px,94%);
       margin:0 auto;
-      padding:10px 0 26px;
+      padding:0 0 34px;
     }
 
     .intro-visual{
-      width:min(620px, 82%);
-      margin:6px auto 18px;
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow:var(--shadow);
+      width:100vw;
+      margin:0;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      overflow:hidden;
+      position:relative;
     }
 
     .intro-visual img{
       width:100%;
-      height:auto;
+      height:min(66vw, 560px);
+      object-fit:cover;
+      object-position:center center;
       display:block;
+    }
+
+    .intro-visual::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:28%;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.56) 52%, #000 100%);
+      pointer-events:none;
     }
 
     .grid-2{
@@ -142,18 +187,18 @@
 
     .copy,
     .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      background:transparent;
+      border:0;
+      border-radius:0;
+      box-shadow:none;
     }
 
     .copy{
-      padding:clamp(14px,2vw,20px);
+      padding:clamp(18px,2.4vw,26px);
       text-align:center;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:14px;
       justify-content:center;
       position:relative;
       overflow:hidden;
@@ -266,6 +311,23 @@
       cursor:pointer;
     }
 
+    .secondary-form-link{
+      margin:4px auto 0;
+      width:fit-content;
+      color:rgba(255,255,255,.82);
+      font-family:var(--ui-font);
+      font-size:.88rem;
+      line-height:1.5;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    .secondary-form-link:hover,
+    .secondary-form-link:focus-visible{
+      color:#fff;
+      outline:none;
+    }
+
     .btn--secondary{
       background:#000;
       color:#fff;
@@ -331,7 +393,9 @@
       grid-template-rows:1fr auto;
       overflow:hidden;
       position:relative;
-      min-height:480px;
+      min-height:0;
+      width:100%;
+      margin:0 auto;
     }
 
     .card__stage{
@@ -446,11 +510,11 @@
     }
 
     .card__actions{
-      padding:14px 12px;
+      padding:0;
       display:grid;
       gap:10px;
-      border-top:1px solid var(--line);
-      background:#0f0f0f;
+      border-top:0;
+      background:transparent;
     }
 
     .note{
@@ -517,21 +581,65 @@
       min-height:0;
     }
 
+    .design-flow{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      margin-top:-1px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.24) 0%, rgba(0,0,0,.68) 16%, rgba(0,0,0,.78) 100%),
+        url("Images/Studio%20portrait%20or%20workshop%20image.png") center/cover no-repeat;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .design-flow::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.34) 14%, rgba(0,0,0,.62) 34%, rgba(0,0,0,.78) 100%),
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,.05), transparent 28%);
+      pointer-events:none;
+    }
+
     .form-wrap{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      align-items:stretch;
+      display:flex;
+      justify-content:center;
+      width:100%;
+      padding:44px 28px 28px;
+      border-radius:0;
+      position:relative;
+      z-index:1;
+      overflow:hidden;
+    }
+
+    .form-wrap .card{
+      width:min(760px, 100%);
+      margin:0 auto;
+    }
+
+    .faq{
+      margin-top:0;
+      padding:0 28px 44px;
+      position:relative;
+      z-index:1;
+    }
+
+    .faq .copy{
+      max-width:1040px;
+      margin:0 auto;
+      padding-top:0;
     }
 
     @media(max-width:900px){
-      .form-wrap{ grid-template-columns:1fr; }
+      .form-wrap{ display:block; }
     }
 
     form{
       display:grid;
-      gap:10px;
-      margin-top:10px;
+      gap:12px;
+      margin-top:6px;
     }
 
     label{
@@ -593,6 +701,11 @@
 
     @media(max-width:560px){
       .form-row{ grid-template-columns:1fr; }
+      .form-wrap{ padding:34px 18px 18px; }
+      .faq{ padding:0 18px 34px; }
+      .topbar{
+        padding-top:12px;
+      }
     }
 
     .small{
@@ -614,10 +727,6 @@
 
     .conditional-field[hidden]{
       display:none;
-    }
-
-    .faq{
-      margin-top:18px;
     }
 
     .faq .kicker{
@@ -706,8 +815,7 @@
       .btn{ min-width:unset; width:100%; max-width:520px; }
       #quickStartSubmit{ width:100%; justify-self:stretch; }
       .intro-visual{
-        padding:12px;
-        margin-bottom:14px;
+        margin-bottom:18px;
       }
     }
 
@@ -726,6 +834,29 @@
       .copy, .card{ animation:none; }
       .btn{ transition:none; }
     }
+
+    .site-footer{
+      padding:26px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .site-footer .wrap{
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      color:#bdbdbd;
+      font-family:var(--ui-font);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V60YKFJX73"></script>
@@ -740,6 +871,14 @@
 </head>
 
 <body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img src="Images/ladfox-logo.png" alt="Ladfox" loading="eager" decoding="async" />
+      </a>
+    </div>
+  </header>
+
   <main class="wrap">
     <figure class="intro-visual">
       <img src="Images/3 rings.png" alt="Three Ladfox engagement rings" />
@@ -748,11 +887,14 @@
     <section class="section" id="start" aria-label="Start your design">
       <div class="copy">
         <h2 id="start-heading">Design your ring</h2>
+      </div>
+    </section>
 
-        <div class="form-wrap">
-          <div class="card">
-            <div class="card__actions">
-              <form name="ringpage-quick-start" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+    <div class="design-flow">
+      <div class="form-wrap">
+        <div class="card">
+          <div class="card__actions">
+            <form name="ringpage-quick-start" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="ringpage-quick-start" />
                 <input type="hidden" name="location" id="quickStartLocation" value="Unknown" />
                 <input type="hidden" name="product_name" id="productEnquiryName" />
@@ -842,48 +984,53 @@
 
                 <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
                 <button class="btn" id="quickStartSubmit" type="submit">Start your dream ring</button>
-              </form>
-            </div>
+                <a class="secondary-form-link" href="ring-form.html">or fill in our full bespoke piece form</a>
+            </form>
           </div>
-
         </div>
       </div>
-    </section>
 
-    <section class="faq" aria-label="Frequently asked questions">
-      <div class="copy">
-        <button class="faq-toggle" id="faqToggle" type="button" aria-expanded="false" aria-controls="faqList">FAQ</button>
+      <section class="faq" aria-label="Frequently asked questions">
+        <div class="copy">
+          <button class="faq-toggle" id="faqToggle" type="button" aria-expanded="false" aria-controls="faqList">FAQ</button>
 
-        <div class="faq-list" id="faqList" role="list">
-          <details>
-            <summary>How do I make sure the ring looks exceptional in real life</summary>
-            <p>We guide proportions, setting architecture, and diamond pairing so the ring performs beautifully from every angle, not just in a product photo.</p>
-          </details>
+          <div class="faq-list" id="faqList" role="list">
+            <details>
+              <summary>How do I make sure the ring looks exceptional in real life</summary>
+              <p>We guide proportions, setting architecture, and diamond pairing so the ring performs beautifully from every angle, not just in a product photo.</p>
+            </details>
 
-          <details>
-            <summary>How do I choose a budget without guessing</summary>
-            <p>Tell us your comfortable range and the style you want. We will show realistic options within that range and explain what changes the look most, such as centre stone size, setting style, and metal choice.</p>
-          </details>
+            <details>
+              <summary>How do I choose a budget without guessing</summary>
+              <p>Tell us your comfortable range and the style you want. We will show realistic options within that range and explain what changes the look most, such as centre stone size, setting style, and metal choice.</p>
+            </details>
 
-          <details>
-            <summary>Lab grown vs natural, what is the difference</summary>
-            <p>Lab grown diamonds are real diamonds with the same physical properties. Natural diamonds are valued for rarity. The right choice is personal and we can guide you either way.</p>
-          </details>
+            <details>
+              <summary>Lab grown vs natural, what is the difference</summary>
+              <p>Lab grown diamonds are real diamonds with the same physical properties. Natural diamonds are valued for rarity. The right choice is personal and we can guide you either way.</p>
+            </details>
 
-          <details>
-            <summary>How long does it take</summary>
-            <p>Most bespoke rings take around 3 to 4 weeks after CAD approval, with faster options when needed.</p>
-          </details>
+            <details>
+              <summary>How long does it take</summary>
+              <p>Most bespoke rings take around 3 to 4 weeks after CAD approval, with faster options when needed.</p>
+            </details>
 
-          <details>
-            <summary>Can you keep it a surprise</summary>
-            <p>Yes. Discreet packaging, discreet communication, and we never spoil surprises.</p>
-          </details>
+            <details>
+              <summary>Can you keep it a surprise</summary>
+              <p>Yes. Discreet packaging, discreet communication, and we never spoil surprises.</p>
+            </details>
 
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="wrap">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
 
   <script type="application/ld+json">
   {
@@ -1083,6 +1230,7 @@
       });
     })();
   </script>
+  <script src="scroll-reveal.js"></script>
 </body>
 </html>
 

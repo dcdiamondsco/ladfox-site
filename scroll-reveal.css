@@ -1,0 +1,23 @@
+.scroll-blackout{
+  opacity:0;
+  transform:translateY(32px);
+  filter:brightness(0) saturate(0) blur(12px);
+  transition:opacity .7s ease, transform .7s ease, filter .7s ease;
+  will-change:opacity, transform, filter;
+}
+
+.scroll-blackout.is-visible{
+  opacity:1;
+  transform:translateY(0);
+  filter:brightness(1) saturate(1) blur(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .scroll-blackout,
+  .scroll-blackout.is-visible{
+    opacity:1;
+    transform:none;
+    filter:none;
+    transition:none;
+  }
+}
