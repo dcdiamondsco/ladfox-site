@@ -88,20 +88,7 @@
       padding-bottom:env(safe-area-inset-bottom, 0);
     }
 
-    header{
-      display:grid;
-      place-items:center;
-      padding:10px 0 6px;
-    }
-
-    .brand img{
-      width:min(205px, 44vw);
-      height:auto;
-      display:block;
-    }
-
     @media(max-width:560px){
-      .brand img{ width:min(244px, 70vw); }
       .section[aria-label="Why choose Ladfox"]{ display:none; }
       #start > .copy > h2,
       #start > .copy > .micro{ display:none; }
@@ -753,12 +740,6 @@
 </head>
 
 <body>
-  <header>
-    <a class="brand" href="index.html" aria-label="Ladfox home">
-      <img src="Images/ladfox-logo.png" alt="Ladfox" />
-    </a>
-  </header>
-
   <main class="wrap">
     <figure class="intro-visual">
       <img src="Images/3 rings.png" alt="Three Ladfox engagement rings" />
