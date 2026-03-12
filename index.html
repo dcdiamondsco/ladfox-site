@@ -8,12 +8,13 @@
 
   <meta
     name="description"
-    content="Design a bespoke engagement ring with a private Hatton Garden jeweller. One to one guidance, custom design, lab grown and natural diamonds, insured delivery, and lifetime warranty."
+    content="A private Hatton Garden jeweller creating bespoke engagement rings and fine jewellery with one to one guidance, custom design, and insured delivery."
   />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#0B0C10" />
   <link rel="canonical" href="https://ladfox.com/" />
 
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
@@ -23,7 +24,7 @@
   <meta property="og:title" content="Ladfox | Bespoke Engagement Rings | Hatton Garden Jeweller" />
   <meta
     property="og:description"
-    content="Design a bespoke engagement ring with calm one to one guidance from a private Hatton Garden jeweller."
+    content="A private Hatton Garden jeweller creating bespoke engagement rings and fine jewellery with one to one guidance, custom design, and insured delivery."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ladfox.com/" />
@@ -35,7 +36,7 @@
   <meta name="twitter:title" content="Ladfox | Bespoke Engagement Rings | Hatton Garden Jeweller" />
   <meta
     name="twitter:description"
-    content="Design a bespoke engagement ring with calm one to one guidance from a private Hatton Garden jeweller."
+    content="A private Hatton Garden jeweller creating bespoke engagement rings and fine jewellery with one to one guidance, custom design, and insured delivery."
   />
   <meta name="twitter:image" content="https://ladfox.com/Images/hero%20ring%20image.png" />
 
@@ -86,19 +87,21 @@
 
   <style>
     :root{
-      --bg:#050608;
-      --bg-soft:#0B0C10;
-      --panel:rgba(255,255,255,.05);
-      --panel-strong:rgba(255,255,255,.08);
-      --line:rgba(255,255,255,.12);
-      --line-strong:rgba(255,255,255,.18);
+      --bg:#0B0C10;
+      --bg-soft:#101218;
+      --surface:rgba(255,255,255,.05);
+      --surface-strong:rgba(255,255,255,.1);
+      --line:rgba(255,255,255,.14);
       --text:#ffffff;
-      --muted:rgba(255,255,255,.74);
-      --muted-soft:rgba(255,255,255,.58);
-      --accent:#ffffff;
-      --shadow:0 24px 80px rgba(0,0,0,.32);
-      --radius:28px;
-      --max:1180px;
+      --muted:rgba(255,255,255,.72);
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --max:1200px;
+      --hero-fade:0;
+      --brand-fade:0;
+      --trust-opacity:1;
+      --trust-shift:0px;
+      --process-opacity:1;
+      --process-shift:0px;
       --heading:"Syne", sans-serif;
       --body:"Manrope", sans-serif;
     }
@@ -108,31 +111,25 @@
     html{
       scroll-behavior:smooth;
       background:#000;
+      overscroll-behavior-y:none;
     }
 
     body{
       margin:0;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,.05), transparent 28%),
-        linear-gradient(180deg, #0A0B0D 0%, #050608 100%);
       color:var(--text);
       font-family:var(--body);
+      background:#000;
       overflow-x:hidden;
     }
 
-    img{
-      display:block;
-      max-width:100%;
-      height:auto;
-    }
+    main{ display:block; }
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; height:auto; display:block; }
 
-    main{
-      display:block;
+    .shell{
+      width:min(calc(100% - 32px), var(--max));
+      margin:0 auto;
     }
 
     .skip{
@@ -157,18 +154,20 @@
       outline:none;
     }
 
-    .shell{
-      width:min(calc(100% - 32px), var(--max));
-      margin:0 auto;
+    .topbar{
+      padding:10px 0 8px;
+      position:relative;
+      z-index:40;
+      background:linear-gradient(180deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.42) 78%, rgba(0,0,0,.08) 100%);
+      border-bottom:none;
+      transition:background .2s ease, backdrop-filter .2s ease, border-color .2s ease;
+      backdrop-filter:blur(10px);
     }
 
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(5,6,8,.78);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .topbar.is-sticky{
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(12px);
+      border-bottom:none;
     }
 
     .topbar .shell{
@@ -176,206 +175,210 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:14px 0;
-    }
-
-    .brand-wrap{
-      display:flex;
-      align-items:center;
-      gap:18px;
     }
 
     .brand{
       display:inline-flex;
       align-items:center;
       line-height:0;
+      flex:0 0 auto;
+    }
+
+    .brand-block{
+      display:grid;
+      justify-items:center;
+      gap:0;
+      transform:none;
     }
 
     .brand img{
-      width:min(210px, 42vw);
-      filter:drop-shadow(0 8px 22px rgba(0,0,0,.34));
+      width:min(220px, 42vw);
+      height:auto;
+      opacity:1;
+      filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
+      transition:opacity .18s linear, filter .18s linear;
     }
 
-    .brand-meta{
-      display:flex;
+    .brand-location{
+      display:inline-flex;
       align-items:center;
-      gap:10px;
-      color:var(--muted-soft);
-      font-size:.76rem;
-      font-weight:800;
-      letter-spacing:.18em;
+      gap:8px;
+      margin-top:-11px;
+      line-height:1;
+      color:rgba(255,255,255,.72);
+      font-size:.73rem;
+      font-weight:700;
+      letter-spacing:.22em;
       text-transform:uppercase;
       white-space:nowrap;
+      opacity:1;
+      filter:brightness(1);
+      transition:opacity .18s linear, filter .18s linear;
     }
 
-    .brand-meta::before,
-    .brand-meta::after{
+    .brand-location::before,
+    .brand-location::after{
       content:"";
       width:18px;
       height:1px;
-      background:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.22);
     }
 
-    .top-actions{
+    .nav{
       display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
       align-items:center;
-      gap:12px;
+      opacity:1;
+      transition:opacity .18s linear;
     }
 
-    .inline-note{
-      color:var(--muted-soft);
-      font-size:.9rem;
-      white-space:nowrap;
-    }
-
-    .btn{
+    .nav a{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:52px;
-      padding:0 20px;
-      border-radius:16px;
-      border:1px solid transparent;
-      font-weight:800;
-      letter-spacing:.01em;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
-      cursor:pointer;
-      font-family:inherit;
+      padding:10px 14px;
+      min-height:44px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:.92rem;
+      color:var(--muted);
+      white-space:nowrap;
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.24);
+      transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
     }
 
-    .btn:hover,
-    .btn:focus-visible{
+    .nav a:hover,
+    .nav a:focus-visible{
+      background:var(--surface);
+      color:var(--text);
+      border-color:rgba(255,255,255,.24);
       transform:translateY(-1px);
       outline:none;
     }
 
-    .btn-primary{
-      background:#fff;
-      color:#0B0C10;
-      border-color:#fff;
-      box-shadow:0 18px 36px rgba(255,255,255,.08);
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,.05);
-      color:#fff;
-      border-color:rgba(255,255,255,.18);
-    }
-
-    .btn-secondary:hover,
-    .btn-secondary:focus-visible{
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.28);
-    }
-
     .hero{
-      padding:38px 0 28px;
+      padding:0 0 72px;
     }
 
     .hero-grid{
-      display:grid;
-      grid-template-columns:minmax(0, 1.18fr) minmax(340px, .82fr);
-      gap:26px;
-      align-items:stretch;
-    }
-
-    .hero-copy{
       position:relative;
-      overflow:hidden;
-      border:1px solid var(--line);
-      border-radius:34px;
-      min-height:720px;
-      background:#0b0c10;
-      box-shadow:var(--shadow);
-      isolation:isolate;
+      display:block;
+      min-height:980px;
     }
 
-    .hero-copy::before{
+    .hero-copy,
+    .feature,
+    .quote,
+    .footer-card,
+    .trust-strip{
+      border:1px solid var(--line);
+      background:var(--surface);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      display:block;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-top:0;
+      height:700px;
+      border:none;
+      background:transparent;
+      box-shadow:none;
+    }
+
+    .hero-visual{
+      min-height:700px;
+      height:100%;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:visible;
+      border-radius:0;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.6) 28%, rgba(0,0,0,.2) 56%, rgba(0,0,0,.42) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.68));
-      z-index:1;
+      pointer-events:none;
     }
 
-    .hero-copy img{
-      position:absolute;
-      inset:0;
+    .hero-visual::before{
+      z-index:1;
+      background:
+        linear-gradient(90deg, #000 0%, rgba(0,0,0,.78) 10%, rgba(0,0,0,.18) 24%, rgba(0,0,0,0) 40%),
+        linear-gradient(270deg, #000 0%, rgba(0,0,0,.72) 10%, rgba(0,0,0,.14) 26%, rgba(0,0,0,0) 42%),
+        radial-gradient(circle at 50% 0%, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 34%, rgba(0,0,0,0) 62%);
+      opacity:.95;
+    }
+
+    .hero-visual::after{
+      z-index:1;
+      background:
+        linear-gradient(180deg, #000 0%, rgba(0,0,0,.28) 16%, rgba(0,0,0,.12) 32%, rgba(0,0,0,.54) 72%, #000 100%),
+        radial-gradient(circle at 50% 88%, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 36%, rgba(0,0,0,.82) 72%, #000 100%);
+      opacity:calc(.4 + (var(--hero-fade, 0) * .6));
+    }
+
+    .hero-image{
       width:100%;
       height:100%;
       object-fit:cover;
       object-position:center;
-      transform:scaleX(-1);
-      z-index:0;
+      transform:scaleX(-1) translateY(-8%);
+      opacity:calc(1 - (var(--hero-fade, 0) * .96));
+      transition:opacity .32s ease;
     }
 
-    .hero-inner{
-      position:relative;
+    .hero-overlay{
+      position:absolute;
+      top:132px;
+      left:96px;
       z-index:2;
-      width:min(560px, calc(100% - 56px));
-      padding:44px 0 44px 34px;
+      max-width:min(620px, calc(100% - 140px));
+      transition:opacity .32s ease;
     }
 
-    .eyebrow{
+    .eyebrow-hero{
       display:inline-flex;
-      align-items:center;
-      gap:10px;
       margin-bottom:18px;
+      padding:0;
+      border:none;
+      background:transparent;
       color:#fff;
       font-size:.72rem;
       font-weight:800;
-      text-transform:uppercase;
       letter-spacing:.16em;
+      text-transform:uppercase;
+      text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
-    .eyebrow::before{
-      content:"";
-      width:34px;
-      height:1px;
-      background:rgba(255,255,255,.34);
-    }
-
-    h1,h2,h3{
+    h1, h2, h3{
       margin:0;
       font-family:var(--heading);
       line-height:1.02;
     }
 
     h1{
-      max-width:11ch;
-      font-size:clamp(2.4rem, 5vw, 4.9rem);
-      letter-spacing:-.03em;
-      text-shadow:0 8px 24px rgba(0,0,0,.34);
+      font-size:clamp(2.3rem, 4.6vw, 4.4rem);
+      max-width:12ch;
+      letter-spacing:-.02em;
+      text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
     .hero-subcopy{
       margin:18px 0 0;
-      max-width:52ch;
+      max-width:56ch;
       color:rgba(255,255,255,.84);
-      font-size:1.04rem;
-      line-height:1.75;
-      text-shadow:0 8px 24px rgba(0,0,0,.34);
-    }
-
-    .hero-points{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:12px;
-      margin:28px 0 0;
-      max-width:560px;
-    }
-
-    .hero-point{
-      padding:14px 16px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      background:rgba(255,255,255,.07);
-      backdrop-filter:blur(10px);
-      font-size:.93rem;
-      font-weight:700;
-      line-height:1.45;
+      font-size:1.03rem;
+      line-height:1.72;
+      text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
     .hero-actions{
@@ -385,465 +388,834 @@
       margin-top:24px;
     }
 
-    .hero-micro{
-      margin-top:16px;
-      color:rgba(255,255,255,.74);
-      font-size:.92rem;
-      line-height:1.6;
-    }
-
-    .testimonial-inline{
-      margin-top:26px;
-      max-width:500px;
-      padding:18px 18px 16px;
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:22px;
-      background:rgba(255,255,255,.06);
-      backdrop-filter:blur(12px);
-    }
-
-    .testimonial-inline p{
-      margin:0;
-      color:#fff;
-      font-size:.98rem;
-      line-height:1.7;
-    }
-
-    .testimonial-inline strong{
-      display:block;
-      margin-top:10px;
-      color:rgba(255,255,255,.72);
-      font-size:.86rem;
-      letter-spacing:.03em;
-    }
-
-    .hero-form-card{
-      border:1px solid var(--line);
-      border-radius:34px;
-      padding:26px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      box-shadow:var(--shadow);
-      align-self:stretch;
-    }
-
-    .hero-form-head{
-      margin-bottom:18px;
-    }
-
-    .hero-form-head h2{
-      font-size:clamp(1.7rem, 3vw, 2.4rem);
-      margin-bottom:10px;
-    }
-
-    .hero-form-head p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.75;
-      font-size:.98rem;
-    }
-
-    .badge-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin:16px 0 20px;
-    }
-
-    .badge{
+    .btn{
       display:inline-flex;
       align-items:center;
-      min-height:36px;
-      padding:0 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      font-size:.82rem;
+      justify-content:center;
+      min-height:54px;
+      padding:0 20px;
+      border-radius:18px;
+      border:1px solid transparent;
       font-weight:800;
-      letter-spacing:.02em;
+      letter-spacing:.01em;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color:transparent;
     }
 
-    .lead-form{
-      display:grid;
-      gap:14px;
-    }
-
-    .lead-form input,
-    .lead-form select,
-    .lead-form textarea{
-      width:100%;
-      padding:14px 16px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:16px;
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      font:inherit;
+    .btn:hover,
+    .btn:focus-visible{
+      transform:translateY(-1px);
       outline:none;
-      transition:border-color .2s ease, background .2s ease;
     }
 
-    .lead-form input:focus,
-    .lead-form select:focus,
-    .lead-form textarea:focus{
-      border-color:rgba(255,255,255,.3);
+    .btn-primary{
+      color:#0B0C10;
+      background:#ffffff;
+      border-color:#ffffff;
+      box-shadow:0 18px 36px rgba(255,255,255,.10);
+    }
+
+    .btn-secondary{
+      color:#ffffff;
+      background:transparent;
+      border-color:rgba(255,255,255,.26);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible{
       background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.36);
     }
 
-    .lead-form textarea{
-      min-height:126px;
-      resize:vertical;
+    .hero-trust{
+      width:min(860px, calc(100vw - 48px));
+      margin:12px auto 0;
+      padding:0;
+      color:#ffffff;
+      text-align:center;
+      font-family:var(--heading);
+      font-size:clamp(1.08rem, 2vw, 1.55rem);
+      line-height:1.28;
+      text-wrap:balance;
+      opacity:var(--trust-opacity, 0);
+      transform:translateY(var(--trust-shift, 24px));
+      filter:brightness(calc(.08 + (var(--trust-opacity, 0) * .92))) blur(calc((1 - var(--trust-opacity, 0)) * 2px));
+      transition:opacity .3s ease, transform .3s ease, filter .3s ease;
+      text-shadow:0 12px 30px rgba(0,0,0,.46);
     }
 
-    .lead-form input::placeholder,
-    .lead-form textarea::placeholder{
-      color:rgba(255,255,255,.44);
-    }
-
-    .lead-form select option{
-      background:#101218;
-      color:#fff;
-    }
-
-    .form-grid{
+    .hero-trust-stack{
+      width:min(860px, calc(100vw - 48px));
+      margin:-8px auto 0;
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
+      justify-items:center;
+      gap:30px;
     }
 
-    .form-help{
-      margin:2px 0 0;
-      color:var(--muted-soft);
-      font-size:.88rem;
-      line-height:1.6;
+    .dream-ring-cta{
+      min-width:min(320px, 100%);
+      padding:0 28px;
+      color:#fff;
+      background:linear-gradient(180deg, rgba(10,10,10,.98), rgba(0,0,0,.98));
+      border-color:rgba(255,255,255,.92);
+      box-shadow:0 20px 44px rgba(0,0,0,.42);
+      position:relative;
+      overflow:hidden;
+      animation:dream-ring-pulse 2.6s ease-in-out infinite;
     }
 
-    .status{
-      min-height:1.2em;
-      margin:0;
-      font-size:.84rem;
-      color:#ffb3b3;
+    .dream-ring-cta::before{
+      content:"";
+      position:absolute;
+      inset:-20% auto -20% -32%;
+      width:38%;
+      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.34), rgba(255,255,255,0));
+      transform:skewX(-18deg);
+      opacity:.8;
+      animation:dream-ring-sheen 3.2s ease-in-out infinite;
+    }
+
+    .dream-ring-cta:hover,
+    .dream-ring-cta:focus-visible{
+      color:#fff;
+      background:#000;
+      border-color:#fff;
+      box-shadow:0 24px 52px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.18);
+      transform:translateY(-2px) scale(1.01);
+    }
+
+    .dream-ring-cta span,
+    .dream-ring-cta{
+      z-index:0;
+    }
+
+    @keyframes dream-ring-pulse{
+      0%, 100%{ box-shadow:0 20px 44px rgba(0,0,0,.42), 0 0 0 0 rgba(255,255,255,.10); }
+      50%{ box-shadow:0 26px 58px rgba(0,0,0,.54), 0 0 0 8px rgba(255,255,255,0); }
+    }
+
+    @keyframes dream-ring-sheen{
+      0%, 18%{ transform:translateX(-140%) skewX(-18deg); opacity:0; }
+      28%{ opacity:.9; }
+      48%{ transform:translateX(360%) skewX(-18deg); opacity:0; }
+      100%{ transform:translateX(360%) skewX(-18deg); opacity:0; }
+    }
+
+    .trust-strip{
+      margin:26px auto 0;
+      width:min(1120px, calc(100vw - 48px));
+      border-radius:26px;
+      padding:18px;
+      opacity:var(--trust-opacity, 0);
+      transform:translateY(var(--trust-shift, 24px));
+      filter:brightness(calc(.08 + (var(--trust-opacity, 0) * .92))) blur(calc((1 - var(--trust-opacity, 0)) * 2px));
+      transition:opacity .3s ease, transform .3s ease, filter .3s ease;
+    }
+
+    .trust-list{
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:12px;
+    }
+
+    .trust-item{
+      min-height:88px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .trust-item strong{
+      display:block;
+      font-size:.94rem;
+      font-weight:800;
+      line-height:1.3;
+      margin-bottom:6px;
+    }
+
+    .trust-item span{
+      display:block;
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.5;
     }
 
     .section{
-      padding:28px 0;
+      padding:14px 0 20px;
     }
 
-    .trust-grid,
-    .steps,
-    .reviews{
+    .hero-copy{
+      width:min(1120px, calc(100vw - 48px));
+      margin:68px auto 0;
+      padding:0;
+      position:relative;
+      z-index:2;
+      border:none;
+      background:transparent;
+      box-shadow:none;
+      overflow:visible;
+      opacity:1;
+      transform:none;
+      filter:none;
+      transition:opacity .25s ease, transform .25s ease, filter .25s ease;
+    }
+
+    .eyebrow{
+      display:block;
+      color:var(--text);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:1rem;
+      font-weight:800;
+      margin-bottom:24px;
+      text-align:center;
+    }
+
+    .routes{
       display:grid;
-      gap:16px;
+      gap:34px;
+      grid-template-columns:1fr;
     }
 
-    .trust-grid{
-      grid-template-columns:repeat(4, minmax(0, 1fr));
+    .route{
+      min-height:0;
+      display:grid;
+      grid-template-columns:1fr;
+      align-items:start;
+      gap:12px;
+      padding:0;
+      border:none;
+      background:transparent;
+      box-shadow:none;
     }
 
-    .card{
+    .route:nth-child(1),
+    .route:nth-child(3){
+      width:min(560px, 58%);
+      margin-right:auto;
+    }
+
+    .route:nth-child(2){
+      width:min(560px, 58%);
+      margin-left:auto;
+    }
+
+    .route-link{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .route-media{
+      position:relative;
+      min-height:132px;
+      border-radius:18px;
+      overflow:hidden;
+      background:#111;
+    }
+
+    .route-media img{
+      width:100%;
+      aspect-ratio:4 / 5;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .tag{
+      display:grid;
+      place-items:center;
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      font-size:.88rem;
+      font-weight:800;
+    }
+
+    .route-top{
+      position:absolute;
+      top:20px;
+      left:18px;
+      right:18px;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .route h3{
+      margin:0;
+      font-size:1.4rem;
+      color:#fff;
+      text-shadow:0 4px 12px rgba(0,0,0,.45);
+    }
+
+    .route-caption{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      margin:0;
+      padding:16px 18px 22px;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.82) 100%);
+      color:#fff;
+      font-size:1.02rem;
+      line-height:1.5;
+    }
+
+    .content-block{
+      margin:26px auto 0;
+      width:min(980px, 100%);
+      padding:30px 32px;
       border:1px solid var(--line);
-      border-radius:26px;
+      border-radius:30px;
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
       box-shadow:var(--shadow);
     }
 
-    .trust-card{
-      padding:22px 20px;
-    }
-
-    .trust-card h3{
-      font-size:1.06rem;
-      margin-bottom:8px;
-    }
-
-    .trust-card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:.95rem;
-    }
-
-    .section-head{
-      max-width:760px;
-      margin:0 auto 20px;
-      text-align:center;
-    }
-
-    .section-head h2{
+    .content-block h2{
       font-size:clamp(1.9rem, 3vw, 3rem);
-      margin-bottom:12px;
+      margin-bottom:16px;
+      text-align:left;
     }
 
-    .section-head p{
-      margin:0;
+    .content-block p{
+      margin:0 0 22px;
       color:var(--muted);
       line-height:1.8;
       font-size:1rem;
     }
 
-    .steps{
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+    .content-block p:last-of-type{
+      margin-bottom:0;
     }
 
-    .step{
-      padding:24px;
-    }
-
-    .step-number{
-      display:grid;
-      place-items:center;
-      width:42px;
-      height:42px;
-      margin-bottom:16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.05);
-      font-weight:800;
-    }
-
-    .step h3{
-      font-size:1.18rem;
-      margin-bottom:10px;
-    }
-
-    .step p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:.97rem;
-    }
-
-    .reviews{
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-    }
-
-    .review{
-      padding:24px;
-    }
-
-    .review p{
-      margin:0;
-      color:#fff;
-      line-height:1.8;
-      font-size:.98rem;
-    }
-
-    .review strong{
-      display:block;
-      margin-top:14px;
-      color:var(--muted-soft);
-      font-size:.86rem;
-      letter-spacing:.03em;
-    }
-
-    .mid-cta{
-      text-align:center;
-      padding:30px 22px;
-    }
-
-    .mid-cta h2{
-      font-size:clamp(1.8rem, 3vw, 2.8rem);
-      margin-bottom:12px;
-    }
-
-    .mid-cta p{
-      max-width:700px;
-      margin:0 auto 20px;
-      color:var(--muted);
-      line-height:1.8;
-    }
-
-    .mid-cta-actions{
+    .bottom-cta{
       display:flex;
       justify-content:center;
-      flex-wrap:wrap;
-      gap:12px;
+      padding:82px 0 108px;
     }
 
-    .faq{
-      display:grid;
-      gap:14px;
-      max-width:900px;
-      margin:0 auto;
-    }
-
-    .faq-item{
-      padding:22px 22px 20px;
-    }
-
-    .faq-item h3{
-      font-size:1.06rem;
-      margin-bottom:8px;
-    }
-
-    .faq-item p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:.96rem;
-    }
-
-    .final-form-wrap{
-      display:grid;
-      grid-template-columns:minmax(0, .95fr) minmax(320px, .85fr);
-      gap:22px;
-      align-items:start;
-      padding:24px;
-    }
-
-    .final-copy h2{
-      font-size:clamp(1.9rem, 3vw, 2.9rem);
-      margin-bottom:12px;
-    }
-
-    .final-copy p{
-      margin:0 0 14px;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:1rem;
-    }
-
-    .final-list{
-      display:grid;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .final-list div{
-      padding:14px 16px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      font-size:.95rem;
-      font-weight:700;
-      line-height:1.5;
-    }
-
-    .site-footer{
-      padding:28px 0 46px;
-      border-top:1px solid rgba(255,255,255,.08);
-      color:rgba(255,255,255,.7);
-    }
-
-    .site-footer .shell{
+    .bottom-email{
+      margin-top:24px;
       text-align:center;
+      font-size:.98rem;
+      color:var(--muted);
     }
 
-    .footer-meta{
-      margin:0;
-      font-size:.92rem;
-      line-height:1.7;
-    }
-
-    .footer-meta a{
+    .bottom-email a{
       color:#fff;
       text-decoration:underline;
       text-underline-offset:4px;
     }
 
-    @media (max-width: 1080px){
-      .hero-grid,
-      .final-form-wrap,
-      .trust-grid,
-      .steps,
-      .reviews{
-        grid-template-columns:1fr;
-      }
+    .journey-cta{
+      position:relative;
+      overflow:hidden;
+      min-height:48px;
+      padding:0 24px;
+      border-radius:999px;
+      font-size:.88rem;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      color:#15181d;
+      border-color:rgba(233,239,246,.58);
+      background:
+        radial-gradient(circle at 18% 24%, rgba(255,255,255,.98), transparent 30%),
+        radial-gradient(circle at 78% 78%, rgba(167,181,198,.24), transparent 34%),
+        linear-gradient(135deg, #fcfdff 0%, #dce3ea 20%, #ffffff 46%, #bcc6d1 72%, #eef2f6 100%);
+      box-shadow:
+        0 0 0 1px rgba(240,245,250,.16),
+        0 20px 48px rgba(0,0,0,.30),
+        0 0 26px rgba(188,198,209,.14),
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 0 -12px 20px rgba(112,126,144,.18);
+      isolation:isolate;
+      animation:ctaPulse 2.8s ease-in-out infinite;
+    }
 
-      .hero-copy{
-        min-height:640px;
-      }
+    .journey-cta::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(100deg, transparent 10%, rgba(245,249,255,.76) 50%, transparent 90%);
+      transform:translateX(-130%);
+      animation:ctaSweep 3.8s ease-in-out infinite;
+      z-index:0;
+      pointer-events:none;
+    }
 
-      .hero-inner{
-        width:min(560px, calc(100% - 40px));
-        padding:34px 0 34px 24px;
+    .journey-cta::after{
+      content:" >";
+      position:relative;
+      z-index:1;
+      font-size:1rem;
+      margin-left:8px;
+      line-height:1;
+      pointer-events:none;
+    }
+
+    .journey-cta:hover,
+    .journey-cta:focus-visible{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:
+        0 0 0 1px rgba(240,245,250,.22),
+        0 26px 58px rgba(0,0,0,.36),
+        0 0 34px rgba(188,198,209,.22),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -12px 20px rgba(112,126,144,.22);
+    }
+
+    .journey-cta span{
+      position:relative;
+      z-index:1;
+    }
+
+    .quick-message-bubble{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:10000;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(11,12,16,.9);
+      color:#ffffff;
+      box-shadow:0 18px 44px rgba(0,0,0,.34);
+      backdrop-filter:blur(10px);
+      font-size:.92rem;
+      font-weight:800;
+      letter-spacing:.01em;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .quick-message-bubble:hover,
+    .quick-message-bubble:focus-visible{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.26);
+      outline:none;
+    }
+
+    .quick-message-panel{
+      position:fixed;
+      right:20px;
+      bottom:84px;
+      z-index:10001;
+      width:min(360px, calc(100vw - 32px));
+      padding:18px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      background:rgba(11,12,16,.96);
+      box-shadow:0 20px 50px rgba(0,0,0,.36);
+      backdrop-filter:blur(14px);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(14px);
+      transition:opacity .2s ease, transform .2s ease;
+    }
+
+    .quick-message-panel.is-open{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .quick-message-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .quick-message-head h2{
+      font-size:1.15rem;
+      line-height:1.1;
+    }
+
+    .quick-message-head p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.55;
+    }
+
+    .quick-message-close{
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:transparent;
+      color:#ffffff;
+      font-size:1.2rem;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .quick-message-form{
+      display:grid;
+      gap:12px;
+    }
+
+    .quick-message-form label{
+      display:grid;
+      gap:6px;
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.02em;
+      color:#ffffff;
+    }
+
+    .quick-message-form input,
+    .quick-message-form select,
+    .quick-message-form textarea{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      color:#ffffff;
+      font:inherit;
+      outline:none;
+      box-shadow:none;
+    }
+
+    .quick-message-form textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .quick-message-form input::placeholder,
+    .quick-message-form textarea::placeholder{
+      color:rgba(255,255,255,.46);
+    }
+
+    .quick-message-form select option{
+      color:#ffffff;
+      background:#101218;
+    }
+
+    .quick-message-form .btn{
+      width:100%;
+    }
+
+    .quick-message-status{
+      min-height:1.2em;
+      margin:0;
+      color:#ffb3b3;
+      font-size:.84rem;
+      line-height:1.4;
+    }
+
+    .site-footer{
+      padding:26px 0 46px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:rgba(255,255,255,.70);
+    }
+
+    .site-footer .shell{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      font-size:clamp(.76rem, 2.4vw, .94rem);
+      line-height:1.6;
+      letter-spacing:.03em;
+    }
+
+    .footer-email{
+      margin:0;
+      font-size:clamp(.76rem, 2.4vw, .94rem);
+      line-height:1.6;
+    }
+
+    .footer-email a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    .reveal-block{
+      opacity:1;
+      transform:none;
+      filter:none;
+      transition:opacity .3s ease, transform .3s ease, filter .3s ease;
+    }
+
+    .reveal-block.is-visible{
+      opacity:1;
+      transform:translateY(0);
+      filter:brightness(1) saturate(1) blur(0);
+    }
+
+    .scroll-blackout{
+      opacity:0;
+      transform:translateY(32px);
+      filter:brightness(0) saturate(0) blur(12px);
+      transition:opacity .7s ease, transform .7s ease, filter .7s ease;
+      will-change:opacity, transform, filter;
+    }
+
+    .scroll-blackout.is-visible{
+      opacity:1;
+      transform:translateY(0);
+      filter:brightness(1) saturate(1) blur(0);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .scroll-blackout,
+      .scroll-blackout.is-visible{
+        opacity:1;
+        transform:none;
+        filter:none;
+        transition:none;
       }
     }
 
-    @media (max-width: 720px){
+    @keyframes ctaSweep{
+      0%{ transform:translateX(-130%); }
+      55%, 100%{ transform:translateX(130%); }
+    }
+
+    @keyframes ctaPulse{
+      0%, 100%{
+        box-shadow:
+          0 0 0 1px rgba(240,245,250,.16),
+          0 20px 48px rgba(0,0,0,.30),
+          0 0 26px rgba(188,198,209,.14),
+          inset 0 1px 0 rgba(255,255,255,.92),
+          inset 0 -12px 20px rgba(112,126,144,.18);
+      }
+      50%{
+        box-shadow:
+          0 0 0 1px rgba(240,245,250,.24),
+          0 26px 58px rgba(0,0,0,.34),
+          0 0 30px rgba(188,198,209,.20),
+          inset 0 1px 0 rgba(255,255,255,1),
+          inset 0 -12px 20px rgba(112,126,144,.22);
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .journey-cta,
+      .journey-cta::before{
+        animation:none;
+      }
+    }
+
+    @media (max-width:1080px){
+      .hero-grid{ min-height:900px; }
+      .hero-card{ height:620px; }
+      .hero-visual{ min-height:620px; }
+      .hero-overlay{ left:48px; max-width:min(620px, calc(100% - 96px)); }
+      .trust-list{ grid-template-columns:repeat(2, 1fr); }
+      .route:nth-child(1),
+      .route:nth-child(2),
+      .route:nth-child(3){
+        width:100%;
+        margin-left:0;
+        margin-right:0;
+      }
+    }
+
+    @media (max-width:720px){
+      .topbar{
+        background:rgba(0,0,0,.78);
+        backdrop-filter:blur(12px);
+        border-bottom:none;
+      }
+
       .topbar .shell{
         flex-direction:column;
         align-items:center;
-        gap:10px;
+        justify-content:flex-start;
+        gap:0;
       }
 
-      .brand-wrap{
-        flex-direction:column;
-        gap:6px;
+      .brand{
+        flex:0 1 auto;
+        justify-content:center;
+      }
+
+      .brand-block{
+        gap:0;
+        transform:translateY(-2px);
       }
 
       .brand img{
-        width:min(220px, 62vw);
+        width:min(236px, 68vw);
+        opacity:calc(1 - (var(--brand-fade, 0) * .72));
+        filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(calc(1 - (var(--brand-fade, 0) * .5)));
       }
 
-      .top-actions{
-        width:100%;
-        justify-content:center;
-        flex-wrap:wrap;
+      .brand-location{
+        margin-top:-5px;
+        font-size:.66rem;
+        letter-spacing:.18em;
+        opacity:calc(1 - (var(--brand-fade, 0) * .72));
+        filter:brightness(calc(1 - (var(--brand-fade, 0) * .55)));
       }
 
-      .inline-note{
+      .brand-location::before,
+      .brand-location::after{
+        width:14px;
+      }
+
+      .nav{
+        order:-1;
         width:100%;
-        text-align:center;
+        justify-content:space-between;
+        align-self:stretch;
+        flex-wrap:nowrap;
+        gap:10px;
+        margin-top:0;
+        margin-bottom:12px;
+        opacity:calc(1 - (var(--brand-fade, 0) * .78));
+      }
+
+      .nav a{
+        flex:0 1 auto;
+        min-width:0;
+        padding:10px 12px;
+        font-size:.84rem;
+        background:rgba(255,255,255,calc(.09 - (var(--brand-fade, 0) * .04)));
+        border-color:rgba(255,255,255,calc(.2 - (var(--brand-fade, 0) * .08)));
+      }
+
+      .nav a:nth-child(2){
+        display:none;
       }
 
       .hero{
-        padding-top:22px;
+        padding-top:0;
+        padding-bottom:48px;
       }
 
-      .hero-copy{
-        min-height:540px;
-        border-radius:28px;
+      .hero-grid{
+        min-height:unset;
       }
 
-      .hero-inner{
-        width:calc(100% - 32px);
-        padding:24px 0 24px 16px;
+      .hero-card{
+        height:auto;
+        margin-top:0;
+      }
+
+      .hero-visual{
+        min-height:460px;
+      }
+
+      .hero-overlay{
+        top:52px;
+        left:16px;
+        right:16px;
+        max-width:none;
+      }
+
+      .eyebrow-hero{
+        font-size:.62rem;
+        letter-spacing:.13em;
       }
 
       h1{
-        max-width:9.8ch;
-        font-size:clamp(2rem, 9vw, 2.9rem);
+        max-width:10ch;
+        font-size:clamp(1.9rem, 8.2vw, 2.7rem);
       }
 
       .hero-subcopy{
-        font-size:.97rem;
+        margin-top:14px;
+        font-size:.96rem;
         line-height:1.65;
       }
 
-      .hero-points,
-      .form-grid{
+      .hero-actions{
+        margin-top:18px;
+      }
+
+      .hero-visual::after{
+        opacity:var(--hero-fade, 0);
+      }
+
+      .hero-image,
+      .hero-overlay{
+        opacity:calc(1 - (var(--hero-fade, 0) * .82));
+      }
+
+      .hero-trust{
+        width:min(calc(100vw - 32px), 100%);
+        margin-top:24px;
+        font-size:clamp(1rem, 5vw, 1.28rem);
+        line-height:1.3;
+      }
+
+      .trust-strip{
+        width:min(calc(100vw - 32px), 100%);
+        margin-top:18px;
+        padding:14px;
+      }
+
+      .trust-list{
         grid-template-columns:1fr;
       }
 
-      .hero-form-card,
-      .card{
+      .hero-copy{
+        width:min(calc(100vw - 32px), 100%);
+        margin-top:48px;
+        opacity:1;
+        transform:none;
+      }
+
+      .content-block{
+        padding:24px 20px;
         border-radius:24px;
       }
 
-      .section{
-        padding:22px 0;
+      .content-block h2{
+        font-size:clamp(1.6rem, 8vw, 2.25rem);
       }
 
-      .section-head{
-        margin-bottom:16px;
+      .bottom-cta{
+        padding:56px 0 86px;
       }
 
-      .mid-cta{
-        padding:24px 18px;
+      .quick-message-bubble{
+        right:16px;
+        bottom:16px;
+        min-height:48px;
+        padding:0 16px;
+        font-size:.88rem;
+      }
+
+      .quick-message-panel{
+        right:16px;
+        bottom:74px;
+        width:calc(100vw - 32px);
+        padding:16px;
       }
     }
   </style>
 
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V60YKFJX73"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'G-V60YKFJX73');
-    gtag('config', 'AW-17882921888');
+  gtag('config', 'G-V60YKFJX73');
+  gtag('config', 'AW-17882921888');
   </script>
 </head>
 
@@ -852,338 +1224,117 @@
 
   <header class="topbar">
     <div class="shell">
-      <div class="brand-wrap">
+      <div class="brand-block">
         <a class="brand" href="/" aria-label="Ladfox home">
           <img src="Images/ladfox-logo.png" alt="Ladfox logo" loading="eager" decoding="async" />
         </a>
-        <span class="brand-meta">Hatton Garden, London</span>
+        <span class="brand-location">Hatton Garden, London</span>
       </div>
 
-      <div class="top-actions">
-        <span class="inline-note">Private enquiries • Calm one to one guidance</span>
-        <a class="btn btn-primary" href="#enquire">Start your enquiry</a>
-      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="ringpage.html">Bespoke Service</a>
+        <a href="ring-gallery.html">Our Designs</a>
+        <a href="contact-us.html">Private Enquiry</a>
+      </nav>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero">
-      <div class="shell">
-        <div class="hero-grid">
-          <div class="hero-copy" aria-label="Bespoke engagement ring introduction">
+  <main id="main" class="shell">
+    <section class="hero" id="our-process" aria-label="Ladfox introduction">
+      <div class="hero-grid">
+        <aside class="hero-card" aria-label="Ladfox studio promise">
+          <div class="hero-visual">
             <img
               src="Images/hero%20ring%20image.png"
-              alt="Bespoke engagement ring by Ladfox"
+              alt="Monochrome engagement ring visual"
+              class="hero-image"
               loading="eager"
               decoding="async"
             />
 
-            <div class="hero-inner">
-              <span class="eyebrow">Bespoke Engagement Rings • Private Hatton Garden Jeweller</span>
-              <h1>Create your dream engagement ring</h1>
+            <div class="hero-overlay">
+              <span class="eyebrow-hero">Bespoke Engagement Rings Private Hatton Garden Jeweller</span>
+              <h1>We do things differently here</h1>
               <p class="hero-subcopy">
-                Design a bespoke engagement ring with calm one to one guidance, custom design development, and carefully selected lab grown or natural diamonds, all tailored around your style, priorities, and budget.
+                Thoughtfully designed rings, one to one guidance, and a calmer bespoke experience from first sketch to final piece.
               </p>
 
-              <div class="hero-points" aria-label="Key trust points">
-                <div class="hero-point">Complimentary design guidance</div>
-                <div class="hero-point">Lab grown and natural diamond options</div>
-                <div class="hero-point">Insured UK and international delivery</div>
-                <div class="hero-point">Lifetime warranty and aftercare</div>
-              </div>
-
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#enquire">Start your private enquiry</a>
-                <a class="btn btn-secondary" href="#how-it-works">See how it works</a>
-              </div>
-
-              <p class="hero-micro">
-                Bespoke designs can be created across a range of budgets. If you already have inspiration images, you can send those with your enquiry.
-              </p>
-
-              <div class="testimonial-inline">
-                <p>
-                  “The whole process felt calm, personal and completely different from a normal jeweller. The ring was absolutely perfect.”
-                </p>
-                <strong>Ladfox client</strong>
-              </div>
             </div>
           </div>
+        </aside>
 
-          <aside class="hero-form-card" id="enquire" aria-label="Enquiry form">
-            <div class="hero-form-head">
-              <h2>Start your enquiry</h2>
-              <p>
-                Tell us what you are looking for and we will come back to you privately. Whether you have a clear idea or just a few saved images, we can guide you from there.
-              </p>
-            </div>
-
-            <div class="badge-row" aria-label="Enquiry reassurance">
-              <span class="badge">Private one to one guidance</span>
-              <span class="badge">No pressure process</span>
-              <span class="badge">Replies usually within 1 business day</span>
-            </div>
-
-            <form
-              class="lead-form"
-              name="bespoke-enquiry"
-              method="POST"
-              action="/thank-you.html"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-            >
-              <input type="hidden" name="form-name" value="bespoke-enquiry" />
-              <p style="display:none;">
-                <label>Do not fill this in <input name="bot-field" /></label>
-              </p>
-
-              <div class="form-grid">
-                <input type="text" name="name" placeholder="Your name" required />
-                <input type="email" name="email" placeholder="Your email" required />
-              </div>
-
-              <div class="form-grid">
-                <select name="ring_type" required>
-                  <option value="">Ring type</option>
-                  <option>Engagement ring</option>
-                  <option>Wedding band</option>
-                  <option>Fine jewellery</option>
-                  <option>Not sure yet</option>
-                </select>
-
-                <select name="budget">
-                  <option value="">Budget range</option>
-                  <option>Under £2,000</option>
-                  <option>£2,000 to £4,000</option>
-                  <option>£4,000 to £7,000</option>
-                  <option>£7,000 to £12,000</option>
-                  <option>£12,000+</option>
-                  <option>Prefer not to say yet</option>
-                </select>
-              </div>
-
-              <select name="stone_preference">
-                <option value="">Stone preference</option>
-                <option>Lab grown diamond</option>
-                <option>Natural diamond</option>
-                <option>Gemstone</option>
-                <option>Not sure yet</option>
-              </select>
-
-              <textarea
-                name="message"
-                placeholder="Tell us what you have in mind. You can mention style, metal, shape, size, timing, budget, or inspiration photos."
-                required
-              ></textarea>
-
-              <p class="form-help">
-                The more detail you share, the more tailored our first response can be.
-              </p>
-
-              <p class="status" id="formStatus" aria-live="polite"></p>
-              <button class="btn btn-primary" type="submit">Send my enquiry</button>
-            </form>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Trust points">
-      <div class="shell">
-        <div class="trust-grid">
-          <article class="card trust-card">
-            <h3>Private Hatton Garden service</h3>
-            <p>Calmer, more personal guidance than a typical showroom experience.</p>
-          </article>
-
-          <article class="card trust-card">
-            <h3>Designed around you</h3>
-            <p>Every ring is developed around your style, priorities, and preferred budget.</p>
-          </article>
-
-          <article class="card trust-card">
-            <h3>Stone guidance</h3>
-            <p>Clear advice on lab grown and natural diamonds, with carefully selected options.</p>
-          </article>
-
-          <article class="card trust-card">
-            <h3>Long term reassurance</h3>
-            <p>Insured delivery, engraving, and lifetime warranty are all included.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="how-it-works" aria-label="How the process works">
-      <div class="shell">
-        <div class="section-head">
-          <h2>A simple bespoke process from first idea to final ring</h2>
-          <p>
-            The aim is to make the process feel clear, guided, and enjoyable. You do not need to know every technical detail before getting in touch.
-          </p>
+        <div class="hero-trust-stack">
+          <a class="btn btn-primary dream-ring-cta" href="ringpage.html">Find your dream ring</a>
+          <div class="hero-trust">All our pieces include international shipping, engraving, and a lifetime warranty.</div>
         </div>
 
-        <div class="steps">
-          <article class="card step">
-            <div class="step-number" aria-hidden="true">1</div>
-            <h3>Tell us what you like</h3>
-            <p>
-              Share inspiration photos, a rough brief, or even just the shapes and styles you are drawn to.
-            </p>
-          </article>
+        <div class="hero-copy">
+          <span class="eyebrow">Our process</span>
 
-          <article class="card step">
-            <div class="step-number" aria-hidden="true">2</div>
-            <h3>We develop the design</h3>
-            <p>
-              We guide the design through sketch and CAD so you can see proportions, structure, and details clearly before production.
-            </p>
-          </article>
+          <div class="routes" aria-label="Process steps">
+            <article class="route">
+              <a class="route-link" href="ringpage.html">
+                <div class="route-media">
+                  <div class="route-top">
+                    <span class="tag" aria-hidden="true">1</span>
+                    <h3>Complimentary Sketch</h3>
+                  </div>
+                  <img src="Images/Sketch.png" alt="Sketch stage ring concept" loading="lazy" decoding="async" />
+                  <p class="route-caption">Send a reference or brief and we map the first design direction.</p>
+                </div>
+              </a>
+            </article>
 
-          <article class="card step">
-            <div class="step-number" aria-hidden="true">3</div>
-            <h3>We refine the final piece</h3>
-            <p>
-              Stone selection, finishing details, insured delivery, and aftercare are handled with the same attention throughout.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+            <article class="route">
+              <a class="route-link" href="ringpage.html">
+                <div class="route-media">
+                  <div class="route-top">
+                    <span class="tag" aria-hidden="true">2</span>
+                    <h3>Complimentary CAD</h3>
+                  </div>
+                  <img src="Images/CAD%20design.png" alt="CAD stage ring design" loading="lazy" decoding="async" />
+                  <p class="route-caption">We refine dimensions, proportions, and structure before production.</p>
+                </div>
+              </a>
+            </article>
 
-    <section class="section" aria-label="Client feedback">
-      <div class="shell">
-        <div class="section-head">
-          <h2>Designed to feel personal, calm, and beautifully considered</h2>
-          <p>
-            Clients are often looking for a better experience than a standard high street or showroom approach. That is exactly where Ladfox fits.
-          </p>
-        </div>
-
-        <div class="reviews">
-          <article class="card review">
-            <p>
-              “The guidance was brilliant from start to finish. Everything felt thoughtful, clear, and genuinely personal.”
-            </p>
-            <strong>Ladfox client</strong>
-          </article>
-
-          <article class="card review">
-            <p>
-              “The ring turned out even better than I had imagined. The process felt calm and never pushy.”
-            </p>
-            <strong>Ladfox client</strong>
-          </article>
-
-          <article class="card review">
-            <p>
-              “I came in with only a rough idea and they turned it into something incredibly special.”
-            </p>
-            <strong>Ladfox client</strong>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Mid page call to action">
-      <div class="shell">
-        <div class="card mid-cta">
-          <h2>Ready to start designing your ring?</h2>
-          <p>
-            Whether you already know exactly what you want or need help narrowing down the direction, we can guide you privately from the first step.
-          </p>
-          <div class="mid-cta-actions">
-            <a class="btn btn-primary" href="#enquire">Start your enquiry</a>
-            <a class="btn btn-secondary" href="mailto:info@ladfox.com">Email inspiration photos</a>
+            <article class="route">
+              <a class="route-link" href="ringpage.html">
+                <div class="route-media">
+                  <div class="route-top">
+                    <span class="tag" aria-hidden="true">3</span>
+                    <h3>Diamond Selection</h3>
+                  </div>
+                  <img src="Images/Diamond%20selection.png" alt="Diamond selection stage" loading="lazy" decoding="async" />
+                  <p class="route-caption" style="padding-bottom:30px;">We hand select the right stone for your design, priorities, and budget.</p>
+                </div>
+              </a>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-label="Frequently asked questions">
-      <div class="shell">
-        <div class="section-head">
-          <h2>Common questions before enquiring</h2>
-          <p>
-            A few quick answers for people who are still deciding whether to get in touch.
-          </p>
-        </div>
-
-        <div class="faq">
-          <article class="card faq-item">
-            <h3>Do I need to know exactly what I want?</h3>
-            <p>
-              No. Many clients start with only a few saved images or a general idea. We can help shape the design from there.
-            </p>
-          </article>
-
-          <article class="card faq-item">
-            <h3>Do you offer lab grown and natural diamonds?</h3>
-            <p>
-              Yes. We can guide you through both options clearly so you can choose the right fit for your priorities and budget.
-            </p>
-          </article>
-
-          <article class="card faq-item">
-            <h3>Is bespoke only for very high budgets?</h3>
-            <p>
-              Not at all. Bespoke can work across a range of budgets. Sharing your budget early helps us guide you more accurately.
-            </p>
-          </article>
-
-          <article class="card faq-item">
-            <h3>Do you work with clients outside London?</h3>
-            <p>
-              Yes. We work with clients across the UK and internationally, with insured delivery included.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Final enquiry block">
-      <div class="shell">
-        <div class="card final-form-wrap">
-          <div class="final-copy">
-            <h2>Start with a private enquiry</h2>
-            <p>
-              The first step is simple. Tell us what you have in mind, send inspiration if you have it, and we will guide you from there.
-            </p>
-            <p>
-              This is ideal if you want something more personal than a standard shop experience and want the ring built around the right details from the start.
-            </p>
-
-            <div class="final-list" aria-label="Reasons to enquire">
-              <div>Custom engagement rings developed around your brief</div>
-              <div>Clear advice on design, stone choice, and practicality</div>
-              <div>Private service with insured delivery and lifetime warranty</div>
-            </div>
-          </div>
-
-          <div>
-            <form
-              class="lead-form"
-              name="bespoke-enquiry-footer"
-              method="POST"
-              action="/thank-you.html"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-            >
-              <input type="hidden" name="form-name" value="bespoke-enquiry-footer" />
-              <p style="display:none;">
-                <label>Do not fill this in <input name="bot-field" /></label>
-              </p>
-
-              <input type="text" name="name" placeholder="Your name" required />
-              <input type="email" name="email" placeholder="Your email" required />
-              <textarea
-                name="message"
-                placeholder="Tell us what you are looking for"
-                required
-              ></textarea>
-              <button class="btn btn-primary" type="submit">Send my enquiry</button>
-            </form>
-          </div>
+    <section class="section reveal-block" aria-label="About bespoke engagement rings at Ladfox">
+      <div class="content-block">
+        <h2>Bespoke engagement rings with calm guidance from start to finish</h2>
+        <p>
+          Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings and fine jewellery for clients across the UK and internationally.
+        </p>
+        <p>
+          Whether you are exploring lab grown diamonds, natural diamonds, or a fully custom design, the process is built around clear advice, thoughtful design, and transparent guidance at every stage.
+        </p>
+        <p>
+          From your first reference image or idea, we develop the design through sketch, CAD, and stone selection so you can move forward with confidence.
+        </p>
+        <p>
+          The result is a ring made around your priorities rather than a standard showroom model.
+        </p>
+        <p>
+          Insured delivery, engraving, and long term aftercare are included.
+        </p>
+        <div class="bottom-cta">
+          <a class="btn btn-primary journey-cta" href="ringpage.html#start-heading"><span>Begin your journey</span></a>
         </div>
       </div>
     </section>
@@ -1191,12 +1342,41 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">
-        &copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved.
-        <a href="mailto:info@ladfox.com">info@ladfox.com</a>
-      </p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>
+
+  <div class="quick-message-panel" id="quickMessagePanel" aria-hidden="true">
+    <div class="quick-message-head">
+      <div>
+        <h2>Quick message</h2>
+        <p>Tell us what you are looking for and we will come back to you privately.</p>
+      </div>
+      <button class="quick-message-close" type="button" id="quickMessageClose" aria-label="Close quick message">×</button>
+    </div>
+
+    <form class="quick-message-form" name="quick-message" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="quick-message" />
+      <p style="display:none;">
+        <label>Do not fill this in <input name="bot-field" /></label>
+      </p>
+
+      <label for="quickMessageText">
+        Message
+        <textarea id="quickMessageText" name="message" placeholder="Tell us what you are looking for" required></textarea>
+      </label>
+
+      <label for="quickMessageEmail">
+        Email
+        <input id="quickMessageEmail" name="email" type="email" placeholder="you@example.com" required />
+      </label>
+
+      <p class="quick-message-status" id="quickMessageStatus" aria-live="polite"></p>
+      <button class="btn btn-primary" type="submit">Send message</button>
+    </form>
+  </div>
+
+  <button class="quick-message-bubble" id="quickMessageToggle" type="button" aria-expanded="false" aria-controls="quickMessagePanel">Quick message</button>
 
   <noscript>
     <div style="padding:14px 16px; border-top:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.72); background:#0B0C10;">
@@ -1206,23 +1386,162 @@
 
   <script>
     (() => {
-      const forms = document.querySelectorAll('form[data-netlify="true"]');
+      const topbar = document.querySelector(".topbar");
+      const processSection = document.getElementById("our-process");
+      const mobileQuery = window.matchMedia("(max-width: 720px)");
+      const heroVisual = document.querySelector(".hero-visual");
+      const heroCopy = document.querySelector(".hero-copy");
+      const revealBlocks = Array.from(document.querySelectorAll(".reveal-block"));
+      const scrollBlackoutSelectors = [
+        ".topbar .brand-block > *",
+        ".topbar .nav a",
+        "main aside .hero-visual",
+        "main aside .hero-overlay > *",
+        "main .hero-trust",
+        "main .hero-copy > *",
+        "main .routes .route",
+        "main .routes .route-top > *",
+        "main .routes .route-media img",
+        "main .routes .route-caption",
+        "main .section",
+        "main .section h2",
+        "main .section h3",
+        "main .section p",
+        "main .section img",
+        "main .section a",
+        "main .section .content-block",
+        "main .section .bottom-cta",
+        "footer.site-footer .shell > *"
+      ];
+      const scrollBlackoutTargets = Array.from(
+        new Set(
+          scrollBlackoutSelectors.flatMap((selector) => Array.from(document.querySelectorAll(selector)))
+        )
+      );
+      const quickMessageToggle = document.getElementById("quickMessageToggle");
+      const quickMessagePanel = document.getElementById("quickMessagePanel");
+      const quickMessageClose = document.getElementById("quickMessageClose");
+      const quickMessageEmail = document.getElementById("quickMessageEmail");
+      const quickMessageForm = document.querySelector(".quick-message-form");
+      const quickMessageStatus = document.getElementById("quickMessageStatus");
 
-      forms.forEach((form) => {
-        form.addEventListener("submit", () => {
-          const submitButton = form.querySelector('button[type="submit"]');
-          const status = form.querySelector(".status");
+      if (!heroVisual || !heroCopy || !topbar || !processSection) {
+        return;
+      }
 
-          if (status) {
-            status.textContent = "";
+      const setQuickMessageState = (isOpen) => {
+        if (!quickMessageToggle || !quickMessagePanel) {
+          return;
+        }
+
+        quickMessagePanel.classList.toggle("is-open", isOpen);
+        quickMessagePanel.setAttribute("aria-hidden", String(!isOpen));
+        quickMessageToggle.setAttribute("aria-expanded", String(isOpen));
+
+        if (isOpen && quickMessageEmail) {
+          requestAnimationFrame(() => quickMessageEmail.focus());
+        }
+      };
+
+      scrollBlackoutTargets.forEach((element) => {
+        element.classList.add("scroll-blackout");
+      });
+
+      const updateHeroFade = () => {
+        const processRect = processSection.getBoundingClientRect();
+        const topbarHeight = topbar.offsetHeight;
+        topbar.classList.toggle("is-sticky", processRect.bottom > topbarHeight);
+
+        const heroRect = heroVisual.getBoundingClientRect();
+        const heroFadeDistance = Math.max(heroRect.height * 0.42, 220);
+        const heroProgress = Math.min(Math.max(-heroRect.top / heroFadeDistance, 0), 1);
+        document.documentElement.style.setProperty("--hero-fade", heroProgress.toFixed(3));
+
+        const brandProgress = mobileQuery.matches
+          ? Math.min(Math.max(window.scrollY / 120, 0), 1)
+          : 0;
+        document.documentElement.style.setProperty("--brand-fade", brandProgress.toFixed(3));
+
+        const trustProgress = Math.min(Math.max((window.scrollY - 40) / 180, 0), 1);
+        document.documentElement.style.setProperty("--trust-opacity", trustProgress.toFixed(3));
+        document.documentElement.style.setProperty("--trust-shift", `${Math.round((1 - trustProgress) * 24)}px`);
+
+        const processStart = mobileQuery.matches
+          ? Math.max(window.innerHeight * 0.46, 280)
+          : Math.max(window.innerHeight * 0.62, 440);
+        const processDistance = mobileQuery.matches ? 260 : 380;
+        const processProgress = Math.min(Math.max((window.scrollY - processStart) / processDistance, 0), 1);
+        document.documentElement.style.setProperty("--process-opacity", processProgress.toFixed(3));
+        document.documentElement.style.setProperty("--process-shift", `${Math.round((1 - processProgress) * (mobileQuery.matches ? 42 : 62))}px`);
+
+        revealBlocks.forEach((block) => {
+          const rect = block.getBoundingClientRect();
+          const revealStart = mobileQuery.matches ? 80 : 160;
+          const visible = window.scrollY > revealStart && rect.top < (window.innerHeight * 0.84);
+          block.classList.toggle("is-visible", visible);
+        });
+
+        scrollBlackoutTargets.forEach((element) => {
+          const rect = element.getBoundingClientRect();
+          const visible = rect.top < (window.innerHeight * 0.9) && rect.bottom > (window.innerHeight * 0.08);
+          element.classList.toggle("is-visible", visible);
+        });
+      };
+
+      updateHeroFade();
+      window.addEventListener("scroll", updateHeroFade, { passive: true });
+      window.addEventListener("resize", updateHeroFade);
+
+      if (typeof mobileQuery.addEventListener === "function") {
+        mobileQuery.addEventListener("change", updateHeroFade);
+      } else if (typeof mobileQuery.addListener === "function") {
+        mobileQuery.addListener(updateHeroFade);
+      }
+
+      if (quickMessageToggle && quickMessagePanel) {
+        quickMessageToggle.addEventListener("click", () => {
+          const isOpen = quickMessagePanel.classList.contains("is-open");
+          setQuickMessageState(!isOpen);
+        });
+
+        if (quickMessageClose) {
+          quickMessageClose.addEventListener("click", () => setQuickMessageState(false));
+        }
+
+        document.addEventListener("click", (event) => {
+          if (!quickMessagePanel.classList.contains("is-open")) {
+            return;
           }
 
+          const target = event.target;
+          if (
+            target instanceof Node &&
+            !quickMessagePanel.contains(target) &&
+            !quickMessageToggle.contains(target)
+          ) {
+            setQuickMessageState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            setQuickMessageState(false);
+          }
+        });
+      }
+
+      if (quickMessageForm) {
+        quickMessageForm.addEventListener("submit", () => {
+          if (quickMessageStatus) {
+            quickMessageStatus.textContent = "";
+          }
+          const submitButton = quickMessageForm.querySelector('button[type="submit"]');
           if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
             submitButton.textContent = "Sending...";
           }
         });
-      });
+      }
     })();
   </script>
 </body>
