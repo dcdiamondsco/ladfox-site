@@ -1335,42 +1335,73 @@
       }
 
       .hero-actions{
-        grid-template-columns:1fr;
-        gap:14px;
+        grid-template-columns:minmax(0, 1fr) 36px minmax(0, 1fr);
+        align-items:start;
+        justify-items:center;
+        gap:12px;
         width:100%;
-        min-height:0;
-        padding-top:0;
+        min-height:170px;
+        padding-top:10px;
         margin-top:34px;
       }
 
       .hero-actions::before{
-        display:none;
-      }
-
-      .hero-path-note,
-      .hero-path-note--left,
-      .hero-path-note--right,
-      .hero-path-divider{
-        grid-column:auto;
-        grid-row:auto;
+        display:block;
+        grid-column:2;
+        grid-row:1 / span 2;
+        height:100%;
       }
 
       .hero-path-note{
-        max-width:32ch;
-        margin:0 auto;
+        max-width:16ch;
+        margin:0;
         text-align:center;
+        font-size:.88rem;
+        line-height:1.5;
+      }
+
+      .hero-path-note--left{
+        grid-column:1;
+        grid-row:1;
+      }
+
+      .hero-path-note--right{
+        grid-column:3;
+        grid-row:1;
       }
 
       .hero-path-divider{
-        writing-mode:horizontal-tb;
-        padding:0;
-        margin:4px 0;
+        grid-column:2;
+        grid-row:1;
+        align-self:center;
+        justify-self:center;
+        padding:6px 4px;
+        margin:0;
+        font-size:.84rem;
       }
 
       .hero-action-col:first-of-type,
       .hero-action-col:last-of-type{
         justify-content:center;
         padding:0;
+        width:100%;
+        grid-row:2;
+      }
+
+      .hero-action-col:first-of-type{
+        grid-column:1;
+      }
+
+      .hero-action-col:last-of-type{
+        grid-column:3;
+      }
+
+      .dream-ring-cta{
+        width:100%;
+        min-height:50px;
+        padding:0 14px;
+        border-radius:999px;
+        font-size:.88rem;
       }
 
       .hero-visual::after{
@@ -1384,7 +1415,7 @@
 
       .hero-trust{
         width:min(calc(100vw - 32px), 100%);
-        margin-top:24px;
+        margin-top:28px;
         font-size:clamp(1rem, 5vw, 1.28rem);
         line-height:1.3;
         text-align:center;
@@ -1484,7 +1515,19 @@
       }
 
       .hero-actions{
+        grid-template-columns:minmax(0, 1fr) 28px minmax(0, 1fr);
+        gap:10px;
+        min-height:156px;
         margin-top:28px;
+      }
+
+      .hero-path-note{
+        max-width:14ch;
+        font-size:.82rem;
+      }
+
+      .hero-path-divider{
+        font-size:.78rem;
       }
 
       .dream-ring-cta{
