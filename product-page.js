@@ -3,6 +3,7 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
   const form = formId ? document.getElementById(formId) : config.closest(".copy")?.querySelector("form");
   const mediaPanel = config.closest(".layout")?.querySelector(".media");
   const productImage = mediaPanel?.querySelector("[data-product-image]");
+  const productTitle = config.closest(".layout")?.querySelector(".product-title");
   const metalTarget = form?.querySelector('[data-config-hidden="metal"]');
   const metalOptions = config.querySelectorAll('[data-config-input="metal_base"]');
   const karatOptions = config.querySelectorAll('[data-config-input="metal_karat"]');
@@ -121,12 +122,11 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
   };
   const syncMobileToggleState = () => {
     mobileToggleButtons.forEach((button) => {
-      const requestedView = button.dataset.view || "front";
-      const label = requestedView === "back" ? "Show next image" : "Show previous image";
+      const label = imageView === "front" ? "Show rear view" : "Show front view";
 
       button.setAttribute("aria-label", label);
       button.setAttribute("title", label);
-      button.disabled = imageView === requestedView;
+      button.disabled = false;
     });
   };
   const setImageView = (nextView) => {
@@ -143,13 +143,6 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
-    }
-
-    const requestedView = event?.currentTarget?.dataset?.view;
-
-    if (requestedView) {
-      setImageView(requestedView);
-      return;
     }
 
     setImageView(imageView === "front" ? "back" : "front");
@@ -205,6 +198,26 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
 
     syncProductImage();
   };
+  const getConfigValues = () => {
+    const values = {};
+    const selectedMetal = config.querySelector('[data-config-input="metal_base"]:checked')?.value || "";
+    const selectedKarat = config.querySelector('[data-config-input="metal_karat"]:checked')?.value || "";
+
+    values.product_name = (productTitle?.textContent || "").trim();
+    values.selected_metal = selectedMetal === "Platinum"
+      ? "Platinum"
+      : [selectedKarat, selectedMetal].filter(Boolean).join(" ");
+
+    config.querySelectorAll("[data-config-input]").forEach((field) => {
+      const key = field.getAttribute("data-config-input");
+      if (!key) return;
+      if ((field.type === "radio" || field.type === "checkbox") && !field.checked) return;
+
+      values[`selected_${key}`] = getFieldValue(field);
+    });
+
+    return values;
+  };
 
   metalOptions.forEach((field) => {
     field.addEventListener("change", () => {
@@ -252,8 +265,6 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       nextButton.type = "button";
       prevButton.className = "media-toggle media-toggle--prev";
       nextButton.className = "media-toggle media-toggle--next";
-      prevButton.dataset.view = "front";
-      nextButton.dataset.view = "back";
       prevButton.innerHTML = "&#8249;";
       nextButton.innerHTML = "&#8250;";
 
@@ -279,9 +290,6 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       }
     });
 
-    productImage.addEventListener("pointerup", handleMobileViewToggle);
-    productImage.addEventListener("click", handleMobileViewToggle);
-
     const resetImageView = () => {
       if (!mobileQuery.matches) {
         setImageView("front");
@@ -294,4 +302,12 @@ document.querySelectorAll("[data-product-config]").forEach((config) => {
       mobileQuery.addListener(resetImageView);
     }
   }
+
+  config.closest(".copy")?.querySelectorAll("[data-product-enquiry-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      try {
+        sessionStorage.setItem("ladfoxRingEnquiryConfig", JSON.stringify(getConfigValues()));
+      } catch (_) {}
+    });
+  });
 });

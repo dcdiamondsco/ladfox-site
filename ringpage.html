@@ -774,6 +774,16 @@
               <form name="ringpage-quick-start" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="ringpage-quick-start" />
                 <input type="hidden" name="location" id="quickStartLocation" value="Unknown" />
+                <input type="hidden" name="product_name" id="productEnquiryName" />
+                <input type="hidden" name="selected_metal" id="productEnquiryMetal" />
+                <input type="hidden" name="selected_ring_size" id="productEnquiryRingSize" />
+                <input type="hidden" name="selected_diamond_type" id="productEnquiryDiamondType" />
+                <input type="hidden" name="selected_band_thickness" id="productEnquiryBandThickness" />
+                <input type="hidden" name="selected_shape" id="productEnquiryShape" />
+                <input type="hidden" name="selected_total_carat" id="productEnquiryCarat" />
+                <input type="hidden" name="selected_clarity" id="productEnquiryClarity" />
+                <input type="hidden" name="selected_colour" id="productEnquiryColour" />
+                <input type="hidden" name="selected_cut_grade" id="productEnquiryCutGrade" />
                 <p style="display:none;">
                   <label>Do not fill this in <input name="bot-field" /></label>
                 </p>
@@ -983,6 +993,18 @@
       const shapeSelect = document.getElementById("shape");
       const elongatedRow = document.getElementById("elongatedRow");
       const elongatedSelect = document.getElementById("elongated");
+      const productEnquiryFields = {
+        product_name: document.getElementById("productEnquiryName"),
+        selected_metal: document.getElementById("productEnquiryMetal"),
+        selected_ring_size: document.getElementById("productEnquiryRingSize"),
+        selected_diamond_type: document.getElementById("productEnquiryDiamondType"),
+        selected_band_thickness: document.getElementById("productEnquiryBandThickness"),
+        selected_shape: document.getElementById("productEnquiryShape"),
+        selected_total_carat: document.getElementById("productEnquiryCarat"),
+        selected_clarity: document.getElementById("productEnquiryClarity"),
+        selected_colour: document.getElementById("productEnquiryColour"),
+        selected_cut_grade: document.getElementById("productEnquiryCutGrade")
+      };
 
       function updateBudgetCurrency(useUsd){
         if (!budgetSelect) return;
@@ -1004,7 +1026,37 @@
         }
       }
 
+      function hydrateProductEnquiry(){
+        try{
+          const raw = sessionStorage.getItem("ladfoxRingEnquiryConfig");
+          if (!raw) return;
+
+          const data = JSON.parse(raw);
+          if (!data || typeof data !== "object") return;
+
+          Object.entries(productEnquiryFields).forEach(([key, field]) => {
+            if (field) {
+              field.value = data[key] || "";
+            }
+          });
+
+          if (shapeSelect && !shapeSelect.value && data.selected_shape) {
+            const target = Array.from(shapeSelect.options).find((option) => option.value === data.selected_shape);
+            if (target) shapeSelect.value = target.value;
+          }
+
+          const diamondSelect = document.getElementById("diamond");
+          if (diamondSelect && !diamondSelect.value && data.selected_diamond_type) {
+            const target = Array.from(diamondSelect.options).find((option) => option.value === data.selected_diamond_type);
+            if (target) diamondSelect.value = target.value;
+          }
+
+          updateElongatedField();
+        }catch(_){}
+      }
+
       updateBudgetCurrency(false);
+      hydrateProductEnquiry();
       updateElongatedField();
 
       if (shapeSelect) {

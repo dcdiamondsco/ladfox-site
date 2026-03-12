@@ -65,8 +65,7 @@ img{ display:block; max-width:100%; height:auto; }
   object-position:center center;
 }
 .media img[data-product-image]{
-  cursor:pointer;
-  touch-action:manipulation;
+  cursor:default;
 }
 .media img.is-flipped{
   transform:scaleX(-1);
