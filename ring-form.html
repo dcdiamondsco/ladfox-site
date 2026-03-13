@@ -719,14 +719,20 @@
 
       .shape-btn-media{
         inset:0;
-        padding:0;
-        background:
-          radial-gradient(circle at top, rgba(255,255,255,.08), transparent 32%),
-          linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+        padding:12px 12px 56px;
+        background:#ffffff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
       }
 
       .shape-btn img{
-        object-fit:cover;
+        width:auto;
+        height:auto;
+        max-width:calc(100% - 8px);
+        max-height:calc(100% - 8px);
+        object-fit:contain;
       }
 
       .shape-btn span{
