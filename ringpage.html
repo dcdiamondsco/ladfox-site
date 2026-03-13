@@ -110,10 +110,11 @@
       display:block;
     }
 
-    @media(max-width:560px){
+    @media(max-width:720px){
       .section[aria-label="Why choose Ladfox"]{ display:none; }
       #start > .copy > h2,
-      #start > .copy > .micro{ display:none; }
+      #start > .copy > .micro,
+      #start > .copy > .form-intro{ display:none; }
       #start > .copy{
         padding:0;
         background:transparent;
@@ -685,6 +686,168 @@
       background:#171717;
     }
 
+    .native-select{
+      position:absolute;
+      width:1px;
+      height:1px;
+      margin:-1px;
+      padding:0;
+      border:0;
+      overflow:hidden;
+      clip:rect(0 0 0 0);
+      clip-path:inset(50%);
+      white-space:nowrap;
+    }
+
+    .quick-select{
+      position:relative;
+      width:100%;
+    }
+
+    .quick-select__trigger{
+      width:100%;
+      min-height:50px;
+      padding:12px 44px 12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.28);
+      font-family:var(--ui-font);
+      font-size:.95rem;
+      font-weight:600;
+      text-align:left;
+      color:#fff;
+      background:#171717;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+      cursor:pointer;
+      position:relative;
+      transition:border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .quick-select__trigger::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:16px;
+      width:8px;
+      height:8px;
+      border-right:2px solid rgba(255,255,255,.82);
+      border-bottom:2px solid rgba(255,255,255,.82);
+      transform:translateY(-65%) rotate(45deg);
+      transition:transform .18s ease;
+      pointer-events:none;
+    }
+
+    .quick-select__trigger[data-has-value="false"]{
+      color:#b8b8b8;
+    }
+
+    .quick-select__trigger:hover,
+    .quick-select__trigger:focus-visible{
+      border-color:rgba(255,255,255,.42);
+      transform:translateY(-1px);
+      outline:none;
+    }
+
+    .quick-select.is-open .quick-select__trigger::after{
+      transform:translateY(-25%) rotate(-135deg);
+    }
+
+    .quick-select__menu{
+      position:fixed;
+      inset:0;
+      z-index:2200;
+      display:grid;
+      align-content:start;
+      justify-items:center;
+      gap:16px;
+      padding:calc(env(safe-area-inset-top, 0) + 16px) 16px calc(env(safe-area-inset-bottom, 0) + 24px);
+      background:rgba(0,0,0,.97);
+      backdrop-filter:blur(14px);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(14px);
+      transition:opacity .18s ease, transform .18s ease;
+      overflow:auto;
+      overscroll-behavior:contain;
+    }
+
+    .quick-select.is-open .quick-select__menu{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .quick-select__header,
+    .quick-select__list{
+      width:min(720px, 100%);
+    }
+
+    .quick-select__header{
+      position:sticky;
+      top:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:4px 0 12px;
+      background:linear-gradient(180deg, rgba(0,0,0,.97) 0%, rgba(0,0,0,.94) 78%, rgba(0,0,0,0) 100%);
+    }
+
+    .quick-select__title{
+      margin:0;
+      color:#fff;
+      font-family:var(--h-font);
+      font-size:clamp(1.4rem, 6vw, 2rem);
+      line-height:1.05;
+    }
+
+    .quick-select__close{
+      flex:0 0 auto;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font:700 1.4rem/1 var(--ui-font);
+      cursor:pointer;
+    }
+
+    .quick-select__list{
+      display:grid;
+      gap:10px;
+    }
+
+    .quick-select__option{
+      width:100%;
+      padding:16px 18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      text-align:left;
+      font:600 1rem/1.35 var(--ui-font);
+      cursor:pointer;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .quick-select__option:hover,
+    .quick-select__option:focus-visible{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.24);
+      transform:translateY(-1px);
+      outline:none;
+    }
+
+    .quick-select__option[aria-selected="true"]{
+      background:#fff;
+      border-color:#fff;
+      color:#111;
+    }
+
+    body.quick-select-open{
+      overflow:hidden;
+    }
+
     textarea{ min-height:100px; resize:vertical; }
 
     .form-row{
@@ -1117,9 +1280,12 @@
       const quickStartLocation = document.getElementById("quickStartLocation");
       const quickStartStatus = document.getElementById("quickStartStatus");
       const budgetSelect = document.getElementById("budget");
+      const diamondSelect = document.getElementById("diamond");
       const shapeSelect = document.getElementById("shape");
       const elongatedRow = document.getElementById("elongatedRow");
       const elongatedSelect = document.getElementById("elongated");
+      let openQuickSelect = null;
+      const quickSelectControllers = [];
       const productEnquiryFields = {
         product_name: document.getElementById("productEnquiryName"),
         selected_metal: document.getElementById("productEnquiryMetal"),
@@ -1133,12 +1299,150 @@
         selected_cut_grade: document.getElementById("productEnquiryCutGrade")
       };
 
+      function closeQuickSelect(focusTrigger = true){
+        if (!openQuickSelect) return;
+        openQuickSelect.wrap.classList.remove("is-open");
+        openQuickSelect.trigger.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("quick-select-open");
+        if (focusTrigger) openQuickSelect.trigger.focus();
+        openQuickSelect = null;
+      }
+
+      document.addEventListener("click", (event) => {
+        if (!openQuickSelect || !(event.target instanceof Node)) return;
+        if (openQuickSelect.wrap.contains(event.target)) return;
+        closeQuickSelect(false);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && openQuickSelect) {
+          closeQuickSelect();
+        }
+      });
+
+      function createQuickSelect(select){
+        const label = form.querySelector(`label[for="${select.id}"]`);
+        const placeholderOption = Array.from(select.options).find((option) => option.disabled);
+        const placeholder = placeholderOption ? placeholderOption.textContent.trim() : "Select";
+
+        select.dataset.isRequired = select.required ? "true" : "false";
+        select.required = false;
+        select.classList.add("native-select");
+
+        const wrap = document.createElement("div");
+        wrap.className = "quick-select";
+
+        const trigger = document.createElement("button");
+        trigger.type = "button";
+        trigger.className = "quick-select__trigger";
+        trigger.setAttribute("aria-haspopup", "listbox");
+        trigger.setAttribute("aria-expanded", "false");
+        trigger.setAttribute("aria-label", label ? label.textContent.trim() : select.name || "Select");
+
+        const triggerText = document.createElement("span");
+        trigger.appendChild(triggerText);
+
+        const menu = document.createElement("div");
+        menu.className = "quick-select__menu";
+
+        const header = document.createElement("div");
+        header.className = "quick-select__header";
+
+        const title = document.createElement("h3");
+        title.className = "quick-select__title";
+        title.textContent = label ? label.textContent.trim() : select.name || "Choose an option";
+
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "quick-select__close";
+        closeBtn.setAttribute("aria-label", "Close options");
+        closeBtn.textContent = "X";
+        closeBtn.addEventListener("click", () => closeQuickSelect());
+
+        header.appendChild(title);
+        header.appendChild(closeBtn);
+
+        const list = document.createElement("div");
+        list.className = "quick-select__list";
+        list.setAttribute("role", "listbox");
+
+        function refresh(){
+          const selectedOption = select.options[select.selectedIndex];
+          const selectedText = selectedOption && selectedOption.value ? selectedOption.textContent.trim() : "";
+          triggerText.textContent = selectedText || placeholder;
+          trigger.dataset.hasValue = selectedText ? "true" : "false";
+
+          Array.from(list.children).forEach((child) => {
+            if (child instanceof HTMLButtonElement) {
+              child.textContent = child.dataset.label || child.textContent;
+              child.setAttribute("aria-selected", String(child.dataset.value === select.value));
+            }
+          });
+        }
+
+        function rebuildOptions(){
+          list.innerHTML = "";
+          Array.from(select.options).forEach((option) => {
+            if (!option.value) return;
+
+            const optionBtn = document.createElement("button");
+            optionBtn.type = "button";
+            optionBtn.className = "quick-select__option";
+            optionBtn.dataset.value = option.value;
+            optionBtn.dataset.label = option.textContent.trim();
+            optionBtn.setAttribute("role", "option");
+            optionBtn.addEventListener("click", () => {
+              select.value = option.value;
+              select.dispatchEvent(new Event("change", { bubbles: true }));
+              closeQuickSelect(false);
+              trigger.focus();
+            });
+            list.appendChild(optionBtn);
+          });
+          refresh();
+        }
+
+        trigger.addEventListener("click", () => {
+          const isOpen = wrap.classList.contains("is-open");
+          if (openQuickSelect && openQuickSelect.wrap !== wrap) {
+            closeQuickSelect(false);
+          }
+          wrap.classList.toggle("is-open", !isOpen);
+          trigger.setAttribute("aria-expanded", String(!isOpen));
+          openQuickSelect = !isOpen ? { wrap, trigger } : null;
+          document.body.classList.toggle("quick-select-open", !isOpen);
+        });
+
+        select.addEventListener("change", () => {
+          refresh();
+          if (quickStartStatus) {
+            quickStartStatus.textContent = "";
+          }
+        });
+
+        menu.appendChild(header);
+        menu.appendChild(list);
+        wrap.appendChild(trigger);
+        wrap.appendChild(menu);
+        select.insertAdjacentElement("afterend", wrap);
+
+        rebuildOptions();
+
+        return { select, wrap, trigger, refresh, rebuildOptions };
+      }
+
+      function refreshQuickSelect(selectId){
+        const controller = quickSelectControllers.find((item) => item.select.id === selectId);
+        if (controller) controller.rebuildOptions();
+      }
+
       function updateBudgetCurrency(useUsd){
         if (!budgetSelect) return;
         Array.from(budgetSelect.options).forEach((option) => {
           if (!option.dataset.gbp || !option.dataset.usd) return;
           option.textContent = useUsd ? option.dataset.usd : option.dataset.gbp;
         });
+        refreshQuickSelect("budget");
       }
 
       function updateElongatedField(){
@@ -1146,10 +1450,11 @@
 
         const showElongated = ["Radiant", "Cushion", "Marquise"].includes(shapeSelect.value);
         elongatedRow.hidden = !showElongated;
-        elongatedSelect.required = showElongated;
+        elongatedSelect.dataset.isRequired = showElongated ? "true" : "false";
 
         if (!showElongated) {
           elongatedSelect.value = "";
+          elongatedSelect.dispatchEvent(new Event("change", { bubbles: true }));
         }
       }
 
@@ -1172,7 +1477,6 @@
             if (target) shapeSelect.value = target.value;
           }
 
-          const diamondSelect = document.getElementById("diamond");
           if (diamondSelect && !diamondSelect.value && data.selected_diamond_type) {
             const target = Array.from(diamondSelect.options).find((option) => option.value === data.selected_diamond_type);
             if (target) diamondSelect.value = target.value;
@@ -1182,6 +1486,10 @@
         }catch(_){}
       }
 
+      [diamondSelect, shapeSelect, elongatedSelect, budgetSelect]
+        .filter(Boolean)
+        .forEach((select) => quickSelectControllers.push(createQuickSelect(select)));
+
       updateBudgetCurrency(false);
       hydrateProductEnquiry();
       updateElongatedField();
@@ -1189,6 +1497,12 @@
       if (shapeSelect) {
         shapeSelect.addEventListener("change", updateElongatedField);
       }
+
+      form.addEventListener("input", () => {
+        if (quickStartStatus) {
+          quickStartStatus.textContent = "";
+        }
+      });
 
       if (quickStartLocation) {
         fetch("https://ipapi.co/json/")
@@ -1203,7 +1517,29 @@
 
       let isSubmitting = false;
 
-      form.addEventListener("submit", function(){
+      form.addEventListener("submit", function(event){
+        const invalidSelect = [diamondSelect, shapeSelect, elongatedSelect, budgetSelect]
+          .filter(Boolean)
+          .find((select) => select.dataset.isRequired === "true" && !select.value);
+
+        if (invalidSelect) {
+          event.preventDefault();
+          if (quickStartStatus) {
+            const label = form.querySelector(`label[for="${invalidSelect.id}"]`);
+            quickStartStatus.textContent = `Please choose ${label ? label.textContent.trim().toLowerCase() : "an option"}.`;
+          }
+          const controller = quickSelectControllers.find((item) => item.select === invalidSelect);
+          if (controller) {
+            controller.trigger.click();
+          }
+          return;
+        }
+
+        if (!form.reportValidity()) {
+          event.preventDefault();
+          return;
+        }
+
         if (isSubmitting) return;
         isSubmitting = true;
         if (quickStartStatus) {

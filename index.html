@@ -112,14 +112,33 @@
       scroll-behavior:smooth;
       background:#000;
       overscroll-behavior-y:none;
+      min-height:100%;
     }
 
     body{
       margin:0;
+      min-height:100svh;
       color:var(--text);
       font-family:var(--body);
       background:#000;
       overflow-x:hidden;
+      position:relative;
+      isolation:isolate;
+    }
+
+    @supports (min-height: 100dvh){
+      body{
+        min-height:100dvh;
+      }
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:#000;
+      pointer-events:none;
+      z-index:-1;
     }
 
     main{ display:block; }
