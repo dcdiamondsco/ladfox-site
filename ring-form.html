@@ -514,8 +514,10 @@
       place-items:center;
       padding:14px;
       background:#ffffff;
+      z-index:1;
     }
     .shape-btn img{
+      display:block;
       width:100%;
       height:100%;
       object-fit:contain;
@@ -701,6 +703,15 @@
       .input-area{ padding: 0 20px 24px; }
       .choice-grid{ --shape-columns:2; }
       .shape-btn{ min-height:132px; }
+      .shape-btn-media{
+        padding:10px;
+      }
+      .shape-btn img{
+        width:auto;
+        height:auto;
+        max-width:100%;
+        max-height:100%;
+      }
       .budget-row{ grid-template-columns:1fr; }
       .budget-row select, .inline-next, .hint-btn{ width:100%; }
     }
