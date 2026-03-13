@@ -702,15 +702,29 @@
       .question{ padding: 28px 20px 12px; font-size:clamp(1.24rem, 6vw, 1.62rem); }
       .input-area{ padding: 0 20px 24px; }
       .choice-grid{ --shape-columns:2; }
-      .shape-btn{ min-height:132px; }
+      .shape-btn{
+        min-height:132px;
+        grid-template-rows:minmax(88px, 1fr) auto;
+        align-items:stretch;
+        background:#ffffff;
+      }
       .shape-btn-media{
+        position:relative;
+        inset:auto;
+        min-height:88px;
         padding:10px;
+        z-index:auto;
       }
       .shape-btn img{
-        width:auto;
-        height:auto;
-        max-width:100%;
-        max-height:100%;
+        display:block;
+        width:100%;
+        height:100%;
+        max-width:none;
+        max-height:none;
+        object-fit:contain;
+      }
+      .shape-btn span{
+        min-height:42px;
       }
       .budget-row{ grid-template-columns:1fr; }
       .budget-row select, .inline-next, .hint-btn{ width:100%; }
