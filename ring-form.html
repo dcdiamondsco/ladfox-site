@@ -476,10 +476,6 @@
       grid-template-columns:repeat(var(--shape-columns), minmax(0, 1fr));
       gap:12px;
     }
-    .choice-grid--compact{
-      margin-top:12px;
-      align-items:start;
-    }
     .shape-btn{
       position:relative;
       display:grid;
@@ -537,29 +533,16 @@
       width:100%;
       margin-top:auto;
       padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
       font-size:.92rem;
       line-height:1.2;
       text-align:center;
       pointer-events:none;
       color:#0b0b0b;
       background:#ffffff;
-      border-top:1px solid rgba(0,0,0,.08);
-    }
-    .shape-btn--compact{
-      align-self:start;
-      min-height:auto;
-      padding:12px 14px;
-      align-items:center;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        rgba(255,255,255,.03);
-    }
-    .shape-btn--compact::after{
-      display:none;
-    }
-    .shape-btn--compact span{
-      padding:0;
-      text-shadow:none;
     }
     .range-wrap{
       display:grid;
@@ -720,6 +703,40 @@
       .shape-btn{ min-height:132px; }
       .budget-row{ grid-template-columns:1fr; }
       .budget-row select, .inline-next, .hint-btn{ width:100%; }
+    }
+
+    @media (min-width: 641px) {
+      .shape-btn::after{
+        display:block;
+        content:"";
+        position:absolute;
+        inset:auto 0 0;
+        height:48%;
+        background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 20%, rgba(0,0,0,.86) 100%);
+        pointer-events:none;
+        z-index:1;
+      }
+
+      .shape-btn-media{
+        inset:0;
+        padding:0;
+        background:
+          radial-gradient(circle at top, rgba(255,255,255,.08), transparent 32%),
+          linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+      }
+
+      .shape-btn img{
+        object-fit:cover;
+      }
+
+      .shape-btn span{
+        display:block;
+        min-height:0;
+        padding:16px 14px 14px;
+        color:var(--text);
+        background:transparent;
+        text-shadow:0 8px 24px rgba(0,0,0,.72);
+      }
     }
   </style>
 
@@ -1313,46 +1330,51 @@
         const shapeWrap = document.createElement('div');
         const grid = document.createElement('div');
         grid.className = 'choice-grid';
-        const compactGrid = document.createElement('div');
-        compactGrid.className = 'choice-grid choice-grid--compact';
+        const compactActions = document.createElement('div');
+        compactActions.className = 'inline-actions';
 
         step.options.forEach(opt => {
+          const imagePath = shapeImageMap[opt];
+          if(!imagePath){
+            const actionBtn = document.createElement('button');
+            actionBtn.type = 'button';
+            actionBtn.className = 'hint-btn';
+            actionBtn.textContent = opt;
+            actionBtn.addEventListener('click', () => commitAnswer(opt));
+            compactActions.appendChild(actionBtn);
+            return;
+          }
+
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'shape-btn';
           btn.setAttribute('aria-pressed', 'false');
           btn.setAttribute('aria-label', opt);
 
-          const imagePath = shapeImageMap[opt];
-          if(imagePath){
-            const media = document.createElement('div');
-            media.className = 'shape-btn-media';
-            const image = document.createElement('img');
-            image.src = imagePath;
-            image.alt = '';
-            image.loading = 'eager';
-            image.decoding = 'async';
-            image.onerror = () => {
-              image.onerror = null;
-              image.src = imagePath.replace('Images/diamond shapes/', 'Images/diamond%20shapes/');
-            };
-            media.appendChild(image);
-            btn.appendChild(media);
-          } else {
-            btn.classList.add('shape-btn--compact');
-          }
+          const media = document.createElement('div');
+          media.className = 'shape-btn-media';
+          const image = document.createElement('img');
+          image.src = imagePath;
+          image.alt = '';
+          image.loading = 'eager';
+          image.decoding = 'async';
+          image.onerror = () => {
+            image.onerror = null;
+            image.src = imagePath.replace('Images/diamond shapes/', 'Images/diamond%20shapes/');
+          };
+          media.appendChild(image);
+          btn.appendChild(media);
 
           const label = document.createElement('span');
           label.textContent = opt;
           btn.appendChild(label);
 
           btn.addEventListener('click', () => selectChoice(opt, btn, shapeWrap));
-          if(imagePath) grid.appendChild(btn);
-          else compactGrid.appendChild(btn);
+          grid.appendChild(btn);
         });
 
         shapeWrap.appendChild(grid);
-        if(compactGrid.children.length) shapeWrap.appendChild(compactGrid);
+        if(compactActions.children.length) shapeWrap.appendChild(compactActions);
         inputArea.appendChild(shapeWrap);
 
       }
