@@ -44,10 +44,16 @@
       --shadow:0 34px 90px rgba(0,0,0,.44);
     }
     html, body { min-height: 100svh; overflow-x: hidden; }
+    html{
+      background:#000;
+      overscroll-behavior-y:none;
+    }
     @supports not (height: 100svh) { html, body { min-height: 100dvh; } }
     body {
       font-family: var(--body);
       margin: 0;
+      min-height:100svh;
+      background-color:#000;
       background:
         radial-gradient(circle at top, rgba(255,255,255,.08), transparent 30%),
         radial-gradient(circle at 20% 80%, rgba(255,255,255,.06), transparent 28%),
@@ -55,6 +61,23 @@
       color: var(--text);
       display: flex;
       flex-direction: column;
+      position:relative;
+      isolation:isolate;
+    }
+
+    @supports (min-height: 100dvh){
+      body{
+        min-height:100dvh;
+      }
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:#000;
+      pointer-events:none;
+      z-index:0;
     }
 
     body.custom-select-open{
@@ -68,6 +91,7 @@
       place-items: center;
       padding: 40px 24px 30px;
       position: relative;
+      z-index:1;
     }
 
     .site-footer{
@@ -75,7 +99,7 @@
       border-top:1px solid rgba(255,255,255,.08);
       text-align:center;
       position:relative;
-      z-index:2;
+      z-index:1;
       background:#000;
     }
 
@@ -447,63 +471,95 @@
 
     .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     .choice-grid{
+      --shape-columns:3;
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(var(--shape-columns), minmax(0, 1fr));
       gap:12px;
     }
+    .choice-grid--compact{
+      margin-top:12px;
+    }
     .shape-btn{
+      position:relative;
       display:grid;
-      gap:12px;
-      justify-items:center;
+      align-items:end;
       min-height:148px;
-      padding:18px 12px 14px;
+      padding:0;
       border:1px solid rgba(255,255,255,.12);
       border-radius:26px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        rgba(255,255,255,.03);
+      background:#0d0d0d;
       color:var(--text);
       cursor:pointer;
       transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
       font:inherit;
       font-weight:700;
       box-shadow:0 10px 24px rgba(0,0,0,.14);
+      overflow:hidden;
     }
     .shape-btn:hover,
     .shape-btn:focus-visible{
       transform:translateY(-2px);
       border-color:rgba(255,255,255,.22);
-      background:rgba(255,255,255,.08);
       box-shadow:0 18px 30px rgba(0,0,0,.22);
       outline:none;
     }
     .shape-btn[aria-pressed="true"]{
-      background:linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%);
-      color:#0b0b0b;
       border-color:#ffffff;
       box-shadow:0 20px 44px rgba(0,0,0,.28), 0 0 0 1px rgba(255,255,255,.18);
     }
+    .shape-btn::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0;
+      height:48%;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 20%, rgba(0,0,0,.86) 100%);
+      pointer-events:none;
+      z-index:1;
+    }
+    .shape-btn-media{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    }
     .shape-btn img{
-      width:62px;
-      height:62px;
-      padding:10px;
-      border-radius:18px;
-      background:#ffffff;
-      object-fit:contain;
+      width:100%;
+      height:100%;
+      object-fit:cover;
       transition:transform .18s ease, opacity .18s ease;
       pointer-events:none;
-      opacity:.96;
-      box-shadow:0 10px 22px rgba(0,0,0,.14);
+      opacity:.92;
     }
     .shape-btn[aria-pressed="true"] img{
-      transform:scale(1.04);
+      transform:scale(1.03);
       opacity:1;
     }
     .shape-btn span{
+      position:relative;
+      z-index:2;
+      width:100%;
+      padding:16px 14px 14px;
       font-size:.92rem;
       line-height:1.2;
       text-align:center;
       pointer-events:none;
+      text-shadow:0 8px 24px rgba(0,0,0,.72);
+    }
+    .shape-btn--compact{
+      min-height:auto;
+      padding:12px 14px;
+      align-items:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        rgba(255,255,255,.03);
+    }
+    .shape-btn--compact::after{
+      display:none;
+    }
+    .shape-btn--compact span{
+      padding:0;
+      text-shadow:none;
     }
     .range-wrap{
       display:grid;
@@ -660,9 +716,8 @@
       .card, .thank-you{ border-radius: 28px; }
       .question{ padding: 28px 20px 12px; font-size:clamp(1.24rem, 6vw, 1.62rem); }
       .input-area{ padding: 0 20px 24px; }
-      .choice-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-      .shape-btn{ min-height:132px; padding:16px 10px 12px; }
-      .shape-btn img{ width:56px; height:56px; }
+      .choice-grid{ --shape-columns:2; }
+      .shape-btn{ min-height:132px; }
       .budget-row{ grid-template-columns:1fr; }
       .budget-row select, .inline-next, .hint-btn{ width:100%; }
     }
@@ -1136,7 +1191,7 @@
     window.addEventListener('beforeunload', () => { sendPartialOnce(); });
 
     function selectChoice(value, btn, row){
-      Array.from(row.children).forEach(el => el.setAttribute('aria-pressed','false'));
+      Array.from(row.querySelectorAll('[aria-pressed]')).forEach(el => el.setAttribute('aria-pressed','false'));
       btn.setAttribute('aria-pressed','true');
       commitAnswer(value);
     }
@@ -1255,8 +1310,11 @@
       }
 
       if(step.type === 'shape-grid'){
+        const shapeWrap = document.createElement('div');
         const grid = document.createElement('div');
         grid.className = 'choice-grid';
+        const compactGrid = document.createElement('div');
+        compactGrid.className = 'choice-grid choice-grid--compact';
 
         step.options.forEach(opt => {
           const btn = document.createElement('button');
@@ -1267,6 +1325,8 @@
 
           const imagePath = shapeImageMap[opt];
           if(imagePath){
+            const media = document.createElement('div');
+            media.className = 'shape-btn-media';
             const image = document.createElement('img');
             image.src = imagePath;
             image.alt = '';
@@ -1276,18 +1336,24 @@
               image.onerror = null;
               image.src = imagePath.replace('Images/diamond shapes/', 'Images/diamond%20shapes/');
             };
-            btn.appendChild(image);
+            media.appendChild(image);
+            btn.appendChild(media);
+          } else {
+            btn.classList.add('shape-btn--compact');
           }
 
           const label = document.createElement('span');
           label.textContent = opt;
           btn.appendChild(label);
 
-          btn.addEventListener('click', () => selectChoice(opt, btn, grid));
-          grid.appendChild(btn);
+          btn.addEventListener('click', () => selectChoice(opt, btn, shapeWrap));
+          if(imagePath) grid.appendChild(btn);
+          else compactGrid.appendChild(btn);
         });
 
-        inputArea.appendChild(grid);
+        shapeWrap.appendChild(grid);
+        if(compactGrid.children.length) shapeWrap.appendChild(compactGrid);
+        inputArea.appendChild(shapeWrap);
 
       }
 

@@ -67,6 +67,7 @@
       min-height:100dvh;
       color:var(--text);
       font-family:var(--body);
+      overflow-x:hidden;
       background:
         radial-gradient(circle at top left, rgba(255,255,255,.06), transparent 28%),
         linear-gradient(180deg, #060606 0%, #000000 100%);
@@ -619,9 +620,23 @@
     }
 
     @media (max-width:720px){
+      .shell{
+        width:min(calc(100% - 24px), var(--max));
+      }
+
       .brand img{
         width:min(244px, 70vw);
       }
+
+      .section-head h2{
+        white-space:normal;
+      }
+
+      .card-media{
+        min-height:auto;
+        aspect-ratio:1 / 1;
+      }
+
       .panel,
       .hero-visual,
       .card,
