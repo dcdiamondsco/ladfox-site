@@ -28,53 +28,45 @@
 
   <style>
     :root {
-      --headerH: 104px;
       --ringVW: 8vw;
       --ringMax: 110px;
-      --bg:#040404;
+      --bg:#050505;
       --surface:rgba(12,12,12,.9);
       --surface-strong:rgba(255,255,255,.06);
       --line:rgba(255,255,255,.14);
-      --text:#fff;
+      --line-strong:rgba(255,255,255,.24);
+      --text:#ffffff;
       --muted:rgba(255,255,255,.68);
       --accent:#f5f5f5;
+      --accent-strong:#ffffff;
       --heading:"Syne", sans-serif;
       --body:"Manrope", sans-serif;
-      --shadow:0 28px 70px rgba(0,0,0,.36);
+      --shadow:0 34px 90px rgba(0,0,0,.44);
     }
     html, body { min-height: 100svh; overflow-x: hidden; }
     @supports not (height: 100svh) { html, body { min-height: 100dvh; } }
     body {
       font-family: var(--body);
       margin: 0;
-      background:#000;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,.06), transparent 28%),
+        linear-gradient(180deg, #090909 0%, #020202 52%, #000 100%);
       color: var(--text);
       display: flex;
       flex-direction: column;
     }
 
-    header {
-      text-align: center;
-      padding: 18px 20px 12px;
-      background: rgba(0,0,0,.78);
-      backdrop-filter: blur(14px);
-      position: relative;
-      z-index: 2;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    body.custom-select-open{
+      overflow:hidden;
     }
-    header a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    header img { width: min(220px, 48vw); display: block; margin: 0 auto; height: auto; }
 
     .form-section {
       flex: 1;
-      min-height: calc(100svh - var(--headerH) - 96px);
+      min-height: calc(100svh - 96px);
       display: grid;
       place-items: center;
-      padding: 24px;
+      padding: 40px 24px 30px;
       position: relative;
     }
 
@@ -107,61 +99,129 @@
       inset: 0;
       background:
         radial-gradient(circle at center, rgba(255,255,255,.12), transparent 42%),
-        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.5) 100%);
+        linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.5) 58%, rgba(0,0,0,.76) 100%);
     }
     .ring-float { position: absolute; width: clamp(72px, var(--ringVW), var(--ringMax)); aspect-ratio: 1 / 1; padding: 6px; border-radius: 999px; background: rgba(255,255,255,.94); border: 1px solid rgba(16,24,40,.06); box-shadow: 0 18px 36px rgba(0,0,0,.18), 0 2px 6px rgba(16,24,40,.06); opacity: 0; will-change: transform, opacity; animation: fadeCycle var(--dur, 28s) ease-in-out var(--delay, 0s) infinite, drift var(--dur, 28s) linear var(--delay, 0s) infinite alternate; transform: translateZ(0); }
     @keyframes fadeCycle { 0%{opacity:0;} 12%{opacity:.95;} 60%{opacity:.95;} 72%{opacity:0;} 100%{opacity:0;} }
     @keyframes drift { from { transform: translate(0,0) rotate(0.5deg) scale(1); } to { transform: translate(var(--dx, 80px), var(--dy, 80px)) rotate(2deg) scale(1.02); } }
 
-    .shell { position: relative; z-index: 1; width: min(840px, 100%); display: grid; place-items: center; }
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(960px, 100%);
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+    }
+    .form-intro{
+      width:min(760px, 100%);
+      display:grid;
+      gap:10px;
+      justify-items:center;
+      text-align:center;
+    }
+    .form-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:var(--accent);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+    }
+    .form-kicker::before,
+    .form-kicker::after{
+      content:"";
+      width:24px;
+      height:1px;
+      background:rgba(255,255,255,.28);
+    }
+    .form-intro p{
+      margin:0;
+      max-width:56ch;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.7;
+    }
     .card {
       width: 100%;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
         var(--surface);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(18px);
       border: 1px solid var(--line);
-      border-radius: 28px;
+      border-radius: 34px;
       box-shadow: var(--shadow);
-      overflow: hidden;
+      overflow: visible;
       display: flex;
       flex-direction: column;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 24%);
+      opacity:.9;
     }
 
-    .progress { height: 4px; background: rgba(255,255,255,.08); }
-    .progress > div { height: 4px; width: 0; background: linear-gradient(90deg, #ffffff 0%, #c7d0d8 100%); transition: width .25s ease; }
+    .progress { height: 6px; background: rgba(255,255,255,.08); }
+    .progress > div {
+      height: 6px;
+      width: 0;
+      background: linear-gradient(90deg, #ffffff 0%, #d7d7d7 52%, #9d9d9d 100%);
+      box-shadow:0 0 22px rgba(255,255,255,.14);
+      transition: width .25s ease;
+    }
 
     .qa { display: grid; grid-template-rows: auto auto 1fr; min-height: 0; }
-    .qa.centered { min-height: 56vh; align-content: center; justify-items: center; }
-    .qa.centered .question { font-size: 1.35rem; }
+    .qa.centered { min-height: 58vh; align-content: center; justify-items: center; }
+    .qa.centered .question { font-size: 1.4rem; }
     .qa.centered .input-area { width: min(520px, 92%); }
 
     .question {
-      padding: 28px 28px 10px;
+      padding: 38px 38px 14px;
       font-family: var(--heading);
       font-weight: 700;
       text-align: center;
-      font-size: clamp(1.2rem, 2.1vw, 1.8rem);
-      line-height: 1.12;
-      letter-spacing: -.01em;
+      font-size: clamp(1.38rem, 2.2vw, 2.15rem);
+      line-height: 1.06;
+      letter-spacing: -.02em;
+      text-wrap: balance;
     }
-    .input-area { padding: 0 28px 28px; display: grid; gap: 14px; align-content: start; }
+    .input-area {
+      padding: 0 38px 38px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      width:100%;
+      box-sizing:border-box;
+    }
 
     .input-area input, .input-area select, .input-area textarea {
       width: 100%;
-      padding: 15px 16px;
+      padding: 16px 18px;
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
+      border-radius: 22px;
       font-size: 1rem;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
-        rgba(7,7,7,.88);
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        rgba(10,10,10,.9);
       color: var(--text);
       text-align: left;
       box-sizing: border-box;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.04),
-        0 10px 28px rgba(0,0,0,.18);
+        0 14px 34px rgba(0,0,0,.18);
       font-family: var(--body);
       outline: none;
       transition: border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
@@ -172,38 +232,218 @@
       -moz-appearance:none;
       min-height:56px;
       padding-right:56px;
-      border-color: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.12);
       background-image:
-        radial-gradient(circle at center, rgba(255,255,255,.08), rgba(255,255,255,0) 68%),
-        linear-gradient(45deg, transparent 50%, rgba(255,255,255,.92) 50%),
-        linear-gradient(135deg, rgba(255,255,255,.92) 50%, transparent 50%);
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        radial-gradient(circle at center, rgba(255,255,255,.06), rgba(255,255,255,0) 68%),
+        linear-gradient(45deg, transparent 50%, rgba(255,255,255,.86) 50%),
+        linear-gradient(135deg, rgba(255,255,255,.86) 50%, transparent 50%);
       background-position:
+        0 0,
         calc(100% - 26px) 50%,
         calc(100% - 22px) calc(50% - 3px),
         calc(100% - 16px) calc(50% - 3px);
-      background-size:30px 30px, 6px 6px, 6px 6px;
+      background-size:100% 100%, 30px 30px, 6px 6px, 6px 6px;
       background-repeat:no-repeat;
+      background-color: rgba(12,12,12,.96);
+      color:rgba(255,255,255,.94);
       color-scheme:dark;
       font-weight:600;
       letter-spacing:.01em;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 14px 30px rgba(0,0,0,.22);
+      cursor:pointer;
+    }
+    .input-area select:hover{
+      border-color: rgba(255,255,255,.2);
+      background-color: rgba(16,16,16,.98);
     }
     .input-area select option{
-      background:#0d0d0d;
-      color:#fff;
+      background:#101010;
+      color:rgba(255,255,255,.94);
     }
     .input-area input:focus, .input-area select:focus, .input-area textarea:focus{
-      border-color: rgba(255,255,255,.24);
+      border-color: rgba(255,255,255,.26);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)),
-        rgba(10,10,10,.94);
+        linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.04)),
+        rgba(10,10,10,.96);
       transform: translateY(-1px);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.06),
-        0 0 0 1px rgba(255,255,255,.06),
-        0 14px 34px rgba(0,0,0,.24);
+        0 0 0 1px rgba(255,255,255,.08),
+        0 16px 36px rgba(0,0,0,.28);
     }
 
     .input-area textarea { min-height: 120px; resize: vertical; }
+
+    .custom-select{
+      position:relative;
+      width:100%;
+    }
+
+    .custom-select-trigger{
+      width:100%;
+      min-height:56px;
+      padding:16px 52px 16px 18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        rgba(12,12,12,.96);
+      color:rgba(255,255,255,.94);
+      text-align:left;
+      font:600 1rem var(--body);
+      letter-spacing:.01em;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 14px 30px rgba(0,0,0,.22);
+      cursor:pointer;
+      transition:border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+      position:relative;
+    }
+
+    .custom-select-trigger::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:18px;
+      width:10px;
+      height:10px;
+      border-right:2px solid rgba(255,255,255,.75);
+      border-bottom:2px solid rgba(255,255,255,.75);
+      transform:translateY(-65%) rotate(45deg);
+      transition:transform .2s ease;
+      pointer-events:none;
+    }
+
+    .custom-select.is-open .custom-select-trigger::after{
+      transform:translateY(-25%) rotate(-135deg);
+    }
+
+    .custom-select-trigger:hover,
+    .custom-select-trigger:focus-visible{
+      border-color:rgba(255,255,255,.2);
+      background-color:rgba(16,16,16,.98);
+      outline:none;
+    }
+
+    .custom-select.is-open .custom-select-trigger,
+    .custom-select-trigger[data-has-value="true"]:focus-visible{
+      border-color: rgba(255,255,255,.26);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 0 0 1px rgba(255,255,255,.08),
+        0 16px 36px rgba(0,0,0,.28);
+    }
+
+    .custom-select-trigger[data-has-value="false"]{
+      color:rgba(255,255,255,.54);
+    }
+
+    .custom-select-menu{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:grid;
+      justify-items:center;
+      align-content:start;
+      gap:18px;
+      padding:28px 20px 32px;
+      background:rgba(4,4,4,.985);
+      backdrop-filter:blur(16px);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(18px);
+      transition:opacity .18s ease, transform .18s ease;
+      overflow:auto;
+      overscroll-behavior:contain;
+    }
+
+    .custom-select.is-open .custom-select-menu{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .custom-select-option{
+      width:100%;
+      padding:16px 18px;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      text-align:left;
+      font:600 1rem var(--body);
+      cursor:pointer;
+      transition:background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .custom-select-option:hover,
+    .custom-select-option:focus-visible{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.12);
+      transform:translateY(-1px);
+      outline:none;
+    }
+
+    .custom-select-option[aria-selected="true"]{
+      background:linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%);
+      color:#0b0b0b;
+      border-color:#ffffff;
+    }
+
+    .custom-select-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:4px;
+      width:min(720px, 100%);
+      position:sticky;
+      top:0;
+      padding-top:4px;
+      background:linear-gradient(180deg, rgba(4,4,4,.985) 0%, rgba(4,4,4,.94) 78%, rgba(4,4,4,0) 100%);
+    }
+
+    .custom-select-title{
+      margin:0;
+      font-family:var(--heading);
+      font-size:clamp(1.28rem, 3.5vw, 2rem);
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color:#fff;
+    }
+
+    .custom-select-close{
+      flex:0 0 auto;
+      min-width:44px;
+      min-height:44px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font:700 1.1rem/1 var(--body);
+      cursor:pointer;
+    }
+
+    .custom-select-list{
+      display:grid;
+      gap:10px;
+      width:min(720px, 100%);
+      padding-bottom:16px;
+    }
+
+    .input-area input[type="number"]{
+      -moz-appearance:textfield;
+      appearance:textfield;
+    }
+
+    .input-area input[type="number"]::-webkit-outer-spin-button,
+    .input-area input[type="number"]::-webkit-inner-spin-button{
+      -webkit-appearance:none;
+      margin:0;
+    }
 
     .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     .choice-grid{
@@ -213,43 +453,54 @@
     }
     .shape-btn{
       display:grid;
-      gap:10px;
+      gap:12px;
       justify-items:center;
-      padding:14px 10px 12px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:22px;
-      background:rgba(255,255,255,.03);
-      color:#fff;
+      min-height:148px;
+      padding:18px 12px 14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        rgba(255,255,255,.03);
+      color:var(--text);
       cursor:pointer;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
       font:inherit;
       font-weight:700;
+      box-shadow:0 10px 24px rgba(0,0,0,.14);
     }
     .shape-btn:hover,
     .shape-btn:focus-visible{
-      transform:translateY(-1px);
-      border-color:rgba(255,255,255,.28);
-      background:rgba(255,255,255,.06);
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.08);
+      box-shadow:0 18px 30px rgba(0,0,0,.22);
       outline:none;
     }
     .shape-btn[aria-pressed="true"]{
-      background:#fff;
+      background:linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%);
       color:#0b0b0b;
-      border-color:#fff;
+      border-color:#ffffff;
+      box-shadow:0 20px 44px rgba(0,0,0,.28), 0 0 0 1px rgba(255,255,255,.18);
     }
     .shape-btn img{
-      width:54px;
-      height:54px;
+      width:62px;
+      height:62px;
+      padding:10px;
+      border-radius:18px;
+      background:#ffffff;
       object-fit:contain;
-      filter:brightness(0) invert(1);
-      transition:filter .18s ease;
+      transition:transform .18s ease, opacity .18s ease;
       pointer-events:none;
+      opacity:.96;
+      box-shadow:0 10px 22px rgba(0,0,0,.14);
     }
     .shape-btn[aria-pressed="true"] img{
-      filter:none;
+      transform:scale(1.04);
+      opacity:1;
     }
     .shape-btn span{
-      font-size:.9rem;
+      font-size:.92rem;
       line-height:1.2;
       text-align:center;
       pointer-events:none;
@@ -261,14 +512,15 @@
     .range-readout{
       display:grid;
       place-items:center;
-      min-height:56px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:18px;
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      font-size:1.05rem;
+      min-height:62px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-size:1.1rem;
       font-weight:800;
-      letter-spacing:.01em;
+      letter-spacing:.02em;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
     }
     .range-wrap input[type="range"]{
       padding:0;
@@ -282,33 +534,33 @@
       transform:none;
     }
     .range-wrap input[type="range"]::-webkit-slider-runnable-track{
-      height:6px;
+      height:8px;
       border-radius:999px;
-      background:rgba(255,255,255,.18);
+      background:linear-gradient(90deg, rgba(255,255,255,.16), rgba(255,255,255,.32));
     }
     .range-wrap input[type="range"]::-webkit-slider-thumb{
       -webkit-appearance:none;
       appearance:none;
-      width:20px;
-      height:20px;
-      margin-top:-7px;
+      width:24px;
+      height:24px;
+      margin-top:-8px;
       border-radius:999px;
-      background:#fff;
+      background:linear-gradient(180deg, #ffffff, #d9d9d9);
       border:0;
-      box-shadow:0 6px 14px rgba(0,0,0,.24);
+      box-shadow:0 8px 18px rgba(0,0,0,.26);
     }
     .range-wrap input[type="range"]::-moz-range-track{
-      height:6px;
+      height:8px;
       border-radius:999px;
-      background:rgba(255,255,255,.18);
+      background:linear-gradient(90deg, rgba(255,255,255,.16), rgba(255,255,255,.32));
     }
     .range-wrap input[type="range"]::-moz-range-thumb{
-      width:20px;
-      height:20px;
+      width:24px;
+      height:24px;
       border:none;
       border-radius:999px;
-      background:#fff;
-      box-shadow:0 6px 14px rgba(0,0,0,.24);
+      background:linear-gradient(180deg, #ffffff, #d9d9d9);
+      box-shadow:0 8px 18px rgba(0,0,0,.26);
     }
     .range-scale{
       display:flex;
@@ -318,55 +570,76 @@
       font-size:.82rem;
     }
     .pill {
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.03);
-      color:#fff;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color:var(--text);
       border-radius: 999px;
-      padding: 11px 16px;
+      padding: 12px 17px;
       cursor: pointer;
       font-weight: 700;
       font-size: .95rem;
       font-family: var(--body);
-      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 10px 22px rgba(0,0,0,.12);
     }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.28); }
+    .pill:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      box-shadow:0 14px 24px rgba(0,0,0,.18);
+    }
     .pill[aria-pressed="true"]{
-      background:#fff;
+      background:linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%);
       color:#0b0b0b;
-      border-color:#fff;
+      border-color:#ffffff;
     }
 
     .unit-input { display:grid; grid-template-columns: 1fr auto; gap: 10px; align-items:center; }
-    .unit-input .unit { padding: 14px 16px; border:1px solid rgba(255,255,255,.16); border-radius:18px; background:rgba(255,255,255,.04); color:#fff; min-width: 78px; text-align:center; }
+    .unit-input .unit { padding: 14px 16px; border:1px solid rgba(255,255,255,.12); border-radius:22px; background:rgba(255,255,255,.05); color:var(--text); min-width: 78px; text-align:center; }
 
-    .budget-row { display:grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items:center; }
-    .budget-row select { min-width: 86px; }
+    .budget-row { display:grid; grid-template-columns: minmax(92px, auto) 1fr auto; gap: 12px; align-items:center; }
+    .budget-row select { min-width: 92px; }
 
     .inline-next {
-      background:#fff;
+      background:linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%);
       color:#0b0b0b;
-      border:1px solid #fff;
-      padding:13px 18px;
-      border-radius:18px;
+      border:1px solid rgba(255,255,255,.9);
+      padding:14px 20px;
+      border-radius:20px;
       cursor:pointer;
       justify-self:center;
       width: min(220px, 100%);
       font-weight:800;
       font-family: var(--body);
+      box-shadow:0 18px 34px rgba(0,0,0,.24);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
-    .inline-next[disabled]{ opacity:.5; cursor:not-allowed; }
+    .inline-next:hover,
+    .inline-next:focus-visible{
+      transform:translateY(-2px);
+      box-shadow:0 22px 40px rgba(0,0,0,.28);
+      outline:none;
+    }
+    .inline-next[disabled]{ opacity:.5; cursor:not-allowed; box-shadow:none; transform:none; }
 
     .inline-actions { display:grid; gap:10px; justify-items:center; margin-top: 6px; }
     .hint-btn {
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.16);
-      padding:12px 16px;
-      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      padding:13px 18px;
+      border-radius:20px;
       cursor:pointer;
       width: min(260px, 100%);
       font-family: var(--body);
       font-weight:700;
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .hint-btn:hover,
+    .hint-btn:focus-visible{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.06);
+      outline:none;
     }
     .subtle { font-size:.92rem; color:var(--muted); text-align:center; font-family: var(--body); line-height:1.55; }
 
@@ -375,18 +648,23 @@
     .ring-float img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; filter: saturate(.95) contrast(1.08) brightness(1.02); }
     @media (prefers-reduced-motion: reduce) { .ring-float { animation: none; opacity: .85; } }
 
-    .thank-you { display: none; position: absolute; inset: 18px; z-index: 2; align-items: center; justify-content: center; text-align: center; border-radius: 28px; background: rgba(11,11,11,.96); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 12px 30px rgba(0,0,0,.28); padding: 40px 20px; }
+    .thank-you { display: none; position: absolute; inset: 18px; z-index: 2; align-items: center; justify-content: center; text-align: center; border-radius: 34px; background: rgba(11,11,11,.96); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 18px 42px rgba(0,0,0,.32); padding: 40px 20px; }
     .thank-you h2 { font-size: 2.1rem; margin-bottom: 10px; font-family: var(--heading); }
     .thank-you p  { font-size: 1.05rem; color: var(--muted); }
 
     @media (max-width: 640px) {
-      :root { --headerH: 96px; }
-      header img { width:min(244px, 68vw); }
-      .form-section{ padding: 16px; }
-      .card, .thank-you{ border-radius: 24px; }
-      .question{ padding: 24px 18px 10px; }
-      .input-area{ padding: 0 18px 22px; }
+      .form-section{ padding: 24px 16px 22px; }
+      .form-intro{ gap:8px; }
+      .form-kicker{ font-size:.64rem; letter-spacing:.14em; }
+      .form-intro p{ font-size:.92rem; }
+      .card, .thank-you{ border-radius: 28px; }
+      .question{ padding: 28px 20px 12px; font-size:clamp(1.24rem, 6vw, 1.62rem); }
+      .input-area{ padding: 0 20px 24px; }
       .choice-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+      .shape-btn{ min-height:132px; padding:16px 10px 12px; }
+      .shape-btn img{ width:56px; height:56px; }
+      .budget-row{ grid-template-columns:1fr; }
+      .budget-row select, .inline-next, .hint-btn{ width:100%; }
     }
   </style>
 
@@ -402,23 +680,6 @@
   </script>
 </head>
 <body>
-  <header>
-    <a href="index.html" aria-label="Ladfox home">
-      <img
-        src="Images/ladfox-logo.png"
-        alt="Ladfox"
-        decoding="async"
-        loading="eager"
-        onerror="
-          this.onerror=null;
-          if (this.src.includes('Images/ladfox-logo.png')) { this.src='/Images/ladfox-logo.png'; return; }
-          if (this.src.includes('/Images/ladfox-logo.png')) { this.src='Images/ladfox-logo.png'; return; }
-          this.src='Images/ladfox-logo.png';
-        "
-      />
-    </a>
-  </header>
-
   <section class="form-section" id="formSection">
     <div class="bg-rings" id="bgRings" aria-hidden="true"></div>
 
@@ -473,6 +734,7 @@
     const progressEl = document.getElementById('progressBar');
     const qaCard     = document.getElementById('qaCard');
     const formEl     = document.getElementById('nf');
+    let openCustomSelect = null;
 
     function safeGtagEvent(name, params){
       try{
@@ -482,24 +744,156 @@
       }catch(_){}
     }
 
+    function closeCustomSelect(){
+      if(!openCustomSelect) return;
+      const openTrigger = openCustomSelect.querySelector('.custom-select-trigger');
+      openCustomSelect.classList.remove('is-open');
+      if(openTrigger) openTrigger.setAttribute('aria-expanded', 'false');
+      openCustomSelect = null;
+      document.body.classList.remove('custom-select-open');
+    }
+
+    document.addEventListener('click', (event) => {
+      if(openCustomSelect && event.target instanceof Node && !openCustomSelect.contains(event.target)){
+        closeCustomSelect();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if(event.key === 'Escape' && openCustomSelect){
+        closeCustomSelect();
+      }
+    });
+
+    function createCustomSelect(config){
+      const wrap = document.createElement('div');
+      wrap.className = 'custom-select';
+
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'custom-select-trigger';
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('aria-label', config.label);
+
+      const valueEl = document.createElement('span');
+      valueEl.dataset.customSelectValue = 'true';
+      trigger.appendChild(valueEl);
+
+      const menu = document.createElement('div');
+      menu.className = 'custom-select-menu';
+      menu.setAttribute('role', 'listbox');
+
+      const header = document.createElement('div');
+      header.className = 'custom-select-header';
+
+      const title = document.createElement('h3');
+      title.className = 'custom-select-title';
+      title.textContent = config.label;
+
+      const closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'custom-select-close';
+      closeBtn.setAttribute('aria-label', 'Close options');
+      closeBtn.textContent = '×';
+      closeBtn.addEventListener('click', () => {
+        wrap.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        openCustomSelect = null;
+      });
+
+      header.appendChild(title);
+      header.appendChild(closeBtn);
+
+      const list = document.createElement('div');
+      list.className = 'custom-select-list';
+
+      const setValue = (nextValue) => {
+        valueEl.dataset.value = nextValue || '';
+        valueEl.textContent = nextValue || config.placeholder || 'Select';
+        trigger.dataset.hasValue = nextValue ? 'true' : 'false';
+
+        Array.from(list.children).forEach((child) => {
+          if(child instanceof HTMLButtonElement){
+            child.setAttribute('aria-selected', String(child.dataset.value === (nextValue || '')));
+          }
+        });
+      };
+
+      (config.options || []).forEach((opt) => {
+        const optionBtn = document.createElement('button');
+        optionBtn.type = 'button';
+        optionBtn.className = 'custom-select-option';
+        optionBtn.dataset.value = opt;
+        optionBtn.setAttribute('role', 'option');
+        optionBtn.textContent = opt;
+        optionBtn.addEventListener('click', () => {
+          setValue(opt);
+          closeCustomSelect();
+          if(typeof config.onSelect === 'function') config.onSelect(opt);
+        });
+        list.appendChild(optionBtn);
+      });
+
+      trigger.addEventListener('click', () => {
+        const isOpen = wrap.classList.contains('is-open');
+        if(openCustomSelect && openCustomSelect !== wrap){
+          closeCustomSelect();
+        }
+        wrap.classList.toggle('is-open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+        openCustomSelect = !isOpen ? wrap : null;
+        document.body.classList.toggle('custom-select-open', !isOpen);
+      });
+
+      setValue(config.value || '');
+      menu.appendChild(header);
+      menu.appendChild(list);
+      wrap.appendChild(trigger);
+      wrap.appendChild(menu);
+
+      return {
+        element: wrap,
+        getValue: () => valueEl.dataset.value || '',
+        setValue
+      };
+    }
+
     const ringStyles = [
       'Solitaire','Halo','Hidden halo','Three stone','Bezel','Cathedral','Pavé','Modern minimalist','Other'
     ];
 
     const gemstoneOptions = ['Sapphire','Emerald','Ruby','Tourmaline','Tanzanite','Aquamarine','Alexandrite','Spinel','Opal','Topaz','Garnet','Morganite','Peridot','Zircon','Amethyst','Kunzite','Grandidierite','Ametrine','Jade','Citrine','Moonstone','Sodalite','Quartz','Chrysoberyl','Beryl','Apatite','Sphene','Heliodor','Prehnite','Spectrolite','Other'];
-    const diamondShapes = ['Round','Cushion','Oval','Emerald','Radiant','Princess','Asscher','Pear','Marquise','Other'];
+    const diamondShapes = ['Round','Oval','Cushion','Emerald','Radiant','Princess','Asscher','Pear','Marquise','Heart',"I don't know",'Other'];
     const shapeImageMap = {
-      Round: 'Images/Ui/diamonds/round.png',
-      Cushion: 'Images/Ui/diamonds/cushion.png',
-      Oval: 'Images/Ui/diamonds/oval.png',
-      Emerald: 'Images/Ui/diamonds/emerald.png',
-      Radiant: 'Images/Ui/diamonds/radiant.png',
-      Princess: 'Images/Ui/diamonds/princess.png',
-      Asscher: 'Images/Ui/diamonds/asscher.png',
-      Pear: 'Images/Ui/diamonds/pear.png',
-      Marquise: 'Images/Ui/diamonds/marquis.png'
+      Round: 'Images/diamond shapes/round.png',
+      Cushion: 'Images/diamond shapes/cushion.png',
+      Oval: 'Images/diamond shapes/oval.png',
+      Emerald: 'Images/diamond shapes/emerald.png',
+      Radiant: 'Images/diamond shapes/radiant.png',
+      Princess: 'Images/diamond shapes/princess.png',
+      Asscher: 'Images/diamond shapes/asscher.png',
+      Pear: 'Images/diamond shapes/pear.png',
+      Marquise: 'Images/diamond shapes/marquis.png',
+      Heart: 'Images/diamond shapes/heart.png'
     };
-    const diamondColour = ['D-F','D','E','F','G','H','I','J','K+'];
+    const diamondColour = ['D-F','D','E','F','G','H','I','J','K','Fancy colour','K+'];
+    const fancyDiamondColours = [
+      'Yellow',
+      'Pink',
+      'Blue',
+      'Green',
+      'Champagne',
+      'Cognac',
+      'Brown',
+      'Black',
+      'Orange',
+      'Purple',
+      'Red',
+      'Grey',
+      'Chameleon',
+      'Other'
+    ];
     const diamondClarity = ['Eye Clean','FL','IF','VVS1','VVS2','VS1','VS2','SI1','SI2','I1+'];
 
     const steps = [
@@ -515,14 +909,15 @@
 
       { key: 'shape', type: 'shape-grid', path: 'diamond', label: 'What shape diamond are you after', options: diamondShapes },
       { key: 'ring_style', type: 'select', path: 'diamond', label: 'Do you know what style of ring you are looking for', options: ringStyles },
-      { key: 'caratSize', type: 'range', path: 'diamond', label: 'What size diamond in carats', min: 0.5, max: 5, step: 0.1, defaultValue: 1.5 },
+      { key: 'caratSize', type: 'range', path: 'diamond', label: 'What size diamond in carats', min: 0.5, max: 8.1, step: 0.1, defaultValue: 1.5 },
       { key: 'colour', type: 'select', path: 'diamond', label: 'Diamond colour preference', options: diamondColour },
+      { key: 'fancy_colour', type: 'select', path: 'diamond', label: 'Which fancy diamond colour', options: fancyDiamondColours },
       { key: 'clarity', type: 'select', path: 'diamond', label: 'Diamond clarity preference', options: diamondClarity },
 
       { key: 'gemstone', type: 'select', path: 'gemstone', label: 'Which gemstone', options: gemstoneOptions },
       { key: 'shape', type: 'shape-grid', path: 'gemstone', label: 'What shape stone are you after', options: diamondShapes },
       { key: 'ring_style', type: 'select', path: 'gemstone', label: 'Do you know what style of ring you are looking for', options: ringStyles },
-      { key: 'caratSize', type: 'range', path: 'gemstone', label: 'What size stone in carats', min: 0.5, max: 5, step: 0.1, defaultValue: 1.5 },
+      { key: 'caratSize', type: 'range', path: 'gemstone', label: 'What size stone in carats', min: 0.5, max: 8.1, step: 0.1, defaultValue: 1.5 },
 
       { key: 'metal', type: 'choice', label: 'Choose a metal for the setting', options: [
         { label: 'Yellow Gold', value: 'Yellow Gold' },
@@ -574,6 +969,7 @@
 
     function applicable(step){
       if(step.key === 'gold_karat') return isGold(formData.metal);
+      if(step.key === 'fancy_colour') return formData.materialType === 'diamond' && formData.colour === 'Fancy colour';
       if(!step.path) return true;
       if(step.path === 'gold') return isGold(formData.metal);
       if(step.path === 'diamond') return formData.materialType === 'diamond';
@@ -651,7 +1047,7 @@
       if(formData.shape) lines.push(`Shape:\n${formData.shape}`);
       if(formData.caratSize) lines.push(`carat:\n${formData.caratSize}`);
 
-      if(isDiamond && formData.colour) lines.push(`Colour:\n${formData.colour}`);
+      if(isDiamond && formData.colour) lines.push(`Colour:\n${formData.colour === 'Fancy colour' && formData.fancy_colour ? `Fancy - ${formData.fancy_colour}` : formData.colour}`);
       if(isDiamond && formData.clarity) lines.push(`Clarity:\n${formData.clarity}`);
 
       if(formData.deadline) lines.push(`Need by:\n${formData.deadline}`);
@@ -763,8 +1159,8 @@
         return ctrl ? ctrl.value.trim() : '';
       }
       if(step.type === 'select'){
-        const ctrl = inputArea.querySelector('select');
-        return ctrl ? ctrl.value.trim() : '';
+        const ctrl = inputArea.querySelector('[data-custom-select-value]');
+        return ctrl ? (ctrl.getAttribute('data-value') || '').trim() : '';
       }
       return '';
     }
@@ -785,6 +1181,7 @@
         }
 
         if(step.key === 'metal') formData.metal = v;
+        if(step.key === 'colour' && v !== 'Fancy colour') delete formData.fancy_colour;
 
         if(step.type !== 'budget'){
           formData[step.key] = v;
@@ -873,8 +1270,12 @@
             const image = document.createElement('img');
             image.src = imagePath;
             image.alt = '';
-            image.loading = 'lazy';
+            image.loading = 'eager';
             image.decoding = 'async';
+            image.onerror = () => {
+              image.onerror = null;
+              image.src = imagePath.replace('Images/diamond shapes/', 'Images/diamond%20shapes/');
+            };
             btn.appendChild(image);
           }
 
@@ -888,32 +1289,16 @@
 
         inputArea.appendChild(grid);
 
-        const idkBtn = document.createElement('button');
-        idkBtn.type = 'button';
-        idkBtn.className = 'hint-btn';
-        idkBtn.textContent = "I don't know";
-        idkBtn.addEventListener('click', () => commitAnswer("I don't know"));
-        inputArea.appendChild(idkBtn);
       }
 
       if(step.type === 'select'){
-        inputEl = document.createElement('select');
-        inputEl.setAttribute('aria-label', step.label);
-
-        const blank = document.createElement('option');
-        blank.value = '';
-        blank.textContent = 'Select';
-        inputEl.appendChild(blank);
-
-        step.options.forEach(opt => {
-          const o = document.createElement('option');
-          o.value = opt;
-          o.textContent = opt;
-          inputEl.appendChild(o);
+        const customSelect = createCustomSelect({
+          label: step.label,
+          placeholder: 'Select',
+          options: step.options,
+          onSelect: (value) => { if(value) commitAnswer(value); }
         });
-
-        inputEl.addEventListener('change', () => { if(inputEl.value) commitAnswer(); });
-        inputArea.appendChild(inputEl);
+        inputArea.appendChild(customSelect.element);
 
         const actions = document.createElement('div');
         actions.className = 'inline-actions';
@@ -952,16 +1337,11 @@
         const wrap = document.createElement('div');
         wrap.className = 'budget-row';
 
-        const cur = document.createElement('select');
-        cur.setAttribute('aria-label','Currency');
-
-        ['GBP','USD','EUR'].forEach(c => {
-          const o = document.createElement('option');
-          o.value = c;
-          o.textContent = c;
-          cur.appendChild(o);
+        const currencySelect = createCustomSelect({
+          label: 'Currency',
+          options: ['GBP','USD','EUR'],
+          value: 'GBP'
         });
-        cur.value = 'GBP';
 
         const amount = document.createElement('input');
         amount.type = 'number';
@@ -977,17 +1357,16 @@
 
         const enableCheck = () => { inlineNext.disabled = !(amount.value && String(amount.value).trim().length > 0); };
         amount.addEventListener('input', enableCheck);
-        cur.addEventListener('change', enableCheck);
 
         inlineNext.addEventListener('click', () => {
           formData.budget_amount = (amount.value || '').trim();
-          formData.budget_currency = cur.value;
+          formData.budget_currency = currencySelect.getValue();
           if(formData.budget_amount) commitAnswer('BUDGET_CONFIRMED');
         });
 
         amount.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); inlineNext.click(); } });
 
-        wrap.appendChild(cur);
+        wrap.appendChild(currencySelect.element);
         wrap.appendChild(amount);
         wrap.appendChild(inlineNext);
         inputArea.appendChild(wrap);
@@ -998,7 +1377,7 @@
         unsure.textContent = 'Not sure';
         unsure.addEventListener('click', () => {
           formData.budget_amount = 'Not sure';
-          formData.budget_currency = cur.value;
+          formData.budget_currency = currencySelect.getValue();
           commitAnswer('BUDGET_CONFIRMED');
         });
         inputArea.appendChild(unsure);
@@ -1023,14 +1402,22 @@
           inputEl.setAttribute('aria-label', step.label);
 
           const updateReadout = () => {
-            readout.textContent = `${Number(inputEl.value).toFixed(1)} ct`;
+            const currentValue = Number(inputEl.value);
+            const maxValue = Number(inputEl.max);
+            if (currentValue >= maxValue) {
+              readout.textContent = '8+ ct';
+              return;
+            }
+
+            const displayValue = Number.isInteger(currentValue) ? String(currentValue) : currentValue.toFixed(1);
+            readout.textContent = `${displayValue} ct`;
           };
           updateReadout();
           inputEl.addEventListener('input', updateReadout);
 
           const scale = document.createElement('div');
           scale.className = 'range-scale';
-          scale.innerHTML = `<span>${inputEl.min} ct</span><span>${inputEl.max} ct+</span>`;
+          scale.innerHTML = `<span>${inputEl.min} ct</span><span>8+ ct</span>`;
 
           wrap.appendChild(readout);
           wrap.appendChild(inputEl);
