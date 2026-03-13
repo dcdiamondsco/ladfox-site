@@ -1485,6 +1485,13 @@
           });
         }
 
+        if(step.key === 'deadline' && step.type === 'date'){
+          inputEl.addEventListener('change', () => {
+            const v = String(inputEl.value || '').trim();
+            if(v) commitAnswer(v);
+          });
+        }
+
         actions.appendChild(nextBtn);
         inputArea.appendChild(actions);
       }
