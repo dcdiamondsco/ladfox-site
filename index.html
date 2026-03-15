@@ -1840,6 +1840,7 @@
 
     <form class="quick-message-form" name="quick-message" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="quick-message" />
+      <input type="hidden" name="location" id="quickMessageLocation" value="Unknown" />
       <p style="display:none;">
         <label>Do not fill this in <input name="bot-field" /></label>
       </p>
@@ -1924,6 +1925,7 @@
       const quickMessageClose = document.getElementById("quickMessageClose");
       const quickMessageEmail = document.getElementById("quickMessageEmail");
       const quickMessageForm = document.querySelector(".quick-message-form");
+      const quickMessageLocation = document.getElementById("quickMessageLocation");
       const quickMessageStatus = document.getElementById("quickMessageStatus");
       const heroImage = document.querySelector("[data-hero-image]");
       const heroProposal = document.querySelector(".hero-proposal");
@@ -2089,6 +2091,16 @@
             setQuickMessageState(false);
           }
         });
+      }
+
+      if (quickMessageLocation) {
+        fetch("https://ipapi.co/json/")
+          .then((response) => response.ok ? response.json() : Promise.reject())
+          .then((data) => {
+            const location = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
+            quickMessageLocation.value = location || "Unknown";
+          })
+          .catch(() => {});
       }
 
       if (quickMessageForm) {
