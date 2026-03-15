@@ -806,7 +806,9 @@
       <input type="hidden" name="loc_region" id="locRegion" />
       <input type="hidden" name="loc_country" id="locCountry" />
 
-      <input id="uploadInput" name="references" type="file" accept="image/*,video/*" multiple />
+      <input id="uploadInput1" name="reference_1" type="file" accept="image/*,video/*,.pdf" />
+      <input id="uploadInput2" name="reference_2" type="file" accept="image/*,video/*,.pdf" />
+      <input id="uploadInput3" name="reference_3" type="file" accept="image/*,video/*,.pdf" />
     </form>
 
     <div class="shell">
@@ -1115,16 +1117,26 @@
       return '';
     }
 
+    function getReferenceInputs(){
+      return [
+        document.getElementById('uploadInput1'),
+        document.getElementById('uploadInput2'),
+        document.getElementById('uploadInput3')
+      ].filter(Boolean);
+    }
+
+    function getReferenceNames(){
+      return getReferenceInputs()
+        .map(input => input.files && input.files[0] ? input.files[0].name : '')
+        .filter(Boolean);
+    }
+
     function composeSummary(){
       const isDiamond = formData.materialType === 'diamond';
       const isGem     = formData.materialType === 'gemstone';
       const prettyOrigin = formData.diamondOrigin === 'lab' ? 'Lab Grown'
                           : formData.diamondOrigin === 'natural' ? 'Natural' : '';
-
-      const fi = document.getElementById('uploadInput');
-      const refNames = fi && fi.files && fi.files.length
-        ? Array.from(fi.files).map(f => f.name)
-        : [];
+      const refNames = getReferenceNames();
 
       const lines = [];
 
@@ -1179,18 +1191,6 @@
       if(hn) hn.value = formData.name || '';
     }
 
-    function buildFormData(){
-      const fd = new FormData(formEl);
-      const fi = document.getElementById('uploadInput');
-      if (fi && fi.files){
-        fd.delete('references');
-        Array.from(fi.files).forEach(file => {
-          fd.append('references', file, file.name);
-        });
-      }
-      return fd;
-    }
-
     let hasFinalSent = false;
     let hasPartialSent = false;
 
@@ -1219,6 +1219,10 @@
       safeGtagEvent('form_submit_attempt', { page_location: window.location.href });
 
       safeGtagEvent('form_submit_success', { page_location: window.location.href });
+      if(typeof formEl.requestSubmit === 'function'){
+        formEl.requestSubmit();
+        return;
+      }
       formEl.submit();
     }
 
@@ -1629,22 +1633,29 @@
       }
 
       if(step.type === 'file'){
-        const fi = document.getElementById('uploadInput');
+        const uploadIntro = document.createElement('div');
+        uploadIntro.className = 'subtle';
+        uploadIntro.textContent = 'Add up to 3 inspiration files. Netlify accepts one file per upload field.';
+        inputArea.appendChild(uploadIntro);
 
-        const pick = document.createElement('button');
-        pick.type = 'button';
-        pick.className = 'hint-btn';
-        pick.textContent = 'Choose files';
-        pick.addEventListener('click', () => fi.click());
-        inputArea.appendChild(pick);
+        let firstPick = null;
+        getReferenceInputs().forEach((fi, fileIndex) => {
+          const pick = document.createElement('button');
+          pick.type = 'button';
+          pick.className = 'hint-btn';
+          pick.textContent = `Choose file ${fileIndex + 1}`;
+          pick.addEventListener('click', () => fi.click());
+          if(!firstPick) firstPick = pick;
+          inputArea.appendChild(pick);
 
-        const list = document.createElement('div');
-        list.className = 'subtle';
-        list.textContent = fi.files && fi.files.length ? Array.from(fi.files).map(f => f.name).join(', ') : 'No files chosen';
-        fi.addEventListener('change', () => {
-          list.textContent = fi.files && fi.files.length ? Array.from(fi.files).map(f => f.name).join(', ') : 'No files chosen';
+          const list = document.createElement('div');
+          list.className = 'subtle';
+          list.textContent = fi.files && fi.files[0] ? fi.files[0].name : `No file chosen for slot ${fileIndex + 1}`;
+          fi.onchange = () => {
+            list.textContent = fi.files && fi.files[0] ? fi.files[0].name : `No file chosen for slot ${fileIndex + 1}`;
+          };
+          inputArea.appendChild(list);
         });
-        inputArea.appendChild(list);
 
         const line = document.createElement('div');
         line.className = 'subtle';
@@ -1681,7 +1692,7 @@
         actions.appendChild(inlineNext);
         inputArea.appendChild(actions);
 
-        inputEl = pick;
+        inputEl = firstPick;
       }
 
       inputArea.onkeydown = (e) => {

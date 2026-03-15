@@ -569,6 +569,10 @@
       setStatus('Sending…', true);
       mapToHiddenInputs();
 
+      if(typeof nfForm.requestSubmit === 'function'){
+        nfForm.requestSubmit();
+        return;
+      }
       nfForm.submit();
     }
 
