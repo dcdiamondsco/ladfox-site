@@ -254,7 +254,7 @@
     let current = 0;
 
     const formValues = {
-      itemType: 'Ring',
+      itemType: '',
       productLink: '',
       certificateNumber: '',
       details: '',
@@ -325,6 +325,13 @@
 
         const select = document.createElement('select');
         select.id = 'itemTypeSelect';
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Select item type';
+        placeholder.disabled = true;
+        placeholder.selected = !formValues.itemType;
+        select.appendChild(placeholder);
 
         const options = ['Ring','Diamond','Gemstone','Necklace','Bracelet','Earrings','Pendant','Watch','Other'];
         options.forEach(opt => {
@@ -491,10 +498,16 @@
         const linkEl  = document.getElementById('productLink');
         const detEl   = document.getElementById('details');
 
-        formValues.itemType = (typeSel.value || 'Other').trim();
+        formValues.itemType = (typeSel.value || '').trim();
         formValues.certificateNumber = certEl ? (certEl.value || '').trim() : '';
         formValues.productLink = (linkEl.value || '').trim();
         formValues.details = (detEl.value || '').trim();
+
+        if(!formValues.itemType){
+          alert('Please choose what item you want us to beat the price on.');
+          typeSel.focus();
+          return;
+        }
 
         const needsCertField = ['diamond','gemstone'].includes((formValues.itemType || '').toLowerCase());
 
