@@ -209,6 +209,10 @@
       display:none;
     }
 
+    .tantalum-page .mobile-hero-copy{
+      display:none;
+    }
+
     @media (max-width:680px){
       .tantalum-page .layout{
         grid-template-columns:1fr;
@@ -241,6 +245,15 @@
         display:grid;
         gap:12px;
       }
+
+      .tantalum-page .mobile-hero-copy{
+        display:grid;
+        gap:12px;
+      }
+
+      .tantalum-page .desktop-hero-copy{
+        display:none;
+      }
     }
 
   </style>
@@ -259,6 +272,13 @@
     <div class="shell">
       <section class="layout" data-product-page data-product-name="6mm tantalum ring" data-product-slug="tantalum-ring">
         <div class="media-column">
+          <div class="mobile-hero-copy">
+            <div class="price-wrap">
+              <span class="sale-badge">New</span>
+              <p class="price">&#163;249.99</p>
+            </div>
+            <h1>Wedding Band</h1>
+          </div>
           <article class="panel media">
             <div class="media-stage">
               <img
@@ -280,11 +300,13 @@
         </div>
 
         <article class="panel copy">
-          <div class="price-wrap">
-            <span class="sale-badge">New</span>
-            <p class="price">&#163;249.99</p>
+          <div class="desktop-hero-copy">
+            <div class="price-wrap">
+              <span class="sale-badge">New</span>
+              <p class="price">&#163;249.99</p>
+            </div>
+            <h1>Wedding Band</h1>
           </div>
-          <h1>Wedding Band</h1>
           <p class="section-copy">A sharp, understated 6mm tantalum wedding band with a soft brushed texture and polished comfort fit interior.</p>
           <div class="mobile-material-copy">
             <p class="section-copy">Crafted from tantalum, this ring has a reassuring weight in the hand and a solid, substantial feel on the finger. It is significantly more resistant to wear than traditional precious metals such as gold or silver, making it an excellent choice for everyday use.</p>
