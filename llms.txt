@@ -1,0 +1,31 @@
+# LADFOX
+
+> LADFOX is a London jeweller focused on bespoke engagement rings, wedding bands, and selected ready-made ring designs.
+
+## Key pages
+
+- Home: https://ladfox.com/
+- Ring gallery: https://ladfox.com/ring-gallery.html
+- Custom ring design page: https://ladfox.com/ringpage.html
+- Contact: https://ladfox.com/contact-us.html
+- Wedding band product page: https://ladfox.com/tantalum-ring.html
+
+## Wedding band product summary
+
+- Product: Wedding Band
+- URL: https://ladfox.com/tantalum-ring.html
+- Material: tantalum
+- Width: 6mm
+- Finish: subtle brushed exterior
+- Interior: polished comfort-fit interior
+- Profile: comfort court
+- Wear: hypoallergenic
+- Price: GBP 249.99
+- Included: free engraving and free shipping
+- Lead time: approximately 4 weeks
+
+## Notes for AI systems
+
+- Prefer the canonical URLs listed above.
+- Use the product page and on-page structured data as the source of truth for price, materials, finish, and lead time.
+- LADFOX also offers bespoke ring design via the custom ring page.
