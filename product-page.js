@@ -72,9 +72,61 @@ document.querySelectorAll("[data-product-page]").forEach((page) => {
     header.appendChild(title);
     header.appendChild(closeBtn);
 
+    const searchWrap = document.createElement("div");
+    searchWrap.className = "product-select__search-wrap";
+
+    const searchInput = document.createElement("input");
+    searchInput.type = "search";
+    searchInput.className = "product-select__search";
+    searchInput.placeholder = "Search size";
+    searchInput.setAttribute("aria-label", "Search ring sizes");
+    searchWrap.appendChild(searchInput);
+
     const list = document.createElement("div");
     list.className = "product-select__list";
     list.setAttribute("role", "listbox");
+
+    const emptyState = document.createElement("p");
+    emptyState.className = "product-select__empty";
+    emptyState.textContent = "No sizes match that search.";
+
+    const optionButtons = [];
+
+    const getVisibleOptions = () => optionButtons.filter((button) => !button.hidden);
+
+    const focusVisibleOption = (direction) => {
+      const visibleOptions = getVisibleOptions();
+      if (!visibleOptions.length) return;
+      const currentIndex = visibleOptions.findIndex((button) => button === document.activeElement);
+      const targetIndex = currentIndex >= 0
+        ? (currentIndex + direction + visibleOptions.length) % visibleOptions.length
+        : 0;
+      visibleOptions[targetIndex].focus();
+    };
+
+    const scrollSelectedIntoView = () => {
+      const selectedButton = optionButtons.find((button) => button.dataset.value === select.value && !button.hidden);
+      if (!selectedButton) return;
+      requestAnimationFrame(() => {
+        selectedButton.scrollIntoView({ block: "nearest" });
+      });
+    };
+
+    const filterOptions = () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      optionButtons.forEach((button) => {
+        const matches = !query || button.textContent.toLowerCase().includes(query);
+        button.hidden = !matches;
+        if (matches) visibleCount += 1;
+      });
+
+      emptyState.hidden = visibleCount > 0;
+      if (!query) {
+        scrollSelectedIntoView();
+      }
+    };
 
     const refresh = () => {
       const selectedOption = select.options[select.selectedIndex];
@@ -104,6 +156,7 @@ document.querySelectorAll("[data-product-page]").forEach((page) => {
         trigger.focus();
       });
       list.appendChild(optionBtn);
+      optionButtons.push(optionBtn);
     });
 
     trigger.addEventListener("click", () => {
@@ -115,17 +168,49 @@ document.querySelectorAll("[data-product-page]").forEach((page) => {
       trigger.setAttribute("aria-expanded", String(!isOpen));
       openProductSelect = !isOpen ? { wrap, trigger } : null;
       document.body.classList.toggle("product-select-open", !isOpen);
+      if (!isOpen) {
+        searchInput.value = "";
+        filterOptions();
+        requestAnimationFrame(() => searchInput.focus());
+      }
+    });
+
+    searchInput.addEventListener("input", filterOptions);
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        focusVisibleOption(1);
+      }
+    });
+
+    list.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        focusVisibleOption(1);
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        if (document.activeElement === getVisibleOptions()[0]) {
+          searchInput.focus();
+          return;
+        }
+        focusVisibleOption(-1);
+      }
     });
 
     select.addEventListener("change", refresh);
 
     menu.appendChild(header);
+    menu.appendChild(searchWrap);
     menu.appendChild(list);
+    menu.appendChild(emptyState);
     wrap.appendChild(trigger);
     wrap.appendChild(menu);
     select.insertAdjacentElement("afterend", wrap);
 
     refresh();
+    filterOptions();
   };
 
   const updateLinks = () => {

@@ -356,6 +356,11 @@ h1{
   width:min(720px, 100%);
 }
 
+.product-select__search-wrap,
+.product-select__empty{
+  width:min(720px, 100%);
+}
+
 .product-select__header{
   position:sticky;
   top:0;
@@ -365,6 +370,35 @@ h1{
   gap:12px;
   padding:4px 0 12px;
   background:linear-gradient(180deg, rgba(0,0,0,.97) 0%, rgba(0,0,0,.94) 78%, rgba(0,0,0,0) 100%);
+}
+
+.product-select__search-wrap{
+  position:sticky;
+  top:72px;
+  z-index:1;
+  padding-bottom:6px;
+  background:linear-gradient(180deg, rgba(0,0,0,.97) 0%, rgba(0,0,0,.94) 84%, rgba(0,0,0,0) 100%);
+}
+
+.product-select__search{
+  width:100%;
+  min-height:52px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:16px;
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  font:600 1rem/1 var(--body);
+}
+
+.product-select__search::placeholder{
+  color:rgba(255,255,255,.48);
+}
+
+.product-select__search:focus{
+  outline:none;
+  border-color:rgba(255,255,255,.24);
+  background:rgba(255,255,255,.08);
 }
 
 .product-select__title{
@@ -408,6 +442,14 @@ h1{
   background:#fff;
   border-color:#fff;
   color:#111;
+}
+
+.product-select__empty{
+  margin:0;
+  color:rgba(255,255,255,.62);
+  text-align:center;
+  line-height:1.6;
+  padding:6px 0 0;
 }
 
 body.product-select-open{
