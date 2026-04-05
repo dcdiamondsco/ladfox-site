@@ -205,17 +205,21 @@
       line-height:1.72;
     }
 
+    .tantalum-page .mobile-material-copy{
+      display:none;
+    }
+
     @media (max-width:680px){
       .tantalum-page .layout{
         grid-template-columns:1fr;
       }
 
       .tantalum-page .media-column{
-        order:2;
+        order:1;
       }
 
       .tantalum-page .panel.copy{
-        order:1;
+        order:2;
       }
 
       .tantalum-page .media-stage{
@@ -230,8 +234,12 @@
       }
 
       .tantalum-page .media-copy-block{
-        width:100%;
-        padding:0 6px 6px;
+        display:none;
+      }
+
+      .tantalum-page .mobile-material-copy{
+        display:grid;
+        gap:12px;
       }
     }
 
@@ -278,6 +286,13 @@
           </div>
           <h1>Wedding Band</h1>
           <p class="section-copy">A sharp, understated 6mm tantalum wedding band with a soft brushed texture and polished comfort fit interior.</p>
+          <div class="mobile-material-copy">
+            <p class="section-copy">Crafted from tantalum, this ring has a reassuring weight in the hand and a solid, substantial feel on the finger. It is significantly more resistant to wear than traditional precious metals such as gold or silver, making it an excellent choice for everyday use.</p>
+
+            <p class="section-copy">While no metal is completely immune to marking, tantalum develops these subtle signs of wear in a way that enhances its character rather than detracting from it. Over time, it forms a soft, natural patina, giving the ring a deeper, more refined finish unique to its owner.</p>
+
+            <p class="section-copy">The contrast between the brushed exterior and polished interior adds to its understated presence, balancing durability with a quietly luxurious aesthetic.</p>
+          </div>
           <div class="spec-grid">
             <div class="spec-card"><strong>Metal</strong><span>Tantalum</span></div>
             <div class="spec-card"><strong>Width</strong><span>6mm</span></div>
