@@ -1305,8 +1305,8 @@
 
       .brand img{
         width:min(236px, 68vw);
-        opacity:calc(1 - (var(--brand-fade, 0) * .72));
-        filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(calc(1 - (var(--brand-fade, 0) * .5)));
+        opacity:1;
+        filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
 
       .brand-location{
@@ -1635,14 +1635,21 @@
     <div class="shell">
       <div class="brand-block">
         <a class="brand" href="index.html" aria-label="Ladfox home">
-          <img src="Images/ladfox-logo.png" alt="Ladfox logo" loading="eager" decoding="async" />
+          <img
+            src="Images/ladfox-logo.png"
+            alt="Ladfox logo"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            width="1830"
+            height="831"
+            onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
+          />
         </a>
         <span class="brand-location">Hatton Garden, London</span>
       </div>
 
       <nav class="nav" aria-label="Primary">
-        <a href="ringpage.html">Bespoke Rings</a>
-        <a href="ring-gallery.html">Signature Collection</a>
         <a href="price-beater.html">Price Beater</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
