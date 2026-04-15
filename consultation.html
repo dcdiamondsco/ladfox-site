@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Contact Ladfox | Bespoke Jewellery Enquiries</title>
-  <meta name="description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing, or a price match. Reach out by phone, email, or WhatsApp." />
-  <link rel="canonical" href="https://ladfox.com/contact-us.html" />
+  <title>Bespoke Engagement Ring Consultation | Ladfox</title>
+  <meta name="description" content="Book a bespoke engagement ring consultation with Ladfox in Hatton Garden. Start by phone, email, or WhatsApp and speak directly with the jeweller." />
+  <link rel="canonical" href="https://ladfox.com/consultation" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#000000" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Contact Ladfox | Bespoke Jewellery Enquiries" />
-  <meta property="og:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing, or a price match." />
-  <meta property="og:url" content="https://ladfox.com/contact-us.html" />
+  <meta property="og:title" content="Bespoke Engagement Ring Consultation | Ladfox" />
+  <meta property="og:description" content="Book a bespoke engagement ring consultation with Ladfox and speak directly with the jeweller." />
+  <meta property="og:url" content="https://ladfox.com/consultation" />
   <meta property="og:image" content="https://ladfox.com/Images/ladfox-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact Ladfox | Bespoke Jewellery Enquiries" />
-  <meta name="twitter:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing, or a price match." />
+  <meta name="twitter:title" content="Bespoke Engagement Ring Consultation | Ladfox" />
+  <meta name="twitter:description" content="Book a bespoke engagement ring consultation with Ladfox and speak directly with the jeweller." />
   <meta name="twitter:image" content="https://ladfox.com/Images/ladfox-logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -171,7 +171,7 @@
     h1{
       margin-top:18px;
       font-size:clamp(2.8rem, 6vw, 5rem);
-      max-width:9ch;
+      max-width:10ch;
     }
 
     .intro p{
@@ -388,14 +388,6 @@
       box-shadow:0 18px 36px rgba(255,255,255,.08);
     }
 
-    .privacy{
-      margin:0;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.6;
-      max-width:40ch;
-    }
-
     .thank-you-message{
       display:none;
       padding:34px;
@@ -479,9 +471,9 @@
   <main class="shell">
     <div class="layout">
       <section class="intro">
-        <span class="eyebrow">Private Contact</span>
-        <h1>Contact Ladfox</h1>
-        <p>Choose the most comfortable way to start.</p>
+        <span class="eyebrow">Private Consultation</span>
+        <h1>Book a consultation</h1>
+        <p>Choose the most comfortable way to start your engagement ring enquiry.</p>
 
         <div class="info-list">
           <div class="info-card">
@@ -490,8 +482,8 @@
           </div>
 
           <div class="info-card">
-            <strong>Bespoke guidance</strong>
-            <span>Useful for engagement rings, custom jewellery, and quote comparisons.</span>
+            <strong>Ring-led guidance</strong>
+            <span>Useful if you are starting from scratch or want clearer direction.</span>
           </div>
 
           <div class="info-card">
@@ -509,24 +501,24 @@
           <div class="direct-grid">
             <div class="direct-card">
               <span>Call</span>
-              <p>Speak directly with Ladfox about your ring, jewellery project, or next step.</p>
+              <p>Speak directly with Ladfox about your ring and the next step.</p>
               <a href="tel:+447853362904">Call now</a>
             </div>
 
             <div class="direct-card">
               <span>WhatsApp</span>
-              <p>Send screenshots, ideas, links, or a quote for a quick private conversation.</p>
+              <p>Send screenshots, ideas, links, or a reference for a quick private conversation.</p>
               <a href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer">Message</a>
             </div>
           </div>
         </div>
 
-        <div id="contactContent" class="form-card">
-          <h2>Contact us</h2>
+        <div id="consultationContent" class="form-card">
+          <h2>Book your consultation</h2>
           <p class="consult-note">Choose how you want to be contacted and give enough detail for a useful first reply.</p>
 
           <form
-            name="contact-us"
+            name="consultation"
             method="POST"
             action="/thank-you.html"
             data-netlify="true"
@@ -534,10 +526,10 @@
             enctype="multipart/form-data"
             class="fields"
           >
-            <input type="hidden" name="form-name" value="contact-us" />
+            <input type="hidden" name="form-name" value="consultation" />
             <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
 
-            <input type="hidden" name="source-page" value="contact-us" />
+            <input type="hidden" name="source-page" value="consultation" />
             <input type="hidden" name="location" id="locationField" value="Unknown" />
 
             <input type="hidden" name="utm_source" id="utm_source" />
@@ -618,7 +610,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(location.search);
-      const form = document.querySelector('form[name="contact-us"]');
+      const form = document.querySelector('form[name="consultation"]');
       const contactDetailsBlock = document.getElementById("contactDetailsBlock");
       const emailFieldBlock = document.getElementById("emailFieldBlock");
       const phoneFieldBlock = document.getElementById("phoneFieldBlock");

@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beat a Price Quote | Ladfox</title>
+  <title>Diamond & Jewellery Price Match | Ladfox</title>
 
-  <meta name="description" content="Send us a quote and we will try to beat it. Family Run London Jewellers. Free insured worldwide shipping and lifetime workmanship guarantee." />
-  <link rel="canonical" href="https://ladfox.com/price-beater.html" />
+  <meta name="description" content="Send Ladfox a jewellery or diamond quote for a like-for-like price match. Share the details and get a clearer private comparison." />
+  <link rel="canonical" href="https://ladfox.com/price-match.html" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Beat a Price Quote | Ladfox" />
-  <meta property="og:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
-  <meta property="og:url" content="https://ladfox.com/price-beater.html" />
+  <meta property="og:title" content="Diamond & Jewellery Price Match | Ladfox" />
+  <meta property="og:description" content="Share a jewellery or diamond quote with Ladfox for a like-for-like price match and a clearer private comparison." />
+  <meta property="og:url" content="https://ladfox.com/price-match.html" />
   <meta property="og:image" content="https://ladfox.com/Images/comparison.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Beat a Price Quote | Ladfox" />
-  <meta name="twitter:description" content="Share a quote for a like for like comparison with calm guidance and clear detail." />
+  <meta name="twitter:title" content="Diamond & Jewellery Price Match | Ladfox" />
+  <meta name="twitter:description" content="Share a jewellery or diamond quote with Ladfox for a like-for-like price match and a clearer private comparison." />
   <meta name="twitter:image" content="https://ladfox.com/Images/comparison.png" />
   <link rel="stylesheet" href="scroll-reveal.css" />
 
@@ -320,7 +320,7 @@
 
       if(step.kind === 'type+link+file'){
         const lblType = document.createElement('label');
-        lblType.textContent = 'What are we beating the price on?';
+        lblType.textContent = 'What would you like us to price match?';
         lblType.htmlFor = 'itemTypeSelect';
 
         const select = document.createElement('select');
@@ -400,7 +400,7 @@
         textarea.placeholder = 'Metal, style, diamond shape, sizes, and any preferences';
         textarea.value = formValues.details || '';
 
-        const hint2 = buildHint('More detail means a more accurate price beat.');
+        const hint2 = buildHint('More detail means a more accurate price match.');
 
         const lblFile = document.createElement('label');
         lblFile.textContent = 'Attach screenshot or PDF (optional)';
@@ -504,7 +504,7 @@
         formValues.details = (detEl.value || '').trim();
 
         if(!formValues.itemType){
-          alert('Please choose what item you want us to beat the price on.');
+          alert('Please choose what item you would like us to price match.');
           typeSel.focus();
           return;
         }
@@ -525,7 +525,7 @@
         const hasFile = nfFile && nfFile.files && nfFile.files.length > 0;
 
         if(!hasLink && !hasDetails && !hasFile){
-          alert('Please add a link, details, or attach a screenshot/PDF so we have something to beat.');
+          alert('Please add a link, details, or attach a screenshot/PDF so we have something to price match.');
           (linkEl && linkEl.focus) ? linkEl.focus() : null;
           return;
         }
