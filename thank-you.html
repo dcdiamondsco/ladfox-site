@@ -51,24 +51,56 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
+      position:relative;
+    }
+
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
     }
 
     .brand{
       display:flex;
       justify-content:center;
-      margin-bottom:18px;
     }
 
-    .brand img{
+    .brand-logo{
       width:min(205px, 44vw);
       height:auto;
       display:block;
       filter:invert(1);
     }
 
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:24px;
+      right:24px;
+    }
+
+    .brand-review-badge{
+      width:138px;
+      height:auto;
+      display:block;
+    }
+
     @media (max-width:640px){
-      .brand img{
+      .brand-logo{
         width:min(244px, 70vw);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 38vw);
+      }
+
+      .brand-review-link{
+        position:static;
       }
     }
 
@@ -128,20 +160,26 @@
 
 <body>
   <main class="wrap">
-    <a class="brand" href="index.html" aria-label="Ladfox home">
-      <img
-        src="Images/ladfox-logo.png"
-        alt="Ladfox"
-        decoding="async"
-        loading="eager"
-        onerror="
-          this.onerror=null;
-          if (this.src.includes('Images/ladfox-logo.png')) { this.src='/Images/ladfox-logo.png'; return; }
-          if (this.src.includes('/Images/ladfox-logo.png')) { this.src='Images/ladfox-logo.png'; return; }
-          this.src='Images/ladfox-logo.png';
-        "
-      />
-    </a>
+    <div class="brand-lockup">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img
+          class="brand-logo"
+          src="Images/ladfox-logo.png"
+          alt="Ladfox"
+          decoding="async"
+          loading="eager"
+          onerror="
+            this.onerror=null;
+            if (this.src.includes('Images/ladfox-logo.png')) { this.src='/Images/ladfox-logo.png'; return; }
+            if (this.src.includes('/Images/ladfox-logo.png')) { this.src='Images/ladfox-logo.png'; return; }
+            this.src='Images/ladfox-logo.png';
+          "
+        />
+      </a>
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
+      </a>
+    </div>
     <h1>Thank you</h1>
     <p>Your enquiry has been received successfully. We will be in touch shortly.</p>
   </main>

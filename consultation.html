@@ -72,16 +72,40 @@
       padding:22px 0 14px;
       display:grid;
       justify-items:center;
+      position:relative;
+    }
+
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      width:100%;
     }
 
     .brand{
       display:flex;
       justify-content:center;
-      width:100%;
     }
 
-    .brand img{
+    .brand-logo{
       width:min(205px, 44vw);
+      height:auto;
+      display:block;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:22px;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:138px;
       height:auto;
       display:block;
     }
@@ -426,8 +450,16 @@
     }
 
     @media (max-width:720px){
-      .brand img{
+      .brand-logo{
         width:min(244px, 70vw);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
       }
 
       .intro,
@@ -463,9 +495,14 @@
 </head>
 <body>
   <header class="shell">
-    <a class="brand" href="index.html" aria-label="Ladfox home">
-      <img src="Images/ladfox-logo.png" alt="Ladfox" />
-    </a>
+    <div class="brand-lockup">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
+      </a>
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
+      </a>
+    </div>
   </header>
 
   <main class="shell">

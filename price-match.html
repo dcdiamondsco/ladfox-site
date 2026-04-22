@@ -44,11 +44,35 @@
     header{
       text-align:center;
       padding:20px 0 10px;
+      position:relative;
     }
-    header img{
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      justify-content:center;
+    }
+    .brand-logo{
       max-width:200px;
       display:block;
       margin:0 auto;
+    }
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:20px;
+      right:0;
+    }
+    .brand-review-badge{
+      width:138px;
+      display:block;
     }
 
     .form-section{
@@ -173,8 +197,15 @@
     }
 
     @media (max-width:700px){
-      header img{
+      .brand-logo{
         max-width:220px;
+      }
+      .brand-review-badge{
+        width:min(118px, 38vw);
+      }
+
+      .brand-review-link{
+        position:static;
       }
     }
   </style>
@@ -184,15 +215,21 @@
 <body>
 
   <header>
-    <a href="index.html" aria-label="Ladfox home">
-      <img
-        src="Images/ladfox-logo.png"
-        alt="Ladfox"
-        decoding="async"
-        loading="eager"
-        onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
-      />
-    </a>
+    <div class="brand-lockup">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img
+          class="brand-logo"
+          src="Images/ladfox-logo.png"
+          alt="Ladfox"
+          decoding="async"
+          loading="eager"
+          onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
+        />
+      </a>
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
+      </a>
+    </div>
   </header>
 
   <section class="form-section">
