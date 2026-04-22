@@ -93,6 +93,7 @@
       display:grid;
       justify-items:center;
       gap:18px;
+      position:relative;
     }
 
     .brand{
@@ -101,8 +102,31 @@
       line-height:0;
     }
 
-    .brand img{
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .brand-logo{
       width:min(205px, 44vw);
+      height:auto;
+      display:block;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:0;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:138px;
       height:auto;
       display:block;
     }
@@ -624,8 +648,16 @@
         width:min(calc(100% - 24px), var(--max));
       }
 
-      .brand img{
+      .brand-logo{
         width:min(244px, 70vw);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
       }
 
       .section-head h2{
@@ -657,9 +689,14 @@
 <body>
   <header class="topbar">
     <div class="shell">
-      <a class="brand" href="index.html" aria-label="Ladfox home">
-        <img src="Images/ladfox-logo.png" alt="Ladfox" />
-      </a>
+      <div class="brand-lockup">
+        <a class="brand" href="index.html" aria-label="Ladfox home">
+          <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
+        </a>
+        <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+          <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
+        </a>
+      </div>
     </div>
   </header>
 

@@ -190,9 +190,11 @@
 
     .topbar .shell{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:16px;
+      position:relative;
+      padding-right:176px;
     }
 
     .brand{
@@ -202,19 +204,42 @@
       flex:0 0 auto;
     }
 
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
     .brand-block{
       display:grid;
       justify-items:center;
-      gap:0;
+      gap:6px;
       transform:none;
     }
 
-    .brand img{
+    .brand-logo{
       width:min(220px, 42vw);
       height:auto;
       opacity:1;
       filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       transition:opacity .18s linear, filter .18s linear;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:0;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:142px;
+      height:auto;
+      filter:drop-shadow(0 6px 18px rgba(0,0,0,.24));
     }
 
     .brand-location{
@@ -248,6 +273,7 @@
       flex-wrap:wrap;
       justify-content:flex-end;
       align-items:center;
+      margin-top:14px;
       opacity:1;
       transition:opacity .18s linear;
     }
@@ -976,6 +1002,7 @@
         align-items:center;
         justify-content:flex-start;
         gap:0;
+        padding-right:0;
       }
 
       .brand{
@@ -988,10 +1015,22 @@
         transform:translateY(-2px);
       }
 
-      .brand img{
+      .brand-lockup{
+        justify-content:center;
+      }
+
+      .brand-logo{
         width:min(236px, 68vw);
         opacity:1;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
       }
 
       .brand-location{
@@ -1148,7 +1187,7 @@
     }
 
     @media (max-width:480px){
-      .brand img{
+      .brand-logo{
         width:min(220px, 72vw);
       }
 
@@ -1187,24 +1226,32 @@
   <header class="topbar">
     <div class="shell">
       <div class="brand-block">
-        <a class="brand" href="index.html" aria-label="Ladfox home">
-          <img
-            src="Images/ladfox-logo.png"
-            alt="Ladfox logo"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            width="1830"
-            height="831"
-            onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
-          />
-        </a>
+        <div class="brand-lockup">
+          <a class="brand" href="index.html" aria-label="Ladfox home">
+            <img
+              class="brand-logo"
+              src="Images/ladfox-logo.png"
+              alt="Ladfox logo"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              width="1830"
+              height="831"
+              onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
+            />
+          </a>
+        </div>
         <span class="brand-location">Hatton Garden, London</span>
       </div>
+
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" loading="eager" decoding="async" />
+      </a>
 
       <nav class="nav" aria-label="Primary">
         <a href="ringpage.html">Rings</a>
         <a href="diamonds.html">Diamonds</a>
+        <a href="tennis-bracelet.html">Bracelets</a>
         <a href="consultation.html">Consultation</a>
         <a href="price-match.html">Price Match</a>
         <a href="contact-us.html">Contact Us</a>

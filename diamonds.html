@@ -70,22 +70,175 @@
       padding:22px 0 14px;
       display:grid;
       justify-items:center;
+      position:relative;
+    }
+
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      width:100%;
     }
 
     .brand{
       display:flex;
       justify-content:center;
-      width:100%;
     }
 
-    .brand img{
+    .brand-logo{
       width:min(205px, 44vw);
+      height:auto;
+      display:block;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:22px;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:138px;
       height:auto;
       display:block;
     }
 
     main{
       padding:16px 0 40px;
+    }
+
+    .spotlight{
+      margin:0 0 24px;
+      display:grid;
+      gap:16px;
+    }
+
+    .spotlight-head{
+      display:grid;
+      gap:8px;
+    }
+
+    .spotlight-kicker{
+      margin:0;
+      color:rgba(255,255,255,.56);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    .spotlight-title{
+      font-size:clamp(1.9rem, 4vw, 2.8rem);
+      letter-spacing:-.03em;
+    }
+
+    .spotlight-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .spotlight-card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        rgba(8,8,8,.38);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-height:100%;
+    }
+
+    .spotlight-link{
+      height:100%;
+      display:grid;
+      grid-template-rows:auto 1fr;
+    }
+
+    .spotlight-media{
+      min-height:178px;
+      padding:22px;
+      display:grid;
+      place-items:center;
+      background:#000;
+    }
+
+    .spotlight-media img,
+    .spotlight-media video{
+      width:100%;
+      max-width:132px;
+      max-height:132px;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 32px rgba(0,0,0,.34));
+    }
+
+    .spotlight-media video{
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .spotlight-video--oval{
+      transform:scale(3.45);
+      transform-origin:center;
+      clip-path:inset(36% 36% 36% 36%);
+    }
+
+    .spotlight-video--round{
+      transform:scale(1.02);
+      transform-origin:center;
+    }
+
+    .spotlight-media--round{
+      background:
+        radial-gradient(circle at 48% 40%, #f3f1ee 0%, #ece9e4 34%, #dddcd7 68%, #d4d4cf 100%);
+    }
+
+    .spotlight-video--emerald{
+      transform:scale(2.8);
+      transform-origin:center;
+      clip-path:inset(22% 22% 22% 22%);
+    }
+
+    .spotlight-media--emerald{
+      background:#e6e1e6;
+    }
+
+    .spotlight-body{
+      padding:18px 18px 20px;
+      display:grid;
+      gap:10px;
+    }
+
+    .spotlight-label{
+      margin:0;
+      color:rgba(255,255,255,.56);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .spotlight-name{
+      font-size:1.16rem;
+    }
+
+    .spotlight-meta{
+      margin:0;
+      color:#fff;
+      font-size:.95rem;
+      font-weight:700;
+    }
+
+    .spotlight-cta{
+      margin-top:auto;
+      color:#fff;
+      font-size:.9rem;
+      font-weight:800;
     }
 
     .layout{
@@ -115,6 +268,7 @@
 
     .form-card{
       padding:28px;
+      margin-top:22px;
       background:
         linear-gradient(180deg, rgba(255,255,255,.035), transparent 34%),
         rgba(8,8,8,.3);
@@ -135,6 +289,28 @@
     .fields{
       display:grid;
       gap:14px;
+    }
+
+    .trust-note{
+      display:grid;
+      gap:6px;
+      margin-bottom:18px;
+      padding:14px 16px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      color:#fff;
+    }
+
+    .trust-note strong{
+      font-size:.98rem;
+      font-weight:800;
+    }
+
+    .trust-note span{
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.5;
     }
 
     .field-grid{
@@ -281,6 +457,10 @@
     }
 
     @media (max-width:980px){
+      .spotlight-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
       .field-grid,
       .tick-grid{
         grid-template-columns:1fr;
@@ -288,8 +468,24 @@
     }
 
     @media (max-width:720px){
-      .brand img{
+      .brand-logo{
         width:min(244px, 70vw);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
+      }
+
+      .spotlight-grid{
+        grid-template-columns:1fr;
+      }
+
+      .spotlight-media{
+        min-height:148px;
       }
 
       .form-card{
@@ -305,16 +501,112 @@
 </head>
 <body>
   <header class="shell">
-    <a class="brand" href="index.html" aria-label="Ladfox home">
-      <img src="Images/ladfox-logo.png" alt="Ladfox" />
-    </a>
+    <div class="brand-lockup">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
+      </a>
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
+      </a>
+    </div>
   </header>
 
   <main class="shell">
+    <section class="spotlight" aria-labelledby="spotlight-diamonds-title">
+      <div class="spotlight-head">
+        <h1 class="spotlight-title" id="spotlight-diamonds-title">Spotlight Diamonds</h1>
+      </div>
+
+      <div class="spotlight-grid">
+        <article class="spotlight-card">
+          <a class="spotlight-link" href="LG781605782.html">
+            <div class="spotlight-media spotlight-media--round">
+              <video
+                class="spotlight-video--round"
+                src="Images/products/LG781605782.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="Images/products/LG781605782.jpeg"
+                aria-label="1ct round diamond video"
+              >
+                <img src="Images/products/LG781605782.jpeg" alt="1ct round LG781605782 diamond" loading="lazy" decoding="async" />
+              </video>
+            </div>
+            <div class="spotlight-body">
+              <p class="spotlight-label">1ct Round</p>
+              <h2 class="spotlight-name">1ct Round VVS1</h2>
+              <p class="spotlight-meta">Ideal Cut • Excellent Polish • Excellent Symmetry</p>
+              <span class="spotlight-cta">View diamond</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="spotlight-card">
+          <a class="spotlight-link" href="LG772667488.html">
+            <div class="spotlight-media">
+              <video
+                class="spotlight-video--oval"
+                src="Images/products/Oval.mov"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="Images/diamond%20shapes/oval.png"
+                aria-label="1.6ct oval diamond video"
+              >
+                <img src="Images/diamond%20shapes/oval.png" alt="1.6ct oval diamond" loading="lazy" decoding="async" />
+              </video>
+            </div>
+            <div class="spotlight-body">
+              <p class="spotlight-label">1.6ct Oval</p>
+              <h2 class="spotlight-name">1.6ct Oval</h2>
+              <p class="spotlight-meta">Elongated look with strong finger coverage</p>
+              <span class="spotlight-cta">View diamond</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="spotlight-card">
+          <a class="spotlight-link" href="LG790687098.html">
+            <div class="spotlight-media spotlight-media--emerald">
+              <video
+                class="spotlight-video--emerald"
+                src="Images/products/Emerald.mov"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="Images/diamond%20shapes/emerald.png"
+                aria-label="Emerald cut diamond video"
+              >
+                <img src="Images/diamond%20shapes/emerald.png" alt="Emerald cut diamond" loading="lazy" decoding="async" />
+              </video>
+            </div>
+            <div class="spotlight-body">
+              <p class="spotlight-label">2.06ct Emerald</p>
+              <h2 class="spotlight-name">2.06ct Emerald Cut</h2>
+              <p class="spotlight-meta">Clean step-cut character</p>
+              <span class="spotlight-cta">View diamond</span>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
     <div class="layout">
       <section>
         <h2>Diamond sourcing</h2>
         <p class="form-copy">We only supply high quality stones with top tier spec, strong visual performance, and final Ladfox approval before anything is recommended.</p>
+        <div class="trust-note" aria-label="Returns policy">
+          <strong>Free 14 day returns</strong>
+          <span>If your diamond is not right, return it within 14 days at no extra cost.</span>
+        </div>
 
         <div id="diamondContent" class="form-card">
           <form
@@ -424,11 +716,32 @@
       const form = document.querySelector('form[name="diamond-sourcing"]');
       const submitButton = form?.querySelector('button[type="submit"]');
       const submitStatus = document.getElementById("submitStatus");
+      const spotlightVideos = document.querySelectorAll(".spotlight-media video");
+
+      const keepSpotlightVideosPlaying = () => {
+        if (document.visibilityState === "hidden") return;
+
+        spotlightVideos.forEach((spotlightVideo) => {
+          if (!(spotlightVideo instanceof HTMLVideoElement)) return;
+          const playAttempt = spotlightVideo.play();
+          if (playAttempt && typeof playAttempt.catch === "function") {
+            playAttempt.catch(() => {});
+          }
+        });
+      };
 
       ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid"].forEach(key => {
         const el = document.getElementById(key);
         if (el) el.value = params.get(key) || "";
       });
+
+      keepSpotlightVideosPlaying();
+      spotlightVideos.forEach((spotlightVideo) => {
+        spotlightVideo.addEventListener("pause", keepSpotlightVideosPlaying);
+      });
+      window.addEventListener("scroll", keepSpotlightVideosPlaying, { passive:true });
+      document.addEventListener("visibilitychange", keepSpotlightVideosPlaying);
+      window.setInterval(keepSpotlightVideosPlaying, 700);
 
       fetch("https://ipapi.co/json/")
         .then(r => r.ok ? r.json() : Promise.reject())

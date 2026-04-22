@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Bespoke Jewellery Design | Custom Jewellery | Ladfox</title>
+
+  <meta name="description" content="Design bespoke jewellery with Ladfox. Explore custom rings, bracelets, necklaces, pendants, and earrings with a guided process built around the piece you actually want." />
+  <link rel="canonical" href="https://ladfox.com/jewellery-design.html" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
+  <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#050505" />
+
+  <meta property="og:title" content="Bespoke Jewellery Design | Custom Jewellery | Ladfox" />
+  <meta property="og:description" content="Design bespoke jewellery with Ladfox using a guided process, natural or lab grown diamonds, and custom design direction." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ladfox.com/jewellery-design.html" />
+  <meta property="og:image" content="https://ladfox.com/Images/Sketch%20with%20ring.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bespoke Jewellery Design | Custom Jewellery | Ladfox" />
+  <meta name="twitter:description" content="Design bespoke jewellery with Ladfox using a guided process, natural or lab grown diamonds, and custom design direction." />
+  <meta name="twitter:image" content="https://ladfox.com/Images/Sketch%20with%20ring.png" />
+
+  <link rel="preload" as="image" href="Images/hero%20image.png" />
+  <link rel="preload" as="image" href="Images/bench.jpg" />
+  <link rel="stylesheet" href="scroll-reveal.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"JewelryStore",
+    "name":"Ladfox",
+    "url":"https://ladfox.com/",
+    "image":"https://ladfox.com/Images/Sketch%20with%20ring.png",
+    "description":"Bespoke jewellery by Ladfox with custom design guidance, natural and lab grown diamonds, and a jewellery-first bespoke process.",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"London",
+      "addressRegion":"London",
+      "addressCountry":"GB"
+    },
+    "areaServed":["GB","Worldwide"],
+    "makesOffer":[
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bespoke jewellery"}},
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bespoke fine jewellery"}},
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Lab grown diamond jewellery"}},
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Natural diamond jewellery"}},
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Gemstone jewellery"}}
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --text:#f5f5f5;
+      --muted:#cfcfcf;
+      --card:#0b0b0b;
+      --line:#2a2a2a;
+      --shadow:0 12px 34px rgba(0,0,0,.32);
+      --radius:18px;
+
+      --h-font:"Playfair Display", serif;
+      --body-font:"Cormorant Garamond", serif;
+      --ui-font:"Poppins", system-ui, sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html{
+      background:#000;
+    }
+
+    body{
+      margin:0;
+      min-height:100svh;
+      background:#000;
+      color:var(--text);
+      font-family:var(--body-font);
+      line-height:1.45;
+      overflow-x:hidden;
+      padding-top:env(safe-area-inset-top, 0);
+      padding-bottom:env(safe-area-inset-bottom, 0);
+    }
+
+    .topbar{
+      padding:18px 0 10px;
+      position:relative;
+      z-index:2;
+    }
+
+    .topbar__inner{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      position:relative;
+      padding-right:170px;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      line-height:0;
+    }
+
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .brand-logo{
+      width:min(205px, 44vw);
+      height:auto;
+      display:block;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:0;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:138px;
+      height:auto;
+      display:block;
+    }
+
+    @media(max-width:720px){
+      .section[aria-label="Why choose Ladfox"]{ display:none; }
+      #start > .copy > h2,
+      #start > .copy > .micro,
+      #start > .copy > .form-intro{ display:none; }
+      #start > .copy{
+        padding:0;
+        background:transparent;
+        border:0;
+        box-shadow:none;
+        gap:0;
+      }
+      #start > .copy::before,
+      #start > .copy::after{ display:none; }
+    }
+
+    .wrap{
+      width:min(1040px,94%);
+      margin:0 auto;
+      padding:0 0 34px;
+    }
+
+    .intro-visual{
+      width:100vw;
+      margin:0;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .intro-visual img{
+      width:100%;
+      height:min(66vw, 560px);
+      object-fit:cover;
+      object-position:center center;
+      display:block;
+    }
+
+    .intro-visual::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:120px;
+      background:linear-gradient(180deg, #000 0%, rgba(0,0,0,.7) 46%, rgba(0,0,0,0) 100%);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .intro-visual::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:28%;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.56) 52%, #000 100%);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .hero-intro{
+      max-width:920px;
+      margin:30px auto 18px;
+      text-align:center;
+      padding:0 8px;
+    }
+
+    .hero-intro .kicker{
+      justify-content:center;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    #start{
+      scroll-margin-top:120px;
+    }
+
+    @media(max-width:1000px){
+      .grid-2{ grid-template-columns:1fr; }
+    }
+
+    .copy,
+    .card{
+      background:transparent;
+      border:0;
+      border-radius:0;
+      box-shadow:none;
+    }
+
+    .copy{
+      padding:clamp(18px,2.4vw,26px);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .copy::before{
+      content:"";
+      position:absolute;
+      inset:auto -30% -40% auto;
+      width:260px;
+      height:260px;
+      border-radius:999px;
+      background:radial-gradient(circle at 30% 30%, rgba(0,0,0,.12), rgba(0,0,0,0) 70%);
+      pointer-events:none;
+    }
+
+    .copy::after{
+      content:"";
+      position:absolute;
+      inset:12px auto auto 16px;
+      width:140px;
+      height:140px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.18);
+      box-shadow:0 0 0 10px rgba(0,0,0,.06);
+      pointer-events:none;
+    }
+
+    .kicker{
+      margin:0;
+      display:inline-flex;
+      font-family:var(--ui-font);
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      font-size:.68rem;
+      color:#fff;
+    }
+
+    h1{
+      font-family:var(--h-font);
+      font-size:clamp(28px,3.4vw,44px);
+      margin:0;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    h2{
+      font-family:var(--h-font);
+      font-size:clamp(20px,2.1vw,28px);
+      margin:0;
+      letter-spacing:.2px;
+    }
+
+    .sub{
+      margin:0;
+      font-size:1.12rem;
+      font-weight:600;
+      color:var(--muted);
+    }
+
+    .micro{
+      margin:6px 0 0;
+      font-family:var(--ui-font);
+      font-size:.88rem;
+      color:#bdbdbd;
+      line-height:1.45;
+    }
+
+    .proof{
+      margin:14px auto 0;
+      max-width:820px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:center;
+    }
+
+    .pill{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 12px;
+      font-family:var(--ui-font);
+      font-size:.82rem;
+      font-weight:700;
+      background:#0f0f0f;
+    }
+
+    .cta-row{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      background:linear-gradient(140deg, #111, #000);
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-family:var(--ui-font);
+      font-weight:700;
+      border:1px solid #111;
+      min-width:220px;
+      box-shadow:0 12px 22px rgba(16,12,7,.25);
+      transition:transform .18s ease, box-shadow .18s ease;
+      cursor:pointer;
+    }
+
+    .secondary-form-link{
+      margin:4px auto 0;
+      width:fit-content;
+      color:rgba(255,255,255,.82);
+      font-family:var(--ui-font);
+      font-size:.88rem;
+      line-height:1.5;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    .secondary-form-link:hover,
+    .secondary-form-link:focus-visible{
+      color:#fff;
+      outline:none;
+    }
+
+    .btn--secondary{
+      background:#000;
+      color:#fff;
+      border:1px solid #000;
+      box-shadow:none;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 26px rgba(16,12,7,.28);
+    }
+
+    .quick-start-status{
+      min-height:1.25em;
+      margin:10px 0 0;
+      font-family:var(--ui-font);
+      font-size:.9rem;
+      color:#ffb3b3;
+    }
+
+    .guided-form{
+      display:grid;
+      gap:18px;
+      width:min(640px, 100%);
+      margin:0 auto;
+      padding:30px 28px;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(8,8,8,.68), rgba(16,16,16,.54));
+      box-shadow:0 20px 48px rgba(0,0,0,.2);
+    }
+
+    .guided-form__eyebrow{
+      margin:0;
+      font-family:var(--ui-font);
+      text-transform:uppercase;
+      letter-spacing:.24em;
+      font-size:.72rem;
+      color:rgba(255,255,255,.64);
+      font-weight:700;
+    }
+
+    .guided-form__question{
+      margin:8px 0 0;
+      font-family:var(--h-font);
+      font-size:clamp(1.6rem, 3vw, 2.2rem);
+      line-height:1.05;
+    }
+
+    .guided-form__support{
+      margin:10px 0 0;
+      font-family:var(--ui-font);
+      font-size:.98rem;
+      line-height:1.65;
+      color:rgba(255,255,255,.72);
+    }
+
+    .guided-form__body{
+      display:grid;
+      gap:12px;
+    }
+
+    .guided-choice-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .guided-choice{
+      width:100%;
+      min-height:56px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.025);
+      color:#fff;
+      font-family:var(--ui-font);
+      font-size:.98rem;
+      font-weight:700;
+      text-align:left;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .guided-choice:hover,
+    .guided-choice:focus-visible{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.3);
+      background:rgba(255,255,255,.05);
+      outline:none;
+    }
+
+    .guided-input,
+    .guided-textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(18,18,18,.58);
+      color:#fff;
+      font-family:var(--ui-font);
+      font-size:1rem;
+      line-height:1.55;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .guided-input:focus,
+    .guided-textarea:focus{
+      border-color:rgba(255,255,255,.34);
+      outline:none;
+    }
+
+    .guided-textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .guided-form__footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .guided-form__footer .btn{
+      min-width:180px;
+    }
+
+    .guided-form__footer .btn[hidden]{
+      display:none;
+    }
+
+    .guided-form__note{
+      margin:0;
+      font-family:var(--ui-font);
+      font-size:.86rem;
+      line-height:1.6;
+      color:rgba(255,255,255,.64);
+    }
+
+    .reassure{
+      margin:10px auto 0;
+      max-width:760px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:center;
+      font-family:var(--ui-font);
+      font-size:.85rem;
+      color:#bdbdbd;
+    }
+
+    .reassure span{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 12px;
+      font-weight:700;
+      background:#0f0f0f;
+    }
+
+    .card{
+      display:grid;
+      grid-template-rows:1fr auto;
+      overflow:hidden;
+      position:relative;
+      min-height:0;
+      width:100%;
+      margin:0 auto;
+    }
+
+    .card__actions{
+      padding:0;
+      display:grid;
+      gap:10px;
+      border-top:0;
+      background:transparent;
+    }
+
+    .note{
+      text-align:center;
+      font-family:var(--ui-font);
+      font-size:.86rem;
+      color:#bdbdbd;
+      line-height:1.35;
+    }
+
+    #consultationLink{
+      color:#fff;
+      font-weight:700;
+    }
+
+    .section{
+      margin-top:18px;
+    }
+
+    .section .copy{
+      text-align:left;
+    }
+
+    .tiles{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    @media(max-width:920px){
+      .tiles{ grid-template-columns:1fr; }
+    }
+
+    .tile{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:linear-gradient(120deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      padding:12px 14px;
+    }
+
+    a.tile{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .tile h3{
+      margin:0;
+      font-family:var(--ui-font);
+      font-size:.95rem;
+      letter-spacing:.02em;
+    }
+
+    .tile p{
+      margin:8px 0 0;
+      font-family:var(--ui-font);
+      color:#cfcfcf;
+      font-size:.93rem;
+      line-height:1.5;
+    }
+
+    .design-flow{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      margin-top:-1px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.24) 0%, rgba(0,0,0,.68) 16%, rgba(0,0,0,.78) 100%),
+        url("Images/Studio%20portrait%20or%20workshop%20image.png") center/cover no-repeat;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .design-flow::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.34) 14%, rgba(0,0,0,.62) 34%, rgba(0,0,0,.78) 100%),
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,.05), transparent 28%);
+      pointer-events:none;
+    }
+
+    .form-wrap{
+      display:flex;
+      justify-content:center;
+      width:100%;
+      padding:44px 28px 28px;
+      border-radius:0;
+      position:relative;
+      z-index:1;
+      overflow:hidden;
+    }
+
+    .form-wrap .card{
+      width:min(760px, 100%);
+      margin:0 auto;
+    }
+
+    .faq{
+      margin-top:0;
+      padding:0 28px 34px;
+      position:relative;
+      z-index:1;
+    }
+
+    .faq .copy{
+      max-width:1040px;
+      margin:0 auto;
+      padding-top:0;
+      text-align:center;
+    }
+
+    @media(max-width:900px){
+      .form-wrap{ display:block; }
+    }
+
+    form{
+      display:grid;
+      gap:12px;
+      margin-top:6px;
+    }
+
+    .form-intro{
+      margin:0 auto 8px;
+      max-width:720px;
+      text-align:center;
+      font-family:var(--ui-font);
+      font-size:.92rem;
+      color:#bdbdbd;
+      line-height:1.55;
+    }
+
+    .conditional-field[hidden]{
+      display:none;
+    }
+
+    .faq .kicker{
+      font-size:.88rem;
+      letter-spacing:.22em;
+      font-weight:700;
+    }
+
+    .faq-toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin:0 auto;
+      min-height:50px;
+      padding:0 18px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:linear-gradient(120deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      color:var(--text);
+      font-family:var(--ui-font);
+      font-size:.9rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+
+    .faq-toggle::after{
+      content:"";
+      width:9px;
+      height:9px;
+      border-right:2px solid currentColor;
+      border-bottom:2px solid currentColor;
+      transform:rotate(45deg) translateY(-1px);
+      transition:transform .2s ease;
+    }
+
+    .faq.is-open .faq-toggle::after{
+      transform:rotate(-135deg) translateY(-1px);
+    }
+
+    .faq h2{
+      text-align:center;
+    }
+
+    .faq-list{
+      margin:12px auto 0;
+      max-width:920px;
+      display:none;
+      gap:10px;
+      padding:0;
+      text-align:left;
+    }
+
+    .faq.is-open .faq-list{
+      display:grid;
+    }
+
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:linear-gradient(120deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      padding:12px 14px;
+    }
+
+    summary{
+      cursor:pointer;
+      font-family:var(--ui-font);
+      font-weight:700;
+      color:var(--text);
+      list-style:none;
+      outline:none;
+    }
+
+    summary::-webkit-details-marker{ display:none; }
+
+    details p{
+      margin:10px 0 0;
+      font-family:var(--ui-font);
+      font-size:.95rem;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    @media(max-width:560px){
+      .topbar{
+        padding-top:18px;
+      }
+
+      .brand-logo{
+        width:min(188px, 56vw);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
+      }
+
+      .form-wrap{ padding:34px 18px 18px; }
+      .faq{ padding:0 18px 28px; }
+    }
+
+    @keyframes rise{
+      from{ opacity:0; transform:translateY(14px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    .copy, .card{
+      animation:rise .6s ease both;
+    }
+
+    .card{ animation-delay:.08s; }
+
+    @media (prefers-reduced-motion: reduce){
+      .copy, .card{ animation:none; }
+      .btn{ transition:none; }
+    }
+
+    .site-footer{
+      padding:26px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .site-footer .wrap{
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      color:#bdbdbd;
+      font-family:var(--ui-font);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    @media(max-width:760px){
+      .topbar__inner{
+        padding-right:0;
+      }
+
+      .hero-intro{
+        margin-top:24px;
+      }
+
+      .cta-row{
+        flex-direction:column;
+      }
+
+      .btn{
+        min-width:unset;
+        width:100%;
+        max-width:520px;
+      }
+    }
+  </style>
+  <script defer src="/Public/google-tag.js"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand-lockup">
+        <a class="brand" href="index.html" aria-label="Ladfox home">
+          <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" loading="eager" decoding="async" />
+        </a>
+        <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+          <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" loading="eager" decoding="async" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero-intro" aria-label="Jewellery design introduction">
+      <p class="kicker">Bespoke jewellery</p>
+      <h1>Designed properly. Made with care. Built around the piece you actually want.</h1>
+    </section>
+
+    <figure class="intro-visual">
+      <img src="Images/Sketch with ring.png" alt="Ladfox ring sketch and finished ring" />
+    </figure>
+
+    <section class="section" id="start" aria-label="Start your design">
+      <div class="copy">
+        <h2 id="start-heading">Let&rsquo;s design your jewellery</h2>
+        <p class="sub">We&rsquo;ll send a complimentary sketch</p>
+        <p class="micro">Most people start by browsing ready made jewellery. A beautifully bespoke piece is often a similar price, if not less, when it is designed properly from the start.</p>
+      </div>
+    </section>
+
+    <div class="design-flow">
+      <div class="form-wrap">
+        <div class="card">
+          <div class="card__actions">
+            <form id="quickStartForm" name="jewellery-design-quick-start" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="jewellery-design-quick-start" />
+              <input type="hidden" name="location" id="quickStartLocation" value="Unknown" />
+              <input type="hidden" name="jewellery_type" id="quickStartJewelleryType" />
+              <input type="hidden" name="necklace_type" id="quickStartNecklaceType" />
+              <input type="hidden" name="stone_type" id="quickStartStoneType" />
+              <input type="hidden" name="stone_shape" id="quickStartStoneShape" />
+              <input type="hidden" name="stone_size" id="quickStartStoneSize" />
+              <input type="hidden" name="jewellery_metal" id="quickStartJewelleryMetal" />
+              <input type="hidden" name="other_notes" id="quickStartNotes" />
+              <input type="hidden" name="email" id="quickStartEmail" />
+              <p style="display:none;">
+                <label>Do not fill this in <input name="bot-field" /></label>
+              </p>
+
+              <div class="guided-form">
+                <div class="guided-form__intro">
+                  <h3 class="guided-form__question" id="quickStartQuestion">What type of jewellery?</h3>
+                  <p class="guided-form__support" id="quickStartSupport">Choose the kind of piece first and we will build the design around it.</p>
+                </div>
+
+                <div class="guided-form__body" id="quickStartBody"></div>
+                <p class="guided-form__note" id="quickStartNote"></p>
+                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
+
+                <div class="guided-form__footer">
+                  <button class="btn btn--secondary" id="quickStartBack" type="button" hidden>Back</button>
+                  <button class="btn" id="quickStartNext" type="button">Continue</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <section class="faq" aria-label="Frequently asked questions">
+        <div class="copy">
+          <button class="faq-toggle" id="faqToggle" type="button" aria-expanded="false" aria-controls="faqList">FAQ</button>
+
+          <div class="faq-list" id="faqList" role="list">
+            <details>
+              <summary>How do I make sure the piece looks exceptional in real life</summary>
+              <p>We guide proportions, structure, and stone pairing so the piece performs beautifully from every angle, not just in a product photo.</p>
+            </details>
+
+            <details>
+              <summary>How do I choose a budget without guessing</summary>
+              <p>Tell us your comfortable range and the style you want. We will show realistic options within that range and explain what changes the look most, such as stone size, structure, and metal choice.</p>
+            </details>
+
+            <details>
+              <summary>Lab grown vs natural, what is the difference</summary>
+              <p>Lab grown diamonds are real diamonds with the same physical properties. Natural diamonds are valued for rarity. The right choice is personal and we can guide you either way.</p>
+            </details>
+
+            <details>
+              <summary>How long does it take</summary>
+              <p>Most bespoke pieces take around 3 to 4 weeks after CAD approval, with faster options when needed.</p>
+            </details>
+
+            <details>
+              <summary>Can you keep it a surprise</summary>
+              <p>Yes. Discreet packaging, discreet communication, and we never spoil surprises.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="wrap">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How do I make sure the piece looks exceptional in real life",
+        "acceptedAnswer":{"@type":"Answer","text":"We guide proportions, structure, and stone pairing so the piece performs beautifully from every angle, not just in a product photo."}
+      },
+      {
+        "@type":"Question",
+        "name":"How do I choose a budget without guessing",
+        "acceptedAnswer":{"@type":"Answer","text":"Tell us your comfortable range and the style you want. We will show realistic options within that range and explain what changes the look most, such as stone size, structure, and metal choice."}
+      },
+      {
+        "@type":"Question",
+        "name":"Lab grown vs natural, what is the difference",
+        "acceptedAnswer":{"@type":"Answer","text":"Lab grown diamonds are real diamonds with the same physical properties. Natural diamonds are valued for rarity. The right choice is personal and we can guide you either way."}
+      },
+      {
+        "@type":"Question",
+        "name":"How long does it take",
+        "acceptedAnswer":{"@type":"Answer","text":"Most bespoke pieces take around 3 to 4 weeks after CAD approval, with faster options when needed."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can you keep it a surprise",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Discreet packaging, discreet communication, and we never spoil surprises."}
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    function mergeQueryParamsIntoLink(href, currentParams){
+      try{
+        const url = new URL(href, window.location.origin);
+        const linkParams = new URLSearchParams(url.search);
+        currentParams.forEach((value, key) => {
+          if (!linkParams.has(key)) linkParams.set(key, value);
+        });
+        url.search = linkParams.toString() ? "?" + linkParams.toString() : "";
+        return url.pathname + url.search + url.hash;
+      }catch(e){
+        return href;
+      }
+    }
+
+    (function preserveUtm(){
+      const currentParams = new URLSearchParams(window.location.search);
+      if ([...currentParams.keys()].length === 0) return;
+
+      const anchors = document.querySelectorAll("a[href]");
+      anchors.forEach(a => {
+        const href = a.getAttribute("href");
+        if (!href) return;
+        if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#")) return;
+        const updated = mergeQueryParamsIntoLink(href, currentParams);
+        a.setAttribute("href", updated);
+      });
+    })();
+
+    function trackCtaClick(el){
+      if (!el || typeof gtag !== "function") return;
+      const text = (el.textContent || "").trim();
+      gtag("event", "cta_click", {
+        cta_id: el.id || "",
+        cta_text: text,
+        page_location: window.location.href
+      });
+    }
+
+    ["primaryCtaTop","secondaryCtaTop","primaryCtaBottom","primaryCtaSticky","secondaryCtaSticky","fullFormLink","consultationLink"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el){
+        el.addEventListener("click", () => trackCtaClick(el));
+      }
+    });
+
+    (function handleQuickStartSubmit(){
+      const form = document.getElementById("quickStartForm");
+      if (!form) return;
+
+      const questionEl = document.getElementById("quickStartQuestion");
+      const supportEl = document.getElementById("quickStartSupport");
+      const bodyEl = document.getElementById("quickStartBody");
+      const noteEl = document.getElementById("quickStartNote");
+      const statusEl = document.getElementById("quickStartStatus");
+      const backBtn = document.getElementById("quickStartBack");
+      const nextBtn = document.getElementById("quickStartNext");
+      const locationField = document.getElementById("quickStartLocation");
+
+      const hiddenFields = {
+        jewellery_type: document.getElementById("quickStartJewelleryType"),
+        necklace_type: document.getElementById("quickStartNecklaceType"),
+        stone_type: document.getElementById("quickStartStoneType"),
+        stone_shape: document.getElementById("quickStartStoneShape"),
+        stone_size: document.getElementById("quickStartStoneSize"),
+        jewellery_metal: document.getElementById("quickStartJewelleryMetal"),
+        other_notes: document.getElementById("quickStartNotes"),
+        email: document.getElementById("quickStartEmail")
+      };
+
+      const baseSteps = [
+        {
+          key: "jewellery_type",
+          label: "What type of jewellery?",
+          support: "Choose the kind of piece first and we will build the design around it.",
+          type: "choice",
+          options: ["Ring", "Bracelet", "Necklace", "Pendant", "Earrings", "Not sure yet"]
+        },
+        {
+          key: "stone_type",
+          label: "Which stone type?",
+          support: "Choose the stone direction and we will build the design around it.",
+          type: "choice",
+          options: ["Lab grown diamond", "Natural diamond", "Gemstone", "Not sure yet"]
+        },
+        {
+          key: "stone_shape",
+          label: "Stone shape",
+          support: "Most people know what they are drawn to, even if they are not fully certain yet.",
+          type: "choice",
+          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Not sure yet"]
+        },
+        {
+          key: "stone_size",
+          label: "TCW",
+          support: "A rough total carat weight is enough to start the sketch properly.",
+          type: "choice",
+          options: ["Under 1 TCW", "1 to 2 TCW", "2 to 3 TCW", "3 to 5 TCW", "5 TCW plus", "Not sure yet"]
+        },
+        {
+          key: "jewellery_metal",
+          label: "Metal",
+          support: "Pick a metal if you know it, or leave room for us to guide you.",
+          type: "choice",
+          options: ["Yellow gold", "White gold", "Rose gold", "Platinum", "Not sure yet"]
+        },
+        {
+          key: "other_notes",
+          label: "Other notes",
+          support: "Tell us what you have in mind. Links, screenshots, reference pieces, and budget are all useful here.",
+          type: "textarea",
+          placeholder: "Style direction, reference links, screenshots, budget, or anything else you want us to know."
+        },
+        {
+          key: "email",
+          label: "Email",
+          support: "We will reply here.",
+          type: "email",
+          placeholder: "you@example.com"
+        }
+      ];
+
+      const necklaceTypeStep = {
+        key: "necklace_type",
+        label: "What type of necklace?",
+        support: "Choose the direction you want and we will shape the design around it.",
+        type: "choice",
+        options: ["Tennis necklace", "Pendant necklace", "Station necklace", "Choker", "Not sure yet"]
+      };
+
+      const formValues = {
+        jewellery_type: "",
+        necklace_type: "",
+        stone_type: "",
+        stone_shape: "",
+        stone_size: "",
+        jewellery_metal: "",
+        other_notes: "",
+        email: ""
+      };
+
+      let stepIndex = 0;
+      let isSubmitting = false;
+
+      function getSteps(){
+        const steps = [...baseSteps];
+        if (formValues.jewellery_type === "Necklace") {
+          steps.splice(1, 0, necklaceTypeStep);
+        }
+        return steps;
+      }
+
+      function syncHiddenFields(){
+        Object.entries(hiddenFields).forEach(([key, field]) => {
+          if (field) field.value = formValues[key] || "";
+        });
+      }
+
+      function setStatus(message){
+        if (statusEl) statusEl.textContent = message || "";
+      }
+
+      function renderChoiceStep(step){
+        const steps = getSteps();
+        const list = document.createElement("div");
+        list.className = "guided-choice-list";
+
+        step.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "guided-choice";
+          button.textContent = option;
+          button.addEventListener("click", () => {
+            formValues[step.key] = option;
+            if (step.key === "jewellery_type" && option !== "Necklace") {
+              formValues.necklace_type = "";
+            }
+            syncHiddenFields();
+            setStatus("");
+            if (stepIndex < steps.length - 1) {
+              stepIndex += 1;
+              renderStep();
+            }
+          });
+          list.appendChild(button);
+        });
+
+        bodyEl.appendChild(list);
+        nextBtn.hidden = true;
+      }
+
+      function renderInputStep(step){
+        const steps = getSteps();
+        const field = step.type === "textarea"
+          ? document.createElement("textarea")
+          : document.createElement("input");
+
+        field.className = step.type === "textarea" ? "guided-textarea" : "guided-input";
+        if (step.type !== "textarea") field.type = step.type;
+        field.placeholder = step.placeholder || "";
+        field.value = formValues[step.key] || "";
+        field.autocomplete = step.type === "email" ? "email" : "off";
+        if (step.type === "email") field.inputMode = "email";
+
+        field.addEventListener("input", () => {
+          formValues[step.key] = field.value.trim();
+          syncHiddenFields();
+          setStatus("");
+        });
+
+        bodyEl.appendChild(field);
+        nextBtn.hidden = false;
+        nextBtn.textContent = stepIndex === steps.length - 1 ? "Submit" : "Continue";
+        requestAnimationFrame(() => field.focus());
+      }
+
+      function renderStep(){
+        const steps = getSteps();
+        const step = steps[stepIndex];
+        if (!step || !questionEl || !supportEl || !bodyEl || !noteEl || !backBtn || !nextBtn) return;
+
+        questionEl.textContent = step.label;
+        supportEl.textContent = step.support;
+        noteEl.textContent = stepIndex === steps.length - 1
+          ? "We will come back with the first design direction by email."
+          : "";
+        bodyEl.innerHTML = "";
+        backBtn.hidden = stepIndex === 0;
+
+        if (step.type === "choice") {
+          renderChoiceStep(step);
+        } else {
+          renderInputStep(step);
+        }
+      }
+
+      backBtn.addEventListener("click", () => {
+        if (isSubmitting || stepIndex === 0) return;
+        stepIndex -= 1;
+        setStatus("");
+        renderStep();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        const steps = getSteps();
+        const step = steps[stepIndex];
+        if (!step) return;
+
+        if (step.type === "textarea") {
+          syncHiddenFields();
+          stepIndex += 1;
+          renderStep();
+          return;
+        }
+
+        if (step.type === "email") {
+          const email = String(formValues.email || "").trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setStatus("Please add a valid email address.");
+            return;
+          }
+
+          if (isSubmitting) return;
+          isSubmitting = true;
+          syncHiddenFields();
+          setStatus("");
+          nextBtn.disabled = true;
+          nextBtn.textContent = "Sending...";
+          form.requestSubmit();
+        }
+      });
+
+      if (locationField) {
+        fetch("https://ipapi.co/json/")
+          .then((response) => response.ok ? response.json() : Promise.reject())
+          .then((data) => {
+            const location = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
+            locationField.value = location || "Unknown";
+          })
+          .catch(() => {});
+      }
+
+      form.addEventListener("submit", (event) => {
+        const email = String(formValues.email || "").trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          event.preventDefault();
+          isSubmitting = false;
+          nextBtn.disabled = false;
+          nextBtn.textContent = "Submit";
+          setStatus("Please add a valid email address.");
+        }
+      });
+
+      syncHiddenFields();
+      renderStep();
+    })();
+
+    (function handleFaqToggle(){
+      const faqSection = document.querySelector(".faq");
+      const faqToggle = document.getElementById("faqToggle");
+      if (!faqSection || !faqToggle) return;
+
+      faqToggle.addEventListener("click", () => {
+        const isOpen = faqSection.classList.toggle("is-open");
+        faqToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    })();
+  </script>
+  <script src="scroll-reveal.js"></script>
+</body>
+</html>

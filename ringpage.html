@@ -95,10 +95,12 @@
 
     .topbar__inner{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:16px;
       flex-wrap:wrap;
+      position:relative;
+      padding-right:170px;
     }
 
     .brand{
@@ -108,37 +110,33 @@
       line-height:0;
     }
 
-    .brand img{
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .brand-logo{
       width:min(205px, 44vw);
       height:auto;
       display:block;
     }
 
-    .nav{
+    .brand-review-link{
       display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:0;
+      right:0;
     }
 
-    .nav a{
-      padding:10px 14px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      font-size:.92rem;
-      font-weight:700;
-      font-family:var(--ui-font);
-      background:rgba(255,255,255,.04);
-      transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
-    }
-
-    .nav a:hover,
-    .nav a:focus-visible{
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      border-color:rgba(255,255,255,.16);
-      transform:translateY(-1px);
-      outline:none;
+    .brand-review-badge{
+      width:138px;
+      height:auto;
+      display:block;
     }
 
     @media(max-width:720px){
@@ -781,8 +779,16 @@
         padding-top:18px;
       }
 
-      .brand img{
+      .brand-logo{
         width:min(188px, 56vw);
+      }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
       }
 
       .form-wrap{ padding:34px 18px 18px; }
@@ -829,13 +835,8 @@
     }
 
     @media(max-width:760px){
-      .nav{
-        width:100%;
-        justify-content:center;
-      }
-
-      .nav a{
-        text-align:center;
+      .topbar__inner{
+        padding-right:0;
       }
 
       .hero-intro{
@@ -859,15 +860,14 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar__inner">
-      <a class="brand" href="index.html" aria-label="Ladfox home">
-        <img src="Images/ladfox-logo.png" alt="Ladfox" loading="eager" decoding="async" />
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="consultation.html">Consultation</a>
-        <a href="contact-us.html">Contact Us</a>
-        <a href="price-match.html">Price Match</a>
-      </nav>
+      <div class="brand-lockup">
+        <a class="brand" href="index.html" aria-label="Ladfox home">
+          <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" loading="eager" decoding="async" />
+        </a>
+        <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+          <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" loading="eager" decoding="async" />
+        </a>
+      </div>
     </div>
   </header>
 
