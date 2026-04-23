@@ -133,6 +133,7 @@
     }
 
     .spotlight-title{
+      margin:0;
       font-size:clamp(1.9rem, 4vw, 2.8rem);
       letter-spacing:-.03em;
     }
@@ -224,6 +225,7 @@
     }
 
     .spotlight-name{
+      margin:0;
       font-size:1.16rem;
     }
 
@@ -257,9 +259,6 @@
       -webkit-backdrop-filter:blur(10px);
     }
 
-    .form-card,
-    .form-card,
-    .thank-you-message{
     h1,h2,h3{
       margin:0;
       font-family:var(--heading);
@@ -415,6 +414,7 @@
       align-items:center;
       justify-content:center;
       min-height:54px;
+      min-width:148px;
       padding:0 22px;
       border:0;
       border-radius:18px;
@@ -457,6 +457,10 @@
     }
 
     @media (max-width:980px){
+      body{
+        background-attachment:scroll;
+      }
+
       .spotlight-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
       }
@@ -468,24 +472,68 @@
     }
 
     @media (max-width:720px){
+      .shell{
+        width:min(calc(100% - 24px), var(--max));
+      }
+
+      header{
+        padding:18px 0 10px;
+      }
+
+      main{
+        padding:10px 0 32px;
+      }
+
+      .brand-lockup{
+        gap:10px;
+      }
+
       .brand-logo{
         width:min(244px, 70vw);
       }
 
       .brand-review-badge{
-        width:min(118px, 36vw);
+        width:min(122px, 42vw);
       }
 
       .brand-review-link{
         position:static;
       }
 
+      .spotlight{
+        gap:14px;
+        margin-bottom:18px;
+      }
+
+      .spotlight-head{
+        gap:6px;
+      }
+
+      .spotlight-title{
+        font-size:clamp(1.7rem, 9vw, 2.2rem);
+      }
+
       .spotlight-grid{
         grid-template-columns:1fr;
+        gap:12px;
       }
 
       .spotlight-media{
         min-height:148px;
+        padding:18px;
+      }
+
+      .spotlight-body{
+        padding:16px 16px 18px;
+        gap:8px;
+      }
+
+      .spotlight-name{
+        font-size:1.06rem;
+      }
+
+      .spotlight-meta{
+        font-size:.92rem;
       }
 
       .form-card{
@@ -494,6 +542,98 @@
 
       .form-card{
         padding:22px;
+      }
+
+      .form-card h2{
+        font-size:1.65rem;
+      }
+
+      .form-copy{
+        margin-bottom:16px;
+        line-height:1.6;
+      }
+
+      .trust-note{
+        margin-bottom:16px;
+        padding:13px 14px;
+      }
+
+      .label{
+        margin-bottom:7px;
+      }
+
+      .input,
+      .textarea,
+      .tick-option{
+        border-radius:16px;
+      }
+
+      .textarea{
+        min-height:140px;
+      }
+
+      .submit-row{
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .privacy,
+      .submit-status{
+        flex-basis:100%;
+        max-width:none;
+      }
+    }
+
+    @media (max-width:520px){
+      .brand-logo{
+        width:min(220px, 72vw);
+      }
+
+      .brand-review-badge{
+        width:min(112px, 44vw);
+      }
+
+      .spotlight-card{
+        border-radius:24px;
+      }
+
+      .spotlight-media{
+        min-height:136px;
+        padding:16px;
+      }
+
+      .spotlight-media img,
+      .spotlight-media video{
+        max-width:118px;
+        max-height:118px;
+      }
+
+      .spotlight-video--oval{
+        transform:scale(3.05);
+      }
+
+      .spotlight-video--emerald{
+        transform:scale(2.45);
+      }
+
+      .form-card{
+        padding:18px;
+      }
+
+      .tick-option{
+        min-height:50px;
+        padding:12px 14px;
+      }
+
+      .tick-title{
+        font-size:.96rem;
+      }
+
+      .footer-meta{
+        font-size:.8rem;
       }
     }
   </style>
