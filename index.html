@@ -770,6 +770,7 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      gap:10px;
       min-height:52px;
       padding:0 18px;
       border-radius:999px;
@@ -792,115 +793,11 @@
       outline:none;
     }
 
-    .quick-message-panel{
-      position:fixed;
-      right:20px;
-      bottom:84px;
-      z-index:10001;
-      width:min(360px, calc(100vw - 32px));
-      padding:18px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:24px;
-      background:rgba(11,12,16,.96);
-      box-shadow:0 20px 50px rgba(0,0,0,.36);
-      backdrop-filter:blur(14px);
-      opacity:0;
-      pointer-events:none;
-      transform:translateY(14px);
-      transition:opacity .2s ease, transform .2s ease;
-    }
-
-    .quick-message-panel.is-open{
-      opacity:1;
-      pointer-events:auto;
-      transform:translateY(0);
-    }
-
-    .quick-message-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .quick-message-head h2{
-      font-size:1.15rem;
-      line-height:1.1;
-    }
-
-    .quick-message-head p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.55;
-    }
-
-    .quick-message-close{
-      width:40px;
-      height:40px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:transparent;
-      color:#ffffff;
-      font-size:1.2rem;
-      line-height:1;
-      cursor:pointer;
-    }
-
-    .quick-message-form{
-      display:grid;
-      gap:12px;
-    }
-
-    .quick-message-form label{
-      display:grid;
-      gap:6px;
-      font-size:.82rem;
-      font-weight:700;
-      letter-spacing:.02em;
-      color:#ffffff;
-    }
-
-    .quick-message-form input,
-    .quick-message-form select,
-    .quick-message-form textarea{
-      width:100%;
-      padding:12px 14px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:16px;
-      background:rgba(255,255,255,.04);
-      color:#ffffff;
-      font:inherit;
-      outline:none;
-      box-shadow:none;
-    }
-
-    .quick-message-form textarea{
-      min-height:110px;
-      resize:vertical;
-    }
-
-    .quick-message-form input::placeholder,
-    .quick-message-form textarea::placeholder{
-      color:rgba(255,255,255,.46);
-    }
-
-    .quick-message-form select option{
-      color:#ffffff;
-      background:#101218;
-    }
-
-    .quick-message-form .btn{
-      width:100%;
-    }
-
-    .quick-message-status{
-      min-height:1.2em;
-      margin:0;
-      color:#ffb3b3;
-      font-size:.84rem;
-      line-height:1.4;
+    .quick-message-bubble svg{
+      width:18px;
+      height:18px;
+      flex:0 0 auto;
+      fill:currentColor;
     }
 
     .site-footer{
@@ -1178,12 +1075,6 @@
         font-size:.88rem;
       }
 
-      .quick-message-panel{
-        right:16px;
-        bottom:74px;
-        width:calc(100vw - 32px);
-        padding:16px;
-      }
     }
 
     @media (max-width:480px){
@@ -1251,7 +1142,7 @@
       <nav class="nav" aria-label="Primary">
         <a href="ringpage.html">Rings</a>
         <a href="diamonds.html">Diamonds</a>
-        <a href="tennis-bracelet.html">Bracelets</a>
+        <a href="bracelets.html">Bracelets</a>
         <a href="consultation.html">Consultation</a>
         <a href="price-match.html">Price Match</a>
         <a href="contact-us.html">Contact Us</a>
@@ -1396,38 +1287,12 @@
     </div>
   </footer>
 
-  <div class="quick-message-panel" id="quickMessagePanel" aria-hidden="true">
-    <div class="quick-message-head">
-      <div>
-        <h2>Quick message</h2>
-        <p>Tell us what you are looking for and we will come back to you privately.</p>
-      </div>
-      <button class="quick-message-close" type="button" id="quickMessageClose" aria-label="Close quick message">×</button>
-    </div>
-
-    <form class="quick-message-form" name="quick-message" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="quick-message" />
-      <input type="hidden" name="location" id="quickMessageLocation" value="Unknown" />
-      <p style="display:none;">
-        <label>Do not fill this in <input name="bot-field" /></label>
-      </p>
-
-      <label for="quickMessageText">
-        Message
-        <textarea id="quickMessageText" name="message" placeholder="Tell us what you are looking for" required></textarea>
-      </label>
-
-      <label for="quickMessageEmail">
-        Email
-        <input id="quickMessageEmail" name="email" type="email" placeholder="you@example.com" required />
-      </label>
-
-      <p class="quick-message-status" id="quickMessageStatus" aria-live="polite"></p>
-      <button class="btn btn-primary" type="submit">Send message</button>
-    </form>
-  </div>
-
-  <button class="quick-message-bubble" id="quickMessageToggle" type="button" aria-expanded="false" aria-controls="quickMessagePanel">Quick message</button>
+  <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send a quick message on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.59 5.94L0 24l6.34-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.87 9.87 0 0 1-1.52-5.24C2.15 6.43 6.58 2 12.06 2c2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.48-4.45 9.89-9.88 9.89Zm5.42-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.58-.35Z"/>
+    </svg>
+    <span>Quick message</span>
+  </a>
 
   <noscript>
     <div style="padding:14px 16px; border-top:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.72); background:#0B0C10;">
@@ -1480,13 +1345,6 @@
           scrollBlackoutSelectors.flatMap((selector) => Array.from(document.querySelectorAll(selector)))
         )
       );
-      const quickMessageToggle = document.getElementById("quickMessageToggle");
-      const quickMessagePanel = document.getElementById("quickMessagePanel");
-      const quickMessageClose = document.getElementById("quickMessageClose");
-      const quickMessageEmail = document.getElementById("quickMessageEmail");
-      const quickMessageForm = document.querySelector(".quick-message-form");
-      const quickMessageLocation = document.getElementById("quickMessageLocation");
-      const quickMessageStatus = document.getElementById("quickMessageStatus");
       const heroImage = document.querySelector("[data-hero-image]");
       const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -1538,20 +1396,6 @@
         window.setInterval(rotateHeroSlide, 5200);
       }
 
-      const setQuickMessageState = (isOpen) => {
-        if (!quickMessageToggle || !quickMessagePanel) {
-          return;
-        }
-
-        quickMessagePanel.classList.toggle("is-open", isOpen);
-        quickMessagePanel.setAttribute("aria-hidden", String(!isOpen));
-        quickMessageToggle.setAttribute("aria-expanded", String(isOpen));
-
-        if (isOpen && quickMessageEmail) {
-          requestAnimationFrame(() => quickMessageEmail.focus());
-        }
-      };
-
       scrollBlackoutTargets.forEach((element) => {
         element.classList.add("scroll-blackout");
       });
@@ -1601,62 +1445,6 @@
       } else if (typeof mobileQuery.addListener === "function") {
         mobileQuery.addListener(updateHeroFade);
       }
-
-      if (quickMessageToggle && quickMessagePanel) {
-        quickMessageToggle.addEventListener("click", () => {
-          const isOpen = quickMessagePanel.classList.contains("is-open");
-          setQuickMessageState(!isOpen);
-        });
-
-        if (quickMessageClose) {
-          quickMessageClose.addEventListener("click", () => setQuickMessageState(false));
-        }
-
-        document.addEventListener("click", (event) => {
-          if (!quickMessagePanel.classList.contains("is-open")) {
-            return;
-          }
-
-          const target = event.target;
-          if (
-            target instanceof Node &&
-            !quickMessagePanel.contains(target) &&
-            !quickMessageToggle.contains(target)
-          ) {
-            setQuickMessageState(false);
-          }
-        });
-
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
-            setQuickMessageState(false);
-          }
-        });
-      }
-
-      if (quickMessageLocation) {
-        fetch("https://ipapi.co/json/")
-          .then((response) => response.ok ? response.json() : Promise.reject())
-          .then((data) => {
-            const location = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
-            quickMessageLocation.value = location || "Unknown";
-          })
-          .catch(() => {});
-      }
-
-      if (quickMessageForm) {
-        quickMessageForm.addEventListener("submit", () => {
-          if (quickMessageStatus) {
-            quickMessageStatus.textContent = "";
-          }
-          const submitButton = quickMessageForm.querySelector('button[type="submit"]');
-          if (submitButton instanceof HTMLButtonElement) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
-          }
-        });
-      }
-
       const slider = document.querySelector("[data-testimonials-slider]");
       const track = slider?.querySelector(".testimonials-track");
       const dots = Array.from(document.querySelectorAll("[data-testimonial-dot]"));
@@ -1724,3 +1512,4 @@
   </script>
 </body>
 </html>
+
