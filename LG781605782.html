@@ -298,6 +298,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:12px;
+      align-items:center;
       margin:18px 0 22px;
     }
 
@@ -326,6 +327,34 @@
     .top-actions .secondary:hover{
       background:rgba(255,255,255,.04);
       border-color:rgba(255,255,255,.26);
+    }
+
+    .approval-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:46px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(170, 210, 176, .32);
+      background:rgba(170, 210, 176, .09);
+      color:#eef8ef;
+      font-size:.92rem;
+      font-weight:800;
+      letter-spacing:.01em;
+    }
+
+    .approval-badge .tick{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:rgba(170, 210, 176, .2);
+      color:#bfe6c6;
+      font-size:.88rem;
+      line-height:1;
     }
 
     .section-copy{
@@ -369,6 +398,13 @@
       color:#fff;
     }
 
+    .buy-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
     .buy-button{
       display:inline-flex;
       align-items:center;
@@ -378,16 +414,33 @@
       border-radius:999px;
       text-decoration:none;
       font-weight:800;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .buy-button.primary{
       background:#fff;
       color:#000;
-      margin-top:28px;
-      transition:transform .2s ease, box-shadow .2s ease;
       box-shadow:0 10px 30px rgba(255,255,255,.12);
+    }
+
+    .buy-button.secondary{
+      border:1px solid rgba(255,255,255,.18);
+      background:transparent;
+      color:#fff;
+      box-shadow:none;
     }
 
     .buy-button:hover{
       transform:translateY(-2px);
+    }
+
+    .buy-button.primary:hover{
       box-shadow:0 14px 38px rgba(255,255,255,.16);
+    }
+
+    .buy-button.secondary:hover{
+      border-color:rgba(255,255,255,.26);
+      background:rgba(255,255,255,.04);
     }
 
     .site-footer{
@@ -558,6 +611,10 @@
         width:100%;
       }
 
+      .buy-actions{
+        flex-direction:column;
+      }
+
       .buy-button{
         width:100%;
       }
@@ -573,7 +630,7 @@
         <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
       </a>
 
-      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+      <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
         <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
       </a>
     </div>
@@ -587,7 +644,6 @@
             <video
               class="product-video"
               src="Images/products/LG781605782.mp4"
-              poster="Images/products/LG781605782.jpeg"
               autoplay
               muted
               loop
@@ -598,7 +654,7 @@
 
         <article class="panel copy" data-reveal>
           <div class="price-wrap">
-            <p class="price">&#163;200.00</p>
+            <p class="price">&#163;199.00</p>
           </div>
 
           <h1>1.00ct D VVS 1 Round Lab Grown Diamond</h1>
@@ -607,6 +663,8 @@
             <a class="secondary" href="Images/products/LG781605782%20Cert.pdf" target="_blank" rel="noopener">
               Certificate
             </a>
+            <span class="approval-badge"><span class="tick" aria-hidden="true">✓</span>LADFOX approved</span>
+            <span class="approval-badge">Next working day delivery</span>
           </div>
 
           <p class="section-copy">
@@ -632,14 +690,22 @@
             <div class="spec-card"><strong>Measurements</strong><span>6.45 - 6.52 x 3.92 mm</span></div>
           </div>
 
-          <a
-            class="buy-button"
-            href="https://buy.stripe.com/eVqeVdc2J4EKaTo50K8ww03"
-            target="_blank"
-            rel="noopener"
-          >
-            Buy
-          </a>
+          <div class="buy-actions">
+            <a
+              class="buy-button primary"
+              href="https://buy.stripe.com/eVqeVdc2J4EKaTo50K8ww03"
+              target="_blank"
+              rel="noopener"
+            >
+              Buy
+            </a>
+            <a
+              class="buy-button secondary"
+              href="ring-form.html?reference=LG781605782"
+            >
+              Create ring with this diamond
+            </a>
+          </div>
         </article>
       </section>
     </div>
