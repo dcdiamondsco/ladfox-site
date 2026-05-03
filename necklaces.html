@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Diamond Necklace | Bespoke Necklace London | Ladfox</title>
+  <meta name="description" content="Discover refined diamond necklaces by Ladfox, with bespoke necklace design and private Hatton Garden guidance." />
+  <link rel="canonical" href="https://ladfox.com/necklaces.html" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
+  <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Diamond Necklace | Bespoke Necklace London | Ladfox" />
+  <meta property="og:description" content="Explore bespoke necklace design and refined diamond necklace styling from Ladfox." />
+  <meta property="og:url" content="https://ladfox.com/necklaces.html" />
+  <meta property="og:image" content="https://ladfox.com/Images/Necklace.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Diamond Necklace | Bespoke Necklace London | Ladfox" />
+  <meta name="twitter:description" content="Explore bespoke necklace design and refined diamond necklace styling from Ladfox." />
+  <meta name="twitter:image" content="https://ladfox.com/Images/Necklace.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="product-page.css" />
+  <style>
+    .media{
+      background:#000;
+      padding:0;
+      display:block;
+    }
+
+    .necklace-stage{
+      position:relative;
+      width:100%;
+      min-height:520px;
+      overflow:hidden;
+      background:#000;
+    }
+
+    .necklace-stage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.34) 100%),
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 42%);
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .necklace-slide{
+      position:absolute;
+      inset:0;
+      background-color:#000;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size:cover;
+      opacity:0;
+      transform:scale(1.03);
+      animation:necklaceFade 24s infinite ease-in-out;
+    }
+
+    .necklace-slide--1{
+      background-image:url("Images/Necklace.png");
+      animation-delay:0s;
+    }
+
+    .necklace-slide--2{
+      background-image:url("Images/Necklace2.png");
+      animation-delay:6s;
+    }
+
+    .necklace-slide--3{
+      background-image:url("Images/Necklace.png");
+      animation-delay:12s;
+    }
+
+    .necklace-slide--4{
+      background-image:url("Images/Necklace2.png");
+      animation-delay:18s;
+    }
+
+    @keyframes necklaceFade{
+      0%{
+        opacity:0;
+        transform:scale(1.04);
+      }
+
+      8%{
+        opacity:1;
+      }
+
+      22%{
+        opacity:1;
+        transform:scale(1);
+      }
+
+      30%{
+        opacity:0;
+      }
+
+      100%{
+        opacity:0;
+      }
+    }
+
+    .necklace-note{
+      margin:16px 18px 0;
+      color:rgba(255,255,255,.66);
+      font-size:.92rem;
+      line-height:1.6;
+      text-align:center;
+    }
+
+    .feature-list{
+      display:grid;
+      gap:12px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .feature-list li{
+      padding:16px 18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+    }
+
+    .cta-stack{
+      display:grid;
+      gap:12px;
+    }
+
+    .cta-stack .btn{
+      width:100%;
+    }
+
+    @media (max-width:700px){
+      .necklace-stage{
+        min-height:420px;
+      }
+    }
+  </style>
+  <script defer src="/Public/google-tag.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ladfox.com/#organization",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "logo": "https://ladfox.com/Images/ladfox-logo.png",
+      "image": "https://ladfox.com/Images/Necklace.png",
+      "telephone": "+447853362904",
+      "sameAs": [
+        "https://www.instagram.com/ladfox",
+        "https://www.facebook.com/ladfox"
+      ]
+    },
+    {
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#jewelrystore",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "image": "https://ladfox.com/Images/Necklace.png",
+      "telephone": "+447853362904",
+      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, necklaces, wedding bands and custom jewellery with one to one guidance.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hatton Garden",
+        "addressRegion": "London",
+        "addressCountry": "GB"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ladfox.com/necklaces.html#bespoke-necklaces",
+      "name": "Bespoke necklace design",
+      "provider": {
+        "@id": "https://ladfox.com/#organization"
+      },
+      "url": "https://ladfox.com/necklaces.html",
+      "description": "Bespoke necklace design in London with private guidance on proportions, stones, setting style and finished presentation."
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell">
+      <div class="brand-lockup">
+        <a class="brand" href="index.html" aria-label="Ladfox home">
+          <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox private Hatton Garden jeweller logo" />
+        </a>
+        <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
+          <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" />
+        </a>
+      </div>
+      <a class="topbar-action" href="jewellery-design.html">Create a bespoke piece</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="shell">
+      <section class="layout" data-product-page data-product-name="Bespoke necklaces" data-product-slug="necklaces">
+        <article class="panel media">
+          <div class="necklace-stage" aria-label="Ladfox necklace gallery">
+            <div class="necklace-slide necklace-slide--1"></div>
+            <div class="necklace-slide necklace-slide--2"></div>
+            <div class="necklace-slide necklace-slide--3"></div>
+            <div class="necklace-slide necklace-slide--4"></div>
+          </div>
+          <p class="necklace-note">Private necklace design with a fading gallery presentation built around the current Ladfox necklace imagery.</p>
+        </article>
+
+        <article class="panel copy">
+          <div class="price-wrap">
+            <p class="price">Bespoke</p>
+          </div>
+
+          <h1>Necklaces</h1>
+          <p class="section-copy">A Ladfox necklace is built around the right proportions, diamond layout and finished balance rather than a generic off the shelf template. We design bespoke necklaces with a clean, considered look and one to one guidance throughout.</p>
+
+          <div class="size-panel">
+            <ul class="feature-list" aria-label="Necklace highlights">
+              <li>Made around your brief, whether you want a fine everyday pendant or a more substantial diamond necklace.</li>
+              <li>Guidance on stone size, spacing, setting style and chain proportions before anything is approved.</li>
+              <li>Private Hatton Garden process with clear communication, tailored sourcing and careful finishing.</li>
+            </ul>
+          </div>
+
+          <div class="cta-stack">
+            <a class="btn btn-primary" href="jewellery-design.html">Create a bespoke piece</a>
+            <p style="margin:0; color:rgba(255,255,255,.7); font-size:.9rem;">Private guidance | Custom sourcing | Built around your brief</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="similar-cta" aria-label="Custom necklace enquiry">
+        <h2>Looking for a custom necklace?</h2>
+        <p>If you already have an idea in mind, we can help shape it into a finished necklace with the right stones, setting and balance.</p>
+        <a class="btn btn-secondary" href="contact-us.html">Create your bespoke necklace</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="shell">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+</body>
+</html>
