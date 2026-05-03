@@ -276,6 +276,13 @@
       filter:contrast(1.02) saturate(1.02);
     }
 
+    .product-video--round-crop{
+      object-position:center top;
+      transform:scale(1.25);
+      transform-origin:center top;
+      clip-path:inset(0 0 20% 0);
+    }
+
     .price-wrap{
       margin-bottom:10px;
     }
@@ -642,7 +649,7 @@
         <article class="panel media-panel" data-reveal>
           <div class="media-inner">
             <video
-              class="product-video"
+              class="product-video product-video--round-crop"
               src="Images/products/LG781605782.mp4"
               autoplay
               muted
