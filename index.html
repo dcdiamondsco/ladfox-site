@@ -849,10 +849,10 @@
 
       .topbar .shell{
         display:grid;
-        grid-template-columns:minmax(0, 1fr) auto;
+        grid-template-columns:1fr auto 1fr;
         grid-template-areas:
-          "nav nav"
-          "brand google";
+          "nav nav nav"
+          ". brand google";
         align-items:start;
         justify-content:flex-start;
         gap:10px 12px;
@@ -861,13 +861,14 @@
 
       .brand-lockup{
         grid-area:brand;
-        width:100%;
-        justify-content:flex-start;
+        width:auto;
+        justify-content:center;
+        justify-self:center;
       }
 
       .brand{
         flex:0 1 auto;
-        justify-content:flex-start;
+        justify-content:center;
       }
 
       .brand-block{
@@ -876,7 +877,7 @@
       }
 
       .brand-lockup{
-        justify-content:flex-start;
+        justify-content:center;
       }
 
       .brand-logo{
@@ -1201,6 +1202,7 @@
         <a href="ringpage.html">Rings</a>
         <a href="diamonds.html">Diamonds</a>
         <a href="bracelets.html">Bracelets</a>
+        <a href="necklaces.html">Necklaces</a>
         <a href="consultation.html">Consultaion</a>
         <a href="price-match.html">Price Match</a>
         <a href="contact-us.html">Contact Us</a>
