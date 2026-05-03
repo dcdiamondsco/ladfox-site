@@ -848,16 +848,26 @@
       }
 
       .topbar .shell{
-        flex-direction:column;
-        align-items:center;
+        display:grid;
+        grid-template-columns:minmax(0, 1fr) auto;
+        grid-template-areas:
+          "nav nav"
+          "brand google";
+        align-items:start;
         justify-content:flex-start;
-        gap:0;
+        gap:10px 12px;
         padding-right:0;
+      }
+
+      .brand-lockup{
+        grid-area:brand;
+        width:100%;
+        justify-content:flex-start;
       }
 
       .brand{
         flex:0 1 auto;
-        justify-content:center;
+        justify-content:flex-start;
       }
 
       .brand-block{
@@ -866,7 +876,7 @@
       }
 
       .brand-lockup{
-        justify-content:center;
+        justify-content:flex-start;
       }
 
       .brand-logo{
@@ -880,7 +890,10 @@
       }
 
       .brand-review-link{
+        grid-area:google;
         position:static;
+        justify-self:end;
+        align-self:start;
       }
 
       .brand-location{
@@ -897,10 +910,10 @@
       }
 
       .nav{
-        order:-1;
+        grid-area:nav;
         width:100%;
         display:grid;
-        grid-template-columns:repeat(4, minmax(0, 1fr));
+        grid-template-columns:repeat(3, minmax(0, 1fr));
         align-self:stretch;
         gap:8px;
         margin-top:0;
@@ -1177,7 +1190,7 @@
             />
           </a>
         </div>
-        <span class="brand-location">Hatton Garden, London</span>
+        <span class="brand-location">Hatton Garden London</span>
       </div>
 
       <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
@@ -1185,10 +1198,10 @@
       </a>
 
       <nav class="nav" aria-label="Primary">
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="ringpage.html">Rings</a>
         <a href="diamonds.html">Diamonds</a>
         <a href="bracelets.html">Bracelets</a>
-        <a href="consultation.html">Free Consultation</a>
+        <a href="consultation.html">Consultaion</a>
         <a href="price-match.html">Price Match</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
@@ -1225,7 +1238,7 @@
 
         <div class="hero-copy">
           <span class="eyebrow">Our bespoke jewellery design service</span>
-          <p class="routes-intro">Ladfox creates bespoke engagement rings and custom jewellery in London, with international shipping, engraving, and a lifetime warranty included.</p>
+          <p class="routes-intro">Ladfox creates bespoke engagement rings and custom jewellery in London with international shipping, engraving and a lifetime warranty included.</p>
 
           <div class="routes" aria-label="Process steps">
             <article class="route">
