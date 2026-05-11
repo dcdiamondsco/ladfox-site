@@ -185,6 +185,10 @@
       height:auto;
     }
 
+    .brand-location{
+      display:none;
+    }
+
     .brand-review-link{
       display:flex;
       align-items:center;
@@ -928,7 +932,8 @@
         grid-template-columns:minmax(0, 1fr) auto;
         grid-template-areas:
           "nav nav"
-          ". google";
+          "brand google"
+          "location location";
         align-items:center;
         justify-content:flex-start;
         gap:10px 12px;
@@ -936,7 +941,12 @@
       }
 
       .brand-block{
-        display:none;
+        display:grid;
+        grid-area:brand;
+        justify-items:start;
+        align-items:center;
+        gap:0;
+        transform:none;
       }
 
       .brand-lockup{
@@ -952,20 +962,17 @@
 
       .brand-block{
         gap:0;
-        transform:translateY(-2px);
+        transform:none;
       }
 
       .brand-logo{
-        width:min(250px, 64vw);
+        width:min(238px, 60vw);
         opacity:1;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
 
       .hero-brand-mobile{
-        display:block;
-        width:min(244px, 62vw);
-        margin:-34px auto 8px;
-        filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
+        display:none;
       }
 
       .brand-review-badge{
@@ -976,7 +983,19 @@
         grid-area:google;
         position:static;
         justify-self:end;
-        align-self:center;
+        align-self:start;
+      }
+
+      .brand-location{
+        display:block;
+        grid-area:location;
+        margin:0;
+        text-align:center;
+        color:rgba(255,255,255,.78);
+        font-size:.62rem;
+        font-weight:800;
+        letter-spacing:.14em;
+        text-transform:uppercase;
       }
 
       .nav{
@@ -1031,11 +1050,7 @@
       }
 
       .eyebrow-hero{
-        justify-content:center;
-        font-size:.62rem;
-        letter-spacing:.13em;
-        line-height:1.5;
-        margin-bottom:10px;
+        display:none;
       }
 
       h1{
@@ -1172,14 +1187,13 @@
     }
 
     @media (max-width:480px){
+      .brand-logo{
+        width:min(224px, 58vw);
+      }
+
       .hero-visual{
         min-height:720px;
         height:720px;
-      }
-
-      .hero-brand-mobile{
-        width:min(226px, 60vw);
-        margin:-36px auto 6px;
       }
 
       .hero-overlay{
@@ -1192,9 +1206,9 @@
         margin-top:12px;
       }
 
-      .eyebrow-hero{
+      .brand-location{
         font-size:.58rem;
-        margin-bottom:8px;
+        letter-spacing:.12em;
       }
 
       .testimonials{
@@ -1318,6 +1332,7 @@
             />
           </a>
         </div>
+        <span class="brand-location">Private Hatton Garden Jeweller in London</span>
       </div>
 
       <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
@@ -1352,15 +1367,6 @@
             />
 
             <div class="hero-overlay">
-              <img
-                class="hero-brand-mobile"
-                src="logo.png"
-                alt="Ladfox private Hatton Garden jeweller logo"
-                loading="eager"
-                decoding="async"
-                width="1830"
-                height="831"
-              />
               <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
               <h1>Bespoke engagement rings and jewellery designed for the one you love</h1>
               <div class="hero-subcopy-row">
