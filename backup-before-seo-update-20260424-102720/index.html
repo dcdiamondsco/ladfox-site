@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox</title>
+  <title>Bespoke Jewellery & Engagement Rings | Hatton Garden Jeweller | Ladfox</title>
 
-  <meta name="description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
+  <meta
+    name="description"
+    content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, bracelets, necklaces, earrings, and custom jewellery with one to one guidance."
+  />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#0B0C10" />
   <link rel="canonical" href="https://ladfox.com/" />
@@ -17,8 +20,11 @@
 
   <meta property="og:locale" content="en_GB" />
   <meta property="og:site_name" content="Ladfox" />
-  <meta property="og:title" content="Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox" />
-  <meta property="og:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
+  <meta property="og:title" content="Bespoke Jewellery & Engagement Rings | Hatton Garden Jeweller | Ladfox" />
+  <meta
+    property="og:description"
+    content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, bracelets, necklaces, earrings and custom jewellery with one to one guidance."
+  />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ladfox.com/" />
   <meta property="og:image" content="https://ladfox.com/Images/background%202.png" />
@@ -26,8 +32,11 @@
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox" />
-  <meta name="twitter:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
+  <meta name="twitter:title" content="Bespoke Jewellery & Engagement Rings | Hatton Garden Jeweller | Ladfox" />
+  <meta
+    name="twitter:description"
+    content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, bracelets, necklaces, earrings, and custom jewellery with one to one guidance."
+  />
   <meta name="twitter:image" content="https://ladfox.com/Images/background%202.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,6 +45,44 @@
 
   <link rel="preload" as="image" href="Images/ladfox-logo.png" />
   <link rel="preload" as="image" href="Images/background%202.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Ladfox",
+        "url": "https://ladfox.com/",
+        "logo": "https://ladfox.com/Images/ladfox-logo.png",
+        "image": "https://ladfox.com/Images/hero%20ring%20image.png",
+        "sameAs": [
+          "https://www.instagram.com/ladfox",
+          "https://www.facebook.com/ladfox"
+        ]
+      },
+      {
+        "@type": "JewelryStore",
+        "name": "Ladfox",
+        "url": "https://ladfox.com/",
+        "image": "https://ladfox.com/Images/hero%20ring%20image.png",
+        "description": "Private Hatton Garden jeweller creating engagement rings, wedding bands, and bespoke jewellery with discreet one to one guidance.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "London",
+          "addressRegion": "London",
+          "addressCountry": "GB"
+        },
+        "areaServed": "GB"
+      },
+      {
+        "@type": "WebSite",
+        "name": "Ladfox",
+        "url": "https://ladfox.com/"
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root{
@@ -345,7 +392,7 @@
       top:132px;
       left:96px;
       z-index:2;
-      max-width:min(1080px, calc(100% - 192px));
+      max-width:min(680px, calc(100% - 140px));
       transition:opacity .32s ease;
     }
 
@@ -388,7 +435,7 @@
     }
 
     .hero-subcopy{
-      margin:0;
+      margin:18px 0 0;
       max-width:58ch;
       color:rgba(255,255,255,.84);
       font-size:1.03rem;
@@ -396,27 +443,15 @@
       text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
-    .hero-subcopy-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:32px;
-      margin-top:18px;
-      width:min(960px, calc(100vw - 240px));
-      max-width:100%;
-    }
-
     .hero-primary-actions{
       display:flex;
       flex-wrap:wrap;
       gap:14px;
-      margin-top:0;
-      flex:0 0 auto;
-      justify-content:center;
+      margin-top:28px;
     }
 
     .hero-primary-actions .btn{
-      min-width:280px;
+      min-width:210px;
     }
 
     .btn{
@@ -606,86 +641,6 @@
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
     }
 
-    .proposal-showcase{
-      width:min(1120px, calc(100vw - 48px));
-      margin:0 auto 72px;
-    }
-
-    .proposal-marquee{
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--line);
-      border-radius:30px;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.06), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      box-shadow:var(--shadow);
-    }
-
-    .proposal-marquee::before,
-    .proposal-marquee::after{
-      content:"";
-      position:absolute;
-      top:0;
-      bottom:0;
-      width:72px;
-      z-index:2;
-      pointer-events:none;
-    }
-
-    .proposal-marquee::before{
-      left:0;
-      background:linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,0) 100%);
-    }
-
-    .proposal-marquee::after{
-      right:0;
-      background:linear-gradient(270deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,0) 100%);
-    }
-
-    .proposal-track{
-      display:flex;
-      gap:18px;
-      width:max-content;
-      padding:18px;
-      animation:proposal-scroll 52s linear infinite;
-      will-change:transform;
-    }
-
-    .proposal-set{
-      display:flex;
-      gap:18px;
-      flex:0 0 auto;
-    }
-
-    .proposal-shot{
-      flex:0 0 auto;
-      width:220px;
-      aspect-ratio:3 / 4;
-      margin:0;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      background:#111;
-      box-shadow:0 18px 40px rgba(0,0,0,.24);
-    }
-
-    .proposal-shot img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    @keyframes proposal-scroll{
-      from{
-        transform:translateX(0);
-      }
-
-      to{
-        transform:translateX(calc(-50% - 9px));
-      }
-    }
-
     .consultation-inner{
       display:grid;
       grid-template-columns:1.2fr .8fr;
@@ -716,8 +671,30 @@
 
     .testimonials{
       width:min(1120px, calc(100vw - 48px));
-      margin:56px auto 20px;
-      padding:0;
+      margin:72px auto 88px;
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+    }
+
+    .testimonials-head{
+      display:grid;
+      gap:8px;
+      margin-bottom:18px;
+      text-align:center;
+    }
+
+    .testimonials-head h2{
+      font-size:clamp(1.8rem, 3vw, 2.8rem);
+    }
+
+    .testimonials-head p{
+      margin:0 auto;
+      max-width:58ch;
+      color:var(--muted);
+      line-height:1.7;
     }
 
     .testimonials-slider{
@@ -734,7 +711,10 @@
     .testimonial{
       flex:0 0 100%;
       min-width:100%;
-      padding:0;
+      padding:20px;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:22px;
+      background:rgba(255,255,255,.03);
     }
 
     .testimonial p{
@@ -758,7 +738,7 @@
       display:flex;
       justify-content:center;
       gap:10px;
-      margin-top:12px;
+      margin-top:18px;
     }
 
     .testimonials-dot{
@@ -818,24 +798,6 @@
       height:18px;
       flex:0 0 auto;
       fill:currentColor;
-    }
-
-    .quick-message-callout{
-      position:fixed;
-      right:32px;
-      bottom:78px;
-      z-index:10001;
-      color:#ffffff;
-      pointer-events:none;
-    }
-
-    .quick-message-callout span{
-      display:block;
-      font-size:1rem;
-      font-weight:800;
-      letter-spacing:.01em;
-      text-shadow:0 8px 22px rgba(0,0,0,.42);
-      white-space:nowrap;
     }
 
     .site-footer{
@@ -899,10 +861,6 @@
         filter:none;
         transition:none;
       }
-
-      .proposal-track{
-        animation:none;
-      }
     }
 
     @media (max-width:1080px){
@@ -923,9 +881,6 @@
       .consultation-actions{
         justify-content:flex-start;
       }
-      .proposal-shot{
-        width:200px;
-      }
     }
 
     @media (max-width:720px){
@@ -940,22 +895,11 @@
       }
 
       .topbar .shell{
-        display:grid;
-        grid-template-columns:1fr auto 1fr;
-        grid-template-areas:
-          "nav nav nav"
-          ". brand google";
-        align-items:start;
+        flex-direction:column;
+        align-items:center;
         justify-content:flex-start;
-        gap:10px 12px;
+        gap:0;
         padding-right:0;
-      }
-
-      .brand-lockup{
-        grid-area:brand;
-        width:auto;
-        justify-content:center;
-        justify-self:center;
       }
 
       .brand{
@@ -983,10 +927,7 @@
       }
 
       .brand-review-link{
-        grid-area:google;
         position:static;
-        justify-self:end;
-        align-self:start;
       }
 
       .brand-location{
@@ -1003,10 +944,10 @@
       }
 
       .nav{
-        grid-area:nav;
+        order:-1;
         width:100%;
         display:grid;
-        grid-template-columns:repeat(3, minmax(0, 1fr));
+        grid-template-columns:repeat(4, minmax(0, 1fr));
         align-self:stretch;
         gap:8px;
         margin-top:0;
@@ -1064,29 +1005,18 @@
       }
 
       .hero-subcopy{
-        margin-top:0;
+        margin-top:14px;
         font-size:.96rem;
         line-height:1.65;
       }
 
-      .hero-subcopy-row{
-        display:grid;
-        grid-template-columns:minmax(0, 1fr) auto;
-        align-items:center;
-        gap:16px;
-        margin-top:14px;
-        max-width:none;
-        width:auto;
-      }
-
       .hero-primary-actions{
-        margin-top:0;
-        justify-content:center;
+        margin-top:22px;
       }
 
       .hero-primary-actions .btn{
-        width:auto;
-        min-width:200px;
+        width:100%;
+        min-width:0;
       }
 
       .hero-visual::after{
@@ -1126,41 +1056,15 @@
         margin-bottom:56px;
       }
 
-      .proposal-showcase{
-        width:min(calc(100vw - 32px), 100%);
-        margin-bottom:56px;
-      }
-
-      .proposal-marquee{
-        border-radius:24px;
-      }
-
-      .proposal-marquee::before,
-      .proposal-marquee::after{
-        width:32px;
-      }
-
-      .proposal-track{
-        gap:14px;
-        padding:14px;
-      }
-
-      .proposal-set{
-        gap:14px;
-      }
-
-      .proposal-shot{
-        width:164px;
-        border-radius:20px;
-      }
-
       .consultation-copy h2{
         font-size:clamp(1.6rem, 8vw, 2.25rem);
       }
 
       .testimonials{
         width:min(calc(100vw - 32px), 100%);
-        margin:40px auto 14px;
+        margin:48px auto 60px;
+        padding:24px 20px;
+        border-radius:24px;
       }
 
       .quick-message-bubble{
@@ -1168,15 +1072,6 @@
         bottom:16px;
         min-height:48px;
         padding:0 16px;
-        font-size:.88rem;
-      }
-
-      .quick-message-callout{
-        right:20px;
-        bottom:72px;
-      }
-
-      .quick-message-callout span{
         font-size:.88rem;
       }
 
@@ -1209,103 +1104,11 @@
       }
 
       .testimonials{
-        margin:32px auto 12px;
+        margin:40px auto 54px;
       }
     }
   </style>
   <script defer src="/Public/google-tag.js"></script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://ladfox.com/#organization",
-      "name": "Ladfox",
-      "url": "https://ladfox.com/",
-      "logo": "https://ladfox.com/Images/ladfox-logo.png",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "sameAs": [
-        "https://www.instagram.com/ladfox",
-        "https://www.facebook.com/ladfox"
-      ]
-    },
-    {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#jewelrystore",
-      "name": "Ladfox",
-      "url": "https://ladfox.com/",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hatton Garden",
-        "addressRegion": "London",
-        "addressCountry": "GB"
-      },
-      "areaServed": [
-        "London",
-        "Hatton Garden",
-        "United Kingdom",
-        "International"
-      ],
-      "priceRange": "Premium"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://ladfox.com/#website",
-      "name": "Ladfox",
-      "url": "https://ladfox.com/",
-      "publisher": {
-        "@id": "https://ladfox.com/#organization"
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "https://ladfox.com/#bespoke-jewellery-service",
-      "name": "Bespoke engagement rings and jewellery",
-      "serviceType": "Bespoke jewellery design",
-      "provider": {
-        "@id": "https://ladfox.com/#jewelrystore"
-      },
-      "areaServed": "GB",
-      "description": "Bespoke engagement rings, wedding bands and custom jewellery designed with private one to one guidance from a Hatton Garden jeweller."
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ladfox.com/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What does Ladfox do?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I design a ring from scratch?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do Ladfox offer lab grown diamonds?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery."
-          }
-        }
-      ]
-    }
-  ]
-}
-  </script>
 </head>
 
 <body>
@@ -1319,7 +1122,7 @@
             <img
               class="brand-logo"
               src="Images/ladfox-logo.png"
-              alt="Ladfox private Hatton Garden jeweller logo"
+              alt="Ladfox logo"
               loading="eager"
               decoding="async"
               fetchpriority="high"
@@ -1329,20 +1132,18 @@
             />
           </a>
         </div>
-        <span class="brand-location">Hatton Garden London</span>
+        <span class="brand-location">Hatton Garden, London</span>
       </div>
 
-      <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
-        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" loading="eager" decoding="async" />
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" loading="eager" decoding="async" />
       </a>
 
       <nav class="nav" aria-label="Primary">
         <a href="ringpage.html">Rings</a>
-        <a href="tantalum-ring.html">Wedding Bands</a>
         <a href="diamonds.html">Diamonds</a>
         <a href="bracelets.html">Bracelets</a>
-        <a href="necklaces.html">Necklaces</a>
-        <a href="consultation.html">Consultaion</a>
+        <a href="consultation.html">Consultation</a>
         <a href="price-match.html">Price Match</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
@@ -1356,7 +1157,7 @@
           <div class="hero-visual">
             <img
               src="Images/background%202.png"
-              alt="Bespoke engagement ring campaign image by Ladfox Hatton Garden jeweller"
+              alt="Ladfox jewellery campaign visual"
               class="hero-image"
               data-hero-image
               loading="eager"
@@ -1364,109 +1165,22 @@
             />
 
             <div class="hero-overlay">
-              <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
-              <h1>Bespoke engagement rings and jewellery designed for the one you love</h1>
-              <div class="hero-subcopy-row">
-                <p class="hero-subcopy">
-                  Family run Hatton Garden jeweller carefully creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance from first idea to finished piece.
-                </p>
+              <span class="eyebrow-hero">Private Hatton Garden Jeweller</span>
+              <h1>Bespoke jewellery designed for the one you love</h1>
+              <p class="hero-subcopy">
+                Family run jeweller carefully creating thoughtful pieces with a personal service and a smoother experience from first idea to finished piece.
+              </p>
 
-                <div class="hero-primary-actions">
-                  <a class="btn btn-primary" href="ringpage.html">Design your bespoke piece</a>
-                </div>
+              <div class="hero-primary-actions">
+                <a class="btn btn-primary" href="ringpage.html">Get your free design</a>
               </div>
             </div>
           </div>
         </aside>
 
-        <section class="testimonials" aria-label="Client testimonials">
-          <div class="testimonials-slider" data-testimonials-slider>
-            <div class="testimonials-track">
-              <article class="testimonial">
-                <p>&ldquo;Ladfox helped me design a ring that was even better than I had imagined. The whole process felt personal relaxed and very considered.&rdquo;</p>
-                <strong>James</strong>
-              </article>
-
-              <article class="testimonial">
-                <p>&ldquo;I knew very little about diamonds when I started. Ladfox explained everything clearly and helped me choose a stone that looked exceptional without overspending.&rdquo;</p>
-                <strong>Daniel</strong>
-              </article>
-
-              <article class="testimonial">
-                <p>&ldquo;I was nervous about commissioning such an important piece online but Ladfox made the process straightforward. It arrived beautifully packaged and looks incredible.&rdquo;</p>
-                <strong>Matthew</strong>
-              </article>
-
-              <article class="testimonial">
-                <p>&ldquo;The design process was fantastic. Ladfox sent sketches and CADs so I could see exactly how the piece would look before it was made.&rdquo;</p>
-                <strong>Ben</strong>
-              </article>
-
-              <article class="testimonial">
-                <p>&ldquo;The personal service was a huge difference compared with the big jewellery chains. Everything felt bespoke private and carefully considered.&rdquo;</p>
-                <strong>Sam</strong>
-              </article>
-
-              <article class="testimonial">
-                <p>&ldquo;The final result gets compliments constantly. We could not be happier with the finish proportions and overall quality.&rdquo;</p>
-                <strong>Josh</strong>
-              </article>
-            </div>
-          </div>
-
-          <div class="testimonials-controls" aria-label="Testimonial navigation">
-            <button class="testimonials-dot is-active" type="button" aria-label="Show testimonial 1" data-testimonial-dot></button>
-            <button class="testimonials-dot" type="button" aria-label="Show testimonial 2" data-testimonial-dot></button>
-            <button class="testimonials-dot" type="button" aria-label="Show testimonial 3" data-testimonial-dot></button>
-            <button class="testimonials-dot" type="button" aria-label="Show testimonial 4" data-testimonial-dot></button>
-            <button class="testimonials-dot" type="button" aria-label="Show testimonial 5" data-testimonial-dot></button>
-            <button class="testimonials-dot" type="button" aria-label="Show testimonial 6" data-testimonial-dot></button>
-          </div>
-        </section>
-
-        <section class="proposal-showcase" aria-label="Proposal image gallery">
-          <div class="proposal-marquee">
-            <div class="proposal-track">
-              <div class="proposal-set">
-                <figure class="proposal-shot"><img src="Images/Proposals/1.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/2.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/3.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/4.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/5.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/6.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/7.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/8.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/9.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/10.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/11.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/12.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/13.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/14.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-              </div>
-
-              <div class="proposal-set" aria-hidden="true">
-                <figure class="proposal-shot"><img src="Images/Proposals/1.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/2.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/3.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/4.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/5.jpeg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/6.png" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/7.jpeg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/8.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/9.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/10.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/11.png" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/12.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/13.jpeg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/14.jpg" alt="" loading="lazy" decoding="async" /></figure>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <div class="hero-copy">
-          <span class="eyebrow">Our bespoke jewellery design service</span>
-          <p class="routes-intro">Ladfox creates bespoke engagement rings and custom jewellery in London with international shipping, engraving and a lifetime warranty included.</p>
+          <span class="eyebrow">Our unique bespoke service</span>
+          <p class="routes-intro">All our pieces include international shipping, engraving, and a lifetime warranty.</p>
 
           <div class="routes" aria-label="Process steps">
             <article class="route">
@@ -1474,9 +1188,9 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">1</span>
-                    <h3>Brief sketch and bespoke design direction</h3>
+                    <h3>Brief sketch and direction</h3>
                   </div>
-                  <img src="Images/Sketch.png" alt="Bespoke engagement ring sketch stage by Ladfox" loading="lazy" decoding="async" />
+                  <img src="Images/Sketch.png" alt="Sketch stage ring concept" loading="lazy" decoding="async" />
                   <p class="route-caption">Send images an existing quote or a rough idea and we map the first design direction around the piece you actually want.</p>
                 </div>
               </a>
@@ -1487,9 +1201,9 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">2</span>
-                    <h3>CAD design and diamond selection</h3>
+                    <h3>CAD and stone pairing</h3>
                   </div>
-                  <img src="Images/CAD%20design.png" alt="CAD design for bespoke engagement ring" loading="lazy" decoding="async" />
+                  <img src="Images/CAD%20design.png" alt="CAD stage ring design" loading="lazy" decoding="async" />
                   <p class="route-caption">We refine proportions structure and stone options so the finished piece feels balanced in real life not just on paper.</p>
                 </div>
               </a>
@@ -1500,9 +1214,9 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">3</span>
-                    <h3>Make, finish and deliver your jewellery</h3>
+                    <h3>Make finish and deliver</h3>
                   </div>
-                  <img src="Images/Diamond%20selection.png" alt="Diamond selection for bespoke engagement ring" loading="lazy" decoding="async" />
+                  <img src="Images/Diamond%20selection.png" alt="Diamond selection stage" loading="lazy" decoding="async" />
                   <p class="route-caption" style="padding-bottom:30px;">From setting and finishing to engraving and delivery we keep the process clean private and closely managed.</p>
                 </div>
               </a>
@@ -1516,15 +1230,55 @@
       </div>
     </section>
 
-    <section class="testimonials" aria-label="Bespoke jewellery questions">
+    <section class="testimonials" aria-label="Client testimonials">
       <div class="testimonials-head">
-        <h2>Bespoke jewellery questions</h2>
-        <p><strong>What does Ladfox do?</strong> Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance.</p>
-        <p><strong>Can I design a ring from scratch?</strong> Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection.</p>
-        <p><strong>Do Ladfox offer lab grown diamonds?</strong> Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery.</p>
+        <h2>What our clients say</h2>
+        <p>Private guidance thoughtful design and a smoother experience from first idea to finished piece.</p>
+      </div>
+
+      <div class="testimonials-slider" data-testimonials-slider>
+        <div class="testimonials-track">
+          <article class="testimonial">
+            <p>&ldquo;Ladfox helped me design a ring that was even better than I had imagined. The whole process felt personal relaxed and very considered.&rdquo;</p>
+            <strong>James</strong>
+          </article>
+
+          <article class="testimonial">
+            <p>&ldquo;I knew very little about diamonds when I started. Ladfox explained everything clearly and helped me choose a stone that looked exceptional without overspending.&rdquo;</p>
+            <strong>Daniel</strong>
+          </article>
+
+          <article class="testimonial">
+            <p>&ldquo;I was nervous about commissioning such an important piece online but Ladfox made the process straightforward. It arrived beautifully packaged and looks incredible.&rdquo;</p>
+            <strong>Matthew</strong>
+          </article>
+
+          <article class="testimonial">
+            <p>&ldquo;The design process was fantastic. Ladfox sent sketches and CADs so I could see exactly how the piece would look before it was made.&rdquo;</p>
+            <strong>Ben</strong>
+          </article>
+
+          <article class="testimonial">
+            <p>&ldquo;The personal service was a huge difference compared with the big jewellery chains. Everything felt bespoke private and carefully considered.&rdquo;</p>
+            <strong>Sam</strong>
+          </article>
+
+          <article class="testimonial">
+            <p>&ldquo;The final result gets compliments constantly. We could not be happier with the finish proportions and overall quality.&rdquo;</p>
+            <strong>Josh</strong>
+          </article>
+        </div>
+      </div>
+
+      <div class="testimonials-controls" aria-label="Testimonial navigation">
+        <button class="testimonials-dot is-active" type="button" aria-label="Show testimonial 1" data-testimonial-dot></button>
+        <button class="testimonials-dot" type="button" aria-label="Show testimonial 2" data-testimonial-dot></button>
+        <button class="testimonials-dot" type="button" aria-label="Show testimonial 3" data-testimonial-dot></button>
+        <button class="testimonials-dot" type="button" aria-label="Show testimonial 4" data-testimonial-dot></button>
+        <button class="testimonials-dot" type="button" aria-label="Show testimonial 5" data-testimonial-dot></button>
+        <button class="testimonials-dot" type="button" aria-label="Show testimonial 6" data-testimonial-dot></button>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer" aria-label="Legal information">
@@ -1533,15 +1287,11 @@
     </div>
   </footer>
 
-  <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
-  </div>
-
-  <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
+  <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send a quick message on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.59 5.94L0 24l6.34-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.87 9.87 0 0 1-1.52-5.24C2.15 6.43 6.58 2 12.06 2c2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.48-4.45 9.89-9.88 9.89Zm5.42-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.58-.35Z"/>
     </svg>
-    <span>Send us a quick WhatsApp</span>
+    <span>Quick message</span>
   </a>
 
   <noscript>
