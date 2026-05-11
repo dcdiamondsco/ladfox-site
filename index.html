@@ -195,31 +195,6 @@
       filter:drop-shadow(0 6px 18px rgba(0,0,0,.24));
     }
 
-    .brand-location{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:-11px;
-      line-height:1;
-      color:rgba(255,255,255,.72);
-      font-size:.73rem;
-      font-weight:700;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      white-space:nowrap;
-      opacity:1;
-      filter:brightness(1);
-      transition:opacity .18s linear, filter .18s linear;
-    }
-
-    .brand-location::before,
-    .brand-location::after{
-      content:"";
-      width:18px;
-      height:1px;
-      background:rgba(255,255,255,.22);
-    }
-
     .nav{
       display:flex;
       gap:10px;
@@ -947,8 +922,8 @@
         display:grid;
         grid-template-columns:minmax(0, 1fr) auto;
         grid-template-areas:
-          "brand google"
-          "nav nav";
+          "nav nav"
+          "brand google";
         align-items:center;
         justify-content:flex-start;
         gap:10px 12px;
@@ -956,11 +931,12 @@
       }
 
       .brand-block{
+        grid-area:brand;
         justify-items:start;
+        align-items:center;
       }
 
       .brand-lockup{
-        grid-area:brand;
         width:auto;
         justify-content:flex-start;
         justify-self:start;
@@ -977,7 +953,7 @@
       }
 
       .brand-logo{
-        width:min(220px, 58vw);
+        width:min(290px, 72vw);
         opacity:1;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
@@ -991,20 +967,6 @@
         position:static;
         justify-self:end;
         align-self:center;
-      }
-
-      .brand-location{
-        margin-top:-5px;
-        font-size:.66rem;
-        letter-spacing:.18em;
-        text-align:left;
-        opacity:calc(1 - (var(--brand-fade, 0) * .72));
-        filter:brightness(calc(1 - (var(--brand-fade, 0) * .55)));
-      }
-
-      .brand-location::before,
-      .brand-location::after{
-        width:14px;
       }
 
       .nav{
@@ -1051,7 +1013,7 @@
       }
 
       .hero-overlay{
-        top:72px;
+        top:92px;
         left:16px;
         right:16px;
         max-width:none;
@@ -1175,7 +1137,7 @@
 
       .testimonials{
         width:min(calc(100vw - 32px), 100%);
-        margin:40px auto 14px;
+        margin:24px auto 14px;
       }
 
       .quick-message-bubble{
@@ -1199,11 +1161,7 @@
 
     @media (max-width:480px){
       .brand-logo{
-        width:min(200px, 56vw);
-      }
-
-      .brand-location{
-        letter-spacing:.14em;
+        width:min(270px, 74vw);
       }
 
       .hero-visual{
@@ -1212,7 +1170,7 @@
       }
 
       .hero-overlay{
-        top:88px;
+        top:104px;
       }
 
       h1{
@@ -1225,7 +1183,7 @@
       }
 
       .testimonials{
-        margin:32px auto 12px;
+        margin:18px auto 12px;
       }
     }
   </style>
@@ -1345,7 +1303,6 @@
             />
           </a>
         </div>
-        <span class="brand-location">Hatton Garden London</span>
       </div>
 
       <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
