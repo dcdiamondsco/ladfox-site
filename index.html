@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="preload" as="image" href="Images/ladfox-logo.png" />
+  <link rel="preload" as="image" href="logo.png" />
   <link rel="preload" as="image" href="Images/background%202.png" />
 
   <style>
@@ -173,7 +173,7 @@
     }
 
     .brand-logo{
-      width:min(220px, 42vw);
+      width:min(260px, 42vw);
       height:auto;
       opacity:1;
       filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
@@ -945,31 +945,30 @@
 
       .topbar .shell{
         display:grid;
-        grid-template-columns:1fr auto 1fr;
+        grid-template-columns:minmax(0, 1fr) auto;
         grid-template-areas:
-          "nav nav nav"
-          "brand brand brand"
-          "google google google";
-        align-items:start;
+          "brand google"
+          "nav nav";
+        align-items:center;
         justify-content:flex-start;
         gap:10px 12px;
         padding-right:0;
       }
 
       .brand-block{
-        justify-items:center;
+        justify-items:start;
       }
 
       .brand-lockup{
         grid-area:brand;
-        width:100%;
-        justify-content:center;
-        justify-self:center;
+        width:auto;
+        justify-content:flex-start;
+        justify-self:start;
       }
 
       .brand{
         flex:0 1 auto;
-        justify-content:center;
+        justify-content:flex-start;
       }
 
       .brand-block{
@@ -977,12 +976,8 @@
         transform:translateY(-2px);
       }
 
-      .brand-lockup{
-        justify-content:center;
-      }
-
       .brand-logo{
-        width:min(236px, 68vw);
+        width:min(220px, 58vw);
         opacity:1;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
@@ -994,14 +989,15 @@
       .brand-review-link{
         grid-area:google;
         position:static;
-        justify-self:center;
-        align-self:start;
+        justify-self:end;
+        align-self:center;
       }
 
       .brand-location{
         margin-top:-5px;
         font-size:.66rem;
         letter-spacing:.18em;
+        text-align:left;
         opacity:calc(1 - (var(--brand-fade, 0) * .72));
         filter:brightness(calc(1 - (var(--brand-fade, 0) * .55)));
       }
@@ -1203,7 +1199,7 @@
 
     @media (max-width:480px){
       .brand-logo{
-        width:min(220px, 72vw);
+        width:min(200px, 56vw);
       }
 
       .brand-location{
@@ -1338,14 +1334,14 @@
           <a class="brand" href="index.html" aria-label="Ladfox home">
             <img
               class="brand-logo"
-              src="Images/ladfox-logo.png"
+              src="logo.png"
               alt="Ladfox private Hatton Garden jeweller logo"
               loading="eager"
               decoding="async"
               fetchpriority="high"
               width="1830"
               height="831"
-              onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
+              onerror="this.onerror=null; this.src='Images/ladfox-logo.png';"
             />
           </a>
         </div>
