@@ -491,6 +491,10 @@
       text-align:center;
     }
 
+    .eyebrow-secondary{
+      display:inline;
+    }
+
     .routes-intro{
       margin:0 0 30px;
       color:rgba(255,255,255,.76);
@@ -944,16 +948,21 @@
         grid-template-columns:1fr auto 1fr;
         grid-template-areas:
           "nav nav nav"
-          ". brand google";
+          "brand brand brand"
+          "google google google";
         align-items:start;
         justify-content:flex-start;
         gap:10px 12px;
         padding-right:0;
       }
 
+      .brand-block{
+        justify-items:center;
+      }
+
       .brand-lockup{
         grid-area:brand;
-        width:auto;
+        width:100%;
         justify-content:center;
         justify-self:center;
       }
@@ -985,7 +994,7 @@
       .brand-review-link{
         grid-area:google;
         position:static;
-        justify-self:end;
+        justify-self:center;
         align-self:start;
       }
 
@@ -1041,8 +1050,8 @@
       }
 
       .hero-visual{
-        min-height:560px;
-        height:560px;
+        min-height:680px;
+        height:680px;
       }
 
       .hero-overlay{
@@ -1050,9 +1059,11 @@
         left:16px;
         right:16px;
         max-width:none;
+        text-align:center;
       }
 
       .eyebrow-hero{
+        justify-content:center;
         font-size:.62rem;
         letter-spacing:.13em;
         line-height:1.5;
@@ -1065,14 +1076,17 @@
 
       .hero-subcopy{
         margin-top:0;
+        max-width:none;
         font-size:.96rem;
         line-height:1.65;
+        text-align:center;
       }
 
       .hero-subcopy-row{
         display:grid;
-        grid-template-columns:minmax(0, 1fr) auto;
-        align-items:center;
+        grid-template-columns:minmax(0, 1fr);
+        align-items:start;
+        justify-items:center;
         gap:16px;
         margin-top:14px;
         max-width:none;
@@ -1085,8 +1099,8 @@
       }
 
       .hero-primary-actions .btn{
-        width:auto;
-        min-width:200px;
+        width:min(100%, 320px);
+        min-width:0;
       }
 
       .hero-visual::after{
@@ -1103,6 +1117,11 @@
         margin-top:64px;
         opacity:1;
         transform:none;
+      }
+
+      .eyebrow-secondary{
+        display:block;
+        margin-top:4px;
       }
 
       .route-media{
@@ -1192,11 +1211,12 @@
       }
 
       .hero-visual{
-        min-height:520px;
+        min-height:720px;
+        height:720px;
       }
 
       .hero-overlay{
-        top:82px;
+        top:88px;
       }
 
       h1{
@@ -1465,7 +1485,7 @@
         </section>
 
         <div class="hero-copy">
-          <span class="eyebrow">Our bespoke jewellery design service</span>
+          <span class="eyebrow"><span class="eyebrow-primary">Our bespoke jewellery</span> <span class="eyebrow-secondary">design service</span></span>
           <p class="routes-intro">Ladfox creates bespoke engagement rings and custom jewellery in London with international shipping, engraving and a lifetime warranty included.</p>
 
           <div class="routes" aria-label="Process steps">
