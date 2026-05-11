@@ -180,6 +180,11 @@
       transition:opacity .18s linear, filter .18s linear;
     }
 
+    .hero-brand-mobile{
+      display:none;
+      height:auto;
+    }
+
     .brand-review-link{
       display:flex;
       align-items:center;
@@ -818,7 +823,7 @@
     }
 
     .site-footer{
-      padding:26px 0 46px;
+      padding:26px 0 118px;
       border-top:1px solid rgba(255,255,255,.08);
       color:rgba(255,255,255,.70);
     }
@@ -923,7 +928,7 @@
         grid-template-columns:minmax(0, 1fr) auto;
         grid-template-areas:
           "nav nav"
-          "brand google";
+          ". google";
         align-items:center;
         justify-content:flex-start;
         gap:10px 12px;
@@ -931,9 +936,7 @@
       }
 
       .brand-block{
-        grid-area:brand;
-        justify-items:start;
-        align-items:center;
+        display:none;
       }
 
       .brand-lockup{
@@ -953,8 +956,15 @@
       }
 
       .brand-logo{
-        width:min(290px, 72vw);
+        width:min(250px, 64vw);
         opacity:1;
+        filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
+      }
+
+      .hero-brand-mobile{
+        display:block;
+        width:min(244px, 62vw);
+        margin:0 auto 14px;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
 
@@ -1045,14 +1055,14 @@
         grid-template-columns:minmax(0, 1fr);
         align-items:start;
         justify-items:center;
-        gap:16px;
+        gap:12px;
         margin-top:14px;
         max-width:none;
         width:auto;
       }
 
       .hero-primary-actions{
-        margin-top:0;
+        margin:2px auto 2px;
         justify-content:center;
       }
 
@@ -1072,7 +1082,7 @@
 
       .hero-copy{
         width:min(calc(100vw - 32px), 100%);
-        margin-top:64px;
+        margin-top:42px;
         opacity:1;
         transform:none;
       }
@@ -1137,7 +1147,7 @@
 
       .testimonials{
         width:min(calc(100vw - 32px), 100%);
-        margin:24px auto 14px;
+        margin:12px auto 14px;
       }
 
       .quick-message-bubble{
@@ -1160,13 +1170,14 @@
     }
 
     @media (max-width:480px){
-      .brand-logo{
-        width:min(270px, 74vw);
-      }
-
       .hero-visual{
         min-height:720px;
         height:720px;
+      }
+
+      .hero-brand-mobile{
+        width:min(226px, 60vw);
+        margin-bottom:12px;
       }
 
       .hero-overlay{
@@ -1183,7 +1194,7 @@
       }
 
       .testimonials{
-        margin:18px auto 12px;
+        margin:10px auto 12px;
       }
     }
   </style>
@@ -1337,6 +1348,15 @@
             />
 
             <div class="hero-overlay">
+              <img
+                class="hero-brand-mobile"
+                src="logo.png"
+                alt="Ladfox private Hatton Garden jeweller logo"
+                loading="eager"
+                decoding="async"
+                width="1830"
+                height="831"
+              />
               <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
               <h1>Bespoke engagement rings and jewellery designed for the one you love</h1>
               <div class="hero-subcopy-row">
@@ -1439,8 +1459,6 @@
 
         <div class="hero-copy">
           <span class="eyebrow"><span class="eyebrow-primary">Our bespoke jewellery</span> <span class="eyebrow-secondary">design service</span></span>
-          <p class="routes-intro">Ladfox creates bespoke engagement rings and custom jewellery in London with international shipping, engraving and a lifetime warranty included.</p>
-
           <div class="routes" aria-label="Process steps">
             <article class="route">
               <a class="route-link" href="ringpage.html">
