@@ -98,7 +98,7 @@
       "url": "https://ladfox.com/LG781605782.html",
       "priceCurrency": "GBP",
       "price": "200.00",
-      "availability": "https://schema.org/InStock",
+      "availability": "https://schema.org/OutOfStock",
       "itemCondition": "https://schema.org/NewCondition"
     }
   }
@@ -450,6 +450,22 @@
       background:rgba(255,255,255,.04);
     }
 
+    .buy-button--disabled,
+    .buy-button--disabled:hover{
+      cursor:default;
+      transform:none;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
+      box-shadow:none;
+    }
+
+    .sold-note{
+      margin-top:14px;
+      color:rgba(255,255,255,.72);
+      line-height:1.6;
+    }
+
     .site-footer{
       margin-top:72px;
       padding:42px 0 28px;
@@ -661,7 +677,7 @@
 
         <article class="panel copy" data-reveal>
           <div class="price-wrap">
-            <p class="price">&#163;199.00</p>
+            <p class="price">Sold</p>
           </div>
 
           <h1>1.00ct D VVS 1 Round Lab Grown Diamond</h1>
@@ -671,7 +687,7 @@
               Certificate
             </a>
             <span class="approval-badge"><span class="tick" aria-hidden="true">✓</span>LADFOX approved</span>
-            <span class="approval-badge">Next working day delivery</span>
+            <span class="approval-badge">Sold</span>
           </div>
 
           <p class="section-copy">
@@ -698,21 +714,9 @@
           </div>
 
           <div class="buy-actions">
-            <a
-              class="buy-button primary"
-              href="https://buy.stripe.com/eVqeVdc2J4EKaTo50K8ww03"
-              target="_blank"
-              rel="noopener"
-            >
-              Buy
-            </a>
-            <a
-              class="buy-button secondary"
-              href="ring-form.html?reference=LG781605782"
-            >
-              Create ring with this diamond
-            </a>
+            <span class="buy-button buy-button--disabled" aria-disabled="true">Sold</span>
           </div>
+          <p class="sold-note">This diamond has sold. Contact Ladfox to source a similar stone.</p>
         </article>
       </section>
     </div>

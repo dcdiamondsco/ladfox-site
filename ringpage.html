@@ -434,6 +434,10 @@
       color:rgba(255,255,255,.72);
     }
 
+    .guided-form__support--phone{
+      font-size:1.08rem;
+    }
+
     .guided-form__body{
       display:grid;
       gap:12px;
@@ -507,6 +511,27 @@
 
     .guided-form__footer .btn[hidden]{
       display:none;
+    }
+
+    .guided-skip{
+      margin:4px auto 0;
+      width:fit-content;
+      padding:0;
+      border:0;
+      background:transparent;
+      color:rgba(255,255,255,.82);
+      font-family:var(--ui-font);
+      font-size:.88rem;
+      line-height:1.5;
+      text-decoration:underline;
+      text-underline-offset:4px;
+      cursor:pointer;
+    }
+
+    .guided-skip:hover,
+    .guided-skip:focus-visible{
+      color:#fff;
+      outline:none;
     }
 
     .guided-form__note{
@@ -902,6 +927,7 @@
               <input type="hidden" name="ring_metal" id="quickStartRingMetal" />
               <input type="hidden" name="other_notes" id="quickStartNotes" />
               <input type="hidden" name="email" id="quickStartEmail" />
+              <input type="hidden" name="phone" id="quickStartPhone" />
               <p style="display:none;">
                 <label>Do not fill this in <input name="bot-field" /></label>
               </p>
@@ -1066,7 +1092,8 @@
         stone_size: document.getElementById("quickStartStoneSize"),
         ring_metal: document.getElementById("quickStartRingMetal"),
         other_notes: document.getElementById("quickStartNotes"),
-        email: document.getElementById("quickStartEmail")
+        email: document.getElementById("quickStartEmail"),
+        phone: document.getElementById("quickStartPhone")
       };
 
       const steps = [
@@ -1111,6 +1138,13 @@
           support: "We will reply here.",
           type: "email",
           placeholder: "you@example.com"
+        },
+        {
+          key: "phone",
+          label: "",
+          support: "Would you like us to give you a ring to discuss designs?",
+          type: "tel",
+          placeholder: "Telephone number"
         }
       ];
 
@@ -1120,7 +1154,8 @@
         stone_size: "",
         ring_metal: "",
         other_notes: "",
-        email: ""
+        email: "",
+        phone: ""
       };
 
       let stepIndex = 0;
@@ -1170,8 +1205,9 @@
         if (step.type !== "textarea") field.type = step.type;
         field.placeholder = step.placeholder || "";
         field.value = formValues[step.key] || "";
-        field.autocomplete = step.type === "email" ? "email" : "off";
+        field.autocomplete = step.type === "email" ? "email" : step.type === "tel" ? "tel" : "off";
         if (step.type === "email") field.inputMode = "email";
+        if (step.type === "tel") field.inputMode = "tel";
 
         field.addEventListener("input", () => {
           formValues[step.key] = field.value.trim();
@@ -1180,6 +1216,20 @@
         });
 
         bodyEl.appendChild(field);
+
+        if (step.type === "tel") {
+          const skipButton = document.createElement("button");
+          skipButton.type = "button";
+          skipButton.className = "guided-skip";
+          skipButton.textContent = "No thanks";
+          skipButton.addEventListener("click", () => {
+            formValues.phone = "";
+            syncHiddenFields();
+            submitQuickStart();
+          });
+          bodyEl.appendChild(skipButton);
+        }
+
         nextBtn.hidden = false;
         nextBtn.textContent = stepIndex === steps.length - 1 ? "Submit" : "Continue";
         requestAnimationFrame(() => field.focus());
@@ -1189,11 +1239,10 @@
         const step = steps[stepIndex];
         if (!step || !questionEl || !supportEl || !bodyEl || !noteEl || !backBtn || !nextBtn) return;
 
-        questionEl.textContent = step.label;
+        questionEl.textContent = step.label || "";
         supportEl.textContent = step.support;
-        noteEl.textContent = stepIndex === steps.length - 1
-          ? "We will come back with the first design direction by email."
-          : "";
+        supportEl.classList.toggle("guided-form__support--phone", step.key === "phone");
+        noteEl.textContent = "";
         bodyEl.innerHTML = "";
         backBtn.hidden = stepIndex === 0;
 
@@ -1210,6 +1259,16 @@
         setStatus("");
         renderStep();
       });
+
+      function submitQuickStart(){
+        if (isSubmitting) return;
+        isSubmitting = true;
+        syncHiddenFields();
+        setStatus("");
+        nextBtn.disabled = true;
+        nextBtn.textContent = "Sending...";
+        form.requestSubmit();
+      }
 
       nextBtn.addEventListener("click", () => {
         const step = steps[stepIndex];
@@ -1229,13 +1288,14 @@
             return;
           }
 
-          if (isSubmitting) return;
-          isSubmitting = true;
           syncHiddenFields();
-          setStatus("");
-          nextBtn.disabled = true;
-          nextBtn.textContent = "Sending...";
-          form.requestSubmit();
+          stepIndex += 1;
+          renderStep();
+          return;
+        }
+
+        if (step.type === "tel") {
+          submitQuickStart();
         }
       });
 
