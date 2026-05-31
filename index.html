@@ -937,13 +937,13 @@
         grid-template-areas:
           "nav"
           "brand"
-          "location"
-          "google";
+          "location";
         align-items:center;
         justify-content:center;
         justify-items:center;
-        gap:10px 12px;
+        gap:4px 12px;
         padding-right:0;
+        padding-bottom:2px;
       }
 
       .brand-block{
@@ -989,22 +989,23 @@
       }
 
       .brand-review-link{
-        grid-area:google;
-        position:static;
-        justify-self:center;
-        align-self:start;
+        position:absolute;
+        top:58px;
+        right:0;
+        justify-self:auto;
+        align-self:auto;
       }
 
       .brand-location{
         display:block;
         grid-area:location;
         width:100%;
-        margin:0;
-        padding-top:2px;
+        margin:-4px 0 0;
+        padding-top:0;
         display:flex;
         flex-direction:column;
         align-items:center;
-        gap:2px;
+        gap:0;
         text-align:center;
         color:rgba(255,255,255,.78);
         font-size:.68rem;
@@ -1022,7 +1023,7 @@
         align-self:stretch;
         gap:8px;
         margin-top:0;
-        margin-bottom:12px;
+        margin-bottom:6px;
         opacity:calc(1 - (var(--brand-fade, 0) * .78));
       }
 
@@ -1213,6 +1214,10 @@
     @media (max-width:480px){
       .brand-logo{
         width:min(236px, 62vw);
+      }
+
+      .brand-review-link{
+        top:56px;
       }
 
       .hero-visual{
