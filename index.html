@@ -371,6 +371,10 @@
       text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
+    .hero-heading-line{
+      display:inline;
+    }
+
     .hero-subcopy{
       margin:0;
       max-width:58ch;
@@ -937,6 +941,7 @@
           "google";
         align-items:center;
         justify-content:center;
+        justify-items:center;
         gap:10px 12px;
         padding-right:0;
       }
@@ -944,20 +949,23 @@
       .brand-block{
         display:grid;
         grid-area:brand;
+        width:100%;
         justify-items:center;
+        justify-self:stretch;
         align-items:center;
         gap:0;
         transform:none;
       }
 
       .brand-lockup{
-        width:auto;
+        width:100%;
         justify-content:center;
-        justify-self:center;
+        justify-self:stretch;
       }
 
       .brand{
         flex:0 1 auto;
+        width:100%;
         justify-content:center;
       }
 
@@ -990,6 +998,7 @@
       .brand-location{
         display:block;
         grid-area:location;
+        width:100%;
         margin:0;
         padding-top:2px;
         display:flex;
@@ -1064,6 +1073,14 @@
         max-width:10ch;
         font-size:clamp(1.9rem, 8.2vw, 2.7rem);
         margin-top:10px;
+      }
+
+      .hero-heading-line{
+        display:block;
+      }
+
+      .hero-heading-line--gap{
+        margin-top:.45em;
       }
 
       .hero-subcopy{
@@ -1377,7 +1394,7 @@
 
             <div class="hero-overlay">
               <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
-              <h1>Bespoke engagement rings created for the one you love</h1>
+              <h1><span class="hero-heading-line">Bespoke</span> <span class="hero-heading-line">Engagement Rings</span> <span class="hero-heading-line hero-heading-line--gap">Created for</span> <span class="hero-heading-line">the one you love</span></h1>
               <div class="hero-subcopy-row">
                 <p class="hero-subcopy">
                   Family run Hatton Garden jeweller carefully creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance from first idea to finished piece. No high pressure showroom routine, just private guidance focused on getting the ring right.
