@@ -929,13 +929,14 @@
 
       .topbar .shell{
         display:grid;
-        grid-template-columns:minmax(0, 1fr) auto;
+        grid-template-columns:minmax(0, 1fr);
         grid-template-areas:
-          "nav nav"
-          "brand google"
-          "location location";
+          "nav"
+          "brand"
+          "location"
+          "google";
         align-items:center;
-        justify-content:flex-start;
+        justify-content:center;
         gap:10px 12px;
         padding-right:0;
       }
@@ -943,7 +944,7 @@
       .brand-block{
         display:grid;
         grid-area:brand;
-        justify-items:start;
+        justify-items:center;
         align-items:center;
         gap:0;
         transform:none;
@@ -951,13 +952,13 @@
 
       .brand-lockup{
         width:auto;
-        justify-content:flex-start;
-        justify-self:start;
+        justify-content:center;
+        justify-self:center;
       }
 
       .brand{
         flex:0 1 auto;
-        justify-content:flex-start;
+        justify-content:center;
       }
 
       .brand-block{
@@ -982,7 +983,7 @@
       .brand-review-link{
         grid-area:google;
         position:static;
-        justify-self:end;
+        justify-self:center;
         align-self:start;
       }
 
@@ -1085,7 +1086,7 @@
       }
 
       .hero-primary-actions{
-        margin:2px auto 2px;
+        margin:14px auto 6px;
         justify-content:center;
       }
 
@@ -1215,6 +1216,10 @@
       .brand-location{
         font-size:.62rem;
         letter-spacing:.1em;
+      }
+
+      .nav{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
       }
 
       .testimonials{
@@ -1349,7 +1354,6 @@
       </a>
 
       <nav class="nav" aria-label="Primary">
-        <a href="jewellery-design.html">Jewellery</a>
         <a href="consultation.html">Consultaion</a>
         <a href="price-match.html">Price Match</a>
         <a href="contact-us.html">Contact Us</a>
@@ -1528,6 +1532,9 @@
         <p><strong>What does Ladfox do?</strong> Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance.</p>
         <p><strong>Can I design a ring from scratch?</strong> Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection.</p>
         <p><strong>Do Ladfox offer lab grown diamonds?</strong> Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery.</p>
+        <div class="route-cta">
+          <a class="btn btn-primary" href="jewellery-design.html">Looking for a different kind of jewellery?</a>
+        </div>
       </div>
     </section>
 
