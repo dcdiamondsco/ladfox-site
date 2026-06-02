@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Contact Ladfox | Private Jewellery Consultation</title>
-  <meta name="description" content="Contact Ladfox to book a private phone or email consultation, or send a message about bespoke rings, jewellery, or a quote review." />
+  <title>Contact Hatton Garden Jeweller | Bespoke Engagement Rings London | Ladfox</title>
+  <meta name="description" content="Contact Ladfox, a private Hatton Garden jeweller in London, about bespoke engagement rings, custom jewellery, diamond sourcing or a price match." />
   <link rel="canonical" href="https://ladfox.com/contact-us.html" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
@@ -12,13 +12,13 @@
   <meta name="theme-color" content="#000000" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Contact Ladfox | Private Jewellery Consultation" />
-  <meta property="og:description" content="Choose a phone consultation, an email consultation, or send a private message to Ladfox." />
+  <meta property="og:title" content="Contact Hatton Garden Jeweller | Bespoke Engagement Rings London | Ladfox" />
+  <meta property="og:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing or a price match." />
   <meta property="og:url" content="https://ladfox.com/contact-us.html" />
   <meta property="og:image" content="https://ladfox.com/Images/ladfox-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact Ladfox | Private Jewellery Consultation" />
-  <meta name="twitter:description" content="Book a discreet consultation with Ladfox or send a message about a bespoke jewellery project." />
+  <meta name="twitter:title" content="Contact Hatton Garden Jeweller | Bespoke Engagement Rings London | Ladfox" />
+  <meta name="twitter:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing or a price match." />
   <meta name="twitter:image" content="https://ladfox.com/Images/ladfox-logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,34 +72,42 @@
       padding:22px 0 14px;
       display:grid;
       justify-items:center;
+      position:relative;
+    }
+
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      width:100%;
     }
 
     .brand{
       display:flex;
       justify-content:center;
-      width:100%;
     }
 
-    .brand img{
+    .brand-logo{
       width:min(205px, 44vw);
       height:auto;
       display:block;
     }
 
-    nav{
+    .brand-review-link{
       display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:22px;
+      right:0;
     }
 
-    nav a{
-      padding:10px 14px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      font-size:.92rem;
-      font-weight:700;
+    .brand-review-badge{
+      width:138px;
+      height:auto;
+      display:block;
     }
 
     main{
@@ -138,7 +146,8 @@
     .intro,
     .form-card,
     .info-card,
-    .thank-you-message{
+    .thank-you-message,
+    .direct-options{
       border:1px solid var(--line);
       border-radius:32px;
       background:var(--surface);
@@ -210,13 +219,80 @@
     .info-card strong{
       display:block;
       margin-bottom:6px;
-      color:#fff2e0;
+      color:#fff;
     }
 
     .info-card span{
       color:var(--muted);
       line-height:1.65;
       font-size:.95rem;
+    }
+
+    .right-col{
+      display:grid;
+      gap:18px;
+    }
+
+    .direct-options{
+      padding:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent 34%),
+        rgba(255,255,255,.04);
+    }
+
+    .direct-options h2{
+      font-size:1.5rem;
+      margin-bottom:8px;
+    }
+
+    .direct-options p{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .direct-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .direct-card{
+      padding:18px 18px 20px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      background:var(--surface-strong);
+      display:grid;
+      gap:10px;
+    }
+
+    .direct-card span{
+      color:rgba(255,255,255,.54);
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .direct-card strong{
+      font-size:1.05rem;
+      line-height:1.3;
+      color:#fff;
+    }
+
+    .direct-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.6;
+    }
+
+    .direct-card a{
+      display:inline-flex;
+      width:fit-content;
+      font-weight:800;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .form-card{
@@ -376,22 +452,36 @@
         position:static;
       }
 
+      .direct-grid{
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width:720px){
-      .brand img{
+      .brand-logo{
         width:min(244px, 70vw);
       }
+
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:static;
+      }
+
       .intro,
       .form-card,
       .info-card,
-      .thank-you-message{
+      .thank-you-message,
+      .direct-options{
         border-radius:24px;
       }
 
       .intro,
       .form-card,
-      .thank-you-message{
+      .thank-you-message,
+      .direct-options{
         padding:22px;
       }
 
@@ -400,22 +490,116 @@
       }
     }
   </style>
-
-  <script defer src="/Public/google-tag.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ladfox.com/#organization",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "logo": "https://ladfox.com/Images/ladfox-logo.png",
+      "image": "https://ladfox.com/Images/og-banner.jpg",
+      "telephone": "+447853362904",
+      "sameAs": [
+        "https://www.instagram.com/ladfox",
+        "https://www.facebook.com/ladfox"
+      ]
+    },
+    {
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#jewelrystore",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "image": "https://ladfox.com/Images/og-banner.jpg",
+      "telephone": "+447853362904",
+      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hatton Garden",
+        "addressRegion": "London",
+        "addressCountry": "GB"
+      },
+      "areaServed": [
+        "London",
+        "Hatton Garden",
+        "United Kingdom",
+        "International"
+      ],
+      "priceRange": "Premium"
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://ladfox.com/contact-us.html#contact",
+      "name": "Contact Ladfox",
+      "url": "https://ladfox.com/contact-us.html"
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="whatsapp-float.css" />
 </head>
 <body>
   <header class="shell">
-    <a class="brand" href="index.html" aria-label="Ladfox home">
-      <img src="Images/ladfox-logo.png" alt="Ladfox" />
-    </a>
+    <div class="brand-lockup">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox private Hatton Garden jeweller logo" />
+      </a>
+      <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" />
+      </a>
+    </div>
   </header>
 
   <main class="shell">
     <div class="layout">
-      <section>
+      <section class="intro">
+        <span class="eyebrow">Private Contact</span>
+        <h1>Contact Ladfox</h1>
+        <p>Choose the most comfortable way to start your bespoke jewellery or engagement ring enquiry.</p>
+
+        <div class="info-list">
+          <div class="info-card">
+            <strong>Direct and personal</strong>
+            <span>You speak directly with Ladfox, not a sales team.</span>
+          </div>
+
+          <div class="info-card">
+            <strong>Bespoke guidance</strong>
+            <span>Useful for engagement rings, custom jewellery, and quote comparisons.</span>
+          </div>
+
+          <div class="info-card">
+            <strong>Private and considered</strong>
+            <span>Send references, ask questions, or start with a simple message.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="right-col">
+        <div class="direct-options">
+          <h2>Prefer to speak directly?</h2>
+          <p>If you already know you want to talk, use the quickest route below.</p>
+
+          <div class="direct-grid">
+            <div class="direct-card">
+              <span>Call</span>
+              <p>Speak directly with Ladfox about your ring, jewellery project, or next step.</p>
+              <a href="tel:+447853362904">Call now</a>
+            </div>
+
+            <div class="direct-card">
+              <span>WhatsApp</span>
+              <p>Send screenshots, ideas, links, or a quote for a quick private conversation.</p>
+              <a href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer">Message</a>
+            </div>
+          </div>
+        </div>
+
         <div id="contactContent" class="form-card">
-          <h2>Contact us</h2>
-          <p class="consult-note">Choose how you want to be contacted and give enough detail for a useful first reply.</p>
+          <h2>Contact Ladfox about your jewellery project</h2>
+          <p class="consult-note">Most clients start with a quick WhatsApp message or the short form below. Give enough detail for a useful first reply.</p>
 
           <form
             name="contact-us"
@@ -479,7 +663,7 @@
 
             <div id="messageBlock" class="conditional-block" hidden>
               <label for="message" class="label">Message *</label>
-              <textarea id="message" name="message" class="textarea" placeholder="Tell us what you are trying to make, compare, or understand."></textarea>
+              <textarea id="message" name="message" class="textarea" placeholder="Tell us what you are trying to make compare or understand."></textarea>
 
               <label for="messageEmail" class="label">Email *</label>
               <input type="email" id="messageEmail" name="email" class="input" autocomplete="email" />
@@ -642,9 +826,19 @@
     }
   </script>
   <script src="scroll-reveal.js"></script>
+  <div class="quick-message-callout" aria-hidden="true">
+    <span>we&apos;re available 24/7!</span>
+  </div>
+
+  <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.59 5.94L0 24l6.34-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.87 9.87 0 0 1-1.52-5.24C2.15 6.43 6.58 2 12.06 2c2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.48-4.45 9.89-9.88 9.89Zm5.42-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.58-.35Z"/>
+    </svg>
+    <span>Send us a quick WhatsApp</span>
+  </a>
+  <script defer src="/Public/google-tag.js"></script>
 </body>
 </html>
-
 
 
 

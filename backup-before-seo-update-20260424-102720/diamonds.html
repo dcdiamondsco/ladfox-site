@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Diamond Sourcing | Natural & Lab Grown Diamonds | Ladfox</title>
+  <meta name="description" content="Source a natural or lab grown diamond with Ladfox. Share your shape, size, colour, clarity, and budget preferences for a tailored stone recommendation." />
+  <link rel="canonical" href="https://ladfox.com/diamonds.html" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
+  <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Diamond Sourcing | Natural & Lab Grown Diamonds | Ladfox" />
+  <meta property="og:description" content="Share your diamond brief with Ladfox and get a tailored recommendation for a natural or lab grown stone." />
+  <meta property="og:url" content="https://ladfox.com/diamonds.html" />
+  <meta property="og:image" content="https://ladfox.com/Images/Diamond.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Diamond Sourcing | Natural & Lab Grown Diamonds | Ladfox" />
+  <meta name="twitter:description" content="Share your diamond brief with Ladfox and get a tailored recommendation for a natural or lab grown stone." />
+  <meta name="twitter:image" content="https://ladfox.com/Images/Diamond.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --surface:rgba(255,255,255,.05);
+      --surface-strong:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.14);
+      --text:#fff;
+      --muted:rgba(255,255,255,.72);
+      --heading:"Syne", sans-serif;
+      --body:"Manrope", sans-serif;
+      --shadow:0 24px 80px rgba(0,0,0,.24);
+      --max:1120px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html{
+      background:#000;
+      overscroll-behavior-y:none;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:var(--body);
+      color:var(--text);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.72)),
+        url("Images/Diamond.png") center top / cover no-repeat fixed,
+        radial-gradient(circle at top left, rgba(255,255,255,.07), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(255,255,255,.04), transparent 22%),
+        linear-gradient(180deg, #050505 0%, #0a0a0a 45%, #000 100%);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .shell{
+      width:min(calc(100% - 32px), var(--max));
+      margin:0 auto;
+    }
+
+    header{
+      padding:22px 0 14px;
+      display:grid;
+      justify-items:center;
+      position:relative;
+    }
+
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      width:100%;
+    }
+
+    .brand{
+      display:flex;
+      justify-content:center;
+    }
+
+    .brand-logo{
+      width:min(205px, 44vw);
+      height:auto;
+      display:block;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:22px;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:138px;
+      height:auto;
+      display:block;
+    }
+
+    main{
+      padding:16px 0 40px;
+    }
+
+    .spotlight{
+      margin:0 0 24px;
+      display:grid;
+      gap:16px;
+    }
+
+    .spotlight-head{
+      display:grid;
+      gap:8px;
+    }
+
+    .spotlight-kicker{
+      margin:0;
+      color:rgba(255,255,255,.56);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    .spotlight-title{
+      margin:0;
+      font-size:clamp(1.9rem, 4vw, 2.8rem);
+      letter-spacing:-.03em;
+    }
+
+    .spotlight-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .spotlight-card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        rgba(8,8,8,.38);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-height:100%;
+    }
+
+    .spotlight-link{
+      height:100%;
+      display:grid;
+      grid-template-rows:auto 1fr;
+    }
+
+    .spotlight-media{
+      min-height:178px;
+      padding:22px;
+      display:grid;
+      place-items:center;
+      background:#000;
+    }
+
+    .spotlight-media img,
+    .spotlight-media video{
+      width:100%;
+      max-width:132px;
+      max-height:132px;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 32px rgba(0,0,0,.34));
+    }
+
+    .spotlight-media video{
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .spotlight-video--oval{
+      transform:scale(3.45);
+      transform-origin:center;
+      clip-path:inset(36% 36% 36% 36%);
+    }
+
+    .spotlight-video--round{
+      transform:scale(1.02);
+      transform-origin:center;
+    }
+
+    .spotlight-media--round{
+      background:
+        radial-gradient(circle at 48% 40%, #f3f1ee 0%, #ece9e4 34%, #dddcd7 68%, #d4d4cf 100%);
+    }
+
+    .spotlight-video--emerald{
+      transform:scale(2.8);
+      transform-origin:center;
+      clip-path:inset(22% 22% 22% 22%);
+    }
+
+    .spotlight-media--emerald{
+      background:#e6e1e6;
+    }
+
+    .spotlight-body{
+      padding:18px 18px 20px;
+      display:grid;
+      gap:10px;
+    }
+
+    .spotlight-label{
+      margin:0;
+      color:rgba(255,255,255,.56);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .spotlight-name{
+      margin:0;
+      font-size:1.16rem;
+    }
+
+    .spotlight-meta{
+      margin:0;
+      color:#fff;
+      font-size:.95rem;
+      font-weight:700;
+    }
+
+    .spotlight-cta{
+      margin-top:auto;
+      color:#fff;
+      font-size:.9rem;
+      font-weight:800;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .form-card{
+      border:1px solid var(--line);
+      border-radius:32px;
+      background:rgba(8,8,8,.42);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    h1,h2,h3{
+      margin:0;
+      font-family:var(--heading);
+      line-height:1.05;
+    }
+
+    .form-card{
+      padding:28px;
+      margin-top:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), transparent 34%),
+        rgba(8,8,8,.3);
+    }
+
+    .form-card h2{
+      font-size:2rem;
+      margin-bottom:8px;
+    }
+
+    .form-copy{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:58ch;
+    }
+
+    .fields{
+      display:grid;
+      gap:14px;
+    }
+
+    .trust-note{
+      display:grid;
+      gap:6px;
+      margin-bottom:18px;
+      padding:14px 16px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      color:#fff;
+    }
+
+    .trust-note strong{
+      font-size:.98rem;
+      font-weight:800;
+    }
+
+    .trust-note span{
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.5;
+    }
+
+    .field-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      align-items:end;
+    }
+
+    .label{
+      display:block;
+      margin-bottom:8px;
+      font-size:.92rem;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .input,
+    .textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(15,12,10,.22);
+      color:var(--text);
+      font:inherit;
+    }
+
+    .textarea{
+      min-height:160px;
+      resize:vertical;
+    }
+
+    .input::placeholder,
+    .textarea::placeholder{
+      color:rgba(255,255,255,.44);
+    }
+
+    .tick-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .tick-option{
+      position:relative;
+      display:flex;
+      align-items:center;
+      min-height:54px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      transition:border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+
+    .tick-option input{
+      position:static;
+      width:18px;
+      height:18px;
+      margin:0 10px 0 0;
+      accent-color:#fff;
+    }
+
+    .tick-title{
+      font-size:1rem;
+      font-weight:700;
+      letter-spacing:0;
+    }
+
+    .tick-option:hover,
+    .tick-option:focus-within{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.24);
+      background:rgba(255,255,255,.07);
+      box-shadow:0 12px 24px rgba(0,0,0,.14);
+    }
+
+    .submit-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .submit-status{
+      min-height:1.25em;
+      margin:0;
+      color:#ffb3b3;
+      font-size:.92rem;
+      line-height:1.5;
+      flex:1 1 220px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      min-width:148px;
+      padding:0 22px;
+      border:0;
+      border-radius:18px;
+      background:#000;
+      color:#fff;
+      font-weight:800;
+      font-size:1rem;
+      cursor:pointer;
+      box-shadow:0 18px 36px rgba(255,255,255,.08);
+    }
+
+    .privacy{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.6;
+      max-width:44ch;
+    }
+
+    .site-footer{
+      padding:26px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .site-footer .shell{
+      text-align:center;
+    }
+
+    .footer-meta{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.65;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    @media (max-width:980px){
+      body{
+        background-attachment:scroll;
+      }
+
+      .spotlight-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .field-grid,
+      .tick-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:720px){
+      .shell{
+        width:min(calc(100% - 24px), var(--max));
+      }
+
+      header{
+        padding:18px 0 10px;
+      }
+
+      main{
+        padding:10px 0 32px;
+      }
+
+      .brand-lockup{
+        gap:10px;
+      }
+
+      .brand-logo{
+        width:min(244px, 70vw);
+      }
+
+      .brand-review-badge{
+        width:min(122px, 42vw);
+      }
+
+      .brand-review-link{
+        position:static;
+      }
+
+      .spotlight{
+        gap:14px;
+        margin-bottom:18px;
+      }
+
+      .spotlight-head{
+        gap:6px;
+      }
+
+      .spotlight-title{
+        font-size:clamp(1.7rem, 9vw, 2.2rem);
+      }
+
+      .spotlight-grid{
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .spotlight-media{
+        min-height:148px;
+        padding:18px;
+      }
+
+      .spotlight-body{
+        padding:16px 16px 18px;
+        gap:8px;
+      }
+
+      .spotlight-name{
+        font-size:1.06rem;
+      }
+
+      .spotlight-meta{
+        font-size:.92rem;
+      }
+
+      .form-card{
+        border-radius:24px;
+      }
+
+      .form-card{
+        padding:22px;
+      }
+
+      .form-card h2{
+        font-size:1.65rem;
+      }
+
+      .form-copy{
+        margin-bottom:16px;
+        line-height:1.6;
+      }
+
+      .trust-note{
+        margin-bottom:16px;
+        padding:13px 14px;
+      }
+
+      .label{
+        margin-bottom:7px;
+      }
+
+      .input,
+      .textarea,
+      .tick-option{
+        border-radius:16px;
+      }
+
+      .textarea{
+        min-height:140px;
+      }
+
+      .submit-row{
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .privacy,
+      .submit-status{
+        flex-basis:100%;
+        max-width:none;
+      }
+    }
+
+    @media (max-width:520px){
+      .brand-logo{
+        width:min(220px, 72vw);
+      }
+
+      .brand-review-badge{
+        width:min(112px, 44vw);
+      }
+
+      .spotlight-card{
+        border-radius:24px;
+      }
+
+      .spotlight-media{
+        min-height:136px;
+        padding:16px;
+      }
+
+      .spotlight-media img,
+      .spotlight-media video{
+        max-width:118px;
+        max-height:118px;
+      }
+
+      .spotlight-video--oval{
+        transform:scale(3.05);
+      }
+
+      .spotlight-video--emerald{
+        transform:scale(2.45);
+      }
+
+      .form-card{
+        padding:18px;
+      }
+
+      .tick-option{
+        min-height:50px;
+        padding:12px 14px;
+      }
+
+      .tick-title{
+        font-size:.96rem;
+      }
+
+      .footer-meta{
+        font-size:.8rem;
+      }
+    }
+  </style>
+  <script defer src="/Public/google-tag.js"></script>
+</head>
+<body>
+  <header class="shell">
+    <div class="brand-lockup">
+      <a class="brand" href="index.html" aria-label="Ladfox home">
+        <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
+      </a>
+      <a class="brand-review-link" href="reviews.html" aria-label="Read Ladfox Google reviews">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google Reviews logo" />
+      </a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="spotlight" aria-labelledby="spotlight-diamonds-title">
+      <div class="spotlight-head">
+        <h1 class="spotlight-title" id="spotlight-diamonds-title">Spotlight Diamonds</h1>
+      </div>
+
+      <div class="spotlight-grid">
+        <article class="spotlight-card">
+          <a class="spotlight-link" href="LG781605782.html">
+            <div class="spotlight-media spotlight-media--round">
+              <video
+                class="spotlight-video--round"
+                src="Images/products/LG781605782.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="Images/products/LG781605782.jpeg"
+                aria-label="1ct round diamond video"
+              >
+                <img src="Images/products/LG781605782.jpeg" alt="1ct round LG781605782 diamond" loading="lazy" decoding="async" />
+              </video>
+            </div>
+            <div class="spotlight-body">
+              <p class="spotlight-label">1ct Round</p>
+              <h2 class="spotlight-name">1ct Round VVS1</h2>
+              <p class="spotlight-meta">Ideal Cut • Excellent Polish • Excellent Symmetry</p>
+              <span class="spotlight-cta">View diamond</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="spotlight-card">
+          <a class="spotlight-link" href="LG772667488.html">
+            <div class="spotlight-media">
+              <video
+                class="spotlight-video--oval"
+                src="Images/products/Oval.mov"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="Images/diamond%20shapes/oval.png"
+                aria-label="1.6ct oval diamond video"
+              >
+                <img src="Images/diamond%20shapes/oval.png" alt="1.6ct oval diamond" loading="lazy" decoding="async" />
+              </video>
+            </div>
+            <div class="spotlight-body">
+              <p class="spotlight-label">1.6ct Oval</p>
+              <h2 class="spotlight-name">1.6ct Oval</h2>
+              <p class="spotlight-meta">Elongated look with strong finger coverage</p>
+              <span class="spotlight-cta">View diamond</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="spotlight-card">
+          <a class="spotlight-link" href="LG790687098.html">
+            <div class="spotlight-media spotlight-media--emerald">
+              <video
+                class="spotlight-video--emerald"
+                src="Images/products/Emerald.mov"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="Images/diamond%20shapes/emerald.png"
+                aria-label="Emerald cut diamond video"
+              >
+                <img src="Images/diamond%20shapes/emerald.png" alt="Emerald cut diamond" loading="lazy" decoding="async" />
+              </video>
+            </div>
+            <div class="spotlight-body">
+              <p class="spotlight-label">2.06ct Emerald</p>
+              <h2 class="spotlight-name">2.06ct Emerald Cut</h2>
+              <p class="spotlight-meta">Clean step-cut character</p>
+              <span class="spotlight-cta">View diamond</span>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="layout">
+      <section>
+        <h2>Diamond sourcing</h2>
+        <p class="form-copy">We only supply high quality stones with top tier spec, strong visual performance, and final Ladfox approval before anything is recommended.</p>
+        <div class="trust-note" aria-label="Returns policy">
+          <strong>Free 14 day returns</strong>
+          <span>If your diamond is not right, return it within 14 days at no extra cost.</span>
+        </div>
+
+        <div id="diamondContent" class="form-card">
+          <form
+            name="diamond-sourcing"
+            method="POST"
+            action="/thank-you.html"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            enctype="multipart/form-data"
+            class="fields"
+          >
+            <input type="hidden" name="form-name" value="diamond-sourcing" />
+            <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+
+            <input type="hidden" name="source-page" value="diamonds" />
+            <input type="hidden" name="location" id="locationField" value="Unknown" />
+
+            <input type="hidden" name="utm_source" id="utm_source" />
+            <input type="hidden" name="utm_medium" id="utm_medium" />
+            <input type="hidden" name="utm_campaign" id="utm_campaign" />
+            <input type="hidden" name="utm_term" id="utm_term" />
+            <input type="hidden" name="utm_content" id="utm_content" />
+            <input type="hidden" name="gclid" id="gclid" />
+
+            <input type="hidden" name="subject" id="hiddenSubject" />
+            <textarea name="summary" id="hiddenSummary" hidden></textarea>
+
+            <div class="field-grid">
+              <div>
+                <span class="label">Stone type</span>
+                <div class="tick-grid">
+                  <label class="tick-option">
+                    <input type="radio" name="stone_type" value="Natural diamond" />
+                    <span class="tick-title">Natural</span>
+                  </label>
+                  <label class="tick-option">
+                    <input type="radio" name="stone_type" value="Lab grown diamond" />
+                    <span class="tick-title">Lab grown</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label for="shape" class="label">Shape</label>
+                <input type="text" id="shape" name="shape" class="input" placeholder="Oval, round, emerald..." />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div>
+                <label for="size" class="label">Size or carat range</label>
+                <input type="text" id="size" name="size" class="input" placeholder="For example: 2 to 2.5 carats" />
+              </div>
+              <div>
+                <label for="budget" class="label">Budget</label>
+                <input type="text" id="budget" name="budget" class="input" placeholder="For example: £3,000 to £5,000" />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div>
+                <label for="colour" class="label">Colour</label>
+                <input type="text" id="colour" name="colour" class="input" placeholder="D-F, D, E, F, G, H, or I" />
+              </div>
+              <div>
+                <label for="clarity" class="label">Clarity</label>
+                <input type="text" id="clarity" name="clarity" class="input" placeholder="VVS1, VVS2, VS1, VS2, SI1..." />
+              </div>
+            </div>
+
+            <div>
+              <label for="brief" class="label">What are you looking for? *</label>
+              <textarea id="brief" name="brief" class="textarea" placeholder="Tell us what matters most. Shape, proportions, finger coverage, colour, budget, or how you want the stone to feel in the final piece." required></textarea>
+            </div>
+
+            <div class="field-grid">
+              <div>
+                <label for="name" class="label">Name *</label>
+                <input type="text" id="name" name="name" class="input" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="email" class="label">Email *</label>
+                <input type="email" id="email" name="email" class="input" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="submit-row">
+              <p class="privacy">We will review the brief properly and come back with the most suitable stone direction.</p>
+              <button type="submit" class="btn">Submit</button>
+            </div>
+            <p class="submit-status" id="submitStatus" aria-live="polite"></p>
+          </form>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="shell">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(location.search);
+      const form = document.querySelector('form[name="diamond-sourcing"]');
+      const submitButton = form?.querySelector('button[type="submit"]');
+      const submitStatus = document.getElementById("submitStatus");
+      const spotlightVideos = document.querySelectorAll(".spotlight-media video");
+
+      const keepSpotlightVideosPlaying = () => {
+        if (document.visibilityState === "hidden") return;
+
+        spotlightVideos.forEach((spotlightVideo) => {
+          if (!(spotlightVideo instanceof HTMLVideoElement)) return;
+          const playAttempt = spotlightVideo.play();
+          if (playAttempt && typeof playAttempt.catch === "function") {
+            playAttempt.catch(() => {});
+          }
+        });
+      };
+
+      ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid"].forEach(key => {
+        const el = document.getElementById(key);
+        if (el) el.value = params.get(key) || "";
+      });
+
+      keepSpotlightVideosPlaying();
+      spotlightVideos.forEach((spotlightVideo) => {
+        spotlightVideo.addEventListener("pause", keepSpotlightVideosPlaying);
+      });
+      window.addEventListener("scroll", keepSpotlightVideosPlaying, { passive:true });
+      document.addEventListener("visibilitychange", keepSpotlightVideosPlaying);
+      window.setInterval(keepSpotlightVideosPlaying, 700);
+
+      fetch("https://ipapi.co/json/")
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(data => {
+          const loc = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
+          const locField = document.getElementById("locationField");
+          if (locField) locField.value = loc || "Unknown";
+        })
+        .catch(() => {});
+
+      form?.addEventListener("submit", () => {
+        if (submitStatus) submitStatus.textContent = "";
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Sending...";
+        }
+
+        const fields = {
+          name: document.getElementById("name")?.value.trim() || "",
+          email: document.getElementById("email")?.value.trim() || "",
+          stoneType: document.querySelector('input[name="stone_type"]:checked')?.value || "",
+          shape: document.getElementById("shape")?.value.trim() || "",
+          size: document.getElementById("size")?.value.trim() || "",
+          budget: document.getElementById("budget")?.value.trim() || "",
+          colour: document.getElementById("colour")?.value.trim() || "",
+          clarity: document.getElementById("clarity")?.value.trim() || "",
+          brief: document.getElementById("brief")?.value.trim() || "",
+          location: document.getElementById("locationField")?.value || "",
+          utm: {
+            source: document.getElementById("utm_source")?.value || "",
+            medium: document.getElementById("utm_medium")?.value || "",
+            campaign: document.getElementById("utm_campaign")?.value || "",
+            term: document.getElementById("utm_term")?.value || "",
+            content: document.getElementById("utm_content")?.value || "",
+            gclid: document.getElementById("gclid")?.value || ""
+          }
+        };
+
+        const subjectEl = document.getElementById("hiddenSubject");
+        if (subjectEl) subjectEl.value = `Diamond sourcing enquiry from ${fields.name || "Customer"}`;
+
+        const summaryEl = document.getElementById("hiddenSummary");
+        if (summaryEl) summaryEl.value = composeSummary(fields);
+      });
+    });
+
+    function composeSummary(fields){
+      const lines = [];
+
+      if (fields.name) lines.push(`Name:\n${fields.name}`);
+      if (fields.email) lines.push(`Email:\n${fields.email}`);
+      if (fields.stoneType) lines.push(`Stone type:\n${fields.stoneType}`);
+      if (fields.shape) lines.push(`Shape:\n${fields.shape}`);
+      if (fields.size) lines.push(`Size or carat range:\n${fields.size}`);
+      if (fields.budget) lines.push(`Budget:\n${fields.budget}`);
+      if (fields.colour) lines.push(`Colour:\n${fields.colour}`);
+      if (fields.clarity) lines.push(`Clarity:\n${fields.clarity}`);
+      if (fields.location) lines.push(`Location:\n${fields.location}`);
+      if (fields.brief) lines.push(`What they are looking for:\n${fields.brief}`);
+
+      const u = fields.utm || {};
+      const utmLines = [];
+      if (u.source) utmLines.push(`utm_source: ${u.source}`);
+      if (u.medium) utmLines.push(`utm_medium: ${u.medium}`);
+      if (u.campaign) utmLines.push(`utm_campaign: ${u.campaign}`);
+      if (u.term) utmLines.push(`utm_term: ${u.term}`);
+      if (u.content) utmLines.push(`utm_content: ${u.content}`);
+      if (u.gclid) utmLines.push(`gclid: ${u.gclid}`);
+      if (utmLines.length) lines.push(`Attribution:\n${utmLines.join("\n")}`);
+
+      return lines.join("\n\n");
+    }
+  </script>
+</body>
+</html>

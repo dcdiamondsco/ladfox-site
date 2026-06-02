@@ -3,87 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox</title>
 
-  <title>Ladfox | Bespoke Engagement Rings | Hatton Garden Jeweller</title>
-
-  <meta
-    name="description"
-    content="A private Hatton Garden jeweller offering bespoke engagement rings, with one to one guidance and insured delivery."
-  />
+  <meta name="description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#0B0C10" />
   <link rel="canonical" href="https://ladfox.com/" />
 
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:locale" content="en_GB" />
   <meta property="og:site_name" content="Ladfox" />
-  <meta property="og:title" content="Ladfox | Bespoke Engagement Rings | Hatton Garden Jeweller" />
-  <meta
-    property="og:description"
-    content="A private Hatton Garden jeweller offering bespoke engagement rings, with one to one guidance and insured delivery."
-  />
+  <meta property="og:title" content="Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox" />
+  <meta property="og:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ladfox.com/" />
-  <meta property="og:image" content="https://ladfox.com/Images/hero%20ring%20image.png" />
+  <meta property="og:image" content="https://ladfox.com/Images/background%202.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ladfox | Bespoke Engagement Rings | Hatton Garden Jeweller" />
-  <meta
-    name="twitter:description"
-    content="A private Hatton Garden jeweller offering bespoke engagement rings, with one to one guidance and insured delivery."
-  />
-  <meta name="twitter:image" content="https://ladfox.com/Images/hero%20ring%20image.png" />
+  <meta name="twitter:title" content="Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox" />
+  <meta name="twitter:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
+  <meta name="twitter:image" content="https://ladfox.com/Images/background%202.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="preload" as="image" href="Images/ladfox-logo.png" />
-  <link rel="preload" as="image" href="Images/hero%20ring%20image.png" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "name": "Ladfox",
-        "url": "https://ladfox.com/",
-        "logo": "https://ladfox.com/Images/ladfox-logo.png",
-        "image": "https://ladfox.com/Images/hero%20ring%20image.png",
-        "sameAs": [
-          "https://www.instagram.com/ladfox",
-          "https://www.facebook.com/ladfox"
-        ]
-      },
-      {
-        "@type": "JewelryStore",
-        "name": "Ladfox",
-        "url": "https://ladfox.com/",
-        "image": "https://ladfox.com/Images/hero%20ring%20image.png",
-        "description": "Private Hatton Garden jeweller offering bespoke engagement rings with discreet one to one guidance.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "London",
-          "addressRegion": "London",
-          "addressCountry": "GB"
-        },
-        "areaServed": "GB"
-      },
-      {
-        "@type": "WebSite",
-        "name": "Ladfox",
-        "url": "https://ladfox.com/"
-      }
-    ]
-  }
-  </script>
+  <link rel="preload" as="image" href="Images/Logo%20no%20background.png" />
+  <link rel="preload" as="image" href="Images/background%202.png" />
 
   <style>
     :root{
@@ -191,9 +142,11 @@
 
     .topbar .shell{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:16px;
+      position:relative;
+      padding-right:176px;
     }
 
     .brand{
@@ -203,44 +156,51 @@
       flex:0 0 auto;
     }
 
+    .brand-lockup{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
     .brand-block{
       display:grid;
       justify-items:center;
-      gap:0;
+      gap:6px;
       transform:none;
     }
 
-    .brand img{
-      width:min(220px, 42vw);
+    .brand-logo{
+      width:min(260px, 42vw);
       height:auto;
       opacity:1;
       filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       transition:opacity .18s linear, filter .18s linear;
     }
 
-    .brand-location{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:-11px;
-      line-height:1;
-      color:rgba(255,255,255,.72);
-      font-size:.73rem;
-      font-weight:700;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      white-space:nowrap;
-      opacity:1;
-      filter:brightness(1);
-      transition:opacity .18s linear, filter .18s linear;
+    .hero-brand-mobile{
+      display:none;
+      height:auto;
     }
 
-    .brand-location::before,
-    .brand-location::after{
-      content:"";
-      width:18px;
-      height:1px;
-      background:rgba(255,255,255,.22);
+    .brand-location{
+      display:none;
+    }
+
+    .brand-review-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:0;
+      right:0;
+    }
+
+    .brand-review-badge{
+      width:142px;
+      height:auto;
+      filter:drop-shadow(0 6px 18px rgba(0,0,0,.24));
     }
 
     .nav{
@@ -249,6 +209,7 @@
       flex-wrap:wrap;
       justify-content:flex-end;
       align-items:center;
+      margin-top:14px;
       opacity:1;
       transition:opacity .18s linear;
     }
@@ -292,7 +253,8 @@
     .feature,
     .quote,
     .footer-card,
-    .trust-strip{
+    .trust-strip,
+    .consultation-section{
       border:1px solid var(--line);
       background:var(--surface);
       box-shadow:var(--shadow);
@@ -366,46 +328,8 @@
       top:132px;
       left:96px;
       z-index:2;
-      max-width:min(620px, calc(100% - 140px));
+      max-width:min(1080px, calc(100% - 192px));
       transition:opacity .32s ease;
-    }
-
-    .hero-proposal{
-      position:relative;
-      width:100%;
-      min-height:420px;
-      overflow:hidden;
-      background:#050505;
-    }
-
-    .hero-proposal::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:1;
-      pointer-events:none;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.64) 22%, rgba(0,0,0,.22) 48%, rgba(0,0,0,0) 78%),
-        #000;
-      opacity:calc(.14 + (var(--proposal-blackout, 1) * .86));
-      transition:opacity 1.1s ease;
-    }
-
-    .hero-proposal-image{
-      display:block;
-      width:100%;
-      height:100%;
-      min-height:420px;
-      object-fit:cover;
-      object-position:center;
-    }
-
-    .hero-proposal-overlay{
-      position:absolute;
-      top:132px;
-      left:96px;
-      z-index:2;
-      max-width:min(620px, calc(100% - 140px));
     }
 
     .eyebrow-hero{
@@ -441,95 +365,45 @@
 
     h1{
       font-size:clamp(2.3rem, 4.6vw, 4.4rem);
-      max-width:12ch;
+      max-width:14ch;
       letter-spacing:-.02em;
       text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
+    .hero-heading-line{
+      display:inline;
+    }
+
     .hero-subcopy{
-      margin:18px 0 0;
-      max-width:56ch;
+      margin:0;
+      max-width:58ch;
       color:rgba(255,255,255,.84);
       font-size:1.03rem;
       line-height:1.72;
       text-shadow:0 6px 18px rgba(0,0,0,.42);
     }
 
-    .hero-actions{
-      position:relative;
-      display:grid;
-      grid-template-columns:1fr 1px 1fr;
-      align-items:start;
-      justify-items:center;
-      gap:18px;
-      width:min(1120px, calc(100vw - 48px));
-      margin-top:44px;
-      margin-left:auto;
-      margin-right:auto;
-      padding-top:18px;
-      min-height:150px;
-    }
-
-    .hero-actions::before{
-      content:"";
-      grid-column:2;
-      grid-row:1 / span 2;
-      width:1px;
-      height:100%;
-      background:linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.52) 100%);
-      justify-self:center;
-      box-shadow:0 0 10px rgba(255,255,255,.12);
-    }
-
-    .hero-path-note{
-      margin:0;
-      max-width:30ch;
-      color:rgba(255,255,255,.84);
-      font-size:.98rem;
-      line-height:1.6;
-      text-align:center;
-    }
-
-    .hero-path-note--left{
-      grid-column:1;
-      grid-row:1;
-    }
-
-    .hero-path-note--right{
-      grid-column:3;
-      grid-row:1;
-    }
-
-    .hero-path-divider{
-      grid-column:2;
-      grid-row:1;
-      align-self:center;
-      color:rgba(255,255,255,.78);
-      font-size:.92rem;
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      writing-mode:horizontal-tb;
-      text-orientation:initial;
-      padding:6px 10px;
-      background:#000;
-      z-index:1;
-    }
-
-    .hero-action-col{
+    .hero-subcopy-row{
       display:flex;
-      width:100%;
-      grid-row:2;
+      align-items:center;
+      justify-content:space-between;
+      gap:32px;
+      margin-top:18px;
+      width:min(960px, calc(100vw - 240px));
+      max-width:100%;
     }
 
-    .hero-action-col:first-of-type{
+    .hero-primary-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:0;
+      flex:0 0 auto;
       justify-content:center;
-      padding-right:0;
     }
 
-    .hero-action-col:last-of-type{
-      justify-content:center;
-      padding-left:0;
+    .hero-primary-actions .btn{
+      min-width:280px;
     }
 
     .btn{
@@ -573,123 +447,6 @@
       border-color:rgba(255,255,255,.36);
     }
 
-    .hero-trust{
-      width:100%;
-      max-width:860px;
-      margin:12px auto 0;
-      padding:0;
-      color:#ffffff;
-      text-align:center;
-      font-family:var(--heading);
-      font-size:clamp(1.08rem, 2vw, 1.55rem);
-      line-height:1.28;
-      text-wrap:balance;
-      opacity:var(--trust-opacity, 0);
-      transform:translateY(var(--trust-shift, 24px));
-      filter:brightness(calc(.08 + (var(--trust-opacity, 0) * .92))) blur(calc((1 - var(--trust-opacity, 0)) * 2px));
-      transition:opacity .3s ease, transform .3s ease, filter .3s ease;
-      text-shadow:0 12px 30px rgba(0,0,0,.46);
-    }
-
-    .hero-trust-stack{
-      width:min(1120px, calc(100vw - 48px));
-      margin:72px auto 0;
-      display:grid;
-      justify-items:center;
-      align-items:center;
-      gap:30px;
-    }
-
-    .dream-ring-cta{
-      min-width:min(320px, 100%);
-      padding:0 28px;
-      text-align:center;
-      color:#fff;
-      background:linear-gradient(180deg, rgba(10,10,10,.98), rgba(0,0,0,.98));
-      border-color:rgba(255,255,255,.92);
-      box-shadow:0 20px 44px rgba(0,0,0,.42);
-      position:relative;
-      overflow:hidden;
-      animation:dream-ring-pulse 2.6s ease-in-out infinite;
-    }
-
-    .dream-ring-cta::before{
-      content:"";
-      position:absolute;
-      inset:-20% auto -20% -32%;
-      width:38%;
-      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.34), rgba(255,255,255,0));
-      transform:skewX(-18deg);
-      opacity:.8;
-      animation:dream-ring-sheen 3.2s ease-in-out infinite;
-    }
-
-    .dream-ring-cta:hover,
-    .dream-ring-cta:focus-visible{
-      color:#fff;
-      background:#000;
-      border-color:#fff;
-      box-shadow:0 24px 52px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.18);
-      transform:translateY(-2px) scale(1.01);
-    }
-
-    .dream-ring-cta span,
-    .dream-ring-cta{
-      z-index:0;
-    }
-
-    @keyframes dream-ring-pulse{
-      0%, 100%{ box-shadow:0 20px 44px rgba(0,0,0,.42), 0 0 0 0 rgba(255,255,255,.10); }
-      50%{ box-shadow:0 26px 58px rgba(0,0,0,.54), 0 0 0 8px rgba(255,255,255,0); }
-    }
-
-    @keyframes dream-ring-sheen{
-      0%, 18%{ transform:translateX(-140%) skewX(-18deg); opacity:0; }
-      28%{ opacity:.9; }
-      48%{ transform:translateX(360%) skewX(-18deg); opacity:0; }
-      100%{ transform:translateX(360%) skewX(-18deg); opacity:0; }
-    }
-
-    .trust-strip{
-      margin:26px auto 0;
-      width:min(1120px, calc(100vw - 48px));
-      border-radius:26px;
-      padding:18px;
-      opacity:var(--trust-opacity, 0);
-      transform:translateY(var(--trust-shift, 24px));
-      filter:brightness(calc(.08 + (var(--trust-opacity, 0) * .92))) blur(calc((1 - var(--trust-opacity, 0)) * 2px));
-      transition:opacity .3s ease, transform .3s ease, filter .3s ease;
-    }
-
-    .trust-list{
-      display:grid;
-      grid-template-columns:repeat(5, 1fr);
-      gap:12px;
-    }
-
-    .trust-item{
-      min-height:88px;
-      padding:16px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:20px;
-      background:rgba(255,255,255,.03);
-    }
-
-    .trust-item strong{
-      display:block;
-      font-size:.94rem;
-      font-weight:800;
-      line-height:1.3;
-      margin-bottom:6px;
-    }
-
-    .trust-item span{
-      display:block;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.5;
-    }
-
     .section{
       padding:52px 0 64px;
     }
@@ -718,6 +475,18 @@
       font-size:1rem;
       font-weight:800;
       margin-bottom:24px;
+      text-align:center;
+    }
+
+    .eyebrow-secondary{
+      display:inline;
+    }
+
+    .routes-intro{
+      margin:0 0 30px;
+      color:rgba(255,255,255,.76);
+      font-size:1rem;
+      line-height:1.7;
       text-align:center;
     }
 
@@ -814,87 +583,137 @@
       line-height:1.5;
     }
 
-    .content-block{
-      margin:26px auto 0;
-      width:min(980px, 100%);
-      padding:30px 32px;
-      border:1px solid var(--line);
+    .route-cta{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .consultation-section{
+      width:min(1120px, calc(100vw - 48px));
+      margin:0 auto 72px;
+      padding:34px 34px 36px;
       border-radius:30px;
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    }
+
+    .proposal-showcase{
+      width:min(1120px, calc(100vw - 48px));
+      margin:0 auto 72px;
+    }
+
+    .proposal-marquee{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.06), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
       box-shadow:var(--shadow);
     }
 
-    .content-block h2{
-      font-size:clamp(1.9rem, 3vw, 3rem);
-      margin-bottom:16px;
-      text-align:left;
+    .proposal-marquee::before,
+    .proposal-marquee::after{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:72px;
+      z-index:2;
+      pointer-events:none;
     }
 
-    .content-block p{
-      margin:0 0 22px;
+    .proposal-marquee::before{
+      left:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,0) 100%);
+    }
+
+    .proposal-marquee::after{
+      right:0;
+      background:linear-gradient(270deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,0) 100%);
+    }
+
+    .proposal-track{
+      display:flex;
+      gap:18px;
+      width:max-content;
+      padding:18px;
+      animation:proposal-scroll 52s linear infinite;
+      will-change:transform;
+    }
+
+    .proposal-set{
+      display:flex;
+      gap:18px;
+      flex:0 0 auto;
+    }
+
+    .proposal-shot{
+      flex:0 0 auto;
+      width:220px;
+      aspect-ratio:3 / 4;
+      margin:0;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      background:#111;
+      box-shadow:0 18px 40px rgba(0,0,0,.24);
+    }
+
+    .proposal-shot img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    @keyframes proposal-scroll{
+      from{
+        transform:translateX(0);
+      }
+
+      to{
+        transform:translateX(calc(-50% - 9px));
+      }
+    }
+
+    .consultation-inner{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .consultation-copy h2{
+      font-size:clamp(1.9rem, 3vw, 3rem);
+      margin-bottom:14px;
+    }
+
+    .consultation-copy p{
+      margin:0;
       color:var(--muted);
       line-height:1.8;
       font-size:1rem;
+      max-width:58ch;
     }
 
-    .content-block p:last-of-type{
-      margin-bottom:0;
-    }
-
-    .bottom-cta{
+    .consultation-actions{
       display:flex;
-      justify-content:center;
-      padding:82px 0 108px;
-    }
-
-    .bottom-email{
-      margin-top:24px;
-      text-align:center;
-      font-size:.98rem;
-      color:var(--muted);
-    }
-
-    .bottom-email a{
-      color:#fff;
-      text-decoration:underline;
-      text-underline-offset:4px;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
     }
 
     .testimonials{
       width:min(1120px, calc(100vw - 48px));
-      margin:72px auto 88px;
-      padding:28px;
-      border:1px solid var(--line);
-      border-radius:30px;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      box-shadow:var(--shadow);
-    }
-
-    .testimonials-head{
-      display:grid;
-      gap:8px;
-      margin-bottom:18px;
-      text-align:center;
-    }
-
-    .testimonials-head h2{
-      font-size:clamp(1.8rem, 3vw, 2.8rem);
-    }
-
-    .testimonials-head p{
-      margin:0 auto;
-      max-width:58ch;
-      color:var(--muted);
-      line-height:1.7;
+      margin:56px auto 20px;
+      padding:0;
     }
 
     .testimonials-slider{
       position:relative;
       overflow:hidden;
-    }
-
-    .testimonials-grid{
-      display:none;
     }
 
     .testimonials-track{
@@ -906,10 +725,7 @@
     .testimonial{
       flex:0 0 100%;
       min-width:100%;
-      padding:20px;
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:22px;
-      background:rgba(255,255,255,.03);
+      padding:0;
     }
 
     .testimonial p{
@@ -933,7 +749,7 @@
       display:flex;
       justify-content:center;
       gap:10px;
-      margin-top:18px;
+      margin-top:12px;
     }
 
     .testimonials-dot{
@@ -957,68 +773,6 @@
       outline-offset:3px;
     }
 
-    .journey-cta{
-      position:relative;
-      overflow:hidden;
-      min-height:48px;
-      padding:0 24px;
-      border-radius:999px;
-      font-size:.88rem;
-      text-transform:uppercase;
-      letter-spacing:.15em;
-      color:#15181d;
-      border-color:rgba(233,239,246,.58);
-      background:
-        radial-gradient(circle at 18% 24%, rgba(255,255,255,.98), transparent 30%),
-        radial-gradient(circle at 78% 78%, rgba(167,181,198,.24), transparent 34%),
-        linear-gradient(135deg, #fcfdff 0%, #dce3ea 20%, #ffffff 46%, #bcc6d1 72%, #eef2f6 100%);
-      box-shadow:
-        0 0 0 1px rgba(240,245,250,.16),
-        0 20px 48px rgba(0,0,0,.30),
-        0 0 26px rgba(188,198,209,.14),
-        inset 0 1px 0 rgba(255,255,255,.92),
-        inset 0 -12px 20px rgba(112,126,144,.18);
-      isolation:isolate;
-      animation:ctaPulse 2.8s ease-in-out infinite;
-    }
-
-    .journey-cta::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(100deg, transparent 10%, rgba(245,249,255,.76) 50%, transparent 90%);
-      transform:translateX(-130%);
-      animation:ctaSweep 3.8s ease-in-out infinite;
-      z-index:0;
-      pointer-events:none;
-    }
-
-    .journey-cta::after{
-      content:" >";
-      position:relative;
-      z-index:1;
-      font-size:1rem;
-      margin-left:8px;
-      line-height:1;
-      pointer-events:none;
-    }
-
-    .journey-cta:hover,
-    .journey-cta:focus-visible{
-      transform:translateY(-2px) scale(1.02);
-      box-shadow:
-        0 0 0 1px rgba(240,245,250,.22),
-        0 26px 58px rgba(0,0,0,.36),
-        0 0 34px rgba(188,198,209,.22),
-        inset 0 1px 0 rgba(255,255,255,.98),
-        inset 0 -12px 20px rgba(112,126,144,.22);
-    }
-
-    .journey-cta span{
-      position:relative;
-      z-index:1;
-    }
-
     .quick-message-bubble{
       position:fixed;
       right:20px;
@@ -1027,6 +781,7 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      gap:10px;
       min-height:52px;
       padding:0 18px;
       border-radius:999px;
@@ -1049,119 +804,33 @@
       outline:none;
     }
 
-    .quick-message-panel{
+    .quick-message-bubble svg{
+      width:18px;
+      height:18px;
+      flex:0 0 auto;
+      fill:currentColor;
+    }
+
+    .quick-message-callout{
       position:fixed;
-      right:20px;
-      bottom:84px;
+      right:32px;
+      bottom:78px;
       z-index:10001;
-      width:min(360px, calc(100vw - 32px));
-      padding:18px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:24px;
-      background:rgba(11,12,16,.96);
-      box-shadow:0 20px 50px rgba(0,0,0,.36);
-      backdrop-filter:blur(14px);
-      opacity:0;
+      color:#ffffff;
       pointer-events:none;
-      transform:translateY(14px);
-      transition:opacity .2s ease, transform .2s ease;
     }
 
-    .quick-message-panel.is-open{
-      opacity:1;
-      pointer-events:auto;
-      transform:translateY(0);
-    }
-
-    .quick-message-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .quick-message-head h2{
-      font-size:1.15rem;
-      line-height:1.1;
-    }
-
-    .quick-message-head p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.55;
-    }
-
-    .quick-message-close{
-      width:40px;
-      height:40px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:transparent;
-      color:#ffffff;
-      font-size:1.2rem;
-      line-height:1;
-      cursor:pointer;
-    }
-
-    .quick-message-form{
-      display:grid;
-      gap:12px;
-    }
-
-    .quick-message-form label{
-      display:grid;
-      gap:6px;
-      font-size:.82rem;
-      font-weight:700;
-      letter-spacing:.02em;
-      color:#ffffff;
-    }
-
-    .quick-message-form input,
-    .quick-message-form select,
-    .quick-message-form textarea{
-      width:100%;
-      padding:12px 14px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:16px;
-      background:rgba(255,255,255,.04);
-      color:#ffffff;
-      font:inherit;
-      outline:none;
-      box-shadow:none;
-    }
-
-    .quick-message-form textarea{
-      min-height:110px;
-      resize:vertical;
-    }
-
-    .quick-message-form input::placeholder,
-    .quick-message-form textarea::placeholder{
-      color:rgba(255,255,255,.46);
-    }
-
-    .quick-message-form select option{
-      color:#ffffff;
-      background:#101218;
-    }
-
-    .quick-message-form .btn{
-      width:100%;
-    }
-
-    .quick-message-status{
-      min-height:1.2em;
-      margin:0;
-      color:#ffb3b3;
-      font-size:.84rem;
-      line-height:1.4;
+    .quick-message-callout span{
+      display:block;
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:.01em;
+      text-shadow:0 8px 22px rgba(0,0,0,.42);
+      white-space:nowrap;
     }
 
     .site-footer{
-      padding:26px 0 46px;
+      padding:26px 0 118px;
       border-top:1px solid rgba(255,255,255,.08);
       color:rgba(255,255,255,.70);
     }
@@ -1180,13 +849,7 @@
       letter-spacing:.03em;
     }
 
-    .footer-email{
-      margin:0;
-      font-size:clamp(.76rem, 2.4vw, .94rem);
-      line-height:1.6;
-    }
-
-    .footer-email a{
+    .footer-meta a{
       color:#fff;
       text-decoration:underline;
       text-underline-offset:4px;
@@ -1227,35 +890,8 @@
         filter:none;
         transition:none;
       }
-    }
 
-    @keyframes ctaSweep{
-      0%{ transform:translateX(-130%); }
-      55%, 100%{ transform:translateX(130%); }
-    }
-
-    @keyframes ctaPulse{
-      0%, 100%{
-        box-shadow:
-          0 0 0 1px rgba(240,245,250,.16),
-          0 20px 48px rgba(0,0,0,.30),
-          0 0 26px rgba(188,198,209,.14),
-          inset 0 1px 0 rgba(255,255,255,.92),
-          inset 0 -12px 20px rgba(112,126,144,.18);
-      }
-      50%{
-        box-shadow:
-          0 0 0 1px rgba(240,245,250,.24),
-          0 26px 58px rgba(0,0,0,.34),
-          0 0 30px rgba(188,198,209,.20),
-          inset 0 1px 0 rgba(255,255,255,1),
-          inset 0 -12px 20px rgba(112,126,144,.22);
-      }
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      .journey-cta,
-      .journey-cta::before{
+      .proposal-track{
         animation:none;
       }
     }
@@ -1265,13 +901,21 @@
       .hero-card{ height:620px; }
       .hero-visual{ min-height:620px; }
       .hero-overlay{ left:48px; max-width:min(620px, calc(100% - 96px)); }
-      .trust-list{ grid-template-columns:repeat(2, 1fr); }
       .route:nth-child(1),
       .route:nth-child(2),
       .route:nth-child(3){
         width:100%;
         margin-left:0;
         margin-right:0;
+      }
+      .consultation-inner{
+        grid-template-columns:1fr;
+      }
+      .consultation-actions{
+        justify-content:flex-start;
+      }
+      .proposal-shot{
+        width:200px;
       }
     }
 
@@ -1287,50 +931,98 @@
       }
 
       .topbar .shell{
-        flex-direction:column;
+        display:grid;
+        grid-template-columns:minmax(0, 1fr);
+        grid-template-areas:
+          "nav"
+          "brand"
+          "location";
         align-items:center;
-        justify-content:flex-start;
+        justify-content:center;
+        justify-items:center;
+        gap:4px 12px;
+        padding-right:0;
+        padding-bottom:2px;
+      }
+
+      .brand-block{
+        display:grid;
+        grid-area:brand;
+        width:100%;
+        justify-items:center;
+        justify-self:stretch;
+        align-items:center;
         gap:0;
+        transform:none;
+      }
+
+      .brand-lockup{
+        width:100%;
+        justify-content:center;
+        justify-self:stretch;
       }
 
       .brand{
         flex:0 1 auto;
+        width:100%;
         justify-content:center;
       }
 
       .brand-block{
         gap:0;
-        transform:translateY(-2px);
+        transform:none;
       }
 
-      .brand img{
-        width:min(236px, 68vw);
+      .brand-logo{
+        width:min(250px, 64vw);
         opacity:1;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
 
-      .brand-location{
-        margin-top:-5px;
-        font-size:.66rem;
-        letter-spacing:.18em;
-        opacity:calc(1 - (var(--brand-fade, 0) * .72));
-        filter:brightness(calc(1 - (var(--brand-fade, 0) * .55)));
+      .hero-brand-mobile{
+        display:none;
       }
 
-      .brand-location::before,
-      .brand-location::after{
-        width:14px;
+      .brand-review-badge{
+        width:min(118px, 36vw);
+      }
+
+      .brand-review-link{
+        position:absolute;
+        top:58px;
+        right:0;
+        justify-self:auto;
+        align-self:auto;
+      }
+
+      .brand-location{
+        display:block;
+        grid-area:location;
+        width:100%;
+        margin:-14px 0 0;
+        padding-top:0;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:0;
+        text-align:center;
+        color:rgba(255,255,255,.78);
+        font-size:.68rem;
+        font-weight:800;
+        letter-spacing:.11em;
+        line-height:1.2;
+        text-transform:uppercase;
       }
 
       .nav{
-        order:-1;
+        grid-area:nav;
         width:100%;
         display:grid;
         grid-template-columns:repeat(3, minmax(0, 1fr));
         align-self:stretch;
         gap:8px;
         margin-top:0;
-        margin-bottom:12px;
+        margin-bottom:6px;
         opacity:calc(1 - (var(--brand-fade, 0) * .78));
       }
 
@@ -1338,7 +1030,7 @@
         min-width:0;
         min-height:44px;
         padding:10px 8px;
-        font-size:.78rem;
+        font-size:.74rem;
         text-align:center;
         justify-content:center;
         line-height:1.2;
@@ -1361,125 +1053,63 @@
       }
 
       .hero-visual{
-        min-height:520px;
-        height:520px;
+        min-height:680px;
+        height:680px;
       }
 
       .hero-overlay{
-        top:72px;
+        top:74px;
         left:16px;
         right:16px;
         max-width:none;
-      }
-
-      .hero-proposal,
-      .hero-proposal-image{
-        min-height:280px;
-      }
-
-      .hero-proposal-overlay{
-        top:72px;
-        left:16px;
-        right:16px;
-        max-width:none;
+        text-align:center;
       }
 
       .eyebrow-hero{
-        font-size:.62rem;
-        letter-spacing:.13em;
-        line-height:1.5;
+        display:none;
       }
 
       h1{
-        max-width:10ch;
+        max-width:13ch;
         font-size:clamp(1.9rem, 8.2vw, 2.7rem);
+        margin-top:2px;
       }
 
-      .hero-note{
-        font-size:.92rem;
-        max-width:28ch;
+      .hero-heading-line{
+        display:block;
+      }
+
+      .hero-heading-line--gap{
+        margin-top:.22em;
       }
 
       .hero-subcopy{
-        margin-top:14px;
+        margin-top:0;
+        max-width:none;
         font-size:.96rem;
         line-height:1.65;
+        text-align:center;
       }
 
-      .hero-actions{
-        grid-template-columns:minmax(0, 1fr) 36px minmax(0, 1fr);
+      .hero-subcopy-row{
+        display:grid;
+        grid-template-columns:minmax(0, 1fr);
         align-items:start;
         justify-items:center;
         gap:12px;
-        width:100%;
-        min-height:170px;
-        padding-top:10px;
-        margin-top:34px;
+        margin-top:14px;
+        max-width:none;
+        width:auto;
       }
 
-      .hero-trust-stack{
-        margin-top:52px;
-      }
-
-      .hero-actions::before{
-        display:block;
-        grid-column:2;
-        grid-row:1 / span 2;
-        height:100%;
-      }
-
-      .hero-path-note{
-        max-width:16ch;
-        margin:0;
-        text-align:center;
-        font-size:.88rem;
-        line-height:1.5;
-      }
-
-      .hero-path-note--left{
-        grid-column:1;
-        grid-row:1;
-      }
-
-      .hero-path-note--right{
-        grid-column:3;
-        grid-row:1;
-      }
-
-      .hero-path-divider{
-        grid-column:2;
-        grid-row:1;
-        align-self:center;
-        justify-self:center;
-        padding:6px 4px;
-        margin:0;
-        font-size:.84rem;
-      }
-
-      .hero-action-col:first-of-type,
-      .hero-action-col:last-of-type{
+      .hero-primary-actions{
+        margin:22px auto 6px;
         justify-content:center;
-        padding:0;
-        width:100%;
-        grid-row:3;
       }
 
-      .hero-action-col:first-of-type{
-        grid-column:1;
-        margin-top:10px;
-      }
-
-      .hero-action-col:last-of-type{
-        grid-column:3;
-        margin-top:10px;
-      }
-
-      .dream-ring-cta{
-        width:100%;
-        min-height:50px;
-        padding:0 14px;
-        border-radius:999px;
-        font-size:.88rem;
+      .hero-primary-actions .btn{
+        width:min(100%, 320px);
+        min-width:0;
       }
 
       .hero-visual::after{
@@ -1491,29 +1121,16 @@
         opacity:calc(1 - (var(--hero-fade, 0) * .82));
       }
 
-      .hero-trust{
-        width:min(calc(100vw - 32px), 100%);
-        margin-top:48px;
-        font-size:clamp(1rem, 5vw, 1.28rem);
-        line-height:1.3;
-        text-align:center;
-      }
-
-      .trust-strip{
-        width:min(calc(100vw - 32px), 100%);
-        margin-top:18px;
-        padding:14px;
-      }
-
-      .trust-list{
-        grid-template-columns:1fr;
-      }
-
       .hero-copy{
         width:min(calc(100vw - 32px), 100%);
-        margin-top:64px;
+        margin-top:42px;
         opacity:1;
         transform:none;
+      }
+
+      .eyebrow-secondary{
+        display:block;
+        margin-top:4px;
       }
 
       .route-media{
@@ -1530,24 +1147,48 @@
         line-height:1.45;
       }
 
-      .content-block{
-        padding:24px 20px;
+      .consultation-section{
+        width:min(calc(100vw - 32px), 100%);
+        padding:24px 20px 26px;
         border-radius:24px;
+        margin-bottom:56px;
+      }
+
+      .proposal-showcase{
+        width:min(calc(100vw - 32px), 100%);
+        margin-bottom:56px;
+      }
+
+      .proposal-marquee{
+        border-radius:24px;
+      }
+
+      .proposal-marquee::before,
+      .proposal-marquee::after{
+        width:32px;
+      }
+
+      .proposal-track{
+        gap:14px;
+        padding:14px;
+      }
+
+      .proposal-set{
+        gap:14px;
+      }
+
+      .proposal-shot{
+        width:164px;
+        border-radius:20px;
+      }
+
+      .consultation-copy h2{
+        font-size:clamp(1.6rem, 8vw, 2.25rem);
       }
 
       .testimonials{
         width:min(calc(100vw - 32px), 100%);
-        margin:48px auto 60px;
-        padding:24px 20px;
-        border-radius:24px;
-      }
-
-      .content-block h2{
-        font-size:clamp(1.6rem, 8vw, 2.25rem);
-      }
-
-      .bottom-cta{
-        padding:56px 0 86px;
+        margin:12px auto 14px;
       }
 
       .quick-message-bubble{
@@ -1558,74 +1199,148 @@
         font-size:.88rem;
       }
 
-      .quick-message-panel{
-        right:16px;
-        bottom:74px;
-        width:calc(100vw - 32px);
-        padding:16px;
+      .quick-message-callout{
+        right:20px;
+        bottom:72px;
       }
+
+      .quick-message-callout span{
+        font-size:.88rem;
+      }
+
     }
 
     @media (max-width:480px){
-      .brand img{
-        width:min(220px, 72vw);
+      .brand-logo{
+        width:min(236px, 62vw);
       }
 
-      .brand-location{
-        letter-spacing:.14em;
+      .brand-review-link{
+        top:56px;
       }
 
       .hero-visual{
-        min-height:500px;
+        min-height:720px;
+        height:720px;
       }
 
       .hero-overlay{
-        top:82px;
+        top:84px;
       }
 
       h1{
-        max-width:9ch;
+        max-width:15ch;
         font-size:clamp(1.75rem, 9vw, 2.3rem);
+        margin-top:4px;
       }
 
-      .eyebrow-hero{
-        font-size:.58rem;
+      .brand-location{
+        font-size:.62rem;
+        letter-spacing:.1em;
       }
 
-      .hero-actions{
-        grid-template-columns:minmax(0, 1fr) 28px minmax(0, 1fr);
-        gap:10px;
-        min-height:156px;
-        margin-top:28px;
-      }
-
-      .hero-trust-stack{
-        margin-top:40px;
-      }
-
-      .hero-path-note{
-        max-width:14ch;
-        font-size:.82rem;
-      }
-
-      .hero-path-divider{
-        font-size:.78rem;
-      }
-
-      .hero-trust{
-        margin-top:60px;
-      }
-
-      .dream-ring-cta{
-        width:100%;
+      .nav{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
       }
 
       .testimonials{
-        margin:40px auto 54px;
+        margin:10px auto 12px;
       }
     }
   </style>
   <script defer src="/Public/google-tag.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ladfox.com/#organization",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "logo": "https://ladfox.com/Images/ladfox-logo.png",
+      "image": "https://ladfox.com/Images/og-banner.jpg",
+      "telephone": "+447853362904",
+      "sameAs": [
+        "https://www.instagram.com/ladfox",
+        "https://www.facebook.com/ladfox"
+      ]
+    },
+    {
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#jewelrystore",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "image": "https://ladfox.com/Images/og-banner.jpg",
+      "telephone": "+447853362904",
+      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hatton Garden",
+        "addressRegion": "London",
+        "addressCountry": "GB"
+      },
+      "areaServed": [
+        "London",
+        "Hatton Garden",
+        "United Kingdom",
+        "International"
+      ],
+      "priceRange": "Premium"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
+      "name": "Ladfox",
+      "url": "https://ladfox.com/",
+      "publisher": {
+        "@id": "https://ladfox.com/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ladfox.com/#bespoke-jewellery-service",
+      "name": "Bespoke engagement rings and jewellery",
+      "serviceType": "Bespoke jewellery design",
+      "provider": {
+        "@id": "https://ladfox.com/#jewelrystore"
+      },
+      "areaServed": "GB",
+      "description": "Bespoke engagement rings, wedding bands and custom jewellery designed with private one to one guidance from a Hatton Garden jeweller."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ladfox.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Ladfox do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I design a ring from scratch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do Ladfox offer lab grown diamonds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 
 <body>
@@ -1634,23 +1349,34 @@
   <header class="topbar">
     <div class="shell">
       <div class="brand-block">
-        <a class="brand" href="index.html" aria-label="Ladfox home">
-          <img
-            src="Images/ladfox-logo.png"
-            alt="Ladfox logo"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            width="1830"
-            height="831"
-            onerror="this.onerror=null; this.src='/Images/ladfox-logo.png';"
-          />
-        </a>
-        <span class="brand-location">Hatton Garden, London</span>
+        <div class="brand-lockup">
+          <a class="brand" href="index.html" aria-label="Ladfox home">
+            <img
+              class="brand-logo"
+              src="Images/Logo%20no%20background.png"
+              alt="Ladfox private Hatton Garden jeweller logo"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              width="1830"
+              height="831"
+              onerror="this.onerror=null; this.src='logo.png';"
+            />
+          </a>
+        </div>
       </div>
+      <span class="brand-location">
+        <span>Private Hatton Garden Jeweller</span>
+        <span>in London</span>
+      </span>
+
+      <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" loading="eager" decoding="async" />
+      </a>
 
       <nav class="nav" aria-label="Primary">
-        <a href="price-beater.html">Price Beater</a>
+        <a href="consultation.html">Consultation</a>
+        <a href="ringpage.html">Engagement Rings</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
     </div>
@@ -1662,8 +1388,8 @@
         <aside class="hero-card" aria-label="Ladfox studio promise">
           <div class="hero-visual">
             <img
-              src="Images/hero%20ring%20image.png"
-              alt="Monochrome engagement ring visual"
+              src="Images/background%202.png"
+              alt="Bespoke engagement ring campaign image by Ladfox Hatton Garden jeweller"
               class="hero-image"
               data-hero-image
               loading="eager"
@@ -1671,41 +1397,118 @@
             />
 
             <div class="hero-overlay">
-              <span class="eyebrow-hero">Bespoke Engagement Rings</span>
-              <h1>Find the perfect ring</h1>
-            </div>
-          </div>
-          <div class="hero-proposal">
-            <img
-              src="Images/proposal.png"
-              alt="Proposal moment"
-              class="hero-proposal-image"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="hero-proposal-overlay">
-              <h1>For the one you love</h1>
+              <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
+              <h1><span class="hero-heading-line">Bespoke Engagement Rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created for the one you love.</span></h1>
+              <div class="hero-subcopy-row">
+                <p class="hero-subcopy">
+                  Family run Hatton Garden jeweller carefully creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance from first idea to finished piece. No high pressure showroom routine, just private guidance focused on getting the ring right.
+                </p>
+
+                <div class="hero-primary-actions">
+                  <a class="btn btn-primary" href="ringpage.html">Design your bespoke piece</a>
+                </div>
+              </div>
             </div>
           </div>
         </aside>
 
-        <div class="hero-trust-stack">
-          <div class="hero-trust">All our pieces include international shipping, engraving, and a lifetime warranty.</div>
-        </div>
+        <section class="testimonials" aria-label="Client testimonials">
+          <div class="testimonials-slider" data-testimonials-slider>
+            <div class="testimonials-track">
+              <article class="testimonial">
+                <p>&ldquo;Ladfox helped me design a ring that was even better than I had imagined. The whole process felt personal relaxed and very considered.&rdquo;</p>
+                <strong>James</strong>
+              </article>
+
+              <article class="testimonial">
+                <p>&ldquo;I knew very little about diamonds when I started. Ladfox explained everything clearly and helped me choose a stone that looked exceptional without overspending.&rdquo;</p>
+                <strong>Daniel</strong>
+              </article>
+
+              <article class="testimonial">
+                <p>&ldquo;I was nervous about commissioning such an important piece online but Ladfox made the process straightforward. It arrived beautifully packaged and looks incredible.&rdquo;</p>
+                <strong>Matthew</strong>
+              </article>
+
+              <article class="testimonial">
+                <p>&ldquo;The design process was fantastic. Ladfox sent sketches and CADs so I could see exactly how the piece would look before it was made.&rdquo;</p>
+                <strong>Ben</strong>
+              </article>
+
+              <article class="testimonial">
+                <p>&ldquo;The personal service was a huge difference compared with the big jewellery chains. Everything felt bespoke private and carefully considered.&rdquo;</p>
+                <strong>Sam</strong>
+              </article>
+
+              <article class="testimonial">
+                <p>&ldquo;The final result gets compliments constantly. We could not be happier with the finish proportions and overall quality.&rdquo;</p>
+                <strong>Josh</strong>
+              </article>
+            </div>
+          </div>
+
+          <div class="testimonials-controls" aria-label="Testimonial navigation">
+            <button class="testimonials-dot is-active" type="button" aria-label="Show testimonial 1" data-testimonial-dot></button>
+            <button class="testimonials-dot" type="button" aria-label="Show testimonial 2" data-testimonial-dot></button>
+            <button class="testimonials-dot" type="button" aria-label="Show testimonial 3" data-testimonial-dot></button>
+            <button class="testimonials-dot" type="button" aria-label="Show testimonial 4" data-testimonial-dot></button>
+            <button class="testimonials-dot" type="button" aria-label="Show testimonial 5" data-testimonial-dot></button>
+            <button class="testimonials-dot" type="button" aria-label="Show testimonial 6" data-testimonial-dot></button>
+          </div>
+        </section>
+
+        <section class="proposal-showcase" aria-label="Proposal image gallery">
+          <div class="proposal-marquee">
+            <div class="proposal-track">
+              <div class="proposal-set">
+                <figure class="proposal-shot"><img src="Images/Proposals/1.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/2.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/3.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/4.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/5.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/6.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/7.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/8.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/9.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/10.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/11.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/12.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/13.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/14.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+              </div>
+
+              <div class="proposal-set" aria-hidden="true">
+                <figure class="proposal-shot"><img src="Images/Proposals/1.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/2.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/3.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/4.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/5.jpeg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/6.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/7.jpeg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/8.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/9.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/10.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/11.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/12.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/13.jpeg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/14.jpg" alt="" loading="lazy" decoding="async" /></figure>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <div class="hero-copy">
-          <span class="eyebrow">Our unique bespoke service</span>
-
+          <span class="eyebrow"><span class="eyebrow-primary">Our bespoke jewellery</span> <span class="eyebrow-secondary">design service</span></span>
           <div class="routes" aria-label="Process steps">
             <article class="route">
               <a class="route-link" href="ringpage.html">
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">1</span>
-                    <h3>Complimentary Sketch</h3>
+                    <h3>Sketch and bespoke design direction</h3>
                   </div>
-                  <img src="Images/Sketch.png" alt="Sketch stage ring concept" loading="lazy" decoding="async" />
-                  <p class="route-caption">Send a reference or brief and we map the first design direction.</p>
+                  <img src="Images/Sketch.png" alt="Bespoke engagement ring sketch stage by Ladfox" loading="lazy" decoding="async" />
+                  <p class="route-caption">Send images an existing quote or a rough idea and we map the first design direction around the piece you actually want.</p>
                 </div>
               </a>
             </article>
@@ -1715,10 +1518,10 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">2</span>
-                    <h3>Complimentary CAD</h3>
+                    <h3>CAD design and diamond selection</h3>
                   </div>
-                  <img src="Images/CAD%20design.png" alt="CAD stage ring design" loading="lazy" decoding="async" />
-                  <p class="route-caption">We refine dimensions, proportions, and structure before production.</p>
+                  <img src="Images/CAD%20design.png" alt="CAD design for bespoke engagement ring" loading="lazy" decoding="async" />
+                  <p class="route-caption">We refine proportions structure and stone options so the finished piece feels balanced in real life not just on paper.</p>
                 </div>
               </a>
             </article>
@@ -1728,86 +1531,31 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">3</span>
-                    <h3>Diamond Selection</h3>
+                    <h3>Make, finish and deliver your jewellery</h3>
                   </div>
-                  <img src="Images/Diamond%20selection.png" alt="Diamond selection stage" loading="lazy" decoding="async" />
-                  <p class="route-caption" style="padding-bottom:30px;">We hand select the right stone for your design, priorities, and budget.</p>
+                  <img src="Images/Diamond%20selection.png" alt="Diamond selection for bespoke engagement ring" loading="lazy" decoding="async" />
+                  <p class="route-caption" style="padding-bottom:30px;">From setting and finishing to engraving and delivery we keep the process clean private and closely managed.</p>
                 </div>
               </a>
+
+              <div class="route-cta">
+                <a class="btn btn-primary" href="ringpage.html">Design your dream ring</a>
+              </div>
             </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="testimonials" aria-label="Client testimonials">
+    <section class="testimonials" aria-label="Bespoke jewellery questions">
       <div class="testimonials-head">
-        <p>Prefer a finished design? Browse the <a href="ring-gallery.html">ring gallery</a> or view our <a href="tantalum-ring.html">6mm tantalum wedding band</a>.</p>
-      </div>
-
-      <div class="testimonials-head">
-        <h2>What our clients say</h2>
-        <p>Private guidance, thoughtful design, and a smoother experience from first idea to finished ring.</p>
-      </div>
-
-      <div class="testimonials-grid">
-        <article class="testimonial">
-          <p>“The whole process felt personal and effortless. The ring was even better than I had imagined.”</p>
-          <strong>Ladfox client</strong>
-        </article>
-
-        <article class="testimonial">
-          <p>“Calm advice, no pressure, and incredible attention to detail. It felt completely different to a normal showroom.”</p>
-          <strong>Ladfox client</strong>
-        </article>
-
-        <article class="testimonial">
-          <p>“I only had a rough idea at the start, but the final ring looked exactly right. Beautifully made.”</p>
-          <strong>Ladfox client</strong>
-        </article>
-      </div>
-
-      <div class="testimonials-slider" data-testimonials-slider>
-        <div class="testimonials-track">
-          <article class="testimonial">
-            <p>&ldquo;Ladfox helped me design an engagement ring that was even better than I had imagined. The whole process felt very personal and relaxed, and the finished ring is absolutely stunning.&rdquo;</p>
-            <strong>James</strong>
-          </article>
-
-          <article class="testimonial">
-            <p>&ldquo;I knew nothing about diamonds when I started looking for a ring. Ladfox explained everything clearly and helped me choose a beautiful stone. My fianc&eacute;e hasn&rsquo;t stopped looking at it.&rdquo;</p>
-            <strong>Daniel</strong>
-          </article>
-
-          <article class="testimonial">
-            <p>&ldquo;I was nervous about buying such an important ring online, but Ladfox made the process incredibly easy. The ring arrived beautifully packaged and looks amazing.&rdquo;</p>
-            <strong>Matthew</strong>
-          </article>
-
-          <article class="testimonial">
-            <p>&ldquo;The design process was fantastic. Ladfox sent sketches and CADs so I could see exactly how the ring would look before it was made.&rdquo;</p>
-            <strong>Ben</strong>
-          </article>
-
-          <article class="testimonial">
-            <p>&ldquo;The personal service was a huge difference compared with the big jewellery chains. Everything felt bespoke and carefully considered.&rdquo;</p>
-            <strong>Sam</strong>
-          </article>
-
-          <article class="testimonial">
-            <p>&ldquo;My partner receives compliments on the ring constantly. We couldn&rsquo;t be happier.&rdquo;</p>
-            <strong>Josh</strong>
-          </article>
+        <h2>Bespoke jewellery questions</h2>
+        <p><strong>What does Ladfox do?</strong> Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance.</p>
+        <p><strong>Can I design a ring from scratch?</strong> Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection.</p>
+        <p><strong>Do Ladfox offer lab grown diamonds?</strong> Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery.</p>
+        <div class="route-cta">
+          <a class="btn btn-primary" href="jewellery-design.html">Looking for a different kind of jewellery?</a>
         </div>
-      </div>
-
-      <div class="testimonials-controls" aria-label="Testimonial navigation">
-        <button class="testimonials-dot is-active" type="button" aria-label="Show testimonial 1" data-testimonial-dot></button>
-        <button class="testimonials-dot" type="button" aria-label="Show testimonial 2" data-testimonial-dot></button>
-        <button class="testimonials-dot" type="button" aria-label="Show testimonial 3" data-testimonial-dot></button>
-        <button class="testimonials-dot" type="button" aria-label="Show testimonial 4" data-testimonial-dot></button>
-        <button class="testimonials-dot" type="button" aria-label="Show testimonial 5" data-testimonial-dot></button>
-        <button class="testimonials-dot" type="button" aria-label="Show testimonial 6" data-testimonial-dot></button>
       </div>
     </section>
 
@@ -1819,38 +1567,16 @@
     </div>
   </footer>
 
-  <div class="quick-message-panel" id="quickMessagePanel" aria-hidden="true">
-    <div class="quick-message-head">
-      <div>
-        <h2>Quick message</h2>
-        <p>Tell us what you are looking for and we will come back to you privately.</p>
-      </div>
-      <button class="quick-message-close" type="button" id="quickMessageClose" aria-label="Close quick message">×</button>
-    </div>
-
-    <form class="quick-message-form" name="quick-message" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="quick-message" />
-      <input type="hidden" name="location" id="quickMessageLocation" value="Unknown" />
-      <p style="display:none;">
-        <label>Do not fill this in <input name="bot-field" /></label>
-      </p>
-
-      <label for="quickMessageText">
-        Message
-        <textarea id="quickMessageText" name="message" placeholder="Tell us what you are looking for" required></textarea>
-      </label>
-
-      <label for="quickMessageEmail">
-        Email
-        <input id="quickMessageEmail" name="email" type="email" placeholder="you@example.com" required />
-      </label>
-
-      <p class="quick-message-status" id="quickMessageStatus" aria-live="polite"></p>
-      <button class="btn btn-primary" type="submit">Send message</button>
-    </form>
+  <div class="quick-message-callout" aria-hidden="true">
+    <span>we&apos;re available 24/7!</span>
   </div>
 
-  <button class="quick-message-bubble" id="quickMessageToggle" type="button" aria-expanded="false" aria-controls="quickMessagePanel">Quick message</button>
+  <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.59 5.94L0 24l6.34-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.87 9.87 0 0 1-1.52-5.24C2.15 6.43 6.58 2 12.06 2c2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.48-4.45 9.89-9.88 9.89Zm5.42-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.58-.35Z"/>
+    </svg>
+    <span>Send us a quick WhatsApp</span>
+  </a>
 
   <noscript>
     <div style="padding:14px 16px; border-top:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.72); background:#0B0C10;">
@@ -1876,11 +1602,6 @@
         "main form",
         "main aside .hero-visual",
         "main aside .hero-overlay > *",
-        "main aside .hero-proposal",
-        "main aside .hero-proposal-overlay > *",
-        "main .hero-actions",
-        "main .hero-actions > *",
-        "main .hero-trust",
         "main .hero-copy > *",
         "main .routes .route",
         "main .routes .route > *",
@@ -1893,15 +1614,13 @@
         "main .section p",
         "main .section img",
         "main .section a",
-        "main .section .content-block",
-        "main .section .bottom-cta",
         "main .testimonials",
         "main .testimonials-head > *",
         "main .testimonials-slider",
         "main .testimonials-track .testimonial",
         "main .testimonials-controls .testimonials-dot",
-        "main .testimonials-grid .testimonial",
-        "main .testimonials-grid .testimonial > *",
+        "main .consultation-section",
+        "main .consultation-section > *",
         "footer > *",
         "footer.site-footer .shell > *"
       ];
@@ -1910,15 +1629,7 @@
           scrollBlackoutSelectors.flatMap((selector) => Array.from(document.querySelectorAll(selector)))
         )
       );
-      const quickMessageToggle = document.getElementById("quickMessageToggle");
-      const quickMessagePanel = document.getElementById("quickMessagePanel");
-      const quickMessageClose = document.getElementById("quickMessageClose");
-      const quickMessageEmail = document.getElementById("quickMessageEmail");
-      const quickMessageForm = document.querySelector(".quick-message-form");
-      const quickMessageLocation = document.getElementById("quickMessageLocation");
-      const quickMessageStatus = document.getElementById("quickMessageStatus");
       const heroImage = document.querySelector("[data-hero-image]");
-      const heroProposal = document.querySelector(".hero-proposal");
       const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
       if (!heroVisual || !heroCopy || !topbar || !processSection) {
@@ -1928,16 +1639,16 @@
       if (heroImage) {
         const heroSlides = [
           {
-            image: "Images/hero%20ring%20image.png",
-            alt: "Monochrome engagement ring visual"
+            image: "Images/background%202.png",
+            alt: "Ladfox jewellery campaign visual"
           },
           {
-            image: "Images/background%202.png",
-            alt: "Ladfox engagement ring campaign visual"
+            image: "Images/earrings.png",
+            alt: "Ladfox earrings campaign visual"
           },
           {
             image: "Images/background%203.png",
-            alt: "Ladfox signature collection campaign visual"
+            alt: "Ladfox signature jewellery campaign visual"
           }
         ];
         let heroSlideIndex = 0;
@@ -1969,20 +1680,6 @@
         window.setInterval(rotateHeroSlide, 5200);
       }
 
-      const setQuickMessageState = (isOpen) => {
-        if (!quickMessageToggle || !quickMessagePanel) {
-          return;
-        }
-
-        quickMessagePanel.classList.toggle("is-open", isOpen);
-        quickMessagePanel.setAttribute("aria-hidden", String(!isOpen));
-        quickMessageToggle.setAttribute("aria-expanded", String(isOpen));
-
-        if (isOpen && quickMessageEmail) {
-          requestAnimationFrame(() => quickMessageEmail.focus());
-        }
-      };
-
       scrollBlackoutTargets.forEach((element) => {
         element.classList.add("scroll-blackout");
       });
@@ -2009,24 +1706,6 @@
           : 0;
         document.documentElement.style.setProperty("--brand-fade", brandProgress.toFixed(3));
 
-        const trustProgress = Math.min(Math.max((window.scrollY - 40) / 180, 0), 1);
-        document.documentElement.style.setProperty("--trust-opacity", trustProgress.toFixed(3));
-        document.documentElement.style.setProperty("--trust-shift", `${Math.round((1 - trustProgress) * 24)}px`);
-
-        const processStart = mobileQuery.matches
-          ? Math.max(window.innerHeight * 0.46, 280)
-          : Math.max(window.innerHeight * 0.62, 440);
-        const processDistance = mobileQuery.matches ? 260 : 380;
-        const processProgress = Math.min(Math.max((window.scrollY - processStart) / processDistance, 0), 1);
-        document.documentElement.style.setProperty("--process-opacity", processProgress.toFixed(3));
-        document.documentElement.style.setProperty("--process-shift", `${Math.round((1 - processProgress) * (mobileQuery.matches ? 42 : 62))}px`);
-
-        if (heroProposal) {
-          const proposalRect = heroProposal.getBoundingClientRect();
-          const proposalVisibility = getViewportVisibility(proposalRect);
-          document.documentElement.style.setProperty("--proposal-blackout", (1 - proposalVisibility).toFixed(3));
-        }
-
         revealBlocks.forEach((block) => {
           const rect = block.getBoundingClientRect();
           const revealStart = mobileQuery.matches ? 80 : 160;
@@ -2050,62 +1729,6 @@
       } else if (typeof mobileQuery.addListener === "function") {
         mobileQuery.addListener(updateHeroFade);
       }
-
-      if (quickMessageToggle && quickMessagePanel) {
-        quickMessageToggle.addEventListener("click", () => {
-          const isOpen = quickMessagePanel.classList.contains("is-open");
-          setQuickMessageState(!isOpen);
-        });
-
-        if (quickMessageClose) {
-          quickMessageClose.addEventListener("click", () => setQuickMessageState(false));
-        }
-
-        document.addEventListener("click", (event) => {
-          if (!quickMessagePanel.classList.contains("is-open")) {
-            return;
-          }
-
-          const target = event.target;
-          if (
-            target instanceof Node &&
-            !quickMessagePanel.contains(target) &&
-            !quickMessageToggle.contains(target)
-          ) {
-            setQuickMessageState(false);
-          }
-        });
-
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
-            setQuickMessageState(false);
-          }
-        });
-      }
-
-      if (quickMessageLocation) {
-        fetch("https://ipapi.co/json/")
-          .then((response) => response.ok ? response.json() : Promise.reject())
-          .then((data) => {
-            const location = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
-            quickMessageLocation.value = location || "Unknown";
-          })
-          .catch(() => {});
-      }
-
-      if (quickMessageForm) {
-        quickMessageForm.addEventListener("submit", () => {
-          if (quickMessageStatus) {
-            quickMessageStatus.textContent = "";
-          }
-          const submitButton = quickMessageForm.querySelector('button[type="submit"]');
-          if (submitButton instanceof HTMLButtonElement) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
-          }
-        });
-      }
-
       const slider = document.querySelector("[data-testimonials-slider]");
       const track = slider?.querySelector(".testimonials-track");
       const dots = Array.from(document.querySelectorAll("[data-testimonial-dot]"));
@@ -2173,3 +1796,9 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
