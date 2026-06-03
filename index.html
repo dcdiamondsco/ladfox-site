@@ -13,7 +13,7 @@
     gtag('config', 'G-V60YKFJX73');
     gtag('config', 'AW-18205278360');
   </script>
-<title>Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox</title>
+<title>LADFOX | Bespoke Engagement Rings & Jewellery</title>
 
   <meta name="description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -26,7 +26,7 @@
 
   <meta property="og:locale" content="en_GB" />
   <meta property="og:site_name" content="Ladfox" />
-  <meta property="og:title" content="Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox" />
+  <meta property="og:title" content="LADFOX | Bespoke Engagement Rings & Jewellery" />
   <meta property="og:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ladfox.com/" />
@@ -35,7 +35,7 @@
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Bespoke Engagement Rings & Jewellery | Hatton Garden Jeweller | Ladfox" />
+  <meta name="twitter:title" content="LADFOX | Bespoke Engagement Rings & Jewellery" />
   <meta name="twitter:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta name="twitter:image" content="https://ladfox.com/Images/background%202.png" />
 
@@ -715,6 +715,71 @@
       flex-wrap:wrap;
     }
 
+    .sitelinks-section{
+      width:min(1120px, calc(100vw - 48px));
+      margin:0 auto 56px;
+      padding:34px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+    }
+
+    .sitelinks-head{
+      margin-bottom:24px;
+      text-align:center;
+    }
+
+    .sitelinks-head h2{
+      font-size:clamp(1.9rem, 3vw, 3rem);
+      margin-bottom:12px;
+    }
+
+    .sitelinks-head p{
+      margin:0 auto;
+      max-width:64ch;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1rem;
+    }
+
+    .sitelinks-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .sitelink-card{
+      display:block;
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .sitelink-card:hover,
+    .sitelink-card:focus-visible{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.05);
+      outline:none;
+    }
+
+    .sitelink-card h3{
+      margin:0 0 10px;
+      font-size:1.28rem;
+      color:#fff;
+    }
+
+    .sitelink-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.98rem;
+      line-height:1.7;
+    }
+
     .testimonials{
       width:min(1120px, calc(100vw - 48px));
       margin:56px auto 20px;
@@ -850,6 +915,21 @@
       align-items:center;
       justify-content:center;
       text-align:center;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links{
+      display:flex;
+      justify-content:center;
+      gap:12px 18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .footer-meta{
@@ -1164,6 +1244,17 @@
         margin-bottom:56px;
       }
 
+      .sitelinks-section{
+        width:min(calc(100vw - 32px), 100%);
+        padding:24px 20px 26px;
+        border-radius:24px;
+        margin-bottom:56px;
+      }
+
+      .sitelinks-grid{
+        grid-template-columns:1fr;
+      }
+
       .proposal-showcase{
         width:min(calc(100vw - 32px), 100%);
         margin-bottom:56px;
@@ -1216,6 +1307,10 @@
 
       .quick-message-callout span{
         font-size:.88rem;
+      }
+
+      .advice-mobile-hide{
+        display:none;
       }
 
     }
@@ -1384,8 +1479,8 @@
       </a>
 
       <nav class="nav" aria-label="Primary">
-        <a href="consultation.html">Consultation</a>
         <a href="ringpage.html">Engagement Rings</a>
+        <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
     </div>
@@ -1556,6 +1651,27 @@
       </div>
     </section>
 
+    <section class="sitelinks-section" aria-label="Primary site links">
+      <div class="sitelinks-head">
+        <h2>Start with the page you need most</h2>
+        <p>Three direct routes for the pages people usually want first when they are comparing bespoke jewellers.</p>
+      </div>
+      <div class="sitelinks-grid">
+        <a class="sitelink-card" href="ringpage.html">
+          <h3>Engagement Rings</h3>
+          <p>Explore bespoke engagement rings designed around your ideas and budget.</p>
+        </a>
+        <a class="sitelink-card" href="consultation.html">
+          <h3>Consultation</h3>
+          <p>Book a private consultation and discuss the ring you have in mind.</p>
+        </a>
+        <a class="sitelink-card" href="contact-us.html">
+          <h3>Contact Us</h3>
+          <p>Get in touch with LADFOX.</p>
+        </a>
+      </div>
+    </section>
+
     <section class="testimonials" aria-label="Bespoke jewellery questions">
       <div class="testimonials-head">
         <h2>Bespoke jewellery questions</h2>
@@ -1572,6 +1688,11 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
+      <div class="footer-links" aria-label="Footer links">
+        <a href="ringpage.html">Engagement Rings</a>
+        <a href="consultation.html">Consultation</a>
+        <a href="contact-us.html">Contact Us</a>
+      </div>
       <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>

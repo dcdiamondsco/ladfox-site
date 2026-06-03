@@ -45,6 +45,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ladfox.com/advice.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ladfox.com/advice/where-to-buy-an-engagement-ring.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ladfox.com/bracelets.html</loc>
     <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
