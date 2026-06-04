@@ -322,8 +322,8 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      object-position:center;
-      transform:scaleX(-1) translateY(-8%);
+      object-position:var(--hero-image-position, center);
+      transform:scaleX(-1) translateY(var(--hero-image-shift, -8%));
       opacity:calc(1 - (var(--hero-fade, 0) * .96));
       transition:opacity 1.6s ease;
       will-change:opacity;
@@ -335,7 +335,7 @@
 
     .hero-overlay{
       position:absolute;
-      top:132px;
+      top:92px;
       left:96px;
       z-index:2;
       max-width:min(1080px, calc(100% - 192px));
@@ -385,12 +385,20 @@
     }
 
     .hero-subcopy{
-      margin:0;
+      margin:18px 0 0;
       max-width:58ch;
       color:rgba(255,255,255,.84);
       font-size:1.03rem;
       line-height:1.72;
       text-shadow:0 6px 18px rgba(0,0,0,.42);
+    }
+
+    .hero-subcopy p{
+      margin:0;
+    }
+
+    .hero-subcopy p + p{
+      margin-top:1em;
     }
 
     .hero-subcopy-row{
@@ -407,7 +415,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:14px;
-      margin-top:0;
+      margin-top:18px;
       flex:0 0 auto;
       justify-content:center;
     }
@@ -1030,7 +1038,7 @@
         align-items:center;
         justify-content:center;
         justify-items:center;
-        gap:4px 12px;
+        gap:6px 12px;
         padding-right:0;
         padding-bottom:2px;
       }
@@ -1043,6 +1051,10 @@
         justify-self:stretch;
         align-items:center;
         gap:0;
+        margin-top:-2px;
+        margin-bottom:-88px;
+        position:relative;
+        z-index:5;
         transform:none;
       }
 
@@ -1056,6 +1068,8 @@
         flex:0 1 auto;
         width:100%;
         justify-content:center;
+        overflow:visible;
+        max-height:none;
       }
 
       .brand-block{
@@ -1065,6 +1079,7 @@
 
       .brand-logo{
         width:min(250px, 64vw);
+        transform:translateY(-10px);
         opacity:1;
         filter:drop-shadow(0 6px 18px rgba(0,0,0,.32)) brightness(1);
       }
@@ -1079,19 +1094,18 @@
 
       .brand-review-link{
         position:absolute;
-        top:58px;
+        top:64px;
         right:0;
         justify-self:auto;
         align-self:auto;
       }
 
       .brand-location{
-        display:block;
+        display:none;
         grid-area:location;
         width:100%;
         margin:-14px 0 0;
         padding-top:0;
-        display:flex;
         flex-direction:column;
         align-items:center;
         gap:0;
@@ -1112,7 +1126,7 @@
         align-self:stretch;
         gap:8px;
         margin-top:0;
-        margin-bottom:6px;
+        margin-bottom:8px;
         opacity:calc(1 - (var(--brand-fade, 0) * .78));
       }
 
@@ -1131,6 +1145,7 @@
       .hero{
         padding-top:0;
         padding-bottom:72px;
+        margin-top:-92px;
       }
 
       .hero-grid{
@@ -1143,12 +1158,12 @@
       }
 
       .hero-visual{
-        min-height:680px;
-        height:680px;
+        min-height:980px;
+        height:980px;
       }
 
       .hero-overlay{
-        top:74px;
+        top:108px;
         left:16px;
         right:16px;
         max-width:none;
@@ -1156,13 +1171,28 @@
       }
 
       .eyebrow-hero{
-        display:none;
+        display:inline-flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:28px;
+        margin-bottom:8px;
+        font-size:.62rem;
+        letter-spacing:.12em;
+      }
+
+      .eyebrow-hero::before{
+        width:28px;
       }
 
       h1{
+        position:relative;
         max-width:13ch;
         font-size:clamp(1.9rem, 8.2vw, 2.7rem);
-        margin-top:2px;
+        margin-top:60px;
+      }
+
+      h1::before{
+        content:none;
       }
 
       .hero-heading-line{
@@ -1174,7 +1204,7 @@
       }
 
       .hero-subcopy{
-        margin-top:0;
+        margin-top:12px;
         max-width:none;
         font-size:.96rem;
         line-height:1.65;
@@ -1193,7 +1223,7 @@
       }
 
       .hero-primary-actions{
-        margin:22px auto 6px;
+        margin:60px auto 48px;
         justify-content:center;
       }
 
@@ -1206,9 +1236,42 @@
         opacity:var(--hero-fade, 0);
       }
 
-      .hero-image,
-      .hero-overlay{
+      .hero-image{
         opacity:calc(1 - (var(--hero-fade, 0) * .82));
+      }
+
+      .hero-overlay{
+        opacity:calc(1 - (var(--hero-fade, 0) * .35));
+      }
+
+      .hero-image{
+        --hero-image-position:center;
+        --hero-image-shift:2%;
+      }
+
+      .hero-image[data-hero-key="bg1"]{
+        --hero-image-position:center;
+        --hero-image-shift:-8%;
+      }
+
+      .hero-image[data-hero-key="bg2"]{
+        --hero-image-position:54% center;
+        --hero-image-shift:-6%;
+      }
+
+      .hero-image[data-hero-key="bg3"]{
+        --hero-image-position:53% center;
+        --hero-image-shift:-12%;
+      }
+
+      .hero-image[data-hero-key="bg4"]{
+        --hero-image-position:52% center;
+        --hero-image-shift:-8%;
+      }
+
+      .hero-image[data-hero-key="bg5"]{
+        --hero-image-position:47% center;
+        --hero-image-shift:-10%;
       }
 
       .hero-copy{
@@ -1289,7 +1352,7 @@
 
       .testimonials{
         width:min(calc(100vw - 32px), 100%);
-        margin:12px auto 14px;
+        margin:-56px auto 14px;
       }
 
       .quick-message-bubble{
@@ -1321,22 +1384,22 @@
       }
 
       .brand-review-link{
-        top:56px;
+        top:62px;
       }
 
       .hero-visual{
-        min-height:720px;
-        height:720px;
+        min-height:1040px;
+        height:1040px;
       }
 
       .hero-overlay{
-        top:84px;
+        top:96px;
       }
 
       h1{
         max-width:15ch;
         font-size:clamp(1.75rem, 9vw, 2.3rem);
-        margin-top:4px;
+        margin-top:64px;
       }
 
       .brand-location{
@@ -1349,7 +1412,7 @@
       }
 
       .testimonials{
-        margin:10px auto 12px;
+        margin:-68px auto 12px;
       }
     }
   </style>
@@ -1492,10 +1555,11 @@
         <aside class="hero-card" aria-label="Ladfox studio promise">
           <div class="hero-visual">
             <img
-              src="Images/background%202.png"
+              src="Images/background%201.png"
               alt="Bespoke engagement ring campaign image by Ladfox Hatton Garden jeweller"
               class="hero-image"
               data-hero-image
+              data-hero-key="bg1"
               loading="eager"
               decoding="async"
             />
@@ -1504,9 +1568,10 @@
               <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
               <h1><span class="hero-heading-line">Bespoke Engagement Rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created for the one you love.</span></h1>
               <div class="hero-subcopy-row">
-                <p class="hero-subcopy">
-                  Family run Hatton Garden jeweller carefully creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance from first idea to finished piece. No high pressure showroom routine, just private guidance focused on getting the ring right.
-                </p>
+                <div class="hero-subcopy">
+                  <p>When Mr Fox began searching for an engagement ring, he couldn't find exactly what he was looking for. He believed such an important moment deserved something beautiful, personal and carefully made - a ring that felt completely right.</p>
+                  <p>That belief still shapes the way LADFOX works today. As a family-run Hatton Garden jeweller, we create bespoke engagement rings, wedding bands and custom jewellery, with private guidance from the first idea to the finished piece. No high-pressure showroom routine, just a personal approach focused on getting the ring right.</p>
+                </div>
 
                 <div class="hero-primary-actions">
                   <a class="btn btn-primary" href="ringpage.html">Design your bespoke piece</a>
@@ -1565,37 +1630,47 @@
           <div class="proposal-marquee">
             <div class="proposal-track">
               <div class="proposal-set">
-                <figure class="proposal-shot"><img src="Images/Proposals/1.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/1.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/2.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/3.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/3.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/4.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/5.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/5.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/6.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/7.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/8.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/8.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/9.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/10.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/10.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/11.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/12.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/13.jpeg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/14.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/12.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/13.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/14.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/15.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/16.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/17.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/18.png" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/19.jpg" alt="Proposal moment from a Ladfox client" loading="lazy" decoding="async" /></figure>
               </div>
 
               <div class="proposal-set" aria-hidden="true">
-                <figure class="proposal-shot"><img src="Images/Proposals/1.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/1.png" alt="" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/2.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/3.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/3.png" alt="" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/4.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/5.jpeg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/5.png" alt="" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/6.png" alt="" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/7.jpeg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/8.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/8.png" alt="" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/9.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/10.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/10.jpeg" alt="" loading="lazy" decoding="async" /></figure>
                 <figure class="proposal-shot"><img src="Images/Proposals/11.png" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/12.jpg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/13.jpeg" alt="" loading="lazy" decoding="async" /></figure>
-                <figure class="proposal-shot"><img src="Images/Proposals/14.jpg" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/12.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/13.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/14.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/15.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/16.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/17.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/18.png" alt="" loading="lazy" decoding="async" /></figure>
+                <figure class="proposal-shot"><img src="Images/Proposals/19.jpg" alt="" loading="lazy" decoding="async" /></figure>
               </div>
             </div>
           </div>
@@ -1769,16 +1844,29 @@
       if (heroImage) {
         const heroSlides = [
           {
-            image: "Images/background%202.png",
+            image: "Images/background%201.png",
+            key: "bg1",
             alt: "Ladfox jewellery campaign visual"
           },
           {
-            image: "Images/earrings.png",
-            alt: "Ladfox earrings campaign visual"
+            image: "Images/background%202.png",
+            key: "bg2",
+            alt: "Ladfox jewellery campaign visual"
           },
           {
             image: "Images/background%203.png",
+            key: "bg3",
             alt: "Ladfox signature jewellery campaign visual"
+          },
+          {
+            image: "Images/background%204.png",
+            key: "bg4",
+            alt: "Ladfox jewellery campaign visual"
+          },
+          {
+            image: "Images/background%205.png",
+            key: "bg5",
+            alt: "Ladfox jewellery campaign visual"
           }
         ];
         let heroSlideIndex = 0;
@@ -1795,6 +1883,7 @@
           if (reducedMotionQuery.matches) {
             heroImage.src = nextSlide.image;
             heroImage.alt = nextSlide.alt;
+            heroImage.dataset.heroKey = nextSlide.key;
             return;
           }
 
@@ -1803,6 +1892,7 @@
           window.setTimeout(() => {
             heroImage.src = nextSlide.image;
             heroImage.alt = nextSlide.alt;
+            heroImage.dataset.heroKey = nextSlide.key;
             heroImage.classList.remove("is-switching");
           }, 760);
         };
