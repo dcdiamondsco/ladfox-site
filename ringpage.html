@@ -2082,12 +2082,12 @@
                 </div>
 
                 <div class="guided-form__body" id="quickStartBody"></div>
+                <p class="guided-form__note" id="quickStartNote"></p>
+                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
                 <details class="guided-guide" id="quickStartGuide" hidden>
                   <summary class="guided-guide__summary">Guide</summary>
                   <div class="guided-guide__body" id="quickStartGuideBody"></div>
                 </details>
-                <p class="guided-form__note" id="quickStartNote"></p>
-                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
 
                 <div class="guided-form__footer">
                   <button class="btn" id="quickStartBack" type="button" hidden>Back</button>
@@ -2351,7 +2351,7 @@
         ],
         budget: [
           "Set a rough budget range rather than trying to be exact. This helps narrow the stone and setting direction without locking you into one option.",
-          "The currency adjusts to the visitor location and is included with your enquiry details."
+          "A rough starting point is enough here. We can refine the details and final direction with you afterwards."
         ],
         stone_size: [
           "Stone size is a starting direction, not a final commitment. It helps estimate look and price early in the process.",
@@ -2365,10 +2365,11 @@
           "This sets the overall scale for the trilogy ring. The side stones will be balanced around the centre choice.",
           "Choose an approximate size if you are not certain yet."
         ],
-        phone: [
-          "Add your email so we can send the quote and next steps. A phone number is optional if you prefer a faster conversation.",
-          "If you would rather not add a phone number, you can skip it."
-        ]
+        other_notes: [
+          "Use this space for anything important that has not already come up in the form.",
+          "If you have a screenshot, reference image, or inspiration drawing, attach it here so we can understand the look you have in mind more clearly."
+        ],
+        phone: []
       };
 
       function appendOtherDetailSteps(baseSteps){
