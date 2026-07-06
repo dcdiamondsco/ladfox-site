@@ -3194,7 +3194,10 @@
       function getChoiceBadge(step, option){
         if (!step || !option) return "";
         if (step.key === "multi_stone_style" && option === "Solitaire") return "Most popular";
-        if (["stone_shape", "halo_style_detail", "toi_et_moi_first_shape", "toi_et_moi_second_shape", "trilogy_centre_shape", "trilogy_side_shape"].includes(step.key) && ["Round", "Oval"].includes(option)) {
+        if (step.key === "halo_style_detail" && ["Round", "Oval"].includes(option)) {
+          return "Most popular";
+        }
+        if (step.key === "stone_shape" && formValues.multi_stone_style !== "Bezel" && ["Round", "Oval"].includes(option)) {
           return "Most popular";
         }
         return "";
