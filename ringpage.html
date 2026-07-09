@@ -893,6 +893,48 @@
       font-weight:700;
     }
 
+    .guided-progress{
+      display:grid;
+      gap:10px;
+      margin:0 0 14px;
+    }
+
+    .guided-progress[hidden]{
+      display:none;
+    }
+
+    .guided-progress__meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-family:var(--ui-font);
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.76);
+    }
+
+    .guided-progress__track{
+      position:relative;
+      height:8px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .guided-progress__fill{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:0;
+      border-radius:inherit;
+      background:linear-gradient(90deg, rgba(255,255,255,.76), #ffffff);
+      box-shadow:0 0 18px rgba(255,255,255,.22);
+      transition:width .28s ease;
+    }
+
     .guided-form__intro{
       padding:0;
       border:0;
@@ -1042,6 +1084,10 @@
     .guided-form--intro .guided-form__body,
     .guided-form--intro .guided-form__note,
     .guided-form--intro .quick-start-status{
+      display:none;
+    }
+
+    .guided-form--intro .guided-progress{
       display:none;
     }
 
@@ -2076,6 +2122,16 @@
               </p>
 
               <div class="guided-form">
+                <div class="guided-progress" id="quickStartProgress" hidden>
+                  <div class="guided-progress__meta">
+                    <span id="quickStartProgressLabel">Step 1 of 1</span>
+                    <span id="quickStartProgressPercent">0%</span>
+                  </div>
+                  <div class="guided-progress__track" aria-hidden="true">
+                    <span class="guided-progress__fill" id="quickStartProgressFill"></span>
+                  </div>
+                </div>
+
                 <div class="guided-form__intro" id="quickStartIntro">
                   <h3 class="guided-form__question" id="quickStartQuestion"></h3>
                   <p class="guided-form__support" id="quickStartSupport">We will help you visualise your ring, narrow down the details, and get a more accurate price.</p>
@@ -2199,6 +2255,10 @@
       const statusEl = document.getElementById("quickStartStatus");
       const nextBtn = document.getElementById("quickStartNext");
       const backBtn = document.getElementById("quickStartBack");
+      const progressEl = document.getElementById("quickStartProgress");
+      const progressLabelEl = document.getElementById("quickStartProgressLabel");
+      const progressPercentEl = document.getElementById("quickStartProgressPercent");
+      const progressFillEl = document.getElementById("quickStartProgressFill");
       const locationField = document.getElementById("quickStartLocation");
       const designFlowEl = document.querySelector(".design-flow");
 
@@ -2968,6 +3028,35 @@
         return true;
       }
 
+      function getVisibleStepIndexes(){
+        const visibleIndexes = [];
+        steps.forEach((step, index) => {
+          if (shouldShowStep(step)) visibleIndexes.push(index);
+        });
+        return visibleIndexes;
+      }
+
+      function updateProgress(){
+        if (!progressEl || !progressLabelEl || !progressPercentEl || !progressFillEl) return;
+        if (introActive) {
+          progressEl.hidden = true;
+          progressLabelEl.textContent = "Step 1 of 1";
+          progressPercentEl.textContent = "0%";
+          progressFillEl.style.width = "0%";
+          return;
+        }
+
+        const visibleIndexes = getVisibleStepIndexes();
+        const totalSteps = Math.max(visibleIndexes.length, 1);
+        const currentStepNumber = Math.max(visibleIndexes.indexOf(stepIndex) + 1, 1);
+        const percent = Math.round((currentStepNumber / totalSteps) * 100);
+
+        progressEl.hidden = false;
+        progressLabelEl.textContent = `Step ${currentStepNumber} of ${totalSteps}`;
+        progressPercentEl.textContent = `${percent}%`;
+        progressFillEl.style.width = `${percent}%`;
+      }
+
       function shouldShowCathedralOverlay(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
@@ -3713,6 +3802,7 @@
 
       function renderIntroScreen(){
         if (!questionEl || !supportEl || !introEl || !bodyEl || !noteEl || !nextBtn) return;
+        updateProgress();
         questionEl.textContent = "";
         if (backBtn) backBtn.hidden = true;
         supportEl.textContent = "We will help you visualise your ring, narrow down the details, and get a more accurate price.";
@@ -3746,6 +3836,7 @@
         }
         const step = steps[stepIndex];
         if (!step || !questionEl || !supportEl || !introEl || !bodyEl || !noteEl || !nextBtn) return;
+        updateProgress();
         const hasSelectedMetal = Boolean(formValues.ring_metal);
         const nextRingImage = resolveDisplayedRingImage(step);
 
