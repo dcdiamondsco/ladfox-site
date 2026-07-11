@@ -1878,7 +1878,8 @@
       margin-right:calc(50% - 50vw);
       margin-top:-1px;
       min-height:100svh;
-      overflow:hidden;
+      overflow-x:hidden;
+      overflow-y:visible;
       position:relative;
       isolation:isolate;
     }
@@ -1924,15 +1925,15 @@
 
     .form-wrap{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:center;
       width:100%;
       min-height:100svh;
-      padding:24px;
+      padding:28px 24px 36px;
       border-radius:0;
       position:relative;
       z-index:1;
-      overflow:hidden;
+      overflow:visible;
     }
 
     .form-wrap .card{
@@ -1945,7 +1946,7 @@
     }
 
     .guided-form{
-      overflow:hidden;
+      overflow:visible;
     }
 
     .faq{
@@ -2189,7 +2190,7 @@
       }
 
       .guided-form__body{
-        height:clamp(220px, 30svh, 280px);
+        height:clamp(320px, 44svh, 460px);
       }
 
       .guided-choice{

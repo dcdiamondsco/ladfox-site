@@ -229,6 +229,40 @@
       font-size:1rem;
       line-height:1.7;
     }
+    .reference-card{
+      display:none;
+      gap:8px;
+      margin:22px 24px 0;
+      padding:16px 18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow:0 18px 36px rgba(0,0,0,.18);
+    }
+    .reference-card.is-visible{
+      display:grid;
+    }
+    .reference-card__eyebrow{
+      margin:0;
+      color:rgba(255,255,255,.56);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .reference-card__title{
+      margin:0;
+      color:var(--text);
+      font-size:1rem;
+      font-weight:800;
+      line-height:1.4;
+    }
+    .reference-card__meta{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.65;
+    }
     .card {
       width: 100%;
       background:
@@ -929,6 +963,12 @@
       <div class="card qa" id="qaCard">
         <div class="progress"><div id="progressBar"></div></div>
 
+        <div class="reference-card" id="referenceCard">
+          <p class="reference-card__eyebrow">Starting Point</p>
+          <p class="reference-card__title" id="referenceCardTitle"></p>
+          <p class="reference-card__meta" id="referenceCardMeta"></p>
+        </div>
+
         <div class="question" id="questionText"></div>
         <div class="input-area" id="inputArea"></div>
       </div>
@@ -953,6 +993,9 @@
     const progressEl = document.getElementById('progressBar');
     const qaCard     = document.getElementById('qaCard');
     const formEl     = document.getElementById('nf');
+    const referenceCard = document.getElementById('referenceCard');
+    const referenceCardTitle = document.getElementById('referenceCardTitle');
+    const referenceCardMeta = document.getElementById('referenceCardMeta');
     let openCustomSelect = null;
 
     function safeGtagEvent(name, params){
@@ -1113,7 +1156,7 @@
       'Chameleon',
       'Other'
     ];
-    const diamondClarity = ['Eye Clean','FL','IF','VVS1','VVS2','VS1','VS2','SI1','SI2','I1+'];
+    const diamondClarity = ['Eye Clean','Flawless','Internally Flawless','VVS1','VVS2','VS1','VS2','SI1','SI2','I1+'];
 
     const steps = [
       { key: 'materialType', type: 'choice', label: 'Would you like a Diamond or a Gemstone', options: [
@@ -1178,10 +1221,40 @@
       const referenceRing = params.get('ring') || params.get('reference') || '';
       const referenceProduct = params.get('product') || '';
       const referenceSize = params.get('size') || '';
+      const referenceMetal = params.get('metal') || '';
+      const referenceShape = params.get('shape') || '';
+      const referenceStoneSize = params.get('stone_size') || '';
+      const referenceColour = params.get('colour') || '';
+      const referenceClarity = params.get('clarity') || '';
 
       if (referenceRing) formData.reference_ring = referenceRing;
       if (referenceProduct) formData.reference_product = referenceProduct;
       if (referenceSize) formData.reference_size = referenceSize;
+      if (referenceMetal) formData.reference_metal = referenceMetal;
+      if (referenceShape) formData.reference_shape = referenceShape;
+      if (referenceStoneSize) formData.reference_stone_size = referenceStoneSize;
+      if (referenceColour) formData.reference_colour = referenceColour;
+      if (referenceClarity) formData.reference_clarity = referenceClarity;
+    })();
+
+    (function renderReferenceCard(){
+      if(!referenceCard || !referenceCardTitle || !referenceCardMeta) return;
+
+      const meta = [
+        formData.reference_metal ? `Metal: ${formData.reference_metal}` : '',
+        formData.reference_shape ? `Shape: ${formData.reference_shape}` : '',
+        formData.reference_stone_size ? `Size: ${formData.reference_stone_size}` : '',
+        formData.reference_colour ? `Colour: ${formData.reference_colour}` : '',
+        formData.reference_clarity ? `Clarity: ${formData.reference_clarity}` : '',
+        formData.reference_size ? `Ring size: ${formData.reference_size}` : ''
+      ].filter(Boolean);
+
+      const title = formData.reference_product || formData.reference_ring || '';
+      if(!title && meta.length === 0) return;
+
+      referenceCardTitle.textContent = title ? `Building from ${title}` : 'Reference details carried over';
+      referenceCardMeta.textContent = meta.length ? meta.join(' · ') : 'Your previous selections have been carried into this form.';
+      referenceCard.classList.add('is-visible');
     })();
 
     function isGold(m){ return m === 'Yellow Gold' || m === 'White Gold' || m === 'Rose Gold'; }
@@ -1257,6 +1330,11 @@
       if(formData.reference_product) lines.push(`Reference product:\n${formData.reference_product}`);
       if(formData.reference_ring) lines.push(`Reference slug:\n${formData.reference_ring}`);
       if(formData.reference_size) lines.push(`Requested size:\n${formData.reference_size}`);
+      if(formData.reference_metal) lines.push(`Reference metal:\n${formData.reference_metal}`);
+      if(formData.reference_shape) lines.push(`Reference shape:\n${formData.reference_shape}`);
+      if(formData.reference_stone_size) lines.push(`Reference stone size:\n${formData.reference_stone_size}`);
+      if(formData.reference_colour) lines.push(`Reference colour:\n${formData.reference_colour}`);
+      if(formData.reference_clarity) lines.push(`Reference clarity:\n${formData.reference_clarity}`);
 
       if(formData.ring_style) lines.push(`Ring style:\n${formData.ring_style}`);
 
