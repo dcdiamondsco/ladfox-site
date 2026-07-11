@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V60YKFJX73"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18173399172"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-V60YKFJX73');
-    gtag('config', 'AW-18205278360');
+    gtag('config', 'AW-18173399172');
   </script>
 <title>LADFOX | Engagement Rings & Fine Jewellery</title>
 
@@ -416,15 +415,23 @@
 
     .hero-primary-actions{
       display:flex;
-      flex-wrap:wrap;
-      gap:14px;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
       margin-top:18px;
       flex:0 1 320px;
-      justify-content:center;
     }
 
     .hero-primary-actions .btn{
       min-width:280px;
+    }
+
+    .hero-secondary-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+      margin-top:4px;
     }
 
     .btn{
@@ -1211,12 +1218,15 @@
 
       .hero-primary-actions{
         margin:54px auto 54px;
-        justify-content:center;
       }
 
       .hero-primary-actions .btn{
         width:min(100%, 320px);
         min-width:0;
+      }
+
+      .hero-secondary-actions{
+        width:100%;
       }
 
       .hero-visual::after{
@@ -1523,8 +1533,7 @@
 
       <nav class="nav" aria-label="Primary">
         <a href="ringpage.html">Engagement Rings</a>
-        <a href="ring-gallery.html">Previous Work</a>
-        <a href="consultation.html">Consultation</a>
+          <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
     </div>
@@ -1555,8 +1564,10 @@
 
                 <div class="hero-primary-actions">
                   <a class="btn btn-primary" href="ringpage.html">Design your bespoke piece</a>
-                  <a class="btn btn-secondary" href="ring-gallery.html">Shop previous work</a>
-                  <a class="btn btn-secondary" href="consultation.html">Book a Consultation</a>
+                  <div class="hero-secondary-actions">
+                    <a class="btn btn-secondary" href="ring-gallery.html">View recent work</a>
+                    <a class="btn btn-secondary" href="consultation.html">Book a Consultation</a>
+                  </div>
                 </div>
               </div>
             </div>
