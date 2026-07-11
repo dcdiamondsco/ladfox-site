@@ -1086,6 +1086,10 @@
       z-index:2;
     }
 
+    .guided-form__preview{
+      display:none;
+    }
+
     .guided-form--intro .guided-form__body,
     .guided-form--intro .guided-form__note,
     .guided-form--intro .quick-start-status{
@@ -2196,6 +2200,11 @@
         overscroll-behavior:contain;
       }
 
+      .guided-form::before,
+      .guided-form::after{
+        display:none;
+      }
+
       .guided-form__intro{
         padding:10px 4px 8px;
       }
@@ -2212,14 +2221,46 @@
       }
 
       .guided-form__body{
-        height:clamp(120px, 18svh, 170px);
-        padding-bottom:8px;
+        height:auto;
+        min-height:0;
+        padding-bottom:0;
+      }
+
+      .guided-form__preview{
+        display:block;
+        width:100%;
+        min-height:220px;
+        margin:2px 0 6px;
+        border-radius:22px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+          radial-gradient(circle at 50% 20%, rgba(255,255,255,.08), rgba(255,255,255,0) 58%);
+        border:1px solid rgba(255,255,255,.08);
+        position:relative;
+        overflow:hidden;
+      }
+
+      .guided-form__preview[hidden]{
+        display:none;
+      }
+
+      .guided-form__preview::before{
+        content:"";
+        position:absolute;
+        inset:14px 12px 10px;
+        background-image:var(--mobile-preview-image, none);
+        background-position:center bottom;
+        background-size:contain;
+        background-repeat:no-repeat;
+        filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
+        opacity:.88;
       }
 
       .guided-guide{
         max-height:none;
         overflow-y:visible;
         width:100%;
+        margin:0 0 6px;
       }
 
       .guided-choice-list,
@@ -2310,6 +2351,12 @@
       .guided-textarea{
         min-height:88px;
       }
+
+      .guided-form__footer{
+        position:static;
+        padding:0;
+        background:none;
+      }
     }
   </style>
 </head>
@@ -2362,6 +2409,7 @@
                 </div>
 
                 <div class="guided-form__body" id="quickStartBody"></div>
+                <div class="guided-form__preview" id="quickStartPreview" hidden aria-hidden="true"></div>
                 <p class="guided-form__note" id="quickStartNote"></p>
                 <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
                 <details class="guided-guide" id="quickStartGuide" hidden>
@@ -2492,6 +2540,7 @@
       const guideEl = document.getElementById("quickStartGuide");
       const guideBodyEl = document.getElementById("quickStartGuideBody");
       const shellEl = form.querySelector(".guided-form");
+      const previewEl = document.getElementById("quickStartPreview");
       const bodyEl = document.getElementById("quickStartBody");
       const noteEl = document.getElementById("quickStartNote");
       const statusEl = document.getElementById("quickStartStatus");
@@ -3599,6 +3648,53 @@
         return nextRingImage;
       }
 
+      function getMobilePreviewImage(step, nextRingImage){
+        const imageBase = "./Images/Ringpage Form Background Images/";
+        if (formValues.multi_stone_style === "Bezel") return `${imageBase}bezel.png`;
+        if (shouldShowSettingDesignImage() && formValues.setting_design === "Tulip/Floral") return `${imageBase}tulip.png`;
+        if (shouldShowSettingDesignImage() && formValues.setting_design === "Classic") return `${imageBase}classic.png`;
+
+        const imageMap = {
+          "plain": `${imageBase}1 Plain ring.png`,
+          "cathedral": `${imageBase}2 Solitaire no stone.png`,
+          "halo": `${imageBase}2 Solitaire no stone.png`,
+          "solitaire-round": `${imageBase}3 Solitaire round.png`,
+          "solitaire-round-plain": `${imageBase}4 Solitaire round plain.png`,
+          "solitaire-oval": `${imageBase}3 Solitaire oval.png`,
+          "solitaire-emerald": `${imageBase}3 Solitaire Emerald.png`,
+          "solitaire-radiant": `${imageBase}3 Solitaire radient.png`,
+          "solitaire-princess": `${imageBase}3 Solitaire princess.png`,
+          "solitaire-cushion": `${imageBase}3 Solitaire cushion.png`,
+          "solitaire-pear": `${imageBase}3 Solitaire pear.png`,
+          "solitaire-marquise": `${imageBase}3 Solitaire Marquise.png`,
+          "trilogy": `${imageBase}4 Trilogy.png`,
+          "trilogy-large-centre": `${imageBase}4 Trilogy.png`,
+          "toi-et-moi": `${imageBase}Toi et moi.png`,
+          "cluster": `${imageBase}cluster.png`
+        };
+
+        return imageMap[nextRingImage] || imageMap.plain;
+      }
+
+      function renderMobilePreview(step, nextRingImage){
+        if (!previewEl) return;
+        if (!step || introActive || summaryScreenActive) {
+          previewEl.hidden = true;
+          previewEl.style.removeProperty("--mobile-preview-image");
+          return;
+        }
+
+        const previewImage = getMobilePreviewImage(step, nextRingImage);
+        if (!previewImage) {
+          previewEl.hidden = true;
+          previewEl.style.removeProperty("--mobile-preview-image");
+          return;
+        }
+
+        previewEl.hidden = false;
+        previewEl.style.setProperty("--mobile-preview-image", `url("${previewImage}")`);
+      }
+
       function shouldShowSettingDesignImage(){
         return ["Solitaire", "Cluster", "Halo"].includes(formValues.multi_stone_style);
       }
@@ -4461,6 +4557,7 @@
         shellEl.classList.toggle("guided-form--pave-overlay", formValues.pave_band === "Yes" && formValues.pave_coverage !== "Half pave");
         shellEl.classList.toggle("guided-form--pave-overlay-half", formValues.pave_band === "Yes" && formValues.pave_coverage === "Half pave");
         triggerRingImageTransform(nextRingImage);
+        renderMobilePreview(step, nextRingImage);
         introEl.classList.toggle("guided-form__intro--metal", hasSelectedMetal);
         questionEl.classList.toggle("guided-form__question--metal", hasSelectedMetal);
         supportEl.classList.toggle("guided-form__support--metal", hasSelectedMetal);
