@@ -2221,17 +2221,18 @@
       }
 
       .guided-form__body{
-        height:auto;
-        min-height:0;
+        height:clamp(176px, 22svh, 210px);
+        min-height:clamp(176px, 22svh, 210px);
         padding-bottom:0;
+        align-content:start;
       }
 
       .guided-form__preview{
         display:block;
         width:100%;
         min-height:0;
-        height:clamp(280px, 34svh, 320px);
-        margin:-4px 0 0;
+        height:clamp(260px, 31svh, 300px);
+        margin:0;
         border-radius:0;
         background:none;
         border:0;
@@ -2248,7 +2249,7 @@
         position:absolute;
         inset:0;
         background-image:var(--mobile-preview-image, none);
-        background-position:center 140%;
+        background-position:center 155%;
         background-size:auto 170%;
         background-repeat:no-repeat;
         filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
@@ -2259,7 +2260,7 @@
         max-height:none;
         overflow-y:visible;
         width:100%;
-        margin:-10px 0 2px;
+        margin:-2px 0 2px;
       }
 
       .guided-choice-list,
@@ -2354,7 +2355,7 @@
       .guided-form__footer{
         position:static;
         gap:10px;
-        margin-top:-2px;
+        margin-top:0;
         padding:0;
         background:none;
       }
@@ -3680,6 +3681,12 @@
       function renderMobilePreview(step, nextRingImage){
         if (!previewEl) return;
         if (!step || introActive || summaryScreenActive) {
+          previewEl.hidden = true;
+          previewEl.style.removeProperty("--mobile-preview-image");
+          return;
+        }
+
+        if (step.key === "ring_metal") {
           previewEl.hidden = true;
           previewEl.style.removeProperty("--mobile-preview-image");
           return;
