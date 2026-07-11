@@ -2169,16 +2169,21 @@
       }
 
       .form-wrap{
-        padding:12px;
+        padding:4px 8px 12px;
         overflow:visible;
       }
 
+      .form-wrap .card{
+        width:100%;
+      }
+
       .guided-form{
+        width:100%;
         min-height:100svh;
-        max-height:100svh;
-        padding:18px 16px 16px;
-        gap:14px;
-        border-radius:22px;
+        max-height:none;
+        padding:10px 10px 16px;
+        gap:12px;
+        border-radius:0;
         overflow-y:auto;
         overflow-x:hidden;
         -webkit-overflow-scrolling:touch;
@@ -2186,7 +2191,7 @@
       }
 
       .guided-form__intro{
-        padding:16px 10px 12px;
+        padding:10px 4px 8px;
       }
 
       .guided-form__question{
@@ -2201,12 +2206,21 @@
       }
 
       .guided-form__body{
-        height:clamp(260px, 36svh, 360px);
+        height:clamp(160px, 24svh, 220px);
+        padding-bottom:8px;
       }
 
       .guided-guide{
         max-height:none;
         overflow-y:visible;
+        width:100%;
+      }
+
+      .guided-choice-list,
+      .guided-choice-list--paired-shapes,
+      .guided-choice-list--grid,
+      .guided-choice-list--gemstones,
+      .guided-choice-list--stone-shapes{
         width:100%;
       }
 
@@ -2218,7 +2232,7 @@
       }
 
       .guided-choice-row{
-        width:min(100%, 360px);
+        width:100%;
       }
 
       .guided-choice-list--paired-shapes{
