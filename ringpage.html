@@ -2372,8 +2372,7 @@
       });
     })();
 
-    const quickStartParams = new URLSearchParams(window.location.search);
-    const shouldSkipQuickStartIntro = ["1", "true", "yes"].includes(String(quickStartParams.get("skipIntro") || "").toLowerCase());
+    const shouldSkipQuickStartIntro = true;
 
     function trackCtaClick(el){
       if (!el || typeof gtag !== "function") return;
