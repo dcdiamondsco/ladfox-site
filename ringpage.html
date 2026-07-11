@@ -2150,6 +2150,10 @@
         padding-right:0;
       }
 
+      body{
+        font-size:17px;
+      }
+
       .hero-intro{
         margin-top:24px;
       }
@@ -2161,19 +2165,19 @@
       .btn{
         min-width:unset;
         width:100%;
-        max-width:520px;
+        max-width:100%;
       }
 
       .form-wrap{
-        padding:10px;
+        padding:12px;
         overflow:visible;
       }
 
       .guided-form{
         min-height:100svh;
         max-height:100svh;
-        padding:14px 14px 12px;
-        gap:12px;
+        padding:18px 16px 16px;
+        gap:14px;
         border-radius:22px;
         overflow-y:auto;
         overflow-x:hidden;
@@ -2182,42 +2186,49 @@
       }
 
       .guided-form__intro{
-        padding:14px 14px 12px;
+        padding:16px 10px 12px;
       }
 
       .guided-form__question{
-        font-size:clamp(1.2rem, 6vw, 1.55rem);
-        line-height:1.22;
+        font-size:clamp(1.45rem, 6.8vw, 1.8rem);
+        line-height:1.24;
+      }
+
+      .guided-form__support,
+      .guided-guide__body,
+      .form-intro{
+        font-size:1rem;
       }
 
       .guided-form__body{
-        height:clamp(220px, 30svh, 300px);
+        height:clamp(260px, 36svh, 360px);
       }
 
       .guided-guide{
         max-height:none;
         overflow-y:visible;
+        width:100%;
       }
 
       .guided-choice{
-        width:min(100%, min(240px, 60vw));
-        min-height:40px;
-        padding:9px 11px;
-        font-size:.78rem;
+        width:100%;
+        min-height:48px;
+        padding:10px 12px;
+        font-size:.92rem;
       }
 
       .guided-choice-row{
-        width:min(100%, 260px);
+        width:min(100%, 360px);
       }
 
       .guided-choice-list--paired-shapes{
-        gap:6px;
+        gap:8px;
       }
 
       .guided-choice-list--paired-shapes .guided-choice{
-        min-height:38px;
-        padding:7px 8px;
-        font-size:.68rem;
+        min-height:44px;
+        padding:8px 10px;
+        font-size:.82rem;
       }
 
       .guided-choice-list--paired-shapes .guided-choice--duplicate{
@@ -2231,9 +2242,9 @@
 
       .guided-choice-list--grid .guided-choice{
         width:100%;
-        min-height:38px;
-        padding:8px 7px;
-        font-size:.72rem;
+        min-height:44px;
+        padding:8px 9px;
+        font-size:.84rem;
       }
 
       .guided-choice-list--gemstones{
@@ -2242,9 +2253,9 @@
 
       .guided-choice-list--gemstones .guided-choice{
         width:100%;
-        min-height:38px;
-        padding:7px 4px;
-        font-size:.61rem;
+        min-height:42px;
+        padding:8px 6px;
+        font-size:.76rem;
       }
 
       .guided-choice-list--stone-shapes{
@@ -2257,18 +2268,18 @@
 
       .guided-choice-list--stone-shapes .guided-choice{
         width:100%;
-        min-height:38px;
-        padding:7px 6px;
-        font-size:.64rem;
+        min-height:42px;
+        padding:8px 8px;
+        font-size:.78rem;
         line-height:1.1;
       }
 
 
       .guided-choice__badge{
-        min-width:22px;
-        height:22px;
+        min-width:24px;
+        height:24px;
         padding:0 6px;
-        font-size:.62rem;
+        font-size:.68rem;
       }
 
       .guided-choice--duplicate{
