@@ -2230,13 +2230,11 @@
         display:block;
         width:100%;
         min-height:0;
-        height:clamp(300px, 38svh, 360px);
-        margin:0 0 4px;
-        border-radius:22px;
-        background:
-          linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
-          radial-gradient(circle at 50% 20%, rgba(255,255,255,.08), rgba(255,255,255,0) 58%);
-        border:1px solid rgba(255,255,255,.08);
+        height:clamp(280px, 34svh, 320px);
+        margin:-4px 0 0;
+        border-radius:0;
+        background:none;
+        border:0;
         position:relative;
         overflow:hidden;
       }
@@ -2250,7 +2248,7 @@
         position:absolute;
         inset:0;
         background-image:var(--mobile-preview-image, none);
-        background-position:center bottom;
+        background-position:center 140%;
         background-size:auto 170%;
         background-repeat:no-repeat;
         filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
@@ -2261,7 +2259,7 @@
         max-height:none;
         overflow-y:visible;
         width:100%;
-        margin:0 0 4px;
+        margin:-10px 0 2px;
       }
 
       .guided-choice-list,
@@ -2356,6 +2354,7 @@
       .guided-form__footer{
         position:static;
         gap:10px;
+        margin-top:-2px;
         padding:0;
         background:none;
       }
