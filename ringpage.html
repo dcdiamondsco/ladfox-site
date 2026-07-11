@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8" />
@@ -1111,6 +1111,9 @@
       display:flex;
       justify-content:center;
       width:100%;
+      position:static;
+      padding:0;
+      background:transparent;
     }
 
     .guided-form--intro .btn,
@@ -1197,6 +1200,28 @@
       opacity:1;
       visibility:visible;
       transform:translate(-50%, -50%);
+    }
+
+    .guided-popup__close{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:34px;
+      height:34px;
+      border:0;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-family:var(--ui-font);
+      font-size:1.15rem;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .guided-popup__close:hover,
+    .guided-popup__close:focus-visible{
+      background:rgba(255,255,255,.14);
+      outline:none;
     }
 
     .guided-popup__eyebrow{
@@ -1410,7 +1435,8 @@
     .guided-choice.is-selected{
       border-color:var(--metal-choice-hover-border);
       background:var(--metal-choice-hover-bg);
-      box-shadow:0 0 0 1px rgba(255,255,255,.08) inset;
+      box-shadow:0 0 0 1px var(--metal-choice-hover-border) inset, 0 0 24px var(--metal-choice-hover-bg);
+      color:var(--metal-accent-text);
     }
 
     .guided-input,
@@ -1436,6 +1462,125 @@
     .guided-textarea{
       min-height:110px;
       resize:vertical;
+    }
+
+    .guided-summary{
+      display:grid;
+      gap:14px;
+      padding:16px;
+      border:1px solid var(--metal-choice-border);
+      border-radius:24px;
+      background:var(--metal-choice-bg);
+    }
+
+    .guided-summary__list{
+      display:grid;
+      gap:10px;
+    }
+
+    .guided-summary__item{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) auto;
+      gap:10px;
+      padding-bottom:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      align-items:start;
+    }
+
+    .guided-summary__item:last-child{
+      padding-bottom:0;
+      border-bottom:0;
+    }
+
+    .guided-summary__label{
+      font-family:var(--ui-font);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.56);
+    }
+
+    .guided-summary__value{
+      font-family:var(--ui-font);
+      font-size:.95rem;
+      line-height:1.5;
+      color:var(--metal-accent-text);
+    }
+
+    .guided-summary__content{
+      display:grid;
+      gap:4px;
+      min-width:0;
+    }
+
+    .guided-summary__change{
+      min-width:auto;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font-family:var(--ui-font);
+      font-size:.72rem;
+      font-weight:700;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .guided-summary__change:hover,
+    .guided-summary__change:focus-visible{
+      background:rgba(255,255,255,.08);
+      outline:none;
+    }
+
+    .guided-summary__fields{
+      display:grid;
+      gap:10px;
+      margin-top:6px;
+    }
+
+    .guided-summary__contact{
+      display:grid;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .guided-summary__contact-options{
+      display:grid;
+      gap:8px;
+    }
+
+    .guided-summary__contact-option{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      border:1px solid var(--metal-choice-border);
+      border-radius:18px;
+      background:var(--metal-choice-bg);
+      color:var(--metal-accent-text);
+      font-family:var(--ui-font);
+      font-size:.92rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .guided-summary__contact-option:hover,
+    .guided-summary__contact-option:focus-within{
+      transform:translateY(-1px);
+      border-color:var(--metal-choice-hover-border);
+      background:var(--metal-choice-hover-bg);
+    }
+
+    .guided-summary__contact-option input{
+      width:18px;
+      height:18px;
+      margin:0;
+      accent-color:currentColor;
+      cursor:pointer;
+      flex:0 0 auto;
     }
 
     .guided-range{
@@ -1486,6 +1631,32 @@
       font-family:var(--ui-font);
       font-size:.82rem;
       color:rgba(255,255,255,.72);
+    }
+
+    .guided-range__skip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:10px 14px;
+      margin:4px auto 0;
+      border-radius:16px;
+      border:1px solid var(--metal-choice-border);
+      background:var(--metal-choice-bg);
+      color:var(--metal-accent-text);
+      font-family:var(--ui-font);
+      font-size:.9rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .guided-range__skip:hover,
+    .guided-range__skip:focus-visible{
+      transform:translateY(-1px);
+      border-color:var(--metal-choice-hover-border);
+      background:var(--metal-choice-hover-bg);
+      outline:none;
     }
 
     .guided-upload{
@@ -1546,6 +1717,11 @@
       gap:12px;
       flex-wrap:wrap;
       margin-top:0;
+      position:sticky;
+      bottom:0;
+      z-index:4;
+      padding:12px 0 4px;
+      background:linear-gradient(180deg, rgba(9,9,11,0), rgba(9,9,11,.92) 36%, rgba(9,9,11,.98));
     }
 
     .guided-form__footer .btn{
@@ -1988,13 +2164,19 @@
 
       .form-wrap{
         padding:10px;
+        overflow:visible;
       }
 
       .guided-form{
         min-height:calc(100svh - 20px);
+        max-height:calc(100svh - 20px);
         padding:16px 16px 14px;
         gap:12px;
         border-radius:22px;
+        overflow-y:auto;
+        overflow-x:hidden;
+        -webkit-overflow-scrolling:touch;
+        overscroll-behavior:contain;
       }
 
       .guided-form__intro{
@@ -2113,10 +2295,14 @@
               <input type="hidden" name="pave_coverage" id="quickStartPaveCoverage" />
               <input type="hidden" name="setting_design" id="quickStartSettingDesign" />
               <input type="hidden" name="ring_metal" id="quickStartRingMetal" />
+              <input type="hidden" name="ring_size" id="quickStartRingSize" />
               <input type="hidden" name="budget" id="quickStartBudget" />
               <input type="hidden" name="other_notes" id="quickStartNotes" />
               <input type="hidden" name="email" id="quickStartEmail" />
               <input type="hidden" name="phone" id="quickStartPhone" />
+              <input type="hidden" name="preferred_contact" id="quickStartPreferredContact" />
+              <input type="hidden" name="submission_type" id="quickStartSubmissionType" value="complete" />
+              <input type="file" name="reference_images" id="quickStartReferenceImages" class="guided-upload__input" accept="image/*" multiple />
               <p style="display:none;">
                 <label>Do not fill this in <input name="bot-field" /></label>
               </p>
@@ -2186,6 +2372,9 @@
       });
     })();
 
+    const quickStartParams = new URLSearchParams(window.location.search);
+    const shouldSkipQuickStartIntro = ["1", "true", "yes"].includes(String(quickStartParams.get("skipIntro") || "").toLowerCase());
+
     function trackCtaClick(el){
       if (!el || typeof gtag !== "function") return;
       const text = (el.textContent || "").trim();
@@ -2231,6 +2420,22 @@
       });
     }
 
+    function buildUkRingSizes(){
+      const sizes = [];
+      for (let code = 65; code <= 90; code += 1) {
+        const base = String.fromCharCode(code);
+        sizes.push(base);
+        sizes.push(`${base} 1/2`);
+      }
+      for (let plus = 1; plus <= 6; plus += 1) {
+        sizes.push(`Z+${plus}`);
+        sizes.push(`Z+${plus} 1/2`);
+      }
+      return sizes;
+    }
+
+    const ukRingSizes = buildUkRingSizes();
+
     preloadRingOverlayImages();
 
     ["primaryCtaTop","secondaryCtaTop","primaryCtaBottom","primaryCtaSticky","secondaryCtaSticky","fullFormLink","consultationLink"].forEach(id => {
@@ -2260,6 +2465,7 @@
       const progressPercentEl = document.getElementById("quickStartProgressPercent");
       const progressFillEl = document.getElementById("quickStartProgressFill");
       const locationField = document.getElementById("quickStartLocation");
+      const referenceImagesInput = document.getElementById("quickStartReferenceImages");
       const designFlowEl = document.querySelector(".design-flow");
 
       const hiddenFields = {
@@ -2273,10 +2479,13 @@
         pave_coverage: document.getElementById("quickStartPaveCoverage"),
         setting_design: document.getElementById("quickStartSettingDesign"),
         ring_metal: document.getElementById("quickStartRingMetal"),
+        ring_size: document.getElementById("quickStartRingSize"),
         budget: document.getElementById("quickStartBudget"),
         other_notes: document.getElementById("quickStartNotes"),
         email: document.getElementById("quickStartEmail"),
-        phone: document.getElementById("quickStartPhone")
+        phone: document.getElementById("quickStartPhone"),
+        preferred_contact: document.getElementById("quickStartPreferredContact"),
+        submission_type: document.getElementById("quickStartSubmissionType")
       };
 
       const currencyByCountryCode = {
@@ -2425,6 +2634,10 @@
           "This sets the overall scale for the trilogy ring. The side stones will be balanced around the centre choice.",
           "Choose an approximate size if you are not certain yet."
         ],
+        ring_size: [
+          "Ring size helps us judge the overall proportions properly and reduces guesswork later in the process.",
+          "Choose the closest UK size you know. If you are between sizes, the half-size options keep it more precise."
+        ],
         other_notes: [
           "Use this space for anything important that has not already come up in the form.",
           "If you have a screenshot, reference image, or inspiration drawing, attach it here so we can understand the look you have in mind more clearly."
@@ -2565,6 +2778,13 @@
           step: 0.1
         },
         {
+          key: "ring_size",
+          label: "What ring size do you need?",
+          support: "",
+          type: "range",
+          values: ukRingSizes
+        },
+        {
           key: "pave_band",
           label: "Would you like a pave band?",
           support: "",
@@ -2653,11 +2873,10 @@
           placeholder: "Setting style, reference links, screenshots, budget, or anything else you want us to know."
         },
         {
-          key: "phone",
-          label: "",
+          key: "email_capture",
+          label: "Where should we send your ring summary and quote?",
           support: "",
-          type: "tel",
-          placeholder: "Telephone number"
+          type: "email-capture"
         }
       ]);
 
@@ -2680,16 +2899,21 @@
         pave_coverage: "",
         setting_design: "",
         ring_metal: "",
+        ring_size: "",
         budget: "",
         other_notes: "",
         email: "",
-        phone: ""
+        phone: "",
+        preferred_contact: ""
       };
 
       const otherDetailValues = {};
       let stepIndex = 0;
       let introActive = true;
+      let summaryScreenActive = false;
       let isSubmitting = false;
+      let hasSubmittedLead = false;
+      let hasSentAbandonmentLead = false;
       let activeRingImage = "plain";
       let imageTransformTimer = null;
 
@@ -2783,8 +3007,8 @@
           support: "rgba(255,226,233,.94)",
           choiceBg: "rgba(255,210,222,.06)",
           choiceBorder: "rgba(232,146,175,.24)",
-          choiceHoverBg: "rgba(255,210,222,.1)",
-          choiceHoverBorder: "rgba(255,222,230,.42)",
+          choiceHoverBg: "rgba(243,246,250,.1)",
+          choiceHoverBorder: "rgba(235,239,245,.42)",
           inputBg: "rgba(67,28,38,.54)",
           inputBorder: "rgba(232,146,175,.22)",
           inputFocusBorder: "rgba(255,222,230,.5)",
@@ -2904,6 +3128,7 @@
         }
         Object.entries(hiddenFields).forEach(([key, field]) => {
           if (key === "stone_shape") return;
+          if (key === "submission_type") return;
           if (formValues.multi_stone_style === "Toi et moi" && ["stone_type", "gemstone_type"].includes(key)) return;
           if (!field) return;
           if (key === "other_notes") {
@@ -2993,6 +3218,115 @@
         }).format(numericValue);
       }
 
+      function isValidEmail(value){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
+      }
+
+      function isValidPhone(value){
+        const digits = String(value || "").replace(/\D/g, "");
+        return digits.length >= 7;
+      }
+
+      function hasMeaningfulProgress(){
+        return Boolean(
+          formValues.ring_metal ||
+          formValues.multi_stone_style ||
+          formValues.stone_shape ||
+          formValues.other_notes ||
+          formValues.email ||
+          formValues.phone
+        );
+      }
+
+      function sendAbandonmentLead(){
+        if (hasSubmittedLead || hasSentAbandonmentLead || !form) return;
+        const email = String(formValues.email || "").trim();
+        const phone = String(formValues.phone || "").trim();
+        if (!hasMeaningfulProgress()) return;
+        if (!isValidEmail(email) && !isValidPhone(phone)) return;
+
+        syncHiddenFields();
+        hasSentAbandonmentLead = true;
+        if (hiddenFields.submission_type) hiddenFields.submission_type.value = "abandoned";
+
+        const payload = new URLSearchParams();
+        Array.from(form.elements).forEach((element) => {
+          if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement || element instanceof HTMLSelectElement)) return;
+          if (!element.name || element.disabled) return;
+          if (element.type === "file") return;
+          if ((element.type === "checkbox" || element.type === "radio") && !element.checked) return;
+          payload.append(element.name, element.value || "");
+        });
+
+        const body = payload.toString();
+        const beaconSent = typeof navigator.sendBeacon === "function"
+          ? navigator.sendBeacon(window.location.pathname, new Blob([body], { type: "application/x-www-form-urlencoded;charset=UTF-8" }))
+          : false;
+
+        if (!beaconSent) {
+          fetch(window.location.pathname, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+            body,
+            keepalive: true
+          }).catch(() => {});
+        }
+      }
+
+      function buildSelectionSummary(){
+        const items = [];
+        const styleDetailEditKey = formValues.multi_stone_style === "Halo"
+          ? "halo_variant"
+          : formValues.multi_stone_style === "Trilogy"
+            ? "trilogy_style_detail"
+            : "setting_design";
+        const stoneSizeEditKey = formValues.multi_stone_style === "Toi et moi"
+          ? "toi_et_moi_sizes"
+          : formValues.multi_stone_style === "Trilogy"
+            ? "trilogy_centre_size"
+            : formValues.multi_stone_style === "Halo"
+              ? "halo_centre_size"
+              : "stone_size";
+        const pushItem = (label, value, editStepKey) => {
+          const cleaned = String(value || "").trim();
+          if (!cleaned) return;
+          items.push({ label, value: cleaned, editStepKey });
+        };
+
+        pushItem("Metal", formValues.ring_metal, "ring_metal");
+        pushItem("Style", formValues.multi_stone_style, "multi_stone_style");
+
+        if (formValues.multi_stone_style === "Toi et moi") {
+          pushItem("Stone shapes", [
+            formValues.toi_et_moi_first_shape ? `Stone 1: ${formValues.toi_et_moi_first_shape}` : "",
+            formValues.toi_et_moi_second_shape ? `Stone 2: ${formValues.toi_et_moi_second_shape}` : ""
+          ].filter(Boolean).join(" | "), "toi_et_moi_first_shape");
+          pushItem("Stone types", [
+            formValues.toi_et_moi_first_stone_type ? `Stone 1: ${formValues.toi_et_moi_first_stone_type}${formValues.toi_et_moi_first_gemstone ? ` (${formValues.toi_et_moi_first_gemstone})` : ""}` : "",
+            formValues.toi_et_moi_second_stone_type ? `Stone 2: ${formValues.toi_et_moi_second_stone_type}${formValues.toi_et_moi_second_gemstone ? ` (${formValues.toi_et_moi_second_gemstone})` : ""}` : ""
+          ].filter(Boolean).join(" | "), "toi_et_moi_first_stone_type");
+        } else if (formValues.multi_stone_style === "Trilogy") {
+          pushItem("Stone shapes", [formValues.trilogy_centre_shape, formValues.trilogy_side_shape].filter(Boolean).join(" / "), "trilogy_centre_shape");
+          pushItem("Stone type", formValues.stone_type, "stone_type");
+          pushItem("Gemstone", formValues.gemstone_type, "gemstone_type");
+        } else {
+          pushItem("Stone shape", formValues.stone_shape, formValues.multi_stone_style === "Halo" ? "halo_style_detail" : "stone_shape");
+          pushItem("Stone type", formValues.stone_type, "stone_type");
+          pushItem("Gemstone", formValues.gemstone_type, "gemstone_type");
+        }
+
+        pushItem("Style detail", formValues.style_detail, styleDetailEditKey);
+        pushItem("Stone size", formValues.stone_size, stoneSizeEditKey);
+        pushItem("Ring size", formValues.ring_size, "ring_size");
+        pushItem("Pave band", formValues.pave_band, "pave_band");
+        pushItem("Pave coverage", formValues.pave_coverage, "pave_coverage");
+        pushItem("Setting design", formValues.setting_design, "setting_design");
+        pushItem("Budget", formValues.budget ? formatBudgetValue(formValues.budget) : "", "budget");
+        pushItem("Notes", buildCombinedOtherNotes(), "other_notes");
+
+        return items;
+      }
+
       function shouldShowStep(step){
         if (!step) return false;
         if (isOtherDetailStep(step)) {
@@ -3031,14 +3365,32 @@
       function getVisibleStepIndexes(){
         const visibleIndexes = [];
         steps.forEach((step, index) => {
-          if (shouldShowStep(step)) visibleIndexes.push(index);
+          if (shouldShowStep(step) && step.key !== "email_capture") visibleIndexes.push(index);
         });
         return visibleIndexes;
       }
 
+      function jumpToFirstVisibleStep(){
+        const visibleIndexes = getVisibleStepIndexes();
+        stepIndex = visibleIndexes.length ? visibleIndexes[0] : 0;
+        summaryScreenActive = false;
+        renderStep();
+      }
+
+      function jumpToStep(stepKey){
+        const targetIndex = steps.findIndex((step) => step.key === stepKey && shouldShowStep(step));
+        if (targetIndex === -1) {
+          jumpToFirstVisibleStep();
+          return;
+        }
+        stepIndex = targetIndex;
+        summaryScreenActive = false;
+        renderStep();
+      }
+
       function updateProgress(){
         if (!progressEl || !progressLabelEl || !progressPercentEl || !progressFillEl) return;
-        if (introActive) {
+        if (introActive || summaryScreenActive) {
           progressEl.hidden = true;
           progressLabelEl.textContent = "Step 1 of 1";
           progressPercentEl.textContent = "0%";
@@ -3048,7 +3400,9 @@
 
         const visibleIndexes = getVisibleStepIndexes();
         const totalSteps = Math.max(visibleIndexes.length, 1);
-        const currentStepNumber = Math.max(visibleIndexes.indexOf(stepIndex) + 1, 1);
+        const currentStepNumber = steps[stepIndex]?.key === "email_capture"
+          ? totalSteps
+          : Math.max(visibleIndexes.indexOf(stepIndex) + 1, 1);
         const percent = Math.round((currentStepNumber / totalSteps) * 100);
 
         progressEl.hidden = false;
@@ -3067,7 +3421,7 @@
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Round") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitaireRoundPlainImage(step){
@@ -3078,49 +3432,49 @@
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Oval") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitaireEmeraldImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Emerald") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitaireRadiantImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Radiant") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitairePrincessImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Princess") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitaireCushionImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Cushion") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitairePearImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Pear") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowSolitaireMarquiseImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Solitaire") return false;
         if (formValues.stone_shape !== "Marquise") return false;
-        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_shape", "stone_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowTrilogyImage(step){
@@ -3130,25 +3484,25 @@
       function shouldShowTrilogyLargeCentreImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Trilogy") return false;
-        return ["trilogy_style_detail", "trilogy_centre_shape", "trilogy_side_shape", "trilogy_centre_size", "pave_band", "pave_coverage", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["trilogy_style_detail", "trilogy_centre_shape", "trilogy_side_shape", "trilogy_centre_size", "ring_size", "pave_band", "pave_coverage", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowHaloImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Halo") return false;
-        return ["halo_variant", "halo_style_detail", "halo_centre_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["halo_variant", "halo_style_detail", "halo_centre_size", "pave_band", "pave_coverage", "setting_design", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowToiEtMoiImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Toi et moi") return false;
-        return ["toi_et_moi_first_shape", "toi_et_moi_second_shape", "toi_et_moi_sizes", "toi_et_moi_first_stone_type", "toi_et_moi_first_gemstone", "toi_et_moi_second_stone_type", "toi_et_moi_second_gemstone", "pave_band", "pave_coverage", "other_notes", "phone"].includes(step.key);
+        return ["toi_et_moi_first_shape", "toi_et_moi_second_shape", "toi_et_moi_sizes", "ring_size", "toi_et_moi_first_stone_type", "toi_et_moi_first_gemstone", "toi_et_moi_second_stone_type", "toi_et_moi_second_gemstone", "pave_band", "pave_coverage", "other_notes", "email_capture"].includes(step.key);
       }
 
       function shouldShowClusterImage(step){
         if (!step) return false;
         if (formValues.multi_stone_style !== "Cluster") return false;
-        return ["stone_size", "pave_band", "pave_coverage", "stone_type", "gemstone_type", "other_notes", "phone"].includes(step.key);
+        return ["stone_size", "ring_size", "pave_band", "pave_coverage", "stone_type", "gemstone_type", "other_notes", "email_capture"].includes(step.key);
       }
 
       function getRingImageState(step){
@@ -3292,6 +3646,19 @@
         return "";
       }
 
+      function normalizeChoiceValue(value){
+        return String(value || "")
+          .trim()
+          .toLowerCase()
+          .replace(/\s+/g, " ")
+          .replace(/\bdiamonds\b/g, "diamond")
+          .replace(/\bgemstones\b/g, "gemstone");
+      }
+
+      function isSelectedChoice(step, option){
+        return normalizeChoiceValue(getStepValue(step)) === normalizeChoiceValue(option);
+      }
+
       function renderGuide(step){
         if (!guideEl || !guideBodyEl) return;
         if (!step || introActive) {
@@ -3346,7 +3713,7 @@
           const button = document.createElement("button");
           button.type = "button";
           button.className = "guided-choice";
-          if (getStepValue(step) === option) {
+          if (isSelectedChoice(step, option)) {
             button.classList.add("is-selected");
           }
           const label = document.createElement("span");
@@ -3540,6 +3907,10 @@
         return `${display} ct`;
       }
 
+      function formatRingSize(value){
+        return value ? `UK ${value}` : "";
+      }
+
       function renderRangeStep(step){
         const wrap = document.createElement("div");
         wrap.className = "guided-range";
@@ -3552,27 +3923,47 @@
         range.type = "range";
         range.className = "guided-range__input";
         const isBudgetStep = step.key === "budget";
+        const isDiscreteValueStep = Array.isArray(step.values) && step.values.length > 0;
         const currency = getCurrencyConfig();
-        range.min = String(isBudgetStep ? currency.min : (step.min ?? 0));
-        range.max = String(isBudgetStep ? currency.max : (step.max ?? 8));
-        range.step = String(isBudgetStep ? currency.step : (step.step ?? 0.1));
+        range.min = String(isDiscreteValueStep ? 0 : (isBudgetStep ? currency.min : (step.min ?? 0)));
+        range.max = String(isDiscreteValueStep ? step.values.length - 1 : (isBudgetStep ? currency.max : (step.max ?? 8)));
+        range.step = String(isDiscreteValueStep ? 1 : (isBudgetStep ? currency.step : (step.step ?? 0.1)));
 
-        const defaultValue = isBudgetStep ? currency.min : Number(step.min ?? 0);
-        const initialValue = formValues[step.key] !== ""
-          ? Number(formValues[step.key])
-          : defaultValue;
+        const defaultValue = isDiscreteValueStep
+          ? Math.max(Math.floor(step.values.length / 2), 0)
+          : isBudgetStep
+            ? currency.min
+            : Number(step.min ?? 0);
+        const initialValue = isDiscreteValueStep
+          ? formValues[step.key] !== ""
+            ? Math.max(step.values.indexOf(formValues[step.key]), 0)
+            : defaultValue
+          : formValues[step.key] !== ""
+            ? Number(formValues[step.key])
+            : defaultValue;
         range.value = String(initialValue);
 
         const scale = document.createElement("div");
         scale.className = "guided-range__scale";
-        scale.innerHTML = isBudgetStep
-          ? `<span>${formatBudgetValue(range.min)}</span><span>${formatBudgetValue(range.max)}+</span>`
-          : "<span>0 ct</span><span>8+ ct</span>";
+        if (isDiscreteValueStep) {
+          scale.innerHTML = "";
+        } else {
+          scale.innerHTML = isBudgetStep
+            ? `<span>${formatBudgetValue(range.min)}</span><span>${formatBudgetValue(range.max)}+</span>`
+            : "<span>0 ct</span><span>8+ ct</span>";
+        }
 
         const syncValue = () => {
-          formValues[step.key] = range.value;
+          const discreteValue = isDiscreteValueStep
+            ? step.values[Math.min(Math.max(Number(range.value), 0), step.values.length - 1)]
+            : "";
+          formValues[step.key] = isDiscreteValueStep ? discreteValue : range.value;
           syncHiddenFields();
-          valueLabel.textContent = isBudgetStep ? formatBudgetValue(range.value) : formatStoneSize(range.value);
+          if (isDiscreteValueStep) {
+            valueLabel.textContent = formatRingSize(discreteValue);
+          } else {
+            valueLabel.textContent = isBudgetStep ? formatBudgetValue(range.value) : formatStoneSize(range.value);
+          }
           setStatus("");
         };
 
@@ -3582,6 +3973,21 @@
         wrap.appendChild(valueLabel);
         wrap.appendChild(range);
         wrap.appendChild(scale);
+
+        if (step.key === "ring_size") {
+          const unknownButton = document.createElement("button");
+          unknownButton.type = "button";
+          unknownButton.className = "guided-range__skip";
+          unknownButton.textContent = "Don't know";
+          unknownButton.addEventListener("click", () => {
+            formValues[step.key] = "Don't know yet";
+            syncHiddenFields();
+            valueLabel.textContent = "Don't know yet";
+            setStatus("");
+          });
+          wrap.appendChild(unknownButton);
+        }
+
         if (nextBtn && nextBtn.parentElement !== wrap) {
           wrap.appendChild(nextBtn.parentElement);
         }
@@ -3660,9 +4066,20 @@
         nextBtn.textContent = "Next";
       }
 
-      function buildEmailPopup(){
+      function buildEmailPopup(onClose){
         const popup = document.createElement("div");
         popup.className = "guided-popup";
+
+        const closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.className = "guided-popup__close";
+        closeButton.setAttribute("aria-label", "Close");
+        closeButton.innerHTML = "x";
+        closeButton.textContent = "×";
+        closeButton.addEventListener("click", () => {
+          if (typeof onClose === "function") onClose();
+        });
+        closeButton.textContent = "x";
 
         const eyebrow = document.createElement("p");
         eyebrow.className = "guided-popup__eyebrow";
@@ -3679,8 +4096,8 @@
         const field = document.createElement("input");
         field.type = "email";
         field.className = "guided-input";
-        field.placeholder = "you@example.com";
-        field.value = formValues.email || "";
+        field.placeholder = "";
+        field.value = "";
         field.autocomplete = "email";
         field.inputMode = "email";
 
@@ -3690,12 +4107,179 @@
           setStatus("");
         });
 
+        popup.appendChild(closeButton);
         popup.appendChild(eyebrow);
         popup.appendChild(title);
         popup.appendChild(copy);
         popup.appendChild(field);
 
         return { popup, field };
+      }
+
+      function renderEmailCaptureStep(){
+        const stage = document.createElement("div");
+        stage.className = "guided-popup-stage";
+
+        const base = document.createElement("div");
+        base.className = "guided-popup-stage__base";
+
+        const placeholderField = document.createElement("input");
+        placeholderField.type = "email";
+        placeholderField.className = "guided-input";
+        placeholderField.placeholder = "";
+        placeholderField.value = "";
+        placeholderField.autocomplete = "email";
+        placeholderField.inputMode = "email";
+        placeholderField.disabled = true;
+        base.appendChild(placeholderField);
+
+        const scrim = document.createElement("div");
+        scrim.className = "guided-popup-stage__scrim";
+
+        const { popup, field: emailField } = buildEmailPopup(() => {
+          summaryScreenActive = true;
+          renderSummaryScreen();
+        });
+
+        stage.appendChild(base);
+        stage.appendChild(scrim);
+        stage.appendChild(popup);
+        bodyEl.appendChild(stage);
+
+        nextBtn.hidden = false;
+        nextBtn.textContent = "Next";
+        window.setTimeout(() => {
+          popup.classList.add("is-visible");
+          emailField.focus();
+        }, 900);
+      }
+
+      function renderSummaryScreen(){
+        if (!questionEl || !supportEl || !introEl || !bodyEl || !noteEl || !nextBtn) return;
+        updateProgress();
+        designFlowEl?.classList.add("design-flow--steps");
+        shellEl.classList.remove("guided-form--intro", "guided-form--email-popup");
+        questionEl.textContent = "Review your ring details";
+        supportEl.textContent = "Check the summary below and confirm the best contact details for your quote.";
+        supportEl.classList.remove("guided-form__support--phone");
+        noteEl.textContent = "";
+        bodyEl.innerHTML = "";
+        renderGuide(null);
+        if (backBtn) backBtn.hidden = false;
+
+        const summary = document.createElement("div");
+        summary.className = "guided-summary";
+
+        const list = document.createElement("div");
+        list.className = "guided-summary__list";
+        buildSelectionSummary().forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "guided-summary__item";
+
+          const content = document.createElement("div");
+          content.className = "guided-summary__content";
+
+          const label = document.createElement("div");
+          label.className = "guided-summary__label";
+          label.textContent = item.label;
+
+          const value = document.createElement("div");
+          value.className = "guided-summary__value";
+          value.textContent = item.value;
+
+          content.appendChild(label);
+          content.appendChild(value);
+          row.appendChild(content);
+
+          if (item.editStepKey) {
+            const changeButton = document.createElement("button");
+            changeButton.type = "button";
+            changeButton.className = "guided-summary__change";
+            changeButton.textContent = "Change";
+            changeButton.addEventListener("click", () => {
+              jumpToStep(item.editStepKey);
+            });
+            row.appendChild(changeButton);
+          }
+
+          list.appendChild(row);
+        });
+
+        const fields = document.createElement("div");
+        fields.className = "guided-summary__fields";
+
+        const emailField = document.createElement("input");
+        emailField.type = "email";
+        emailField.className = "guided-input";
+        emailField.placeholder = "Email address";
+        emailField.value = formValues.email || "";
+        emailField.autocomplete = "email";
+        emailField.inputMode = "email";
+        emailField.addEventListener("input", () => {
+          formValues.email = emailField.value.trim();
+          syncHiddenFields();
+          setStatus("");
+        });
+
+        const phoneField = document.createElement("input");
+        phoneField.type = "tel";
+        phoneField.className = "guided-input";
+        phoneField.placeholder = "Contact number";
+        phoneField.value = formValues.phone || "";
+        phoneField.autocomplete = "tel";
+        phoneField.inputMode = "tel";
+        phoneField.addEventListener("input", () => {
+          formValues.phone = phoneField.value.trim();
+          syncHiddenFields();
+          setStatus("");
+        });
+
+        const contactWrap = document.createElement("div");
+        contactWrap.className = "guided-summary__contact";
+
+        const contactLabel = document.createElement("div");
+        contactLabel.className = "guided-summary__label";
+        contactLabel.textContent = "Preferred method of contact";
+
+        const contactOptions = document.createElement("div");
+        contactOptions.className = "guided-summary__contact-options";
+
+        ["Email", "WhatsApp", "Phone call"].forEach((option) => {
+          const optionLabel = document.createElement("label");
+          optionLabel.className = "guided-summary__contact-option";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "quickStartPreferredContactChoice";
+          input.value = option;
+          input.checked = formValues.preferred_contact === option;
+          input.addEventListener("change", () => {
+            formValues.preferred_contact = option;
+            syncHiddenFields();
+            setStatus("");
+          });
+
+          const text = document.createElement("span");
+          text.textContent = option;
+
+          optionLabel.appendChild(input);
+          optionLabel.appendChild(text);
+          contactOptions.appendChild(optionLabel);
+        });
+
+        fields.appendChild(emailField);
+        fields.appendChild(phoneField);
+        contactWrap.appendChild(contactLabel);
+        contactWrap.appendChild(contactOptions);
+        fields.appendChild(contactWrap);
+        summary.appendChild(list);
+        summary.appendChild(fields);
+        bodyEl.appendChild(summary);
+
+        nextBtn.hidden = false;
+        nextBtn.disabled = false;
+        nextBtn.textContent = "Submit";
+        requestAnimationFrame(() => phoneField.focus());
       }
 
       function renderInputStep(step){
@@ -3717,42 +4301,8 @@
           setStatus("");
         });
 
-        if (step.type === "tel") {
-          const stage = document.createElement("div");
-          stage.className = "guided-popup-stage";
-
-          const base = document.createElement("div");
-          base.className = "guided-popup-stage__base";
-          base.appendChild(field);
-
-          const skipButton = document.createElement("button");
-          skipButton.type = "button";
-          skipButton.className = "guided-skip";
-          skipButton.textContent = "No thanks";
-          skipButton.addEventListener("click", () => {
-            formValues.phone = "";
-            formValues.email = "";
-            syncHiddenFields();
-            submitQuickStart();
-          });
-          base.appendChild(skipButton);
-
-          const scrim = document.createElement("div");
-          scrim.className = "guided-popup-stage__scrim";
-
-          const { popup, field: emailField } = buildEmailPopup();
-
-          stage.appendChild(base);
-          stage.appendChild(scrim);
-          stage.appendChild(popup);
-          bodyEl.appendChild(stage);
-
-          nextBtn.hidden = false;
-          nextBtn.textContent = "Get my quote";
-          window.setTimeout(() => {
-            popup.classList.add("is-visible");
-            emailField.focus();
-          }, 900);
+        if (step.type === "email-capture") {
+          renderEmailCaptureStep();
           return;
         }
 
@@ -3762,14 +4312,6 @@
           const uploadWrap = document.createElement("div");
           uploadWrap.className = "guided-upload";
 
-          const uploadInput = document.createElement("input");
-          uploadInput.type = "file";
-          uploadInput.name = "reference_images";
-          uploadInput.id = "quickStartReferenceImages";
-          uploadInput.className = "guided-upload__input";
-          uploadInput.accept = "image/*";
-          uploadInput.multiple = true;
-
           const uploadButton = document.createElement("label");
           uploadButton.className = "guided-upload__button";
           uploadButton.htmlFor = "quickStartReferenceImages";
@@ -3777,19 +4319,25 @@
 
           const uploadMeta = document.createElement("p");
           uploadMeta.className = "guided-upload__meta";
-          uploadMeta.textContent = "No images attached";
-
-          uploadInput.addEventListener("change", () => {
-            const count = uploadInput.files ? uploadInput.files.length : 0;
+          const updateUploadMeta = () => {
+            const count = referenceImagesInput?.files ? referenceImagesInput.files.length : 0;
             uploadMeta.textContent = count === 0
               ? "No images attached"
               : count === 1
                 ? "1 image attached"
                 : `${count} images attached`;
             setStatus("");
-          });
+          };
 
-          uploadWrap.appendChild(uploadInput);
+          updateUploadMeta();
+          referenceImagesInput?.addEventListener("change", updateUploadMeta, { once: true });
+          if (referenceImagesInput) {
+            referenceImagesInput.onchange = updateUploadMeta;
+          }
+
+          if (referenceImagesInput) {
+            uploadWrap.appendChild(referenceImagesInput);
+          }
           uploadWrap.appendChild(uploadButton);
           uploadWrap.appendChild(uploadMeta);
           bodyEl.appendChild(uploadWrap);
@@ -3831,6 +4379,10 @@
           renderIntroScreen();
           return;
         }
+        if (summaryScreenActive) {
+          renderSummaryScreen();
+          return;
+        }
         while (stepIndex < steps.length && !shouldShowStep(steps[stepIndex])) {
           stepIndex += 1;
         }
@@ -3839,13 +4391,14 @@
         updateProgress();
         const hasSelectedMetal = Boolean(formValues.ring_metal);
         const nextRingImage = resolveDisplayedRingImage(step);
+        const isEmailCaptureStep = step.type === "email-capture";
 
         designFlowEl?.classList.add("design-flow--steps");
         shellEl.classList.remove("guided-form--intro");
-        questionEl.textContent = getStepLabel(step);
-        supportEl.textContent = step.support;
+        questionEl.textContent = isEmailCaptureStep ? "" : getStepLabel(step);
+        supportEl.textContent = isEmailCaptureStep ? "" : step.support;
         shellEl.classList.toggle("guided-form--metal", hasSelectedMetal);
-        shellEl.classList.toggle("guided-form--email-popup", step.key === "phone");
+        shellEl.classList.toggle("guided-form--email-popup", isEmailCaptureStep);
         shellEl.classList.toggle("guided-form--style-preview", step.key === "multi_stone_style");
         shellEl.classList.toggle("guided-form--cathedral-overlay", nextRingImage === "cathedral");
         shellEl.classList.toggle("guided-form--solitaire-round-image", nextRingImage === "solitaire-round");
@@ -3880,7 +4433,7 @@
         } else {
           clearMetalTheme();
         }
-        supportEl.classList.toggle("guided-form__support--phone", step.key === "phone");
+        supportEl.classList.toggle("guided-form__support--phone", isEmailCaptureStep);
         noteEl.textContent = "";
         bodyEl.innerHTML = "";
         if (nextBtn && nextBtn.parentElement && nextBtn.parentElement.classList.contains("guided-form__footer")) {
@@ -3905,6 +4458,8 @@
       function submitQuickStart(){
         if (isSubmitting) return;
         isSubmitting = true;
+        hasSubmittedLead = true;
+        if (hiddenFields.submission_type) hiddenFields.submission_type.value = "complete";
         syncHiddenFields();
         setStatus("");
         nextBtn.disabled = true;
@@ -3915,7 +4470,28 @@
       nextBtn.addEventListener("click", () => {
         if (introActive) {
           introActive = false;
+          summaryScreenActive = false;
           renderStep();
+          return;
+        }
+
+        if (summaryScreenActive) {
+          const email = String(formValues.email || "").trim();
+          const phone = String(formValues.phone || "").trim();
+          const preferredContact = String(formValues.preferred_contact || "").trim();
+          if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setStatus("Please add a valid email address.");
+            return;
+          }
+          if (!phone) {
+            setStatus("Please add a contact number.");
+            return;
+          }
+          if (!preferredContact) {
+            setStatus("Please choose a preferred contact method.");
+            return;
+          }
+          submitQuickStart();
           return;
         }
 
@@ -3955,19 +4531,19 @@
           return;
         }
 
-        if (step.type === "tel") {
-          const email = String(formValues.email || "").trim();
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setStatus("Please add a valid email address.");
-            return;
-          }
-
-          submitQuickStart();
+        if (step.type === "email-capture") {
+          summaryScreenActive = true;
+          renderSummaryScreen();
         }
       });
 
       backBtn?.addEventListener("click", () => {
         if (introActive) return;
+        if (summaryScreenActive) {
+          summaryScreenActive = false;
+          renderStep();
+          return;
+        }
         if (stepIndex <= 0) {
           introActive = true;
           renderIntroScreen();
@@ -4015,17 +4591,53 @@
 
       form.addEventListener("submit", (event) => {
         const email = String(formValues.email || "").trim();
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const phone = String(formValues.phone || "").trim();
+        const preferredContact = String(formValues.preferred_contact || "").trim();
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           event.preventDefault();
           isSubmitting = false;
+          hasSubmittedLead = false;
           nextBtn.disabled = false;
           nextBtn.textContent = "Submit";
           setStatus("Please add a valid email address.");
+          return;
+        }
+        if (!phone) {
+          event.preventDefault();
+          isSubmitting = false;
+          hasSubmittedLead = false;
+          nextBtn.disabled = false;
+          nextBtn.textContent = "Submit";
+          setStatus("Please add a contact number.");
+          return;
+        }
+        if (!preferredContact) {
+          event.preventDefault();
+          isSubmitting = false;
+          hasSubmittedLead = false;
+          nextBtn.disabled = false;
+          nextBtn.textContent = "Submit";
+          setStatus("Please choose a preferred contact method.");
         }
       });
 
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          sendAbandonmentLead();
+        }
+      });
+
+      window.addEventListener("pagehide", () => {
+        sendAbandonmentLead();
+      });
+
       syncHiddenFields();
-      renderIntroScreen();
+      if (shouldSkipQuickStartIntro) {
+        introActive = false;
+        renderStep();
+      } else {
+        renderIntroScreen();
+      }
     })();
 
     (function handleFaqToggle(){
