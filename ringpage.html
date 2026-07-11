@@ -2209,6 +2209,10 @@
         padding:8px 4px 4px;
       }
 
+      .guided-form--step-one .guided-form__intro{
+        padding-bottom:0;
+      }
+
       .guided-form__question{
         font-size:clamp(1.45rem, 6.8vw, 1.8rem);
         line-height:1.24;
@@ -2220,19 +2224,28 @@
         font-size:.95rem;
       }
 
+      .guided-form--step-one .guided-form__support{
+        display:none;
+      }
+
       .guided-form__body{
-        height:clamp(176px, 22svh, 210px);
-        min-height:clamp(176px, 22svh, 210px);
+        height:clamp(146px, 18svh, 172px);
+        min-height:clamp(146px, 18svh, 172px);
         padding-bottom:0;
         align-content:start;
+      }
+
+      .guided-form--step-one .guided-form__body{
+        height:auto;
+        min-height:0;
       }
 
       .guided-form__preview{
         display:block;
         width:100%;
         min-height:0;
-        height:clamp(260px, 31svh, 300px);
-        margin:0;
+        height:clamp(220px, 25svh, 250px);
+        margin:-2px 0 0;
         border-radius:0;
         background:none;
         border:0;
@@ -2249,7 +2262,7 @@
         position:absolute;
         inset:0;
         background-image:var(--mobile-preview-image, none);
-        background-position:center 155%;
+        background-position:center 165%;
         background-size:auto 170%;
         background-repeat:no-repeat;
         filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
@@ -2260,7 +2273,7 @@
         max-height:none;
         overflow-y:visible;
         width:100%;
-        margin:-2px 0 2px;
+        margin:-14px 0 0;
       }
 
       .guided-choice-list,
@@ -2355,7 +2368,7 @@
       .guided-form__footer{
         position:static;
         gap:10px;
-        margin-top:0;
+        margin-top:-4px;
         padding:0;
         background:none;
       }
@@ -4581,7 +4594,8 @@
         if (nextBtn && nextBtn.parentElement && nextBtn.parentElement.classList.contains("guided-form__footer")) {
           shellEl.appendChild(nextBtn.parentElement);
         }
-        if (backBtn) backBtn.hidden = false;
+        shellEl.classList.toggle("guided-form--step-one", stepIndex === 0);
+        if (backBtn) backBtn.hidden = stepIndex === 0;
         nextBtn.hidden = false;
         nextBtn.disabled = false;
         if (step.type === "choice") {
