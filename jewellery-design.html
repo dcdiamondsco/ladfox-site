@@ -895,6 +895,7 @@
         <h2 id="start-heading">Let&rsquo;s design your jewellery</h2>
         <p class="sub">We&rsquo;ll send a complimentary sketch</p>
         <p class="micro">Most people start by browsing ready made jewellery. A beautifully bespoke piece is often a similar price, if not less, when it is designed properly from the start.</p>
+        <p class="micro"><a href="ring-gallery.html">Prefer to start from previous work? View the ring gallery.</a></p>
       </div>
     </section>
 
@@ -906,6 +907,7 @@
               <input type="hidden" name="form-name" value="jewellery-design-quick-start" />
               <input type="hidden" name="location" id="quickStartLocation" value="Unknown" />
               <input type="hidden" name="jewellery_type" id="quickStartJewelleryType" />
+              <input type="hidden" name="band_wearer" id="quickStartBandWearer" />
               <input type="hidden" name="necklace_type" id="quickStartNecklaceType" />
               <input type="hidden" name="stone_type" id="quickStartStoneType" />
               <input type="hidden" name="stone_shape" id="quickStartStoneShape" />
@@ -1073,6 +1075,7 @@
 
       const hiddenFields = {
         jewellery_type: document.getElementById("quickStartJewelleryType"),
+        band_wearer: document.getElementById("quickStartBandWearer"),
         necklace_type: document.getElementById("quickStartNecklaceType"),
         stone_type: document.getElementById("quickStartStoneType"),
         stone_shape: document.getElementById("quickStartStoneShape"),
@@ -1088,7 +1091,7 @@
           label: "What type of jewellery?",
           support: "Choose the kind of piece first and we will build the design around it.",
           type: "choice",
-          options: ["Ring", "Bracelet", "Necklace", "Pendant", "Earrings", "Not sure yet"]
+          options: ["Engagement ring", "Wedding band", "Bracelet", "Necklace", "Pendant", "Earrings", "Not sure yet"]
         },
         {
           key: "stone_type",
@@ -1142,8 +1145,17 @@
         options: ["Tennis necklace", "Pendant necklace", "Station necklace", "Choker", "Not sure yet"]
       };
 
+      const bandWearerStep = {
+        key: "band_wearer",
+        label: "Mens or Womens?",
+        support: "This helps set the proportions and overall direction properly from the start.",
+        type: "choice",
+        options: ["Mens", "Womens", "Unisex", "Not sure yet"]
+      };
+
       const formValues = {
         jewellery_type: "",
+        band_wearer: "",
         necklace_type: "",
         stone_type: "",
         stone_shape: "",
@@ -1157,6 +1169,16 @@
       let isSubmitting = false;
 
       function getSteps(){
+        if (formValues.jewellery_type === "Wedding band") {
+          return [
+            baseSteps[0],
+            bandWearerStep,
+            baseSteps[4],
+            baseSteps[5],
+            baseSteps[6]
+          ];
+        }
+
         const steps = [...baseSteps];
         if (formValues.jewellery_type === "Necklace") {
           steps.splice(1, 0, necklaceTypeStep);
@@ -1185,9 +1207,23 @@
           button.className = "guided-choice";
           button.textContent = option;
           button.addEventListener("click", () => {
+            if (step.key === "jewellery_type" && option === "Engagement ring") {
+              const currentParams = new URLSearchParams(window.location.search);
+              const targetUrl = new URL("ringpage.html?skipIntro=1", window.location.href);
+              currentParams.forEach((value, key) => {
+                if (!targetUrl.searchParams.has(key)) {
+                  targetUrl.searchParams.set(key, value);
+                }
+              });
+              window.location.assign(targetUrl.toString());
+              return;
+            }
             formValues[step.key] = option;
             if (step.key === "jewellery_type" && option !== "Necklace") {
               formValues.necklace_type = "";
+            }
+            if (step.key === "jewellery_type" && option !== "Wedding band") {
+              formValues.band_wearer = "";
             }
             syncHiddenFields();
             setStatus("");

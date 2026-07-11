@@ -1,0 +1,269 @@
+:root{
+  --showcase-glow:rgba(243,237,228,.12);
+}
+
+.catalog-intro{
+  display:grid;
+  gap:14px;
+  margin-bottom:28px;
+  text-align:center;
+}
+
+.catalog-intro h1{
+  font-size:clamp(2.4rem, 6vw, 4.8rem);
+}
+
+.catalog-intro p{
+  width:min(760px, 100%);
+  margin:0 auto;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.catalog-intro--compact{
+  margin-bottom:24px;
+}
+
+.catalog-intro-actions{
+  display:flex;
+  justify-content:center;
+}
+
+.catalog-intro-actions--bottom{
+  margin-top:24px;
+}
+
+.catalog-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
+}
+
+.catalog-card{
+  overflow:hidden;
+  display:grid;
+}
+
+.catalog-card .media-stage{
+  min-height:340px;
+  aspect-ratio:4 / 5;
+}
+
+.catalog-card .copy{
+  gap:14px;
+}
+
+.catalog-grid--video-only .catalog-card{
+  background:transparent;
+}
+
+.catalog-card h2{
+  font-size:clamp(1.5rem, 2.8vw, 2rem);
+}
+
+.catalog-media{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+.catalog-media img,
+.catalog-media video,
+.product-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.product-video--zoom-out{
+  object-fit:contain;
+  transform:scale(.72);
+  transform-origin:center;
+  background:#000;
+}
+
+.ring-config-page .product-video--floral-page{
+  object-fit:contain;
+  transform:scale(.84);
+  transform-origin:center;
+  background:#000;
+}
+
+.ring-config-page .product-video--floral-page{
+  transform:translateY(-22%) scale(.84);
+}
+
+.ring-config-page .product-video--lab-emerald-page{
+  object-fit:contain;
+  transform:translateY(-18%) scale(.84);
+  transform-origin:center;
+  background:#000;
+}
+
+.ring-config-page[data-product-slug="floral-ring"] .media-stage,
+.ring-config-page[data-product-slug="floral-ring"] .panel.media{
+  background:#000;
+}
+
+.catalog-grid .catalog-card:first-child .product-video{
+  transform:translateY(-10%);
+}
+
+.catalog-grid .catalog-card:first-child .media-stage,
+.catalog-grid .catalog-card:first-child .catalog-media,
+.catalog-grid .catalog-card:first-child .panel.media{
+  background:#000;
+}
+
+.catalog-card--trilogy .product-video--zoom-out{
+  object-position:center;
+  transform:translateY(8%) scale(.72);
+}
+
+.ring-config-page [data-product-slug="trilogy-ring"] .product-video--zoom-out{
+  transform:translateY(-18%) scale(.72);
+}
+
+.catalog-card--trilogy .media-stage,
+.catalog-card--trilogy .catalog-media,
+.catalog-card--trilogy .panel.media{
+  background:#000;
+}
+
+.catalog-note,
+.video-pending-note{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:fit-content;
+  min-height:30px;
+  padding:0 12px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.72);
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.catalog-actions{
+  margin-top:6px;
+}
+
+.catalog-grid--video-only .media-stage{
+  min-height:420px;
+}
+
+.ring-config-page .layout{
+  align-items:start;
+}
+
+.ring-config-page .media-stage{
+  min-height:520px;
+  aspect-ratio:4 / 5;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.08), transparent 34%),
+    linear-gradient(180deg, #101010 0%, #050505 100%);
+}
+
+.ring-config-page .media-copy-block{
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+}
+
+.ring-config-page .copy{
+  gap:18px;
+}
+
+.ring-config-page .spec-grid{
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+}
+
+.product-form-grid{
+  display:grid;
+  gap:12px;
+}
+
+.product-form-note{
+  margin:0;
+  color:var(--muted);
+  font-size:.92rem;
+  line-height:1.7;
+}
+
+.selection-summary{
+  margin:0;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.84);
+  line-height:1.65;
+}
+
+.selection-summary strong{
+  color:#fff;
+}
+
+.related-panel{
+  margin-top:24px;
+  padding:24px;
+  text-align:center;
+}
+
+.related-panel h2{
+  font-size:clamp(1.4rem, 3vw, 2rem);
+  margin-bottom:10px;
+}
+
+.related-panel p{
+  margin:0 0 16px;
+  color:var(--muted);
+  line-height:1.75;
+}
+
+.catalog-card .panel.media,
+.ring-config-page .panel.media{
+  box-shadow:0 30px 80px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.ring-config-page .panel.media{
+  overflow:hidden;
+}
+
+@media (max-width:919px){
+  .catalog-grid{
+    grid-template-columns:1fr;
+  }
+
+  .catalog-card .media-stage{
+    min-height:300px;
+  }
+}
+
+@media (max-width:680px){
+  .catalog-intro{
+    margin-bottom:22px;
+  }
+
+  .catalog-intro p,
+  .ring-config-page .media-copy-block .section-copy,
+  .product-form-note,
+  .selection-summary{
+    line-height:1.65;
+  }
+
+  .ring-config-page .media-stage{
+    min-height:auto;
+    aspect-ratio:1 / 1.12;
+  }
+
+  .ring-config-page .spec-grid{
+    grid-template-columns:1fr;
+  }
+}
