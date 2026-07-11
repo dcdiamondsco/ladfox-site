@@ -997,6 +997,8 @@
       border-radius:20px;
       background:rgba(255,255,255,.03);
       overflow:hidden;
+      max-height:min(30svh, 280px);
+      overflow-y:auto;
     }
 
     .guided-guide[hidden]{
@@ -1062,7 +1064,7 @@
       align-content:start;
       gap:8px;
       min-height:0;
-      height:clamp(300px, 42vh, 420px);
+      height:clamp(240px, 34vh, 340px);
       padding:0 0 18px;
       border-radius:0;
       overflow:visible;
@@ -2169,9 +2171,9 @@
       }
 
       .guided-form{
-        min-height:calc(100svh - 20px);
-        max-height:calc(100svh - 20px);
-        padding:16px 16px 14px;
+        min-height:100svh;
+        max-height:100svh;
+        padding:14px 14px 12px;
         gap:12px;
         border-radius:22px;
         overflow-y:auto;
@@ -2190,7 +2192,12 @@
       }
 
       .guided-form__body{
-        height:clamp(320px, 44svh, 460px);
+        height:clamp(220px, 30svh, 300px);
+      }
+
+      .guided-guide{
+        max-height:none;
+        overflow-y:visible;
       }
 
       .guided-choice{
