@@ -999,9 +999,8 @@
       border:1px solid rgba(255,255,255,.14);
       border-radius:20px;
       background:rgba(255,255,255,.03);
-      overflow:hidden;
-      max-height:min(30svh, 280px);
-      overflow-y:auto;
+      overflow:visible;
+      max-height:none;
     }
 
     .guided-guide[hidden]{
@@ -1067,7 +1066,8 @@
       align-content:start;
       gap:8px;
       min-height:0;
-      height:clamp(240px, 34vh, 340px);
+      min-height:clamp(280px, 38vh, 420px);
+      height:auto;
       padding:0 0 18px;
       border-radius:0;
       overflow:visible;
@@ -2191,8 +2191,8 @@
         max-width:none;
         min-height:100svh;
         max-height:none;
-        padding:8px 12px 16px;
-        gap:12px;
+        padding:4px 12px 10px;
+        gap:8px;
         border-radius:0;
         overflow-y:auto;
         overflow-x:hidden;
@@ -2206,7 +2206,7 @@
       }
 
       .guided-form__intro{
-        padding:10px 4px 8px;
+        padding:8px 4px 4px;
       }
 
       .guided-form__question{
@@ -2217,7 +2217,7 @@
       .guided-form__support,
       .guided-guide__body,
       .form-intro{
-        font-size:1rem;
+        font-size:.95rem;
       }
 
       .guided-form__body{
@@ -2229,8 +2229,8 @@
       .guided-form__preview{
         display:block;
         width:100%;
-        min-height:220px;
-        margin:2px 0 6px;
+        min-height:clamp(170px, 22svh, 210px);
+        margin:0 0 4px;
         border-radius:22px;
         background:
           linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
@@ -2247,10 +2247,10 @@
       .guided-form__preview::before{
         content:"";
         position:absolute;
-        inset:14px 12px 10px;
+        inset:10px 8px 6px;
         background-image:var(--mobile-preview-image, none);
         background-position:center bottom;
-        background-size:contain;
+        background-size:auto 96%;
         background-repeat:no-repeat;
         filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
         opacity:.88;
@@ -2260,7 +2260,7 @@
         max-height:none;
         overflow-y:visible;
         width:100%;
-        margin:0 0 6px;
+        margin:0 0 4px;
       }
 
       .guided-choice-list,
@@ -2273,9 +2273,9 @@
 
       .guided-choice{
         width:100%;
-        min-height:48px;
-        padding:10px 12px;
-        font-size:.92rem;
+        min-height:44px;
+        padding:9px 10px;
+        font-size:.88rem;
       }
 
       .guided-choice-row{
@@ -2287,9 +2287,9 @@
       }
 
       .guided-choice-list--paired-shapes .guided-choice{
-        min-height:44px;
-        padding:8px 10px;
-        font-size:.82rem;
+        min-height:40px;
+        padding:7px 9px;
+        font-size:.78rem;
       }
 
       .guided-choice-list--paired-shapes .guided-choice--duplicate{
@@ -2303,9 +2303,9 @@
 
       .guided-choice-list--grid .guided-choice{
         width:100%;
-        min-height:44px;
-        padding:8px 9px;
-        font-size:.84rem;
+        min-height:40px;
+        padding:7px 8px;
+        font-size:.8rem;
       }
 
       .guided-choice-list--gemstones{
@@ -2314,9 +2314,9 @@
 
       .guided-choice-list--gemstones .guided-choice{
         width:100%;
-        min-height:42px;
-        padding:8px 6px;
-        font-size:.76rem;
+        min-height:40px;
+        padding:7px 6px;
+        font-size:.72rem;
       }
 
       .guided-choice-list--stone-shapes{
@@ -2329,9 +2329,9 @@
 
       .guided-choice-list--stone-shapes .guided-choice{
         width:100%;
-        min-height:42px;
-        padding:8px 8px;
-        font-size:.78rem;
+        min-height:40px;
+        padding:7px 7px;
+        font-size:.74rem;
         line-height:1.1;
       }
 
@@ -2354,6 +2354,7 @@
 
       .guided-form__footer{
         position:static;
+        gap:10px;
         padding:0;
         background:none;
       }
