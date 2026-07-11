@@ -2279,6 +2279,11 @@
         align-content:start;
       }
 
+      .guided-form--step-one .guided-form__body{
+        height:clamp(98px, 12svh, 118px);
+        min-height:clamp(98px, 12svh, 118px);
+      }
+
       .guided-form--step-one .guided-choice-list,
       .guided-form--step-one .guided-choice-list--grid,
       .guided-form--step-one .guided-choice-list--paired-shapes,
@@ -2291,8 +2296,8 @@
         display:block;
         width:100%;
         min-height:0;
-        height:clamp(220px, 25svh, 250px);
-        margin:-2px 0 -18px;
+        height:clamp(205px, 23svh, 230px);
+        margin:-6px 0 -8px;
         border-radius:0;
         background:none;
         border:0;
@@ -2301,7 +2306,7 @@
       }
 
       .guided-form--step-one .guided-form__preview{
-        margin-top:-18px;
+        margin-top:-6px;
       }
 
       .guided-form__preview[hidden]{
@@ -2313,8 +2318,8 @@
         position:absolute;
         inset:0;
         background-image:var(--mobile-preview-image, none);
-        background-position:center 165%;
-        background-size:auto 170%;
+        background-position:center 178%;
+        background-size:auto 160%;
         background-repeat:no-repeat;
         filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
         opacity:.88;
@@ -2324,7 +2329,7 @@
         max-height:none;
         overflow-y:visible;
         width:100%;
-        margin:0;
+        margin:-2px 0 0;
       }
 
       .guided-choice-list,
@@ -3745,12 +3750,6 @@
       function renderMobilePreview(step, nextRingImage){
         if (!previewEl) return;
         if (!step || introActive || summaryScreenActive) {
-          previewEl.hidden = true;
-          previewEl.style.removeProperty("--mobile-preview-image");
-          return;
-        }
-
-        if (step.key === "ring_metal") {
           previewEl.hidden = true;
           previewEl.style.removeProperty("--mobile-preview-image");
           return;
