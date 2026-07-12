@@ -2,4 +2,7 @@ User-agent: *
 Disallow: /private/
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://ladfox.com/sitemap.xml

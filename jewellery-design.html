@@ -37,33 +37,7 @@
   <link rel="stylesheet" href="scroll-reveal.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet" />
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"JewelryStore",
-    "name":"Ladfox",
-    "url":"https://ladfox.com/",
-    "image":"https://ladfox.com/Images/Sketch%20with%20ring.png",
-    "description":"Bespoke jewellery by Ladfox with custom design guidance, natural and lab grown diamonds, and a jewellery-first bespoke process.",
-    "address":{
-      "@type":"PostalAddress",
-      "addressLocality":"London",
-      "addressRegion":"London",
-      "addressCountry":"GB"
-    },
-    "areaServed":["GB","Worldwide"],
-    "makesOffer":[
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bespoke jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bespoke fine jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Lab grown diamond jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Natural diamond jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Gemstone jewellery"}}
-    ]
-  }
-  </script>
-
-  <style>
+<style>
     :root{
       --text:#f5f5f5;
       --muted:#cfcfcf;
@@ -863,6 +837,126 @@
     }
   </style>
   <link rel="stylesheet" href="whatsapp-float.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
+      "url": "https://ladfox.com/",
+      "logo": "https://ladfox.com/Images/ladfox-logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
+      "url": "https://ladfox.com/",
+      "name": "LADFOX",
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/jewellery-design.html#webpage",
+      "url": "https://ladfox.com/jewellery-design.html",
+      "name": "Bespoke Jewellery Design | Custom Jewellery | Ladfox",
+      "description": "Design bespoke jewellery with Ladfox. Explore custom rings, bracelets, necklaces, pendants, and earrings with a guided process built around the piece you actually want.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
+      },
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/jewellery-design.html#jewellery-design-service"
+      },
+      "breadcrumb": {
+        "@id": "https://ladfox.com/jewellery-design.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ladfox.com/jewellery-design.html#jewellery-design-service",
+      "name": "Bespoke jewellery design",
+      "url": "https://ladfox.com/jewellery-design.html",
+      "description": "Bespoke jewellery design for rings, bracelets, necklaces, pendants and earrings, built around the piece you actually want.",
+      "provider": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "serviceType": "Custom jewellery design"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ladfox.com/jewellery-design.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I make sure the piece looks exceptional in real life",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We guide proportions, structure, and stone pairing so the piece performs beautifully from every angle, not just in a product photo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I choose a budget without guessing",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tell us your comfortable range and the style you want. We will show realistic options within that range and explain what changes the look most, such as stone size, structure, and metal choice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Lab grown vs natural, what is the difference",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lab grown diamonds are real diamonds with the same physical properties. Natural diamonds are valued for rarity. The right choice is personal and we can guide you either way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most bespoke pieces take around 3 to 4 weeks after CAD approval, with faster options when needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you keep it a surprise",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Discreet packaging, discreet communication, and we never spoil surprises."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ladfox.com/jewellery-design.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ladfox.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Bespoke Jewellery Design",
+          "item": "https://ladfox.com/jewellery-design.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 
 <body>
@@ -978,42 +1072,7 @@
       <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
     </div>
   </footer>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"How do I make sure the piece looks exceptional in real life",
-        "acceptedAnswer":{"@type":"Answer","text":"We guide proportions, structure, and stone pairing so the piece performs beautifully from every angle, not just in a product photo."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I choose a budget without guessing",
-        "acceptedAnswer":{"@type":"Answer","text":"Tell us your comfortable range and the style you want. We will show realistic options within that range and explain what changes the look most, such as stone size, structure, and metal choice."}
-      },
-      {
-        "@type":"Question",
-        "name":"Lab grown vs natural, what is the difference",
-        "acceptedAnswer":{"@type":"Answer","text":"Lab grown diamonds are real diamonds with the same physical properties. Natural diamonds are valued for rarity. The right choice is personal and we can guide you either way."}
-      },
-      {
-        "@type":"Question",
-        "name":"How long does it take",
-        "acceptedAnswer":{"@type":"Answer","text":"Most bespoke pieces take around 3 to 4 weeks after CAD approval, with faster options when needed."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can you keep it a surprise",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Discreet packaging, discreet communication, and we never spoil surprises."}
-      }
-    ]
-  }
-  </script>
-
-  <script>
+<script>
     function mergeQueryParamsIntoLink(href, currentParams){
       try{
         const url = new URL(href, window.location.origin);

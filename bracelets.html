@@ -145,67 +145,119 @@
       }
     }
   </style>
-  <script type="application/ld+json">
+<link rel="stylesheet" href="whatsapp-float.css" />
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://ladfox.com/#organization",
-      "name": "Ladfox",
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
       "url": "https://ladfox.com/",
       "logo": "https://ladfox.com/Images/ladfox-logo.png",
+      "legalName": "LADFOX Ltd",
+      "alternateName": "LADFOX",
       "image": "https://ladfox.com/Images/og-banner.jpg",
+      "email": "info@ladfox.com",
       "telephone": "+447853362904",
-      "sameAs": [
-        "https://www.instagram.com/ladfox",
-        "https://www.facebook.com/ladfox"
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "Company Number",
+        "value": "16416135"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+447853362904",
+        "email": "info@ladfox.com",
+        "availableLanguage": "English"
+      },
+      "areaServed": [
+        "Hatton Garden",
+        "London",
+        "United Kingdom"
       ]
     },
     {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#jewelrystore",
-      "name": "Ladfox",
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
       "url": "https://ladfox.com/",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hatton Garden",
-        "addressRegion": "London",
-        "addressCountry": "GB"
+      "name": "LADFOX",
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/bracelets.html#webpage",
+      "url": "https://ladfox.com/bracelets.html",
+      "name": "Tennis Bracelet | Lab Diamond Bracelet London | Ladfox",
+      "description": "Shop a refined tennis bracelet by Ladfox, set with round VVS lab grown diamonds and available in platinum, yellow gold or white gold.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
       },
-      "areaServed": [
-        "London",
-        "Hatton Garden",
-        "United Kingdom",
-        "International"
-      ],
-      "priceRange": "Premium"
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/bracelets.html#product"
+      },
+      "breadcrumb": {
+        "@id": "https://ladfox.com/bracelets.html#breadcrumb"
+      }
     },
     {
       "@type": "Product",
-      "@id": "https://ladfox.com/bracelets.html#tennis-bracelet",
+      "@id": "https://ladfox.com/bracelets.html#product",
       "name": "Lab Diamond Tennis Bracelet",
-      "image": "https://ladfox.com/Images/products/Tennis%20Bracelet%20Platinum.png",
-      "description": "A refined tennis bracelet set with round VVS lab grown diamonds, available in platinum, yellow gold and white gold.",
+      "url": "https://ladfox.com/bracelets.html",
+      "description": "A refined tennis bracelet set with round VVS lab grown diamonds and available in platinum, yellow gold or white gold.",
+      "image": [
+        "https://ladfox.com/Images/products/Tennis%20Bracelet%20Platinum.png"
+      ],
       "brand": {
         "@type": "Brand",
-        "name": "Ladfox"
+        "name": "LADFOX"
       },
+      "mainEntityOfPage": {
+        "@id": "https://ladfox.com/bracelets.html#webpage"
+      },
+      "category": "Bracelet",
       "offers": {
         "@type": "Offer",
-        "price": "1999.00",
+        "url": "https://ladfox.com/bracelets.html",
         "priceCurrency": "GBP",
-        "availability": "https://schema.org/InStock",
-        "url": "https://ladfox.com/bracelets.html"
+        "price": "1999.00",
+        "seller": {
+          "@id": "https://ladfox.com/#business"
+        }
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ladfox.com/bracelets.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ladfox.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tennis Bracelet",
+          "item": "https://ladfox.com/bracelets.html"
+        }
+      ]
     }
   ]
 }
   </script>
-  <link rel="stylesheet" href="whatsapp-float.css" />
 </head>
 <body>
   <header class="topbar">

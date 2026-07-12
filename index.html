@@ -1407,91 +1407,171 @@
       }
     }
   </style>
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://ladfox.com/#organization",
-      "name": "Ladfox",
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
       "url": "https://ladfox.com/",
       "logo": "https://ladfox.com/Images/ladfox-logo.png",
+      "legalName": "LADFOX Ltd",
+      "alternateName": "LADFOX",
       "image": "https://ladfox.com/Images/og-banner.jpg",
+      "email": "info@ladfox.com",
       "telephone": "+447853362904",
-      "sameAs": [
-        "https://www.instagram.com/ladfox",
-        "https://www.facebook.com/ladfox"
-      ]
-    },
-    {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#jewelrystore",
-      "name": "Ladfox",
-      "url": "https://ladfox.com/",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hatton Garden",
-        "addressRegion": "London",
-        "addressCountry": "GB"
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "Company Number",
+        "value": "16416135"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+447853362904",
+        "email": "info@ladfox.com",
+        "availableLanguage": "English"
       },
       "areaServed": [
-        "London",
         "Hatton Garden",
-        "United Kingdom",
-        "International"
+        "London",
+        "United Kingdom"
       ],
-      "priceRange": "Premium"
+      "hasOfferCatalog": {
+        "@id": "https://ladfox.com/#offer-catalog"
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://ladfox.com/#website",
-      "name": "Ladfox",
       "url": "https://ladfox.com/",
+      "name": "LADFOX",
       "publisher": {
-        "@id": "https://ladfox.com/#organization"
+        "@id": "https://ladfox.com/#business"
       }
     },
     {
-      "@type": "Service",
-      "@id": "https://ladfox.com/#bespoke-jewellery-service",
-      "name": "Bespoke engagement rings and jewellery",
-      "serviceType": "Bespoke jewellery design",
-      "provider": {
-        "@id": "https://ladfox.com/#jewelrystore"
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/#webpage",
+      "url": "https://ladfox.com/",
+      "name": "LADFOX | Engagement Rings & Fine Jewellery",
+      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
       },
-      "areaServed": "GB",
-      "description": "Bespoke engagement rings, wedding bands and custom jewellery designed with private one to one guidance from a Hatton Garden jeweller."
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/#offer-catalog"
+      }
     },
     {
-      "@type": "FAQPage",
-      "@id": "https://ladfox.com/#faq",
-      "mainEntity": [
+      "@type": "OfferCatalog",
+      "@id": "https://ladfox.com/#offer-catalog",
+      "name": "LADFOX Services",
+      "itemListElement": [
         {
-          "@type": "Question",
-          "name": "What does Ladfox do?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance."
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#bespoke-engagement-rings#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#bespoke-engagement-rings",
+            "name": "Bespoke engagement rings",
+            "description": "Bespoke engagement ring design with private guidance, custom development and stone selection.",
+            "url": "https://ladfox.com/ringpage.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
           }
         },
         {
-          "@type": "Question",
-          "name": "Can I design a ring from scratch?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection."
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#custom-wedding-rings#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#custom-wedding-rings",
+            "name": "Custom wedding rings",
+            "description": "Custom wedding ring and wedding band design tailored to the piece you want to wear.",
+            "url": "https://ladfox.com/jewellery-design.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
           }
         },
         {
-          "@type": "Question",
-          "name": "Do Ladfox offer lab grown diamonds?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery."
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#lab-grown-diamond-rings#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#lab-grown-diamond-rings",
+            "name": "Lab-grown diamond rings",
+            "description": "Bespoke ring design using carefully selected lab-grown diamonds.",
+            "url": "https://ladfox.com/ringpage.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#natural-diamond-rings#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#natural-diamond-rings",
+            "name": "Natural diamond rings",
+            "description": "Bespoke ring design using carefully selected natural diamonds.",
+            "url": "https://ladfox.com/ringpage.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#gemstone-engagement-rings#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#gemstone-engagement-rings",
+            "name": "Gemstone engagement rings",
+            "description": "Engagement ring design built around coloured stones and gemstone-led briefs.",
+            "url": "https://ladfox.com/ringpage.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#private-consultations#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#private-consultations",
+            "name": "Private jewellery consultations",
+            "description": "Private consultations about ring ideas, preferred stones, timelines and budgets.",
+            "url": "https://ladfox.com/consultation.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://ladfox.com/#diamond-sourcing#offer",
+          "itemOffered": {
+            "@type": "Service",
+            "@id": "https://ladfox.com/#diamond-sourcing",
+            "name": "Diamond sourcing",
+            "description": "Private diamond sourcing for natural and lab-grown diamonds based on shape, quality and budget.",
+            "url": "https://ladfox.com/diamonds.html",
+            "provider": {
+              "@id": "https://ladfox.com/#business"
+            }
           }
         }
       ]

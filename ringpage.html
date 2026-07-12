@@ -36,33 +36,7 @@
   <link rel="stylesheet" href="scroll-reveal.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"JewelryStore",
-    "name":"Ladfox",
-    "url":"https://ladfox.com/",
-    "image":"https://ladfox.com/Images/Sketch%20with%20ring.png",
-    "description":"Bespoke engagement rings by Ladfox with custom design guidance, natural and lab grown diamonds, and a ring-first bespoke process.",
-    "address":{
-      "@type":"PostalAddress",
-      "addressLocality":"London",
-      "addressRegion":"London",
-      "addressCountry":"GB"
-    },
-    "areaServed":["GB","Worldwide"],
-    "makesOffer":[
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bespoke engagement rings"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bespoke fine jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Lab grown diamond jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Natural diamond jewellery"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Gemstone jewellery"}}
-    ]
-  }
-  </script>
-
-  <style>
+<style>
     :root{
       --text:#f5f5f5;
       --muted:#cfcfcf;
@@ -2631,6 +2605,83 @@
       }
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
+      "url": "https://ladfox.com/",
+      "logo": "https://ladfox.com/Images/ladfox-logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
+      "url": "https://ladfox.com/",
+      "name": "LADFOX",
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/ringpage.html#webpage",
+      "url": "https://ladfox.com/ringpage.html",
+      "name": "Bespoke Engagement Rings | LADFOX",
+      "description": "Design a bespoke engagement ring with Ladfox. Explore custom ring design, natural and lab grown diamonds, and a guided process built around the ring you actually want.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
+      },
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/ringpage.html#ring-design-service"
+      },
+      "breadcrumb": {
+        "@id": "https://ladfox.com/ringpage.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ladfox.com/ringpage.html#ring-design-service",
+      "name": "Bespoke engagement ring design",
+      "url": "https://ladfox.com/ringpage.html",
+      "description": "A guided online engagement-ring design experience covering style, setting direction, natural or lab-grown diamonds and the details that shape the finished ring.",
+      "provider": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "serviceType": "Engagement ring design service",
+      "isRelatedTo": {
+        "@id": "https://ladfox.com/#offer-catalog"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ladfox.com/ringpage.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ladfox.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Bespoke Engagement Rings",
+          "item": "https://ladfox.com/ringpage.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 
 <body>

@@ -387,49 +387,124 @@
       }
     }
   </style>
-  <script type="application/ld+json">
+<link rel="stylesheet" href="whatsapp-float.css" />
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://ladfox.com/#organization",
-      "name": "Ladfox",
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
       "url": "https://ladfox.com/",
-      "logo": "https://ladfox.com/Images/ladfox-logo.png",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "sameAs": [
-        "https://www.instagram.com/ladfox",
-        "https://www.facebook.com/ladfox"
+      "logo": "https://ladfox.com/Images/ladfox-logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
+      "url": "https://ladfox.com/",
+      "name": "LADFOX",
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/faq.html#webpage",
+      "url": "https://ladfox.com/faq.html",
+      "name": "FAQ | Bespoke Engagement Rings London | Lab Grown Diamonds | Ladfox",
+      "description": "Answers about bespoke engagement rings in London, lab grown diamonds, pricing, timelines, ring design, delivery and aftercare from Ladfox.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
+      },
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/faq.html#faq"
+      },
+      "breadcrumb": {
+        "@id": "https://ladfox.com/faq.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ladfox.com/faq.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Ladfox, and what kind of jeweller are you?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ladfox is a private Hatton Garden jeweller specialising in bespoke engagement rings, custom jewellery, and carefully sourced diamonds. The process is more direct and personal than traditional retail, with each piece shaped around the client, the selected stone, and the final result rather than stock already sitting in a cabinet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I still enquire if I do not fully know what I want yet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Many clients get in touch before they know the exact shape, setting, size, or final brief. A loose idea, a few screenshots, or even just a budget range is enough to begin. From there, the process becomes about narrowing choices intelligently rather than guessing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are lab-grown diamonds real diamonds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Lab-grown diamonds are real diamonds, with the same physical and chemical properties as mined diamonds. The key difference is origin rather than appearance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you design a ring to sit flush with a wedding band?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If flush fit matters to you, it should be considered early. Setting height, basket shape, and band position all affect whether a wedding ring can sit neatly alongside the engagement ring without a gap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you deliver across the UK, and how is the ring sent once it is finished?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Completed pieces can be sent across the UK using insured and tracked delivery so the process remains secure from dispatch through to arrival."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do your rings come with a warranty or aftercare support once the project is complete?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Ladfox provides a lifetime warranty along with ongoing support after the ring is completed, so clients still have direct help available after delivery."
+          }
+        }
       ]
     },
     {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#jewelrystore",
-      "name": "Ladfox",
-      "url": "https://ladfox.com/",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hatton Garden",
-        "addressRegion": "London",
-        "addressCountry": "GB"
-      },
-      "areaServed": [
-        "London",
-        "Hatton Garden",
-        "United Kingdom",
-        "International"
-      ],
-      "priceRange": "Premium"
+      "@type": "BreadcrumbList",
+      "@id": "https://ladfox.com/faq.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ladfox.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FAQ",
+          "item": "https://ladfox.com/faq.html"
+        }
+      ]
     }
   ]
 }
   </script>
-  <link rel="stylesheet" href="whatsapp-float.css" />
 </head>
 <body>
   <header class="shell">

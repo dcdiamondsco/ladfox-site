@@ -153,52 +153,81 @@
       }
     }
   </style>
-  <script type="application/ld+json">
+<link rel="stylesheet" href="whatsapp-float.css" />
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://ladfox.com/#organization",
-      "name": "Ladfox",
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
       "url": "https://ladfox.com/",
-      "logo": "https://ladfox.com/Images/ladfox-logo.png",
-      "image": "https://ladfox.com/Images/Necklace.png",
-      "telephone": "+447853362904",
-      "sameAs": [
-        "https://www.instagram.com/ladfox",
-        "https://www.facebook.com/ladfox"
-      ]
+      "logo": "https://ladfox.com/Images/ladfox-logo.png"
     },
     {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#jewelrystore",
-      "name": "Ladfox",
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
       "url": "https://ladfox.com/",
-      "image": "https://ladfox.com/Images/Necklace.png",
-      "telephone": "+447853362904",
-      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, necklaces, wedding bands and custom jewellery with one to one guidance.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hatton Garden",
-        "addressRegion": "London",
-        "addressCountry": "GB"
+      "name": "LADFOX",
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/necklaces.html#webpage",
+      "url": "https://ladfox.com/necklaces.html",
+      "name": "Diamond Necklace | Bespoke Necklace London | Ladfox",
+      "description": "Discover refined diamond necklaces by Ladfox, with bespoke necklace design and private Hatton Garden guidance.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
+      },
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/necklaces.html#bespoke-necklace-service"
+      },
+      "breadcrumb": {
+        "@id": "https://ladfox.com/necklaces.html#breadcrumb"
       }
     },
     {
       "@type": "Service",
-      "@id": "https://ladfox.com/necklaces.html#bespoke-necklaces",
+      "@id": "https://ladfox.com/necklaces.html#bespoke-necklace-service",
       "name": "Bespoke necklace design",
-      "provider": {
-        "@id": "https://ladfox.com/#organization"
-      },
       "url": "https://ladfox.com/necklaces.html",
-      "description": "Bespoke necklace design in London with private guidance on proportions, stones, setting style and finished presentation."
+      "description": "Bespoke necklace design with private guidance on stones, proportions, setting style and the finished piece.",
+      "provider": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "serviceType": "Custom necklace design"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ladfox.com/necklaces.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ladfox.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Diamond Necklace",
+          "item": "https://ladfox.com/necklaces.html"
+        }
+      ]
     }
   ]
 }
   </script>
-  <link rel="stylesheet" href="whatsapp-float.css" />
 </head>
 <body>
   <header class="topbar">

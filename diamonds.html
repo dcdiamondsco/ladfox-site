@@ -647,81 +647,81 @@
       }
     }
   </style>
-  <script type="application/ld+json">
+<link rel="stylesheet" href="whatsapp-float.css" />
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://ladfox.com/#organization",
-      "name": "Ladfox",
+      "@type": "JewelryStore",
+      "@id": "https://ladfox.com/#business",
+      "name": "LADFOX",
       "url": "https://ladfox.com/",
-      "logo": "https://ladfox.com/Images/ladfox-logo.png",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "sameAs": [
-        "https://www.instagram.com/ladfox",
-        "https://www.facebook.com/ladfox"
-      ]
+      "logo": "https://ladfox.com/Images/ladfox-logo.png"
     },
     {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#jewelrystore",
-      "name": "Ladfox",
+      "@type": "WebSite",
+      "@id": "https://ladfox.com/#website",
       "url": "https://ladfox.com/",
-      "image": "https://ladfox.com/Images/og-banner.jpg",
-      "telephone": "+447853362904",
-      "description": "Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands, lab grown diamond rings and custom jewellery with one to one guidance.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hatton Garden",
-        "addressRegion": "London",
-        "addressCountry": "GB"
+      "name": "LADFOX",
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ladfox.com/diamonds.html#webpage",
+      "url": "https://ladfox.com/diamonds.html",
+      "name": "Lab Grown Diamonds London | Diamond Sourcing Hatton Garden | Ladfox",
+      "description": "Source natural or lab grown diamonds in London with Ladfox. Get tailored diamond recommendations based on shape, carat, colour, clarity and budget.",
+      "isPartOf": {
+        "@id": "https://ladfox.com/#website"
       },
-      "areaServed": [
-        "London",
-        "Hatton Garden",
-        "United Kingdom",
-        "International"
-      ],
-      "priceRange": "Premium"
+      "about": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "publisher": {
+        "@id": "https://ladfox.com/#business"
+      },
+      "mainEntity": {
+        "@id": "https://ladfox.com/diamonds.html#diamond-sourcing-service"
+      },
+      "breadcrumb": {
+        "@id": "https://ladfox.com/diamonds.html#breadcrumb"
+      }
     },
     {
       "@type": "Service",
-      "@id": "https://ladfox.com/diamonds.html#diamond-sourcing",
+      "@id": "https://ladfox.com/diamonds.html#diamond-sourcing-service",
       "name": "Diamond sourcing",
-      "serviceType": "Natural and lab grown diamond sourcing",
+      "url": "https://ladfox.com/diamonds.html",
+      "description": "Private sourcing for natural and lab grown diamonds, with tailored recommendations based on shape, carat, colour, clarity and budget.",
       "provider": {
-        "@id": "https://ladfox.com/#jewelrystore"
+        "@id": "https://ladfox.com/#business"
       },
-      "description": "Diamond sourcing for natural and lab grown diamonds with tailored recommendations based on shape, carat, colour, clarity, proportions and budget."
+      "serviceType": "Natural and lab grown diamond sourcing"
     },
     {
-      "@type": "FAQPage",
-      "@id": "https://ladfox.com/diamonds.html#faq",
-      "mainEntity": [
+      "@type": "BreadcrumbList",
+      "@id": "https://ladfox.com/diamonds.html#breadcrumb",
+      "itemListElement": [
         {
-          "@type": "Question",
-          "name": "Are lab grown diamonds real diamonds?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Lab grown diamonds have the same physical and chemical properties as natural diamonds. The main difference is origin."
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ladfox.com/"
         },
         {
-          "@type": "Question",
-          "name": "Does Ladfox source natural and lab grown diamonds?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Ladfox can advise on natural and lab grown diamonds based on the brief, budget and intended jewellery design."
-          }
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Diamond Sourcing",
+          "item": "https://ladfox.com/diamonds.html"
         }
       ]
     }
   ]
 }
   </script>
-  <link rel="stylesheet" href="whatsapp-float.css" />
 </head>
 <body>
   <header class="shell">
