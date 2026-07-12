@@ -79,6 +79,8 @@
     *{ box-sizing:border-box; }
 
     html{
+      scroll-behavior:smooth;
+      scroll-padding-bottom:110px;
       background:#000;
       width:100%;
       overflow-x:hidden;
@@ -86,6 +88,8 @@
     }
 
     body{
+      overscroll-behavior-y:auto;
+      -webkit-overflow-scrolling:touch;
       margin:0;
       width:100%;
       min-height:100svh;
@@ -2281,10 +2285,8 @@
         padding:4px 12px 10px;
         gap:8px;
         border-radius:0;
-        overflow-y:auto;
-        overflow-x:hidden;
-        -webkit-overflow-scrolling:touch;
-        overscroll-behavior:contain;
+        overflow:visible;
+        overscroll-behavior:auto;
       }
 
       .guided-form::before,
