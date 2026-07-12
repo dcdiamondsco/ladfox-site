@@ -845,6 +845,12 @@
       opacity:0;
     }
 
+    /* The ring now has its own full-detail preview between the answers and Guide. */
+    .guided-form::before,
+    .guided-form::after{
+      display:none !important;
+    }
+
 
     .guided-form--image-transforming::before,
     .guided-form--image-transforming::after{
@@ -1087,7 +1093,44 @@
     }
 
     .guided-form__preview{
+      display:block;
+      width:100%;
+      height:clamp(360px, 50svh, 520px);
+      margin:54px auto 4px;
+      position:relative;
+      overflow:hidden;
+      background:transparent;
+      border:0;
+    }
+
+    .guided-form__preview[hidden]{
       display:none;
+    }
+
+    .guided-form__preview::before,
+    .guided-form__preview::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-position:center 62%;
+      background-size:auto 122%;
+      background-repeat:no-repeat;
+      filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
+      pointer-events:none;
+    }
+
+    .guided-form__preview::before{
+      background-image:var(--mobile-preview-image, none);
+      opacity:1;
+      z-index:1;
+    }
+
+    .guided-form__preview::after{
+      background-image:var(--mobile-preview-overlay-image, none);
+      background-position:var(--mobile-preview-overlay-position, center 62%);
+      background-size:var(--mobile-preview-overlay-size, auto 122%);
+      opacity:var(--mobile-preview-overlay-opacity, 1);
+      z-index:2;
     }
 
     .guided-form--intro .guided-form__body,
@@ -2289,32 +2332,14 @@
       }
 
       .guided-form__preview{
-        display:block;
-        width:100%;
-        min-height:0;
-        height:clamp(205px, 23svh, 230px);
-        margin:0 0 0;
-        border-radius:0;
-        background:none;
-        border:0;
-        position:relative;
-        overflow:hidden;
-      }
-
-      .guided-form__preview[hidden]{
-        display:none;
+        height:clamp(300px, 42svh, 410px);
+        margin:46px 0 2px;
       }
 
       .guided-form__preview::before{
-        content:"";
-        position:absolute;
-        inset:0;
-        background-image:var(--mobile-preview-image, none);
-        background-position:center 145%;
-        background-size:auto 160%;
-        background-repeat:no-repeat;
-        filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
-        opacity:.88;
+        background-position:center 64%;
+        background-size:auto 126%;
+        opacity:1;
       }
 
       .guided-guide{
@@ -2381,6 +2406,8 @@
       }
 
       .guided-choice-list--stone-shapes{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:8px;
       }
 
@@ -2421,6 +2448,186 @@
         background:none;
       }
     }
+
+    /* Final phone layout: answers, ring, guide, then navigation. */
+    @media(max-width:760px){
+      .guided-form{
+        min-height:100svh;
+        height:auto;
+        overflow:visible;
+        padding:8px 14px calc(18px + env(safe-area-inset-bottom, 0px));
+        grid-template-rows:auto auto auto auto auto auto;
+        gap:10px;
+      }
+
+      .guided-progress{ margin-bottom:2px; }
+
+      .guided-form__intro{
+        min-height:auto;
+        padding:4px 2px 2px;
+      }
+
+      .guided-form__question{
+        margin-top:2px;
+        font-size:clamp(1.35rem, 6vw, 1.72rem);
+        line-height:1.16;
+      }
+
+      .guided-form__support{
+        margin-top:5px;
+        font-size:.88rem;
+        line-height:1.42;
+      }
+
+      .guided-form__body{
+        height:auto;
+        min-height:0;
+        padding:0;
+        overflow:visible;
+      }
+
+      .guided-choice-list{ gap:7px; }
+
+      .guided-choice{
+        min-height:42px;
+        padding:8px 9px;
+        border-radius:15px;
+        font-size:.82rem;
+      }
+
+      .guided-form__preview{
+        display:block;
+        width:100%;
+        height:clamp(220px, 30svh, 285px);
+        margin:2px 0 0;
+        overflow:hidden;
+        flex:0 0 auto;
+      }
+
+      .guided-form__preview[hidden]{ display:none; }
+
+      .guided-form__preview::before,
+      .guided-form__preview::after{
+        inset:-4% -8% -7%;
+        background-size:auto 132%;
+      }
+
+      .guided-form__preview::before{
+        background-position:center 62%;
+        opacity:1;
+      }
+
+      .guided-guide{
+        order:initial;
+        width:100%;
+        margin:0;
+        border-radius:16px;
+      }
+
+      .guided-guide__summary{
+        min-height:44px;
+        padding:11px 14px;
+        font-size:.76rem;
+      }
+
+      .guided-guide__body{
+        max-height:34svh;
+        overflow:auto;
+        padding:0 14px 13px;
+        font-size:.88rem;
+        line-height:1.5;
+      }
+
+      .guided-form__footer{
+        position:sticky;
+        bottom:0;
+        z-index:8;
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:8px;
+        width:calc(100% + 28px);
+        margin:0 -14px;
+        padding:10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+        background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.94) 24%, #000 54%);
+      }
+
+      .guided-form__footer .btn{
+        width:100%;
+        min-width:0;
+        min-height:46px;
+        padding:10px 12px;
+        border-radius:15px;
+        font-size:.78rem;
+      }
+
+      .guided-form__footer #quickStartNext:only-child,
+      .guided-form__footer #quickStartBack[hidden] + #quickStartNext{
+        grid-column:1 / -1;
+      }
+
+      .guided-form__note,
+      .quick-start-status{
+        margin:0;
+        text-align:center;
+      }
+    }
+
+    @media(max-width:390px), (max-height:700px) and (max-width:760px){
+      .guided-form{ gap:7px; padding-top:5px; }
+      .guided-form__question{ font-size:1.3rem; }
+      .guided-form__support{ font-size:.82rem; }
+      .guided-choice{ min-height:38px; padding:7px 8px; font-size:.77rem; }
+      .guided-form__preview{ height:clamp(185px, 27svh, 225px); }
+      .guided-form__preview::before{ background-size:auto 126%; }
+      .guided-guide__summary{ min-height:40px; padding:9px 12px; }
+      .guided-form__footer .btn{ min-height:43px; }
+    }
+
+
+    /* Locked ring preview: identical size and position on every form step. */
+    .guided-form__preview,
+    .guided-form--step-one .guided-form__preview{
+      display:block;
+      width:100%;
+      height:clamp(220px, 30svh, 285px);
+      margin:2px 0 0;
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+      transform:none !important;
+    }
+
+    .guided-form__preview::before,
+    .guided-form__preview::after{
+      inset:-4% -8% -7%;
+      background-position:center 62% !important;
+      background-size:auto 132% !important;
+      transform:none !important;
+      animation:none !important;
+    }
+
+    .guided-form--image-transforming .guided-form__preview::before,
+    .guided-form--image-transforming .guided-form__preview::after,
+    .guided-form--image-transforming::before,
+    .guided-form--image-transforming::after{
+      animation:none !important;
+      transform:none !important;
+    }
+
+    @media(max-width:390px), (max-height:700px) and (max-width:760px){
+      .guided-form__preview,
+      .guided-form--step-one .guided-form__preview{
+        height:clamp(185px, 27svh, 225px);
+        margin:2px 0 0;
+      }
+
+      .guided-form__preview::before,
+      .guided-form__preview::after{
+        inset:-4% -8% -7%;
+        background-position:center 62% !important;
+        background-size:auto 132% !important;
+      }
+    }
   </style>
 </head>
 
@@ -2453,7 +2660,6 @@
               <input type="file" name="reference_images" id="quickStartReferenceImages" class="guided-upload__input" accept="image/*" multiple />
               <p style="display:none;">
                 <label>Do not fill this in <input name="bot-field" /></label>
-              </p>
 
               <div class="guided-form">
                 <div class="guided-progress" id="quickStartProgress" hidden>
@@ -2472,19 +2678,20 @@
                 </div>
 
                 <div class="guided-form__body" id="quickStartBody"></div>
-                <div class="guided-form__preview" id="quickStartPreview" hidden aria-hidden="true"></div>
-                <p class="guided-form__note" id="quickStartNote"></p>
-                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
+                <div class="guided-form__preview" id="quickStartPreview" hidden aria-hidden="true" role="img" aria-label="Your ring design preview"></div>
                 <details class="guided-guide" id="quickStartGuide" hidden>
                   <summary class="guided-guide__summary">Guide</summary>
                   <div class="guided-guide__body" id="quickStartGuideBody"></div>
                 </details>
-
                 <div class="guided-form__footer">
                   <button class="btn" id="quickStartBack" type="button" hidden>Back</button>
                   <button class="btn" id="quickStartNext" type="button">Design my ring</button>
                 </div>
+                <p class="guided-form__note" id="quickStartNote"></p>
+                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
               </div>
+
+                
             </form>
           </div>
         </div>
@@ -3712,7 +3919,7 @@
       }
 
       function getMobilePreviewImage(step, nextRingImage){
-        const imageBase = "./Images/Ringpage Form Background Images/";
+        const imageBase = "https://ladfox.com/Images/Ringpage%20Form%20Background%20Images/";
         if (formValues.multi_stone_style === "Bezel") return `${imageBase}bezel.png`;
         if (shouldShowSettingDesignImage() && formValues.setting_design === "Tulip/Floral") return `${imageBase}tulip.png`;
         if (shouldShowSettingDesignImage() && formValues.setting_design === "Classic") return `${imageBase}classic.png`;
@@ -3739,23 +3946,69 @@
         return imageMap[nextRingImage] || imageMap.plain;
       }
 
+      function getMobilePreviewOverlayImages(){
+        const imageBase = "https://ladfox.com/Images/Ringpage%20Form%20Background%20Images/";
+        const overlays = [];
+
+        if (formValues.style_detail === "Hidden halo") {
+          overlays.push(`url("${imageBase}hidden%20halo.png")`);
+        } else if (formValues.style_detail === "Regular halo") {
+          overlays.push(`url("${imageBase}halo.png")`);
+        }
+
+        if (formValues.pave_band === "Yes") {
+          overlays.push(
+            formValues.pave_coverage === "Half pave"
+              ? `url("${imageBase}half%20pave.png")`
+              : `url("${imageBase}pave.png")`
+          );
+        }
+
+        return overlays.join(", ") || "none";
+      }
+
+      function clearMobilePreview(){
+        if (!previewEl) return;
+        previewEl.hidden = true;
+        previewEl.style.removeProperty("--mobile-preview-image");
+        previewEl.style.removeProperty("--mobile-preview-overlay-image");
+        previewEl.style.removeProperty("--mobile-preview-overlay-position");
+        previewEl.style.removeProperty("--mobile-preview-overlay-size");
+        previewEl.style.removeProperty("--mobile-preview-overlay-opacity");
+      }
+
       function renderMobilePreview(step, nextRingImage){
         if (!previewEl) return;
         if (!step || introActive || summaryScreenActive) {
-          previewEl.hidden = true;
-          previewEl.style.removeProperty("--mobile-preview-image");
+          clearMobilePreview();
           return;
         }
 
         const previewImage = getMobilePreviewImage(step, nextRingImage);
         if (!previewImage) {
-          previewEl.hidden = true;
-          previewEl.style.removeProperty("--mobile-preview-image");
+          clearMobilePreview();
           return;
         }
 
         previewEl.hidden = false;
         previewEl.style.setProperty("--mobile-preview-image", `url("${previewImage}")`);
+        previewEl.style.setProperty("--mobile-preview-overlay-image", getMobilePreviewOverlayImages());
+
+        const overlayCount = getMobilePreviewOverlayImages() === "none"
+          ? 0
+          : getMobilePreviewOverlayImages().split(", url(").length;
+        const fixedOverlayPositions = Array(overlayCount).fill("center 62%");
+        const fixedOverlaySizes = Array(overlayCount).fill("auto 132%");
+
+        previewEl.style.setProperty(
+          "--mobile-preview-overlay-position",
+          fixedOverlayPositions.join(", ") || "center 62%"
+        );
+        previewEl.style.setProperty(
+          "--mobile-preview-overlay-size",
+          fixedOverlaySizes.join(", ") || "auto 132%"
+        );
+        previewEl.style.setProperty("--mobile-preview-overlay-opacity", "1");
       }
 
       function shouldShowSettingDesignImage(){
@@ -3972,7 +4225,13 @@
             }
           });
           if (columns) {
-            columns[index % 2].appendChild(button);
+            if (isStoneShapeStep) {
+              const options = getStepOptions(step);
+              const splitIndex = Math.ceil(options.length / 2);
+              columns[index < splitIndex ? 0 : 1].appendChild(button);
+            } else {
+              columns[index % 2].appendChild(button);
+            }
           } else {
             list.appendChild(button);
           }
@@ -4552,7 +4811,7 @@
         supportEl.textContent = "We will help you visualise your ring, narrow down the details, and get a more accurate price.";
         designFlowEl?.classList.remove("design-flow--steps");
         shellEl.classList.add("guided-form--intro");
-        shellEl.classList.remove("guided-form--metal", "guided-form--email-popup", "guided-form--cathedral-overlay", "guided-form--halo-image", "guided-form--halo-overlay", "guided-form--hidden-halo-overlay", "guided-form--tulip-overlay", "guided-form--tulip-image", "guided-form--classic-image", "guided-form--solitaire-round-image", "guided-form--solitaire-round-plain-image", "guided-form--solitaire-oval-image", "guided-form--solitaire-emerald-image", "guided-form--solitaire-radiant-image", "guided-form--solitaire-princess-image", "guided-form--solitaire-cushion-image", "guided-form--solitaire-pear-image", "guided-form--solitaire-marquise-image", "guided-form--trilogy-image", "guided-form--trilogy-large-centre-image", "guided-form--toi-et-moi-image", "guided-form--cluster-image", "guided-form--style-preview", "guided-form--pave-overlay", "guided-form--pave-overlay-half", "guided-form--image-transforming");
+        shellEl.classList.remove("guided-form--metal", "guided-form--email-popup", "guided-form--cathedral-overlay", "guided-form--halo-image", "guided-form--halo-overlay", "guided-form--hidden-halo-overlay", "guided-form--tulip-overlay", "guided-form--tulip-image", "guided-form--classic-image", "guided-form--bezel-image", "guided-form--solitaire-round-image", "guided-form--solitaire-round-plain-image", "guided-form--solitaire-oval-image", "guided-form--solitaire-emerald-image", "guided-form--solitaire-radiant-image", "guided-form--solitaire-princess-image", "guided-form--solitaire-cushion-image", "guided-form--solitaire-pear-image", "guided-form--solitaire-marquise-image", "guided-form--trilogy-image", "guided-form--trilogy-large-centre-image", "guided-form--toi-et-moi-image", "guided-form--cluster-image", "guided-form--style-preview", "guided-form--pave-overlay", "guided-form--pave-overlay-half", "guided-form--image-transforming");
         activeRingImage = "plain";
         if (imageTransformTimer) {
           window.clearTimeout(imageTransformTimer);
@@ -4634,7 +4893,12 @@
         noteEl.textContent = "";
         bodyEl.innerHTML = "";
         if (nextBtn && nextBtn.parentElement && nextBtn.parentElement.classList.contains("guided-form__footer")) {
-          shellEl.appendChild(nextBtn.parentElement);
+          const footerEl = nextBtn.parentElement;
+          if (guideEl && guideEl.parentElement === shellEl) {
+            guideEl.insertAdjacentElement("afterend", footerEl);
+          } else if (previewEl && previewEl.parentElement === shellEl) {
+            previewEl.insertAdjacentElement("afterend", footerEl);
+          }
         }
         shellEl.classList.toggle("guided-form--step-one", stepIndex === 0);
         if (backBtn) backBtn.hidden = stepIndex === 0;
