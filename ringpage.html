@@ -1613,6 +1613,14 @@
       flex:0 0 auto;
     }
 
+    .guided-form--summary .guided-form__preview{
+      display:none !important;
+    }
+
+    .guided-form--summary .guided-guide{
+      display:none;
+    }
+
     .guided-range{
       display:grid;
       gap:10px;
@@ -2546,6 +2554,107 @@
         margin:0;
         text-align:center;
       }
+
+      .guided-form--summary{
+        gap:8px;
+        padding-top:6px;
+        grid-template-rows:auto auto auto auto;
+      }
+
+      .guided-form--summary .guided-form__intro{
+        padding:2px 0 0;
+      }
+
+      .guided-form--summary .guided-form__question{
+        font-size:clamp(1.12rem, 5vw, 1.36rem);
+        line-height:1.1;
+      }
+
+      .guided-form--summary .guided-form__support{
+        margin-top:3px;
+        font-size:.76rem;
+        line-height:1.28;
+      }
+
+      .guided-form--summary .guided-form__body{
+        gap:0;
+      }
+
+      .guided-form--summary .guided-summary{
+        gap:8px;
+        padding:10px;
+        border-radius:18px;
+      }
+
+      .guided-form--summary .guided-summary__list{
+        gap:6px;
+      }
+
+      .guided-form--summary .guided-summary__item{
+        gap:8px;
+        padding-bottom:6px;
+      }
+
+      .guided-form--summary .guided-summary__label{
+        font-size:.62rem;
+        letter-spacing:.1em;
+      }
+
+      .guided-form--summary .guided-summary__value{
+        font-size:.82rem;
+        line-height:1.32;
+      }
+
+      .guided-form--summary .guided-summary__change{
+        padding:5px 8px;
+        font-size:.64rem;
+      }
+
+      .guided-form--summary .guided-summary__fields{
+        gap:7px;
+        margin-top:2px;
+      }
+
+      .guided-form--summary .guided-summary__contact{
+        gap:7px;
+        margin-top:1px;
+      }
+
+      .guided-form--summary .guided-summary__contact-options{
+        gap:6px;
+      }
+
+      .guided-form--summary .guided-summary__contact-option{
+        min-height:40px;
+        padding:9px 11px;
+        border-radius:14px;
+        font-size:.8rem;
+      }
+
+      .guided-form--summary .guided-summary__contact-option input{
+        width:15px;
+        height:15px;
+      }
+
+      .guided-form--summary .guided-input{
+        min-height:42px;
+        padding:10px 12px;
+        border-radius:14px;
+        font-size:.82rem;
+      }
+
+      .guided-form--summary .guided-form__footer{
+        position:static;
+        width:100%;
+        margin:0;
+        padding:4px 0 calc(6px + env(safe-area-inset-bottom, 0px));
+        background:none;
+      }
+
+      .guided-form--summary .guided-form__footer .btn{
+        min-height:42px;
+        font-size:.76rem;
+      }
     }
 
     @media(max-width:390px), (max-height:700px) and (max-width:760px){
@@ -2603,6 +2712,15 @@
         background-position:center 62% !important;
         background-size:auto 132% !important;
       }
+
+      .guided-form--summary .guided-form__question{ font-size:1.04rem; }
+      .guided-form--summary .guided-form__support{ font-size:.72rem; }
+      .guided-form--summary .guided-summary{ padding:9px; gap:7px; }
+      .guided-form--summary .guided-summary__item{ padding-bottom:5px; }
+      .guided-form--summary .guided-summary__value{ font-size:.78rem; }
+      .guided-form--summary .guided-summary__contact-option{ min-height:38px; padding:8px 10px; font-size:.76rem; }
+      .guided-form--summary .guided-input{ min-height:40px; padding:9px 11px; font-size:.8rem; }
+      .guided-form--summary .guided-form__footer .btn{ min-height:40px; }
     }
   </style>
 <script type="application/ld+json">
@@ -3962,6 +4080,21 @@
 
       function resolveDisplayedRingImage(step){
         const nextRingImage = getRingImageState(step);
+        if (
+          formValues.multi_stone_style === "Cluster" &&
+          [
+            "stone_size",
+            "ring_size",
+            "pave_band",
+            "pave_coverage",
+            "stone_type",
+            "gemstone_type",
+            "other_notes",
+            "email_capture"
+          ].includes(step?.key)
+        ) {
+          return "cluster";
+        }
         if (["pave_coverage", "setting_design"].includes(step?.key) && activeRingImage !== "plain") {
           return activeRingImage;
         }
@@ -4250,7 +4383,7 @@
               formValues.trilogy_centre_shape = "";
               formValues.trilogy_side_shape = "";
               formValues.style_detail = "";
-              if (["Toi et moi", "Bezel"].includes(option)) {
+              if (["Cluster", "Toi et moi", "Bezel"].includes(option)) {
                 formValues.setting_design = "";
               }
             }
@@ -4667,12 +4800,14 @@
         updateProgress();
         designFlowEl?.classList.add("design-flow--steps");
         shellEl.classList.remove("guided-form--intro", "guided-form--email-popup");
+        shellEl.classList.add("guided-form--summary");
         questionEl.textContent = "Review your ring details";
         supportEl.textContent = "Check the summary below and confirm the best contact details for your quote.";
         supportEl.classList.remove("guided-form__support--phone");
         noteEl.textContent = "";
         bodyEl.innerHTML = "";
         renderGuide(null);
+        clearMobilePreview();
         if (backBtn) backBtn.hidden = false;
 
         const summary = document.createElement("div");
@@ -4864,6 +4999,7 @@
         supportEl.textContent = "We will help you visualise your ring, narrow down the details, and get a more accurate price.";
         designFlowEl?.classList.remove("design-flow--steps");
         shellEl.classList.add("guided-form--intro");
+        shellEl.classList.remove("guided-form--summary");
         shellEl.classList.remove("guided-form--metal", "guided-form--email-popup", "guided-form--cathedral-overlay", "guided-form--halo-image", "guided-form--halo-overlay", "guided-form--hidden-halo-overlay", "guided-form--tulip-overlay", "guided-form--tulip-image", "guided-form--classic-image", "guided-form--bezel-image", "guided-form--solitaire-round-image", "guided-form--solitaire-round-plain-image", "guided-form--solitaire-oval-image", "guided-form--solitaire-emerald-image", "guided-form--solitaire-radiant-image", "guided-form--solitaire-princess-image", "guided-form--solitaire-cushion-image", "guided-form--solitaire-pear-image", "guided-form--solitaire-marquise-image", "guided-form--trilogy-image", "guided-form--trilogy-large-centre-image", "guided-form--toi-et-moi-image", "guided-form--cluster-image", "guided-form--style-preview", "guided-form--pave-overlay", "guided-form--pave-overlay-half", "guided-form--image-transforming");
         activeRingImage = "plain";
         if (imageTransformTimer) {
@@ -4903,6 +5039,7 @@
 
         designFlowEl?.classList.add("design-flow--steps");
         shellEl.classList.remove("guided-form--intro");
+        shellEl.classList.remove("guided-form--summary");
         questionEl.textContent = isEmailCaptureStep ? "" : getStepLabel(step);
         supportEl.textContent = isEmailCaptureStep ? "" : step.support;
         shellEl.classList.toggle("guided-form--metal", hasSelectedMetal);
