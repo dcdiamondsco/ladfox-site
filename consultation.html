@@ -32,24 +32,33 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="scroll-reveal.css" />
 
   <style>
     :root{
       --bg:#000;
       --bg-soft:#0b0b0b;
-      --surface:rgba(255,255,255,.05);
-      --surface-strong:rgba(255,255,255,.08);
-      --line:rgba(255,255,255,.14);
+      --surface:rgba(255,255,255,.04);
+      --surface-strong:rgba(255,255,255,.06);
+      --surface-elevated:rgba(255,255,255,.075);
+      --line:rgba(255,255,255,.1);
       --text:#fff;
       --muted:rgba(255,255,255,.72);
+      --muted-soft:rgba(255,255,255,.5);
       --accent:#fff;
       --accent-soft:#fff;
-      --heading:"Plus Jakarta Sans", sans-serif;
+      --champagne:#c7aa6a;
+      --heading:"Cormorant Garamond", serif;
+      --heading-sans:"Plus Jakarta Sans", sans-serif;
       --body:"Manrope", sans-serif;
-      --shadow:0 24px 80px rgba(0,0,0,.24);
-      --max:1120px;
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --shadow-soft:0 12px 36px rgba(0,0,0,.18);
+      --max:1180px;
+      --radius-lg:28px;
+      --radius-md:24px;
+      --radius-sm:22px;
+      --transition:180ms ease;
     }
 
     *{ box-sizing:border-box; }
@@ -73,33 +82,30 @@
     a{ color:inherit; text-decoration:none; }
 
     .shell{
-      width:min(calc(100% - 32px), var(--max));
+      width:min(calc(100% - 40px), var(--max));
       margin:0 auto;
     }
 
     header{
-      padding:22px 0 14px;
-      display:grid;
-      justify-items:center;
-      position:relative;
+      padding:28px 0 18px;
     }
 
     .brand-lockup{
-      display:flex;
+      display:grid;
+      grid-template-columns:auto auto;
       align-items:center;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:18px;
       width:100%;
     }
 
     .brand{
       display:flex;
-      justify-content:center;
+      align-items:center;
     }
 
     .brand-logo{
-      width:min(205px, 44vw);
+      width:min(210px, 40vw);
       height:auto;
       display:block;
     }
@@ -108,19 +114,24 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      position:absolute;
-      top:22px;
-      right:0;
+      justify-self:end;
+      padding:10px 0 10px 18px;
+      transition:opacity var(--transition), transform var(--transition);
+    }
+
+    .brand-review-link:hover{
+      opacity:.92;
+      transform:translateY(-1px);
     }
 
     .brand-review-badge{
-      width:138px;
+      width:min(152px, 30vw);
       height:auto;
       display:block;
     }
 
     main{
-      padding:16px 0 40px;
+      padding:18px 0 56px;
     }
 
     .site-footer{
@@ -162,7 +173,7 @@
     .layout{
       display:grid;
       grid-template-columns:.92fr 1.08fr;
-      gap:18px;
+      gap:24px;
       align-items:start;
     }
 
@@ -172,15 +183,16 @@
     .thank-you-message,
     .direct-options{
       border:1px solid var(--line);
-      border-radius:32px;
+      border-radius:var(--radius-lg);
       background:var(--surface);
       box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
     }
 
     .intro{
-      padding:30px;
+      padding:42px 40px 38px;
       position:sticky;
-      top:18px;
+      top:22px;
       overflow:hidden;
     }
 
@@ -197,14 +209,21 @@
 
     .eyebrow{
       display:inline-flex;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      color:var(--accent-soft);
+      align-items:center;
+      gap:12px;
+      color:var(--champagne);
       text-transform:uppercase;
-      letter-spacing:.16em;
+      letter-spacing:.2em;
       font-size:.72rem;
       font-weight:800;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:38px;
+      height:1px;
+      background:rgba(199,170,106,.8);
+      flex:0 0 auto;
     }
 
     h1,
@@ -212,134 +231,205 @@
     h3{
       margin:0;
       font-family:var(--heading);
-      line-height:1.12;
+      line-height:1;
+      font-weight:600;
+      letter-spacing:.01em;
     }
 
     h1{
-      margin-top:18px;
-      font-size:clamp(2.8rem, 6vw, 5rem);
-      max-width:10ch;
+      margin-top:22px;
+      font-size:clamp(3.1rem, 6vw, 5.5rem);
+      max-width:10.5ch;
     }
 
     .intro p{
-      margin:18px 0 0;
+      margin:20px 0 0;
       color:var(--muted);
-      line-height:1.75;
-      max-width:54ch;
+      line-height:1.85;
+      max-width:58ch;
+      font-size:1.02rem;
+    }
+
+    .trust-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      margin-top:24px;
+      color:rgba(255,255,255,.82);
+      font-size:.84rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .trust-row span{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .trust-row span:not(:last-child)::after{
+      content:"";
+      width:3px;
+      height:3px;
+      border-radius:50%;
+      background:rgba(199,170,106,.85);
     }
 
     .info-list{
       display:grid;
-      gap:12px;
-      margin-top:26px;
+      gap:16px;
+      margin-top:34px;
     }
 
     .info-card{
-      padding:18px 20px;
-      background:var(--surface-strong);
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:18px;
+      padding:0;
+      border:none;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      backdrop-filter:none;
     }
 
-    .info-card strong{
+    .info-card + .info-card{
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .info-index{
+      color:var(--champagne);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.24em;
+      padding-top:6px;
+      font-family:var(--heading-sans);
+    }
+
+    .info-copy strong{
       display:block;
       margin-bottom:6px;
       color:#fff;
+      font-family:var(--heading-sans);
+      font-size:1rem;
+      letter-spacing:.02em;
     }
 
-    .info-card span{
+    .info-copy span{
       color:var(--muted);
-      line-height:1.65;
-      font-size:.95rem;
+      line-height:1.8;
+      font-size:.96rem;
     }
 
     .right-col{
       display:grid;
-      gap:18px;
+      gap:22px;
     }
 
     .direct-options{
-      padding:22px;
+      padding:30px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.04), transparent 34%),
-        rgba(255,255,255,.04);
+        linear-gradient(180deg, rgba(255,255,255,.035), transparent 34%),
+        rgba(255,255,255,.03);
     }
 
     .direct-options h2{
-      font-size:1.5rem;
-      margin-bottom:8px;
+      font-size:clamp(2rem, 3vw, 2.65rem);
+      margin-bottom:10px;
     }
 
     .direct-options p{
-      margin:0 0 16px;
+      margin:0 0 20px;
       color:var(--muted);
-      line-height:1.7;
+      line-height:1.8;
+      max-width:46ch;
     }
 
     .direct-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:14px;
+      gap:16px;
     }
 
     .direct-card{
-      padding:18px 18px 20px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      background:var(--surface-strong);
+      padding:22px 22px 24px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius-md);
+      background:var(--surface-elevated);
       display:grid;
-      gap:10px;
+      gap:12px;
+      min-height:100%;
+      transition:border-color var(--transition), background var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    .direct-card:hover{
+      border-color:rgba(199,170,106,.28);
+      background:rgba(255,255,255,.085);
+      box-shadow:var(--shadow-soft);
+      transform:translateY(-1px);
     }
 
     .direct-card span{
-      color:rgba(255,255,255,.54);
+      color:var(--champagne);
       font-size:.76rem;
       font-weight:800;
-      letter-spacing:.16em;
+      letter-spacing:.22em;
       text-transform:uppercase;
+      font-family:var(--heading-sans);
     }
 
     .direct-card strong{
-      font-size:1.05rem;
-      line-height:1.3;
+      font-size:1.2rem;
+      line-height:1.25;
       color:#fff;
+      font-family:var(--heading);
     }
 
     .direct-card p{
       margin:0;
       color:var(--muted);
-      font-size:.92rem;
-      line-height:1.6;
+      font-size:.94rem;
+      line-height:1.72;
     }
 
-    .direct-card a{
+    .direct-card em{
       display:inline-flex;
+      align-items:center;
       width:fit-content;
       font-weight:800;
-      text-decoration:underline;
-      text-underline-offset:4px;
+      font-style:normal;
+      color:#f1eadb;
+      transition:color var(--transition), letter-spacing var(--transition);
+    }
+
+    .direct-card:hover em{
+      color:#fff;
+      letter-spacing:.02em;
     }
 
     .form-card{
-      padding:28px;
+      padding:34px 32px 32px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.04), transparent 34%),
-        rgba(255,255,255,.04);
+        linear-gradient(180deg, rgba(255,255,255,.035), transparent 34%),
+        rgba(255,255,255,.03);
     }
 
     .form-card h2{
-      font-size:2rem;
-      margin-bottom:8px;
+      font-size:clamp(2.2rem, 3.2vw, 3rem);
+      margin-bottom:10px;
     }
 
     .consult-note{
-      margin:0 0 18px;
+      margin:0 0 24px;
       color:var(--muted);
-      line-height:1.7;
+      line-height:1.8;
       max-width:58ch;
     }
 
     .fields{
       display:grid;
-      gap:14px;
+      gap:16px;
     }
 
     .field-grid{
@@ -350,30 +440,46 @@
 
     .label{
       display:block;
-      margin-bottom:8px;
-      font-size:.92rem;
+      margin-bottom:10px;
+      font-size:.9rem;
       font-weight:800;
-      color:#fff;
+      color:rgba(255,255,255,.92);
+      letter-spacing:.02em;
     }
 
     .input,
     .textarea{
       width:100%;
-      padding:14px 16px;
+      padding:16px 18px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(15,12,10,.35);
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.045);
       color:var(--text);
       font:inherit;
+      outline:none;
+      transition:border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+
+    .input:hover,
+    .textarea:hover{
+      border-color:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
     }
 
     .input::placeholder,
     .textarea::placeholder{
-      color:rgba(255,255,255,.44);
+      color:rgba(255,255,255,.42);
+    }
+
+    .input:focus,
+    .textarea:focus{
+      border-color:rgba(199,170,106,.65);
+      background:rgba(255,255,255,.07);
+      box-shadow:0 0 0 4px rgba(199,170,106,.12);
     }
 
     .textarea{
-      min-height:160px;
+      min-height:170px;
       resize:vertical;
     }
 
@@ -390,15 +496,33 @@
       display:flex;
       gap:10px;
       align-items:center;
-      padding:14px 16px;
+      padding:16px 18px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(15,12,10,.28);
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.035);
       color:var(--muted);
+      cursor:pointer;
+      transition:border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
     }
 
     .radio-option input{
-      accent-color:var(--accent);
+      accent-color:var(--champagne);
+      margin:0;
+      flex:0 0 auto;
+    }
+
+    .radio-option:hover,
+    .radio-option:focus-within{
+      border-color:rgba(199,170,106,.26);
+      background:rgba(255,255,255,.055);
+      color:#fff;
+    }
+
+    .radio-option.is-selected{
+      border-color:rgba(199,170,106,.42);
+      background:rgba(199,170,106,.08);
+      color:#fff;
+      box-shadow:0 0 0 1px rgba(199,170,106,.14) inset;
     }
 
     .submit-row{
@@ -423,22 +547,36 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:54px;
-      padding:0 22px;
-      border:0;
+      min-height:56px;
+      padding:0 26px;
+      border:1px solid rgba(255,255,255,.12);
       border-radius:18px;
-      background:#000;
-      color:#fff;
+      background:#ece4d4;
+      color:#080808;
       font-weight:800;
       font-size:1rem;
       cursor:pointer;
-      box-shadow:0 18px 36px rgba(255,255,255,.08);
+      box-shadow:0 14px 34px rgba(0,0,0,.22);
+      transition:background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+    }
+
+    .btn:hover{
+      background:#f4ecdf;
+      border-color:rgba(199,170,106,.28);
+      transform:translateY(-1px);
+      box-shadow:0 18px 36px rgba(0,0,0,.28);
+    }
+
+    .btn:disabled{
+      cursor:wait;
+      opacity:.82;
+      transform:none;
     }
 
     .thank-you-message{
       display:none;
-      padding:34px;
-      background:rgba(255,255,255,.1);
+      padding:36px 34px;
+      background:rgba(255,255,255,.08);
     }
 
     .thank-you-message.visible{
@@ -457,6 +595,25 @@
       max-width:52ch;
     }
 
+    .footer-links a,
+    .footer-meta a{
+      transition:opacity var(--transition), text-decoration-color var(--transition);
+    }
+
+    .footer-links a:hover,
+    .footer-meta a:hover{
+      opacity:.82;
+      text-decoration-color:rgba(199,170,106,.7);
+    }
+
+    .quick-message-bubble{
+      bottom:24px;
+    }
+
+    .quick-message-callout{
+      bottom:92px;
+    }
+
     @media (max-width:980px){
       .layout,
       .field-grid{
@@ -470,19 +627,33 @@
       .direct-grid{
         grid-template-columns:1fr;
       }
-    }
 
-    @media (max-width:720px){
-      .brand-logo{
-        width:min(244px, 70vw);
-      }
-
-      .brand-review-badge{
-        width:min(118px, 36vw);
+      .brand-lockup{
+        grid-template-columns:1fr;
+        justify-items:center;
       }
 
       .brand-review-link{
-        position:static;
+        justify-self:center;
+        padding:0;
+      }
+    }
+
+    @media (max-width:720px){
+      body{
+        padding-bottom:108px;
+      }
+
+      .shell{
+        width:min(calc(100% - 28px), var(--max));
+      }
+
+      .brand-logo{
+        width:min(244px, 72vw);
+      }
+
+      .brand-review-badge{
+        width:min(126px, 42vw);
       }
 
       .intro,
@@ -490,18 +661,45 @@
       .info-card,
       .thank-you-message,
       .direct-options{
-        border-radius:24px;
+        border-radius:var(--radius-md);
       }
 
       .intro,
       .form-card,
       .thank-you-message,
       .direct-options{
-        padding:22px;
+        padding:24px 22px;
       }
 
       .submit-row{
         align-items:flex-start;
+      }
+
+      h1{
+        font-size:clamp(2.5rem, 12vw, 3.6rem);
+      }
+
+      .trust-row{
+        gap:8px 12px;
+        font-size:.78rem;
+      }
+
+      .direct-card{
+        padding:20px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .quick-message-bubble{
+        right:14px;
+        bottom:14px;
+      }
+
+      .quick-message-callout{
+        right:20px;
+        bottom:78px;
       }
     }
   </style>
@@ -566,7 +764,7 @@
         <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox private Hatton Garden jeweller logo" />
       </a>
       <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
-        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" />
+        <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Google reviews badge for Ladfox" />
       </a>
     </div>
   </header>
@@ -574,51 +772,68 @@
   <main class="shell">
     <div class="layout">
       <section class="intro">
-        <span class="eyebrow">Private Consultation</span>
-        <h1>Book a bespoke engagement ring consultation</h1>
-        <p>Choose the most comfortable way to start your bespoke engagement ring enquiry with Ladfox in London.</p>
+        <span class="eyebrow">Private Design Experience</span>
+        <h1>Let's create something extraordinary</h1>
+        <p>Begin with a private conversation about your ideas, preferred stones and budget. You will speak directly with LADFOX and receive personal guidance throughout the entire process.</p>
+
+        <div class="trust-row" aria-label="Consultation trust points">
+          <span>Private consultation</span>
+          <span>Hatton Garden craftsmanship</span>
+          <span>No sales pressure</span>
+        </div>
 
         <div class="info-list">
           <div class="info-card">
-            <strong>Direct and personal</strong>
-            <span>You speak directly with Ladfox, not a sales team.</span>
+            <div class="info-index">01</div>
+            <div class="info-copy">
+              <strong>Personal from the beginning</strong>
+              <span>Speak directly with the person helping to create your ring, without being passed between sales teams.</span>
+            </div>
           </div>
 
           <div class="info-card">
-            <strong>Ring-led guidance</strong>
-            <span>Useful if you are starting from scratch or want clearer direction.</span>
+            <div class="info-index">02</div>
+            <div class="info-copy">
+              <strong>Designed around your vision</strong>
+              <span>Start with a clear idea, a collection of screenshots or simply a feeling you want the finished ring to capture.</span>
+            </div>
           </div>
 
           <div class="info-card">
-            <strong>Private and considered</strong>
-            <span>Send references, ask questions, or start with a simple message.</span>
+            <div class="info-index">03</div>
+            <div class="info-copy">
+              <strong>Considered, never pressured</strong>
+              <span>Receive honest guidance on design, diamonds, gemstones and budget without a traditional showroom sales experience.</span>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="right-col">
         <div class="direct-options">
-          <h2>Prefer to speak directly?</h2>
-          <p>If you already know you want to talk, use the quickest route below.</p>
+          <h2>Start the conversation your way</h2>
+          <p>Choose whichever feels most comfortable. You will speak directly with LADFOX.</p>
 
           <div class="direct-grid">
-            <div class="direct-card">
-              <span>Call</span>
-              <p>Speak directly with Ladfox about your ring and the next step.</p>
-              <a href="tel:+447853362904">Call now</a>
-            </div>
+            <a class="direct-card" href="tel:+447853362904" aria-label="Call LADFOX for a private consultation">
+              <span>CALL</span>
+              <strong>Private phone consultation</strong>
+              <p>A private conversation about your ideas, timescale and the best next step.</p>
+              <em>Call LADFOX</em>
+            </a>
 
-            <div class="direct-card">
-              <span>WhatsApp</span>
-              <p>Send screenshots, ideas, links, or a reference for a quick private conversation.</p>
-              <a href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer">Message</a>
-            </div>
+            <a class="direct-card" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Start a WhatsApp conversation with LADFOX">
+              <span>WHATSAPP</span>
+              <strong>Private WhatsApp conversation</strong>
+              <p>Send inspiration, screenshots or a brief description and receive personal guidance.</p>
+              <em>Start on WhatsApp</em>
+            </a>
           </div>
         </div>
 
         <div id="consultationContent" class="form-card">
-          <h2>Book your private jewellery consultation</h2>
-          <p class="consult-note">Most clients start with a quick WhatsApp message or the short form below. Give enough detail for a useful first reply.</p>
+          <h2>Begin your design journey</h2>
+          <p class="consult-note">Tell us how you would prefer to start. A few simple details are enough for a useful and personal first response.</p>
 
           <form
             name="consultation"
@@ -650,15 +865,15 @@
               <div class="radio-group" role="radiogroup" aria-label="Preferred contact method">
                 <label class="radio-option">
                   <input type="radio" name="preferred_contact" value="Phone consultation" required />
-                  Phone consultation
+                  Arrange a phone consultation
                 </label>
                 <label class="radio-option">
                   <input type="radio" name="preferred_contact" value="Email consultation" required />
-                  Email consultation
+                  Continue by email
                 </label>
                 <label class="radio-option">
                   <input type="radio" name="preferred_contact" value="Send a message" required />
-                  Send a message
+                  Send an initial message
                 </label>
               </div>
             </div>
@@ -682,7 +897,7 @@
 
             <div id="messageBlock" class="conditional-block" hidden>
               <label for="message" class="label">Message *</label>
-              <textarea id="message" name="message" class="textarea" placeholder="Tell us what you are trying to make compare or understand."></textarea>
+              <textarea id="message" name="message" class="textarea" placeholder="Tell us what you have in mind, the style you are drawn to, your approximate budget or anything you would like help understanding."></textarea>
 
               <label for="messageEmail" class="label">Email *</label>
               <input type="email" id="messageEmail" name="email" class="input" autocomplete="email" />
@@ -690,7 +905,7 @@
 
             <div class="submit-row">
               <p class="submit-status" id="submitStatus" aria-live="polite"></p>
-              <button type="submit" class="btn">Send</button>
+              <button type="submit" class="btn">Begin My Consultation</button>
             </div>
           </form>
         </div>
@@ -730,6 +945,7 @@
       const messageInput = document.getElementById("message");
       const submitStatus = document.getElementById("submitStatus");
       const submitButton = form?.querySelector('button[type="submit"]');
+      const contactRadios = Array.from(form?.querySelectorAll('input[name="preferred_contact"]') || []);
 
       ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid"].forEach(key => {
         const el = document.getElementById(key);
@@ -744,6 +960,12 @@
           if (locField) locField.value = loc || "Unknown";
         })
         .catch(() => {});
+
+      const syncRadioStyles = () => {
+        contactRadios.forEach((input) => {
+          input.closest(".radio-option")?.classList.toggle("is-selected", input.checked);
+        });
+      };
 
       const syncContactMode = () => {
         const pref = form?.querySelector('input[name="preferred_contact"]:checked')?.value || "";
@@ -779,9 +1001,10 @@
         if (!wantsPhone) phoneInput.value = "";
         if (!wantsMessage) messageInput.value = "";
         if (!wantsDetails) nameInput.value = "";
+        syncRadioStyles();
       };
 
-      form?.querySelectorAll('input[name="preferred_contact"]').forEach((input) => {
+      contactRadios.forEach((input) => {
         input.addEventListener("change", syncContactMode);
       });
       syncContactMode();
@@ -791,7 +1014,7 @@
           if (submitStatus) submitStatus.textContent = "";
           if (submitButton instanceof HTMLButtonElement) {
             submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
+            submitButton.textContent = "Sending Enquiry...";
           }
           const nameVal = (document.getElementById("name")?.value || "").trim();
           const emailVal = ((document.getElementById("email")?.value || "").trim() || (document.getElementById("messageEmail")?.value || "").trim());
