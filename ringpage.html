@@ -2800,10 +2800,10 @@
 
       .guided-form--summary{
         gap:6px;
-        padding-top:2px;
+        padding-top:18svh;
         grid-template-rows:auto auto auto auto;
         min-height:100svh;
-        align-content:center;
+        align-content:start;
         justify-items:center;
       }
 
@@ -3012,7 +3012,7 @@
       .guided-guide__summary{ min-height:34px; padding:7px 10px; }
       .guided-form__footer .btn{ min-height:38px; }
       .guided-textarea{ min-height:54px; }
-      .guided-form--summary{ align-content:start; }
+      .guided-form--summary{ padding-top:14svh; align-content:start; }
     }
 
 
@@ -4875,9 +4875,7 @@
             }
             if (!requiresManualAdvance && stepIndex < steps.length - 1) {
               const isPaveCoverageStep = step.key === "pave_coverage";
-              const autoAdvanceDelay = isPaveCoverageStep
-                ? option === "Half pave" ? 800 : 600
-                : 300;
+              const autoAdvanceDelay = 300;
               const previewTransition = isPaveCoverageStep ? "zoom-next" : "";
               scheduleChoiceAutoAdvance(step, autoAdvanceDelay, previewTransition);
             }
