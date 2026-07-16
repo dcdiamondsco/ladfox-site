@@ -593,6 +593,36 @@
       clip-path:none;
     }
 
+    .guided-form--tulip-setting-zoom.guided-form--tulip-image::before{
+      background-image:url("./Images/Ringpage Form Background Images/zoomed in petal.png");
+      background-position:center 54%;
+      background-size:min(94%, 540px) auto;
+    }
+
+    .guided-form--classic-setting-zoom.guided-form--classic-image::before{
+      background-image:url("./Images/Ringpage Form Background Images/zoomed in no stone.png");
+      background-position:center 68%;
+      background-size:min(92%, 500px) auto;
+    }
+
+    .guided-form--setting-focus::before{
+      background-image:url("./Images/Ringpage Form Background Images/zoomed in no stone.png");
+      background-position:center 68%;
+      background-size:min(92%, 500px) auto;
+      background-repeat:no-repeat;
+      opacity:var(--ring-overlay-opacity);
+      filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
+    }
+
+    .guided-form--setting-focus::after{
+      background-image:none;
+      opacity:0;
+      filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
+      -webkit-mask-image:none;
+      mask-image:none;
+      clip-path:none;
+    }
+
     .guided-form--bezel-image::before{
       background-image:url("./Images/Ringpage Form Background Images/bezel.png");
       background-position:var(--ring-overlay-position);
@@ -923,6 +953,7 @@
     }
 
     .guided-form__intro{
+      position:relative;
       padding:0;
       border:0;
       border-radius:0;
@@ -932,6 +963,83 @@
       align-content:start;
       text-align:center;
       transition:background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    @keyframes ringSettingZoom{
+      0%{
+        transform:scale(.88) translateY(12px);
+        opacity:.72;
+      }
+      100%{
+        transform:scale(1) translateY(0);
+        opacity:1;
+      }
+    }
+
+    @keyframes ringPreviewStepZoom{
+      0%{
+        transform:scale(.9);
+        opacity:.76;
+      }
+      100%{
+        transform:scale(1);
+        opacity:1;
+      }
+    }
+
+    .guided-form__trust{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:8px;
+      flex-wrap:wrap;
+      margin:0 0 6px;
+      padding-right:168px;
+    }
+
+    .guided-form__trust[hidden]{
+      display:none;
+    }
+
+    .guided-form__trust-badge{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:-26px;
+      right:-20px;
+      padding:0;
+      border-radius:0;
+      border:0;
+      background:transparent;
+      min-height:0;
+      overflow:hidden;
+    }
+
+    .guided-form__trust-badge img{
+      display:block;
+      width:128px;
+      max-width:none;
+      height:auto;
+      margin:0 -14px;
+    }
+
+    .guided-form__trust-item{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.035);
+      color:rgba(255,255,255,.82);
+      font-family:var(--ui-font);
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.04em;
+      line-height:1;
+      white-space:nowrap;
     }
 
     .guided-form__question{
@@ -1090,8 +1198,8 @@
       content:"";
       position:absolute;
       inset:0;
-      background-position:center 62%;
-      background-size:auto 122%;
+      background-position:var(--mobile-preview-image-position, center 62%);
+      background-size:var(--mobile-preview-image-size, auto 122%);
       background-repeat:no-repeat;
       filter:var(--ring-overlay-filter) var(--ring-image-filter-adjust);
       pointer-events:none;
@@ -1345,6 +1453,25 @@
       align-items:stretch;
     }
 
+    .guided-choice-list--setting-design{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:6px;
+      width:min(100%, 620px);
+      margin:0 auto;
+      justify-items:stretch;
+      align-items:stretch;
+    }
+
+    .guided-choice-list--setting-design .guided-choice{
+      width:100%;
+      min-height:36px;
+      padding:7px 8px;
+      border-radius:14px;
+      font-size:.68rem;
+      line-height:1.1;
+    }
+
     .guided-choice-list--gemstones{
       grid-template-columns:repeat(4, minmax(0, 1fr));
       width:min(100%, 560px);
@@ -1374,6 +1501,7 @@
       align-items:center;
       justify-content:center;
       gap:8px;
+      position:relative;
       width:min(100%, min(280px, 46vw));
       min-height:48px;
       padding:10px 14px;
@@ -1463,10 +1591,71 @@
     }
 
     .guided-choice.is-selected{
-      border-color:var(--metal-choice-hover-border);
-      background:var(--metal-choice-hover-bg);
-      box-shadow:0 0 0 1px var(--metal-choice-hover-border) inset, 0 0 24px var(--metal-choice-hover-bg);
-      color:var(--metal-accent-text);
+      border-color:rgba(255,255,255,.5);
+      background:rgba(255,255,255,.1);
+      box-shadow:0 0 0 1px rgba(255,255,255,.18) inset, 0 0 22px rgba(255,255,255,.06);
+      color:#fff;
+    }
+
+    .guided-choice.is-selected::after{
+      content:"\2713";
+      position:absolute;
+      top:8px;
+      right:8px;
+      width:16px;
+      height:16px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.32);
+      color:#fff;
+      font-size:.62rem;
+      line-height:1;
+    }
+
+    .guided-choice--metal-yellow-gold{
+      border-color:rgba(232,189,84,.28);
+      background:linear-gradient(180deg, rgba(255,224,138,.09), rgba(74,53,11,.16));
+      color:#ffe7a3;
+    }
+
+    .guided-choice--metal-white-gold{
+      border-color:rgba(214,225,236,.26);
+      background:linear-gradient(180deg, rgba(237,244,251,.08), rgba(43,49,58,.16));
+      color:#f5fbff;
+    }
+
+    .guided-choice--metal-rose-gold{
+      border-color:rgba(232,146,175,.26);
+      background:linear-gradient(180deg, rgba(255,210,222,.08), rgba(72,33,44,.16));
+      color:#ffdbe3;
+    }
+
+    .guided-choice--metal-platinum{
+      border-color:rgba(215,220,228,.28);
+      background:linear-gradient(180deg, rgba(243,246,250,.08), rgba(45,49,56,.16));
+      color:#f7fbff;
+    }
+
+    .guided-choice--metal-silver{
+      border-color:rgba(190,202,214,.24);
+      background:linear-gradient(180deg, rgba(229,236,243,.08), rgba(42,47,55,.15));
+      color:#eef3f7;
+    }
+
+    .guided-choice--metal-combination{
+      border-color:rgba(223,198,136,.28);
+      background:linear-gradient(135deg, rgba(245,227,183,.08), rgba(99,78,35,.16) 52%, rgba(221,193,135,.09));
+      color:#f6e7bc;
+    }
+
+    .guided-choice--metal-not-sure-yet,
+    .guided-choice--metal-not-sure-help-me-choose{
+      border-color:rgba(214,172,88,.22);
+      background:linear-gradient(180deg, rgba(246,226,184,.075), rgba(58,43,15,.15));
+      color:#f4e4be;
     }
 
     .guided-input,
@@ -1812,6 +2001,12 @@
       color:rgba(255,255,255,.64);
     }
 
+    .guided-form__note--reassurance{
+      margin:8px auto 0;
+      max-width:34ch;
+      text-align:center;
+    }
+
     .reassure{
       margin:10px auto 0;
       max-width:760px;
@@ -1937,7 +2132,7 @@
       background:
         linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.56) 18%, rgba(0,0,0,.74) 100%),
         radial-gradient(circle at 38% 30%, rgba(255,255,255,.08), transparent 24%),
-        url("Images/hero%20ring%20image.png") 34% center/cover no-repeat;
+        linear-gradient(180deg, #080808 0%, #000 100%);
       opacity:1;
       transform:scale(1);
     }
@@ -2439,51 +2634,94 @@
         min-height:100svh;
         height:auto;
         overflow:visible;
-        padding:8px 14px calc(18px + env(safe-area-inset-bottom, 0px));
+        padding:6px 12px calc(18px + env(safe-area-inset-bottom, 0px));
         grid-template-rows:auto auto auto auto auto auto;
-        gap:10px;
+        gap:7px;
+        align-content:start;
       }
 
-      .guided-progress{ margin-bottom:2px; }
+      .guided-progress{ margin-bottom:1px; }
+
+      .guided-progress__meta{
+        font-size:.72rem;
+      }
 
       .guided-form__intro{
         min-height:auto;
-        padding:4px 2px 2px;
+        padding:2px 1px 1px;
       }
 
       .guided-form__question{
-        margin-top:2px;
-        font-size:clamp(1.35rem, 6vw, 1.72rem);
-        line-height:1.16;
+        margin-top:1px;
+        font-size:clamp(1.12rem, 5.3vw, 1.42rem);
+        line-height:1.08;
       }
 
       .guided-form__support{
-        margin-top:5px;
-        font-size:.88rem;
-        line-height:1.42;
+        margin-top:2px;
+        font-size:.76rem;
+        line-height:1.24;
       }
 
       .guided-form__body{
         height:auto;
         min-height:0;
-        padding:0;
+        padding:0 0 6px;
         overflow:visible;
       }
 
-      .guided-choice-list{ gap:7px; }
+      .guided-choice-list{ gap:6px; }
+
+      .guided-choice-list,
+      .guided-choice-list--grid,
+      .guided-choice-list--stone-shapes,
+      .guided-choice-list--paired-shapes,
+      .guided-choice-list--gemstones{
+        width:min(100%, 340px);
+        margin:0 auto;
+      }
 
       .guided-choice{
-        min-height:42px;
-        padding:8px 9px;
-        border-radius:15px;
-        font-size:.82rem;
+        min-height:28px;
+        padding:4px 5px;
+        border-radius:13px;
+        font-size:.62rem;
+        line-height:1.08;
+        width:100%;
+        box-shadow:0 10px 22px rgba(0,0,0,.18);
+      }
+
+      .guided-choice-list:not(.guided-choice-list--grid):not(.guided-choice-list--stone-shapes):not(.guided-choice-list--paired-shapes):not(.guided-choice-list--gemstones):not(.guided-choice-list--setting-design) .guided-choice{
+        width:min(100%, 190px);
+      }
+
+      .guided-choice-list--grid{
+        gap:6px;
+      }
+
+      .guided-choice-list--grid .guided-choice{
+        width:100%;
+      }
+
+      .guided-choice-list--setting-design{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:5px;
+        width:min(100%, 340px);
+      }
+
+      .guided-choice-list--setting-design .guided-choice{
+        min-height:26px;
+        padding:3px 4px;
+        border-radius:12px;
+        font-size:.52rem;
+        line-height:1.05;
       }
 
       .guided-form__preview{
         display:block;
         width:100%;
-        height:clamp(220px, 30svh, 285px);
-        margin:2px 0 0;
+        height:clamp(195px, 26svh, 245px);
+        margin:0;
         overflow:hidden;
         flex:0 0 auto;
       }
@@ -2501,25 +2739,30 @@
         opacity:1;
       }
 
+      .guided-form--setting-focus .guided-form__preview::before{
+        background-position:center 30% !important;
+        background-size:auto 62% !important;
+      }
+
       .guided-guide{
         order:initial;
         width:100%;
         margin:0;
-        border-radius:16px;
+        border-radius:14px;
       }
 
       .guided-guide__summary{
-        min-height:44px;
-        padding:11px 14px;
-        font-size:.76rem;
+        min-height:36px;
+        padding:8px 11px;
+        font-size:.66rem;
       }
 
       .guided-guide__body{
-        max-height:34svh;
+        max-height:18svh;
         overflow:auto;
-        padding:0 14px 13px;
-        font-size:.88rem;
-        line-height:1.5;
+        padding:0 11px 10px;
+        font-size:.76rem;
+        line-height:1.32;
       }
 
       .guided-form__footer{
@@ -2528,20 +2771,20 @@
         z-index:8;
         display:grid;
         grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:8px;
-        width:calc(100% + 28px);
-        margin:0 -14px;
-        padding:10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+        gap:6px;
+        width:calc(100% + 24px);
+        margin:0 -12px;
+        padding:8px 12px calc(14px + env(safe-area-inset-bottom, 0px));
         background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.94) 24%, #000 54%);
       }
 
       .guided-form__footer .btn{
         width:100%;
         min-width:0;
-        min-height:46px;
-        padding:10px 12px;
-        border-radius:15px;
-        font-size:.78rem;
+        min-height:40px;
+        padding:8px 10px;
+        border-radius:13px;
+        font-size:.72rem;
       }
 
       .guided-form__footer #quickStartNext:only-child,
@@ -2556,13 +2799,17 @@
       }
 
       .guided-form--summary{
-        gap:8px;
-        padding-top:6px;
+        gap:6px;
+        padding-top:2px;
         grid-template-rows:auto auto auto auto;
+        min-height:100svh;
+        align-content:center;
+        justify-items:center;
       }
 
       .guided-form--summary .guided-form__intro{
         padding:2px 0 0;
+        width:min(100%, 340px);
       }
 
       .guided-form--summary .guided-form__question{
@@ -2578,12 +2825,15 @@
 
       .guided-form--summary .guided-form__body{
         gap:0;
+        width:min(100%, 340px);
+        padding-bottom:0;
       }
 
       .guided-form--summary .guided-summary{
-        gap:8px;
-        padding:10px;
-        border-radius:18px;
+        gap:6px;
+        padding:8px;
+        border-radius:16px;
+        width:100%;
       }
 
       .guided-form--summary .guided-summary__list{
@@ -2611,61 +2861,158 @@
       }
 
       .guided-form--summary .guided-summary__fields{
-        gap:7px;
-        margin-top:2px;
+        gap:5px;
+        margin-top:0;
       }
 
       .guided-form--summary .guided-summary__contact{
-        gap:7px;
-        margin-top:1px;
+        gap:5px;
+        margin-top:0;
       }
 
       .guided-form--summary .guided-summary__contact-options{
-        gap:6px;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:5px;
       }
 
       .guided-form--summary .guided-summary__contact-option{
-        min-height:40px;
-        padding:9px 11px;
-        border-radius:14px;
-        font-size:.8rem;
+        min-height:34px;
+        padding:7px 8px;
+        border-radius:12px;
+        font-size:.66rem;
+        gap:6px;
       }
 
       .guided-form--summary .guided-summary__contact-option input{
-        width:15px;
-        height:15px;
+        width:13px;
+        height:13px;
       }
 
       .guided-form--summary .guided-input{
-        min-height:42px;
-        padding:10px 12px;
-        border-radius:14px;
-        font-size:.82rem;
+        min-height:38px;
+        padding:8px 10px;
+        border-radius:12px;
+        font-size:.76rem;
       }
 
       .guided-form--summary .guided-form__footer{
         position:static;
-        width:100%;
+        width:min(100%, 340px);
         margin:0;
-        padding:4px 0 calc(6px + env(safe-area-inset-bottom, 0px));
+        padding:4px 0 calc(10px + env(safe-area-inset-bottom, 0px));
         background:none;
       }
 
       .guided-form--summary .guided-form__footer .btn{
-        min-height:42px;
-        font-size:.76rem;
+        min-height:38px;
+        font-size:.72rem;
+      }
+
+      .guided-input,
+      .guided-textarea{
+        padding:9px 11px;
+        border-radius:14px;
+        font-size:.78rem;
+      }
+
+      .guided-textarea{
+        min-height:62px;
+      }
+
+      .guided-upload{
+        gap:6px;
+      }
+
+      .guided-upload__button{
+        min-height:36px;
+        padding:7px 10px;
+        border-radius:13px;
+        font-size:.72rem;
+      }
+
+      .guided-upload__meta{
+        font-size:.72rem;
+      }
+
+      .guided-range{
+        gap:7px;
+        padding:10px 10px 8px;
+        border-radius:16px;
+      }
+
+      .guided-range__value{
+        font-size:.88rem;
+      }
+
+      .guided-range__scale{
+        font-size:.68rem;
+      }
+
+      .guided-range__skip{
+        min-height:36px;
+        padding:7px 10px;
+        border-radius:13px;
+        font-size:.72rem;
       }
     }
 
     @media(max-width:390px), (max-height:700px) and (max-width:760px){
-      .guided-form{ gap:7px; padding-top:5px; }
+      .guided-form{ gap:6px; padding-top:5px; padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px)); }
+      .guided-form__trust{
+        justify-content:center;
+        gap:4px;
+        margin:0 0 4px;
+        padding-right:0;
+        flex-wrap:wrap;
+      }
+      .guided-form__trust-badge{
+        position:static;
+        order:-1;
+        flex:0 0 100%;
+        width:100%;
+        margin:0 auto 2px;
+        min-height:0;
+        padding:0;
+      }
+      .guided-form__trust-item{
+        min-height:26px;
+        padding:4px 6px;
+        flex:0 1 auto;
+      }
+      .guided-form__trust-badge img{
+        width:116px;
+        margin:0 -12px;
+      }
+      .guided-form__trust-item{
+        font-size:.54rem;
+        letter-spacing:0;
+      }
+      .guided-choice-list--setting-design{
+        gap:6px;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+      }
+      .guided-choice-list--setting-design .guided-choice{
+        min-height:34px;
+        padding:6px 6px;
+        border-radius:13px;
+        font-size:.66rem;
+        line-height:1.05;
+      }
       .guided-form__question{ font-size:1.3rem; }
       .guided-form__support{ font-size:.82rem; }
-      .guided-choice{ min-height:38px; padding:7px 8px; font-size:.77rem; }
-      .guided-form__preview{ height:clamp(185px, 27svh, 225px); }
-      .guided-form__preview::before{ background-size:auto 126%; }
-      .guided-guide__summary{ min-height:40px; padding:9px 12px; }
-      .guided-form__footer .btn{ min-height:43px; }
+      .guided-choice{ min-height:26px; padding:4px 5px; font-size:.58rem; }
+      .guided-choice-list,
+      .guided-choice-list--grid,
+      .guided-choice-list--stone-shapes,
+      .guided-choice-list--paired-shapes,
+      .guided-choice-list--gemstones,
+      .guided-choice-list--setting-design{ width:min(100%, 320px); }
+      .guided-form__preview{ height:clamp(165px, 23svh, 205px); }
+      .guided-form__preview::before{ background-size:auto 124%; }
+      .guided-guide__summary{ min-height:34px; padding:7px 10px; }
+      .guided-form__footer .btn{ min-height:38px; }
+      .guided-textarea{ min-height:54px; }
+      .guided-form--summary{ align-content:start; }
     }
 
 
@@ -2674,8 +3021,8 @@
     .guided-form--step-one .guided-form__preview{
       display:block;
       width:100%;
-      height:clamp(220px, 30svh, 285px);
-      margin:2px 0 0;
+      height:clamp(195px, 26svh, 245px);
+      margin:0;
       position:relative;
       overflow:hidden;
       flex:0 0 auto;
@@ -2699,18 +3046,28 @@
       transform:none !important;
     }
 
+    .guided-form--setting-focus.guided-form--image-transforming .guided-form__preview::before{
+      animation:ringSettingZoom .42s cubic-bezier(.18,.72,.24,1) both !important;
+      transform-origin:center top;
+    }
+
+    .guided-form--preview-zoom-transition.guided-form--image-transforming .guided-form__preview::before{
+      animation:ringPreviewStepZoom .72s cubic-bezier(.18,.72,.24,1) both !important;
+      transform-origin:center center;
+    }
+
     @media(max-width:390px), (max-height:700px) and (max-width:760px){
       .guided-form__preview,
       .guided-form--step-one .guided-form__preview{
-        height:clamp(185px, 27svh, 225px);
-        margin:2px 0 0;
+        height:clamp(165px, 23svh, 205px);
+        margin:0;
       }
 
       .guided-form__preview::before,
       .guided-form__preview::after{
         inset:-4% -8% -7%;
         background-position:center 62% !important;
-        background-size:auto 132% !important;
+        background-size:auto 124% !important;
       }
 
       .guided-form--summary .guided-form__question{ font-size:1.04rem; }
@@ -2831,6 +3188,7 @@
               <input type="file" name="reference_images" id="quickStartReferenceImages" class="guided-upload__input" accept="image/*" multiple />
               <p style="display:none;">
                 <label>Do not fill this in <input name="bot-field" /></label>
+              </p>
 
               <div class="guided-form">
                 <div class="guided-progress" id="quickStartProgress" hidden>
@@ -2844,6 +3202,14 @@
                 </div>
 
                 <div class="guided-form__intro" id="quickStartIntro">
+                  <div class="guided-form__trust" id="quickStartTrust" hidden>
+                    <span class="guided-form__trust-badge">
+                      <img src="Images/google reviews logo.png" alt="Google Reviews" loading="eager" decoding="async" />
+                    </span>
+                    <span class="guided-form__trust-item">Free design service</span>
+                    <span class="guided-form__trust-item">No obligation</span>
+                    <span class="guided-form__trust-item">Lifetime warranty</span>
+                  </div>
                   <h3 class="guided-form__question" id="quickStartQuestion"></h3>
                   <p class="guided-form__support" id="quickStartSupport">We will help you visualise your ring, narrow down the details, and get a more accurate price.</p>
                 </div>
@@ -2982,6 +3348,7 @@
       const guideBodyEl = document.getElementById("quickStartGuideBody");
       const shellEl = form.querySelector(".guided-form");
       const previewEl = document.getElementById("quickStartPreview");
+      const trustEl = document.getElementById("quickStartTrust");
       const bodyEl = document.getElementById("quickStartBody");
       const noteEl = document.getElementById("quickStartNote");
       const statusEl = document.getElementById("quickStartStatus");
@@ -3204,21 +3571,21 @@
           label: "Which ring style?",
           support: "",
           type: "choice",
-          options: ["Solitaire", "Toi et moi", "Trilogy", "Halo", "Cluster", "Bezel", "Other", "Not sure yet"]
+          options: ["Solitaire", "Toi et moi", "Trilogy", "Halo", "Cluster", "Bezel", "Prefer to send us an image?", "Other", "Not sure yet"]
         },
         {
           key: "toi_et_moi_first_shape",
           label: "Which is the first stone shape?",
           support: "",
           type: "choice",
-          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other"]
+          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other", "Not sure — help me choose"]
         },
         {
           key: "toi_et_moi_second_shape",
           label: "Which is the second stone shape?",
           support: "",
           type: "choice",
-          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other"]
+          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other", "Not sure — help me choose"]
         },
         {
           key: "toi_et_moi_sizes",
@@ -3243,14 +3610,14 @@
           label: "Which centre stone shape?",
           support: "",
           type: "choice",
-          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other"]
+          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other", "Not sure — help me choose"]
         },
         {
           key: "trilogy_side_shape",
           label: "Which side stone shape?",
           support: "",
           type: "choice",
-          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other"]
+          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Other", "Not sure — help me choose"]
         },
         {
           key: "trilogy_centre_size",
@@ -3323,14 +3690,14 @@
           label: "Which pave coverage?",
           support: "",
           type: "choice",
-          options: ["Full pave", "Half pave"]
+          options: ["Full pave", "Half pave", "Not sure — help me choose"]
         },
         {
           key: "setting_design",
           label: "Which setting design?",
           support: "",
           type: "choice",
-          options: ["Tulip/Floral", "Classic", "Other", "Not sure yet"]
+          options: ["Classic", "Bezel", "Half bezel", "High profile", "Low profile", "Millgrain", "Ornate", "Petal", "Scalloped", "Split prong", "Supported gallery rail", "Trellis", "V basket", "Other", "Not sure - help me choose"]
         },
         {
           key: "stone_type",
@@ -3443,6 +3810,23 @@
       let hasSentAbandonmentLead = false;
       let activeRingImage = "plain";
       let imageTransformTimer = null;
+      let choiceAutoAdvanceTimer = null;
+      let pendingPreviewTransition = "";
+      const settingDesignImageMap = {
+        "Classic": "zoomed in classic basket.png",
+        "Bezel": "zoomed in bezel.png",
+        "Half bezel": "zoomed in half bezel.png",
+        "High profile": "zoomed in high profile.png",
+        "Low profile": "zoomed in low profile.png",
+        "Millgrain": "zoomed in millgrain.png",
+        "Ornate": "zoomed in ornate.png",
+        "Petal": "zoomed in petal.png",
+        "Scalloped": "zoomed in scalloped.png",
+        "Split prong": "zoomed in split prong.png",
+        "Supported gallery rail": "zoomed in supported gallery-rail.png",
+        "Trellis": "zoomed in trellis.png",
+        "V basket": "zoomed in v basket.png"
+      };
 
       const metalThemes = {
         "Yellow gold": {
@@ -3670,6 +4054,36 @@
         if (statusEl) statusEl.textContent = message || "";
       }
 
+      function isUnsureChoiceValue(value){
+        return /^not sure/i.test(String(value || "").trim());
+      }
+
+      function isImageSubmissionStyle(value){
+        return normalizeChoiceValue(value) === "prefer to send us an image";
+      }
+
+      function cancelChoiceAutoAdvance(){
+        if (choiceAutoAdvanceTimer) {
+          window.clearTimeout(choiceAutoAdvanceTimer);
+          choiceAutoAdvanceTimer = null;
+        }
+      }
+
+      function scheduleChoiceAutoAdvance(step, delay = 300, previewTransition = ""){
+        cancelChoiceAutoAdvance();
+        const scheduledStepIndex = stepIndex;
+        const scheduledStepKey = step?.key;
+        choiceAutoAdvanceTimer = window.setTimeout(() => {
+          choiceAutoAdvanceTimer = null;
+          if (introActive || summaryScreenActive) return;
+          if (stepIndex !== scheduledStepIndex) return;
+          if (!steps[stepIndex] || steps[stepIndex].key !== scheduledStepKey) return;
+          pendingPreviewTransition = previewTransition;
+          moveToNextStep();
+          renderStep();
+        }, delay);
+      }
+
       function applyMetalTheme(selection){
         if (!introEl || !shellEl) return;
         const theme = metalThemes[selection] || metalThemes["Not sure yet"];
@@ -3856,6 +4270,9 @@
 
       function shouldShowStep(step){
         if (!step) return false;
+        if (isImageSubmissionStyle(formValues.multi_stone_style)) {
+          return ["ring_metal", "multi_stone_style", "other_notes", "email_capture"].includes(step.key);
+        }
         if (isOtherDetailStep(step)) {
           const sourceValue = String(formValues[step.otherDetailSourceKey] || "");
           return sourceValue.split(",").map((item) => item.trim()).includes("Other");
@@ -3882,10 +4299,10 @@
           }
           return ["Gemstone", "Lab gemstone", "Gemstones", "Lab gemstones"].includes(formValues.stone_type);
         }
-        if (step.key === "stone_shape") return ["Solitaire", "Bezel", "Not sure yet"].includes(formValues.multi_stone_style);
+        if (step.key === "stone_shape") return ["solitaire", "bezel", "not sure yet", "not sure help me choose"].includes(normalizeChoiceValue(formValues.multi_stone_style));
         if (step.key === "stone_size") return !["Toi et moi", "Trilogy", "Halo"].includes(formValues.multi_stone_style);
         if (step.key === "pave_coverage") return formValues.pave_band === "Yes";
-        if (step.key === "setting_design") return !["Cluster", "Toi et moi", "Trilogy", "Bezel"].includes(formValues.multi_stone_style);
+        if (step.key === "setting_design") return !["cluster", "toi et moi", "trilogy", "bezel"].includes(normalizeChoiceValue(formValues.multi_stone_style));
         return true;
       }
 
@@ -4035,12 +4452,13 @@
       function getRingImageState(step){
         if (step && step.key === "multi_stone_style") return "plain";
         if (
-          formValues.multi_stone_style === "Not sure yet" ||
-          formValues.stone_shape === "Not sure yet" ||
-          formValues.halo_style_detail === "Not sure yet" ||
-          formValues.trilogy_style_detail === "Not sure yet" ||
-          formValues.setting_design === "Not sure yet" ||
-          formValues.pave_band === "Not sure yet"
+          isUnsureChoiceValue(formValues.multi_stone_style) ||
+          isUnsureChoiceValue(formValues.stone_shape) ||
+          isUnsureChoiceValue(formValues.halo_style_detail) ||
+          isUnsureChoiceValue(formValues.trilogy_style_detail) ||
+          isUnsureChoiceValue(formValues.setting_design) ||
+          isUnsureChoiceValue(formValues.pave_band) ||
+          isUnsureChoiceValue(formValues.pave_coverage)
         ) {
           return "solitaire-round";
         }
@@ -4105,48 +4523,48 @@
       }
 
       function getMobilePreviewImage(step, nextRingImage){
-        const imageBase = "https://ladfox.com/Images/Ringpage%20Form%20Background%20Images/";
-        if (formValues.multi_stone_style === "Bezel") return `${imageBase}bezel.png`;
-        if (shouldShowSettingDesignImage() && formValues.setting_design === "Tulip/Floral") return `${imageBase}tulip.png`;
-        if (shouldShowSettingDesignImage() && formValues.setting_design === "Classic") return `${imageBase}classic.png`;
+        const imageBase = getRingImageAssetUrl;
+        if (step?.key === "setting_design") return getSettingDesignImageUrl(formValues.setting_design || "Classic");
+        if (formValues.multi_stone_style === "Bezel") return imageBase("bezel.png");
 
         const imageMap = {
-          "plain": `${imageBase}1 Plain ring.png`,
-          "cathedral": `${imageBase}2 Solitaire no stone.png`,
-          "halo": `${imageBase}2 Solitaire no stone.png`,
-          "solitaire-round": `${imageBase}3 Solitaire round.png`,
-          "solitaire-round-plain": `${imageBase}4 Solitaire round plain.png`,
-          "solitaire-oval": `${imageBase}3 Solitaire oval.png`,
-          "solitaire-emerald": `${imageBase}3 Solitaire Emerald.png`,
-          "solitaire-radiant": `${imageBase}3 Solitaire radient.png`,
-          "solitaire-princess": `${imageBase}3 Solitaire princess.png`,
-          "solitaire-cushion": `${imageBase}3 Solitaire cushion.png`,
-          "solitaire-pear": `${imageBase}3 Solitaire pear.png`,
-          "solitaire-marquise": `${imageBase}3 Solitaire Marquise.png`,
-          "trilogy": `${imageBase}4 Trilogy.png`,
-          "trilogy-large-centre": `${imageBase}4 Trilogy.png`,
-          "toi-et-moi": `${imageBase}Toi et moi.png`,
-          "cluster": `${imageBase}cluster.png`
+          "plain": imageBase("1 Plain ring.png"),
+          "cathedral": imageBase("2 Solitaire no stone.png"),
+          "halo": imageBase("2 Solitaire no stone.png"),
+          "solitaire-round": imageBase("3 Solitaire round.png"),
+          "solitaire-round-plain": imageBase("4 Solitaire round plain.png"),
+          "solitaire-oval": imageBase("3 Solitaire oval.png"),
+          "solitaire-emerald": imageBase("3 Solitaire Emerald.png"),
+          "solitaire-radiant": imageBase("3 Solitaire radient.png"),
+          "solitaire-princess": imageBase("3 Solitaire princess.png"),
+          "solitaire-cushion": imageBase("3 Solitaire cushion.png"),
+          "solitaire-pear": imageBase("3 Solitaire pear.png"),
+          "solitaire-marquise": imageBase("3 Solitaire Marquise.png"),
+          "trilogy": imageBase("4 Trilogy.png"),
+          "trilogy-large-centre": imageBase("4 Trilogy.png"),
+          "toi-et-moi": imageBase("Toi et moi.png"),
+          "cluster": imageBase("cluster.png")
         };
 
         return imageMap[nextRingImage] || imageMap.plain;
       }
 
-      function getMobilePreviewOverlayImages(){
-        const imageBase = "https://ladfox.com/Images/Ringpage%20Form%20Background%20Images/";
+      function getMobilePreviewOverlayImages(step){
+        if (step?.key === "setting_design") return "none";
+        const imageBase = getRingImageAssetUrl;
         const overlays = [];
 
         if (formValues.style_detail === "Hidden halo") {
-          overlays.push(`url("${imageBase}hidden%20halo.png")`);
+          overlays.push(`url("${imageBase("hidden halo.png")}")`);
         } else if (formValues.style_detail === "Regular halo") {
-          overlays.push(`url("${imageBase}halo.png")`);
+          overlays.push(`url("${imageBase("halo.png")}")`);
         }
 
         if (formValues.pave_band === "Yes") {
           overlays.push(
             formValues.pave_coverage === "Half pave"
-              ? `url("${imageBase}half%20pave.png")`
-              : `url("${imageBase}pave.png")`
+              ? `url("${imageBase("half pave.png")}")`
+              : `url("${imageBase("pave.png")}")`
           );
         }
 
@@ -4170,6 +4588,11 @@
           return;
         }
 
+        if (step.key === "ring_metal") {
+          clearMobilePreview();
+          return;
+        }
+
         const previewImage = getMobilePreviewImage(step, nextRingImage);
         if (!previewImage) {
           clearMobilePreview();
@@ -4178,11 +4601,20 @@
 
         previewEl.hidden = false;
         previewEl.style.setProperty("--mobile-preview-image", `url("${previewImage}")`);
-        previewEl.style.setProperty("--mobile-preview-overlay-image", getMobilePreviewOverlayImages());
+        const overlayImages = getMobilePreviewOverlayImages(step);
+        previewEl.style.setProperty("--mobile-preview-overlay-image", overlayImages);
 
-        const overlayCount = getMobilePreviewOverlayImages() === "none"
+        if (step.key === "setting_design") {
+          previewEl.style.setProperty("--mobile-preview-image-position", "center 34%");
+          previewEl.style.setProperty("--mobile-preview-image-size", "auto 80%");
+        } else {
+          previewEl.style.removeProperty("--mobile-preview-image-position");
+          previewEl.style.removeProperty("--mobile-preview-image-size");
+        }
+
+        const overlayCount = overlayImages === "none"
           ? 0
-          : getMobilePreviewOverlayImages().split(", url(").length;
+          : overlayImages.split(", url(").length;
         const fixedOverlayPositions = Array(overlayCount).fill("center 62%");
         const fixedOverlaySizes = Array(overlayCount).fill("auto 132%");
 
@@ -4201,17 +4633,24 @@
         return ["Solitaire", "Cluster", "Halo"].includes(formValues.multi_stone_style);
       }
 
-      function triggerRingImageTransform(nextImage, forceReplay = false){
+      function triggerRingImageTransform(nextImage, forceReplay = false, duration = 90){
         if (!shellEl) return;
         if (!forceReplay && nextImage === activeRingImage) return;
         activeRingImage = nextImage;
         shellEl.classList.remove("guided-form--image-transforming");
+        shellEl.classList.remove("guided-form--preview-zoom-transition");
         if (imageTransformTimer) window.clearTimeout(imageTransformTimer);
         void shellEl.offsetWidth;
+        if (pendingPreviewTransition === "zoom-next") {
+          shellEl.classList.add("guided-form--preview-zoom-transition");
+          duration = Math.max(duration, 720);
+        }
         shellEl.classList.add("guided-form--image-transforming");
         imageTransformTimer = window.setTimeout(() => {
           shellEl.classList.remove("guided-form--image-transforming");
-        }, 90);
+          shellEl.classList.remove("guided-form--preview-zoom-transition");
+        }, duration);
+        pendingPreviewTransition = "";
       }
 
       function moveToNextStep(){
@@ -4294,6 +4733,24 @@
         return normalizeChoiceValue(getStepValue(step)) === normalizeChoiceValue(option);
       }
 
+      function getRingImageAssetUrl(fileName){
+        return `./Images/Ringpage%20Form%20Background%20Images/${encodeURIComponent(fileName)}`;
+      }
+
+      function getSettingDesignImageUrl(selection){
+        if (isUnsureChoiceValue(selection) || normalizeChoiceValue(selection) === "other") {
+          return getRingImageAssetUrl("zoomed in no stone.png");
+        }
+        const fileName = settingDesignImageMap[selection] || settingDesignImageMap["Classic"];
+        return getRingImageAssetUrl(fileName);
+      }
+
+      function getChoiceOptionClass(step, option){
+        if (!step || !option) return "";
+        if (step.key !== "ring_metal") return "";
+        return `guided-choice--metal-${normalizeChoiceValue(option).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+      }
+
       function renderGuide(step){
         if (!guideEl || !guideBodyEl) return;
         if (!step || introActive) {
@@ -4322,10 +4779,14 @@
       function renderChoiceStep(step){
         const list = document.createElement("div");
         list.className = "guided-choice-list";
+        const requiresManualAdvance = step.key === "setting_design";
         const isSplitColumnStep = ["ring_metal", "multi_stone_style", "stone_type", "trilogy_centre_shape", "trilogy_side_shape", "toi_et_moi_first_shape", "toi_et_moi_second_shape", "toi_et_moi_first_stone_type", "toi_et_moi_second_stone_type", "stone_shape"].includes(step.key);
         const isStoneShapeStep = ["stone_shape", "toi_et_moi_first_shape", "toi_et_moi_second_shape", "trilogy_centre_shape", "trilogy_side_shape"].includes(step.key);
         if (isSplitColumnStep) {
           list.classList.add("guided-choice-list--grid");
+        }
+        if (step.key === "setting_design") {
+          list.classList.add("guided-choice-list--setting-design");
         }
         if (isStoneShapeStep) {
           list.classList.add("guided-choice-list--stone-shapes");
@@ -4348,6 +4809,8 @@
           const button = document.createElement("button");
           button.type = "button";
           button.className = "guided-choice";
+          const optionClassName = getChoiceOptionClass(step, option);
+          if (optionClassName) button.classList.add(optionClassName);
           if (isSelectedChoice(step, option)) {
             button.classList.add("is-selected");
           }
@@ -4362,9 +4825,9 @@
             button.appendChild(badge);
           }
           button.addEventListener("click", () => {
+            cancelChoiceAutoAdvance();
             list.querySelectorAll(".guided-choice").forEach((choice) => {
               choice.classList.remove("is-selected");
-              choice.disabled = true;
             });
             button.classList.add("is-selected");
             setStepValue(step, option);
@@ -4405,9 +4868,23 @@
             syncHiddenFields();
             setStatus("");
             if (step.key === "ring_metal") applyMetalTheme(option);
-            if (stepIndex < steps.length - 1) {
-              moveToNextStep();
-              renderStep();
+            if (requiresManualAdvance) {
+              designFlowEl?.style.setProperty("--setting-focus-image", `url("${getSettingDesignImageUrl(option)}")`);
+              triggerRingImageTransform(resolveDisplayedRingImage(step), true);
+              renderMobilePreview(step, resolveDisplayedRingImage(step));
+            }
+            if (!requiresManualAdvance && stepIndex < steps.length - 1) {
+              const isPaveCoverageStep = step.key === "pave_coverage";
+              const autoAdvanceDelay = isPaveCoverageStep
+                ? option === "Half pave" ? 800 : 600
+                : 300;
+              const previewTransition = isPaveCoverageStep ? "zoom-next" : "";
+              scheduleChoiceAutoAdvance(step, autoAdvanceDelay, previewTransition);
+            }
+            if (requiresManualAdvance) {
+              nextBtn.hidden = false;
+              nextBtn.textContent = "Next";
+              nextBtn.disabled = false;
             }
           });
           if (columns) {
@@ -4424,7 +4901,30 @@
         });
 
         bodyEl.appendChild(list);
-        nextBtn.hidden = true;
+        if (step.key === "setting_design") {
+          const designOwnButton = document.createElement("button");
+          designOwnButton.type = "button";
+          designOwnButton.className = "guided-skip";
+          designOwnButton.textContent = "Design your own";
+          designOwnButton.addEventListener("click", () => {
+            cancelChoiceAutoAdvance();
+            setStepValue(step, "Other");
+            designFlowEl?.style.setProperty("--setting-focus-image", `url("${getSettingDesignImageUrl("Other")}")`);
+            triggerRingImageTransform(resolveDisplayedRingImage(step), true);
+            renderMobilePreview(step, resolveDisplayedRingImage(step));
+            syncHiddenFields();
+            setStatus("");
+            jumpToStep("other_notes");
+          });
+          bodyEl.appendChild(designOwnButton);
+        }
+        if (requiresManualAdvance) {
+          nextBtn.hidden = false;
+          nextBtn.textContent = "Next";
+          nextBtn.disabled = !String(getStepValue(step) || "").trim();
+        } else {
+          nextBtn.hidden = true;
+        }
       }
 
       function renderMultiChoiceStep(step){
@@ -4575,12 +5075,14 @@
           : isBudgetStep
             ? currency.min
             : Number(step.min ?? 0);
+        const storedValue = formValues[step.key];
+        const hasUnsureSelection = isUnsureChoiceValue(storedValue);
         const initialValue = isDiscreteValueStep
-          ? formValues[step.key] !== ""
-            ? Math.max(step.values.indexOf(formValues[step.key]), 0)
+          ? storedValue !== "" && !hasUnsureSelection
+            ? Math.max(step.values.indexOf(storedValue), 0)
             : defaultValue
-          : formValues[step.key] !== ""
-            ? Number(formValues[step.key])
+          : storedValue !== "" && !hasUnsureSelection
+            ? Number(storedValue)
             : defaultValue;
         range.value = String(initialValue);
 
@@ -4609,22 +5111,44 @@
         };
 
         range.addEventListener("input", syncValue);
-        syncValue();
+        if (hasUnsureSelection) {
+          valueLabel.textContent = storedValue;
+        } else {
+          syncValue();
+        }
 
         wrap.appendChild(valueLabel);
         wrap.appendChild(range);
         wrap.appendChild(scale);
 
+        if (["stone_size", "halo_centre_size", "trilogy_centre_size"].includes(step.key)) {
+          const unsureButton = document.createElement("button");
+          unsureButton.type = "button";
+          unsureButton.className = "guided-range__skip";
+          unsureButton.textContent = "Not sure — help me choose";
+          unsureButton.addEventListener("click", () => {
+            formValues[step.key] = "Not sure — help me choose";
+            syncHiddenFields();
+            valueLabel.textContent = "Not sure — help me choose";
+            setStatus("");
+            moveToNextStep();
+            renderStep();
+          });
+          wrap.appendChild(unsureButton);
+        }
+
         if (step.key === "ring_size") {
           const unknownButton = document.createElement("button");
           unknownButton.type = "button";
           unknownButton.className = "guided-range__skip";
-          unknownButton.textContent = "Don't know";
+          unknownButton.textContent = "Not sure — help me choose";
           unknownButton.addEventListener("click", () => {
-            formValues[step.key] = "Don't know yet";
+            formValues[step.key] = "Not sure — help me choose";
             syncHiddenFields();
-            valueLabel.textContent = "Don't know yet";
+            valueLabel.textContent = "Not sure — help me choose";
             setStatus("");
+            moveToNextStep();
+            renderStep();
           });
           wrap.appendChild(unknownButton);
         }
@@ -4653,6 +5177,7 @@
           .split("|")
           .map((item) => item.trim())
           .filter(Boolean);
+        const hasUnsureSelection = isUnsureChoiceValue(getStepValue(step));
 
         const parsedValues = Object.fromEntries(
           currentValues.map((entry) => {
@@ -4692,12 +5217,29 @@
           };
 
           range.addEventListener("input", syncValue);
-          syncValue();
+          if (hasUnsureSelection) {
+            valueLabel.textContent = `${label} stone size`;
+          } else {
+            syncValue();
+          }
 
           wrap.appendChild(valueLabel);
           wrap.appendChild(range);
           wrap.appendChild(scale);
         });
+
+        const unsureButton = document.createElement("button");
+        unsureButton.type = "button";
+        unsureButton.className = "guided-range__skip";
+        unsureButton.textContent = "Not sure — help me choose";
+        unsureButton.addEventListener("click", () => {
+          setStepValue(step, "Not sure — help me choose");
+          syncHiddenFields();
+          setStatus("");
+          moveToNextStep();
+          renderStep();
+        });
+        wrap.appendChild(unsureButton);
 
         if (nextBtn && nextBtn.parentElement !== wrap) {
           wrap.appendChild(nextBtn.parentElement);
@@ -4801,55 +5343,19 @@
         designFlowEl?.classList.add("design-flow--steps");
         shellEl.classList.remove("guided-form--intro", "guided-form--email-popup");
         shellEl.classList.add("guided-form--summary");
-        questionEl.textContent = "Review your ring details";
-        supportEl.textContent = "Check the summary below and confirm the best contact details for your quote.";
+        questionEl.textContent = "";
+        supportEl.textContent = "";
         supportEl.classList.remove("guided-form__support--phone");
         noteEl.textContent = "";
+        noteEl.classList.remove("guided-form__note--reassurance");
         bodyEl.innerHTML = "";
         renderGuide(null);
         clearMobilePreview();
+        if (trustEl) trustEl.hidden = true;
         if (backBtn) backBtn.hidden = false;
 
-        const summary = document.createElement("div");
-        summary.className = "guided-summary";
-
-        const list = document.createElement("div");
-        list.className = "guided-summary__list";
-        buildSelectionSummary().forEach((item) => {
-          const row = document.createElement("div");
-          row.className = "guided-summary__item";
-
-          const content = document.createElement("div");
-          content.className = "guided-summary__content";
-
-          const label = document.createElement("div");
-          label.className = "guided-summary__label";
-          label.textContent = item.label;
-
-          const value = document.createElement("div");
-          value.className = "guided-summary__value";
-          value.textContent = item.value;
-
-          content.appendChild(label);
-          content.appendChild(value);
-          row.appendChild(content);
-
-          if (item.editStepKey) {
-            const changeButton = document.createElement("button");
-            changeButton.type = "button";
-            changeButton.className = "guided-summary__change";
-            changeButton.textContent = "Change";
-            changeButton.addEventListener("click", () => {
-              jumpToStep(item.editStepKey);
-            });
-            row.appendChild(changeButton);
-          }
-
-          list.appendChild(row);
-        });
-
         const fields = document.createElement("div");
-        fields.className = "guided-summary__fields";
+        fields.className = "guided-summary guided-summary__fields";
 
         const emailField = document.createElement("input");
         emailField.type = "email";
@@ -4915,13 +5421,11 @@
         contactWrap.appendChild(contactLabel);
         contactWrap.appendChild(contactOptions);
         fields.appendChild(contactWrap);
-        summary.appendChild(list);
-        summary.appendChild(fields);
-        bodyEl.appendChild(summary);
+        bodyEl.appendChild(fields);
 
         nextBtn.hidden = false;
         nextBtn.disabled = false;
-        nextBtn.textContent = "Submit";
+        nextBtn.textContent = "Get price";
         requestAnimationFrame(() => phoneField.focus());
       }
 
@@ -4994,13 +5498,16 @@
       function renderIntroScreen(){
         if (!questionEl || !supportEl || !introEl || !bodyEl || !noteEl || !nextBtn) return;
         updateProgress();
+        cancelChoiceAutoAdvance();
         questionEl.textContent = "";
+        if (trustEl) trustEl.hidden = true;
         if (backBtn) backBtn.hidden = true;
         supportEl.textContent = "We will help you visualise your ring, narrow down the details, and get a more accurate price.";
-        designFlowEl?.classList.remove("design-flow--steps");
+        designFlowEl?.classList.remove("design-flow--steps", "design-flow--setting-focus");
+        designFlowEl?.style.removeProperty("--setting-focus-image");
         shellEl.classList.add("guided-form--intro");
         shellEl.classList.remove("guided-form--summary");
-        shellEl.classList.remove("guided-form--metal", "guided-form--email-popup", "guided-form--cathedral-overlay", "guided-form--halo-image", "guided-form--halo-overlay", "guided-form--hidden-halo-overlay", "guided-form--tulip-overlay", "guided-form--tulip-image", "guided-form--classic-image", "guided-form--bezel-image", "guided-form--solitaire-round-image", "guided-form--solitaire-round-plain-image", "guided-form--solitaire-oval-image", "guided-form--solitaire-emerald-image", "guided-form--solitaire-radiant-image", "guided-form--solitaire-princess-image", "guided-form--solitaire-cushion-image", "guided-form--solitaire-pear-image", "guided-form--solitaire-marquise-image", "guided-form--trilogy-image", "guided-form--trilogy-large-centre-image", "guided-form--toi-et-moi-image", "guided-form--cluster-image", "guided-form--style-preview", "guided-form--pave-overlay", "guided-form--pave-overlay-half", "guided-form--image-transforming");
+        shellEl.classList.remove("guided-form--metal", "guided-form--email-popup", "guided-form--cathedral-overlay", "guided-form--halo-image", "guided-form--halo-overlay", "guided-form--hidden-halo-overlay", "guided-form--tulip-overlay", "guided-form--tulip-image", "guided-form--classic-image", "guided-form--tulip-setting-zoom", "guided-form--classic-setting-zoom", "guided-form--setting-focus", "guided-form--bezel-image", "guided-form--solitaire-round-image", "guided-form--solitaire-round-plain-image", "guided-form--solitaire-oval-image", "guided-form--solitaire-emerald-image", "guided-form--solitaire-radiant-image", "guided-form--solitaire-princess-image", "guided-form--solitaire-cushion-image", "guided-form--solitaire-pear-image", "guided-form--solitaire-marquise-image", "guided-form--trilogy-image", "guided-form--trilogy-large-centre-image", "guided-form--toi-et-moi-image", "guided-form--cluster-image", "guided-form--style-preview", "guided-form--pave-overlay", "guided-form--pave-overlay-half", "guided-form--image-transforming");
         activeRingImage = "plain";
         if (imageTransformTimer) {
           window.clearTimeout(imageTransformTimer);
@@ -5013,6 +5520,7 @@
         renderGuide(null);
         bodyEl.innerHTML = "";
         noteEl.textContent = "";
+        noteEl.classList.remove("guided-form__note--reassurance");
         nextBtn.hidden = false;
         nextBtn.disabled = false;
         nextBtn.textContent = "Design my ring";
@@ -5027,6 +5535,7 @@
           renderSummaryScreen();
           return;
         }
+        cancelChoiceAutoAdvance();
         while (stepIndex < steps.length && !shouldShowStep(steps[stepIndex])) {
           stepIndex += 1;
         }
@@ -5036,12 +5545,16 @@
         const hasSelectedMetal = Boolean(formValues.ring_metal);
         const nextRingImage = resolveDisplayedRingImage(step);
         const isEmailCaptureStep = step.type === "email-capture";
+        const showTrustRow = stepIndex === 0 && !isEmailCaptureStep;
 
         designFlowEl?.classList.add("design-flow--steps");
+        designFlowEl?.classList.remove("design-flow--setting-focus");
+        designFlowEl?.style.removeProperty("--setting-focus-image");
         shellEl.classList.remove("guided-form--intro");
         shellEl.classList.remove("guided-form--summary");
         questionEl.textContent = isEmailCaptureStep ? "" : getStepLabel(step);
         supportEl.textContent = isEmailCaptureStep ? "" : step.support;
+        if (trustEl) trustEl.hidden = !showTrustRow;
         shellEl.classList.toggle("guided-form--metal", hasSelectedMetal);
         shellEl.classList.toggle("guided-form--email-popup", isEmailCaptureStep);
         shellEl.classList.toggle("guided-form--style-preview", step.key === "multi_stone_style");
@@ -5056,18 +5569,21 @@
         shellEl.classList.toggle("guided-form--solitaire-pear-image", nextRingImage === "solitaire-pear");
         shellEl.classList.toggle("guided-form--solitaire-marquise-image", nextRingImage === "solitaire-marquise");
         shellEl.classList.toggle("guided-form--halo-image", nextRingImage === "halo");
-        shellEl.classList.toggle("guided-form--halo-overlay", shouldShowHaloImage(step) && formValues.style_detail !== "Hidden halo");
-        shellEl.classList.toggle("guided-form--hidden-halo-overlay", shouldShowHaloImage(step) && formValues.style_detail === "Hidden halo");
+        shellEl.classList.toggle("guided-form--halo-overlay", step.key !== "setting_design" && shouldShowHaloImage(step) && formValues.style_detail !== "Hidden halo");
+        shellEl.classList.toggle("guided-form--hidden-halo-overlay", step.key !== "setting_design" && shouldShowHaloImage(step) && formValues.style_detail === "Hidden halo");
         shellEl.classList.toggle("guided-form--tulip-overlay", false);
-        shellEl.classList.toggle("guided-form--tulip-image", shouldShowSettingDesignImage() && formValues.setting_design === "Tulip/Floral");
-        shellEl.classList.toggle("guided-form--classic-image", shouldShowSettingDesignImage() && formValues.setting_design === "Classic");
+        shellEl.classList.toggle("guided-form--tulip-image", false);
+        shellEl.classList.toggle("guided-form--classic-image", false);
+        shellEl.classList.toggle("guided-form--tulip-setting-zoom", false);
+        shellEl.classList.toggle("guided-form--classic-setting-zoom", false);
+        shellEl.classList.toggle("guided-form--setting-focus", step.key === "setting_design");
         shellEl.classList.toggle("guided-form--bezel-image", formValues.multi_stone_style === "Bezel");
         shellEl.classList.toggle("guided-form--trilogy-image", nextRingImage === "trilogy");
         shellEl.classList.toggle("guided-form--trilogy-large-centre-image", nextRingImage === "trilogy-large-centre");
         shellEl.classList.toggle("guided-form--toi-et-moi-image", nextRingImage === "toi-et-moi");
         shellEl.classList.toggle("guided-form--cluster-image", nextRingImage === "cluster");
-        shellEl.classList.toggle("guided-form--pave-overlay", formValues.pave_band === "Yes" && formValues.pave_coverage !== "Half pave");
-        shellEl.classList.toggle("guided-form--pave-overlay-half", formValues.pave_band === "Yes" && formValues.pave_coverage === "Half pave");
+        shellEl.classList.toggle("guided-form--pave-overlay", step.key !== "setting_design" && formValues.pave_band === "Yes" && formValues.pave_coverage !== "Half pave");
+        shellEl.classList.toggle("guided-form--pave-overlay-half", step.key !== "setting_design" && formValues.pave_band === "Yes" && formValues.pave_coverage === "Half pave");
         triggerRingImageTransform(nextRingImage);
         renderMobilePreview(step, nextRingImage);
         introEl.classList.toggle("guided-form__intro--metal", hasSelectedMetal);
@@ -5081,6 +5597,7 @@
         }
         supportEl.classList.toggle("guided-form__support--phone", isEmailCaptureStep);
         noteEl.textContent = "";
+        noteEl.classList.remove("guided-form__note--reassurance");
         bodyEl.innerHTML = "";
         if (nextBtn && nextBtn.parentElement && nextBtn.parentElement.classList.contains("guided-form__footer")) {
           const footerEl = nextBtn.parentElement;
@@ -5150,6 +5667,18 @@
         const step = steps[stepIndex];
         if (!step) return;
 
+        if (step.type === "choice") {
+          const selected = String(getStepValue(step) || "").trim();
+          if (!selected) {
+            setStatus("Please select an option.");
+            return;
+          }
+          syncHiddenFields();
+          moveToNextStep();
+          renderStep();
+          return;
+        }
+
         if (step.type === "textarea") {
           syncHiddenFields();
           moveToNextStep();
@@ -5190,6 +5719,7 @@
       });
 
       backBtn?.addEventListener("click", () => {
+        cancelChoiceAutoAdvance();
         if (introActive) return;
         if (summaryScreenActive) {
           summaryScreenActive = false;
@@ -5306,6 +5836,7 @@
   <script src="scroll-reveal.js"></script>
 </body>
 </html>
+
 
 
 
