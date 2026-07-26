@@ -747,13 +747,13 @@
 
     .price-panel{
       order:6;
-      gap:2px;
+      display:none;
     }
 
     .price-compare{
-      color:#c95858;
+      color:rgba(0,0,0,.78);
       font-family:"Manrope", sans-serif;
-      font-size:1rem;
+      font-size:.92rem;
       font-weight:700;
       letter-spacing:.04em;
       text-decoration:line-through;
@@ -766,11 +766,26 @@
     }
 
     .checkout-main{
-      display:inline-flex;
+      display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
+      gap:6px;
+      width:100%;
+    }
+
+    .checkout-price-stack{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+      min-height:1.5em;
+    }
+
+    .checkout-label{
+      color:#c95858;
+      font-weight:800;
+      letter-spacing:.02em;
     }
 
     .checkout-timer{
@@ -1335,14 +1350,15 @@
             <p data-summary-output>14k Gold with a 0.5 ct round lab-grown diamond, D colour, VS2 clarity, UK size M.</p>
           </div>
 
-          <div class="price-panel" aria-busy="true">
-            <span class="price-compare" data-price-compare hidden></span>
-          </div>
+          <div class="price-panel" aria-busy="true"></div>
 
           <div class="actions actions--bottom">
             <button class="btn btn-primary" type="button" data-checkout-button disabled>
               <span class="checkout-main">
-                <span data-checkout-label>Checking price...</span>
+                <span class="checkout-price-stack">
+                  <span class="price-compare" data-price-compare hidden></span>
+                  <span class="checkout-label" data-checkout-label>Checking price...</span>
+                </span>
                 <span class="checkout-timer" data-countdown-output aria-live="off" hidden>Sale ends in 0d 00h 00m 00s</span>
               </span>
             </button>
@@ -1805,7 +1821,7 @@
     checkoutButton.disabled = !canCheckout;
 
     if (!canQuote) {
-      if (checkoutLabel) checkoutLabel.textContent = "Complete your options";
+      if (checkoutLabel) checkoutLabel.textContent = "";
       return;
     }
 
