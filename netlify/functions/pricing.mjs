@@ -13,7 +13,7 @@ export const SALE = Object.freeze({
 
 const PRICE_CONFIG = Object.freeze({
   minimumSalePrice: 1999,
-  gemstoneDiscountMultiplier: 0.8,
+  gemstoneDiscountMultiplier: 0.83,
   metalAddons: Object.freeze({
     "14k Gold": 0,
     "18k Gold": 110,

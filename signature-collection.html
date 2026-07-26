@@ -1302,6 +1302,10 @@
                 </div>
               </div>
 
+              <div class="field field--full" data-diamond-note hidden>
+                <p class="signature-helper">All of our lab-grown diamonds are hand picked for excellent cut and proportions.</p>
+              </div>
+
               <div class="field field--full">
                 <label for="signatureRingSize">Ring size</label>
                 <div class="field-input field-input--range">
@@ -1379,6 +1383,7 @@
   const previewGem = page.querySelector("[data-preview-gem]");
   const termsAccepted = page.querySelector("#signatureTermsAccepted");
   const gemstoneWrap = page.querySelector("[data-gemstone-options]");
+  const diamondNote = page.querySelector("[data-diamond-note]");
   const colourField = page.querySelector("[data-colour-field]");
   const clarityField = page.querySelector("[data-clarity-field]");
   const karatField = page.querySelector("[data-karat-field]");
@@ -1618,25 +1623,26 @@
 
   const syncStoneMode = () => {
     const isGemstone = fields.stoneType.value === "Lab Gemstone";
+    const isDiamond = fields.stoneType.value === "Lab Diamond";
     const stoneSize = Number.parseFloat(fields.stoneSize.value);
     const hideWarmColours = Number.isFinite(stoneSize) && stoneSize > 2.5;
 
     if (gemstoneWrap) gemstoneWrap.hidden = !isGemstone;
-    if (colourField) colourField.hidden = isGemstone;
-    if (clarityField) clarityField.hidden = isGemstone;
-    if (isGemstone && !fields.gemstone.value) fields.gemstone.value = "Ruby - Deep Red";
+    if (diamondNote) diamondNote.hidden = !isDiamond;
+    if (colourField) colourField.hidden = !isDiamond;
+    if (clarityField) clarityField.hidden = !isDiamond;
 
     if (colourSlider) {
       colourSlider.querySelectorAll("[data-option-value]").forEach((option) => {
         const value = option.dataset.optionValue || "";
-        const shouldHide = !isGemstone && hideWarmColours && (value === "G" || value === "H");
+        const shouldHide = isDiamond && hideWarmColours && (value === "G" || value === "H");
         option.hidden = shouldHide;
         option.disabled = shouldHide;
         option.setAttribute("aria-hidden", String(shouldHide));
       });
     }
 
-    if (!isGemstone && hideWarmColours && (fields.colour.value === "G" || fields.colour.value === "H")) {
+    if (isDiamond && hideWarmColours && (fields.colour.value === "G" || fields.colour.value === "H")) {
       fields.colour.value = "F";
     }
   };
