@@ -109,28 +109,14 @@
       max-width:12ch;
     }
 
-    .signature-kicker{
-      display:block;
-      width:100%;
-      color:rgba(255,255,255,.92);
-      font-family:"Cormorant Garamond", serif;
-      font-size:clamp(1.8rem, 3.4vw, 3rem);
-      font-weight:600;
-      letter-spacing:.04em;
-      text-transform:none;
-      line-height:1;
-      text-align:center;
-      text-wrap:balance;
-    }
-
     .signature-subcopy{
       margin:0;
       color:rgba(255,255,255,.7);
       font-family:"Cormorant Garamond", serif;
-      font-size:clamp(1rem, 1.8vw, 1.35rem);
+      font-size:clamp(1.45rem, 2.8vw, 2.3rem);
       font-weight:500;
-      letter-spacing:.08em;
-      line-height:1.1;
+      letter-spacing:.04em;
+      line-height:1.15;
       text-align:center;
     }
 
@@ -182,7 +168,17 @@
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
       filter:saturate(1.35);
-      clip-path:var(--preview-gem-mask, circle(48% at 50% 50%));
+      clip-path:var(--preview-gem-clip, circle(48% at 50% 50%));
+      -webkit-mask-image:var(--preview-gem-mask-image);
+      mask-image:var(--preview-gem-mask-image);
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-size:100% 100%;
+      mask-size:100% 100%;
+      -webkit-mask-mode:alpha;
+      mask-mode:alpha;
       pointer-events:none;
       z-index:1;
     }
@@ -297,27 +293,31 @@
     }
 
     .gemstone-options{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
       background:#000;
+      justify-content:flex-start;
     }
 
     .option-pill--gem{
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      gap:10px;
-      width:100%;
-      min-width:0;
-      justify-content:flex-start;
-      padding:10px 12px 10px 10px;
-      min-height:56px;
+      gap:0;
+      width:34px;
+      min-width:34px;
+      justify-content:center;
+      padding:0;
+      min-height:34px;
+      height:34px;
       background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
       border-color:rgba(255,255,255,.16);
-      color:#fff;
-      text-align:left;
-      font-size:.82rem;
-      line-height:1.15;
+      color:transparent;
+      text-align:center;
+      font-size:0;
+      line-height:1;
+      flex:0 0 auto;
+      border-radius:999px;
     }
 
     .option-pill--gem.is-active{
@@ -326,8 +326,9 @@
     }
 
     .gem-swatch{
-      width:28px;
-      height:28px;
+      display:none;
+      width:0;
+      height:0;
       border-radius:999px;
       flex:0 0 auto;
       border:1px solid rgba(255,255,255,.24);
@@ -545,10 +546,6 @@
         right:14px;
       }
 
-      .gemstone-options{
-        grid-template-columns:1fr;
-      }
-
       .price-panel strong{
           font-size:1.6rem;
         }
@@ -586,11 +583,6 @@
     .signature-hero-copy{
       justify-items:center;
       text-align:center;
-    }
-
-    .signature-kicker{
-      margin:0;
-      max-width:18ch;
     }
 
     .signature-subcopy{
@@ -741,10 +733,6 @@
         gap:14px;
       }
 
-      .signature-kicker{
-        font-size:clamp(2rem, 10vw, 2.8rem);
-      }
-
       .signature-benefits{
         gap:6px;
       }
@@ -866,11 +854,9 @@
       <section class="layout" data-signature-config-page>
         <article class="panel copy">
           <div class="signature-hero-copy">
-            <h1 class="signature-kicker">Signature Petal Collection</h1>
-            <p class="signature-subcopy">A delicate floral setting, made bespoke for you.</p>
+            <p class="signature-subcopy">A delicate setting, made bespoke for you.</p>
             <ul class="signature-benefits" aria-label="Collection benefits">
               <li>Made to order</li>
-              <li>Floral petal prongs</li>
               <li>Lifetime warranty</li>
               <li>UK insured delivery</li>
             </ul>
@@ -1090,9 +1076,8 @@
               <div class="field" data-colour-field>
                 <label for="signatureColour" data-colour-label>Diamond colour</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureColour" type="hidden" value="Not sure" />
+                  <input class="config-hidden" id="signatureColour" type="hidden" value="D" />
                   <div class="option-slider" data-option-slider="signatureColour" aria-label="Diamond colour">
-                    <button class="option-pill" type="button" data-option-value="Not sure">Best value</button>
                     <button class="option-pill" type="button" data-option-value="D">D</button>
                     <button class="option-pill" type="button" data-option-value="E">E</button>
                     <button class="option-pill" type="button" data-option-value="F">F</button>
@@ -1171,6 +1156,7 @@
       const clarityField = page.querySelector("[data-clarity-field]");
       const karatField = page.querySelector("[data-karat-field]");
       const karatSlider = page.querySelector('[data-option-slider="signatureMetalKarat"]');
+      const colourSlider = page.querySelector('[data-option-slider="signatureColour"]');
       const elongatedField = page.querySelector("[data-elongated-field]");
       const sliders = Array.from(page.querySelectorAll("[data-option-slider]"));
       const sizeRanges = Array.from(page.querySelectorAll("[data-size-range]"));
@@ -1357,22 +1343,23 @@
 
         const key = fields.shape.value;
         const elongated = fields.elongated.value === "Yes";
+        const maskPath = (name) => `url("Images/Signature%20Collection/${name}")`;
         const shapeMaskMap = {
-          "Round": { top: "8.6%", width: "15.2%", height: "15.2%", mask: "circle(47% at 50% 50%)", rotate: "0deg" },
-          "Oval": { top: "8.1%", width: "14.4%", height: "16.8%", mask: "ellipse(40% 48% at 50% 50%)", rotate: "0deg" },
-          "Marquise": { top: "8.2%", width: "14.8%", height: "17.2%", mask: "polygon(50% 2%, 66% 10%, 84% 28%, 92% 50%, 84% 72%, 66% 90%, 50% 98%, 34% 90%, 16% 72%, 8% 50%, 16% 28%, 34% 10%)", rotate: "0deg" },
-          "Pear": { top: "8.3%", width: "15.2%", height: "17.2%", mask: "polygon(50% 2%, 67% 10%, 84% 24%, 92% 44%, 87% 68%, 73% 87%, 50% 98%, 27% 87%, 13% 68%, 8% 44%, 16% 24%, 33% 10%)", rotate: "0deg" },
+          "Round": { top: "8.6%", width: "15.2%", height: "15.2%", clip: "circle(47% at 50% 50%)", imageMask: maskPath("round mask.png"), rotate: "0deg" },
+          "Oval": { top: "8.1%", width: "14.4%", height: "16.8%", clip: "ellipse(40% 48% at 50% 50%)", imageMask: maskPath("oval mask.png"), rotate: "0deg" },
+          "Marquise": { top: "8.2%", width: "14.8%", height: "17.2%", clip: "polygon(50% 2%, 66% 10%, 84% 28%, 92% 50%, 84% 72%, 66% 90%, 50% 98%, 34% 90%, 16% 72%, 8% 50%, 16% 28%, 34% 10%)", imageMask: maskPath("marquise mask.png"), rotate: "0deg" },
+          "Pear": { top: "8.3%", width: "15.2%", height: "17.2%", clip: "polygon(50% 2%, 67% 10%, 84% 24%, 92% 44%, 87% 68%, 73% 87%, 50% 98%, 27% 87%, 13% 68%, 8% 44%, 16% 24%, 33% 10%)", imageMask: maskPath("pear mask.png"), rotate: "0deg" },
           "Emerald": elongated
-            ? { top: "7.8%", width: "13.2%", height: "17.2%", mask: "inset(7% 16% 7% 16% round 10%)", rotate: "0deg" }
-            : { top: "8.2%", width: "14.4%", height: "15.4%", mask: "inset(9% 13% 9% 13% round 10%)", rotate: "0deg" },
-          "Princess": { top: "8.3%", width: "13.8%", height: "13.8%", mask: "inset(10% round 6%)", rotate: "45deg" },
+            ? { top: "7.8%", width: "13.2%", height: "17.2%", clip: "inset(7% 16% 7% 16% round 10%)", imageMask: maskPath("elongated emerald mask.png"), rotate: "0deg" }
+            : { top: "8.2%", width: "14.4%", height: "15.4%", clip: "inset(9% 13% 9% 13% round 10%)", imageMask: maskPath("emerald mask.png"), rotate: "0deg" },
+          "Princess": { top: "8.3%", width: "13.8%", height: "13.8%", clip: "inset(10% round 6%)", imageMask: maskPath("princess mask.png"), rotate: "45deg" },
           "Radiant": elongated
-            ? { top: "7.9%", width: "13.8%", height: "17%", mask: "inset(8% 14% round 14%)", rotate: "0deg" }
-            : { top: "8.1%", width: "14.6%", height: "15.2%", mask: "inset(8% 12% round 14%)", rotate: "0deg" },
+            ? { top: "7.9%", width: "13.8%", height: "17%", clip: "inset(8% 14% round 14%)", imageMask: maskPath("elongated radiant mask.png"), rotate: "0deg" }
+            : { top: "8.1%", width: "14.6%", height: "15.2%", clip: "inset(8% 12% round 14%)", imageMask: maskPath("radiant mask.png"), rotate: "0deg" },
           "Cushion": elongated
-            ? { top: "8.1%", width: "14.4%", height: "16.6%", mask: "inset(7% 11% round 24%)", rotate: "0deg" }
-            : { top: "8.3%", width: "15%", height: "15%", mask: "inset(8% round 25%)", rotate: "0deg" },
-          "Heart": { top: "8%", width: "14.8%", height: "14.2%", mask: "polygon(50% 96%, 18% 66%, 9% 39%, 18% 18%, 34% 8%, 50% 20%, 66% 8%, 82% 18%, 91% 39%, 82% 66%)", rotate: "0deg" }
+            ? { top: "8.1%", width: "14.4%", height: "16.6%", clip: "inset(7% 11% round 24%)", imageMask: maskPath("elongated cushion mask.png"), rotate: "0deg" }
+            : { top: "8.3%", width: "15%", height: "15%", clip: "inset(8% round 25%)", imageMask: maskPath("cushion mask.png"), rotate: "0deg" },
+          "Heart": { top: "8%", width: "14.8%", height: "14.2%", clip: "polygon(50% 96%, 18% 66%, 9% 39%, 18% 18%, 34% 8%, 50% 20%, 66% 8%, 82% 18%, 91% 39%, 82% 66%)", imageMask: maskPath("heart mask.png"), rotate: "0deg" }
         };
 
         const diamondColours = {
@@ -1380,8 +1367,7 @@
           "E": { color: "#f5f8ff", opacity: ".18", mobile: ".16" },
           "F": { color: "#f4f3ff", opacity: ".2", mobile: ".18" },
           "G": { color: "#fff7e6", opacity: ".26", mobile: ".24" },
-          "H": { color: "#ffedc6", opacity: ".32", mobile: ".28" },
-          "Not sure": { color: "#f4f3ff", opacity: ".2", mobile: ".18" }
+          "H": { color: "#ffedc6", opacity: ".32", mobile: ".28" }
         };
 
         const gemstoneColours = {
@@ -1400,7 +1386,8 @@
         previewGem.style.top = mask.top;
         previewGem.style.width = mask.width;
         previewGem.style.height = mask.height;
-        previewGem.style.setProperty("--preview-gem-mask", mask.mask);
+        previewGem.style.setProperty("--preview-gem-clip", mask.clip);
+        previewGem.style.setProperty("--preview-gem-mask-image", mask.imageMask || "none");
         previewGem.style.setProperty("--preview-gem-rotate", mask.rotate);
 
         if (fields.stoneType.value === "Lab Gemstone") {
@@ -1408,7 +1395,7 @@
           previewGem.style.setProperty("--preview-gem-opacity", ".46");
           previewGem.style.setProperty("--preview-gem-opacity-mobile", ".42");
         } else {
-          const tone = diamondColours[fields.colour.value] || diamondColours["Not sure"];
+          const tone = diamondColours[fields.colour.value] || diamondColours.D;
           previewGem.style.setProperty("--preview-gem-color", tone.color);
           previewGem.style.setProperty("--preview-gem-opacity", tone.opacity);
           previewGem.style.setProperty("--preview-gem-opacity-mobile", tone.mobile);
@@ -1487,6 +1474,35 @@
       const updateGemstoneOutput = () => {
         const output = page.querySelector("[data-gemstone-output]");
         if (output) output.textContent = fields.gemstone.value;
+      };
+
+      const updateDiamondColourAvailability = () => {
+        if (!colourSlider) return;
+        const size = Number.parseFloat(fields.stoneSize.value) || 0.5;
+        const hideWarmOptions = size > 2.5;
+        const restrictedValues = new Set(["G", "H"]);
+
+        colourSlider.querySelectorAll("[data-option-value]").forEach((option) => {
+          const restricted = restrictedValues.has(option.dataset.optionValue || "");
+          const hidden = hideWarmOptions && restricted;
+          option.hidden = hidden;
+          option.disabled = hidden;
+          option.setAttribute("aria-hidden", String(hidden));
+        });
+
+        if (hideWarmOptions && restrictedValues.has(fields.colour.value)) {
+          fields.colour.value = "F";
+        }
+      };
+
+      const syncLiveSummary = () => {
+        if (!summaryOutput) return;
+        const size = fields.stoneSize.value;
+        const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
+        const stone = fields.stoneType.value === "Lab Gemstone"
+          ? fields.gemstone.value
+          : `lab-grown diamond · ${fields.colour.value} · ${fields.clarity.value}`;
+        summaryOutput.textContent = `${fields.metal.value} · ${size} ${shape} ${stone} · size ${fields.ringSize.value}`;
       };
 
       const normalisedDiamondPricePoints = PRICE_CONFIG.diamondPricePoints.reduce((points, point) => {
@@ -1678,11 +1694,13 @@
         updateMetalValue();
         syncShapeMode();
         syncStoneMode();
+        updateDiamondColourAvailability();
         updatePreviewImage();
         updatePreviewGem();
         syncSliderState();
         updateGemstoneOutput();
         updateSummary();
+        syncLiveSummary();
         updatePrice();
         storeState();
       };
@@ -1692,7 +1710,12 @@
         const input = targetId ? page.querySelector(`#${CSS.escape(targetId)}`) : null;
         if (!input) return;
         slider.querySelectorAll("[data-option-value]").forEach((option) => {
+          const label = option.textContent.trim();
+          if (slider.dataset.optionSlider === "signatureGemstone" && label) {
+            option.setAttribute("aria-label", label);
+          }
           option.addEventListener("click", () => {
+            if (option.disabled) return;
             input.value = option.dataset.optionValue || "";
             refresh();
           });
