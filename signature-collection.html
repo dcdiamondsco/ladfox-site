@@ -158,6 +158,11 @@
       overflow:visible;
     }
 
+    .signature-preview.is-hidden{
+      opacity:0;
+      visibility:hidden;
+    }
+
     .signature-preview img{
       display:block;
       width:min(92vw, 620px);
@@ -177,7 +182,7 @@
       background:var(--preview-gem-color, #f6f7fb);
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
-      filter:saturate(1.35);
+      filter:var(--preview-gem-filter, saturate(1.35));
       clip-path:var(--preview-gem-clip, none);
       pointer-events:none;
       z-index:1;
@@ -761,7 +766,8 @@
       font-size:.84rem;
       font-weight:700;
       letter-spacing:.02em;
-      opacity:.9;
+      color:#c95858;
+      opacity:1;
     }
 
     .signature-custom-cta{
@@ -1088,9 +1094,9 @@
               <div class="field field--full">
                 <label for="signatureMetalBase">Metal</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureMetalBase" type="hidden" value="Gold" />
-                  <input class="config-hidden" id="signatureMetalKarat" type="hidden" value="14k" />
-                  <input class="config-hidden" id="signatureMetal" type="hidden" value="14k Gold" />
+                  <input class="config-hidden" id="signatureMetalBase" type="hidden" value="" />
+                  <input class="config-hidden" id="signatureMetalKarat" type="hidden" value="" />
+                  <input class="config-hidden" id="signatureMetal" type="hidden" value="" />
                   <div class="option-slider" data-option-slider="signatureMetalBase" aria-label="Metal">
                     <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="Gold">Gold</button>
                     <button class="option-pill option-pill--white-gold" type="button" data-option-value="White Gold">White Gold</button>
@@ -1113,7 +1119,7 @@
               <div class="field">
                 <label for="signatureShape">Centre stone shape</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureShape" type="hidden" value="Round" />
+                  <input class="config-hidden" id="signatureShape" type="hidden" value="" />
                   <div class="option-slider shape-grid" data-option-slider="signatureShape" aria-label="Centre stone shape">
                     <button class="option-pill" type="button" data-option-value="Round">Round</button>
                     <button class="option-pill" type="button" data-option-value="Oval">Oval</button>
@@ -1131,7 +1137,7 @@
               <div class="field field--conditional" data-elongated-field hidden>
                 <label for="signatureElongated">Stone proportion</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureElongated" type="hidden" value="No" />
+                  <input class="config-hidden" id="signatureElongated" type="hidden" value="" />
                   <div class="option-slider" data-option-slider="signatureElongated" aria-label="Elongated shape">
                     <button class="option-pill" type="button" data-option-value="No">Standard</button>
                     <button class="option-pill" type="button" data-option-value="Yes">Elongated</button>
@@ -1142,8 +1148,8 @@
               <div class="field field--full">
                 <label for="signatureStoneSize">Centre stone size</label>
                 <div class="field-input field-input--range">
-                  <input class="config-hidden" id="signatureStoneSize" type="hidden" value="0.5 ct" />
-                  <div class="range-readout"><strong data-size-output="signatureStoneSize">0.5 ct</strong></div>
+                  <input class="config-hidden" id="signatureStoneSize" type="hidden" value="" />
+                  <div class="range-readout"><strong data-size-output="signatureStoneSize"></strong></div>
                   <input class="stone-size-range" type="range" min="0.5" max="6.0" step="0.1" value="0.5" data-size-range="signatureStoneSize" aria-label="Centre stone size slider" />
                   <div class="range-scale"><span>0.5 ct</span><span>6.0 ct</span></div>
                 </div>
@@ -1152,7 +1158,7 @@
               <div class="field">
                 <label for="signatureStoneType">Stone type</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureStoneType" type="hidden" value="Lab Diamond" />
+                  <input class="config-hidden" id="signatureStoneType" type="hidden" value="" />
                   <div class="option-slider" data-option-slider="signatureStoneType" aria-label="Stone type">
                     <button class="option-pill option-pill--clear" type="button" data-option-value="Lab Diamond">Certified Lab Grown Diamond</button>
                     <button class="option-pill option-pill--clear" type="button" data-option-value="Lab Gemstone">Lab Gemstone</button>
@@ -1163,7 +1169,7 @@
               <div class="field field--full" data-gemstone-options hidden>
                 <label for="signatureGemstone">Gemstone colour</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureGemstone" type="hidden" value="Ruby - Deep Red" />
+                  <input class="config-hidden" id="signatureGemstone" type="hidden" value="" />
                   <div class="gemstone-groups">
                     <section class="gemstone-group" aria-label="Rubies">
                       <p class="gemstone-group-title">Rubies</p>
@@ -1232,7 +1238,7 @@
               <div class="field" data-colour-field>
                 <label for="signatureColour" data-colour-label>Diamond colour</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="signatureColour" type="hidden" value="D" />
+                  <input class="config-hidden" id="signatureColour" type="hidden" value="" />
                   <div class="option-slider" data-option-slider="signatureColour" aria-label="Diamond colour">
                     <button class="option-pill" type="button" data-option-value="D">D</button>
                     <button class="option-pill" type="button" data-option-value="E">E</button>
@@ -1246,8 +1252,8 @@
               <div class="field" data-clarity-field>
                 <label for="signatureClarity">Diamond clarity</label>
                 <div class="field-input field-input--range">
-                  <input class="config-hidden" id="signatureClarity" type="hidden" value="VS2" />
-                  <div class="range-readout"><strong data-discrete-output="signatureClarity">VS2</strong></div>
+                  <input class="config-hidden" id="signatureClarity" type="hidden" value="" />
+                  <div class="range-readout"><strong data-discrete-output="signatureClarity"></strong></div>
                   <input class="stone-size-range" type="range" min="0" max="5" step="1" value="0" data-discrete-range="signatureClarity" data-range-values="VS2|VS1|VVS2|VVS1|Internally Flawless|Flawless" aria-label="Diamond clarity slider" />
                   <div class="range-scale"><span>VS2</span><span>Flawless</span></div>
                 </div>
@@ -1256,8 +1262,8 @@
               <div class="field field--full">
                 <label for="signatureRingSize">Ring size</label>
                 <div class="field-input field-input--range">
-                  <input class="config-hidden" id="signatureRingSize" type="hidden" value="M" />
-                  <div class="range-readout"><strong data-discrete-output="signatureRingSize">M</strong></div>
+                  <input class="config-hidden" id="signatureRingSize" type="hidden" value="" />
+                  <div class="range-readout"><strong data-discrete-output="signatureRingSize"></strong></div>
                   <input class="stone-size-range" type="range" min="0" max="14" step="1" value="6" data-discrete-range="signatureRingSize" data-range-values="J|J 1/2|K|K 1/2|L|L 1/2|M|M 1/2|N|N 1/2|O|O 1/2|P|P 1/2|Q" aria-label="Ring size slider" />
                   <div class="range-scale"><span>J</span><span>Q</span></div>
                 </div>
@@ -1277,7 +1283,7 @@
             <button class="btn btn-primary" type="button" data-checkout-button disabled>
               <span class="checkout-main">
                 <span data-checkout-label>Checking price...</span>
-                <span class="checkout-timer" data-countdown-output aria-live="off" hidden></span>
+                <span class="checkout-timer" data-countdown-output aria-live="off" hidden>Sale ends in 0d 00h 00m 00s</span>
               </span>
             </button>
             <p class="checkout-status" data-checkout-status role="status" aria-live="polite"></p>
@@ -1358,6 +1364,11 @@
   let quoteTimer = 0;
   let quoteSequence = 0;
   let quoteController = null;
+  let hasChosenMetal = false;
+  let hasChosenShape = false;
+  let hasChosenStoneSize = false;
+  let hasChosenClarity = false;
+  let hasChosenRingSize = false;
 
   const parseRangeValues = (range) => (range.dataset.rangeValues || "")
     .split("|")
@@ -1417,25 +1428,25 @@
   };
 
   const applyInitialState = () => {
-    const stored = getStoredState();
     const query = new URLSearchParams(window.location.search);
     const options = [
-      ["metalBase", "signatureMetalBase", query.get("metal_base") || stored.metalBase],
-      ["metalKarat", "signatureMetalKarat", query.get("metal_karat") || stored.metalKarat],
-      ["stoneType", "signatureStoneType", query.get("stone_type") || stored.stoneType],
-      ["shape", "signatureShape", query.get("shape") || stored.shape],
-      ["elongated", "signatureElongated", query.get("elongated") || stored.elongated],
-      ["gemstone", "signatureGemstone", query.get("gemstone_type") || stored.gemstone],
-      ["colour", "signatureColour", query.get("colour") || stored.colour]
+      ["metalBase", "signatureMetalBase", query.get("metal_base")],
+      ["metalKarat", "signatureMetalKarat", query.get("metal_karat")],
+      ["stoneType", "signatureStoneType", query.get("stone_type")],
+      ["shape", "signatureShape", query.get("shape")],
+      ["elongated", "signatureElongated", query.get("elongated")],
+      ["gemstone", "signatureGemstone", query.get("gemstone_type")],
+      ["colour", "signatureColour", query.get("colour")]
     ];
 
     options.forEach(([fieldKey, targetId, value]) => {
       if (value && optionExists(targetId, value)) fields[fieldKey].value = value;
     });
 
-    const sizeValue = Number.parseFloat(query.get("stone_size") || stored.stoneSize);
+    const sizeValue = Number.parseFloat(query.get("stone_size"));
     const sizeRange = sizeRanges[0];
     if (sizeRange && Number.isFinite(sizeValue)) {
+      hasChosenStoneSize = true;
       const min = Number(sizeRange.min);
       const max = Number(sizeRange.max);
       const clamped = Math.max(min, Math.min(max, Math.round(sizeValue * 10) / 10));
@@ -1444,8 +1455,8 @@
     }
 
     const discreteState = {
-      signatureClarity: query.get("clarity") || stored.clarity,
-      signatureRingSize: query.get("size") || stored.ringSize
+      signatureClarity: query.get("clarity"),
+      signatureRingSize: query.get("size")
     };
 
     discreteRanges.forEach((range) => {
@@ -1453,7 +1464,11 @@
       const values = parseRangeValues(range);
       const value = discreteState[targetId];
       const index = values.indexOf(value);
-      if (index >= 0) range.value = String(index);
+      if (index >= 0) {
+        range.value = String(index);
+        if (targetId === "signatureClarity") hasChosenClarity = true;
+        if (targetId === "signatureRingSize") hasChosenRingSize = true;
+      }
     });
   };
 
@@ -1507,13 +1522,15 @@
 
     if (fields.stoneType.value === "Lab Gemstone") {
       previewGem.style.setProperty("--preview-gem-color", gemstoneColours[fields.gemstone.value] || "#d446d0");
-      previewGem.style.setProperty("--preview-gem-opacity", ".46");
-      previewGem.style.setProperty("--preview-gem-opacity-mobile", ".42");
+      previewGem.style.setProperty("--preview-gem-opacity", ".62");
+      previewGem.style.setProperty("--preview-gem-opacity-mobile", ".56");
+      previewGem.style.setProperty("--preview-gem-filter", "saturate(1.95) brightness(1.08) contrast(1.04)");
     } else {
       const tone = diamondColours[fields.colour.value] || diamondColours.D;
       previewGem.style.setProperty("--preview-gem-color", tone.color);
       previewGem.style.setProperty("--preview-gem-opacity", tone.opacity);
       previewGem.style.setProperty("--preview-gem-opacity-mobile", tone.mobile);
+      previewGem.style.setProperty("--preview-gem-filter", "saturate(1.35)");
     }
   };
 
@@ -1595,8 +1612,25 @@
     previewGem.style.height = `${height}px`;
   };
 
+  const hasAllRequiredSelections = () => {
+    if (!fields.metalBase.value || !fields.shape.value || !fields.stoneType.value) return false;
+    if (!fields.stoneSize.value || !fields.ringSize.value) return false;
+    if (fields.stoneType.value === "Lab Gemstone") return Boolean(fields.gemstone.value);
+    return Boolean(fields.colour.value && fields.clarity.value);
+  };
+
+  const updatePreviewVisibility = () => {
+    const preview = previewImage ? previewImage.closest(".signature-preview") : null;
+    if (!preview) return;
+    preview.classList.toggle("is-hidden", !(hasChosenMetal && hasChosenShape));
+  };
+
   const updateSummary = () => {
     if (!summaryOutput) return;
+    if (!hasAllRequiredSelections()) {
+      summaryOutput.textContent = "Select your metal, shape, stone and size to see your final ring summary.";
+      return;
+    }
     const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
     const stone = fields.stoneType.value === "Lab Gemstone"
       ? `${fields.gemstone.value}, lab-created`
@@ -1623,8 +1657,9 @@
       const input = document.getElementById(targetId || "");
       if (!output || !input) return;
       const value = formatCaratValue(range.value);
-      output.textContent = value;
-      input.value = value;
+      const isChosen = targetId !== "signatureStoneSize" || hasChosenStoneSize;
+      output.textContent = isChosen ? value : "";
+      input.value = isChosen ? value : "";
       range.setAttribute("aria-valuetext", value);
     });
   };
@@ -1639,8 +1674,13 @@
       const parsedIndex = Number.parseInt(range.value, 10);
       const index = Math.max(0, Math.min(values.length - 1, Number.isFinite(parsedIndex) ? parsedIndex : 0));
       const value = values[index];
-      output.textContent = value;
-      input.value = value;
+      const isChosen = targetId === "signatureClarity"
+        ? hasChosenClarity
+        : targetId === "signatureRingSize"
+          ? hasChosenRingSize
+          : true;
+      output.textContent = isChosen ? value : "";
+      input.value = isChosen ? value : "";
       range.setAttribute("aria-valuetext", value);
     });
   };
@@ -1651,7 +1691,7 @@
     checkoutStatus.classList.toggle("is-error", isError);
   };
 
-    const setQuoteLoading = () => {
+  const setQuoteLoading = () => {
     currentQuote = null;
     const pricePanel = priceCompare ? priceCompare.closest(".price-panel") : null;
     if (pricePanel) {
@@ -1661,7 +1701,7 @@
     if (priceCompare) priceCompare.hidden = true;
     if (checkoutButton) {
       checkoutButton.disabled = true;
-      if (checkoutLabel) checkoutLabel.textContent = "Checking price...";
+      if (checkoutLabel) checkoutLabel.textContent = hasAllRequiredSelections() ? "Checking price..." : "Complete your options";
     }
     setCheckoutState("");
   };
@@ -1685,6 +1725,13 @@
   };
 
   const loadQuote = async () => {
+    if (!hasAllRequiredSelections()) {
+      currentQuote = null;
+      if (priceCompare) priceCompare.hidden = true;
+      if (checkoutButton) checkoutButton.disabled = true;
+      setCheckoutState("");
+      return null;
+    }
     const sequence = ++quoteSequence;
     if (quoteController) quoteController.abort();
     quoteController = new AbortController();
@@ -1812,7 +1859,7 @@
       const seconds = totalSeconds % 60;
       if (countdownOutput) {
         countdownOutput.hidden = false;
-        countdownOutput.textContent = `${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+        countdownOutput.textContent = `Sale ends in ${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
       }
     };
     render();
@@ -1825,6 +1872,7 @@
     updatePreviewImage();
     updatePreviewGem();
     syncPreviewOverlay();
+    updatePreviewVisibility();
     syncSliderState();
     updateSummary();
     storeState();
@@ -1841,6 +1889,8 @@
       option.addEventListener("click", () => {
         if (option.disabled) return;
         input.value = option.dataset.optionValue || "";
+        if (slider.dataset.optionSlider === "signatureMetalBase") hasChosenMetal = true;
+        if (slider.dataset.optionSlider === "signatureShape") hasChosenShape = true;
         refresh();
       });
     });
@@ -1848,6 +1898,7 @@
 
   sizeRanges.forEach((range) => {
     range.addEventListener("input", () => {
+      if (range.dataset.sizeRange === "signatureStoneSize") hasChosenStoneSize = true;
       syncSizeRanges();
       refresh();
     });
@@ -1855,6 +1906,8 @@
 
   discreteRanges.forEach((range) => {
     range.addEventListener("input", () => {
+      if (range.dataset.discreteRange === "signatureClarity") hasChosenClarity = true;
+      if (range.dataset.discreteRange === "signatureRingSize") hasChosenRingSize = true;
       syncDiscreteRanges();
       refresh();
     });
