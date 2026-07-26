@@ -1628,7 +1628,9 @@
     const base = fields.metalBase.value;
     const needsKarat = ["Gold", "White Gold", "Rose Gold"].includes(base);
     if (karatField) karatField.hidden = !needsKarat;
-    fields.metal.value = needsKarat ? `${fields.metalKarat.value} ${base}` : base;
+    fields.metal.value = needsKarat
+      ? (fields.metalKarat.value ? `${fields.metalKarat.value} ${base}` : "")
+      : base;
     syncKaratTheme();
   };
 
@@ -1689,11 +1691,38 @@
     previewGem.style.height = `${height}px`;
   };
 
+  const hasCompleteMetalSelection = () => {
+    if (!fields.metalBase.value) return false;
+    if (["Gold", "White Gold", "Rose Gold"].includes(fields.metalBase.value)) {
+      return Boolean(fields.metalKarat.value && fields.metal.value);
+    }
+    return Boolean(fields.metal.value);
+  };
+
+  const hasSharedSelections = () => (
+    hasCompleteMetalSelection() &&
+    Boolean(fields.shape.value) &&
+    Boolean(fields.stoneType.value) &&
+    Boolean(fields.stoneSize.value) &&
+    Boolean(fields.ringSize.value)
+  );
+
+  const hasCompleteDiamondSelections = () => (
+    fields.stoneType.value === "Lab Diamond" &&
+    hasSharedSelections() &&
+    Boolean(fields.colour.value) &&
+    Boolean(fields.clarity.value)
+  );
+
+  const hasCompleteGemstoneSelections = () => (
+    fields.stoneType.value === "Lab Gemstone" &&
+    hasSharedSelections() &&
+    Boolean(fields.gemstone.value)
+  );
+
   const hasAllRequiredSelections = () => {
-    if (!fields.metalBase.value || !fields.shape.value || !fields.stoneType.value) return false;
-    if (!fields.stoneSize.value || !fields.ringSize.value) return false;
-    if (fields.stoneType.value === "Lab Gemstone") return Boolean(fields.gemstone.value);
-    return Boolean(fields.colour.value && fields.clarity.value);
+    if (!hasSharedSelections()) return false;
+    return hasCompleteDiamondSelections() || hasCompleteGemstoneSelections();
   };
 
   const updatePreviewVisibility = () => {
@@ -1705,7 +1734,7 @@
   const updateSummary = () => {
     if (!summaryOutput) return;
     if (!hasAllRequiredSelections()) {
-      summaryOutput.textContent = "Select your metal, shape, stone and size to see your final ring summary.";
+      summaryOutput.textContent = "";
       return;
     }
     const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
