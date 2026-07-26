@@ -1,11 +1,14 @@
 {
-  "name": "ladfox-stripe-checkout",
+  "name": "ladfox-live-stripe-checkout",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
-    "stripe": "22.3.2"
+    "stripe": "22.3.1"
+  },
+  "scripts": {
+    "test": "node --test"
   }
 }

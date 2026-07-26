@@ -1,43 +1,52 @@
 import Stripe from "stripe";
-import { validateAndPrice } from "./pricing.mjs";
+import { PRODUCT, validateAndPrice } from "./pricing.mjs";
+import { cleanMetadata, getSiteUrl, json, readJsonBody } from "./http.mjs";
 
-const stripeKey = process.env.STRIPE_SECRET_KEY;
-const stripe = stripeKey ? new Stripe(stripeKey) : null;
+const getStripe = () => {
+  const key = String(process.env.STRIPE_SECRET_KEY || "").trim();
+  return key ? new Stripe(key) : null;
+};
 
-const json = (body, status = 200) => new Response(JSON.stringify(body), {
-  status,
-  headers: {
-    "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "no-store"
-  }
-});
-
-const cleanMetadata = (value, maxLength = 450) => String(value ?? "").trim().slice(0, maxLength);
+const validRequestId = (value) => /^[A-Za-z0-9_-]{12,100}$/.test(String(value || ""));
 
 export default async (request) => {
-  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
-  if (!stripe) return json({ error: "Stripe has not been configured on Netlify yet." }, 503);
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
+
+  const stripe = getStripe();
+  if (!stripe) return json({ error: "Secure checkout is temporarily unavailable." }, 503);
 
   try {
-    const body = await request.json();
+    const body = await readJsonBody(request);
     const priced = validateAndPrice(body?.selections);
-    const attribution = body?.attribution && typeof body.attribution === "object" ? body.attribution : {};
-    const origin = process.env.SITE_URL || new URL(request.url).origin;
+    if (!priced.checkoutAllowed || !priced.unitAmount) {
+      return json({ error: priced.customerMessage, quoteRequired: true }, 409);
+    }
 
+    const requestId = cleanMetadata(body?.requestId, 100);
+    if (!validRequestId(requestId)) throw new Error("Invalid checkout request.");
+
+    const attribution = body?.attribution && typeof body.attribution === "object" ? body.attribution : {};
+    const siteUrl = getSiteUrl(request);
     const orderReference = `LFX-${Date.now().toString(36).toUpperCase()}-${crypto.randomUUID().slice(0, 6).toUpperCase()}`;
+
     const metadataValues = {
       order_reference: orderReference,
-      product: "Signature Petal Collection",
-      metal: cleanMetadata(priced.selections.metal),
-      stone_type: cleanMetadata(priced.selections.stoneType),
-      shape: cleanMetadata(priced.selections.shape),
-      elongated: cleanMetadata(priced.selections.elongated),
-      gemstone: cleanMetadata(priced.selections.gemstone),
-      stone_size: cleanMetadata(priced.selections.stoneSize),
-      colour: cleanMetadata(priced.selections.colour),
-      clarity: cleanMetadata(priced.selections.clarity),
-      ring_size: cleanMetadata(priced.selections.ringSize),
-      quoted_price_gbp: String(priced.priceGbp)
+      product_slug: PRODUCT.slug,
+      product: PRODUCT.name,
+      price_version: priced.priceVersion,
+      metal: priced.selections.metal,
+      stone_type: priced.selections.stoneType,
+      shape: priced.selections.shape,
+      elongated: priced.selections.elongated,
+      stone_size: priced.selections.stoneSize,
+      gemstone: priced.selections.gemstone,
+      colour: priced.selections.colour,
+      clarity: priced.selections.clarity,
+      ring_size: priced.selections.ringSize,
+      charged_price_gbp: String(priced.priceGbp),
+      regular_price_gbp: String(priced.regularPriceGbp),
+      sale_active: String(priced.saleActive),
+      sale_ends_at: priced.saleEndsAt
     };
 
     for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid"]) {
@@ -45,27 +54,32 @@ export default async (request) => {
     }
 
     const metadata = Object.fromEntries(
-      Object.entries(metadataValues).filter(([, value]) => value !== "")
+      Object.entries(metadataValues)
+        .map(([key, value]) => [key, cleanMetadata(value)])
+        .filter(([, value]) => value !== "")
     );
 
+    const productImage = new URL(priced.imagePath, `${siteUrl}/`).href;
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       locale: "en-GB",
+      submit_type: "pay",
       client_reference_id: orderReference,
       customer_creation: "always",
       billing_address_collection: "required",
       phone_number_collection: { enabled: true },
       shipping_address_collection: { allowed_countries: ["GB"] },
-      success_url: `${origin}/checkout-success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/signature-collection.html?checkout=cancelled`,
+      success_url: `${siteUrl}/checkout-success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/signature-collection.html?checkout=cancelled`,
       line_items: [{
         quantity: 1,
         price_data: {
-          currency: "gbp",
+          currency: PRODUCT.currency,
           unit_amount: priced.unitAmount,
           product_data: {
-            name: "LADFOX Signature Petal Collection",
-            description: priced.description,
+            name: PRODUCT.name,
+            description: `${priced.description}${priced.saleActive ? " · 20% sale price" : ""}`,
+            images: [productImage],
             metadata
           }
         }
@@ -74,15 +88,26 @@ export default async (request) => {
       payment_intent_data: { metadata },
       custom_text: {
         submit: {
-          message: "Your ring will be made to the specification shown above. LADFOX will contact you to confirm the production details."
+          message: "Your made-to-order ring specification and total are shown above. LADFOX will contact you before manufacture begins."
         }
       }
+    }, {
+      idempotencyKey: `ladfox-${requestId}`
     });
 
-    return json({ url: session.url });
+    if (!session.url) throw new Error("Stripe did not return a checkout URL.");
+
+    return json({
+      url: session.url,
+      sessionId: session.id,
+      orderReference,
+      priceGbp: priced.priceGbp
+    });
   } catch (error) {
-    console.error("Checkout session error", error);
-    const message = error instanceof Error ? error.message : "Checkout could not be started.";
-    return json({ error: message }, 400);
+    console.error("create-checkout-session failed", error);
+    const isCustomerError = error instanceof Error && /^(Invalid|Centre stone|Request)/.test(error.message);
+    return json({
+      error: isCustomerError ? error.message : "Secure checkout could not be started. Please try again or contact LADFOX."
+    }, isCustomerError ? 400 : 500);
   }
 };

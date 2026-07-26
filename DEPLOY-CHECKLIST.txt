@@ -1,0 +1,12 @@
+LADFOX CHECKOUT DEPLOYMENT CHECKLIST
+
+1. Copy every file from this package into the root of the LADFOX GitHub project.
+2. Merge netlify.toml if the repository already has one; do not accidentally remove existing redirects or settings.
+3. Commit and push to GitHub.
+4. In Netlify, confirm STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET and SITE_URL.
+5. Trigger a new production deploy.
+6. Open https://ladfox.com/.netlify/functions/price-quote directly: a GET request should say Method not allowed, which confirms the function exists.
+7. Open the Signature Collection page and confirm a server-verified price appears.
+8. Complete a Stripe test checkout on a deploy preview before using the live key.
+9. Create the live Stripe webhook and confirm Stripe reports a successful 2xx response.
+10. Make one small genuine live payment, verify the Stripe order metadata and webhook log, then refund it.

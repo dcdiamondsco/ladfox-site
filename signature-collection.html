@@ -65,6 +65,7 @@
     }
 
     .signature-page .layout{
+      position:relative;
       grid-template-columns:minmax(0, 1fr);
     }
 
@@ -86,9 +87,9 @@
     }
 
     .signature-page .copy{
+      position:relative;
       display:flex;
       flex-direction:column;
-      position:relative;
       isolation:isolate;
       gap:18px;
       border:0;
@@ -146,13 +147,13 @@
 
     .signature-preview{
       position:relative;
-      display:inline-block;
+      display:grid;
+      place-items:center;
       background:transparent;
       margin:6px 0 10px;
       pointer-events:none;
       z-index:0;
       overflow:visible;
-      line-height:0;
     }
 
     .signature-preview img{
@@ -164,14 +165,11 @@
       opacity:1;
       filter:none;
       mix-blend-mode:normal;
-      vertical-align:top;
     }
 
     .preview-gem{
       position:absolute;
       inset:0;
-      width:100%;
-      height:100%;
       background:var(--preview-gem-color, #f6f7fb);
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
@@ -313,8 +311,6 @@
     }
 
     .option-pill--gem{
-      -webkit-appearance:none;
-      appearance:none;
       display:inline-flex;
       align-items:center;
       gap:0;
@@ -324,7 +320,7 @@
       padding:0;
       min-height:34px;
       height:34px;
-      background:var(--gem-fill, linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)));
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
       border-color:rgba(255,255,255,.16);
       color:transparent;
       text-align:center;
@@ -333,20 +329,13 @@
       flex:0 0 auto;
       border-radius:999px;
       overflow:hidden;
-      background-clip:padding-box;
       text-indent:-9999px;
       white-space:nowrap;
     }
 
     .option-pill--gem.is-active{
-      background:var(--gem-fill, linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04))) !important;
-      border-color:#d6dbe2;
-      box-shadow:0 0 0 3px #d6dbe2, 0 0 0 6px rgba(255,255,255,.12);
-      filter:none;
-      opacity:1;
-      color:transparent;
-      -webkit-appearance:none;
-      appearance:none;
+      box-shadow:0 0 0 2px rgba(214,219,226,.95), 0 0 0 5px rgba(255,255,255,.14);
+      border-color:rgba(214,219,226,.95);
     }
 
     .gem-swatch{
@@ -368,176 +357,151 @@
     }
 
     .option-pill--red-deep{
-      --gem-fill:linear-gradient(180deg, #7a0505, #3f0000);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #7a0505, #3f0000);
       color:#ffe8e8;
       border-color:rgba(255,120,120,.34);
     }
 
     .option-pill--red-rich{
-      --gem-fill:linear-gradient(180deg, #c10e0e, #700000);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #c10e0e, #700000);
       color:#fff0f0;
       border-color:rgba(255,130,130,.38);
     }
 
     .option-pill--red-bright{
-      --gem-fill:linear-gradient(180deg, #ff3c2f, #b60c00);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ff3c2f, #b60c00);
       color:#fff4f2;
       border-color:rgba(255,155,130,.42);
     }
 
     .option-pill--pink-vivid{
-      --gem-fill:linear-gradient(180deg, #ff2f98, #bc0061);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ff2f98, #bc0061);
       color:#fff0f7;
       border-color:rgba(255,140,205,.42);
     }
 
     .option-pill--pink-strong{
-      --gem-fill:linear-gradient(180deg, #ff4db3, #b31173);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ff4db3, #b31173);
       color:#fff1f8;
       border-color:rgba(255,163,221,.42);
     }
 
     .option-pill--pink-hot{
-      --gem-fill:linear-gradient(180deg, #ff2fc7, #98117b);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ff2fc7, #98117b);
       color:#fff0fc;
       border-color:rgba(255,145,229,.42);
     }
 
     .option-pill--pink-bubblegum{
-      --gem-fill:linear-gradient(180deg, #ff7fd8, #c43fa0);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ff7fd8, #c43fa0);
       color:#fff5fc;
       border-color:rgba(255,188,235,.44);
     }
 
     .option-pill--pink-soft{
-      --gem-fill:linear-gradient(180deg, #ffb4ea, #dd76c0);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ffb4ea, #dd76c0);
       color:#3d0f2d;
       border-color:rgba(255,208,241,.5);
     }
 
     .option-pill--blue-royal{
-      --gem-fill:linear-gradient(180deg, #0820c9, #02096d);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #0820c9, #02096d);
       color:#eef2ff;
       border-color:rgba(117,142,255,.42);
     }
 
     .option-pill--blue-bright{
-      --gem-fill:linear-gradient(180deg, #2147ff, #1230b6);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #2147ff, #1230b6);
       color:#eff4ff;
       border-color:rgba(132,156,255,.42);
     }
 
     .option-pill--blue-violet{
-      --gem-fill:linear-gradient(180deg, #5a4dff, #2a20bf);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #5a4dff, #2a20bf);
       color:#f3f1ff;
       border-color:rgba(158,150,255,.42);
     }
 
     .option-pill--blue-cornflower{
-      --gem-fill:linear-gradient(180deg, #81a4ff, #4367db);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #81a4ff, #4367db);
       color:#081532;
       border-color:rgba(190,208,255,.46);
     }
 
     .option-pill--blue-aqua{
-      --gem-fill:linear-gradient(180deg, #27cfff, #1170b2);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #27cfff, #1170b2);
       color:#ecfbff;
       border-color:rgba(149,235,255,.42);
     }
 
     .option-pill--blue-icy{
-      --gem-fill:linear-gradient(180deg, #d7ecff, #92c5ff);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #d7ecff, #92c5ff);
       color:#10233f;
       border-color:rgba(222,239,255,.5);
     }
 
     .option-pill--yellow-deep{
-      --gem-fill:linear-gradient(180deg, #ef9f00, #b56a00);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ef9f00, #b56a00);
       color:#fff8ea;
       border-color:rgba(255,198,101,.42);
     }
 
     .option-pill--yellow-golden{
-      --gem-fill:linear-gradient(180deg, #ffc12e, #d89000);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ffc12e, #d89000);
       color:#3e2400;
       border-color:rgba(255,214,133,.46);
     }
 
     .option-pill--yellow-light{
-      --gem-fill:linear-gradient(180deg, #ffe383, #efbe2c);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ffe383, #efbe2c);
       color:#473100;
       border-color:rgba(255,232,167,.48);
     }
 
     .option-pill--purple-deep{
-      --gem-fill:linear-gradient(180deg, #a200d1, #5f007b);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #a200d1, #5f007b);
       color:#fbf0ff;
       border-color:rgba(220,133,255,.42);
     }
 
     .option-pill--purple-orchid{
-      --gem-fill:linear-gradient(180deg, #d62fff, #8d17b2);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #d62fff, #8d17b2);
       color:#fff0ff;
       border-color:rgba(231,144,255,.42);
     }
 
     .option-pill--purple-violet{
-      --gem-fill:linear-gradient(180deg, #8460ff, #5434d0);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #8460ff, #5434d0);
       color:#f5f1ff;
       border-color:rgba(180,163,255,.42);
     }
 
     .option-pill--purple-lilac{
-      --gem-fill:linear-gradient(180deg, #ecb5ff, #bf83d9);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #ecb5ff, #bf83d9);
       color:#341443;
       border-color:rgba(241,204,255,.5);
     }
 
     .option-pill--green-mint{
-      --gem-fill:linear-gradient(180deg, #7cf0ca, #26a980);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #7cf0ca, #26a980);
       color:#0d2a22;
       border-color:rgba(185,255,232,.48);
     }
 
     .option-pill--green-rich{
-      --gem-fill:linear-gradient(180deg, #0ea82a, #046315);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #0ea82a, #046315);
       color:#effff1;
       border-color:rgba(110,226,129,.42);
     }
 
     .option-pill--green-teal{
-      --gem-fill:linear-gradient(180deg, #0aa7a1, #046765);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #0aa7a1, #046765);
       color:#ecffff;
       border-color:rgba(113,230,224,.42);
     }
 
     .option-pill--alexandrite{
-      --gem-fill:linear-gradient(180deg, #d446d0, #6d1f98);
-      background:var(--gem-fill);
+      background:linear-gradient(180deg, #d446d0, #6d1f98);
       color:#fff2ff;
       border-color:rgba(228,146,255,.42);
     }
@@ -546,10 +510,14 @@
       justify-content:flex-start;
     }
 
-    .signature-page .actions--top{
-      position:static;
+    .signature-page .topbar .actions--top{
+      position:absolute;
+      top:6px;
+      right:-72px;
       margin:0;
       justify-content:flex-end;
+      z-index:5;
+      pointer-events:auto;
     }
 
     .signature-page .actions--bottom{
@@ -588,29 +556,19 @@
         grid-template-columns:repeat(3, minmax(0, 1fr));
       }
 
-      .signature-page .actions--top{
-        position:static;
-        width:min(620px, 100%);
-        margin:0 0 10px;
-      }
-
-      .signature-page .copy > :not(.signature-preview){
-        position:relative;
-        z-index:2;
-      }
-
       .price-panel strong{
           font-size:1.6rem;
         }
 
       .signature-preview{
         position:fixed;
-        right:4px;
-        top:56px;
+        right:8px;
+        top:50vh;
+        transform:translateY(-50%);
         margin:0;
-        width:min(27vw, 116px);
-        min-height:144px;
-        z-index:0;
+        width:min(34vw, 146px);
+        min-height:176px;
+        z-index:120;
       }
 
       .signature-preview img{
@@ -632,17 +590,12 @@
 
     /* Signature Collection refinements */
     .signature-page .page{
-      padding-bottom:12px;
-    }
-
-    .signature-page .page > .shell{
-      width:min(980px, 100%);
-      margin:0 auto;
+      padding-bottom:clamp(36px, 7vw, 72px);
     }
 
     .signature-page .copy{
-      width:min(620px, calc(100% - 220px));
-      margin:0 auto 0 0;
+      width:min(980px, 100%);
+      margin:0 auto;
     }
 
     .signature-hero-copy{
@@ -677,24 +630,15 @@
       letter-spacing:.02em;
     }
 
-    .signature-page .actions--top{
-      position:static;
-      justify-content:flex-start;
-      width:auto;
-      align-self:flex-start;
-      margin:0 0 10px 0;
-      pointer-events:auto;
-    }
-
-    .signature-page .actions--top .btn{
+    .signature-page .topbar .actions--top .btn{
       min-width:0;
       padding:8px 12px;
       font-size:.74rem;
     }
 
     .signature-page .size-panel{
-      width:min(620px, 100%);
-      margin:0;
+      width:min(900px, 100%);
+      margin:0 auto;
     }
 
     .signature-page .field > label{
@@ -727,19 +671,14 @@
     }
 
     .signature-page .option-pill--gem[aria-pressed="true"]{
-      background:var(--gem-fill, linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04))) !important;
-      border-color:#d6dbe2;
-      box-shadow:0 0 0 3px #d6dbe2, 0 0 0 6px rgba(255,255,255,.12);
-      filter:none;
-      opacity:1;
-      color:transparent;
-      -webkit-appearance:none;
-      appearance:none;
+      border-color:rgba(214,219,226,.95);
+      box-shadow:0 0 0 2px rgba(214,219,226,.95), 0 0 0 5px rgba(255,255,255,.14);
     }
 
     .signature-summary{
-      width:min(620px, 100%);
-      margin:2px 0 0;
+      order:4;
+      width:min(760px, 100%);
+      margin:2px auto 0;
       padding:14px 16px;
       border:1px solid rgba(255,255,255,.1);
       border-radius:18px;
@@ -756,6 +695,7 @@
     }
 
     .price-panel{
+      order:6;
       gap:6px;
     }
 
@@ -785,8 +725,12 @@
     }
 
     .signature-page .actions--bottom{
-      order:1;
+      order:7;
       margin-top:4px;
+    }
+
+    .sale-countdown{
+      order:5;
     }
 
     .signature-reassurance{
@@ -798,79 +742,13 @@
       text-align:center;
     }
 
-    .terms-card{
-      order:2;
-      width:min(620px, 100%);
-      margin:12px 0 0;
-      padding:16px 18px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      background:rgba(255,255,255,.03);
-    }
-
-    .terms-check{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      color:rgba(255,255,255,.84);
-      font-family:"Manrope", sans-serif;
-      font-size:.88rem;
-      line-height:1.6;
-      cursor:pointer;
-      text-align:center;
-    }
-
-    .terms-check input{
-      width:18px;
-      height:18px;
-      margin-top:2px;
-      accent-color:#d6dbe2;
-      flex:0 0 auto;
-    }
-
-    .terms-details{
-      margin-top:14px;
-      color:rgba(255,255,255,.72);
-      text-align:center;
-    }
-
-    .terms-details summary{
-      cursor:pointer;
-      color:#fff;
-      font-family:"Manrope", sans-serif;
-      font-size:.84rem;
-      font-weight:700;
-      letter-spacing:.02em;
-      list-style-position:inside;
-    }
-
-    .terms-copy{
-      margin-top:12px;
-      display:grid;
-      gap:12px;
-      font-size:.82rem;
-      line-height:1.7;
-    }
-
-    .terms-copy p,
-    .terms-copy ol,
-    .terms-copy ul{
-      margin:0;
-    }
-
-    .terms-copy ol,
-    .terms-copy ul{
-      padding-left:18px;
-    }
-
     .signature-custom-cta{
-      margin-top:18px;
+      margin-top:28px;
       display:flex;
       align-items:center;
       justify-content:center;
-      width:min(620px, calc(100% - 220px));
-      margin-left:0;
+      width:min(760px, 100%);
+      margin-left:auto;
       margin-right:auto;
       text-align:center;
     }
@@ -881,8 +759,7 @@
     }
 
     .site-footer{
-      margin-top:20px;
-      padding:22px 0 24px;
+      padding:26px 0 44px;
       border-top:1px solid rgba(255,255,255,.08);
       background:#000;
     }
@@ -892,12 +769,10 @@
     }
 
     .footer-meta{
-      width:min(760px, 100%);
-      margin:0 auto;
-      padding:0 18px;
+      margin:0;
       color:rgba(255,255,255,.62);
       font-size:clamp(.76rem, 2.2vw, .94rem);
-      line-height:1.8;
+      line-height:1.65;
     }
 
     .footer-meta a{
@@ -983,17 +858,9 @@
         width:min(100%, 360px);
       }
 
-      .signature-page .actions--top .btn{
+      .signature-page .topbar .actions--top .btn{
         padding:7px 11px;
         font-size:.72rem;
-      }
-    }
-
-    @media (max-width: 760px){
-      .signature-page .actions--top{
-        position:static;
-        width:auto;
-        margin:0 0 10px 0;
       }
     }
 
@@ -1006,6 +873,46 @@
       }
     }
 
+
+    .sale-countdown{
+      width:min(760px, 100%);
+      margin:2px auto 4px;
+      padding:11px 14px;
+      border:1px solid rgba(241,224,180,.18);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(241,224,180,.05), rgba(241,224,180,.02));
+      text-align:center;
+    }
+
+    .sale-countdown__title{
+      margin:0 0 5px;
+      color:rgba(241,224,180,.88);
+      font-family:"Manrope",sans-serif;
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .sale-countdown__time{
+      display:flex;
+      justify-content:center;
+      gap:6px;
+      margin:0;
+      color:rgba(255,255,255,.94);
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(1rem, 2.2vw, 1.35rem);
+      font-weight:700;
+      font-variant-numeric:tabular-nums;
+    }
+
+    .sale-countdown__note{
+      margin:7px 0 0;
+      color:rgba(255,255,255,.66);
+      font-family:"Manrope",sans-serif;
+      font-size:.76rem;
+      line-height:1.45;
+    }
 
     .checkout-status{
       min-height:1.4em;
@@ -1024,7 +931,30 @@
       opacity:.62;
       transform:none !important;
     }
-  </style>
+  
+
+    .price-panel[aria-busy="true"] strong{
+      opacity:.72;
+    }
+
+    .price-panel.is-quote-only strong{
+      font-size:clamp(1.25rem, 2.4vw, 1.8rem);
+      color:#f1e0b4;
+    }
+
+
+    .visually-hidden{
+      position:absolute!important;
+      width:1px!important;
+      height:1px!important;
+      padding:0!important;
+      margin:-1px!important;
+      overflow:hidden!important;
+      clip:rect(0,0,0,0)!important;
+      white-space:nowrap!important;
+      border:0!important;
+    }
+</style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1065,7 +995,7 @@
         "@type": "AggregateOffer",
         "url": "https://ladfox.com/signature-collection.html",
         "priceCurrency": "GBP",
-        "lowPrice": "1999",
+        "lowPrice": "2219",
         "highPrice": "12620",
         "availability": "https://schema.org/PreOrder",
         "seller": { "@id": "https://ladfox.com/#business" }
@@ -1093,6 +1023,9 @@
           <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
         </a>
       </div>
+      <div class="actions actions--top">
+        <a class="btn btn-secondary" href="consultation.html">Ask us a question</a>
+      </div>
     </div>
   </header>
 
@@ -1101,7 +1034,8 @@
       <section class="layout" data-signature-config-page>
         <article class="panel copy">
           <div class="signature-hero-copy">
-            <p class="signature-subcopy">Our signature floral design, made bespoke for you.</p>
+            <h1 class="visually-hidden">LADFOX Signature Petal Engagement Rings</h1>
+            <p class="signature-subcopy">A delicate floral design, made bespoke for you.</p>
             <ul class="signature-benefits" aria-label="Collection benefits">
               <li>Made to order</li>
               <li>Lifetime warranty</li>
@@ -1109,9 +1043,10 @@
             </ul>
           </div>
 
-          <div class="actions actions--top">
-            <a class="btn btn-secondary" href="consultation.html">Ask us a question</a>
-          </div>
+          <section class="sale-countdown" data-sale-countdown aria-label="20% sale countdown">
+            <p class="sale-countdown__title">20% off ends Sunday at midnight</p>
+            <p class="sale-countdown__time" data-countdown-output aria-live="off">Loading countdown…</p>
+          </section>
 
           <div class="signature-preview">
             <img
@@ -1359,51 +1294,20 @@
             <p data-summary-output>14k Gold · 0.5 ct Round lab-grown diamond · Best value colour · VS2 · size M</p>
           </div>
 
-          <div class="price-panel" aria-hidden="true">
-            <span class="price-compare" data-price-compare>£2,669</span>
-          </div>
-
-          <div class="terms-card">
-            <label class="terms-check" for="signatureTermsAccepted">
-              <input id="signatureTermsAccepted" type="checkbox" data-terms-checkbox />
-              <span>I have read and agree to the LADFOX Terms &amp; Conditions.</span>
-            </label>
-            <details class="terms-details">
-              <summary>Read the full Terms &amp; Conditions</summary>
-              <div class="terms-copy">
-                <p>These Terms and Conditions apply to all bespoke engagement rings created by LADFOX. By placing an order, the customer agrees to the following conditions.</p>
-                <ol>
-                  <li>
-                    <strong>Lifetime Warranty</strong>
-                    <p>LADFOX provides a lifetime warranty covering faults caused by manufacturing or poor craftsmanship. This includes prongs or claws failing due to workmanship, loose stones caused by incorrect setting, structural issues in the band or setting, and defects related to soldering or construction.</p>
-                    <p>The lifetime warranty does not cover accidental damage or impact, general wear and tear, bent bands or crushed claws, chemical damage, lost or missing stones caused by misuse, or damage or alterations performed by another jeweller without approval. Any work carried out by a third party without written approval from LADFOX voids the warranty.</p>
-                  </li>
-                  <li>
-                    <strong>Prong and Setting Checks</strong>
-                    <p>To protect the stability of the ring, the customer must arrange regular prong and setting checks with a qualified professional jeweller every six months. The customer is responsible for ensuring the prongs remain secure and intact. Stone loss or prong failure caused by a lack of professional maintenance is not covered under the lifetime warranty.</p>
-                  </li>
-                  <li>
-                    <strong>Production and Delivery</strong>
-                    <p>Production time is up to five weeks depending on complexity. All parcels are sent insured and tracked. Responsibility transfers to the customer once the parcel is signed for on delivery. Courier delays or customs delays are outside the control of LADFOX.</p>
-                  </li>
-                  <li>
-                    <strong>Care Guidelines</strong>
-                    <p>The customer agrees to remove the ring during gym workouts, lifting or manual work, swimming, hot tubs, cleaning with chemicals, gardening, and any strenuous activity. Damage caused by misuse, improper care, or accidental impact is not covered by the lifetime warranty.</p>
-                  </li>
-                  <li>
-                    <strong>Insurance</strong>
-                    <p>LADFOX strongly recommends obtaining independent jewellery insurance immediately upon receiving the ring. An official valuation can be provided upon request. Insurance responsibility lies solely with the customer.</p>
-                  </li>
-                </ol>
-              </div>
-            </details>
+          <div class="price-panel" aria-busy="true">
+            <span class="price-label" data-price-label>20% sale price</span>
+            <span class="price-compare" data-price-compare hidden></span>
+            <strong data-price-output aria-live="polite" aria-atomic="true">Checking…</strong>
+            <p class="price-note" data-price-note>The final amount is calculated securely from your selected specification.</p>
           </div>
 
           <div class="actions actions--bottom">
-            <button class="btn btn-primary" type="button" data-checkout-button>Secure checkout — £2,219</button>
+            <button class="btn btn-primary" type="button" data-checkout-button disabled>Checking price…</button>
             <p class="checkout-status" data-checkout-status role="status" aria-live="polite"></p>
+            <p class="signature-reassurance">You will review the complete specification and total on Stripe before paying.</p>
           </div>
         </article>
+
       </section>
 
       <div class="actions signature-custom-cta">
@@ -1423,672 +1327,583 @@
   </footer>
 
   <script>
-    (function () {
-      "use strict";
+(function () {
+  "use strict";
 
-      const page = document.querySelector("[data-signature-config-page]");
-      if (!page) return;
+  const page = document.querySelector("[data-signature-config-page]");
+  if (!page) return;
 
-      const priceCompare = page.querySelector("[data-price-compare]");
-      const summaryOutput = page.querySelector("[data-summary-output]");
-      const termsCheckbox = page.querySelector("[data-terms-checkbox]");
-      const checkoutButton = page.querySelector("[data-checkout-button]");
-      const checkoutStatus = page.querySelector("[data-checkout-status]");
-      const previewImage = page.querySelector("[data-preview-image]");
-      const previewGem = page.querySelector("[data-preview-gem]");
-      const gemstoneWrap = page.querySelector("[data-gemstone-options]");
-      const colourField = page.querySelector("[data-colour-field]");
-      const clarityField = page.querySelector("[data-clarity-field]");
-      const karatField = page.querySelector("[data-karat-field]");
-      const karatSlider = page.querySelector('[data-option-slider="signatureMetalKarat"]');
-      const colourSlider = page.querySelector('[data-option-slider="signatureColour"]');
-      const elongatedField = page.querySelector("[data-elongated-field]");
-      const sliders = Array.from(page.querySelectorAll("[data-option-slider]"));
-      const sizeRanges = Array.from(page.querySelectorAll("[data-size-range]"));
-      const discreteRanges = Array.from(page.querySelectorAll("[data-discrete-range]"));
+  const priceLabel = page.querySelector("[data-price-label]");
+  const priceCompare = page.querySelector("[data-price-compare]");
+  const countdownOutput = page.querySelector("[data-countdown-output]");
+  const saleCountdown = page.querySelector("[data-sale-countdown]");
+  const priceOutput = page.querySelector("[data-price-output]");
+  const priceNote = page.querySelector("[data-price-note]");
+  const summaryOutput = page.querySelector("[data-summary-output]");
+  const checkoutButton = page.querySelector("[data-checkout-button]");
+  const checkoutStatus = page.querySelector("[data-checkout-status]");
+  const previewImage = page.querySelector("[data-preview-image]");
+  const previewGem = page.querySelector("[data-preview-gem]");
+  const gemstoneWrap = page.querySelector("[data-gemstone-options]");
+  const colourField = page.querySelector("[data-colour-field]");
+  const clarityField = page.querySelector("[data-clarity-field]");
+  const karatField = page.querySelector("[data-karat-field]");
+  const karatSlider = page.querySelector('[data-option-slider="signatureMetalKarat"]');
+  const colourSlider = page.querySelector('[data-option-slider="signatureColour"]');
+  const elongatedField = page.querySelector("[data-elongated-field]");
+  const sliders = Array.from(page.querySelectorAll("[data-option-slider]"));
+  const sizeRanges = Array.from(page.querySelectorAll("[data-size-range]"));
+  const discreteRanges = Array.from(page.querySelectorAll("[data-discrete-range]"));
 
-      const fields = {
-        metalBase: page.querySelector("#signatureMetalBase"),
-        metalKarat: page.querySelector("#signatureMetalKarat"),
-        metal: page.querySelector("#signatureMetal"),
-        stoneType: page.querySelector("#signatureStoneType"),
-        shape: page.querySelector("#signatureShape"),
-        elongated: page.querySelector("#signatureElongated"),
-        gemstone: page.querySelector("#signatureGemstone"),
-        stoneSize: page.querySelector("#signatureStoneSize"),
-        colour: page.querySelector("#signatureColour"),
-        clarity: page.querySelector("#signatureClarity"),
-        ringSize: page.querySelector("#signatureRingSize")
-      };
+  const fields = {
+    metalBase: page.querySelector("#signatureMetalBase"),
+    metalKarat: page.querySelector("#signatureMetalKarat"),
+    metal: page.querySelector("#signatureMetal"),
+    stoneType: page.querySelector("#signatureStoneType"),
+    shape: page.querySelector("#signatureShape"),
+    elongated: page.querySelector("#signatureElongated"),
+    gemstone: page.querySelector("#signatureGemstone"),
+    stoneSize: page.querySelector("#signatureStoneSize"),
+    colour: page.querySelector("#signatureColour"),
+    clarity: page.querySelector("#signatureClarity"),
+    ringSize: page.querySelector("#signatureRingSize")
+  };
 
-      if (Object.values(fields).some((field) => !field)) return;
+  if (Object.values(fields).some((field) => !field)) return;
 
-      const PRICE_CONFIG = Object.freeze({
-        minimumPrice: 1999,
-        metalAddons: Object.freeze({
-          "14k Gold": 0,
-          "18k Gold": 110,
-          "14k White Gold": 30,
-          "18k White Gold": 130,
-          "14k Rose Gold": 30,
-          "18k Rose Gold": 130,
-          "Platinum": 230
-        }),
-        shapeAddons: Object.freeze({
-          "Round": 0,
-          "Oval": 45,
-          "Pear": 70,
-          "Marquise": 95,
-          "Emerald": 85,
-          "Heart": 0,
-          "Princess": 65,
-          "Radiant": 75,
-          "Cushion": 55
-        }),
-        elongatedAddon: 60,
-        gemstonePriceMultiplier: 0.87,
-        gemstoneAddons: Object.freeze({
-          "Ruby - Deep Red": 80,
-          "Ruby - Rich Red": 95,
-          "Ruby - Bright Red": 110,
-          "Pink Sapphire - Vivid Pink": 120,
-          "Pink Sapphire - Strong Pink": 130,
-          "Pink Sapphire - Hot Pink": 140,
-          "Pink Sapphire - Bubblegum Pink": 150,
-          "Pink Sapphire - Soft Pink": 125,
-          "Blue Sapphire - Royal Blue": 150,
-          "Blue Sapphire - Bright Blue": 140,
-          "Blue Sapphire - Violet Blue": 145,
-          "Blue Sapphire - Cornflower Blue": 155,
-          "Blue Sapphire - Aqua Blue": 135,
-          "Blue Sapphire - Icy Blue": 130,
-          "Yellow Sapphire - Deep Gold": 125,
-          "Yellow Sapphire - Golden Yellow": 120,
-          "Yellow Sapphire - Light Yellow": 110,
-          "Purple Sapphire - Deep Purple": 145,
-          "Purple Sapphire - Bright Orchid": 135,
-          "Purple Sapphire - Violet": 130,
-          "Purple Sapphire - Soft Lilac": 120,
-          "Emerald - Mint Green": 160,
-          "Emerald - Rich Green": 175,
-          "Emerald - Teal Green": 170,
-          "Alexandrite - Colour Changing": 220
-        }),
-        clarityAddons: Object.freeze({
-          "VS2": 20,
-          "VS1": 45,
-          "VVS2": 75,
-          "VVS1": 100,
-          "Internally Flawless": 130,
-          "Flawless": 150
-        }),
-        diamondPricePoints: Object.freeze([
-          { size: 0.5, price: 2199 },
-          { size: 1.0, price: 2199 },
-          { size: 1.5, price: 2399 },
-          { size: 2.0, price: 2499 },
-          { size: 2.5, price: 2495 },
-          { size: 3.0, price: 2999 },
-          { size: 3.5, price: 3499 },
-          { size: 4.0, price: 3999 },
-          { size: 4.5, price: 4999 },
-          { size: 5.0, price: 7499 },
-          { size: 5.5, price: 8999 },
-          { size: 6.0, price: 11999 }
-        ])
+  const elongatedShapes = new Set(["Emerald", "Radiant", "Cushion"]);
+  const attributionKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid"];
+  const storageKey = "ladfox-signature-petal-config-v3";
+  const currencyFormatter = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    maximumFractionDigits: 0
+  });
+
+  let currentQuote = null;
+  let quoteTimer = 0;
+  let quoteSequence = 0;
+  let quoteController = null;
+
+  const parseRangeValues = (range) => (range.dataset.rangeValues || "")
+    .split("|")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  const formatCaratValue = (value) => {
+    const numeric = Number.parseFloat(value);
+    return Number.isFinite(numeric) ? `${numeric.toFixed(1)} ct` : "";
+  };
+
+  const formatPrice = (value) => currencyFormatter.format(Math.round(value));
+
+  const safeSessionGet = (key) => {
+    try {
+      return sessionStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  };
+
+  const safeSessionSet = (key, value) => {
+    try {
+      sessionStorage.setItem(key, value);
+    } catch {
+      // The configurator remains usable when storage is blocked.
+    }
+  };
+
+  const readSelections = () => ({
+    metalBase: fields.metalBase.value,
+    metalKarat: fields.metalKarat.value,
+    metal: fields.metal.value,
+    stoneType: fields.stoneType.value,
+    shape: fields.shape.value,
+    elongated: fields.elongated.value,
+    gemstone: fields.gemstone.value,
+    stoneSize: fields.stoneSize.value,
+    colour: fields.colour.value,
+    clarity: fields.clarity.value,
+    ringSize: fields.ringSize.value
+  });
+
+  const storeState = () => safeSessionSet(storageKey, JSON.stringify(readSelections()));
+
+  const getStoredState = () => {
+    try {
+      return JSON.parse(safeSessionGet(storageKey) || "null") || {};
+    } catch {
+      return {};
+    }
+  };
+
+  const optionExists = (targetId, value) => {
+    const slider = page.querySelector(`[data-option-slider="${targetId}"]`);
+    return Boolean(slider && Array.from(slider.querySelectorAll("[data-option-value]")).some((button) => button.dataset.optionValue === value));
+  };
+
+  const applyInitialState = () => {
+    const stored = getStoredState();
+    const query = new URLSearchParams(window.location.search);
+    const options = [
+      ["metalBase", "signatureMetalBase", query.get("metal_base") || stored.metalBase],
+      ["metalKarat", "signatureMetalKarat", query.get("metal_karat") || stored.metalKarat],
+      ["stoneType", "signatureStoneType", query.get("stone_type") || stored.stoneType],
+      ["shape", "signatureShape", query.get("shape") || stored.shape],
+      ["elongated", "signatureElongated", query.get("elongated") || stored.elongated],
+      ["gemstone", "signatureGemstone", query.get("gemstone_type") || stored.gemstone],
+      ["colour", "signatureColour", query.get("colour") || stored.colour]
+    ];
+
+    options.forEach(([fieldKey, targetId, value]) => {
+      if (value && optionExists(targetId, value)) fields[fieldKey].value = value;
+    });
+
+    const sizeValue = Number.parseFloat(query.get("stone_size") || stored.stoneSize);
+    const sizeRange = sizeRanges[0];
+    if (sizeRange && Number.isFinite(sizeValue)) {
+      const min = Number(sizeRange.min);
+      const max = Number(sizeRange.max);
+      const clamped = Math.max(min, Math.min(max, Math.round(sizeValue * 10) / 10));
+      sizeRange.value = String(clamped);
+      fields.stoneSize.value = formatCaratValue(clamped);
+    }
+
+    const discreteState = {
+      signatureClarity: query.get("clarity") || stored.clarity,
+      signatureRingSize: query.get("size") || stored.ringSize
+    };
+
+    discreteRanges.forEach((range) => {
+      const targetId = range.dataset.discreteRange;
+      const values = parseRangeValues(range);
+      const value = discreteState[targetId];
+      const index = values.indexOf(value);
+      if (index >= 0) range.value = String(index);
+    });
+  };
+
+  const updatePreviewGem = () => {
+    if (!previewGem) return;
+
+    const elongated = fields.elongated.value === "Yes";
+    const maskPath = (name) => `url("Images/Signature%20Collection/${name}")`;
+    const shapeMaskMap = {
+      Round: maskPath("round mask.png"),
+      Oval: maskPath("oval mask.png"),
+      Marquise: maskPath("marquise mask.png"),
+      Pear: maskPath("pear mask.png"),
+      Emerald: maskPath(elongated ? "elongated emerald mask.png" : "emerald mask.png"),
+      Princess: maskPath("princess mask.png"),
+      Radiant: maskPath(elongated ? "elongated radiant mask.png" : "radiant mask.png"),
+      Cushion: maskPath(elongated ? "elongated cushion mask.png" : "cushion mask.png"),
+      Heart: maskPath("heart mask.png")
+    };
+
+    const diamondColours = {
+      D: { color: "#f8fbff", opacity: ".16", mobile: ".14" },
+      E: { color: "#f5f8ff", opacity: ".18", mobile: ".16" },
+      F: { color: "#f4f3ff", opacity: ".20", mobile: ".18" },
+      G: { color: "#fff7e6", opacity: ".26", mobile: ".24" },
+      H: { color: "#ffedc6", opacity: ".32", mobile: ".28" }
+    };
+
+    const gemstoneColours = {
+      "Ruby - Deep Red": "#7a0505", "Ruby - Rich Red": "#c10e0e", "Ruby - Bright Red": "#ff3c2f",
+      "Pink Sapphire - Vivid Pink": "#ff2f98", "Pink Sapphire - Strong Pink": "#ff4db3", "Pink Sapphire - Hot Pink": "#ff2fc7",
+      "Pink Sapphire - Bubblegum Pink": "#ff7fd8", "Pink Sapphire - Soft Pink": "#ffb4ea",
+      "Blue Sapphire - Royal Blue": "#0820c9", "Blue Sapphire - Bright Blue": "#2147ff", "Blue Sapphire - Violet Blue": "#5a4dff",
+      "Blue Sapphire - Cornflower Blue": "#81a4ff", "Blue Sapphire - Aqua Blue": "#27cfff", "Blue Sapphire - Icy Blue": "#d7ecff",
+      "Yellow Sapphire - Deep Gold": "#ef9f00", "Yellow Sapphire - Golden Yellow": "#ffc12e", "Yellow Sapphire - Light Yellow": "#ffe383",
+      "Purple Sapphire - Deep Purple": "#a200d1", "Purple Sapphire - Bright Orchid": "#d62fff", "Purple Sapphire - Violet": "#8460ff",
+      "Purple Sapphire - Soft Lilac": "#ecb5ff", "Emerald - Mint Green": "#7cf0ca", "Emerald - Rich Green": "#0ea82a",
+      "Emerald - Teal Green": "#0aa7a1", "Alexandrite - Colour Changing": "#d446d0"
+    };
+
+    const imageMask = shapeMaskMap[fields.shape.value] || shapeMaskMap.Round;
+    previewGem.style.webkitMaskImage = imageMask;
+    previewGem.style.maskImage = imageMask;
+    previewGem.style.webkitMaskRepeat = "no-repeat";
+    previewGem.style.maskRepeat = "no-repeat";
+    previewGem.style.webkitMaskPosition = "center";
+    previewGem.style.maskPosition = "center";
+    previewGem.style.webkitMaskSize = "100% 100%";
+    previewGem.style.maskSize = "100% 100%";
+
+    if (fields.stoneType.value === "Lab Gemstone") {
+      previewGem.style.setProperty("--preview-gem-color", gemstoneColours[fields.gemstone.value] || "#d446d0");
+      previewGem.style.setProperty("--preview-gem-opacity", ".46");
+      previewGem.style.setProperty("--preview-gem-opacity-mobile", ".42");
+    } else {
+      const tone = diamondColours[fields.colour.value] || diamondColours.D;
+      previewGem.style.setProperty("--preview-gem-color", tone.color);
+      previewGem.style.setProperty("--preview-gem-opacity", tone.opacity);
+      previewGem.style.setProperty("--preview-gem-opacity-mobile", tone.mobile);
+    }
+  };
+
+  const syncKaratTheme = () => {
+    if (!karatSlider) return;
+    const themeMap = {
+      Gold: "option-pill--yellow-gold",
+      "White Gold": "option-pill--white-gold",
+      "Rose Gold": "option-pill--rose-gold"
+    };
+    const themeClass = themeMap[fields.metalBase.value] || "";
+    karatSlider.querySelectorAll("[data-option-value]").forEach((option) => {
+      option.classList.remove("option-pill--yellow-gold", "option-pill--white-gold", "option-pill--rose-gold");
+      if (themeClass) option.classList.add(themeClass);
+    });
+  };
+
+  const updateMetalValue = () => {
+    const base = fields.metalBase.value;
+    const needsKarat = ["Gold", "White Gold", "Rose Gold"].includes(base);
+    if (karatField) karatField.hidden = !needsKarat;
+    fields.metal.value = needsKarat ? `${fields.metalKarat.value} ${base}` : base;
+    syncKaratTheme();
+  };
+
+  const syncShapeMode = () => {
+    const supportsElongated = elongatedShapes.has(fields.shape.value);
+    if (elongatedField) elongatedField.hidden = !supportsElongated;
+    if (!supportsElongated) fields.elongated.value = "No";
+  };
+
+  const syncStoneMode = () => {
+    const isGemstone = fields.stoneType.value === "Lab Gemstone";
+    const stoneSize = Number.parseFloat(fields.stoneSize.value);
+    const hideWarmColours = Number.isFinite(stoneSize) && stoneSize > 2.5;
+
+    if (gemstoneWrap) gemstoneWrap.hidden = !isGemstone;
+    if (colourField) colourField.hidden = isGemstone;
+    if (clarityField) clarityField.hidden = isGemstone;
+    if (isGemstone && !fields.gemstone.value) fields.gemstone.value = "Ruby - Deep Red";
+
+    if (colourSlider) {
+      colourSlider.querySelectorAll("[data-option-value]").forEach((option) => {
+        const value = option.dataset.optionValue || "";
+        const shouldHide = !isGemstone && hideWarmColours && (value === "G" || value === "H");
+        option.hidden = shouldHide;
+        option.disabled = shouldHide;
+        option.setAttribute("aria-hidden", String(shouldHide));
       });
+    }
 
-      const ringSizeValues = ["J", "J 1/2", "K", "K 1/2", "L", "L 1/2", "M", "M 1/2", "N", "N 1/2", "O", "O 1/2", "P", "P 1/2", "Q"];
-      const elongatedShapes = new Set(["Emerald", "Radiant", "Cushion"]);
-      const attributionKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid"];
-      const storageKey = "ladfox-signature-petal-config-v2";
-      const currencyFormatter = new Intl.NumberFormat("en-GB", {
-        style: "currency",
-        currency: "GBP",
-        maximumFractionDigits: 0
+    if (!isGemstone && hideWarmColours && (fields.colour.value === "G" || fields.colour.value === "H")) {
+      fields.colour.value = "F";
+    }
+  };
+
+  const updatePreviewImage = () => {
+    if (!previewImage) return;
+    const base = fields.metalBase.value || "Gold";
+    const shapeKey = fields.shape.value.toLowerCase();
+    const previewKey = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes"
+      ? `elongated-${shapeKey}`
+      : shapeKey;
+    const attributeName = `data-image-${previewKey}-${base.toLowerCase().replace(/\s+/g, "-")}`;
+    const goldFallback = previewImage.getAttribute(`data-image-${previewKey}-gold`);
+    const nextSource = previewImage.getAttribute(attributeName) || goldFallback;
+    if (nextSource && previewImage.getAttribute("src") !== nextSource) previewImage.src = nextSource;
+
+    const proportion = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes" ? " elongated" : "";
+    previewImage.alt = `${fields.metal.value}${proportion} ${fields.shape.value.toLowerCase()} LADFOX Signature Petal engagement ring`;
+  };
+
+  const updateSummary = () => {
+    if (!summaryOutput) return;
+    const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
+    const stone = fields.stoneType.value === "Lab Gemstone"
+      ? fields.gemstone.value
+      : `lab-grown diamond · ${fields.colour.value} colour · ${fields.clarity.value}`;
+    summaryOutput.textContent = `${fields.metal.value} · ${fields.stoneSize.value} ${shape} · ${stone} · UK size ${fields.ringSize.value}`;
+  };
+
+  const syncSliderState = () => {
+    sliders.forEach((slider) => {
+      const input = document.getElementById(slider.dataset.optionSlider || "");
+      if (!input) return;
+      slider.querySelectorAll("[data-option-value]").forEach((option) => {
+        const selected = option.dataset.optionValue === input.value;
+        option.classList.toggle("is-active", selected);
+        option.setAttribute("aria-pressed", String(selected));
       });
+    });
+  };
 
-      const parseRangeValues = (range) => (range.dataset.rangeValues || "")
-        .split("|")
-        .map((value) => value.trim())
-        .filter(Boolean);
+  const syncSizeRanges = () => {
+    sizeRanges.forEach((range) => {
+      const targetId = range.dataset.sizeRange;
+      const output = page.querySelector(`[data-size-output="${targetId}"]`);
+      const input = document.getElementById(targetId || "");
+      if (!output || !input) return;
+      const value = formatCaratValue(range.value);
+      output.textContent = value;
+      input.value = value;
+      range.setAttribute("aria-valuetext", value);
+    });
+  };
 
-      const formatCaratValue = (value) => {
-        const numeric = Number.parseFloat(value);
-        return Number.isFinite(numeric) ? `${numeric.toFixed(1)} ct` : "";
-      };
+  const syncDiscreteRanges = () => {
+    discreteRanges.forEach((range) => {
+      const targetId = range.dataset.discreteRange;
+      const values = parseRangeValues(range);
+      const output = page.querySelector(`[data-discrete-output="${targetId}"]`);
+      const input = document.getElementById(targetId || "");
+      if (!output || !input || values.length === 0) return;
+      const parsedIndex = Number.parseInt(range.value, 10);
+      const index = Math.max(0, Math.min(values.length - 1, Number.isFinite(parsedIndex) ? parsedIndex : 0));
+      const value = values[index];
+      output.textContent = value;
+      input.value = value;
+      range.setAttribute("aria-valuetext", value);
+    });
+  };
 
-      const formatPrice = (value) => currencyFormatter.format(Math.round(value));
+  const setCheckoutState = (message, isError = false) => {
+    if (!checkoutStatus) return;
+    checkoutStatus.textContent = message;
+    checkoutStatus.classList.toggle("is-error", isError);
+  };
 
-      const syncPreviewOverlayBox = () => {
-        // The overlay shares the same container as the preview image,
-        // so it stays locked to the exact rendered image position.
-      };
+  const setQuoteLoading = () => {
+    currentQuote = null;
+    const pricePanel = priceOutput ? priceOutput.closest(".price-panel") : null;
+    if (pricePanel) {
+      pricePanel.setAttribute("aria-busy", "true");
+      pricePanel.classList.remove("is-quote-only");
+    }
+    if (priceLabel) priceLabel.textContent = "Checking price";
+    if (priceCompare) priceCompare.hidden = true;
+    if (priceOutput) priceOutput.textContent = "Checking…";
+    if (priceNote) priceNote.textContent = "The final amount is being calculated securely on LADFOX's server.";
+    if (checkoutButton) {
+      checkoutButton.disabled = true;
+      checkoutButton.textContent = "Checking price…";
+    }
+    setCheckoutState("");
+  };
 
-      const safeSessionGet = (key) => {
-        try {
-          return sessionStorage.getItem(key);
-        } catch (error) {
-          return null;
-        }
-      };
+  const applyQuote = (quote) => {
+    currentQuote = quote;
+    const pricePanel = priceOutput ? priceOutput.closest(".price-panel") : null;
+    if (pricePanel) {
+      pricePanel.setAttribute("aria-busy", "false");
+      pricePanel.classList.remove("is-quote-only");
+    }
 
-      const safeSessionSet = (key, value) => {
-        try {
-          sessionStorage.setItem(key, value);
-        } catch (error) {
-          // The configurator still works when storage is unavailable.
-        }
-      };
+    const formatted = formatPrice(quote.priceGbp);
+    if (priceLabel) priceLabel.textContent = quote.saleActive ? "20% sale price" : "Price";
+    if (priceCompare) {
+      priceCompare.hidden = !quote.saleActive;
+      priceCompare.textContent = quote.saleActive ? formatPrice(quote.regularPriceGbp) : "";
+    }
+    if (priceOutput) priceOutput.textContent = formatted;
+    if (priceNote) priceNote.textContent = quote.message || "This price has been calculated securely from your selected specification.";
+    if (checkoutButton) {
+      checkoutButton.disabled = false;
+      checkoutButton.textContent = `Secure checkout — ${formatted}`;
+    }
+  };
 
-      const safeStoredState = () => {
-        try {
-          return JSON.parse(safeSessionGet(storageKey) || "null");
-        } catch (error) {
-          return null;
-        }
-      };
+  const loadQuote = async () => {
+    const sequence = ++quoteSequence;
+    if (quoteController) quoteController.abort();
+    quoteController = new AbortController();
 
-      const storeState = () => {
-        safeSessionSet(storageKey, JSON.stringify(readSelections()));
-      };
-
-      const applyInitialState = () => {
-        const stored = safeStoredState() || {};
-        const query = new URLSearchParams(window.location.search);
-        const valueSources = {
-          metalBase: query.get("metal_base") || stored.metalBase,
-          metalKarat: query.get("metal_karat") || stored.metalKarat,
-          stoneType: query.get("stone_type") || stored.stoneType,
-          shape: query.get("shape") || stored.shape,
-          elongated: query.get("elongated") || stored.elongated,
-          gemstone: query.get("gemstone_type") || stored.gemstone,
-          stoneSize: query.get("stone_size") || stored.stoneSize,
-          colour: query.get("colour") || stored.colour,
-          clarity: query.get("clarity") || stored.clarity,
-          ringSize: query.get("size") || stored.ringSize
-        };
-
-        Object.entries(valueSources).forEach(([key, value]) => {
-          if (value && fields[key]) fields[key].value = value;
-        });
-
-        sizeRanges.forEach((range) => {
-          const numeric = Number.parseFloat(fields.stoneSize.value);
-          if (Number.isFinite(numeric)) range.value = String(numeric);
-        });
-
-        discreteRanges.forEach((range) => {
-          const targetId = range.dataset.discreteRange;
-          const values = parseRangeValues(range);
-          const input = targetId ? page.querySelector(`#${CSS.escape(targetId)}`) : null;
-          if (!input || values.length === 0) return;
-          const index = values.indexOf(input.value);
-          if (index >= 0) range.value = String(index);
-        });
-      };
-
-      const updatePreviewGem = () => {
-        if (!previewGem) return;
-
-        const key = fields.shape.value;
-        const elongated = fields.elongated.value === "Yes";
-        const maskPath = (name) => `url("Images/Signature%20Collection/${name}")`;
-        const shapeMaskMap = {
-          "Round": { clip: "none", imageMask: maskPath("round mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Oval": { clip: "none", imageMask: maskPath("oval mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Marquise": { clip: "none", imageMask: maskPath("marquise mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Pear": { clip: "none", imageMask: maskPath("pear mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Emerald": elongated
-            ? { clip: "none", imageMask: maskPath("elongated emerald mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
-            : { clip: "none", imageMask: maskPath("emerald mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Princess": { clip: "none", imageMask: maskPath("princess mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Radiant": elongated
-            ? { clip: "none", imageMask: maskPath("elongated radiant mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
-            : { clip: "none", imageMask: maskPath("radiant mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Cushion": elongated
-            ? { clip: "none", imageMask: maskPath("elongated cushion mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
-            : { clip: "none", imageMask: maskPath("cushion mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
-          "Heart": { clip: "none", imageMask: maskPath("heart mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
-        };
-
-        const diamondColours = {
-          "D": { color: "#f8fbff", opacity: ".16", mobile: ".14" },
-          "E": { color: "#f5f8ff", opacity: ".18", mobile: ".16" },
-          "F": { color: "#f4f3ff", opacity: ".2", mobile: ".18" },
-          "G": { color: "#fff7e6", opacity: ".26", mobile: ".24" },
-          "H": { color: "#ffedc6", opacity: ".32", mobile: ".28" }
-        };
-
-        const gemstoneColours = {
-          "Ruby - Deep Red": "#7a0505", "Ruby - Rich Red": "#c10e0e", "Ruby - Bright Red": "#ff3c2f",
-          "Pink Sapphire - Vivid Pink": "#ff2f98", "Pink Sapphire - Strong Pink": "#ff4db3", "Pink Sapphire - Hot Pink": "#ff2fc7",
-          "Pink Sapphire - Bubblegum Pink": "#ff7fd8", "Pink Sapphire - Soft Pink": "#ffb4ea",
-          "Blue Sapphire - Royal Blue": "#0820c9", "Blue Sapphire - Bright Blue": "#2147ff", "Blue Sapphire - Violet Blue": "#5a4dff",
-          "Blue Sapphire - Cornflower Blue": "#81a4ff", "Blue Sapphire - Aqua Blue": "#27cfff", "Blue Sapphire - Icy Blue": "#d7ecff",
-          "Yellow Sapphire - Deep Gold": "#ef9f00", "Yellow Sapphire - Golden Yellow": "#ffc12e", "Yellow Sapphire - Light Yellow": "#ffe383",
-          "Purple Sapphire - Deep Purple": "#a200d1", "Purple Sapphire - Bright Orchid": "#d62fff", "Purple Sapphire - Violet": "#8460ff",
-          "Purple Sapphire - Soft Lilac": "#ecb5ff", "Emerald - Mint Green": "#7cf0ca", "Emerald - Rich Green": "#0ea82a",
-          "Emerald - Teal Green": "#0aa7a1", "Alexandrite - Colour Changing": "#d446d0"
-        };
-
-        const mask = shapeMaskMap[key] || shapeMaskMap.Round;
-        previewGem.style.clipPath = mask.clip;
-        previewGem.style.webkitClipPath = mask.clip;
-
-        if (mask.imageMask) {
-          previewGem.style.webkitMaskImage = mask.imageMask;
-          previewGem.style.maskImage = mask.imageMask;
-          previewGem.style.webkitMaskRepeat = "no-repeat";
-          previewGem.style.maskRepeat = "no-repeat";
-          previewGem.style.webkitMaskPosition = mask.imageMaskPosition || "center";
-          previewGem.style.maskPosition = mask.imageMaskPosition || "center";
-          previewGem.style.webkitMaskSize = mask.imageMaskSize || "100% 100%";
-          previewGem.style.maskSize = mask.imageMaskSize || "100% 100%";
-          previewGem.style.webkitMaskMode = "alpha";
-          previewGem.style.maskMode = "alpha";
-        } else {
-          previewGem.style.webkitMaskImage = "none";
-          previewGem.style.maskImage = "none";
-          previewGem.style.webkitMaskRepeat = "";
-          previewGem.style.maskRepeat = "";
-          previewGem.style.webkitMaskPosition = "";
-          previewGem.style.maskPosition = "";
-          previewGem.style.webkitMaskSize = "";
-          previewGem.style.maskSize = "";
-          previewGem.style.webkitMaskMode = "";
-          previewGem.style.maskMode = "";
-        }
-
-        if (fields.stoneType.value === "Lab Gemstone") {
-          previewGem.style.setProperty("--preview-gem-color", gemstoneColours[fields.gemstone.value] || "#d446d0");
-          previewGem.style.setProperty("--preview-gem-opacity", ".46");
-          previewGem.style.setProperty("--preview-gem-opacity-mobile", ".42");
-        } else {
-          const tone = diamondColours[fields.colour.value] || diamondColours.D;
-          previewGem.style.setProperty("--preview-gem-color", tone.color);
-          previewGem.style.setProperty("--preview-gem-opacity", tone.opacity);
-          previewGem.style.setProperty("--preview-gem-opacity-mobile", tone.mobile);
-        }
-      };
-
-      const syncKaratTheme = () => {
-        if (!karatSlider) return;
-        const themeMap = {
-          "Gold": "option-pill--yellow-gold",
-          "White Gold": "option-pill--white-gold",
-          "Rose Gold": "option-pill--rose-gold"
-        };
-        const themeClass = themeMap[fields.metalBase.value] || "";
-        karatSlider.querySelectorAll("[data-option-value]").forEach((option) => {
-          option.classList.remove("option-pill--yellow-gold", "option-pill--white-gold", "option-pill--rose-gold");
-          if (themeClass) option.classList.add(themeClass);
-        });
-      };
-
-      const updateMetalValue = () => {
-        const base = fields.metalBase.value;
-        const needsKarat = ["Gold", "White Gold", "Rose Gold"].includes(base);
-        if (karatField) karatField.hidden = !needsKarat;
-        fields.metal.value = needsKarat ? `${fields.metalKarat.value} ${base}` : base;
-        syncKaratTheme();
-      };
-
-      const updatePreviewImage = () => {
-        if (!previewImage) return;
-        const base = fields.metalBase.value || "Gold";
-        const shapeKey = fields.shape.value.toLowerCase();
-        const previewKey = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes"
-          ? `elongated-${shapeKey}`
-          : shapeKey;
-        const attributeName = `data-image-${previewKey}-${base.toLowerCase().replace(/\s+/g, "-")}`;
-        const goldFallback = previewImage.getAttribute(`data-image-${previewKey}-gold`);
-        const nextSource = previewImage.getAttribute(attributeName) || goldFallback;
-
-        if (nextSource && previewImage.getAttribute("src") !== nextSource) {
-          previewImage.src = nextSource;
-        }
-
-        const proportion = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes" ? " elongated" : "";
-        previewImage.alt = `${fields.metal.value}${proportion} ${fields.shape.value.toLowerCase()} LADFOX Signature Petal engagement ring`;
-        syncPreviewOverlayBox();
-      };
-
-      const readSelections = () => ({
-        metalBase: fields.metalBase.value,
-        metalKarat: fields.metalKarat.value,
-        metal: fields.metal.value,
-        stoneType: fields.stoneType.value,
-        shape: fields.shape.value,
-        elongated: fields.elongated.value,
-        gemstone: fields.gemstone.value,
-        stoneSize: fields.stoneSize.value,
-        colour: fields.colour.value,
-        clarity: fields.clarity.value,
-        ringSize: fields.ringSize.value
+    try {
+      const response = await fetch("/.netlify/functions/price-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ selections: readSelections() }),
+        signal: quoteController.signal
       });
-
-      const syncShapeMode = () => {
-        const supportsElongated = elongatedShapes.has(fields.shape.value);
-        if (elongatedField) elongatedField.hidden = !supportsElongated;
-        if (!supportsElongated) fields.elongated.value = "No";
-      };
-
-      const syncStoneMode = () => {
-        const isGemstone = fields.stoneType.value === "Lab Gemstone";
-        if (gemstoneWrap) gemstoneWrap.hidden = !isGemstone;
-        if (colourField) colourField.hidden = isGemstone;
-        if (clarityField) clarityField.hidden = isGemstone;
-        if (isGemstone && !fields.gemstone.value) fields.gemstone.value = "Ruby - Deep Red";
-      };
-
-      const updateDiamondColourAvailability = () => {
-        if (!colourSlider) return;
-        const size = Number.parseFloat(fields.stoneSize.value) || 0.5;
-        const hideWarmOptions = size > 2.5;
-        const restrictedValues = new Set(["G", "H"]);
-
-        colourSlider.querySelectorAll("[data-option-value]").forEach((option) => {
-          const restricted = restrictedValues.has(option.dataset.optionValue || "");
-          const hidden = hideWarmOptions && restricted;
-          option.hidden = hidden;
-          option.disabled = hidden;
-          option.setAttribute("aria-hidden", String(hidden));
-        });
-
-        if (hideWarmOptions && restrictedValues.has(fields.colour.value)) {
-          fields.colour.value = "F";
-        }
-      };
-
-      const syncLiveSummary = () => {
-        if (!summaryOutput) return;
-        const size = fields.stoneSize.value;
-        const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
-        const stone = fields.stoneType.value === "Lab Gemstone"
-          ? fields.gemstone.value
-          : `lab-grown diamond · ${fields.colour.value} · ${fields.clarity.value}`;
-        summaryOutput.textContent = `${fields.metal.value} · ${size} ${shape} ${stone} · size ${fields.ringSize.value}`;
-      };
-
-      const normalisedDiamondPricePoints = PRICE_CONFIG.diamondPricePoints.reduce((points, point) => {
-        const previousPrice = points.length ? points[points.length - 1].price : 0;
-        points.push({ size: point.size, price: Math.max(previousPrice, point.price) });
-        return points;
-      }, []);
-
-      const interpolateDiamondBasePrice = (carat) => {
-        const first = normalisedDiamondPricePoints[0];
-        const last = normalisedDiamondPricePoints[normalisedDiamondPricePoints.length - 1];
-        const clamped = Math.max(first.size, Math.min(carat, last.size));
-        if (clamped <= first.size) return first.price;
-
-        for (let index = 1; index < normalisedDiamondPricePoints.length; index += 1) {
-          const previous = normalisedDiamondPricePoints[index - 1];
-          const current = normalisedDiamondPricePoints[index];
-          if (clamped <= current.size) {
-            const progress = (clamped - previous.size) / (current.size - previous.size);
-            return previous.price + ((current.price - previous.price) * progress);
-          }
-        }
-        return last.price;
-      };
-
-      const calculatePrice = () => {
-        const size = Number.parseFloat(fields.stoneSize.value) || 0.5;
-        const isGemstone = fields.stoneType.value === "Lab Gemstone";
-        const diamondBasePrice = interpolateDiamondBasePrice(size);
-        const basePrice = isGemstone
-          ? diamondBasePrice * PRICE_CONFIG.gemstonePriceMultiplier
-          : diamondBasePrice;
-        const elongatedAddon = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes"
-          ? PRICE_CONFIG.elongatedAddon
-          : 0;
-        const stoneAddon = isGemstone
-          ? (PRICE_CONFIG.gemstoneAddons[fields.gemstone.value] || 0)
-          : (PRICE_CONFIG.clarityAddons[fields.clarity.value] || 0);
-
-        return Math.max(
-          PRICE_CONFIG.minimumPrice,
-          Math.round(
-            basePrice +
-            (PRICE_CONFIG.metalAddons[fields.metal.value] || 0) +
-            (PRICE_CONFIG.shapeAddons[fields.shape.value] || 0) +
-            elongatedAddon +
-            stoneAddon
-          )
-        );
-      };
-
-      const buildCheckoutPayload = () => {
-        const selections = readSelections();
-        const attribution = {};
-        const currentParams = new URLSearchParams(window.location.search);
-
-        attributionKeys.forEach((key) => {
-          const value = currentParams.get(key) || safeSessionGet(`ladfox_${key}`);
-          if (value) {
-            attribution[key] = value;
-            safeSessionSet(`ladfox_${key}`, value);
-          }
-        });
-
-        return {
-          product: "Signature Petal Collection",
-          selections,
-          attribution
-        };
-      };
-
-      const setCheckoutState = (message, isError = false) => {
-        if (checkoutStatus) {
-          checkoutStatus.textContent = message;
-          checkoutStatus.classList.toggle("is-error", isError);
-        }
-      };
-
-      const syncCheckoutAvailability = () => {
-        if (!checkoutButton) return;
-        const accepted = !termsCheckbox || termsCheckbox.checked;
-        const isBusy = checkoutButton.getAttribute("aria-busy") === "true";
-        checkoutButton.disabled = !accepted || isBusy;
-      };
-
-      const beginCheckout = async () => {
-        if (!checkoutButton || checkoutButton.disabled) return;
-        if (termsCheckbox && !termsCheckbox.checked) {
-          setCheckoutState("Please accept the Terms & Conditions before continuing to secure checkout.", true);
-          termsCheckbox.focus();
-          return;
-        }
-
-        checkoutButton.disabled = true;
-        checkoutButton.setAttribute("aria-busy", "true");
-        const originalLabel = checkoutButton.textContent;
-        checkoutButton.textContent = "Opening secure checkout…";
-        setCheckoutState("Your price is being verified securely.");
-
-        try {
-          const response = await fetch("/.netlify/functions/create-checkout-session", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(buildCheckoutPayload())
-          });
-
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok || !result.url) {
-            throw new Error(result.error || "Checkout could not be started.");
-          }
-
-          if (typeof window.gtag === "function") {
-            window.gtag("event", "begin_checkout", {
-              currency: "GBP",
-              value: calculatePrice(),
-              items: [{
-                item_id: "signature-petal-collection",
-                item_name: "Signature Petal Collection",
-                price: calculatePrice(),
-                quantity: 1
-              }]
-            });
-          }
-
-          window.location.assign(result.url);
-        } catch (error) {
-          setCheckoutState(error instanceof Error ? error.message : "Checkout could not be started.", true);
-          checkoutButton.removeAttribute("aria-busy");
-          checkoutButton.textContent = originalLabel;
-          syncCheckoutAvailability();
-        }
-      };
-
-      const updatePrice = () => {
-        const isGemstone = fields.stoneType.value === "Lab Gemstone";
-        const livePrice = calculatePrice();
-        const comparePrice = livePrice * 1.2;
-        const formatted = formatPrice(livePrice);
-        if (priceCompare) {
-          priceCompare.textContent = formatPrice(comparePrice);
-        }
-        if (checkoutButton) {
-          checkoutButton.textContent = `Secure checkout — ${formatted}`;
-        }
-      };
-
-      const updateSummary = () => {
-        if (!summaryOutput) return;
-        const size = fields.stoneSize.value;
-        const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
-        const stone = fields.stoneType.value === "Lab Gemstone"
-          ? fields.gemstone.value
-          : `lab-grown diamond · ${fields.colour.value === "Not sure" ? "best-value colour" : fields.colour.value} · ${fields.clarity.value}`;
-        summaryOutput.textContent = `${fields.metal.value} · ${size} ${shape} ${stone} · size ${fields.ringSize.value}`;
-      };
-
-      const syncSliderState = () => {
-        sliders.forEach((slider) => {
-          const targetId = slider.dataset.optionSlider;
-          const input = targetId ? page.querySelector(`#${CSS.escape(targetId)}`) : null;
-          if (!input) return;
-          slider.querySelectorAll("[data-option-value]").forEach((option) => {
-            const selected = option.dataset.optionValue === input.value;
-            option.classList.toggle("is-active", selected);
-            option.setAttribute("aria-pressed", String(selected));
-          });
-        });
-      };
-
-      const syncSizeRanges = () => {
-        sizeRanges.forEach((range) => {
-          const targetId = range.dataset.sizeRange;
-          const output = targetId ? page.querySelector(`[data-size-output="${CSS.escape(targetId)}"]`) : null;
-          const input = targetId ? page.querySelector(`#${CSS.escape(targetId)}`) : null;
-          if (!output || !input) return;
-          const value = formatCaratValue(range.value);
-          output.textContent = value;
-          input.value = value;
-          range.setAttribute("aria-valuetext", value);
-        });
-      };
-
-      const syncDiscreteRanges = () => {
-        discreteRanges.forEach((range) => {
-          const targetId = range.dataset.discreteRange;
-          const values = parseRangeValues(range);
-          const output = targetId ? page.querySelector(`[data-discrete-output="${CSS.escape(targetId)}"]`) : null;
-          const input = targetId ? page.querySelector(`#${CSS.escape(targetId)}`) : null;
-          if (!output || !input || values.length === 0) return;
-          const rawIndex = Number.parseInt(range.value, 10);
-          const index = Math.max(0, Math.min(values.length - 1, Number.isFinite(rawIndex) ? rawIndex : 0));
-          const value = values[index];
-          output.textContent = value;
-          input.value = value;
-          range.setAttribute("aria-valuetext", value);
-        });
-      };
-
-      const refresh = () => {
-        updateMetalValue();
-        syncShapeMode();
-        syncStoneMode();
-        updateDiamondColourAvailability();
-        updatePreviewImage();
-        updatePreviewGem();
-        syncPreviewOverlayBox();
-        syncSliderState();
-        updateSummary();
-        syncLiveSummary();
-        updatePrice();
-        storeState();
-      };
-
-      sliders.forEach((slider) => {
-        const targetId = slider.dataset.optionSlider;
-        const input = targetId ? page.querySelector(`#${CSS.escape(targetId)}`) : null;
-        if (!input) return;
-        slider.querySelectorAll("[data-option-value]").forEach((option) => {
-          const label = option.textContent.trim();
-          if (slider.dataset.optionSlider === "signatureGemstone" && label) {
-            option.setAttribute("aria-label", label);
-          }
-          option.addEventListener("click", () => {
-            if (option.disabled) return;
-            input.value = option.dataset.optionValue || "";
-            refresh();
-          });
-        });
-      });
-
-      sizeRanges.forEach((range) => {
-        range.addEventListener("input", () => {
-          syncSizeRanges();
-          refresh();
-        });
-      });
-
-      discreteRanges.forEach((range) => {
-        range.addEventListener("input", () => {
-          syncDiscreteRanges();
-          refresh();
-        });
-      });
-
-      if (previewImage) {
-        const defaultImage = previewImage.getAttribute("src");
-        previewImage.addEventListener("load", syncPreviewOverlayBox);
-        previewImage.addEventListener("error", () => {
-          if (defaultImage && previewImage.getAttribute("src") !== defaultImage) {
-            previewImage.src = defaultImage;
-          }
-        });
-      }
-
-      window.addEventListener("resize", syncPreviewOverlayBox);
-
+      const result = await response.json().catch(() => ({}));
+      if (sequence !== quoteSequence) return null;
+      if (!response.ok) throw new Error(result.error || "The price could not be verified.");
+      applyQuote(result);
+      return result;
+    } catch (error) {
+      if (error && error.name === "AbortError") return null;
+      if (sequence !== quoteSequence) return null;
+      currentQuote = null;
+      const pricePanel = priceOutput ? priceOutput.closest(".price-panel") : null;
+      if (pricePanel) pricePanel.setAttribute("aria-busy", "false");
+      if (priceOutput) priceOutput.textContent = "Unavailable";
+      if (priceNote) priceNote.textContent = "Please try again or ask LADFOX for help.";
       if (checkoutButton) {
-        checkoutButton.addEventListener("click", beginCheckout);
+        checkoutButton.disabled = true;
+        checkoutButton.textContent = "Checkout unavailable";
       }
+      setCheckoutState(error instanceof Error ? error.message : "The price could not be verified.", true);
+      return null;
+    }
+  };
 
-      if (termsCheckbox) {
-        termsCheckbox.addEventListener("change", () => {
-          if (termsCheckbox.checked) {
-            setCheckoutState("");
-          }
-          syncCheckoutAvailability();
+  const scheduleQuote = () => {
+    window.clearTimeout(quoteTimer);
+    setQuoteLoading();
+    quoteTimer = window.setTimeout(loadQuote, 180);
+  };
+
+  const captureAttribution = () => {
+    const currentParams = new URLSearchParams(window.location.search);
+    attributionKeys.forEach((key) => {
+      const value = currentParams.get(key);
+      if (value) safeSessionSet(`ladfox_${key}`, value.slice(0, 200));
+    });
+  };
+
+  const getAttribution = () => Object.fromEntries(
+    attributionKeys
+      .map((key) => [key, safeSessionGet(`ladfox_${key}`)])
+      .filter(([, value]) => value)
+  );
+
+  const createRequestId = () => {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+    return `lfx_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 14)}`;
+  };
+
+
+  const beginCheckout = async () => {
+    if (!checkoutButton || checkoutButton.disabled) return;
+
+    if (!currentQuote) {
+      setQuoteLoading();
+      const refreshedQuote = await loadQuote();
+      if (!refreshedQuote) return;
+    }
+
+    const originalLabel = checkoutButton.textContent;
+    checkoutButton.disabled = true;
+    checkoutButton.setAttribute("aria-busy", "true");
+    checkoutButton.textContent = "Opening secure checkout…";
+    setCheckoutState("Your price is being verified once more before Stripe opens.");
+
+    try {
+      const response = await fetch("/.netlify/functions/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          requestId: createRequestId(),
+          selections: readSelections(),
+          attribution: getAttribution()
+        })
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.url) throw new Error(result.error || "Secure checkout could not be started.");
+
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "begin_checkout", {
+          currency: "GBP",
+          value: result.priceGbp,
+          items: [{
+            item_id: "signature-petal-collection",
+            item_name: "Signature Petal Collection",
+            price: result.priceGbp,
+            quantity: 1
+          }]
         });
       }
 
-      applyInitialState();
+      window.location.assign(result.url);
+    } catch (error) {
+      setCheckoutState(error instanceof Error ? error.message : "Secure checkout could not be started.", true);
+      checkoutButton.disabled = false;
+      checkoutButton.removeAttribute("aria-busy");
+      checkoutButton.textContent = originalLabel;
+    }
+  };
+
+  const startSaleCountdown = () => {
+    let timer = 0;
+    const saleEnd = new Date("2026-08-03T00:00:00+01:00").getTime();
+    const render = () => {
+      const remaining = saleEnd - Date.now();
+      if (remaining <= 0) {
+        if (countdownOutput) countdownOutput.textContent = "Sale ended";
+        if (saleCountdown) saleCountdown.setAttribute("data-ended", "true");
+        window.clearInterval(timer);
+        scheduleQuote();
+        return;
+      }
+      const totalSeconds = Math.floor(remaining / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      if (countdownOutput) {
+        countdownOutput.textContent = `${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+      }
+    };
+    render();
+    if (Date.now() < saleEnd) timer = window.setInterval(render, 1000);
+  };
+
+  const refresh = () => {
+    updateMetalValue();
+    syncShapeMode();
+    syncStoneMode();
+    updatePreviewImage();
+    updatePreviewGem();
+    syncSliderState();
+    updateSummary();
+    storeState();
+    scheduleQuote();
+  };
+
+  sliders.forEach((slider) => {
+    const input = document.getElementById(slider.dataset.optionSlider || "");
+    if (!input) return;
+    slider.querySelectorAll("[data-option-value]").forEach((option) => {
+      if (slider.dataset.optionSlider === "signatureGemstone") {
+        option.setAttribute("aria-label", option.textContent.trim());
+      }
+      option.addEventListener("click", () => {
+        if (option.disabled) return;
+        input.value = option.dataset.optionValue || "";
+        refresh();
+      });
+    });
+  });
+
+  sizeRanges.forEach((range) => {
+    range.addEventListener("input", () => {
       syncSizeRanges();
+      refresh();
+    });
+  });
+
+  discreteRanges.forEach((range) => {
+    range.addEventListener("input", () => {
       syncDiscreteRanges();
       refresh();
-      syncPreviewOverlayBox();
-      syncCheckoutAvailability();
+    });
+  });
 
-      if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
-        setCheckoutState("Checkout was cancelled. Your ring selections have been kept.");
-      }
-    }());
+  if (previewImage) {
+    const defaultImage = previewImage.getAttribute("src");
+    previewImage.addEventListener("error", () => {
+      if (defaultImage && previewImage.getAttribute("src") !== defaultImage) previewImage.src = defaultImage;
+    });
+  }
+
+  if (checkoutButton) checkoutButton.addEventListener("click", beginCheckout);
+
+  startSaleCountdown();
+  captureAttribution();
+  applyInitialState();
+  syncSizeRanges();
+  syncDiscreteRanges();
+  refresh();
+
+  if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
+    setCheckoutState("Checkout was cancelled. Your ring selections have been kept.");
+  }
+}());
+
   </script>
 </body>
 </html>

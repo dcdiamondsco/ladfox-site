@@ -1,37 +1,59 @@
-# LADFOX Stripe Checkout starter
+# LADFOX live Stripe checkout — 20% sale update
 
-This package turns the Signature Petal Collection button into a secure Stripe-hosted checkout.
+Copy the contents of this package into the root of the GitHub repository connected to Netlify. Replace matching files and merge the `netlify/functions` folder.
 
-## What is protected
+## Included changes
 
-The browser sends ring selections only. `netlify/functions/pricing.mjs` validates every selection and recalculates the price. A price sent by the customer is never trusted.
+- The existing LADFOX prices are restored as the live **20% sale prices**.
+- The crossed-out regular price is calculated so the saving is genuinely 20%.
+- The countdown ends at `2026-08-03T00:00:00+01:00`, which is midnight immediately after Sunday 2 August 2026 in the UK.
+- Stripe and the on-page quote function enforce the same deadline server-side.
+- Lab gemstones use the restored fixed price table and go directly to secure Stripe checkout.
+- The gemstone enquiry and enquiry thank-you pages have been removed.
+- All selections are validated and priced inside Netlify Functions before Stripe can charge the customer.
 
-## Install
+## Netlify environment variables
 
-1. Copy these files into the root of the LADFOX GitHub/Netlify project. Merge the `netlify/functions` folder if it already exists.
-2. Replace the live `signature-collection.html` with the supplied version.
-3. Run `npm install` locally, then commit `package.json` and the generated `package-lock.json` before pushing to GitHub.
-4. In Netlify: **Site configuration → Environment variables**, add:
-   - `STRIPE_SECRET_KEY` using a Stripe test secret key beginning `sk_test_`
-   - `SITE_URL` as `https://ladfox.com`
-5. Deploy the site.
-6. In Stripe test mode, add a webhook endpoint:
-   `https://ladfox.com/.netlify/functions/stripe-webhook`
-7. Subscribe it to:
-   - `checkout.session.completed`
-   - `checkout.session.async_payment_succeeded`
-   - `checkout.session.async_payment_failed`
-8. Copy the webhook signing secret beginning `whsec_` into Netlify as `STRIPE_WEBHOOK_SECRET`, then redeploy.
-9. Test checkout using Stripe's test card `4242 4242 4242 4242`, any future expiry and any CVC.
-10. Check the payment in Stripe. The complete ring specification is stored in the Checkout Session and PaymentIntent metadata.
+Create these with Functions/Runtime access:
 
-## Before switching to live mode
+- `STRIPE_SECRET_KEY`
+  - Production: `sk_live_...`
+  - Deploy previews and branch deploys: `sk_test_...`
+- `STRIPE_WEBHOOK_SECRET`
+  - Production: live webhook signing secret
+  - Preview/test contexts: test webhook signing secret
+- `SITE_URL`
+  - Production: `https://ladfox.com`
 
-- Verify every value in `netlify/functions/pricing.mjs` against supplier cost, VAT, Stripe fees, delivery, resizing allowance and required margin.
-- Replace the test secret key and test webhook secret with their live equivalents.
-- Create the webhook again in Stripe live mode.
-- Make one low-value live test order and refund it.
+Do not place secret keys in HTML, GitHub or `.env.example`.
 
-## Important
+## Stripe webhook
 
-The webhook currently writes paid-order details to Netlify Function logs. Stripe remains the source of truth. The next stage should send successful orders automatically to your preferred order system or email inbox.
+Endpoint:
+
+`https://ladfox.com/.netlify/functions/stripe-webhook`
+
+Events:
+
+- `checkout.session.completed`
+- `checkout.session.async_payment_succeeded`
+- `checkout.session.async_payment_failed`
+
+## Pricing
+
+Edit prices only in:
+
+`netlify/functions/pricing.mjs`
+
+The current fixed lab-gemstone prices have been restored exactly from the supplied configurator. Check supplier cost, VAT, manufacture, delivery, Stripe fees and margin before promoting the page.
+
+## Deploy
+
+1. Copy all files into the main website folder.
+2. Merge the included `netlify/functions` files into the existing `netlify/functions` folder.
+3. Commit and push to GitHub.
+4. Trigger a fresh Netlify production deploy.
+5. Test one configuration for a lab diamond and one for a lab gemstone.
+6. Confirm Stripe shows the same price and specification as the website.
+
+Run `npm test` to check the server-side pricing rules.

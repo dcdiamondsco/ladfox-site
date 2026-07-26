@@ -1,5 +1,18 @@
+export const PRODUCT = Object.freeze({
+  slug: "signature-petal-collection",
+  name: "LADFOX Signature Petal Collection",
+  currency: "gbp",
+  priceVersion: "2026-07-26-sale"
+});
+
+export const SALE = Object.freeze({
+  discountPercent: 20,
+  // End of Sunday 2 August 2026 in UK summer time.
+  endsAt: "2026-08-03T00:00:00+01:00"
+});
+
 const PRICE_CONFIG = Object.freeze({
-  minimumPrice: 1999,
+  minimumSalePrice: 1999,
   metalAddons: Object.freeze({
     "14k Gold": 0,
     "18k Gold": 110,
@@ -21,7 +34,7 @@ const PRICE_CONFIG = Object.freeze({
     Cushion: 55
   }),
   elongatedAddon: 60,
-  gemstonePriceMultiplier: 0.87,
+  gemstoneBasePrice: 1999,
   gemstoneAddons: Object.freeze({
     "Ruby - Deep Red": 80,
     "Ruby - Rich Red": 95,
@@ -57,12 +70,13 @@ const PRICE_CONFIG = Object.freeze({
     "Internally Flawless": 130,
     Flawless: 150
   }),
+  ringSizeAddonPerHalfSizeAboveM: 12,
   diamondPricePoints: Object.freeze([
     { size: 0.5, price: 2199 },
     { size: 1.0, price: 2199 },
     { size: 1.5, price: 2399 },
     { size: 2.0, price: 2499 },
-    { size: 2.5, price: 2495 },
+    { size: 2.5, price: 2499 },
     { size: 3.0, price: 2999 },
     { size: 3.5, price: 3499 },
     { size: 4.0, price: 3999 },
@@ -73,116 +87,136 @@ const PRICE_CONFIG = Object.freeze({
   ])
 });
 
+const RING_SIZES = Object.freeze([
+  "J", "J 1/2", "K", "K 1/2", "L", "L 1/2", "M", "M 1/2",
+  "N", "N 1/2", "O", "O 1/2", "P", "P 1/2", "Q"
+]);
+
+const GEMSTONES = Object.freeze(Object.keys(PRICE_CONFIG.gemstoneAddons));
 const ALLOWED = Object.freeze({
   stoneTypes: new Set(["Lab Diamond", "Lab Gemstone"]),
   shapes: new Set(Object.keys(PRICE_CONFIG.shapeAddons)),
   metals: new Set(Object.keys(PRICE_CONFIG.metalAddons)),
   elongated: new Set(["Yes", "No"]),
   elongatedShapes: new Set(["Emerald", "Radiant", "Cushion"]),
-  gemstones: new Set(Object.keys(PRICE_CONFIG.gemstoneAddons)),
-  colours: new Set(["Not sure", "D", "E", "F", "G", "H"]),
+  gemstones: new Set(GEMSTONES),
+  colours: new Set(["D", "E", "F", "G", "H"]),
   clarities: new Set(Object.keys(PRICE_CONFIG.clarityAddons)),
-  ringSizes: new Set(["J", "J 1/2", "K", "K 1/2", "L", "L 1/2", "M", "M 1/2", "N", "N 1/2", "O", "O 1/2", "P", "P 1/2", "Q"])
+  ringSizes: new Set(RING_SIZES)
 });
 
-const cleanText = (value, maxLength = 100) => String(value ?? "").trim().slice(0, maxLength);
-
+const cleanText = (value, maxLength = 120) => String(value ?? "").trim().slice(0, maxLength);
 const requireAllowed = (value, allowed, fieldName) => {
   const cleaned = cleanText(value);
   if (!allowed.has(cleaned)) throw new Error(`Invalid ${fieldName}.`);
   return cleaned;
 };
 
-const normalisedDiamondPricePoints = PRICE_CONFIG.diamondPricePoints.reduce((points, point) => {
-  const previousPrice = points.length ? points[points.length - 1].price : 0;
-  points.push({ size: point.size, price: Math.max(previousPrice, point.price) });
-  return points;
-}, []);
-
-const interpolateDiamondBasePrice = (carat) => {
-  const first = normalisedDiamondPricePoints[0];
-  const last = normalisedDiamondPricePoints[normalisedDiamondPricePoints.length - 1];
-  const clamped = Math.max(first.size, Math.min(carat, last.size));
-  if (clamped <= first.size) return first.price;
-
-  for (let index = 1; index < normalisedDiamondPricePoints.length; index += 1) {
-    const previous = normalisedDiamondPricePoints[index - 1];
-    const current = normalisedDiamondPricePoints[index];
-    if (clamped <= current.size) {
-      const progress = (clamped - previous.size) / (current.size - previous.size);
-      return previous.price + ((current.price - previous.price) * progress);
-    }
-  }
-  return last.price;
-};
-
-export function validateAndPrice(rawSelections = {}) {
-  const stoneType = requireAllowed(rawSelections.stoneType, ALLOWED.stoneTypes, "stone type");
-  const shape = requireAllowed(rawSelections.shape, ALLOWED.shapes, "shape");
-  const metal = requireAllowed(rawSelections.metal, ALLOWED.metals, "metal");
-  const ringSize = requireAllowed(rawSelections.ringSize, ALLOWED.ringSizes, "ring size");
-  const elongated = ALLOWED.elongatedShapes.has(shape)
-    ? requireAllowed(rawSelections.elongated || "No", ALLOWED.elongated, "elongated selection")
-    : "No";
-
-  const carat = Number.parseFloat(String(rawSelections.stoneSize).replace(/[^0-9.]/g, ""));
+const parseCarat = (value) => {
+  const carat = Number.parseFloat(String(value ?? "").replace(/[^0-9.]/g, ""));
   if (!Number.isFinite(carat) || carat < 0.5 || carat > 6.0) {
     throw new Error("Centre stone size must be between 0.5 ct and 6.0 ct.");
   }
-  const roundedCarat = Math.round(carat * 10) / 10;
+  const rounded = Math.round(carat * 10) / 10;
+  if (Math.abs(carat - rounded) > 0.0001) throw new Error("Centre stone size must use 0.1 ct increments.");
+  return rounded;
+};
 
+const interpolateDiamondBasePrice = (carat) => {
+  const points = PRICE_CONFIG.diamondPricePoints;
+  if (carat <= points[0].size) return points[0].price;
+  for (let i = 1; i < points.length; i += 1) {
+    const previous = points[i - 1];
+    const current = points[i];
+    if (carat <= current.size) {
+      const progress = (carat - previous.size) / (current.size - previous.size);
+      return previous.price + ((current.price - previous.price) * progress);
+    }
+  }
+  return points[points.length - 1].price;
+};
+
+const getRingSizeAddon = (ringSize) => {
+  const selected = RING_SIZES.indexOf(ringSize);
+  const base = RING_SIZES.indexOf("M");
+  return selected > base ? (selected - base) * PRICE_CONFIG.ringSizeAddonPerHalfSizeAboveM : 0;
+};
+
+const getImagePath = ({ metal, shape, elongated }) => {
+  const metalKey = metal === "Platinum" || metal.includes("White Gold")
+    ? "platinum"
+    : metal.includes("Rose Gold") ? "rose gold" : "gold";
+  const shapeKey = `${elongated === "Yes" ? "elongated " : ""}${shape.toLowerCase()}`;
+  if (shape === "Round" && metalKey === "gold") return "Images/Signature Collection/Round Gold.jpg";
+  if (shape === "Round" && metalKey === "platinum") return "Images/Signature Collection/Round Platinum.jpg";
+  return `Images/Signature Collection/${shapeKey} ${metalKey}.png`;
+};
+
+export function validateSelections(raw = {}) {
+  const stoneType = requireAllowed(raw.stoneType, ALLOWED.stoneTypes, "stone type");
+  const shape = requireAllowed(raw.shape, ALLOWED.shapes, "shape");
+  const metal = requireAllowed(raw.metal, ALLOWED.metals, "metal");
+  const ringSize = requireAllowed(raw.ringSize, ALLOWED.ringSizes, "ring size");
+  const elongated = ALLOWED.elongatedShapes.has(shape)
+    ? requireAllowed(raw.elongated || "No", ALLOWED.elongated, "stone proportion") : "No";
+  const carat = parseCarat(raw.stoneSize);
   const isGemstone = stoneType === "Lab Gemstone";
-  const gemstone = isGemstone
-    ? requireAllowed(rawSelections.gemstone, ALLOWED.gemstones, "gemstone")
-    : "";
-  const colour = isGemstone
-    ? ""
-    : requireAllowed(rawSelections.colour || "Not sure", ALLOWED.colours, "diamond colour");
-  const clarity = isGemstone
-    ? ""
-    : requireAllowed(rawSelections.clarity, ALLOWED.clarities, "diamond clarity");
+  return {
+    metal,
+    stoneType,
+    shape,
+    elongated,
+    gemstone: isGemstone ? requireAllowed(raw.gemstone, ALLOWED.gemstones, "gemstone colour") : "",
+    stoneSize: `${carat.toFixed(1)} ct`,
+    carat,
+    colour: isGemstone ? "" : requireAllowed(raw.colour, ALLOWED.colours, "diamond colour"),
+    clarity: isGemstone ? "" : requireAllowed(raw.clarity, ALLOWED.clarities, "diamond clarity"),
+    ringSize
+  };
+}
 
-  const diamondBasePrice = interpolateDiamondBasePrice(roundedCarat);
-  const basePrice = isGemstone
-    ? diamondBasePrice * PRICE_CONFIG.gemstonePriceMultiplier
-    : diamondBasePrice;
-  const elongatedAddon = ALLOWED.elongatedShapes.has(shape) && elongated === "Yes"
-    ? PRICE_CONFIG.elongatedAddon
-    : 0;
+export function validateAndPrice(rawSelections = {}, now = new Date()) {
+  const selections = validateSelections(rawSelections);
+  const isGemstone = selections.stoneType === "Lab Gemstone";
+  const elongatedAddon = ALLOWED.elongatedShapes.has(selections.shape) && selections.elongated === "Yes"
+    ? PRICE_CONFIG.elongatedAddon : 0;
   const stoneAddon = isGemstone
-    ? PRICE_CONFIG.gemstoneAddons[gemstone]
-    : PRICE_CONFIG.clarityAddons[clarity];
+    ? PRICE_CONFIG.gemstoneAddons[selections.gemstone]
+    : PRICE_CONFIG.clarityAddons[selections.clarity];
+  const basePrice = isGemstone ? PRICE_CONFIG.gemstoneBasePrice : interpolateDiamondBasePrice(selections.carat);
 
-  const priceGbp = Math.max(
-    PRICE_CONFIG.minimumPrice,
-    Math.round(
-      basePrice +
-      PRICE_CONFIG.metalAddons[metal] +
-      PRICE_CONFIG.shapeAddons[shape] +
-      elongatedAddon +
-      stoneAddon
-    )
-  );
-
-  const displayShape = `${elongated === "Yes" ? "Elongated " : ""}${shape}`;
+  // These are the existing LADFOX sale prices. The regular price is derived so the reduction is exactly 20%.
+  const salePriceGbp = Math.max(PRICE_CONFIG.minimumSalePrice, Math.round(
+    basePrice +
+    PRICE_CONFIG.metalAddons[selections.metal] +
+    PRICE_CONFIG.shapeAddons[selections.shape] +
+    elongatedAddon +
+    stoneAddon +
+    getRingSizeAddon(selections.ringSize)
+  ));
+  const regularPriceGbp = Math.ceil((salePriceGbp / 0.8) / 10) * 10;
+  const saleActive = now.getTime() < new Date(SALE.endsAt).getTime();
+  const priceGbp = saleActive ? salePriceGbp : regularPriceGbp;
+  const displayShape = `${selections.elongated === "Yes" ? "Elongated " : ""}${selections.shape}`;
   const stoneDescription = isGemstone
-    ? gemstone
-    : `${colour === "Not sure" ? "best-value colour" : `${colour} colour`}, ${clarity} clarity lab-grown diamond`;
+    ? selections.gemstone
+    : `${selections.colour} colour, ${selections.clarity} clarity lab-grown diamond`;
 
   return {
+    checkoutAllowed: true,
     priceGbp,
+    salePriceGbp,
+    regularPriceGbp,
+    saleActive,
+    saleEndsAt: SALE.endsAt,
+    discountPercent: SALE.discountPercent,
     unitAmount: priceGbp * 100,
-    selections: {
-      metal,
-      stoneType,
-      shape,
-      elongated,
-      gemstone,
-      stoneSize: `${roundedCarat.toFixed(1)} ct`,
-      colour,
-      clarity,
-      ringSize
-    },
-    description: `${metal} · ${roundedCarat.toFixed(1)} ct ${displayShape} · ${stoneDescription} · UK size ${ringSize}`
+    priceVersion: PRODUCT.priceVersion,
+    selections,
+    imagePath: getImagePath(selections),
+    description: `${selections.metal} · ${selections.stoneSize} ${displayShape} · ${stoneDescription} · UK size ${selections.ringSize}`,
+    customerMessage: saleActive
+      ? `20% sale price. Offer ends at midnight after Sunday 2 August 2026.`
+      : "This price is calculated securely from the selected specification and includes insured UK delivery."
   };
 }
