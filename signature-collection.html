@@ -69,8 +69,15 @@
     }
 
     .signature-page .topbar .shell{
+      position:relative;
+      display:flex;
+      align-items:center;
       justify-content:center;
+      gap:16px;
       padding-right:0;
+      padding-top:6px;
+      width:min(900px, 100%);
+      margin:0 auto;
     }
 
     .signature-page .brand-lockup{
@@ -79,6 +86,8 @@
     }
 
     .signature-page .copy{
+      display:flex;
+      flex-direction:column;
       position:relative;
       isolation:isolate;
       gap:18px;
@@ -159,26 +168,12 @@
 
     .preview-gem{
       position:absolute;
-      left:50%;
-      top:10%;
-      width:16%;
-      height:16%;
-      transform:translateX(-50%) rotate(var(--preview-gem-rotate, 0deg));
+      inset:0;
       background:var(--preview-gem-color, #f6f7fb);
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
       filter:saturate(1.35);
-      clip-path:var(--preview-gem-clip, circle(48% at 50% 50%));
-      -webkit-mask-image:var(--preview-gem-mask-image);
-      mask-image:var(--preview-gem-mask-image);
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-size:100% 100%;
-      mask-size:100% 100%;
-      -webkit-mask-mode:alpha;
-      mask-mode:alpha;
+      clip-path:var(--preview-gem-clip, none);
       pointer-events:none;
       z-index:1;
     }
@@ -247,9 +242,23 @@
       text-align:center;
     }
 
-    .shape-grid{
+    .signature-page .field:first-child .option-slider{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:8px;
+    }
+
+    .signature-page .field:first-child .option-pill{
+      width:100%;
+      min-width:0;
+      padding:0 10px;
+      font-size:.8rem;
+      white-space:nowrap;
+    }
+
+    .shape-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:8px;
       align-items:stretch;
     }
@@ -295,12 +304,14 @@
     .gemstone-options{
       display:flex;
       flex-wrap:wrap;
-      gap:8px;
+      gap:10px 12px;
       background:#000;
       justify-content:flex-start;
     }
 
     .option-pill--gem{
+      -webkit-appearance:none;
+      appearance:none;
       display:inline-flex;
       align-items:center;
       gap:0;
@@ -310,7 +321,7 @@
       padding:0;
       min-height:34px;
       height:34px;
-      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      background:var(--gem-fill, linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)));
       border-color:rgba(255,255,255,.16);
       color:transparent;
       text-align:center;
@@ -318,11 +329,21 @@
       line-height:1;
       flex:0 0 auto;
       border-radius:999px;
+      overflow:hidden;
+      background-clip:padding-box;
+      text-indent:-9999px;
+      white-space:nowrap;
     }
 
     .option-pill--gem.is-active{
-      background:linear-gradient(180deg, rgba(243,237,228,.96), rgba(223,214,198,.92));
-      color:#111;
+      background:var(--gem-fill, linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04))) !important;
+      border-color:#d6dbe2;
+      box-shadow:0 0 0 3px #d6dbe2, 0 0 0 6px rgba(255,255,255,.12);
+      filter:none;
+      opacity:1;
+      color:transparent;
+      -webkit-appearance:none;
+      appearance:none;
     }
 
     .gem-swatch{
@@ -344,151 +365,176 @@
     }
 
     .option-pill--red-deep{
-      background:linear-gradient(180deg, #7a0505, #3f0000);
+      --gem-fill:linear-gradient(180deg, #7a0505, #3f0000);
+      background:var(--gem-fill);
       color:#ffe8e8;
       border-color:rgba(255,120,120,.34);
     }
 
     .option-pill--red-rich{
-      background:linear-gradient(180deg, #c10e0e, #700000);
+      --gem-fill:linear-gradient(180deg, #c10e0e, #700000);
+      background:var(--gem-fill);
       color:#fff0f0;
       border-color:rgba(255,130,130,.38);
     }
 
     .option-pill--red-bright{
-      background:linear-gradient(180deg, #ff3c2f, #b60c00);
+      --gem-fill:linear-gradient(180deg, #ff3c2f, #b60c00);
+      background:var(--gem-fill);
       color:#fff4f2;
       border-color:rgba(255,155,130,.42);
     }
 
     .option-pill--pink-vivid{
-      background:linear-gradient(180deg, #ff2f98, #bc0061);
+      --gem-fill:linear-gradient(180deg, #ff2f98, #bc0061);
+      background:var(--gem-fill);
       color:#fff0f7;
       border-color:rgba(255,140,205,.42);
     }
 
     .option-pill--pink-strong{
-      background:linear-gradient(180deg, #ff4db3, #b31173);
+      --gem-fill:linear-gradient(180deg, #ff4db3, #b31173);
+      background:var(--gem-fill);
       color:#fff1f8;
       border-color:rgba(255,163,221,.42);
     }
 
     .option-pill--pink-hot{
-      background:linear-gradient(180deg, #ff2fc7, #98117b);
+      --gem-fill:linear-gradient(180deg, #ff2fc7, #98117b);
+      background:var(--gem-fill);
       color:#fff0fc;
       border-color:rgba(255,145,229,.42);
     }
 
     .option-pill--pink-bubblegum{
-      background:linear-gradient(180deg, #ff7fd8, #c43fa0);
+      --gem-fill:linear-gradient(180deg, #ff7fd8, #c43fa0);
+      background:var(--gem-fill);
       color:#fff5fc;
       border-color:rgba(255,188,235,.44);
     }
 
     .option-pill--pink-soft{
-      background:linear-gradient(180deg, #ffb4ea, #dd76c0);
+      --gem-fill:linear-gradient(180deg, #ffb4ea, #dd76c0);
+      background:var(--gem-fill);
       color:#3d0f2d;
       border-color:rgba(255,208,241,.5);
     }
 
     .option-pill--blue-royal{
-      background:linear-gradient(180deg, #0820c9, #02096d);
+      --gem-fill:linear-gradient(180deg, #0820c9, #02096d);
+      background:var(--gem-fill);
       color:#eef2ff;
       border-color:rgba(117,142,255,.42);
     }
 
     .option-pill--blue-bright{
-      background:linear-gradient(180deg, #2147ff, #1230b6);
+      --gem-fill:linear-gradient(180deg, #2147ff, #1230b6);
+      background:var(--gem-fill);
       color:#eff4ff;
       border-color:rgba(132,156,255,.42);
     }
 
     .option-pill--blue-violet{
-      background:linear-gradient(180deg, #5a4dff, #2a20bf);
+      --gem-fill:linear-gradient(180deg, #5a4dff, #2a20bf);
+      background:var(--gem-fill);
       color:#f3f1ff;
       border-color:rgba(158,150,255,.42);
     }
 
     .option-pill--blue-cornflower{
-      background:linear-gradient(180deg, #81a4ff, #4367db);
+      --gem-fill:linear-gradient(180deg, #81a4ff, #4367db);
+      background:var(--gem-fill);
       color:#081532;
       border-color:rgba(190,208,255,.46);
     }
 
     .option-pill--blue-aqua{
-      background:linear-gradient(180deg, #27cfff, #1170b2);
+      --gem-fill:linear-gradient(180deg, #27cfff, #1170b2);
+      background:var(--gem-fill);
       color:#ecfbff;
       border-color:rgba(149,235,255,.42);
     }
 
     .option-pill--blue-icy{
-      background:linear-gradient(180deg, #d7ecff, #92c5ff);
+      --gem-fill:linear-gradient(180deg, #d7ecff, #92c5ff);
+      background:var(--gem-fill);
       color:#10233f;
       border-color:rgba(222,239,255,.5);
     }
 
     .option-pill--yellow-deep{
-      background:linear-gradient(180deg, #ef9f00, #b56a00);
+      --gem-fill:linear-gradient(180deg, #ef9f00, #b56a00);
+      background:var(--gem-fill);
       color:#fff8ea;
       border-color:rgba(255,198,101,.42);
     }
 
     .option-pill--yellow-golden{
-      background:linear-gradient(180deg, #ffc12e, #d89000);
+      --gem-fill:linear-gradient(180deg, #ffc12e, #d89000);
+      background:var(--gem-fill);
       color:#3e2400;
       border-color:rgba(255,214,133,.46);
     }
 
     .option-pill--yellow-light{
-      background:linear-gradient(180deg, #ffe383, #efbe2c);
+      --gem-fill:linear-gradient(180deg, #ffe383, #efbe2c);
+      background:var(--gem-fill);
       color:#473100;
       border-color:rgba(255,232,167,.48);
     }
 
     .option-pill--purple-deep{
-      background:linear-gradient(180deg, #a200d1, #5f007b);
+      --gem-fill:linear-gradient(180deg, #a200d1, #5f007b);
+      background:var(--gem-fill);
       color:#fbf0ff;
       border-color:rgba(220,133,255,.42);
     }
 
     .option-pill--purple-orchid{
-      background:linear-gradient(180deg, #d62fff, #8d17b2);
+      --gem-fill:linear-gradient(180deg, #d62fff, #8d17b2);
+      background:var(--gem-fill);
       color:#fff0ff;
       border-color:rgba(231,144,255,.42);
     }
 
     .option-pill--purple-violet{
-      background:linear-gradient(180deg, #8460ff, #5434d0);
+      --gem-fill:linear-gradient(180deg, #8460ff, #5434d0);
+      background:var(--gem-fill);
       color:#f5f1ff;
       border-color:rgba(180,163,255,.42);
     }
 
     .option-pill--purple-lilac{
-      background:linear-gradient(180deg, #ecb5ff, #bf83d9);
+      --gem-fill:linear-gradient(180deg, #ecb5ff, #bf83d9);
+      background:var(--gem-fill);
       color:#341443;
       border-color:rgba(241,204,255,.5);
     }
 
     .option-pill--green-mint{
-      background:linear-gradient(180deg, #7cf0ca, #26a980);
+      --gem-fill:linear-gradient(180deg, #7cf0ca, #26a980);
+      background:var(--gem-fill);
       color:#0d2a22;
       border-color:rgba(185,255,232,.48);
     }
 
     .option-pill--green-rich{
-      background:linear-gradient(180deg, #0ea82a, #046315);
+      --gem-fill:linear-gradient(180deg, #0ea82a, #046315);
+      background:var(--gem-fill);
       color:#effff1;
       border-color:rgba(110,226,129,.42);
     }
 
     .option-pill--green-teal{
-      background:linear-gradient(180deg, #0aa7a1, #046765);
+      --gem-fill:linear-gradient(180deg, #0aa7a1, #046765);
+      background:var(--gem-fill);
       color:#ecffff;
       border-color:rgba(113,230,224,.42);
     }
 
     .option-pill--alexandrite{
-      background:linear-gradient(180deg, #d446d0, #6d1f98);
+      --gem-fill:linear-gradient(180deg, #d446d0, #6d1f98);
+      background:var(--gem-fill);
       color:#fff2ff;
       border-color:rgba(228,146,255,.42);
     }
@@ -498,11 +544,9 @@
     }
 
     .signature-page .actions--top{
-      position:fixed;
-      top:18px;
-      right:22px;
+      position:static;
       margin:0;
-      z-index:80;
+      justify-content:flex-end;
     }
 
     .signature-page .actions--bottom{
@@ -538,12 +582,13 @@
       }
 
       .shape-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
+        grid-template-columns:repeat(3, minmax(0, 1fr));
       }
 
       .signature-page .actions--top{
-        top:14px;
-        right:14px;
+        position:static;
+        width:min(620px, 100%);
+        margin:0 0 10px;
       }
 
       .price-panel strong{
@@ -551,15 +596,22 @@
         }
 
       .signature-preview{
-        margin:2px 0 8px;
+        position:fixed;
+        right:12px;
+        top:104px;
+        margin:0;
+        width:min(31vw, 132px);
+        min-height:160px;
+        z-index:120;
       }
 
       .signature-preview img{
-        width:min(68vw, 280px);
+        width:100%;
         max-width:100%;
         max-height:52vh;
+        height:100%;
         object-fit:contain;
-        object-position:center center;
+        object-position:center bottom;
         opacity:1;
       }
 
@@ -572,12 +624,17 @@
 
     /* Signature Collection refinements */
     .signature-page .page{
-      padding-bottom:clamp(36px, 7vw, 72px);
+      padding-bottom:12px;
+    }
+
+    .signature-page .page > .shell{
+      width:min(980px, 100%);
+      margin:0 auto;
     }
 
     .signature-page .copy{
-      width:min(980px, 100%);
-      margin:0 auto;
+      width:min(620px, calc(100% - 220px));
+      margin:0 auto 0 0;
     }
 
     .signature-hero-copy{
@@ -614,19 +671,22 @@
 
     .signature-page .actions--top{
       position:static;
-      justify-content:center;
-      margin:-2px 0 4px;
+      justify-content:flex-start;
+      width:auto;
+      align-self:flex-start;
+      margin:0 0 10px 0;
+      pointer-events:auto;
     }
 
     .signature-page .actions--top .btn{
       min-width:0;
-      padding:9px 14px;
-      font-size:.78rem;
+      padding:8px 12px;
+      font-size:.74rem;
     }
 
     .signature-page .size-panel{
-      width:min(900px, 100%);
-      margin:0 auto;
+      width:min(620px, 100%);
+      margin:0;
     }
 
     .signature-page .field > label{
@@ -658,9 +718,20 @@
       box-shadow:0 0 0 1px rgba(241,224,180,.18) inset, 0 8px 24px rgba(0,0,0,.24);
     }
 
+    .signature-page .option-pill--gem[aria-pressed="true"]{
+      background:var(--gem-fill, linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04))) !important;
+      border-color:#d6dbe2;
+      box-shadow:0 0 0 3px #d6dbe2, 0 0 0 6px rgba(255,255,255,.12);
+      filter:none;
+      opacity:1;
+      color:transparent;
+      -webkit-appearance:none;
+      appearance:none;
+    }
+
     .signature-summary{
-      width:min(760px, 100%);
-      margin:2px auto 0;
+      width:min(620px, 100%);
+      margin:2px 0 0;
       padding:14px 16px;
       border:1px solid rgba(255,255,255,.1);
       border-radius:18px;
@@ -689,6 +760,16 @@
       text-transform:uppercase;
     }
 
+    .price-compare{
+      color:#c95858;
+      font-family:"Manrope", sans-serif;
+      font-size:1rem;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-decoration:line-through;
+      text-decoration-thickness:1.5px;
+    }
+
     .price-note{
       max-width:58ch;
       text-align:center;
@@ -696,6 +777,7 @@
     }
 
     .signature-page .actions--bottom{
+      order:1;
       margin-top:4px;
     }
 
@@ -708,9 +790,112 @@
       text-align:center;
     }
 
-    .signature-custom-cta{
-      margin-top:28px;
+    .terms-card{
+      order:2;
+      width:min(620px, 100%);
+      margin:12px 0 0;
+      padding:16px 18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .terms-check{
+      display:flex;
+      align-items:center;
       justify-content:center;
+      gap:12px;
+      color:rgba(255,255,255,.84);
+      font-family:"Manrope", sans-serif;
+      font-size:.88rem;
+      line-height:1.6;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .terms-check input{
+      width:18px;
+      height:18px;
+      margin-top:2px;
+      accent-color:#d6dbe2;
+      flex:0 0 auto;
+    }
+
+    .terms-details{
+      margin-top:14px;
+      color:rgba(255,255,255,.72);
+      text-align:center;
+    }
+
+    .terms-details summary{
+      cursor:pointer;
+      color:#fff;
+      font-family:"Manrope", sans-serif;
+      font-size:.84rem;
+      font-weight:700;
+      letter-spacing:.02em;
+      list-style-position:inside;
+    }
+
+    .terms-copy{
+      margin-top:12px;
+      display:grid;
+      gap:12px;
+      font-size:.82rem;
+      line-height:1.7;
+    }
+
+    .terms-copy p,
+    .terms-copy ol,
+    .terms-copy ul{
+      margin:0;
+    }
+
+    .terms-copy ol,
+    .terms-copy ul{
+      padding-left:18px;
+    }
+
+    .signature-custom-cta{
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:min(620px, calc(100% - 220px));
+      margin-left:0;
+      margin-right:auto;
+      text-align:center;
+    }
+
+    .signature-custom-cta .btn{
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .site-footer{
+      margin-top:20px;
+      padding:22px 0 24px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:#000;
+    }
+
+    .site-footer .shell{
+      text-align:center;
+    }
+
+    .footer-meta{
+      width:min(760px, 100%);
+      margin:0 auto;
+      padding:0 18px;
+      color:rgba(255,255,255,.62);
+      font-size:clamp(.76rem, 2.2vw, .94rem);
+      line-height:1.8;
+    }
+
+    .footer-meta a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
 
     .signature-noscript{
@@ -729,24 +914,78 @@
         padding-top:8px;
       }
 
+      .signature-page .topbar .shell,
+      .signature-custom-cta{
+        width:calc(100% - 18vw - 10px);
+        max-width:calc(100% - 18vw - 10px);
+        box-sizing:border-box;
+        margin-left:0;
+        margin-right:auto;
+        padding-left:8px;
+        padding-right:8px;
+      }
+
       .signature-page .copy{
         gap:14px;
+        width:calc(100% - 18vw - 10px);
+        max-width:calc(100% - 18vw - 10px);
+        box-sizing:border-box;
+        margin-left:0;
+        margin-right:auto;
+        padding-left:8px;
+        padding-right:8px;
+      }
+
+      .signature-hero-copy{
+        justify-items:center;
+        text-align:center;
+        padding-top:10px;
       }
 
       .signature-benefits{
         gap:6px;
+        justify-content:center;
+        margin-left:auto;
+        margin-right:auto;
       }
 
       .signature-benefits li{
         font-size:.69rem;
       }
 
+      .signature-subcopy{
+        font-size:clamp(1.02rem, 4.2vw, 1.22rem);
+        white-space:nowrap;
+        letter-spacing:.01em;
+        text-align:center;
+        max-width:none;
+      }
+
       .signature-page .option-pill{
         min-height:48px;
       }
 
+      .signature-page .field:first-child .option-pill{
+        font-size:.74rem;
+        padding:0 8px;
+        white-space:normal;
+      }
+
       .signature-page .btn-primary{
         width:min(100%, 360px);
+      }
+
+      .signature-page .actions--top .btn{
+        padding:7px 11px;
+        font-size:.72rem;
+      }
+    }
+
+    @media (max-width: 760px){
+      .signature-page .actions--top{
+        position:static;
+        width:auto;
+        margin:0 0 10px 0;
       }
     }
 
@@ -854,12 +1093,16 @@
       <section class="layout" data-signature-config-page>
         <article class="panel copy">
           <div class="signature-hero-copy">
-            <p class="signature-subcopy">A delicate setting, made bespoke for you.</p>
+            <p class="signature-subcopy">Our signature floral design, made bespoke for you.</p>
             <ul class="signature-benefits" aria-label="Collection benefits">
               <li>Made to order</li>
               <li>Lifetime warranty</li>
               <li>UK insured delivery</li>
             </ul>
+          </div>
+
+          <div class="actions actions--top">
+            <a class="btn btn-secondary" href="consultation.html">Ask us a question</a>
           </div>
 
           <div class="signature-preview">
@@ -922,10 +1165,6 @@
             <div class="preview-gem" data-preview-gem aria-hidden="true"></div>
           </div>
 
-            <div class="actions actions--top">
-              <a class="btn btn-secondary" href="consultation.html">Ask us a question</a>
-            </div>
-
           <div class="size-panel">
             <div class="product-form-grid">
               <div class="field field--full">
@@ -949,17 +1188,6 @@
                   <div class="option-slider" data-option-slider="signatureMetalKarat" aria-label="Gold purity">
                     <button class="option-pill" type="button" data-option-value="14k">14k</button>
                     <button class="option-pill" type="button" data-option-value="18k">18k</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="signatureStoneType">Stone type</label>
-                <div class="field-input">
-                  <input class="config-hidden" id="signatureStoneType" type="hidden" value="Lab Diamond" />
-                  <div class="option-slider" data-option-slider="signatureStoneType" aria-label="Stone type">
-                    <button class="option-pill option-pill--clear" type="button" data-option-value="Lab Diamond">Lab Diamond</button>
-                    <button class="option-pill option-pill--clear" type="button" data-option-value="Lab Gemstone">Lab Gemstone</button>
                   </div>
                 </div>
               </div>
@@ -993,11 +1221,31 @@
                 </div>
               </div>
 
+              <div class="field field--full">
+                <label for="signatureStoneSize">Centre stone size</label>
+                <div class="field-input field-input--range">
+                  <input class="config-hidden" id="signatureStoneSize" type="hidden" value="0.5 ct" />
+                  <div class="range-readout"><strong data-size-output="signatureStoneSize">0.5 ct</strong></div>
+                  <input class="stone-size-range" type="range" min="0.5" max="6.0" step="0.1" value="0.5" data-size-range="signatureStoneSize" aria-label="Centre stone size slider" />
+                  <div class="range-scale"><span>0.5 ct</span><span>6.0 ct</span></div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="signatureStoneType">Stone type</label>
+                <div class="field-input">
+                  <input class="config-hidden" id="signatureStoneType" type="hidden" value="Lab Diamond" />
+                  <div class="option-slider" data-option-slider="signatureStoneType" aria-label="Stone type">
+                    <button class="option-pill option-pill--clear" type="button" data-option-value="Lab Diamond">Certified Lab Grown Diamond</button>
+                    <button class="option-pill option-pill--clear" type="button" data-option-value="Lab Gemstone">Lab Gemstone</button>
+                  </div>
+                </div>
+              </div>
+
               <div class="field field--full" data-gemstone-options hidden>
                 <label for="signatureGemstone">Gemstone colour</label>
                 <div class="field-input">
                   <input class="config-hidden" id="signatureGemstone" type="hidden" value="Ruby - Deep Red" />
-                  <div class="range-readout"><span>Selected gemstone</span><strong data-gemstone-output>Ruby - Deep Red</strong></div>
                   <div class="gemstone-groups">
                     <section class="gemstone-group" aria-label="Rubies">
                       <p class="gemstone-group-title">Rubies</p>
@@ -1063,16 +1311,6 @@
                 </div>
               </div>
 
-              <div class="field field--full">
-                <label for="signatureStoneSize">Centre stone size</label>
-                <div class="field-input field-input--range">
-                  <input class="config-hidden" id="signatureStoneSize" type="hidden" value="0.5 ct" />
-                  <div class="range-readout"><strong data-size-output="signatureStoneSize">0.5 ct</strong></div>
-                  <input class="stone-size-range" type="range" min="0.5" max="6.0" step="0.1" value="0.5" data-size-range="signatureStoneSize" aria-label="Centre stone size slider" />
-                  <div class="range-scale"><span>0.5 ct</span><span>6.0 ct</span></div>
-                </div>
-              </div>
-
               <div class="field" data-colour-field>
                 <label for="signatureColour" data-colour-label>Diamond colour</label>
                 <div class="field-input">
@@ -1113,16 +1351,49 @@
             <p data-summary-output>14k Gold · 0.5 ct Round lab-grown diamond · Best value colour · VS2 · size M</p>
           </div>
 
-          <div class="price-panel">
-            <span class="price-label">Price</span>
-            <strong data-price-output aria-live="polite" aria-atomic="true">£2,219</strong>
-            <p class="price-note" data-price-note>The secure checkout recalculates this price from your selections before taking payment.</p>
+          <div class="price-panel" aria-hidden="true">
+            <span class="price-compare" data-price-compare>£2,669</span>
+          </div>
+
+          <div class="terms-card">
+            <label class="terms-check" for="signatureTermsAccepted">
+              <input id="signatureTermsAccepted" type="checkbox" data-terms-checkbox />
+              <span>I have read and agree to the LADFOX Terms &amp; Conditions.</span>
+            </label>
+            <details class="terms-details">
+              <summary>Read the full Terms &amp; Conditions</summary>
+              <div class="terms-copy">
+                <p>These Terms and Conditions apply to all bespoke engagement rings created by LADFOX. By placing an order, the customer agrees to the following conditions.</p>
+                <ol>
+                  <li>
+                    <strong>Lifetime Warranty</strong>
+                    <p>LADFOX provides a lifetime warranty covering faults caused by manufacturing or poor craftsmanship. This includes prongs or claws failing due to workmanship, loose stones caused by incorrect setting, structural issues in the band or setting, and defects related to soldering or construction.</p>
+                    <p>The lifetime warranty does not cover accidental damage or impact, general wear and tear, bent bands or crushed claws, chemical damage, lost or missing stones caused by misuse, or damage or alterations performed by another jeweller without approval. Any work carried out by a third party without written approval from LADFOX voids the warranty.</p>
+                  </li>
+                  <li>
+                    <strong>Prong and Setting Checks</strong>
+                    <p>To protect the stability of the ring, the customer must arrange regular prong and setting checks with a qualified professional jeweller every six months. The customer is responsible for ensuring the prongs remain secure and intact. Stone loss or prong failure caused by a lack of professional maintenance is not covered under the lifetime warranty.</p>
+                  </li>
+                  <li>
+                    <strong>Production and Delivery</strong>
+                    <p>Production time is up to five weeks depending on complexity. All parcels are sent insured and tracked. Responsibility transfers to the customer once the parcel is signed for on delivery. Courier delays or customs delays are outside the control of LADFOX.</p>
+                  </li>
+                  <li>
+                    <strong>Care Guidelines</strong>
+                    <p>The customer agrees to remove the ring during gym workouts, lifting or manual work, swimming, hot tubs, cleaning with chemicals, gardening, and any strenuous activity. Damage caused by misuse, improper care, or accidental impact is not covered by the lifetime warranty.</p>
+                  </li>
+                  <li>
+                    <strong>Insurance</strong>
+                    <p>LADFOX strongly recommends obtaining independent jewellery insurance immediately upon receiving the ring. An official valuation can be provided upon request. Insurance responsibility lies solely with the customer.</p>
+                  </li>
+                </ol>
+              </div>
+            </details>
           </div>
 
           <div class="actions actions--bottom">
             <button class="btn btn-primary" type="button" data-checkout-button>Secure checkout — £2,219</button>
             <p class="checkout-status" data-checkout-status role="status" aria-live="polite"></p>
-            <p class="signature-reassurance">You will review the complete specification and total on Stripe before paying.</p>
           </div>
         </article>
       </section>
@@ -1137,6 +1408,12 @@
     </div>
   </main>
 
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="shell">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+
   <script>
     (function () {
       "use strict";
@@ -1144,9 +1421,9 @@
       const page = document.querySelector("[data-signature-config-page]");
       if (!page) return;
 
-      const priceOutput = page.querySelector("[data-price-output]");
-      const priceNote = page.querySelector("[data-price-note]");
+      const priceCompare = page.querySelector("[data-price-compare]");
       const summaryOutput = page.querySelector("[data-summary-output]");
+      const termsCheckbox = page.querySelector("[data-terms-checkbox]");
       const checkoutButton = page.querySelector("[data-checkout-button]");
       const checkoutStatus = page.querySelector("[data-checkout-status]");
       const previewImage = page.querySelector("[data-preview-image]");
@@ -1201,7 +1478,7 @@
           "Cushion": 55
         }),
         elongatedAddon: 60,
-        gemstoneBasePrice: 1999,
+        gemstonePriceMultiplier: 0.87,
         gemstoneAddons: Object.freeze({
           "Ruby - Deep Red": 80,
           "Ruby - Rich Red": 95,
@@ -1345,21 +1622,21 @@
         const elongated = fields.elongated.value === "Yes";
         const maskPath = (name) => `url("Images/Signature%20Collection/${name}")`;
         const shapeMaskMap = {
-          "Round": { top: "8.6%", width: "15.2%", height: "15.2%", clip: "circle(47% at 50% 50%)", imageMask: maskPath("round mask.png"), rotate: "0deg" },
-          "Oval": { top: "8.1%", width: "14.4%", height: "16.8%", clip: "ellipse(40% 48% at 50% 50%)", imageMask: maskPath("oval mask.png"), rotate: "0deg" },
-          "Marquise": { top: "8.2%", width: "14.8%", height: "17.2%", clip: "polygon(50% 2%, 66% 10%, 84% 28%, 92% 50%, 84% 72%, 66% 90%, 50% 98%, 34% 90%, 16% 72%, 8% 50%, 16% 28%, 34% 10%)", imageMask: maskPath("marquise mask.png"), rotate: "0deg" },
-          "Pear": { top: "8.3%", width: "15.2%", height: "17.2%", clip: "polygon(50% 2%, 67% 10%, 84% 24%, 92% 44%, 87% 68%, 73% 87%, 50% 98%, 27% 87%, 13% 68%, 8% 44%, 16% 24%, 33% 10%)", imageMask: maskPath("pear mask.png"), rotate: "0deg" },
+          "Round": { clip: "none", imageMask: maskPath("round mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
+          "Oval": { clip: "none", imageMask: maskPath("oval mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
+          "Marquise": { clip: "none", imageMask: maskPath("marquise mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
+          "Pear": { clip: "none", imageMask: maskPath("pear mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
           "Emerald": elongated
-            ? { top: "7.8%", width: "13.2%", height: "17.2%", clip: "inset(7% 16% 7% 16% round 10%)", imageMask: maskPath("elongated emerald mask.png"), rotate: "0deg" }
-            : { top: "8.2%", width: "14.4%", height: "15.4%", clip: "inset(9% 13% 9% 13% round 10%)", imageMask: maskPath("emerald mask.png"), rotate: "0deg" },
-          "Princess": { top: "8.3%", width: "13.8%", height: "13.8%", clip: "inset(10% round 6%)", imageMask: maskPath("princess mask.png"), rotate: "45deg" },
+            ? { clip: "none", imageMask: maskPath("elongated emerald mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
+            : { clip: "none", imageMask: maskPath("emerald mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
+          "Princess": { clip: "none", imageMask: maskPath("princess mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
           "Radiant": elongated
-            ? { top: "7.9%", width: "13.8%", height: "17%", clip: "inset(8% 14% round 14%)", imageMask: maskPath("elongated radiant mask.png"), rotate: "0deg" }
-            : { top: "8.1%", width: "14.6%", height: "15.2%", clip: "inset(8% 12% round 14%)", imageMask: maskPath("radiant mask.png"), rotate: "0deg" },
+            ? { clip: "none", imageMask: maskPath("elongated radiant mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
+            : { clip: "none", imageMask: maskPath("radiant mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
           "Cushion": elongated
-            ? { top: "8.1%", width: "14.4%", height: "16.6%", clip: "inset(7% 11% round 24%)", imageMask: maskPath("elongated cushion mask.png"), rotate: "0deg" }
-            : { top: "8.3%", width: "15%", height: "15%", clip: "inset(8% round 25%)", imageMask: maskPath("cushion mask.png"), rotate: "0deg" },
-          "Heart": { top: "8%", width: "14.8%", height: "14.2%", clip: "polygon(50% 96%, 18% 66%, 9% 39%, 18% 18%, 34% 8%, 50% 20%, 66% 8%, 82% 18%, 91% 39%, 82% 66%)", imageMask: maskPath("heart mask.png"), rotate: "0deg" }
+            ? { clip: "none", imageMask: maskPath("elongated cushion mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
+            : { clip: "none", imageMask: maskPath("cushion mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" },
+          "Heart": { clip: "none", imageMask: maskPath("heart mask.png"), imageMaskPosition: "center", imageMaskSize: "100% 100%" }
         };
 
         const diamondColours = {
@@ -1383,12 +1660,32 @@
         };
 
         const mask = shapeMaskMap[key] || shapeMaskMap.Round;
-        previewGem.style.top = mask.top;
-        previewGem.style.width = mask.width;
-        previewGem.style.height = mask.height;
-        previewGem.style.setProperty("--preview-gem-clip", mask.clip);
-        previewGem.style.setProperty("--preview-gem-mask-image", mask.imageMask || "none");
-        previewGem.style.setProperty("--preview-gem-rotate", mask.rotate);
+        previewGem.style.clipPath = mask.clip;
+        previewGem.style.webkitClipPath = mask.clip;
+
+        if (mask.imageMask) {
+          previewGem.style.webkitMaskImage = mask.imageMask;
+          previewGem.style.maskImage = mask.imageMask;
+          previewGem.style.webkitMaskRepeat = "no-repeat";
+          previewGem.style.maskRepeat = "no-repeat";
+          previewGem.style.webkitMaskPosition = mask.imageMaskPosition || "center";
+          previewGem.style.maskPosition = mask.imageMaskPosition || "center";
+          previewGem.style.webkitMaskSize = mask.imageMaskSize || "100% 100%";
+          previewGem.style.maskSize = mask.imageMaskSize || "100% 100%";
+          previewGem.style.webkitMaskMode = "alpha";
+          previewGem.style.maskMode = "alpha";
+        } else {
+          previewGem.style.webkitMaskImage = "none";
+          previewGem.style.maskImage = "none";
+          previewGem.style.webkitMaskRepeat = "";
+          previewGem.style.maskRepeat = "";
+          previewGem.style.webkitMaskPosition = "";
+          previewGem.style.maskPosition = "";
+          previewGem.style.webkitMaskSize = "";
+          previewGem.style.maskSize = "";
+          previewGem.style.webkitMaskMode = "";
+          previewGem.style.maskMode = "";
+        }
 
         if (fields.stoneType.value === "Lab Gemstone") {
           previewGem.style.setProperty("--preview-gem-color", gemstoneColours[fields.gemstone.value] || "#d446d0");
@@ -1471,11 +1768,6 @@
         if (isGemstone && !fields.gemstone.value) fields.gemstone.value = "Ruby - Deep Red";
       };
 
-      const updateGemstoneOutput = () => {
-        const output = page.querySelector("[data-gemstone-output]");
-        if (output) output.textContent = fields.gemstone.value;
-      };
-
       const updateDiamondColourAvailability = () => {
         if (!colourSlider) return;
         const size = Number.parseFloat(fields.stoneSize.value) || 0.5;
@@ -1531,10 +1823,10 @@
       const calculatePrice = () => {
         const size = Number.parseFloat(fields.stoneSize.value) || 0.5;
         const isGemstone = fields.stoneType.value === "Lab Gemstone";
-        const ringSizeIndex = ringSizeValues.indexOf(fields.ringSize.value);
-        const baseRingSizeIndex = ringSizeValues.indexOf("M");
-        const ringSizeAddon = ringSizeIndex > baseRingSizeIndex ? (ringSizeIndex - baseRingSizeIndex) * 12 : 0;
-        const basePrice = isGemstone ? PRICE_CONFIG.gemstoneBasePrice : interpolateDiamondBasePrice(size);
+        const diamondBasePrice = interpolateDiamondBasePrice(size);
+        const basePrice = isGemstone
+          ? diamondBasePrice * PRICE_CONFIG.gemstonePriceMultiplier
+          : diamondBasePrice;
         const elongatedAddon = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes"
           ? PRICE_CONFIG.elongatedAddon
           : 0;
@@ -1549,8 +1841,7 @@
             (PRICE_CONFIG.metalAddons[fields.metal.value] || 0) +
             (PRICE_CONFIG.shapeAddons[fields.shape.value] || 0) +
             elongatedAddon +
-            stoneAddon +
-            ringSizeAddon
+            stoneAddon
           )
         );
       };
@@ -1582,8 +1873,20 @@
         }
       };
 
+      const syncCheckoutAvailability = () => {
+        if (!checkoutButton) return;
+        const accepted = !termsCheckbox || termsCheckbox.checked;
+        const isBusy = checkoutButton.getAttribute("aria-busy") === "true";
+        checkoutButton.disabled = !accepted || isBusy;
+      };
+
       const beginCheckout = async () => {
         if (!checkoutButton || checkoutButton.disabled) return;
+        if (termsCheckbox && !termsCheckbox.checked) {
+          setCheckoutState("Please accept the Terms & Conditions before continuing to secure checkout.", true);
+          termsCheckbox.focus();
+          return;
+        }
 
         checkoutButton.disabled = true;
         checkoutButton.setAttribute("aria-busy", "true");
@@ -1619,22 +1922,22 @@
           window.location.assign(result.url);
         } catch (error) {
           setCheckoutState(error instanceof Error ? error.message : "Checkout could not be started.", true);
-          checkoutButton.disabled = false;
           checkoutButton.removeAttribute("aria-busy");
           checkoutButton.textContent = originalLabel;
+          syncCheckoutAvailability();
         }
       };
 
       const updatePrice = () => {
-        if (!priceOutput) return;
         const isGemstone = fields.stoneType.value === "Lab Gemstone";
-        const formatted = formatPrice(calculatePrice());
-        priceOutput.textContent = formatted;
-        if (checkoutButton && !checkoutButton.disabled) {
-          checkoutButton.textContent = `Secure checkout — ${formatted}`;
+        const livePrice = calculatePrice();
+        const comparePrice = livePrice * 1.2;
+        const formatted = formatPrice(livePrice);
+        if (priceCompare) {
+          priceCompare.textContent = formatPrice(comparePrice);
         }
-        if (priceNote) {
-          priceNote.textContent = "The secure checkout recalculates this price from your selections before taking payment.";
+        if (checkoutButton) {
+          checkoutButton.textContent = `Secure checkout — ${formatted}`;
         }
       };
 
@@ -1698,7 +2001,6 @@
         updatePreviewImage();
         updatePreviewGem();
         syncSliderState();
-        updateGemstoneOutput();
         updateSummary();
         syncLiveSummary();
         updatePrice();
@@ -1749,10 +2051,20 @@
         checkoutButton.addEventListener("click", beginCheckout);
       }
 
+      if (termsCheckbox) {
+        termsCheckbox.addEventListener("change", () => {
+          if (termsCheckbox.checked) {
+            setCheckoutState("");
+          }
+          syncCheckoutAvailability();
+        });
+      }
+
       applyInitialState();
       syncSizeRanges();
       syncDiscreteRanges();
       refresh();
+      syncCheckoutAvailability();
 
       if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
         setCheckoutState("Checkout was cancelled. Your ring selections have been kept.");
