@@ -168,7 +168,10 @@
 
     .preview-gem{
       position:absolute;
-      inset:0;
+      top:0;
+      left:0;
+      width:0;
+      height:0;
       background:var(--preview-gem-color, #f6f7fb);
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
@@ -591,6 +594,11 @@
         margin:0 0 10px;
       }
 
+      .signature-page .copy > :not(.signature-preview){
+        position:relative;
+        z-index:2;
+      }
+
       .price-panel strong{
           font-size:1.6rem;
         }
@@ -598,11 +606,11 @@
       .signature-preview{
         position:fixed;
         right:12px;
-        top:104px;
+        top:56px;
         margin:0;
         width:min(31vw, 132px);
         min-height:160px;
-        z-index:120;
+        z-index:0;
       }
 
       .signature-preview img{
@@ -1552,6 +1560,16 @@
 
       const formatPrice = (value) => currencyFormatter.format(Math.round(value));
 
+      const syncPreviewOverlayBox = () => {
+        if (!previewImage || !previewGem) return;
+        const imageWidth = previewImage.offsetWidth;
+        const imageHeight = previewImage.offsetHeight;
+        previewGem.style.width = `${imageWidth}px`;
+        previewGem.style.height = `${imageHeight}px`;
+        previewGem.style.left = `${previewImage.offsetLeft}px`;
+        previewGem.style.top = `${previewImage.offsetTop}px`;
+      };
+
       const safeSessionGet = (key) => {
         try {
           return sessionStorage.getItem(key);
@@ -1738,6 +1756,7 @@
 
         const proportion = elongatedShapes.has(fields.shape.value) && fields.elongated.value === "Yes" ? " elongated" : "";
         previewImage.alt = `${fields.metal.value}${proportion} ${fields.shape.value.toLowerCase()} LADFOX Signature Petal engagement ring`;
+        syncPreviewOverlayBox();
       };
 
       const readSelections = () => ({
@@ -2000,6 +2019,7 @@
         updateDiamondColourAvailability();
         updatePreviewImage();
         updatePreviewGem();
+        syncPreviewOverlayBox();
         syncSliderState();
         updateSummary();
         syncLiveSummary();
@@ -2040,12 +2060,15 @@
 
       if (previewImage) {
         const defaultImage = previewImage.getAttribute("src");
+        previewImage.addEventListener("load", syncPreviewOverlayBox);
         previewImage.addEventListener("error", () => {
           if (defaultImage && previewImage.getAttribute("src") !== defaultImage) {
             previewImage.src = defaultImage;
           }
         });
       }
+
+      window.addEventListener("resize", syncPreviewOverlayBox);
 
       if (checkoutButton) {
         checkoutButton.addEventListener("click", beginCheckout);
@@ -2064,6 +2087,7 @@
       syncSizeRanges();
       syncDiscreteRanges();
       refresh();
+      syncPreviewOverlayBox();
       syncCheckoutAvailability();
 
       if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
