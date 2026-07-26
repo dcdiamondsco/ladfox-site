@@ -21,7 +21,7 @@ const PRICE_CONFIG = Object.freeze({
     Cushion: 55
   }),
   elongatedAddon: 60,
-  gemstoneBasePrice: 1999,
+  gemstonePriceMultiplier: 0.87,
   gemstoneAddons: Object.freeze({
     "Ruby - Deep Red": 80,
     "Ruby - Rich Red": 95,
@@ -142,11 +142,10 @@ export function validateAndPrice(rawSelections = {}) {
     ? ""
     : requireAllowed(rawSelections.clarity, ALLOWED.clarities, "diamond clarity");
 
-  const ringSizes = [...ALLOWED.ringSizes];
-  const ringSizeIndex = ringSizes.indexOf(ringSize);
-  const baseRingSizeIndex = ringSizes.indexOf("M");
-  const ringSizeAddon = ringSizeIndex > baseRingSizeIndex ? (ringSizeIndex - baseRingSizeIndex) * 12 : 0;
-  const basePrice = isGemstone ? PRICE_CONFIG.gemstoneBasePrice : interpolateDiamondBasePrice(roundedCarat);
+  const diamondBasePrice = interpolateDiamondBasePrice(roundedCarat);
+  const basePrice = isGemstone
+    ? diamondBasePrice * PRICE_CONFIG.gemstonePriceMultiplier
+    : diamondBasePrice;
   const elongatedAddon = ALLOWED.elongatedShapes.has(shape) && elongated === "Yes"
     ? PRICE_CONFIG.elongatedAddon
     : 0;
@@ -161,8 +160,7 @@ export function validateAndPrice(rawSelections = {}) {
       PRICE_CONFIG.metalAddons[metal] +
       PRICE_CONFIG.shapeAddons[shape] +
       elongatedAddon +
-      stoneAddon +
-      ringSizeAddon
+      stoneAddon
     )
   );
 

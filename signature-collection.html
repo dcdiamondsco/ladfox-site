@@ -146,13 +146,13 @@
 
     .signature-preview{
       position:relative;
-      display:grid;
-      place-items:center;
+      display:inline-block;
       background:transparent;
       margin:6px 0 10px;
       pointer-events:none;
       z-index:0;
       overflow:visible;
+      line-height:0;
     }
 
     .signature-preview img{
@@ -164,14 +164,14 @@
       opacity:1;
       filter:none;
       mix-blend-mode:normal;
+      vertical-align:top;
     }
 
     .preview-gem{
       position:absolute;
-      top:0;
-      left:0;
-      width:0;
-      height:0;
+      inset:0;
+      width:100%;
+      height:100%;
       background:var(--preview-gem-color, #f6f7fb);
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
@@ -605,11 +605,11 @@
 
       .signature-preview{
         position:fixed;
-        right:12px;
+        right:4px;
         top:56px;
         margin:0;
-        width:min(31vw, 132px);
-        min-height:160px;
+        width:min(27vw, 116px);
+        min-height:144px;
         z-index:0;
       }
 
@@ -1561,13 +1561,8 @@
       const formatPrice = (value) => currencyFormatter.format(Math.round(value));
 
       const syncPreviewOverlayBox = () => {
-        if (!previewImage || !previewGem) return;
-        const imageWidth = previewImage.offsetWidth;
-        const imageHeight = previewImage.offsetHeight;
-        previewGem.style.width = `${imageWidth}px`;
-        previewGem.style.height = `${imageHeight}px`;
-        previewGem.style.left = `${previewImage.offsetLeft}px`;
-        previewGem.style.top = `${previewImage.offsetTop}px`;
+        // The overlay shares the same container as the preview image,
+        // so it stays locked to the exact rendered image position.
       };
 
       const safeSessionGet = (key) => {
