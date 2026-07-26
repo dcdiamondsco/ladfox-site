@@ -747,7 +747,10 @@
 
     .price-panel{
       order:6;
-      display:none;
+      display:grid;
+      justify-items:center;
+      gap:6px;
+      margin-top:6px;
     }
 
     .price-compare{
@@ -786,6 +789,7 @@
       color:#c95858;
       font-weight:800;
       letter-spacing:.02em;
+      font-size:1.1rem;
     }
 
     .checkout-timer{
@@ -1350,13 +1354,14 @@
             <p data-summary-output>14k Gold with a 0.5 ct round lab-grown diamond, D colour, VS2 clarity, UK size M.</p>
           </div>
 
-          <div class="price-panel" aria-busy="true"></div>
+          <div class="price-panel" aria-busy="true">
+            <span class="price-compare" data-price-compare hidden></span>
+          </div>
 
           <div class="actions actions--bottom">
             <button class="btn btn-primary" type="button" data-checkout-button disabled>
               <span class="checkout-main">
                 <span class="checkout-price-stack">
-                  <span class="price-compare" data-price-compare hidden></span>
                   <span class="checkout-label" data-checkout-label>Checking price...</span>
                 </span>
                 <span class="checkout-timer" data-countdown-output aria-live="off" hidden>Sale ends in 0d 00h 00m 00s</span>
@@ -1454,9 +1459,9 @@
   let quoteController = null;
   let hasChosenMetal = false;
   let hasChosenShape = false;
-  let hasChosenStoneSize = false;
-  let hasChosenClarity = false;
-  let hasChosenRingSize = false;
+  let hasShownStoneSize = false;
+  let hasShownClarity = false;
+  let hasShownRingSize = false;
 
   const parseRangeValues = (range) => (range.dataset.rangeValues || "")
     .split("|")
@@ -1534,7 +1539,6 @@
     const sizeValue = Number.parseFloat(query.get("stone_size"));
     const sizeRange = sizeRanges[0];
     if (sizeRange && Number.isFinite(sizeValue)) {
-      hasChosenStoneSize = true;
       const min = Number(sizeRange.min);
       const max = Number(sizeRange.max);
       const clamped = Math.max(min, Math.min(max, Math.round(sizeValue * 10) / 10));
@@ -1554,8 +1558,6 @@
       const index = values.indexOf(value);
       if (index >= 0) {
         range.value = String(index);
-        if (targetId === "signatureClarity") hasChosenClarity = true;
-        if (targetId === "signatureRingSize") hasChosenRingSize = true;
       }
     });
   };
@@ -1779,9 +1781,8 @@
       const input = document.getElementById(targetId || "");
       if (!output || !input) return;
       const value = formatCaratValue(range.value);
-      const isChosen = targetId !== "signatureStoneSize" || hasChosenStoneSize;
-      output.textContent = isChosen ? value : "";
-      input.value = isChosen ? value : "";
+      output.textContent = hasShownStoneSize ? value : "";
+      input.value = value;
       range.setAttribute("aria-valuetext", value);
     });
   };
@@ -1796,13 +1797,13 @@
       const parsedIndex = Number.parseInt(range.value, 10);
       const index = Math.max(0, Math.min(values.length - 1, Number.isFinite(parsedIndex) ? parsedIndex : 0));
       const value = values[index];
-      const isChosen = targetId === "signatureClarity"
-        ? hasChosenClarity
+      const shouldShow = targetId === "signatureClarity"
+        ? hasShownClarity
         : targetId === "signatureRingSize"
-          ? hasChosenRingSize
+          ? hasShownRingSize
           : true;
-      output.textContent = isChosen ? value : "";
-      input.value = isChosen ? value : "";
+      output.textContent = shouldShow ? value : "";
+      input.value = value;
       range.setAttribute("aria-valuetext", value);
     });
   };
@@ -1826,7 +1827,7 @@
     }
 
     if (currentQuote && !hasTerms) {
-      if (checkoutLabel) checkoutLabel.textContent = "Accept terms to continue";
+      if (checkoutLabel) checkoutLabel.textContent = formatPrice(currentQuote.priceGbp);
       return;
     }
 
@@ -1860,7 +1861,7 @@
       priceCompare.hidden = !quote.saleActive;
       priceCompare.textContent = quote.saleActive ? formatPrice(quote.regularPriceGbp) : "";
     }
-    if (checkoutLabel) checkoutLabel.textContent = "Secure checkout - " + formatted;
+    if (checkoutLabel) checkoutLabel.textContent = formatted;
     updateCheckoutAvailability();
   };
 
@@ -2044,7 +2045,7 @@
 
   sizeRanges.forEach((range) => {
     range.addEventListener("input", () => {
-      if (range.dataset.sizeRange === "signatureStoneSize") hasChosenStoneSize = true;
+      if (range.dataset.sizeRange === "signatureStoneSize") hasShownStoneSize = true;
       syncSizeRanges();
       refresh();
     });
@@ -2052,8 +2053,8 @@
 
   discreteRanges.forEach((range) => {
     range.addEventListener("input", () => {
-      if (range.dataset.discreteRange === "signatureClarity") hasChosenClarity = true;
-      if (range.dataset.discreteRange === "signatureRingSize") hasChosenRingSize = true;
+      if (range.dataset.discreteRange === "signatureClarity") hasShownClarity = true;
+      if (range.dataset.discreteRange === "signatureRingSize") hasShownRingSize = true;
       syncDiscreteRanges();
       refresh();
     });
