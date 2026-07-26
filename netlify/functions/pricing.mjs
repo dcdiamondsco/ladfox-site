@@ -13,6 +13,7 @@ export const SALE = Object.freeze({
 
 const PRICE_CONFIG = Object.freeze({
   minimumSalePrice: 1999,
+  gemstoneDiscountMultiplier: 0.8,
   metalAddons: Object.freeze({
     "14k Gold": 0,
     "18k Gold": 110,
@@ -34,7 +35,6 @@ const PRICE_CONFIG = Object.freeze({
     Cushion: 55
   }),
   elongatedAddon: 60,
-  gemstoneBasePrice: 1999,
   gemstoneAddons: Object.freeze({
     "Ruby - Deep Red": 80,
     "Ruby - Rich Red": 95,
@@ -70,8 +70,16 @@ const PRICE_CONFIG = Object.freeze({
     "Internally Flawless": 130,
     Flawless: 150
   }),
+  colourAddons: Object.freeze({
+    D: 0,
+    E: -20,
+    F: -40,
+    G: -40,
+    H: -40
+  }),
   ringSizeAddonPerHalfSizeAboveM: 12,
   diamondPricePoints: Object.freeze([
+    { size: 0.3, price: 1999 },
     { size: 0.5, price: 2199 },
     { size: 1.0, price: 2199 },
     { size: 1.5, price: 2399 },
@@ -114,8 +122,8 @@ const requireAllowed = (value, allowed, fieldName) => {
 
 const parseCarat = (value) => {
   const carat = Number.parseFloat(String(value ?? "").replace(/[^0-9.]/g, ""));
-  if (!Number.isFinite(carat) || carat < 0.5 || carat > 6.0) {
-    throw new Error("Centre stone size must be between 0.5 ct and 6.0 ct.");
+  if (!Number.isFinite(carat) || carat < 0.3 || carat > 6.0) {
+    throw new Error("Centre stone size must be between 0.3 ct and 6.0 ct.");
   }
   const rounded = Math.round(carat * 10) / 10;
   if (Math.abs(carat - rounded) > 0.0001) throw new Error("Centre stone size must use 0.1 ct increments.");
@@ -183,7 +191,11 @@ export function validateAndPrice(rawSelections = {}, now = new Date()) {
   const stoneAddon = isGemstone
     ? PRICE_CONFIG.gemstoneAddons[selections.gemstone]
     : PRICE_CONFIG.clarityAddons[selections.clarity];
-  const basePrice = isGemstone ? PRICE_CONFIG.gemstoneBasePrice : interpolateDiamondBasePrice(selections.carat);
+  const colourAddon = isGemstone ? 0 : PRICE_CONFIG.colourAddons[selections.colour];
+  const diamondBasePrice = interpolateDiamondBasePrice(selections.carat);
+  const basePrice = isGemstone
+    ? diamondBasePrice * PRICE_CONFIG.gemstoneDiscountMultiplier
+    : diamondBasePrice;
 
   // These are the existing LADFOX sale prices. The regular price is derived so the reduction is exactly 20%.
   const salePriceGbp = Math.max(PRICE_CONFIG.minimumSalePrice, Math.round(
@@ -192,6 +204,7 @@ export function validateAndPrice(rawSelections = {}, now = new Date()) {
     PRICE_CONFIG.shapeAddons[selections.shape] +
     elongatedAddon +
     stoneAddon +
+    colourAddon +
     getRingSizeAddon(selections.ringSize)
   ));
   const regularPriceGbp = Math.ceil((salePriceGbp / 0.8) / 10) * 10;

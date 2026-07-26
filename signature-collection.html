@@ -770,6 +770,49 @@
       opacity:1;
     }
 
+    .terms-panel{
+      margin:14px auto 0;
+      width:min(760px, 100%);
+      padding:16px 18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      text-align:center;
+    }
+
+    .terms-check{
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:10px;
+      color:#fff;
+      font-size:.92rem;
+      line-height:1.5;
+      text-align:left;
+    }
+
+    .terms-check input{
+      margin-top:3px;
+      width:18px;
+      height:18px;
+      accent-color:#d6dbe2;
+      flex:0 0 auto;
+    }
+
+    .terms-copy{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:6px;
+      text-align:center;
+    }
+
+    .terms-copy a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
     .signature-custom-cta{
       margin-top:28px;
       display:flex;
@@ -1150,8 +1193,8 @@
                 <div class="field-input field-input--range">
                   <input class="config-hidden" id="signatureStoneSize" type="hidden" value="" />
                   <div class="range-readout"><strong data-size-output="signatureStoneSize"></strong></div>
-                  <input class="stone-size-range" type="range" min="0.5" max="6.0" step="0.1" value="0.5" data-size-range="signatureStoneSize" aria-label="Centre stone size slider" />
-                  <div class="range-scale"><span>0.5 ct</span><span>6.0 ct</span></div>
+                  <input class="stone-size-range" type="range" min="0.3" max="6.0" step="0.1" value="0.3" data-size-range="signatureStoneSize" aria-label="Centre stone size slider" />
+                  <div class="range-scale"><span>0.3 ct</span><span>6.0 ct</span></div>
                 </div>
               </div>
 
@@ -1288,6 +1331,16 @@
             </button>
             <p class="checkout-status" data-checkout-status role="status" aria-live="polite"></p>
           </div>
+
+          <div class="terms-panel">
+            <label class="terms-check" for="signatureTermsAccepted">
+              <input id="signatureTermsAccepted" type="checkbox" />
+              <span class="terms-copy">
+                <span>I have read and agree to the LADFOX Terms &amp; Conditions.</span>
+                <a href="Ts%20%26%20C's.pdf" target="_blank" rel="noopener">Read the full Terms &amp; Conditions</a>
+              </span>
+            </label>
+          </div>
         </article>
 
       </section>
@@ -1324,6 +1377,7 @@
   const checkoutStatus = page.querySelector("[data-checkout-status]");
   const previewImage = page.querySelector("[data-preview-image]");
   const previewGem = page.querySelector("[data-preview-gem]");
+  const termsAccepted = page.querySelector("#signatureTermsAccepted");
   const gemstoneWrap = page.querySelector("[data-gemstone-options]");
   const colourField = page.querySelector("[data-colour-field]");
   const clarityField = page.querySelector("[data-clarity-field]");
@@ -1691,6 +1745,28 @@
     checkoutStatus.classList.toggle("is-error", isError);
   };
 
+  const updateCheckoutAvailability = () => {
+    if (!checkoutButton) return;
+    const canQuote = hasAllRequiredSelections();
+    const hasTerms = !termsAccepted || termsAccepted.checked;
+    const canCheckout = Boolean(currentQuote && canQuote && hasTerms);
+    checkoutButton.disabled = !canCheckout;
+
+    if (!canQuote) {
+      if (checkoutLabel) checkoutLabel.textContent = "Complete your options";
+      return;
+    }
+
+    if (currentQuote && !hasTerms) {
+      if (checkoutLabel) checkoutLabel.textContent = "Accept terms to continue";
+      return;
+    }
+
+    if (!currentQuote) {
+      if (checkoutLabel) checkoutLabel.textContent = "Checking price...";
+    }
+  };
+
   const setQuoteLoading = () => {
     currentQuote = null;
     const pricePanel = priceCompare ? priceCompare.closest(".price-panel") : null;
@@ -1699,10 +1775,7 @@
       pricePanel.classList.remove("is-quote-only");
     }
     if (priceCompare) priceCompare.hidden = true;
-    if (checkoutButton) {
-      checkoutButton.disabled = true;
-      if (checkoutLabel) checkoutLabel.textContent = hasAllRequiredSelections() ? "Checking price..." : "Complete your options";
-    }
+    updateCheckoutAvailability();
     setCheckoutState("");
   };
 
@@ -1719,16 +1792,15 @@
       priceCompare.hidden = !quote.saleActive;
       priceCompare.textContent = quote.saleActive ? formatPrice(quote.regularPriceGbp) : "";
     }
-    if (checkoutButton && checkoutLabel) {
-      checkoutLabel.textContent = "Secure checkout - " + formatted;
-    }
+    if (checkoutLabel) checkoutLabel.textContent = "Secure checkout - " + formatted;
+    updateCheckoutAvailability();
   };
 
   const loadQuote = async () => {
     if (!hasAllRequiredSelections()) {
       currentQuote = null;
       if (priceCompare) priceCompare.hidden = true;
-      if (checkoutButton) checkoutButton.disabled = true;
+      updateCheckoutAvailability();
       setCheckoutState("");
       return null;
     }
@@ -1792,6 +1864,11 @@
 
   const beginCheckout = async () => {
     if (!checkoutButton || checkoutButton.disabled) return;
+    if (termsAccepted && !termsAccepted.checked) {
+      setCheckoutState("Please accept the Terms & Conditions before checkout.", true);
+      updateCheckoutAvailability();
+      return;
+    }
 
     if (!currentQuote) {
       setQuoteLoading();
@@ -1877,6 +1954,7 @@
     updateSummary();
     storeState();
     scheduleQuote();
+    updateCheckoutAvailability();
   };
 
   sliders.forEach((slider) => {
@@ -1913,6 +1991,15 @@
     });
   });
 
+  if (termsAccepted) {
+    termsAccepted.addEventListener("change", () => {
+      if (termsAccepted.checked) {
+        setCheckoutState("");
+      }
+      updateCheckoutAvailability();
+    });
+  }
+
   if (previewImage) {
     const defaultImage = previewImage.getAttribute("src");
     previewImage.addEventListener("load", syncPreviewOverlay);
@@ -1931,6 +2018,7 @@
   syncSizeRanges();
   syncDiscreteRanges();
   refresh();
+  updateCheckoutAvailability();
 
   if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
     setCheckoutState("Checkout was cancelled. Your ring selections have been kept.");
