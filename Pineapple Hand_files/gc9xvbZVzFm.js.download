@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("MAWBridgeFireAndForgetEagerly",["MAWBridgeFireAndForget","Promise"],(function(t,n,r,o,a,i,l){"use strict";var e,s=function(){return(e||(e=n("Promise"))).resolve({fireAndForget:o("MAWBridgeFireAndForget").fireAndForget})};l.load=s}),98);

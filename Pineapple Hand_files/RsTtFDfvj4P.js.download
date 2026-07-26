@@ -1,0 +1,4 @@
+;/*FB_PKG_DELIM*/
+
+__d("LSDeleteThenInsertIgThreadLabel",[],(function(t,n,r,o,a,i){function e(){var e=arguments,t=e[e.length-1],n=[],r=[];return t.sequence([function(n){return t.db.table(318).put({threadKey:e[0],labelType:e[1],labelTimestampMs:e[2]})},function(e){return t.resolve(r)}])}e.__sproc_name__="LSMailboxDeleteThenInsertIgThreadLabelStoredProcedure",e.__tables__=["ig_thread_labels"],a.exports=e}),null);
+__d("LSUpsertCTMAdID",[],(function(t,n,r,o,a,i){function e(){var e=arguments,t=e[e.length-1],n=[],r=[];return t.sequence([function(n){return t.forEach(t.db.table(9).fetch([[[e[0]]]]),function(t){var n=t.update,r=t.item;return n({ctmAdId:e[1],ctmAdgroupId:e[2],ctmAdCampaignId:e[3],ctmAdCampaignGroupId:e[4],ctmAdAccountId:e[5]})})},function(e){return t.resolve(r)}])}e.__sproc_name__="LSMailboxUpsertCTMAdIDStoredProcedure",e.__tables__=["threads"],a.exports=e}),null);
