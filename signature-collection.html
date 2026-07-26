@@ -75,9 +75,10 @@
       align-items:center;
       justify-content:center;
       gap:16px;
+      max-width:none;
       padding-right:0;
       padding-top:6px;
-      width:min(900px, 100%);
+      width:100%;
       margin:0 auto;
     }
 
@@ -186,6 +187,18 @@
       clip-path:var(--preview-gem-clip, none);
       pointer-events:none;
       z-index:1;
+    }
+
+    @keyframes alexandriteShift{
+      0%{
+        background:linear-gradient(135deg, #2a063f 0%, #5a1486 45%, #ff54c8 100%);
+      }
+      50%{
+        background:linear-gradient(135deg, #47106f 0%, #a028b6 48%, #ff7fda 100%);
+      }
+      100%{
+        background:linear-gradient(135deg, #2a063f 0%, #5a1486 45%, #ff54c8 100%);
+      }
     }
 
     .signature-hero-copy,
@@ -367,21 +380,21 @@
     }
 
     .option-pill--red-deep{
-      --gem-button-bg:linear-gradient(180deg, #7a0505, #3f0000);
+      --gem-button-bg:linear-gradient(180deg, #5f0000, #220000);
       background:var(--gem-button-bg);
       color:#ffe8e8;
       border-color:rgba(255,120,120,.34);
     }
 
     .option-pill--red-rich{
-      --gem-button-bg:linear-gradient(180deg, #c10e0e, #700000);
+      --gem-button-bg:linear-gradient(180deg, #8f0000, #3a0000);
       background:var(--gem-button-bg);
       color:#fff0f0;
       border-color:rgba(255,130,130,.38);
     }
 
     .option-pill--red-bright{
-      --gem-button-bg:linear-gradient(180deg, #ff3c2f, #b60c00);
+      --gem-button-bg:linear-gradient(180deg, #d71812, #6f0000);
       background:var(--gem-button-bg);
       color:#fff4f2;
       border-color:rgba(255,155,130,.42);
@@ -423,28 +436,28 @@
     }
 
     .option-pill--blue-royal{
-      --gem-button-bg:linear-gradient(180deg, #0820c9, #02096d);
+      --gem-button-bg:linear-gradient(180deg, #1937f2, #04129a);
       background:var(--gem-button-bg);
       color:#eef2ff;
       border-color:rgba(117,142,255,.42);
     }
 
     .option-pill--blue-bright{
-      --gem-button-bg:linear-gradient(180deg, #2147ff, #1230b6);
+      --gem-button-bg:linear-gradient(180deg, #3568ff, #1237d0);
       background:var(--gem-button-bg);
       color:#eff4ff;
       border-color:rgba(132,156,255,.42);
     }
 
     .option-pill--blue-violet{
-      --gem-button-bg:linear-gradient(180deg, #5a4dff, #2a20bf);
+      --gem-button-bg:linear-gradient(180deg, #6d60ff, #3122d8);
       background:var(--gem-button-bg);
       color:#f3f1ff;
       border-color:rgba(158,150,255,.42);
     }
 
     .option-pill--blue-cornflower{
-      --gem-button-bg:linear-gradient(180deg, #81a4ff, #4367db);
+      --gem-button-bg:linear-gradient(180deg, #7fb2ff, #3d74ff);
       background:var(--gem-button-bg);
       color:#081532;
       border-color:rgba(190,208,255,.46);
@@ -500,7 +513,7 @@
     }
 
     .option-pill--purple-violet{
-      --gem-button-bg:linear-gradient(180deg, #8460ff, #5434d0);
+      --gem-button-bg:linear-gradient(180deg, #9a72ff, #653eff);
       background:var(--gem-button-bg);
       color:#f5f1ff;
       border-color:rgba(180,163,255,.42);
@@ -521,21 +534,21 @@
     }
 
     .option-pill--green-rich{
-      --gem-button-bg:linear-gradient(180deg, #0ea82a, #046315);
+      --gem-button-bg:linear-gradient(180deg, #087a1d, #02380d);
       background:var(--gem-button-bg);
       color:#effff1;
       border-color:rgba(110,226,129,.42);
     }
 
     .option-pill--green-teal{
-      --gem-button-bg:linear-gradient(180deg, #0aa7a1, #046765);
+      --gem-button-bg:linear-gradient(180deg, #08766f, #023d3b);
       background:var(--gem-button-bg);
       color:#ecffff;
       border-color:rgba(113,230,224,.42);
     }
 
     .option-pill--alexandrite{
-      --gem-button-bg:linear-gradient(180deg, #d446d0, #6d1f98);
+      --gem-button-bg:linear-gradient(135deg, #2a063f 0%, #5a1486 45%, #ff54c8 100%);
       background:var(--gem-button-bg);
       color:#fff2ff;
       border-color:rgba(228,146,255,.42);
@@ -1557,15 +1570,15 @@
     };
 
     const gemstoneColours = {
-      "Ruby - Deep Red": "#7a0505", "Ruby - Rich Red": "#c10e0e", "Ruby - Bright Red": "#ff3c2f",
+      "Ruby - Deep Red": "#5f0000", "Ruby - Rich Red": "#8f0000", "Ruby - Bright Red": "#d71812",
       "Pink Sapphire - Vivid Pink": "#ff2f98", "Pink Sapphire - Strong Pink": "#ff4db3", "Pink Sapphire - Hot Pink": "#ff2fc7",
       "Pink Sapphire - Bubblegum Pink": "#ff7fd8", "Pink Sapphire - Soft Pink": "#ffb4ea",
-      "Blue Sapphire - Royal Blue": "#0820c9", "Blue Sapphire - Bright Blue": "#2147ff", "Blue Sapphire - Violet Blue": "#5a4dff",
-      "Blue Sapphire - Cornflower Blue": "#81a4ff", "Blue Sapphire - Aqua Blue": "#27cfff", "Blue Sapphire - Icy Blue": "#d7ecff",
+      "Blue Sapphire - Royal Blue": "#1937f2", "Blue Sapphire - Bright Blue": "#3568ff", "Blue Sapphire - Violet Blue": "#6d60ff",
+      "Blue Sapphire - Cornflower Blue": "#7fb2ff", "Blue Sapphire - Aqua Blue": "#27cfff", "Blue Sapphire - Icy Blue": "#d7ecff",
       "Yellow Sapphire - Deep Gold": "#ef9f00", "Yellow Sapphire - Golden Yellow": "#ffc12e", "Yellow Sapphire - Light Yellow": "#ffe383",
-      "Purple Sapphire - Deep Purple": "#a200d1", "Purple Sapphire - Bright Orchid": "#d62fff", "Purple Sapphire - Violet": "#8460ff",
-      "Purple Sapphire - Soft Lilac": "#ecb5ff", "Emerald - Mint Green": "#7cf0ca", "Emerald - Rich Green": "#0ea82a",
-      "Emerald - Teal Green": "#0aa7a1", "Alexandrite - Colour Changing": "#d446d0"
+      "Purple Sapphire - Deep Purple": "#a200d1", "Purple Sapphire - Bright Orchid": "#d62fff", "Purple Sapphire - Violet": "#9a72ff",
+      "Purple Sapphire - Soft Lilac": "#ecb5ff", "Emerald - Mint Green": "#7cf0ca", "Emerald - Rich Green": "#087a1d",
+      "Emerald - Teal Green": "#08766f", "Alexandrite - Colour Changing": "linear-gradient(135deg, #2a063f 0%, #5a1486 45%, #ff54c8 100%)"
     };
 
     const imageMask = shapeMaskMap[fields.shape.value] || shapeMaskMap.Round;
@@ -1584,12 +1597,16 @@
       previewGem.style.setProperty("--preview-gem-opacity", ".62");
       previewGem.style.setProperty("--preview-gem-opacity-mobile", ".56");
       previewGem.style.setProperty("--preview-gem-filter", "saturate(1.95) brightness(1.08) contrast(1.04)");
+      previewGem.style.animation = fields.gemstone.value === "Alexandrite - Colour Changing"
+        ? "alexandriteShift 1.2s ease-in-out infinite"
+        : "none";
     } else {
       const tone = diamondColours[fields.colour.value] || diamondColours.D;
       previewGem.style.setProperty("--preview-gem-color", tone.color);
       previewGem.style.setProperty("--preview-gem-opacity", tone.opacity);
       previewGem.style.setProperty("--preview-gem-opacity-mobile", tone.mobile);
       previewGem.style.setProperty("--preview-gem-filter", "saturate(1.35)");
+      previewGem.style.animation = "none";
     }
   };
 
