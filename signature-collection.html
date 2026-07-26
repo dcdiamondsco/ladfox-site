@@ -147,8 +147,10 @@
 
     .signature-preview{
       position:relative;
-      display:grid;
+      display:inline-grid;
       place-items:center;
+      width:fit-content;
+      max-width:100%;
       background:transparent;
       margin:6px 0 10px;
       pointer-events:none;
@@ -158,7 +160,7 @@
 
     .signature-preview img{
       display:block;
-      width:min(96vw, 680px);
+      width:min(92vw, 620px);
       height:auto;
       object-fit:contain;
       background:transparent;
@@ -170,6 +172,8 @@
     .preview-gem{
       position:absolute;
       inset:0;
+      width:100%;
+      height:100%;
       background:var(--preview-gem-color, #f6f7fb);
       opacity:var(--preview-gem-opacity, .42);
       mix-blend-mode:color;
@@ -311,6 +315,7 @@
     }
 
     .option-pill--gem{
+      --gem-button-bg:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
       display:inline-flex;
       align-items:center;
       gap:0;
@@ -320,7 +325,7 @@
       padding:0;
       min-height:34px;
       height:34px;
-      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      background:var(--gem-button-bg);
       border-color:rgba(255,255,255,.16);
       color:transparent;
       text-align:center;
@@ -357,151 +362,176 @@
     }
 
     .option-pill--red-deep{
-      background:linear-gradient(180deg, #7a0505, #3f0000);
+      --gem-button-bg:linear-gradient(180deg, #7a0505, #3f0000);
+      background:var(--gem-button-bg);
       color:#ffe8e8;
       border-color:rgba(255,120,120,.34);
     }
 
     .option-pill--red-rich{
-      background:linear-gradient(180deg, #c10e0e, #700000);
+      --gem-button-bg:linear-gradient(180deg, #c10e0e, #700000);
+      background:var(--gem-button-bg);
       color:#fff0f0;
       border-color:rgba(255,130,130,.38);
     }
 
     .option-pill--red-bright{
-      background:linear-gradient(180deg, #ff3c2f, #b60c00);
+      --gem-button-bg:linear-gradient(180deg, #ff3c2f, #b60c00);
+      background:var(--gem-button-bg);
       color:#fff4f2;
       border-color:rgba(255,155,130,.42);
     }
 
     .option-pill--pink-vivid{
-      background:linear-gradient(180deg, #ff2f98, #bc0061);
+      --gem-button-bg:linear-gradient(180deg, #ff2f98, #bc0061);
+      background:var(--gem-button-bg);
       color:#fff0f7;
       border-color:rgba(255,140,205,.42);
     }
 
     .option-pill--pink-strong{
-      background:linear-gradient(180deg, #ff4db3, #b31173);
+      --gem-button-bg:linear-gradient(180deg, #ff4db3, #b31173);
+      background:var(--gem-button-bg);
       color:#fff1f8;
       border-color:rgba(255,163,221,.42);
     }
 
     .option-pill--pink-hot{
-      background:linear-gradient(180deg, #ff2fc7, #98117b);
+      --gem-button-bg:linear-gradient(180deg, #ff2fc7, #98117b);
+      background:var(--gem-button-bg);
       color:#fff0fc;
       border-color:rgba(255,145,229,.42);
     }
 
     .option-pill--pink-bubblegum{
-      background:linear-gradient(180deg, #ff7fd8, #c43fa0);
+      --gem-button-bg:linear-gradient(180deg, #ff7fd8, #c43fa0);
+      background:var(--gem-button-bg);
       color:#fff5fc;
       border-color:rgba(255,188,235,.44);
     }
 
     .option-pill--pink-soft{
-      background:linear-gradient(180deg, #ffb4ea, #dd76c0);
+      --gem-button-bg:linear-gradient(180deg, #ffb4ea, #dd76c0);
+      background:var(--gem-button-bg);
       color:#3d0f2d;
       border-color:rgba(255,208,241,.5);
     }
 
     .option-pill--blue-royal{
-      background:linear-gradient(180deg, #0820c9, #02096d);
+      --gem-button-bg:linear-gradient(180deg, #0820c9, #02096d);
+      background:var(--gem-button-bg);
       color:#eef2ff;
       border-color:rgba(117,142,255,.42);
     }
 
     .option-pill--blue-bright{
-      background:linear-gradient(180deg, #2147ff, #1230b6);
+      --gem-button-bg:linear-gradient(180deg, #2147ff, #1230b6);
+      background:var(--gem-button-bg);
       color:#eff4ff;
       border-color:rgba(132,156,255,.42);
     }
 
     .option-pill--blue-violet{
-      background:linear-gradient(180deg, #5a4dff, #2a20bf);
+      --gem-button-bg:linear-gradient(180deg, #5a4dff, #2a20bf);
+      background:var(--gem-button-bg);
       color:#f3f1ff;
       border-color:rgba(158,150,255,.42);
     }
 
     .option-pill--blue-cornflower{
-      background:linear-gradient(180deg, #81a4ff, #4367db);
+      --gem-button-bg:linear-gradient(180deg, #81a4ff, #4367db);
+      background:var(--gem-button-bg);
       color:#081532;
       border-color:rgba(190,208,255,.46);
     }
 
     .option-pill--blue-aqua{
-      background:linear-gradient(180deg, #27cfff, #1170b2);
+      --gem-button-bg:linear-gradient(180deg, #27cfff, #1170b2);
+      background:var(--gem-button-bg);
       color:#ecfbff;
       border-color:rgba(149,235,255,.42);
     }
 
     .option-pill--blue-icy{
-      background:linear-gradient(180deg, #d7ecff, #92c5ff);
+      --gem-button-bg:linear-gradient(180deg, #d7ecff, #92c5ff);
+      background:var(--gem-button-bg);
       color:#10233f;
       border-color:rgba(222,239,255,.5);
     }
 
     .option-pill--yellow-deep{
-      background:linear-gradient(180deg, #ef9f00, #b56a00);
+      --gem-button-bg:linear-gradient(180deg, #ef9f00, #b56a00);
+      background:var(--gem-button-bg);
       color:#fff8ea;
       border-color:rgba(255,198,101,.42);
     }
 
     .option-pill--yellow-golden{
-      background:linear-gradient(180deg, #ffc12e, #d89000);
+      --gem-button-bg:linear-gradient(180deg, #ffc12e, #d89000);
+      background:var(--gem-button-bg);
       color:#3e2400;
       border-color:rgba(255,214,133,.46);
     }
 
     .option-pill--yellow-light{
-      background:linear-gradient(180deg, #ffe383, #efbe2c);
+      --gem-button-bg:linear-gradient(180deg, #ffe383, #efbe2c);
+      background:var(--gem-button-bg);
       color:#473100;
       border-color:rgba(255,232,167,.48);
     }
 
     .option-pill--purple-deep{
-      background:linear-gradient(180deg, #a200d1, #5f007b);
+      --gem-button-bg:linear-gradient(180deg, #a200d1, #5f007b);
+      background:var(--gem-button-bg);
       color:#fbf0ff;
       border-color:rgba(220,133,255,.42);
     }
 
     .option-pill--purple-orchid{
-      background:linear-gradient(180deg, #d62fff, #8d17b2);
+      --gem-button-bg:linear-gradient(180deg, #d62fff, #8d17b2);
+      background:var(--gem-button-bg);
       color:#fff0ff;
       border-color:rgba(231,144,255,.42);
     }
 
     .option-pill--purple-violet{
-      background:linear-gradient(180deg, #8460ff, #5434d0);
+      --gem-button-bg:linear-gradient(180deg, #8460ff, #5434d0);
+      background:var(--gem-button-bg);
       color:#f5f1ff;
       border-color:rgba(180,163,255,.42);
     }
 
     .option-pill--purple-lilac{
-      background:linear-gradient(180deg, #ecb5ff, #bf83d9);
+      --gem-button-bg:linear-gradient(180deg, #ecb5ff, #bf83d9);
+      background:var(--gem-button-bg);
       color:#341443;
       border-color:rgba(241,204,255,.5);
     }
 
     .option-pill--green-mint{
-      background:linear-gradient(180deg, #7cf0ca, #26a980);
+      --gem-button-bg:linear-gradient(180deg, #7cf0ca, #26a980);
+      background:var(--gem-button-bg);
       color:#0d2a22;
       border-color:rgba(185,255,232,.48);
     }
 
     .option-pill--green-rich{
-      background:linear-gradient(180deg, #0ea82a, #046315);
+      --gem-button-bg:linear-gradient(180deg, #0ea82a, #046315);
+      background:var(--gem-button-bg);
       color:#effff1;
       border-color:rgba(110,226,129,.42);
     }
 
     .option-pill--green-teal{
-      background:linear-gradient(180deg, #0aa7a1, #046765);
+      --gem-button-bg:linear-gradient(180deg, #0aa7a1, #046765);
+      background:var(--gem-button-bg);
       color:#ecffff;
       border-color:rgba(113,230,224,.42);
     }
 
     .option-pill--alexandrite{
-      background:linear-gradient(180deg, #d446d0, #6d1f98);
+      --gem-button-bg:linear-gradient(180deg, #d446d0, #6d1f98);
+      background:var(--gem-button-bg);
       color:#fff2ff;
       border-color:rgba(228,146,255,.42);
     }
@@ -566,8 +596,8 @@
         top:50vh;
         transform:translateY(-50%);
         margin:0;
-        width:min(26vw, 104px);
-        min-height:128px;
+        width:min(23vw, 92px);
+        min-height:0;
         z-index:120;
       }
 
@@ -575,7 +605,7 @@
         width:100%;
         max-width:100%;
         max-height:52vh;
-        height:100%;
+        height:auto;
         object-fit:contain;
         object-position:center bottom;
         opacity:1;
@@ -671,8 +701,11 @@
     }
 
     .signature-page .option-pill--gem[aria-pressed="true"]{
+      background:var(--gem-button-bg) !important;
+      background-image:var(--gem-button-bg) !important;
       border-color:rgba(214,219,226,.95);
       box-shadow:0 0 0 2px rgba(214,219,226,.95) inset;
+      color:transparent !important;
     }
 
     .signature-summary{
@@ -915,7 +948,7 @@
       "logo": "https://ladfox.com/Images/ladfox-logo.png",
       "image": "https://ladfox.com/Images/Signature%20Collection/Round%20Gold.jpg",
       "areaServed": "GB",
-      "priceRange": "Ã‚Â£Ã‚Â£Ã‚Â£"
+      "priceRange": "Ãƒâ€šÃ‚Â£Ãƒâ€šÃ‚Â£Ãƒâ€šÃ‚Â£"
     },
     {
       "@type": "WebSite",
@@ -1233,7 +1266,7 @@
           </div>
 
           <div class="signature-summary" aria-live="polite" aria-atomic="true">
-            <p data-summary-output>14k Gold Ã‚Â· 0.5 ct Round lab-grown diamond Ã‚Â· Best value colour Ã‚Â· VS2 Ã‚Â· size M</p>
+            <p data-summary-output>14k Gold with a 0.5 ct round lab-grown diamond, D colour, VS2 clarity, UK size M.</p>
           </div>
 
           <div class="price-panel" aria-busy="true">
@@ -1243,7 +1276,7 @@
           <div class="actions actions--bottom">
             <button class="btn btn-primary" type="button" data-checkout-button disabled>
               <span class="checkout-main">
-                <span data-checkout-label>Checking priceÃ¢â‚¬Â¦</span>
+                <span data-checkout-label>Checking price...</span>
                 <span class="checkout-timer" data-countdown-output aria-live="off" hidden></span>
               </span>
             </button>
@@ -1553,13 +1586,22 @@
     previewImage.alt = `${fields.metal.value}${proportion} ${fields.shape.value.toLowerCase()} LADFOX Signature Petal engagement ring`;
   };
 
+  const syncPreviewOverlay = () => {
+    if (!previewImage || !previewGem) return;
+    const width = previewImage.offsetWidth;
+    const height = previewImage.offsetHeight;
+    if (!width || !height) return;
+    previewGem.style.width = `${width}px`;
+    previewGem.style.height = `${height}px`;
+  };
+
   const updateSummary = () => {
     if (!summaryOutput) return;
     const shape = `${fields.elongated.value === "Yes" && elongatedShapes.has(fields.shape.value) ? "Elongated " : ""}${fields.shape.value}`;
     const stone = fields.stoneType.value === "Lab Gemstone"
-      ? fields.gemstone.value
-      : `lab-grown diamond Ã‚Â· ${fields.colour.value} colour Ã‚Â· ${fields.clarity.value}`;
-    summaryOutput.textContent = `${fields.metal.value} Ã‚Â· ${fields.stoneSize.value} ${shape} Ã‚Â· ${stone} Ã‚Â· UK size ${fields.ringSize.value}`;
+      ? `${fields.gemstone.value}, lab-created`
+      : `lab-grown diamond, ${fields.colour.value} colour, ${fields.clarity.value} clarity`;
+    summaryOutput.textContent = `${fields.metal.value} with a ${fields.stoneSize.value} ct ${shape.toLowerCase()} ${stone}, UK size ${fields.ringSize.value}.`;
   };
 
   const syncSliderState = () => {
@@ -1637,9 +1679,8 @@
       priceCompare.hidden = !quote.saleActive;
       priceCompare.textContent = quote.saleActive ? formatPrice(quote.regularPriceGbp) : "";
     }
-    if (checkoutButton) {
-      if (checkoutLabel) checkoutLabel.textContent = "Secure checkout - " + formatted;
-      if (checkoutLabel) checkoutLabel.textContent = "Secure checkout â€” " + formatted;
+    if (checkoutButton && checkoutLabel) {
+      checkoutLabel.textContent = "Secure checkout - " + formatted;
     }
   };
 
@@ -1766,6 +1807,7 @@
       }
       const totalSeconds = Math.floor(remaining / 1000);
       const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
       const seconds = totalSeconds % 60;
       if (countdownOutput) {
@@ -1782,6 +1824,7 @@
     syncStoneMode();
     updatePreviewImage();
     updatePreviewGem();
+    syncPreviewOverlay();
     syncSliderState();
     updateSummary();
     storeState();
@@ -1819,10 +1862,13 @@
 
   if (previewImage) {
     const defaultImage = previewImage.getAttribute("src");
+    previewImage.addEventListener("load", syncPreviewOverlay);
     previewImage.addEventListener("error", () => {
       if (defaultImage && previewImage.getAttribute("src") !== defaultImage) previewImage.src = defaultImage;
     });
   }
+
+  window.addEventListener("resize", syncPreviewOverlay);
 
   if (checkoutButton) checkoutButton.addEventListener("click", beginCheckout);
 
