@@ -11,7 +11,6 @@
     gtag("config", "AW-18173399172");
   </script>
   <title>Our Trilogy | LADFOX</title>
-  <!-- Deploy refresh marker -->
   <meta name="description" content="Create a LADFOX trilogy engagement ring with live pricing, centre stone size controls, and two preview videos of the design." />
   <link rel="canonical" href="https://ladfox.com/trilogy-ring.html" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -100,9 +99,6 @@
     }
 
     .trilogy-config-page .product-video{
-      position:absolute;
-      inset:0;
-      margin:auto;
       width:auto;
       height:auto;
       max-width:100%;
@@ -110,16 +106,8 @@
       object-fit:contain;
       object-position:center center;
       display:block;
-      opacity:0;
-      visibility:hidden;
       pointer-events:none;
       transform:translateY(-20%);
-      transition:opacity .24s ease;
-    }
-
-    .trilogy-config-page .product-video.is-active{
-      opacity:1;
-      visibility:visible;
     }
 
     .trilogy-config-page .product-video[data-video-frame="balanced"]{
@@ -595,31 +583,16 @@
           <article class="panel media">
             <div class="media-stage">
               <video
-                class="product-video is-active"
+                class="product-video"
                 data-trilogy-video
-                data-video-frame="balanced"
                 src="Images/Trilogy.mov"
-                preload="auto"
+                preload="metadata"
                 autoplay
                 muted
                 loop
                 playsinline
                 webkit-playsinline="true"
                 aria-label="Trilogy engagement ring preview video"
-              ></video>
-              <video
-                class="product-video"
-                data-trilogy-video
-                data-video-frame="top-cropped"
-                src="Images/Trilogy 2.mov"
-                preload="auto"
-                autoplay
-                muted
-                loop
-                playsinline
-                webkit-playsinline="true"
-                aria-label="Trilogy engagement ring preview video alternate angle"
-                aria-hidden="true"
               ></video>
               <button class="option-pill trilogy-video-arrow trilogy-video-arrow--prev" type="button" data-video-direction="-1" aria-label="Show previous video">&#8249;</button>
               <button class="option-pill trilogy-video-arrow trilogy-video-arrow--next" type="button" data-video-direction="1" aria-label="Show next video">&#8250;</button>
@@ -747,7 +720,7 @@
     const page = document.querySelector("[data-trilogy-page]");
     if (!page) return;
 
-    const videos = Array.from(page.querySelectorAll("[data-trilogy-video]"));
+    const video = page.querySelector("[data-trilogy-video]");
     const mediaStage = page.querySelector(".media-stage");
     const videoDirectionButtons = Array.from(page.querySelectorAll("[data-video-direction]"));
     const sliders = Array.from(page.querySelectorAll("[data-option-slider]"));
@@ -773,6 +746,10 @@
       ringSize: page.querySelector("#trilogyRingSize")
     };
 
+    const videos = [
+      { src: "Images/Trilogy.mov", frame: "balanced" },
+      { src: "Images/Trilogy 2.mov", frame: "top-cropped" }
+    ];
     let currentVideoIndex = 0;
     let hasShownStoneSize = false;
     let hasShownClarity = false;
@@ -795,7 +772,7 @@
 
     const parseRangeValues = (range) => (range.dataset.rangeValues || "").split("|").filter(Boolean);
 
-    const ensureVideoPlayback = (video) => {
+    const ensureVideoPlayback = () => {
       if (!video) return;
       video.muted = true;
       video.defaultMuted = true;
@@ -814,22 +791,20 @@
       };
       play();
       window.requestAnimationFrame(play);
-      window.setTimeout(play, 120);
-      window.setTimeout(play, 400);
     };
 
     const applyVideo = (index) => {
-      if (videos.length === 0) return;
+      if (!video || videos.length === 0) return;
       currentVideoIndex = (index + videos.length) % videos.length;
-      videos.forEach((video, videoIndex) => {
-        const isActive = videoIndex === currentVideoIndex;
-        video.classList.toggle("is-active", isActive);
-        video.setAttribute("aria-hidden", String(!isActive));
-        if (isActive) {
-          if (mediaStage) mediaStage.dataset.stageFrame = video.dataset.videoFrame || "default";
-          ensureVideoPlayback(video);
-        }
-      });
+      const selectedVideo = videos[currentVideoIndex];
+      if (video.getAttribute("src") !== selectedVideo.src) {
+        video.removeAttribute("poster");
+        video.src = selectedVideo.src;
+        video.load();
+      }
+      video.dataset.videoFrame = selectedVideo.frame || "default";
+      if (mediaStage) mediaStage.dataset.stageFrame = selectedVideo.frame || "default";
+      ensureVideoPlayback();
     };
 
     const sizeMultiplier = (size) => {
@@ -1160,18 +1135,18 @@
       });
     });
 
-    videos.forEach((video) => {
-      video.addEventListener("loadedmetadata", () => ensureVideoPlayback(video));
-      video.addEventListener("loadeddata", () => ensureVideoPlayback(video));
-      video.addEventListener("canplay", () => ensureVideoPlayback(video));
-      video.addEventListener("pause", () => ensureVideoPlayback(video));
-      video.addEventListener("volumechange", () => ensureVideoPlayback(video));
-    });
+    if (video) {
+      video.addEventListener("loadedmetadata", ensureVideoPlayback);
+      video.addEventListener("loadeddata", ensureVideoPlayback);
+      video.addEventListener("canplay", ensureVideoPlayback);
+      video.addEventListener("pause", ensureVideoPlayback);
+      video.addEventListener("volumechange", ensureVideoPlayback);
+    }
 
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) videos.forEach((video) => ensureVideoPlayback(video));
+      if (!document.hidden) ensureVideoPlayback();
     });
-    window.addEventListener("pageshow", () => videos.forEach((video) => ensureVideoPlayback(video)));
+    window.addEventListener("pageshow", ensureVideoPlayback);
 
     if (checkoutButton) checkoutButton.addEventListener("click", beginCheckout);
     if (termsAccepted) {
