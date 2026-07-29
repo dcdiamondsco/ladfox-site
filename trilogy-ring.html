@@ -10,95 +10,549 @@
     gtag("js", new Date());
     gtag("config", "AW-18173399172");
   </script>
-  <title>Trilogy Ring | LADFOX</title>
-  <meta name="description" content="Explore a previous LADFOX trilogy ring concept. Choose metal, stone shape, size, colour, and clarity before creating your own version." />
+  <title>Our Trilogy | LADFOX</title>
+  <meta name="description" content="Create a LADFOX trilogy engagement ring with live pricing, centre stone size controls, and two preview videos of the design." />
   <link rel="canonical" href="https://ladfox.com/trilogy-ring.html" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta property="og:type" content="product" />
-  <meta property="og:title" content="Trilogy Ring | LADFOX" />
-  <meta property="og:description" content="A previous LADFOX trilogy ring design with customisable details." />
+  <meta property="og:title" content="Our Trilogy | LADFOX" />
+  <meta property="og:description" content="Configure a LADFOX trilogy ring with your preferred metal, centre stone size, colour, clarity, and ring size." />
   <meta property="og:url" content="https://ladfox.com/trilogy-ring.html" />
   <meta property="og:image" content="https://ladfox.com/Images/trilogy.png" />
+  <meta property="og:image:alt" content="LADFOX trilogy engagement ring" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Trilogy Ring | LADFOX" />
-  <meta name="twitter:description" content="Open the trilogy ring concept and build your own version around the details you want." />
+  <meta name="twitter:title" content="Our Trilogy | LADFOX" />
+  <meta name="twitter:description" content="Build a bespoke LADFOX trilogy ring with adjustable centre stone size and live pricing." />
+  <meta name="twitter:image" content="https://ladfox.com/Images/trilogy.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#000000" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="product-page.css" />
-  <link rel="stylesheet" href="ring-showcase.css" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "JewelryStore",
-      "@id": "https://ladfox.com/#business",
-      "name": "LADFOX",
-      "url": "https://ladfox.com/",
-      "logo": "https://ladfox.com/Images/ladfox-logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://ladfox.com/#website",
-      "url": "https://ladfox.com/",
-      "name": "LADFOX",
-      "publisher": {
-        "@id": "https://ladfox.com/#business"
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://ladfox.com/trilogy-ring.html#webpage",
-      "url": "https://ladfox.com/trilogy-ring.html",
-      "name": "Trilogy Ring | LADFOX",
-      "description": "Explore a previous LADFOX trilogy ring concept. Choose metal, stone shape, size, colour, and clarity before creating your own version.",
-      "isPartOf": {
-        "@id": "https://ladfox.com/#website"
-      },
-      "about": {
-        "@id": "https://ladfox.com/#business"
-      },
-      "publisher": {
-        "@id": "https://ladfox.com/#business"
-      },
-      "breadcrumb": {
-        "@id": "https://ladfox.com/trilogy-ring.html#breadcrumb"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://ladfox.com/trilogy-ring.html#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://ladfox.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Previous Work Rings",
-          "item": "https://ladfox.com/ring-gallery.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Trilogy Ring",
-          "item": "https://ladfox.com/trilogy-ring.html"
-        }
-      ]
+  <style>
+    body.trilogy-config-page{
+      background:#000;
     }
-  ]
-}
+
+    .trilogy-config-page .page,
+    .trilogy-config-page .shell,
+    .trilogy-config-page .topbar{
+      background:#000;
+    }
+
+    .trilogy-config-page .topbar .shell{
+      justify-content:center;
+      align-items:center;
+      padding-right:0;
+    }
+
+    .trilogy-config-page .brand-lockup{
+      width:100%;
+      justify-content:center;
+    }
+
+    .trilogy-config-page .layout{
+      grid-template-columns:minmax(0, 1fr);
+      align-items:start;
+      gap:28px;
+    }
+
+    .trilogy-config-page .media-column{
+      display:grid;
+      gap:16px;
+      align-self:start;
+      width:min(100%, 1480px);
+      justify-self:center;
+    }
+
+    .trilogy-config-page .panel.media{
+      width:100%;
+      padding:0;
+      overflow:hidden;
+      border-radius:28px;
+      background:transparent;
+      box-shadow:none;
+      border-color:transparent;
+    }
+
+    .trilogy-config-page .media-stage{
+      position:relative;
+      width:100%;
+      min-height:auto;
+      height:auto;
+      aspect-ratio:auto;
+      overflow:hidden;
+      border-radius:28px;
+      background:transparent;
+    }
+
+    .trilogy-config-page .media-stage[data-stage-frame="top-cropped"]{
+      height:96svh;
+    }
+
+    .trilogy-config-page .media-stage[data-stage-frame="balanced"]{
+      height:80%;
+      max-height:128svh;
+    }
+
+    .trilogy-config-page .product-video{
+      width:auto;
+      height:auto;
+      max-width:100%;
+      max-height:88svh;
+      object-fit:contain;
+      object-position:center center;
+      display:block;
+      pointer-events:none;
+      transform:translateY(-20%);
+    }
+
+    .trilogy-config-page .product-video[data-video-frame="balanced"]{
+      transform:translateY(-12%) scale(1.22);
+      transform-origin:center top;
+    }
+
+    .trilogy-config-page .product-video[data-video-frame="top-cropped"]{
+      object-position:center center;
+    }
+
+    .trilogy-video-arrow{
+      position:absolute;
+      top:50%;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      transform:translateY(-50%);
+      border-radius:999px;
+      background:rgba(0,0,0,.26);
+      backdrop-filter:blur(8px);
+    }
+
+    .trilogy-video-arrow--prev{
+      left:42px;
+    }
+
+    .trilogy-video-arrow--next{
+      right:42px;
+    }
+
+    .trilogy-config-page .media-stage[data-stage-frame="balanced"] .trilogy-video-arrow--prev{
+      left:24px;
+    }
+
+    .trilogy-config-page .media-stage[data-stage-frame="balanced"] .trilogy-video-arrow--next{
+      right:24px;
+    }
+
+    .trilogy-video-arrow{
+      min-width:22px;
+      width:22px;
+      min-height:22px;
+      font-size:.72rem;
+      line-height:1;
+    }
+
+    .trilogy-video-meta{
+      position:absolute;
+      left:50%;
+      bottom:30px;
+      z-index:2;
+      transform:translateX(-50%);
+      margin:0;
+      color:rgba(255,255,255,.78);
+      font-size:.52rem;
+      font-weight:600;
+      letter-spacing:.03em;
+      text-transform:none;
+      white-space:nowrap;
+      padding:2px 6px;
+      border-radius:999px;
+      background:rgba(0,0,0,.22);
+      text-shadow:0 1px 8px rgba(0,0,0,.55);
+    }
+
+    .trilogy-media-hero{
+      display:grid;
+      gap:14px;
+      width:min(100%, 34rem);
+      margin:0 auto;
+      justify-items:center;
+      text-align:center;
+    }
+
+    .trilogy-hero{
+      display:grid;
+      gap:14px;
+      justify-items:center;
+      text-align:center;
+    }
+
+    .trilogy-hero h1{
+      font-family:"Cormorant Garamond", serif;
+      font-size:clamp(2.5rem, 4.8vw, 4.1rem);
+      font-weight:600;
+      letter-spacing:.01em;
+      line-height:1;
+      max-width:none;
+      white-space:nowrap;
+    }
+
+    .trilogy-subcopy{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      font-family:"Cormorant Garamond", serif;
+      font-size:clamp(1.15rem, 2vw, 1.6rem);
+      line-height:1.24;
+    }
+
+    .trilogy-config-page .copy{
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      gap:18px;
+      width:min(100%, 980px);
+      justify-self:center;
+    }
+
+    .trilogy-config-page .size-panel{
+      display:grid;
+      gap:18px;
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+    }
+
+    .trilogy-config-page .product-form-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:16px 18px;
+    }
+
+    .trilogy-config-page .field{
+      min-width:0;
+    }
+
+    .trilogy-config-page .field--full{
+      grid-column:1 / -1;
+    }
+
+    .trilogy-config-page .option-slider{
+      flex-wrap:wrap;
+      overflow:visible;
+      padding-bottom:0;
+      gap:8px;
+    }
+
+    .trilogy-config-page .field:first-child .option-slider{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+    }
+
+    .trilogy-config-page .field:first-child .option-pill{
+      width:100%;
+      min-width:0;
+      padding:0 10px;
+      white-space:normal;
+      line-height:1.1;
+      text-align:center;
+    }
+
+    .trilogy-price-panel{
+      display:grid;
+      gap:6px;
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .trilogy-price-panel .eyebrow,
+    .trilogy-sale-countdown{
+      margin:0;
+      color:#d94b57;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .trilogy-price-compare{
+      margin:0;
+      color:rgba(255,255,255,.92);
+      font-size:clamp(1.4rem, 2.3vw, 1.85rem);
+      font-weight:700;
+      text-decoration:line-through;
+      text-decoration-thickness:1px;
+      text-decoration-color:rgba(255,255,255,.92);
+    }
+
+    .trilogy-price-panel p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .trilogy-price-note{
+      max-width:38ch;
+    }
+
+    .trilogy-summary{
+      padding:7px 9px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+    }
+
+    .trilogy-summary-label{
+      margin:0 0 4px;
+      color:rgba(255,255,255,.64);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .trilogy-summary p{
+      margin:0;
+      color:rgba(255,255,255,.84);
+      line-height:1.6;
+    }
+
+    .trilogy-config-page .actions{
+      justify-content:flex-start;
+    }
+
+    .trilogy-buy-btn{
+      display:inline-grid;
+      gap:4px;
+      justify-items:center;
+      min-width:260px;
+      text-align:center;
+    }
+
+    .trilogy-buy-btn span{
+      display:block;
+    }
+
+    .trilogy-buy-btn [data-cta-price]{
+      font-size:1.1rem;
+      font-weight:900;
+      letter-spacing:.01em;
+      color:#d94b57;
+    }
+
+    .trilogy-buy-btn [data-cta-countdown]{
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#d94b57;
+    }
+
+    .trilogy-terms{
+      display:grid;
+      gap:10px;
+      margin-top:4px;
+    }
+
+    .trilogy-terms-check{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color:rgba(255,255,255,.8);
+      font-size:.9rem;
+      line-height:1.5;
+    }
+
+    .trilogy-terms-check input{
+      margin-top:3px;
+      width:18px;
+      height:18px;
+      accent-color:#fff;
+      flex:0 0 auto;
+    }
+
+    .trilogy-terms-copy{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .trilogy-terms-copy a{
+      color:#fff;
+      text-decoration:underline;
+    }
+
+    .trilogy-checkout-status{
+      min-height:1.4em;
+      margin:0;
+      color:rgba(255,255,255,.72);
+      font-size:.85rem;
+      line-height:1.45;
+    }
+
+    .trilogy-checkout-status.is-error{
+      color:#ffb4b4;
+    }
+
+    .trilogy-secondary-copy{
+      display:grid;
+      gap:10px;
+    }
+
+    .trilogy-secondary-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    @media (max-width: 980px){
+      .trilogy-config-page .product-form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .trilogy-config-page .field:first-child .option-slider{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px){
+      .trilogy-config-page .media-column{
+        width:min(100%, 100%);
+      }
+
+      .trilogy-config-page .media-stage{
+        min-height:auto;
+        width:100%;
+        aspect-ratio:auto;
+      }
+
+      .trilogy-config-page .media-stage[data-stage-frame="top-cropped"]{
+        height:84svh;
+      }
+
+      .trilogy-config-page .media-stage[data-stage-frame="balanced"]{
+        height:80%;
+        max-height:108svh;
+      }
+
+
+      .trilogy-config-page .product-video{
+        width:auto;
+        height:auto;
+        max-width:100%;
+        max-height:76svh;
+        object-fit:contain;
+      }
+
+      .trilogy-video-arrow--prev{
+        left:28px;
+      }
+
+      .trilogy-video-arrow--next{
+        right:28px;
+      }
+
+      .trilogy-video-meta{
+        bottom:14px;
+        left:50%;
+        font-size:.5rem;
+      }
+
+      .trilogy-hero h1{
+        font-size:clamp(2.2rem, 8.2vw, 3rem);
+      }
+
+      .trilogy-subcopy{
+        font-size:clamp(1rem, 4.2vw, 1.28rem);
+      }
+
+      .trilogy-config-page .actions{
+        flex-direction:column;
+      }
+
+      .trilogy-config-page .btn{
+        width:100%;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "JewelryStore",
+        "@id": "https://ladfox.com/#business",
+        "name": "LADFOX",
+        "url": "https://ladfox.com/",
+        "logo": "https://ladfox.com/Images/ladfox-logo.png"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ladfox.com/#website",
+        "url": "https://ladfox.com/",
+        "name": "LADFOX",
+        "publisher": {
+          "@id": "https://ladfox.com/#business"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://ladfox.com/trilogy-ring.html#product",
+        "name": "Our Trilogy",
+        "url": "https://ladfox.com/trilogy-ring.html",
+        "description": "A customisable LADFOX trilogy engagement ring with live pricing based on centre stone size and clarity.",
+        "image": [
+          "https://ladfox.com/Images/trilogy.png",
+          "https://ladfox.com/Images/trilogy-back.png"
+        ],
+        "brand": {
+          "@type": "Brand",
+          "name": "LADFOX"
+        },
+        "category": "Engagement ring",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://ladfox.com/trilogy-ring.html",
+          "priceCurrency": "GBP",
+          "price": "1999.00",
+          "priceValidUntil": "2026-12-31",
+          "availability": "https://schema.org/PreOrder",
+          "seller": {
+            "@id": "https://ladfox.com/#business"
+          }
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ladfox.com/trilogy-ring.html#webpage",
+        "url": "https://ladfox.com/trilogy-ring.html",
+        "name": "Our Trilogy | LADFOX",
+        "description": "Create a LADFOX trilogy engagement ring with live pricing, centre stone size controls, and two preview videos of the design.",
+        "isPartOf": {
+          "@id": "https://ladfox.com/#website"
+        },
+        "about": {
+          "@id": "https://ladfox.com/trilogy-ring.html#product"
+        },
+        "publisher": {
+          "@id": "https://ladfox.com/#business"
+        }
+      }
+    ]
+  }
   </script>
 </head>
-<body class="ring-config-page">
+<body class="trilogy-config-page">
   <header class="topbar">
     <div class="shell">
       <div class="brand-lockup">
@@ -106,96 +560,137 @@
           <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
         </a>
       </div>
-      <div class="actions">
-        <a class="btn btn-secondary" href="ring-gallery.html">Back to gallery</a>
-        <a class="btn btn-primary" href="consultation.html">Book a consultation</a>
-      </div>
     </div>
   </header>
 
   <main class="page">
     <div class="shell">
-      <section class="layout" data-ring-config-page data-product-name="Trilogy Ring" data-product-slug="trilogy-ring">
+      <section class="layout" data-trilogy-page>
         <div class="media-column">
+          <div class="trilogy-media-hero">
+            <div class="trilogy-hero">
+              <h1>Our Trilogy Ring</h1>
+              <p class="trilogy-subcopy">A refined three-stone design with a commanding centre diamond and balanced side stones.</p>
+            </div>
+          </div>
           <article class="panel media">
             <div class="media-stage">
-              <video class="product-video product-video--zoom-out" src="Videos/Trilogy.mov" poster="Images/trilogy.png" preload="metadata" controls autoplay playsinline muted loop aria-label="Trilogy ring video"></video>
+              <video
+                class="product-video"
+                data-trilogy-video
+                src="Images/Trilogy.mov"
+                preload="metadata"
+                autoplay
+                muted
+                loop
+                playsinline
+                aria-label="Trilogy engagement ring preview video"
+              ></video>
+              <button class="option-pill trilogy-video-arrow trilogy-video-arrow--prev" type="button" data-video-direction="-1" aria-label="Show previous video">&#8249;</button>
+              <button class="option-pill trilogy-video-arrow trilogy-video-arrow--next" type="button" data-video-direction="1" aria-label="Show next video">&#8250;</button>
+              <p class="trilogy-video-meta">2.2ct centre stone</p>
             </div>
           </article>
         </div>
 
         <article class="panel copy">
           <div class="size-panel">
+            <input class="config-hidden" id="trilogyShape" type="hidden" value="Round" />
             <div class="product-form-grid">
-              <div class="field">
-                <label for="trilogyMetal">Metal</label>
+              <div class="field field--full">
+                <label for="trilogyMetalBase">Metal</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="trilogyMetal" type="hidden" data-config-param="metal" value="" />
-                  <div class="option-slider" data-option-slider="trilogyMetal" aria-label="Metal">
-                    <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="14k Yellow Gold">14k Yellow Gold</button>
-                    <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="18k Yellow Gold">18k Yellow Gold</button>
-                    <button class="option-pill option-pill--white-gold" type="button" data-option-value="14k White Gold">14k White Gold</button>
-                    <button class="option-pill option-pill--white-gold" type="button" data-option-value="18k White Gold">18k White Gold</button>
-                    <button class="option-pill option-pill--rose-gold" type="button" data-option-value="14k Rose Gold">14k Rose Gold</button>
-                    <button class="option-pill option-pill--rose-gold" type="button" data-option-value="18k Rose Gold">18k Rose Gold</button>
-                    <button class="option-pill option-pill--platinum" type="button" data-option-value="Platinum">Platinum</button>
+                  <input class="config-hidden" id="trilogyMetalBase" type="hidden" value="" />
+                  <input class="config-hidden" id="trilogyMetalKarat" type="hidden" value="" />
+                  <input class="config-hidden" id="trilogyMetal" type="hidden" value="" />
+                  <div class="option-slider" data-option-slider="trilogyMetalBase" aria-label="Metal">
+                    <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="Gold" aria-pressed="false">Gold</button>
+                    <button class="option-pill option-pill--white-gold" type="button" data-option-value="White Gold" aria-pressed="false">White Gold</button>
+                    <button class="option-pill option-pill--rose-gold" type="button" data-option-value="Rose Gold" aria-pressed="false">Rose Gold</button>
+                    <button class="option-pill option-pill--platinum" type="button" data-option-value="Platinum" aria-pressed="false">Platinum</button>
                   </div>
                 </div>
               </div>
-              <div class="field">
-                <label for="trilogyShape">Stone shape</label>
+
+              <div class="field field--full" data-metal-karat-field hidden style="display:none;">
+                <label for="trilogyMetalKarat">Gold purity</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="trilogyShape" type="hidden" data-config-param="shape" value="" />
-                  <div class="option-slider" data-option-slider="trilogyShape" aria-label="Stone shape">
-                    <button class="option-pill" type="button" data-option-value="Round">Round</button>
-                    <button class="option-pill" type="button" data-option-value="Oval">Oval</button>
-                    <button class="option-pill" type="button" data-option-value="Pear">Pear</button>
-                    <button class="option-pill" type="button" data-option-value="Cushion">Cushion</button>
-                    <button class="option-pill" type="button" data-option-value="Emerald">Emerald</button>
-                    <button class="option-pill" type="button" data-option-value="Radiant">Radiant</button>
-                    <button class="option-pill" type="button" data-option-value="Princess">Princess</button>
-                    <button class="option-pill" type="button" data-option-value="Marquise">Marquise</button>
-                    <button class="option-pill" type="button" data-option-value="Asscher">Asscher</button>
-                    <button class="option-pill" type="button" data-option-value="Heart">Heart</button>
+                  <div class="option-slider" data-option-slider="trilogyMetalKarat" aria-label="Gold purity">
+                    <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="14k" aria-pressed="false">14k</button>
+                    <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="18k" aria-pressed="false">18k</button>
                   </div>
                 </div>
               </div>
+
               <div class="field">
-                <label for="trilogyStoneSize">Stone size</label>
+                <label for="trilogyStoneSize">Centre stone size</label>
                 <div class="field-input field-input--range">
-                  <input class="config-hidden" id="trilogyStoneSize" type="hidden" data-config-param="stone_size" value="" />
-                  <div class="range-readout"><span>Selected size</span><strong data-size-output="trilogyStoneSize">0.3 ct</strong></div>
-                  <input class="stone-size-range" type="range" min="0.3" max="8" step="0.1" value="0.3" data-size-range="trilogyStoneSize" aria-label="Stone size slider" />
-                  <div class="range-scale"><span>0.3 ct</span><span>8.0 ct+</span></div>
+                  <input class="config-hidden" id="trilogyStoneSize" type="hidden" value="" />
+                  <div class="range-readout"><span>Selected size</span><strong data-size-output="trilogyStoneSize"></strong></div>
+                  <input class="stone-size-range" type="range" min="1" max="6.5" step="0.1" value="1.0" data-size-range="trilogyStoneSize" aria-label="Centre stone size slider" />
+                  <div class="range-scale"><span>1.0 ct</span><span>6.5 ct</span></div>
                 </div>
               </div>
-              <div class="field">
-                <label for="trilogyColour">Colour</label>
-                <div class="field-input">
-                  <input class="config-hidden" id="trilogyColour" type="hidden" data-config-param="colour" value="" />
-                  <div class="option-slider" data-option-slider="trilogyColour" aria-label="Colour">
-                    <button class="option-pill" type="button" data-option-value="D">D</button>
-                    <button class="option-pill" type="button" data-option-value="E">E</button>
-                    <button class="option-pill" type="button" data-option-value="F">F</button>
-                    <button class="option-pill" type="button" data-option-value="G">G</button>
-                    <button class="option-pill" type="button" data-option-value="H">H</button>
-                    <button class="option-pill" type="button" data-option-value="Not sure">Not sure</button>
-                  </div>
-                </div>
-              </div>
+
               <div class="field">
                 <label for="trilogyClarity">Clarity</label>
                 <div class="field-input field-input--range">
-                  <input class="config-hidden" id="trilogyClarity" type="hidden" data-config-param="clarity" value="" />
-                  <div class="range-readout"><span>Selected clarity</span><strong data-discrete-output="trilogyClarity">Flawless</strong></div>
-                  <input class="stone-size-range" type="range" min="0" max="7" step="1" value="0" data-discrete-range="trilogyClarity" data-range-values="Flawless|Internally Flawless|VVS1|VVS2|VS1|VS2|SI1|Not sure" aria-label="Clarity slider" />
-                  <div class="range-scale"><span>Flawless</span><span>Not sure</span></div>
+                  <input class="config-hidden" id="trilogyClarity" type="hidden" value="" />
+                  <div class="range-readout"><span>Selected clarity</span><strong data-discrete-output="trilogyClarity"></strong></div>
+                  <input class="stone-size-range" type="range" min="0" max="5" step="1" value="0" data-discrete-range="trilogyClarity" data-range-values="SI1|VS2|VS1|VVS2|VVS1|FL" aria-label="Clarity slider" />
+                  <div class="range-scale"><span>SI1</span><span>FL</span></div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="trilogyColour">Colour</label>
+                <div class="field-input">
+                  <input class="config-hidden" id="trilogyColour" type="hidden" value="" />
+                  <div class="option-slider" data-option-slider="trilogyColour" aria-label="Diamond colour">
+                    <button class="option-pill" type="button" data-option-value="D" aria-pressed="false">D</button>
+                    <button class="option-pill" type="button" data-option-value="E" aria-pressed="false">E</button>
+                    <button class="option-pill" type="button" data-option-value="F" aria-pressed="false">F</button>
+                    <button class="option-pill" type="button" data-option-value="G" aria-pressed="false">G</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="trilogyRingSize">Ring size</label>
+                <div class="field-input field-input--range">
+                  <input class="config-hidden" id="trilogyRingSize" type="hidden" value="" />
+                  <div class="range-readout"><span>Selected ring size</span><strong data-discrete-output="trilogyRingSize"></strong></div>
+                  <input class="stone-size-range" type="range" min="0" max="14" step="1" value="10" data-discrete-range="trilogyRingSize" data-range-values="J|J 1/2|K|K 1/2|L|L 1/2|M|M 1/2|N|N 1/2|O|O 1/2|P|P 1/2|Q" aria-label="Ring size slider" />
+                  <div class="range-scale"><span>J</span><span>Q</span></div>
                 </div>
               </div>
             </div>
 
+            <div class="trilogy-price-panel" aria-live="polite">
+              <p class="trilogy-price-compare" data-price-compare>&pound;2,399</p>
+            </div>
+
+            <div class="trilogy-summary">
+              <p class="trilogy-summary-label">Selected specification</p>
+              <p data-summary-output></p>
+            </div>
+
             <div class="actions">
-              <a class="btn btn-primary" href="ring-form.html" data-config-link>Create your own</a>
+              <a class="btn btn-primary trilogy-buy-btn" href="ringpage.html" data-config-link>
+                <span data-cta-price>Select options</span>
+                <span data-cta-countdown>Sale ends in 4d 00h 00m 00s</span>
+              </a>
+            </div>
+
+            <div class="trilogy-terms">
+              <label class="trilogy-terms-check" for="trilogyTermsAccepted">
+                <input id="trilogyTermsAccepted" type="checkbox" />
+                <span class="trilogy-terms-copy">
+                  <span>I have read and agree to the LADFOX Terms &amp; Conditions.</span>
+                  <a href="Ts%20%26%20C's.pdf" target="_blank" rel="noopener">Read the full Terms &amp; Conditions</a>
+                </span>
+              </label>
+              <p class="trilogy-checkout-status" data-checkout-status role="status" aria-live="polite"></p>
             </div>
           </div>
         </article>
@@ -203,6 +698,451 @@
     </div>
   </main>
 
-  <script src="ring-showcase.js"></script>
+  <footer class="site-footer" aria-label="Legal information">
+    <div class="shell">
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+
+    const page = document.querySelector("[data-trilogy-page]");
+    if (!page) return;
+
+    const video = page.querySelector("[data-trilogy-video]");
+    const mediaStage = page.querySelector(".media-stage");
+    const videoDirectionButtons = Array.from(page.querySelectorAll("[data-video-direction]"));
+    const sliders = Array.from(page.querySelectorAll("[data-option-slider]"));
+    const sizeRanges = Array.from(page.querySelectorAll("[data-size-range]"));
+    const discreteRanges = Array.from(page.querySelectorAll("[data-discrete-range]"));
+    const summaryOutput = page.querySelector("[data-summary-output]");
+    const priceCompare = page.querySelector("[data-price-compare]");
+    const ctaPrice = page.querySelector("[data-cta-price]");
+    const ctaCountdown = page.querySelector("[data-cta-countdown]");
+    const checkoutButton = page.querySelector("[data-config-link]");
+    const checkoutStatus = page.querySelector("[data-checkout-status]");
+    const termsAccepted = page.querySelector("#trilogyTermsAccepted");
+    const metalKaratField = page.querySelector("[data-metal-karat-field]");
+
+    const fields = {
+      metalBase: page.querySelector("#trilogyMetalBase"),
+      metalKarat: page.querySelector("#trilogyMetalKarat"),
+      metal: page.querySelector("#trilogyMetal"),
+      shape: page.querySelector("#trilogyShape"),
+      stoneSize: page.querySelector("#trilogyStoneSize"),
+      clarity: page.querySelector("#trilogyClarity"),
+      colour: page.querySelector("#trilogyColour"),
+      ringSize: page.querySelector("#trilogyRingSize")
+    };
+
+    const videos = [
+      { src: "Images/Trilogy.mov", frame: "balanced" },
+      { src: "Images/Trilogy 2.mov", frame: "top-cropped" }
+    ];
+    let currentVideoIndex = 0;
+    let hasShownStoneSize = false;
+    let hasShownClarity = false;
+    let hasShownRingSize = false;
+
+    if (fields.metalBase) fields.metalBase.value = "";
+    if (fields.metalKarat) fields.metalKarat.value = "";
+    if (fields.metal) fields.metal.value = "";
+    if (metalKaratField) {
+      metalKaratField.hidden = true;
+      metalKaratField.style.display = "none";
+    }
+
+    const formatPrice = (value) => `\u00A3${Math.round(value).toLocaleString("en-GB")}`;
+
+    const formatCaratValue = (value) => {
+      const numeric = Number.parseFloat(value);
+      return Number.isFinite(numeric) ? `${numeric.toFixed(1)} ct` : "";
+    };
+
+    const parseRangeValues = (range) => (range.dataset.rangeValues || "").split("|").filter(Boolean);
+
+    const ensureVideoPlayback = () => {
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.loop = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.removeAttribute("controls");
+      const playResult = video.play();
+      if (playResult && typeof playResult.catch === "function") playResult.catch(() => {});
+    };
+
+    const applyVideo = (index) => {
+      if (!video || videos.length === 0) return;
+      currentVideoIndex = (index + videos.length) % videos.length;
+      const selectedVideo = videos[currentVideoIndex];
+      if (video.getAttribute("src") !== selectedVideo.src) {
+        video.removeAttribute("poster");
+        video.src = selectedVideo.src;
+        video.load();
+      }
+      video.dataset.videoFrame = selectedVideo.frame || "default";
+      if (mediaStage) mediaStage.dataset.stageFrame = selectedVideo.frame || "default";
+      ensureVideoPlayback();
+    };
+
+    const sizeMultiplier = (size) => {
+      if (size <= 1.0) return 1;
+      if (size <= 1.2) return 1.05;
+      if (size <= 1.5) return 1.12;
+      if (size <= 1.8) return 1.22;
+      if (size <= 2.2) return 1.339;
+      if (size <= 2.5) return 1.48;
+      if (size <= 3.0) return 1.68;
+      if (size <= 3.5) return 1.92;
+      if (size <= 4.0) return 2.2;
+      if (size <= 4.5) return 2.54;
+      return 2.9;
+    };
+
+    const clarityMultiplierMap = {
+      SI1: 1,
+      VS2: 1.03,
+      VS1: 1.06,
+      VVS2: 1.09,
+      VVS1: 1.12,
+      FL: 1.18
+    };
+
+    const colourAdjustmentMap = {
+      D: 0,
+      E: -60,
+      F: -120,
+      G: -220
+    };
+
+    const metalAdjustmentMap = {
+      "14k Yellow Gold": -120,
+      "18k Yellow Gold": 0,
+      "14k White Gold": -40,
+      "18k White Gold": 80,
+      "14k Rose Gold": -40,
+      "18k Rose Gold": 80,
+      "Platinum": 220
+    };
+
+    const readSelections = () => ({
+      metal: fields.metal.value,
+      shape: fields.shape.value,
+      stone_size: fields.stoneSize.value,
+      clarity: fields.clarity.value,
+      colour: fields.colour.value,
+      ring_size: fields.ringSize.value
+    });
+
+    const readCheckoutSelections = () => ({
+      metal: fields.metal.value,
+      shape: fields.shape.value,
+      stoneSize: fields.stoneSize.value,
+      clarity: fields.clarity.value,
+      colour: fields.colour.value,
+      ringSize: fields.ringSize.value
+    });
+
+    const createRequestId = () => {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+      return `lfx_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 14)}`;
+    };
+
+    const syncMetalTheme = () => {
+      const karatSlider = page.querySelector('[data-option-slider="trilogyMetalKarat"]');
+      if (!karatSlider) return;
+      const themeMap = {
+        Gold: "option-pill--yellow-gold",
+        "White Gold": "option-pill--white-gold",
+        "Rose Gold": "option-pill--rose-gold"
+      };
+      const themeClass = themeMap[fields.metalBase.value] || "option-pill--yellow-gold";
+      karatSlider.querySelectorAll("[data-option-value]").forEach((option) => {
+        option.classList.remove("option-pill--yellow-gold", "option-pill--white-gold", "option-pill--rose-gold");
+        option.classList.add(themeClass);
+      });
+    };
+
+    const updateMetalValue = () => {
+      const base = fields.metalBase.value || "";
+      const karat = fields.metalKarat.value || "";
+      const needsKarat = base === "Gold" || base === "White Gold" || base === "Rose Gold";
+
+      if (metalKaratField) {
+        metalKaratField.hidden = !needsKarat;
+        metalKaratField.style.display = needsKarat ? "" : "none";
+      }
+
+      if (base === "Platinum" || !base) {
+        fields.metalKarat.value = "";
+      }
+
+      if (needsKarat && karat) {
+        fields.metal.value = `${karat} ${base}`;
+      } else if (base === "Platinum") {
+        fields.metal.value = "Platinum";
+      } else {
+        fields.metal.value = "";
+      }
+
+      syncMetalTheme();
+    };
+
+    const setCheckoutState = (message, isError = false) => {
+      if (!checkoutStatus) return;
+      checkoutStatus.textContent = message;
+      checkoutStatus.classList.toggle("is-error", isError);
+    };
+
+    const hasRequiredSelections = () => Boolean(
+      fields.metal.value &&
+      fields.stoneSize.value &&
+      fields.clarity.value &&
+      fields.colour.value &&
+      fields.ringSize.value
+    );
+
+    const updateCheckoutAvailability = () => {
+      if (!checkoutButton) return;
+      const canCheckout = hasRequiredSelections() && (!termsAccepted || termsAccepted.checked);
+      checkoutButton.setAttribute("aria-disabled", String(!canCheckout));
+      checkoutButton.style.pointerEvents = canCheckout ? "" : "none";
+      checkoutButton.style.opacity = canCheckout ? "" : ".6";
+    };
+
+    const syncSliderState = () => {
+      sliders.forEach((slider) => {
+        const input = document.getElementById(slider.dataset.optionSlider || "");
+        if (!input) return;
+        slider.querySelectorAll("[data-option-value]").forEach((option) => {
+          const isActive = option.dataset.optionValue === input.value;
+          option.classList.toggle("is-active", isActive);
+          option.setAttribute("aria-pressed", String(isActive));
+        });
+      });
+    };
+
+    const syncSizeRanges = () => {
+      sizeRanges.forEach((range) => {
+        const targetId = range.dataset.sizeRange;
+        const output = page.querySelector(`[data-size-output="${targetId}"]`);
+        const input = document.getElementById(targetId || "");
+        if (!output || !input) return;
+        const value = formatCaratValue(range.value);
+        const shouldShow = targetId === "trilogyStoneSize" ? hasShownStoneSize : true;
+        output.textContent = shouldShow ? value : "";
+        input.value = shouldShow ? value : "";
+        range.setAttribute("aria-valuetext", shouldShow ? value : "");
+      });
+    };
+
+    const syncDiscreteRanges = () => {
+      discreteRanges.forEach((range) => {
+        const targetId = range.dataset.discreteRange;
+        const values = parseRangeValues(range);
+        const output = page.querySelector(`[data-discrete-output="${targetId}"]`);
+        const input = document.getElementById(targetId || "");
+        if (!output || !input || values.length === 0) return;
+        const parsedIndex = Number.parseInt(range.value, 10);
+        const index = Math.max(0, Math.min(values.length - 1, Number.isFinite(parsedIndex) ? parsedIndex : 0));
+        const value = values[index];
+        const shouldShow = targetId === "trilogyClarity"
+          ? hasShownClarity
+          : targetId === "trilogyRingSize"
+            ? hasShownRingSize
+            : true;
+        output.textContent = shouldShow ? value : "";
+        input.value = shouldShow ? value : "";
+        range.setAttribute("aria-valuetext", shouldShow ? value : "");
+      });
+    };
+
+    const updateSummary = () => {
+      if (!summaryOutput) return;
+      const selections = [
+        fields.metal.value,
+        fields.stoneSize.value ? `${fields.stoneSize.value} round lab-grown diamond` : "",
+        fields.colour.value ? `${fields.colour.value} colour` : "",
+        fields.clarity.value ? `${fields.clarity.value} clarity` : "",
+        fields.ringSize.value ? `UK size ${fields.ringSize.value}` : ""
+      ].filter(Boolean);
+
+      if (selections.length === 0) {
+        summaryOutput.textContent = "";
+        return;
+      }
+
+      summaryOutput.textContent = selections.join(" • ");
+    };
+
+    const updatePrice = () => {
+      if (!hasRequiredSelections()) {
+        if (priceCompare) priceCompare.textContent = "";
+        if (ctaPrice) ctaPrice.textContent = "Select options";
+        return;
+      }
+      const sizeValue = Number.parseFloat(fields.stoneSize.value);
+      const clarity = fields.clarity.value || "SI1";
+      const colour = fields.colour.value || "D";
+      const metal = fields.metal.value || "18k Yellow Gold";
+      const basePrice = 1999;
+      const price = (basePrice * sizeMultiplier(sizeValue) * (clarityMultiplierMap[clarity] || 1))
+        + (colourAdjustmentMap[colour] || 0)
+        + (metalAdjustmentMap[metal] || 0);
+
+      const salePrice = Math.max(1999, price);
+      const regularPrice = Math.round(salePrice * 1.2);
+
+      if (priceCompare) priceCompare.textContent = formatPrice(regularPrice);
+      if (ctaPrice) ctaPrice.textContent = formatPrice(salePrice);
+    };
+
+    const startSaleCountdown = () => {
+      const saleEnd = new Date("2026-08-03T00:00:00+01:00").getTime();
+
+      const render = () => {
+        const remaining = saleEnd - Date.now();
+        if (remaining <= 0) {
+          if (ctaCountdown) ctaCountdown.textContent = "Sale ends in 00d 00h 00m 00s";
+          return;
+        }
+
+        const totalSeconds = Math.floor(remaining / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const countdownText = `Sale ends in ${String(days).padStart(2, "0")}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+        if (ctaCountdown) ctaCountdown.textContent = countdownText;
+      };
+
+      render();
+      window.setInterval(render, 1000);
+    };
+
+    const beginCheckout = async (event) => {
+      if (event) event.preventDefault();
+      if (!checkoutButton) return;
+      if (!hasRequiredSelections()) {
+        setCheckoutState("Please complete the ring specification before checkout.", true);
+        updateCheckoutAvailability();
+        return;
+      }
+      if (termsAccepted && !termsAccepted.checked) {
+        setCheckoutState("Please accept the Terms & Conditions before checkout.", true);
+        updateCheckoutAvailability();
+        return;
+      }
+
+      const originalCountdown = ctaCountdown ? ctaCountdown.textContent : "";
+      setCheckoutState("");
+      checkoutButton.setAttribute("aria-busy", "true");
+      checkoutButton.style.pointerEvents = "none";
+      if (ctaCountdown) ctaCountdown.textContent = "Opening secure checkout...";
+
+      try {
+        const response = await fetch("/.netlify/functions/create-trilogy-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            requestId: createRequestId(),
+            selections: readCheckoutSelections()
+          })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.url) throw new Error(result.error || "Secure checkout could not be started.");
+        window.location.assign(result.url);
+      } catch (error) {
+        if (ctaCountdown) {
+          ctaCountdown.textContent = originalCountdown;
+        }
+        setCheckoutState(error instanceof Error ? error.message : "Secure checkout could not be started.", true);
+        checkoutButton.removeAttribute("aria-busy");
+        updateCheckoutAvailability();
+      }
+    };
+
+    const refresh = () => {
+      updateMetalValue();
+      syncSliderState();
+      updateSummary();
+      updatePrice();
+    };
+
+    sliders.forEach((slider) => {
+      const input = document.getElementById(slider.dataset.optionSlider || "");
+      if (!input) return;
+      slider.querySelectorAll("[data-option-value]").forEach((option) => {
+        option.addEventListener("click", () => {
+          const nextValue = option.dataset.optionValue || "";
+          const isMetalBase = input.id === "trilogyMetalBase";
+          const previousBase = isMetalBase ? input.value : "";
+
+          if (isMetalBase && previousBase !== nextValue) {
+            fields.metalKarat.value = "";
+          }
+
+          input.value = nextValue;
+          refresh();
+        });
+      });
+    });
+
+    sizeRanges.forEach((range) => {
+      range.addEventListener("input", () => {
+        if (range.dataset.sizeRange === "trilogyStoneSize") hasShownStoneSize = true;
+        syncSizeRanges();
+        refresh();
+      });
+    });
+
+    discreteRanges.forEach((range) => {
+      range.addEventListener("input", () => {
+        if (range.dataset.discreteRange === "trilogyClarity") hasShownClarity = true;
+        if (range.dataset.discreteRange === "trilogyRingSize") hasShownRingSize = true;
+        syncDiscreteRanges();
+        refresh();
+      });
+    });
+
+    videoDirectionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const direction = Number.parseInt(button.dataset.videoDirection || "0", 10);
+        applyVideo(currentVideoIndex + direction);
+      });
+    });
+
+    if (video) {
+      video.addEventListener("loadedmetadata", ensureVideoPlayback);
+      video.addEventListener("pause", ensureVideoPlayback);
+      video.addEventListener("volumechange", ensureVideoPlayback);
+    }
+
+    if (checkoutButton) checkoutButton.addEventListener("click", beginCheckout);
+    if (termsAccepted) {
+      termsAccepted.addEventListener("change", () => {
+        if (termsAccepted.checked) setCheckoutState("");
+        updateCheckoutAvailability();
+      });
+    }
+
+    syncSizeRanges();
+    syncDiscreteRanges();
+    applyVideo(0);
+    refresh();
+    updateCheckoutAvailability();
+    startSaleCountdown();
+
+    if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
+      setCheckoutState("Checkout was cancelled. Your ring selections have been kept.");
+    }
+  }());
+  </script>
 </body>
 </html>
