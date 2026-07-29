@@ -32,8 +32,8 @@ const requireAllowed = (value, allowed, fieldName) => {
 
 const parseCarat = (value) => {
   const numeric = Number.parseFloat(String(value ?? "").replace(/[^0-9.]/g, ""));
-  if (!Number.isFinite(numeric) || numeric < 1 || numeric > 6) {
-    throw new Error("Centre stone size must be between 1.0 ct and 6.0 ct.");
+  if (!Number.isFinite(numeric) || numeric < 0.5 || numeric > 6) {
+    throw new Error("Centre stone size must be between 0.5 ct and 6.0 ct.");
   }
   const rounded = Math.round(numeric * 10) / 10;
   if (Math.abs(numeric - rounded) > 0.0001) throw new Error("Centre stone size must use 0.1 ct increments.");
