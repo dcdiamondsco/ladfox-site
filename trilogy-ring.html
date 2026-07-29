@@ -86,7 +86,7 @@
       aspect-ratio:auto;
       overflow:hidden;
       border-radius:28px;
-      background:transparent;
+      background:#000;
     }
 
     .trilogy-config-page .media-stage[data-stage-frame="top-cropped"]{
@@ -108,6 +108,18 @@
       display:block;
       pointer-events:none;
       transform:translateY(-20%);
+      opacity:0;
+      transition:opacity .2s ease;
+    }
+
+    .trilogy-config-page .product-video.is-loaded{
+      opacity:1;
+    }
+
+    .trilogy-config-page .media-stage:not(.is-video-loaded) .trilogy-video-arrow,
+    .trilogy-config-page .media-stage:not(.is-video-loaded) .trilogy-video-meta{
+      opacity:0;
+      pointer-events:none;
     }
 
     .trilogy-config-page .product-video[data-video-frame="balanced"]{
@@ -750,6 +762,7 @@
       { src: "Images/Trilogy.mov", frame: "balanced" },
       { src: "Images/Trilogy 2.mov", frame: "top-cropped" }
     ];
+    const termsStorageKey = "ladfox.trilogy.terms-accepted.v1";
     let currentVideoIndex = 0;
     let hasShownStoneSize = false;
     let hasShownClarity = false;
@@ -771,6 +784,12 @@
     };
 
     const parseRangeValues = (range) => (range.dataset.rangeValues || "").split("|").filter(Boolean);
+
+    const setVideoLoadedState = (isLoaded) => {
+      if (!video) return;
+      video.classList.toggle("is-loaded", isLoaded);
+      if (mediaStage) mediaStage.classList.toggle("is-video-loaded", isLoaded);
+    };
 
     const ensureVideoPlayback = () => {
       if (!video) return;
@@ -798,12 +817,14 @@
       currentVideoIndex = (index + videos.length) % videos.length;
       const selectedVideo = videos[currentVideoIndex];
       if (video.getAttribute("src") !== selectedVideo.src) {
+        setVideoLoadedState(false);
         video.removeAttribute("poster");
         video.src = selectedVideo.src;
         video.load();
       }
       video.dataset.videoFrame = selectedVideo.frame || "default";
       if (mediaStage) mediaStage.dataset.stageFrame = selectedVideo.frame || "default";
+      setVideoLoadedState(video.readyState >= 2);
       ensureVideoPlayback();
     };
 
@@ -818,7 +839,9 @@
       if (size <= 3.5) return 1.92;
       if (size <= 4.0) return 2.2;
       if (size <= 4.5) return 2.54;
-      return 2.9;
+      if (size <= 5.0) return 2.9;
+      if (size <= 5.5) return 3.28;
+      return 3.68;
     };
 
     const clarityMultiplierMap = {
@@ -1021,16 +1044,18 @@
     };
 
     const startSaleCountdown = () => {
-      const saleEnd = new Date("2026-08-03T00:00:00+01:00").getTime();
+      const saleCycleDuration = 7 * 24 * 60 * 60 * 1000;
+      let saleEnd = new Date("2026-08-03T00:00:00+01:00").getTime();
 
       const render = () => {
-        const remaining = saleEnd - Date.now();
-        if (remaining <= 0) {
-          if (ctaCountdown) ctaCountdown.textContent = "Sale ends in 00d 00h 00m 00s";
-          return;
+        const now = Date.now();
+        if (saleEnd <= now) {
+          const completedCycles = Math.floor((now - saleEnd) / saleCycleDuration) + 1;
+          saleEnd += completedCycles * saleCycleDuration;
         }
 
-        const totalSeconds = Math.floor(remaining / 1000);
+        const remaining = saleEnd - now;
+        const totalSeconds = Math.ceil(remaining / 1000);
         const days = Math.floor(totalSeconds / 86400);
         const hours = Math.floor((totalSeconds % 86400) / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -1136,9 +1161,17 @@
     });
 
     if (video) {
+      video.addEventListener("loadstart", () => setVideoLoadedState(false));
       video.addEventListener("loadedmetadata", ensureVideoPlayback);
-      video.addEventListener("loadeddata", ensureVideoPlayback);
-      video.addEventListener("canplay", ensureVideoPlayback);
+      video.addEventListener("loadeddata", () => {
+        setVideoLoadedState(true);
+        ensureVideoPlayback();
+      });
+      video.addEventListener("canplay", () => {
+        setVideoLoadedState(true);
+        ensureVideoPlayback();
+      });
+      video.addEventListener("error", () => setVideoLoadedState(false));
       video.addEventListener("pause", ensureVideoPlayback);
       video.addEventListener("volumechange", ensureVideoPlayback);
     }
@@ -1150,7 +1183,17 @@
 
     if (checkoutButton) checkoutButton.addEventListener("click", beginCheckout);
     if (termsAccepted) {
+      try {
+        termsAccepted.checked = window.localStorage.getItem(termsStorageKey) === "true";
+      } catch (error) {
+        termsAccepted.checked = false;
+      }
       termsAccepted.addEventListener("change", () => {
+        try {
+          window.localStorage.setItem(termsStorageKey, String(termsAccepted.checked));
+        } catch (error) {
+          // Checkout still works if browser storage is unavailable.
+        }
         if (termsAccepted.checked) setCheckoutState("");
         updateCheckoutAvailability();
       });
