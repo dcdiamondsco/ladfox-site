@@ -597,7 +597,7 @@
                 class="product-video is-active"
                 data-trilogy-video
                 data-video-frame="balanced"
-                src="Images/Trilogy.mp4"
+                src="Images/Trilogy.mov"
                 preload="auto"
                 autoplay
                 muted
@@ -610,7 +610,7 @@
                 class="product-video"
                 data-trilogy-video
                 data-video-frame="top-cropped"
-                src="Images/Trilogy 2.mp4"
+                src="Images/Trilogy 2.mov"
                 preload="auto"
                 autoplay
                 muted
@@ -813,6 +813,8 @@
       };
       play();
       window.requestAnimationFrame(play);
+      window.setTimeout(play, 120);
+      window.setTimeout(play, 400);
     };
 
     const applyVideo = (index) => {
