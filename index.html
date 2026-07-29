@@ -248,6 +248,38 @@
       outline:none;
     }
 
+    .nav a.nav-trilogy{
+      display:inline-flex;
+      flex-direction:column;
+      gap:4px;
+      color:#161108;
+      background:linear-gradient(135deg, #f6dc7a 0%, #d5a321 100%);
+      border-color:rgba(244,216,116,.92);
+      box-shadow:0 12px 26px rgba(213,163,33,.22);
+    }
+
+    .nav a.nav-trilogy:hover,
+    .nav a.nav-trilogy:focus-visible{
+      color:#161108;
+      background:linear-gradient(135deg, #fde590 0%, #dfb239 100%);
+      border-color:rgba(252,232,148,.96);
+    }
+
+    .nav-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:2px 6px;
+      border-radius:999px;
+      background:rgba(22,17,8,.14);
+      border:1px solid rgba(22,17,8,.18);
+      font-size:.58rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      line-height:1;
+    }
+
     .hero{
       padding:0 0 120px;
     }
@@ -1134,6 +1166,20 @@
         border-color:rgba(255,255,255,calc(.2 - (var(--brand-fade, 0) * .08)));
       }
 
+      .nav a.nav-trilogy{
+        grid-column:1;
+        grid-row:2;
+        min-height:40px;
+        padding:8px 6px;
+        font-size:.7rem;
+        gap:3px;
+      }
+
+      .nav-badge{
+        padding:2px 5px;
+        font-size:.52rem;
+      }
+
       .hero{
         padding-top:0;
         padding-bottom:72px;
@@ -1604,7 +1650,7 @@
         </div>
       </div>
       <span class="brand-location">
-        <span>Private Hatton Garden Jeweller</span>
+        <span>Family Run Jeweller</span>
         <span>in London</span>
       </span>
 
@@ -1614,7 +1660,8 @@
 
       <nav class="nav" aria-label="Primary">
         <a href="ringpage.html">Engagement Rings</a>
-          <a href="consultation.html">Consultation</a>
+        <a class="nav-trilogy" href="trilogy-ring.html">Trilogy Ring <span class="nav-badge">New</span></a>
+        <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
     </div>
@@ -1636,11 +1683,11 @@
             />
 
             <div class="hero-overlay">
-              <span class="eyebrow-hero">Private Hatton Garden Jeweller in London</span>
+              <span class="eyebrow-hero">Family Run Jeweller in London</span>
               <h1><span class="hero-heading-line">Bespoke Engagement Rings and fine jewellery.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
               <div class="hero-subcopy-row">
                 <div class="hero-subcopy">
-                  <p>When Mr Fox searched for an engagement ring, he couldn't find one that felt truly personal. That belief became LADFOX - a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and fine jewellery around your vision.</p>
+                  <p>When Mr Fox searched for an engagement ring, he couldn't find one that felt truly personal. That belief became LADFOX - a family run jeweller creating bespoke engagement rings, wedding bands and fine jewellery around your vision.</p>
                 </div>
 
                 <div class="hero-primary-actions">
@@ -1831,7 +1878,7 @@
     <section class="testimonials" aria-label="Bespoke jewellery questions">
       <div class="testimonials-head">
         <h2>Bespoke jewellery questions</h2>
-        <p><strong>What does Ladfox do?</strong> Ladfox is a private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance.</p>
+        <p><strong>What does Ladfox do?</strong> Ladfox is a family run jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance.</p>
         <p><strong>Can I design a ring from scratch?</strong> Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection.</p>
         <p><strong>Do Ladfox offer lab grown diamonds?</strong> Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery.</p>
         <div class="route-cta">
