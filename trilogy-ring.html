@@ -584,6 +584,7 @@
                 muted
                 loop
                 playsinline
+                webkit-playsinline="true"
                 aria-label="Trilogy engagement ring preview video"
               ></video>
               <button class="option-pill trilogy-video-arrow trilogy-video-arrow--prev" type="button" data-video-direction="-1" aria-label="Show previous video">&#8249;</button>
@@ -771,10 +772,17 @@
       video.loop = true;
       video.autoplay = true;
       video.playsInline = true;
+      video.setAttribute("autoplay", "");
       video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "true");
       video.removeAttribute("controls");
-      const playResult = video.play();
-      if (playResult && typeof playResult.catch === "function") playResult.catch(() => {});
+      const play = () => {
+        const playResult = video.play();
+        if (playResult && typeof playResult.catch === "function") playResult.catch(() => {});
+      };
+      play();
+      window.requestAnimationFrame(play);
     };
 
     const applyVideo = (index) => {
@@ -1121,9 +1129,16 @@
 
     if (video) {
       video.addEventListener("loadedmetadata", ensureVideoPlayback);
+      video.addEventListener("loadeddata", ensureVideoPlayback);
+      video.addEventListener("canplay", ensureVideoPlayback);
       video.addEventListener("pause", ensureVideoPlayback);
       video.addEventListener("volumechange", ensureVideoPlayback);
     }
+
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) ensureVideoPlayback();
+    });
+    window.addEventListener("pageshow", ensureVideoPlayback);
 
     if (checkoutButton) checkoutButton.addEventListener("click", beginCheckout);
     if (termsAccepted) {
