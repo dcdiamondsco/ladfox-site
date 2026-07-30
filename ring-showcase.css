@@ -434,13 +434,30 @@
     grid-template-columns:88px minmax(0, 1fr);
     grid-template-rows:auto;
     gap:18px;
-    align-items:center;
+    align-items:start;
   }
 
   .process-card__media{
+    width:88px;
     aspect-ratio:1 / 1;
-    min-height:240px;
+    min-height:88px;
+    max-width:88px;
     border-radius:22px;
+  }
+
+  .process-card__copy{
+    min-width:0;
+    padding-top:4px;
+  }
+
+  .process-card__copy h3{
+    font-size:1rem;
+    line-height:1.15;
+  }
+
+  .process-card__copy p{
+    font-size:.86rem;
+    line-height:1.5;
   }
 
   .process-card__media::after{
