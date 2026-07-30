@@ -1,3 +1,8 @@
+Library
+/
+Pasted text(26).txt
+
+
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -252,17 +257,17 @@
       display:inline-flex;
       flex-direction:column;
       gap:4px;
-      color:#161108;
-      background:linear-gradient(135deg, #f6dc7a 0%, #d5a321 100%);
-      border-color:rgba(244,216,116,.92);
-      box-shadow:0 12px 26px rgba(213,163,33,.22);
+      color:#0b0c10;
+      background:linear-gradient(135deg, #eef2f6 0%, #bcc5d0 100%);
+      border-color:rgba(214,222,230,.92);
+      box-shadow:0 12px 26px rgba(188,197,208,.18);
     }
 
     .nav a.nav-trilogy:hover,
     .nav a.nav-trilogy:focus-visible{
-      color:#161108;
-      background:linear-gradient(135deg, #fde590 0%, #dfb239 100%);
-      border-color:rgba(252,232,148,.96);
+      color:#0b0c10;
+      background:linear-gradient(135deg, #f8fbff 0%, #cbd4de 100%);
+      border-color:rgba(232,238,244,.96);
     }
 
     .nav-badge{
@@ -271,8 +276,8 @@
       justify-content:center;
       padding:2px 6px;
       border-radius:999px;
-      background:rgba(22,17,8,.14);
-      border:1px solid rgba(22,17,8,.18);
+      background:rgba(11,12,16,.08);
+      border:1px solid rgba(11,12,16,.14);
       font-size:.58rem;
       font-weight:800;
       letter-spacing:.12em;
@@ -451,7 +456,8 @@
       align-items:center;
       gap:12px;
       margin-top:18px;
-      flex:0 1 320px;
+      flex:0 1 360px;
+      width:min(360px, 100%);
     }
 
     .hero-primary-actions .btn{
@@ -464,6 +470,168 @@
       justify-content:center;
       gap:14px;
       margin-top:4px;
+      width:100%;
+    }
+
+    .hero-reassurance{
+      margin:14px 0 0;
+      color:rgba(255,255,255,.84);
+      font-size:.96rem;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+
+    .hero-enquiry-strip{
+      width:100%;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:22px;
+      background:rgba(6,8,12,.78);
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-enquiry-strip h2{
+      margin:0 0 10px;
+      font-size:1rem;
+      text-align:left;
+    }
+
+    .hero-enquiry-form{
+      display:grid;
+      gap:10px;
+    }
+
+    .hero-enquiry-options{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .hero-enquiry-option{
+      position:relative;
+      display:inline-flex;
+    }
+
+    .hero-enquiry-option input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .hero-enquiry-option span{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 14px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:.84rem;
+      font-weight:700;
+      transition:background .2s ease, border-color .2s ease, color .2s ease;
+      cursor:pointer;
+    }
+
+    .hero-enquiry-option input:checked + span,
+    .hero-enquiry-option input:focus-visible + span,
+    .hero-enquiry-option:hover span{
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.34);
+      color:#fff;
+      outline:none;
+    }
+
+    .hero-enquiry-main{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) auto;
+      gap:10px;
+      align-items:center;
+    }
+
+    .hero-enquiry-input{
+      width:100%;
+      min-height:48px;
+      padding:0 14px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font:inherit;
+    }
+
+    .hero-enquiry-input::placeholder{
+      color:rgba(255,255,255,.42);
+    }
+
+    .hero-enquiry-input:focus-visible{
+      outline:2px solid rgba(255,255,255,.52);
+      outline-offset:2px;
+      border-color:rgba(255,255,255,.34);
+    }
+
+    .hero-enquiry-submit{
+      min-width:170px;
+      min-height:48px;
+      padding:0 16px;
+      border:none;
+    }
+
+    .hero-enquiry-upload{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:28px;
+    }
+
+    .hero-enquiry-upload[hidden]{
+      display:none;
+    }
+
+    .hero-enquiry-upload label{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:0 12px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.78);
+      font-size:.8rem;
+      cursor:pointer;
+    }
+
+    .hero-enquiry-upload input{
+      position:absolute;
+      width:1px;
+      height:1px;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .hero-enquiry-upload-name{
+      color:rgba(255,255,255,.56);
+      font-size:.8rem;
+      line-height:1.4;
+    }
+
+    .hero-enquiry-status{
+      min-height:20px;
+      margin:0;
+      color:rgba(255,255,255,.78);
+      font-size:.84rem;
+      line-height:1.5;
+      text-align:left;
+    }
+
+    .hero-enquiry-status.is-error{
+      color:#ffb7b7;
+    }
+
+    .hero-enquiry-status.is-success{
+      color:#d8f0be;
     }
 
     .btn{
@@ -1264,16 +1432,25 @@
 
       .hero-primary-actions{
         margin:54px auto 54px;
+        width:min(100%, 360px);
       }
 
       .hero-primary-actions .btn{
-        width:min(100%, 320px);
+        width:min(100%, 360px);
         min-width:0;
       }
 
       .hero-secondary-actions{
         width:100%;
         margin-top:24px;
+      }
+
+      .hero-enquiry-main{
+        grid-template-columns:1fr;
+      }
+
+      .hero-enquiry-submit{
+        width:100%;
       }
 
       .hero-visual::after{
@@ -1683,18 +1860,85 @@
             />
 
             <div class="hero-overlay">
-              <span class="eyebrow-hero">Family Run Jeweller in London</span>
-              <h1><span class="hero-heading-line">Bespoke Engagement Rings and fine jewellery.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
+              <span class="eyebrow-hero">Family-run Hatton Garden jeweller</span>
+              <h1><span class="hero-heading-line">Bespoke engagement rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
               <div class="hero-subcopy-row">
                 <div class="hero-subcopy">
-                  <p>When Mr Fox searched for an engagement ring, he couldn't find one that felt truly personal. That belief became LADFOX - a family run jeweller creating bespoke engagement rings, wedding bands and fine jewellery around your vision.</p>
+                  <p>As a family-run jeweller, we take a personal approach to every ring we create. Each piece is made completely bespoke, whether you arrive with a finished design, a screenshot or simply a rough idea and budget. We&rsquo;ll guide you as much or as little as you need, helping you create something that feels entirely your own.</p>
+                  <p class="hero-reassurance">Bespoke engagement rings from &pound;1,999.</p>
                 </div>
 
                 <div class="hero-primary-actions">
-                  <a class="btn btn-primary" href="ringpage.html">Design your bespoke ring</a>
+                  <form
+                    id="heroQuickEnquiryForm"
+                    data-section-id="quick-enquiry"
+                    aria-labelledby="heroQuickEnquiryHeading"
+                    name="quick-enquiry"
+                    method="POST"
+                    action="/"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    enctype="multipart/form-data"
+                  >
+                    <section id="quick-enquiry" class="hero-enquiry-strip" aria-labelledby="heroQuickEnquiryHeading">
+                    <input type="hidden" name="form-name" value="quick-enquiry" />
+                    <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+                    <input type="hidden" name="source-page" value="index" />
+                    <input type="hidden" name="source-context" value="hero-quick-enquiry" />
+                    <input type="hidden" name="utm_source" id="heroQuickEnquiryUtmSource" />
+                    <input type="hidden" name="utm_medium" id="heroQuickEnquiryUtmMedium" />
+                    <input type="hidden" name="utm_campaign" id="heroQuickEnquiryUtmCampaign" />
+                    <input type="hidden" name="utm_term" id="heroQuickEnquiryUtmTerm" />
+                    <input type="hidden" name="utm_content" id="heroQuickEnquiryUtmContent" />
+                    <input type="hidden" name="gclid" id="heroQuickEnquiryGclid" />
+                    <input type="hidden" name="subject" id="heroQuickEnquirySubject" />
+                    <textarea name="summary" id="heroQuickEnquirySummary" hidden></textarea>
+                    <h2 id="heroQuickEnquiryHeading">How can we help?</h2>
+                    <div class="hero-enquiry-form">
+                      <div class="hero-enquiry-options" role="radiogroup" aria-label="How can LADFOX help?">
+                        <label class="hero-enquiry-option">
+                          <input type="radio" name="enquiry_route" value="Quick quote" required />
+                          <span>Quick quote</span>
+                        </label>
+                        <label class="hero-enquiry-option">
+                          <input type="radio" name="enquiry_route" value="Quick call" required />
+                          <span>Quick call</span>
+                        </label>
+                        <label class="hero-enquiry-option">
+                          <input type="radio" name="enquiry_route" value="Send an idea" required />
+                          <span>Send an idea</span>
+                        </label>
+                      </div>
+
+                      <div class="hero-enquiry-main">
+                        <label class="skip" for="heroQuickEnquiryContact">Mobile number or email</label>
+                        <input
+                          id="heroQuickEnquiryContact"
+                          class="hero-enquiry-input"
+                          type="text"
+                          name="contact_or_email"
+                          placeholder="Mobile number or email"
+                          autocomplete="email"
+                          required
+                        />
+                        <button id="heroQuickEnquirySubmit" class="btn btn-primary hero-enquiry-submit" type="submit">Get My Quote</button>
+                      </div>
+
+                      <div class="hero-enquiry-upload" id="heroQuickEnquiryUpload" hidden>
+                        <label for="heroQuickEnquiryImage">Add image (optional)</label>
+                        <input id="heroQuickEnquiryImage" type="file" name="idea_image" accept="image/*" />
+                        <span class="hero-enquiry-upload-name" id="heroQuickEnquiryUploadName">No file selected</span>
+                      </div>
+
+                      <p class="hero-enquiry-status" id="heroQuickEnquiryStatus" aria-live="polite"></p>
+                    </div>
+                    </section>
+                  </form>
+
                   <div class="hero-secondary-actions">
-                    <a class="btn btn-secondary" href="ring-gallery.html">View recent work</a>
-                    <a class="btn btn-secondary" href="signature-collection.html">Siganture Ring Collection</a>
+                    <a class="btn btn-secondary" id="ringDesignerLink" href="ringpage.html">Design Your Ring</a>
+                    <a class="btn btn-secondary" id="collectionLink" href="signature-collection.html">Signature Ring Collection</a>
+                    <a class="btn btn-secondary" id="recentWorkLink" href="ring-gallery.html">View Recent Work</a>
                   </div>
                 </div>
               </div>
@@ -1811,7 +2055,7 @@
                     <h3>Sketch and bespoke design direction</h3>
                   </div>
                   <img src="Images/Sketch.png" alt="Bespoke engagement ring sketch stage by Ladfox" loading="lazy" decoding="async" />
-                  <p class="route-caption">Send images an existing quote or a rough idea and we map the first design direction around the piece you actually want.</p>
+                  <p class="route-caption">Send images, an existing quote or a rough idea and we map the first design direction around the piece you actually want.</p>
                 </div>
               </a>
             </article>
@@ -1902,11 +2146,11 @@
     </div>
   </footer>
 
-  <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
+  <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send LADFOX a quick WhatsApp for friendly, no-pressure guidance.">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.59 5.94L0 24l6.34-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.87 9.87 0 0 1-1.52-5.24C2.15 6.43 6.58 2 12.06 2c2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.48-4.45 9.89-9.88 9.89Zm5.42-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.28-.2-.58-.35Z"/>
     </svg>
-    <span>Whatsapp us</span>
+    <span>WhatsApp us</span>
   </a>
 
   <noscript>
@@ -1917,6 +2161,36 @@
 
   <script>
     (() => {
+      const mergeQueryParamsIntoLink = (href, currentParams) => {
+        try {
+          const url = new URL(href, window.location.origin);
+          if (url.origin !== window.location.origin) {
+            return href;
+          }
+          const linkParams = new URLSearchParams(url.search);
+          currentParams.forEach((value, key) => {
+            if (!linkParams.has(key)) {
+              linkParams.set(key, value);
+            }
+          });
+          url.search = linkParams.toString() ? `?${linkParams.toString()}` : "";
+          return `${url.pathname}${url.search}${url.hash}`;
+        } catch (error) {
+          return href;
+        }
+      };
+
+      const safeTrack = (eventName, params = {}) => {
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: eventName, ...params });
+          if (typeof window.gtag === "function") {
+            window.gtag("event", eventName, params);
+          }
+        } catch (error) {
+        }
+      };
+
       const topbar = document.querySelector(".topbar");
       const processSection = document.getElementById("our-process");
       const mobileQuery = window.matchMedia("(max-width: 720px)");
@@ -1960,12 +2234,255 @@
           scrollBlackoutSelectors.flatMap((selector) => Array.from(document.querySelectorAll(selector)))
         )
       );
+      const currentParams = new URLSearchParams(window.location.search);
       const heroImage = document.querySelector("[data-hero-image]");
       const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const quickForm = document.getElementById("heroQuickEnquiryForm");
+      const quickContactField = document.getElementById("heroQuickEnquiryContact");
+      const quickSubmitButton = document.getElementById("heroQuickEnquirySubmit");
+      const quickStatus = document.getElementById("heroQuickEnquiryStatus");
+      const quickUploadRow = document.getElementById("heroQuickEnquiryUpload");
+      const quickUploadInput = document.getElementById("heroQuickEnquiryImage");
+      const quickUploadName = document.getElementById("heroQuickEnquiryUploadName");
+      const quickRouteInputs = Array.from(document.querySelectorAll('#heroQuickEnquiryForm input[name="enquiry_route"]'));
+      const attributionFields = {
+        utm_source: document.getElementById("heroQuickEnquiryUtmSource"),
+        utm_medium: document.getElementById("heroQuickEnquiryUtmMedium"),
+        utm_campaign: document.getElementById("heroQuickEnquiryUtmCampaign"),
+        utm_term: document.getElementById("heroQuickEnquiryUtmTerm"),
+        utm_content: document.getElementById("heroQuickEnquiryUtmContent"),
+        gclid: document.getElementById("heroQuickEnquiryGclid")
+      };
+      let quickFormStarted = false;
 
       if (!heroVisual || !heroCopy || !topbar || !processSection) {
         return;
       }
+
+      if ([...currentParams.keys()].length) {
+        document.querySelectorAll('a[href]').forEach((anchor) => {
+          const href = anchor.getAttribute("href");
+          if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("https://wa.me/")) {
+            return;
+          }
+          anchor.setAttribute("href", mergeQueryParamsIntoLink(href, currentParams));
+        });
+      }
+
+      const buildAttribution = () => {
+        const saved = sessionStorage.getItem("ladfox_quick_enquiry_attribution");
+        let parsed = {};
+
+        if (saved) {
+          try {
+            parsed = JSON.parse(saved);
+          } catch (error) {
+            parsed = {};
+          }
+        }
+
+        const merged = { ...parsed };
+        ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"].forEach((key) => {
+          const value = currentParams.get(key);
+          if (value) {
+            merged[key] = value;
+          }
+        });
+        sessionStorage.setItem("ladfox_quick_enquiry_attribution", JSON.stringify(merged));
+        return merged;
+      };
+
+      const attribution = buildAttribution();
+      Object.entries(attributionFields).forEach(([key, field]) => {
+        if (field) {
+          field.value = attribution[key] || "";
+        }
+      });
+
+      const getSelectedRoute = () => quickForm?.querySelector('input[name="enquiry_route"]:checked')?.value || "";
+
+      const setQuickStatus = (message, kind = "") => {
+        if (!quickStatus) {
+          return;
+        }
+        quickStatus.textContent = message;
+        quickStatus.classList.remove("is-error", "is-success");
+        if (kind) {
+          quickStatus.classList.add(kind);
+        }
+      };
+
+      const markQuickFormStarted = () => {
+        if (quickFormStarted) {
+          return;
+        }
+        quickFormStarted = true;
+        safeTrack("quick_form_start");
+      };
+
+      const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      const isValidPhone = (value) => {
+        const digits = value.replace(/[^\d]/g, "");
+        return /^[+]?[\d\s().-]{7,}$/.test(value) && digits.length >= 7 && digits.length <= 15;
+      };
+
+      const validateQuickContact = () => {
+        if (!quickContactField) {
+          return true;
+        }
+        const value = quickContactField.value.trim();
+        if (!value) {
+          quickContactField.setCustomValidity("Please enter a mobile number or email.");
+          return false;
+        }
+        if (!isValidEmail(value) && !isValidPhone(value)) {
+          quickContactField.setCustomValidity("Please enter a valid mobile number or email.");
+          return false;
+        }
+        quickContactField.setCustomValidity("");
+        return true;
+      };
+
+      const syncQuickEnquiry = () => {
+        const route = getSelectedRoute();
+        const isIdea = route === "Send an idea";
+
+        if (quickUploadRow) {
+          quickUploadRow.hidden = !isIdea;
+        }
+
+        if (quickSubmitButton instanceof HTMLButtonElement) {
+          quickSubmitButton.textContent =
+            route === "Quick call" ? "Request a Quick Call" :
+            route === "Send an idea" ? "Send My Idea" :
+            "Get My Quote";
+        }
+
+        if (!isIdea && quickUploadInput instanceof HTMLInputElement) {
+          quickUploadInput.value = "";
+        }
+        if (quickUploadName) {
+          quickUploadName.textContent = isIdea && quickUploadInput?.files?.[0] ? quickUploadInput.files[0].name : "No file selected";
+        }
+      };
+
+      quickRouteInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          syncQuickEnquiry();
+          markQuickFormStarted();
+          safeTrack("enquiry_option_selected", { selected_option: input.value });
+        });
+      });
+
+      quickContactField?.addEventListener("input", () => {
+        validateQuickContact();
+        markQuickFormStarted();
+      });
+
+      quickForm?.addEventListener("focusin", (event) => {
+        if (
+          event.target instanceof HTMLInputElement ||
+          event.target instanceof HTMLTextAreaElement ||
+          event.target instanceof HTMLSelectElement
+        ) {
+          markQuickFormStarted();
+        }
+      });
+
+      quickUploadInput?.addEventListener("change", () => {
+        if (quickUploadName) {
+          quickUploadName.textContent = quickUploadInput.files?.[0]?.name || "No file selected";
+        }
+      });
+
+      syncQuickEnquiry();
+
+      quickForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const route = getSelectedRoute();
+        if (!route) {
+          setQuickStatus("Please choose how you would like LADFOX to help.", "is-error");
+          safeTrack("quick_form_submit_error", { error_type: "validation" });
+          return;
+        }
+
+        if (!validateQuickContact() || !quickForm.reportValidity()) {
+          setQuickStatus(quickContactField?.validationMessage || "Please check your details and try again.", "is-error");
+          safeTrack("quick_form_submit_error", { error_type: "validation" });
+          return;
+        }
+
+        const subjectField = document.getElementById("heroQuickEnquirySubject");
+        const summaryField = document.getElementById("heroQuickEnquirySummary");
+        const attributionLines = [];
+        Object.entries(attributionFields).forEach(([key, field]) => {
+          if (field?.value) {
+            attributionLines.push(`${key}: ${field.value}`);
+          }
+        });
+
+        if (subjectField) {
+          subjectField.value = `${route} enquiry from homepage hero`;
+        }
+
+        if (summaryField) {
+          summaryField.value = [
+            `Enquiry route:\n${route}`,
+            `Contact:\n${quickContactField?.value.trim() || ""}`,
+            attributionLines.length ? `Attribution:\n${attributionLines.join("\n")}` : ""
+          ].filter(Boolean).join("\n\n");
+        }
+
+        setQuickStatus("Sending your enquiry...", "");
+        if (quickSubmitButton instanceof HTMLButtonElement) {
+          quickSubmitButton.disabled = true;
+        }
+
+        try {
+          const response = await fetch("/", {
+            method: "POST",
+            body: new FormData(quickForm)
+          });
+
+          if (!response.ok) {
+            throw new Error(`Submission failed with status ${response.status}`);
+          }
+
+          const successMessage = route === "Quick call"
+            ? "Thank you. LADFOX will get in touch to arrange a convenient, relaxed call."
+            : "Thank you. Your enquiry has been sent to LADFOX successfully.";
+
+          setQuickStatus(successMessage, "is-success");
+          safeTrack("quick_form_submit_success", { selected_option: route });
+          quickForm.reset();
+          Object.entries(attributionFields).forEach(([key, field]) => {
+            if (field) {
+              field.value = attribution[key] || "";
+            }
+          });
+          quickFormStarted = false;
+          syncQuickEnquiry();
+        } catch (error) {
+          setQuickStatus("We could not send that right now. Please try again in a moment.", "is-error");
+          safeTrack("quick_form_submit_error", { error_type: "submission" });
+        } finally {
+          if (quickSubmitButton instanceof HTMLButtonElement) {
+            quickSubmitButton.disabled = false;
+          }
+        }
+      });
+
+      [
+        { id: "quickMessageToggle", eventName: "whatsapp_click" },
+        { id: "ringDesignerLink", eventName: "ring_designer_click" },
+        { id: "collectionLink", eventName: "collection_click" },
+        { id: "recentWorkLink", eventName: "recent_commissions_click" }
+      ].forEach(({ id, eventName }) => {
+        document.getElementById(id)?.addEventListener("click", () => {
+          safeTrack(eventName);
+        });
+      });
 
       if (heroImage) {
         const heroSlides = [
@@ -2142,11 +2659,5 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
