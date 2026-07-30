@@ -1,8 +1,3 @@
-Library
-/
-Pasted text(26).txt
-
-
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -17,7 +12,7 @@ Pasted text(26).txt
 
     gtag('config', 'AW-18173399172');
   </script>
-<title>LADFOX | Engagement Rings & Fine Jewellery</title>
+<title>Bespoke Engagement Rings and Fine Jewellery | LADFOX</title>
 
   <meta name="description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -30,7 +25,7 @@ Pasted text(26).txt
 
   <meta property="og:locale" content="en_GB" />
   <meta property="og:site_name" content="Ladfox" />
-  <meta property="og:title" content="LADFOX | Engagement Rings & Fine Jewellery" />
+  <meta property="og:title" content="Bespoke Engagement Rings and Fine Jewellery | LADFOX" />
   <meta property="og:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ladfox.com/" />
@@ -39,7 +34,7 @@ Pasted text(26).txt
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="LADFOX | Engagement Rings & Fine Jewellery" />
+  <meta name="twitter:title" content="Bespoke Engagement Rings and Fine Jewellery | LADFOX" />
   <meta name="twitter:description" content="Private Hatton Garden jeweller creating bespoke engagement rings, wedding bands and custom jewellery with personal guidance, CAD design and lifetime warranty." />
   <meta name="twitter:image" content="https://ladfox.com/Images/background%202.png" />
 
@@ -473,14 +468,6 @@ Pasted text(26).txt
       width:100%;
     }
 
-    .hero-reassurance{
-      margin:14px 0 0;
-      color:rgba(255,255,255,.84);
-      font-size:.96rem;
-      font-weight:800;
-      letter-spacing:.02em;
-    }
-
     .hero-enquiry-strip{
       width:100%;
       padding:14px;
@@ -577,6 +564,32 @@ Pasted text(26).txt
       min-height:48px;
       padding:0 16px;
       border:none;
+    }
+
+    .hero-enquiry-message[hidden]{
+      display:none;
+    }
+
+    .hero-enquiry-textarea{
+      width:100%;
+      min-height:96px;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font:inherit;
+      resize:vertical;
+    }
+
+    .hero-enquiry-textarea::placeholder{
+      color:rgba(255,255,255,.42);
+    }
+
+    .hero-enquiry-textarea:focus-visible{
+      outline:2px solid rgba(255,255,255,.52);
+      outline-offset:2px;
+      border-color:rgba(255,255,255,.34);
     }
 
     .hero-enquiry-upload{
@@ -1864,8 +1877,7 @@ Pasted text(26).txt
               <h1><span class="hero-heading-line">Bespoke engagement rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
               <div class="hero-subcopy-row">
                 <div class="hero-subcopy">
-                  <p>As a family-run jeweller, we take a personal approach to every ring we create. Each piece is made completely bespoke, whether you arrive with a finished design, a screenshot or simply a rough idea and budget. We&rsquo;ll guide you as much or as little as you need, helping you create something that feels entirely your own.</p>
-                  <p class="hero-reassurance">Bespoke engagement rings from &pound;1,999.</p>
+                  <p>As a family-run jeweller, we take a personal approach to every piece we create. Each piece is made completely bespoke, whether you arrive with a finished design, a screenshot or simply a rough idea and budget. We&rsquo;ll guide you as much or as little as you need, helping you create something that feels entirely your own.</p>
                 </div>
 
                 <div class="hero-primary-actions">
@@ -1924,6 +1936,16 @@ Pasted text(26).txt
                         <button id="heroQuickEnquirySubmit" class="btn btn-primary hero-enquiry-submit" type="submit">Get My Quote</button>
                       </div>
 
+                      <div class="hero-enquiry-message" id="heroQuickEnquiryMessageWrap" hidden>
+                        <label class="skip" for="heroQuickEnquiryMessage">Message</label>
+                        <textarea
+                          id="heroQuickEnquiryMessage"
+                          class="hero-enquiry-textarea"
+                          name="message"
+                          placeholder="Tell us what you need help with, your idea, or the quote you want us to review."
+                        ></textarea>
+                      </div>
+
                       <div class="hero-enquiry-upload" id="heroQuickEnquiryUpload" hidden>
                         <label for="heroQuickEnquiryImage">Add image (optional)</label>
                         <input id="heroQuickEnquiryImage" type="file" name="idea_image" accept="image/*" />
@@ -1937,7 +1959,6 @@ Pasted text(26).txt
 
                   <div class="hero-secondary-actions">
                     <a class="btn btn-secondary" id="ringDesignerLink" href="ringpage.html">Design Your Ring</a>
-                    <a class="btn btn-secondary" id="collectionLink" href="signature-collection.html">Signature Ring Collection</a>
                     <a class="btn btn-secondary" id="recentWorkLink" href="ring-gallery.html">View Recent Work</a>
                   </div>
                 </div>
@@ -2244,6 +2265,8 @@ Pasted text(26).txt
       const quickUploadRow = document.getElementById("heroQuickEnquiryUpload");
       const quickUploadInput = document.getElementById("heroQuickEnquiryImage");
       const quickUploadName = document.getElementById("heroQuickEnquiryUploadName");
+      const quickMessageWrap = document.getElementById("heroQuickEnquiryMessageWrap");
+      const quickMessageField = document.getElementById("heroQuickEnquiryMessage");
       const quickRouteInputs = Array.from(document.querySelectorAll('#heroQuickEnquiryForm input[name="enquiry_route"]'));
       const attributionFields = {
         utm_source: document.getElementById("heroQuickEnquiryUtmSource"),
@@ -2330,12 +2353,22 @@ Pasted text(26).txt
         if (!quickContactField) {
           return true;
         }
+        const route = getSelectedRoute();
         const value = quickContactField.value.trim();
         if (!value) {
-          quickContactField.setCustomValidity("Please enter a mobile number or email.");
+          quickContactField.setCustomValidity(
+            route === "Quick call"
+              ? "Please enter a mobile number."
+              : "Please enter a mobile number or email."
+          );
           return false;
         }
-        if (!isValidEmail(value) && !isValidPhone(value)) {
+        if (route === "Quick call") {
+          if (!isValidPhone(value)) {
+            quickContactField.setCustomValidity("Please enter a valid mobile number.");
+            return false;
+          }
+        } else if (!isValidEmail(value) && !isValidPhone(value)) {
           quickContactField.setCustomValidity("Please enter a valid mobile number or email.");
           return false;
         }
@@ -2346,9 +2379,14 @@ Pasted text(26).txt
       const syncQuickEnquiry = () => {
         const route = getSelectedRoute();
         const isIdea = route === "Send an idea";
+        const isCall = route === "Quick call";
+        const needsMessage = route === "Quick quote" || route === "Quick call";
 
         if (quickUploadRow) {
           quickUploadRow.hidden = !isIdea;
+        }
+        if (quickMessageWrap) {
+          quickMessageWrap.hidden = !needsMessage;
         }
 
         if (quickSubmitButton instanceof HTMLButtonElement) {
@@ -2356,6 +2394,23 @@ Pasted text(26).txt
             route === "Quick call" ? "Request a Quick Call" :
             route === "Send an idea" ? "Send My Idea" :
             "Get My Quote";
+        }
+
+        if (quickContactField instanceof HTMLInputElement) {
+          quickContactField.value = "";
+          quickContactField.type = isCall ? "tel" : "text";
+          quickContactField.name = isCall ? "mobile_number" : "contact_or_email";
+          quickContactField.placeholder = isCall ? "Mobile number" : "Mobile number or email";
+          quickContactField.autocomplete = isCall ? "tel" : "email";
+          quickContactField.inputMode = isCall ? "tel" : "text";
+          quickContactField.setAttribute("aria-label", isCall ? "Mobile number" : "Mobile number or email");
+        }
+
+        if (quickMessageField instanceof HTMLTextAreaElement) {
+          quickMessageField.value = "";
+          quickMessageField.placeholder = isCall
+            ? "Tell us the best time to call or what you would like help with."
+            : "Tell us what you need help with, your idea, or the quote you want us to review.";
         }
 
         if (!isIdea && quickUploadInput instanceof HTMLInputElement) {
@@ -2430,6 +2485,7 @@ Pasted text(26).txt
           summaryField.value = [
             `Enquiry route:\n${route}`,
             `Contact:\n${quickContactField?.value.trim() || ""}`,
+            quickMessageField?.value.trim() ? `Message:\n${quickMessageField.value.trim()}` : "",
             attributionLines.length ? `Attribution:\n${attributionLines.join("\n")}` : ""
           ].filter(Boolean).join("\n\n");
         }
@@ -2476,7 +2532,6 @@ Pasted text(26).txt
       [
         { id: "quickMessageToggle", eventName: "whatsapp_click" },
         { id: "ringDesignerLink", eventName: "ring_designer_click" },
-        { id: "collectionLink", eventName: "collection_click" },
         { id: "recentWorkLink", eventName: "recent_commissions_click" }
       ].forEach(({ id, eventName }) => {
         document.getElementById(id)?.addEventListener("click", () => {
