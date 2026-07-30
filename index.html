@@ -314,13 +314,13 @@
     }
 
     .hero-visual{
-      min-height:700px;
-      height:700px;
+      min-height:860px;
       position:relative;
       display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:visible;
+      align-items:flex-start;
+      justify-content:flex-start;
+      padding:92px 96px 140px;
+      overflow:hidden;
       border-radius:0;
     }
 
@@ -350,6 +350,8 @@
     }
 
     .hero-image{
+      position:absolute;
+      inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
@@ -365,11 +367,10 @@
     }
 
     .hero-overlay{
-      position:absolute;
-      top:92px;
-      left:96px;
+      position:relative;
       z-index:2;
-      max-width:min(1080px, calc(100% - 192px));
+      width:100%;
+      max-width:1120px;
       transition:opacity .32s ease;
     }
 
@@ -418,7 +419,7 @@
     }
 
     .hero-subcopy{
-      margin:18px 0 0;
+      margin:32px 0 0;
       max-width:72ch;
       flex:1 1 640px;
       color:rgba(255,255,255,.84);
@@ -436,36 +437,113 @@
     }
 
     .hero-subcopy-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:32px;
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(320px, 420px);
+      align-items:start;
+      gap:48px;
       margin-top:18px;
-      width:min(960px, calc(100vw - 240px));
-      max-width:100%;
+      width:100%;
     }
 
     .hero-primary-actions{
       display:flex;
       flex-direction:column;
-      align-items:center;
+      align-items:stretch;
       gap:12px;
-      margin-top:18px;
-      flex:0 1 360px;
-      width:min(360px, 100%);
+      margin-top:28px;
+      width:100%;
+      max-width:none;
     }
 
     .hero-primary-actions .btn{
-      min-width:280px;
+      min-width:0;
     }
 
     .hero-secondary-actions{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
       gap:14px;
-      margin-top:4px;
+      margin-top:28px;
       width:100%;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .hero-visual-link{
+      position:relative;
+      display:block;
+      min-height:104px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:26px;
+      background:#0f1117;
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .hero-visual-link:hover,
+    .hero-visual-link:focus-visible{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.3);
+      box-shadow:0 22px 42px rgba(0,0,0,.28);
+      outline:none;
+    }
+
+    .hero-visual-link img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.62;
+      transform:scale(1.02);
+    }
+
+    #recentWorkLink img{
+      object-position:58% 64%;
+      transform:scale(1);
+    }
+
+    #ringDesignerLink img{
+      object-position:center 16%;
+      transform:scale(1);
+    }
+
+    .hero-visual-link::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.76) 0%, rgba(0,0,0,.44) 48%, rgba(0,0,0,.66) 100%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+
+    .hero-visual-link-copy{
+      position:relative;
+      z-index:1;
+      display:grid;
+      align-content:end;
+      min-height:104px;
+      padding:18px 18px;
+    }
+
+    .hero-visual-link-title{
+      display:block;
+      color:#fff;
+      font-family:var(--heading);
+      font-size:1.1rem;
+      font-weight:800;
+      letter-spacing:-.01em;
+      line-height:1.1;
+    }
+
+    .hero-visual-link-text{
+      display:block;
+      margin-top:8px;
+      color:rgba(255,255,255,.82);
+      font-size:.9rem;
+      line-height:1.45;
     }
 
     .hero-enquiry-strip{
@@ -533,13 +611,14 @@
 
     .hero-enquiry-main{
       display:grid;
-      grid-template-columns:minmax(0, 1fr) auto;
+      grid-template-columns:minmax(220px, 1fr) auto;
       gap:10px;
-      align-items:center;
+      align-items:stretch;
     }
 
     .hero-enquiry-input{
       width:100%;
+      min-width:0;
       min-height:48px;
       padding:0 14px;
       border:1px solid rgba(255,255,255,.16);
@@ -560,10 +639,13 @@
     }
 
     .hero-enquiry-submit{
+      width:auto;
       min-width:170px;
+      max-width:220px;
       min-height:48px;
       padding:0 16px;
       border:none;
+      white-space:nowrap;
     }
 
     .hero-enquiry-message[hidden]{
@@ -717,6 +799,18 @@
       font-weight:800;
       margin-bottom:24px;
       text-align:center;
+    }
+
+    .service-title{
+      display:block;
+      margin:0 0 28px;
+      text-align:center;
+      color:#fff;
+      font-family:var(--heading);
+      font-size:clamp(2rem, 3.6vw, 3.25rem);
+      font-weight:800;
+      letter-spacing:-.02em;
+      line-height:1.05;
     }
 
     .eyebrow-secondary{
@@ -1013,7 +1107,7 @@
 
     .testimonials{
       width:min(1120px, calc(100vw - 48px));
-      margin:84px auto 20px;
+      margin:28px auto 20px;
       padding:0;
     }
 
@@ -1200,10 +1294,15 @@
     }
 
     @media (max-width:1080px){
-      .hero-grid{ min-height:900px; }
-      .hero-card{ height:620px; }
-      .hero-visual{ min-height:620px; }
-      .hero-overlay{ left:48px; max-width:min(620px, calc(100% - 96px)); }
+      .hero-grid{ min-height:980px; }
+      .hero-card{ height:auto; }
+      .hero-visual{ min-height:760px; padding:84px 48px 120px; }
+      .hero-overlay{ max-width:none; }
+      .hero-subcopy-row{
+        grid-template-columns:1fr;
+        gap:24px;
+        max-width:720px;
+      }
       .route:nth-child(1),
       .route:nth-child(2),
       .route:nth-child(3){
@@ -1378,13 +1477,10 @@
 
       .hero-visual{
         min-height:980px;
-        height:980px;
+        padding:108px 16px 72px;
       }
 
       .hero-overlay{
-        top:108px;
-        left:16px;
-        right:16px;
         max-width:none;
         text-align:center;
       }
@@ -1425,7 +1521,7 @@
       }
 
       .hero-subcopy{
-        margin-top:12px;
+        margin-top:20px;
         max-width:none;
         font-size:.96rem;
         line-height:1.65;
@@ -1444,8 +1540,8 @@
       }
 
       .hero-primary-actions{
-        margin:54px auto 54px;
-        width:min(100%, 360px);
+        margin:28px auto 42px;
+        width:100%;
       }
 
       .hero-primary-actions .btn{
@@ -1454,8 +1550,37 @@
       }
 
       .hero-secondary-actions{
+        display:grid;
         width:100%;
-        margin-top:24px;
+        margin-top:28px;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        align-items:stretch;
+        justify-items:stretch;
+      }
+
+      .hero-visual-link{
+        width:100%;
+        max-width:none;
+        min-width:0;
+        min-height:84px;
+        border-radius:18px;
+      }
+
+      .hero-visual-link-copy{
+        min-height:84px;
+        padding:12px;
+        align-content:center;
+        text-align:center;
+      }
+
+      .hero-visual-link-title{
+        font-size:.92rem;
+        line-height:1.08;
+      }
+
+      .hero-visual-link-text{
+        display:none;
       }
 
       .hero-enquiry-main{
@@ -1586,7 +1711,7 @@
 
       .testimonials{
         width:min(calc(100vw - 32px), 100%);
-        margin:0 auto 14px;
+        margin:24px auto 14px;
       }
 
       .quick-message-bubble{
@@ -1604,6 +1729,24 @@
     }
 
     @media (max-width:480px){
+      .hero-secondary-actions{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .hero-visual-link{
+        min-height:80px;
+      }
+
+      .hero-visual-link-copy{
+        min-height:80px;
+        padding:10px;
+      }
+
+      .hero-visual-link-title{
+        font-size:.84rem;
+      }
+
       .brand-logo{
         width:min(236px, 62vw);
       }
@@ -1614,11 +1757,7 @@
 
       .hero-visual{
         min-height:1040px;
-        height:1040px;
-      }
-
-      .hero-overlay{
-        top:96px;
+        padding-top:96px;
       }
 
       h1{
@@ -1639,7 +1778,7 @@
       }
 
       .testimonials{
-        margin:0 auto 12px;
+        margin:20px auto 12px;
       }
     }
   </style>
@@ -1874,10 +2013,10 @@
 
             <div class="hero-overlay">
               <span class="eyebrow-hero">Family-run Hatton Garden jeweller</span>
-              <h1><span class="hero-heading-line">Bespoke engagement rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
+              <h1><span class="hero-heading-line">Bespoke Engagement Rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
               <div class="hero-subcopy-row">
                 <div class="hero-subcopy">
-                  <p>As a family-run jeweller, we take a personal approach to every piece we create. Each piece is made completely bespoke, whether you arrive with a finished design, a screenshot or simply a rough idea and budget. We&rsquo;ll guide you as much or as little as you need, helping you create something that feels entirely your own.</p>
+                  <p>As a family-run jeweller, we take a personal approach to every piece we create. Each piece is made completely bespoke, whether you have a finished design, a screenshot or simply a rough idea and budget. We&rsquo;ll guide you as much or as little as you need, helping you create something that feels entirely your own.</p>
                 </div>
 
                 <div class="hero-primary-actions">
@@ -1958,8 +2097,20 @@
                   </form>
 
                   <div class="hero-secondary-actions">
-                    <a class="btn btn-secondary" id="ringDesignerLink" href="ringpage.html">Design Your Ring</a>
-                    <a class="btn btn-secondary" id="recentWorkLink" href="ring-gallery.html">View Recent Work</a>
+                    <a class="hero-visual-link" id="ringDesignerLink" href="ringpage.html">
+                      <img src="Images/jamie%20sketch.png" alt="" loading="lazy" decoding="async" />
+                      <span class="hero-visual-link-copy">
+                        <span class="hero-visual-link-title">Design My Ring</span>
+                        <span class="hero-visual-link-text">Start with sketches, CAD and stone guidance built around your idea.</span>
+                      </span>
+                    </a>
+                    <a class="hero-visual-link" id="recentWorkLink" href="ring-gallery.html">
+                      <img src="Images/recent%20work%20image.jpg.jpeg" alt="" loading="lazy" decoding="async" />
+                      <span class="hero-visual-link-copy">
+                        <span class="hero-visual-link-title">View Recent Work</span>
+                        <span class="hero-visual-link-text">See finished commissions, proposal moments and recent bespoke pieces.</span>
+                      </span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -2063,17 +2214,14 @@
         </section>
 
         <div class="hero-copy">
-          <span class="eyebrow"><span class="eyebrow-primary">Our bespoke jewellery</span> <span class="eyebrow-secondary">design service</span></span>
-          <div class="route-cta">
-            <a class="btn btn-secondary" href="signature-collection.html">Our Signature Collection</a>
-          </div>
+          <span class="service-title">Our Service</span>
           <div class="routes" aria-label="Process steps">
             <article class="route">
               <a class="route-link" href="ringpage.html">
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">1</span>
-                    <h3>Sketch and bespoke design direction</h3>
+                    <h3>Complimentary sketch and bespoke design direction</h3>
                   </div>
                   <img src="Images/Sketch.png" alt="Bespoke engagement ring sketch stage by Ladfox" loading="lazy" decoding="async" />
                   <p class="route-caption">Send images, an existing quote or a rough idea and we map the first design direction around the piece you actually want.</p>
@@ -2099,7 +2247,7 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">3</span>
-                    <h3>Make, finish and deliver your jewellery</h3>
+                    <h3>Create</h3>
                   </div>
                   <img src="Images/Diamond%20selection.png" alt="Diamond selection for bespoke engagement ring" loading="lazy" decoding="async" />
                   <p class="route-caption" style="padding-bottom:30px;">From setting and finishing to engraving and delivery we keep the process clean private and closely managed.</p>
