@@ -501,7 +501,7 @@
 
     #recentWorkLink img{
       object-position:58% 64%;
-      transform:scale(1);
+      transform:scale(1.14);
     }
 
     #ringDesignerLink img{
@@ -1525,14 +1525,14 @@
         max-width:none;
         font-size:.96rem;
         line-height:1.65;
-        text-align:center;
+        text-align:left;
       }
 
       .hero-subcopy-row{
         display:grid;
         grid-template-columns:minmax(0, 1fr);
         align-items:start;
-        justify-items:center;
+        justify-items:start;
         gap:12px;
         margin-top:14px;
         max-width:none;
@@ -1540,7 +1540,7 @@
       }
 
       .hero-primary-actions{
-        margin:28px auto 42px;
+        margin:28px 0 42px;
         width:100%;
       }
 
@@ -1583,12 +1583,39 @@
         display:none;
       }
 
+      .hero-enquiry-form{
+        display:flex;
+        flex-direction:column;
+      }
+
+      .hero-enquiry-options{
+        order:1;
+      }
+
       .hero-enquiry-main{
-        grid-template-columns:1fr;
+        display:contents;
+      }
+
+      .hero-enquiry-input{
+        order:2;
+      }
+
+      .hero-enquiry-message{
+        order:3;
+      }
+
+      .hero-enquiry-upload{
+        order:4;
       }
 
       .hero-enquiry-submit{
+        order:5;
         width:100%;
+        max-width:none;
+      }
+
+      .hero-enquiry-status{
+        order:6;
       }
 
       .hero-visual::after{
@@ -1988,7 +2015,7 @@
       </a>
 
       <nav class="nav" aria-label="Primary">
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="ringpage.html">Design My Ring</a>
         <a class="nav-trilogy" href="trilogy-ring.html">Trilogy Ring <span class="nav-badge">New</span></a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
@@ -2305,7 +2332,7 @@
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
       <div class="footer-links" aria-label="Footer links">
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="ringpage.html">Design My Ring</a>
         <a href="ring-gallery.html">Previous Work</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
         <a href="consultation.html">Consultation</a>
