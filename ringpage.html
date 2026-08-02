@@ -15,9 +15,8 @@
 
     <meta name="description" content="Design your bespoke engagement ring with LADFOX. Choose the style, stone, setting and metal from home, then receive personal guidance and a tailored quote." />
     <link rel="canonical" href="https://ladfox.com/design/your-ring" />
-    <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
-    <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/png" sizes="1024x1024" href="Images/Logo%20Inverted.png" />
+    <link rel="apple-touch-icon" href="Images/Logo%20Inverted.png" />
     <meta name="theme-color" content="#050505" />
 
     <meta property="og:title" content="Design Your Bespoke Engagement Ring | LADFOX" />
@@ -34,6 +33,14 @@
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="color-scheme" content="dark" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script>
+      if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+        const manifestLink = document.createElement("link");
+        manifestLink.rel = "manifest";
+        manifestLink.href = "site.webmanifest";
+        document.head.appendChild(manifestLink);
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
@@ -983,6 +990,25 @@
         transition:background .2s ease, border-color .2s ease, box-shadow .2s ease;
       }
 
+      .guided-form__brand{
+        display:flex;
+        justify-content:flex-start;
+        align-items:center;
+        width:min(100%, 820px);
+        margin:0 auto 2px;
+        padding-left:24px;
+      }
+
+      .guided-form__brand img{
+        display:block;
+        width:min(170px, 24vw);
+        height:auto;
+      }
+
+      .guided-form:not(.guided-form--intro) .guided-form__brand{
+        display:none;
+      }
+
       @keyframes ringSettingZoom{
         0%{
           transform:scale(.88) translateY(12px);
@@ -1226,9 +1252,7 @@
         z-index:2;
       }
 
-      .guided-form--intro .guided-form__body,
-      .guided-form--intro .guided-form__note,
-      .guided-form--intro .quick-start-status{
+      .guided-form--intro .guided-form__note{
         display:none;
       }
 
@@ -1237,28 +1261,35 @@
       }
 
       .guided-form--intro::before{
-        display:none;
+        display:block;
+        inset:0;
+        height:auto;
+        background-image:url("Images/Studio%20portrait%20or%20workshop%20image.png");
+        background-position:center;
+        background-size:cover;
+        background-repeat:no-repeat;
+        opacity:.32;
+        filter:none;
       }
 
       .guided-form--intro{
         min-height:calc(100svh - 48px);
-        align-content:center;
+        height:calc(100svh - 48px);
+        max-height:calc(100svh - 48px);
+        overflow:hidden;
+        align-content:start;
         align-items:center;
         justify-items:center;
-        grid-template-rows:auto auto;
+        grid-template-rows:auto minmax(0, 1fr);
       }
 
       .guided-form--intro .guided-form__intro{
-        padding-bottom:18px;
+        padding-bottom:4px;
+        align-content:center;
       }
 
       .guided-form--intro .guided-form__footer{
-        display:flex;
-        justify-content:center;
-        width:100%;
-        position:static;
-        padding:0;
-        background:transparent;
+        display:none;
       }
 
       .guided-form--intro .btn,
@@ -1277,6 +1308,311 @@
 
       .guided-form--intro .guided-form__footer .btn{
         animation:introButtonPulse 2.2s ease-in-out infinite;
+      }
+
+      .guided-form--intro .guided-form__body{
+        display:grid;
+        align-content:center;
+        justify-items:center;
+        width:100%;
+        min-height:0;
+        height:100%;
+        padding:0;
+        position:relative;
+      }
+
+      .guided-intro-actions{
+        width:min(100%, 820px);
+        display:grid;
+        gap:12px;
+        align-content:center;
+        justify-items:center;
+        margin:0 auto;
+        padding-top:0;
+        position:relative;
+        isolation:isolate;
+      }
+
+      .guided-intro-actions::before{
+        content:"";
+        position:absolute;
+        inset:-24px -28px -20px;
+        border-radius:28px;
+        background:linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.4) 58%, rgba(0,0,0,.22));
+        box-shadow:0 18px 42px rgba(0,0,0,.22);
+        z-index:0;
+        pointer-events:none;
+      }
+
+      .guided-intro-actions__title{
+        margin:0;
+        color:#fff;
+        font-family:var(--ui-font);
+        font-size:clamp(.72rem, 1.4vw, .84rem);
+        font-weight:800;
+        line-height:1.18;
+        text-align:center;
+        transform:translateY(-16px);
+        position:relative;
+        z-index:1;
+      }
+
+      .guided-intro-actions__row{
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:10px;
+        width:100%;
+        max-width:980px;
+        align-items:center;
+        position:relative;
+        z-index:1;
+      }
+
+      .guided-intro-action{
+        min-height:72px;
+        padding:12px 10px;
+        border-radius:18px;
+        border:1px solid rgba(255,255,255,.14);
+        background:rgba(255,255,255,.035);
+        color:#fff;
+        font-family:var(--ui-font);
+        font-size:clamp(.72rem, 1.4vw, .84rem);
+        font-weight:800;
+        line-height:1.18;
+        text-align:center;
+        cursor:pointer;
+        transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      }
+
+      .guided-intro-action:hover,
+      .guided-intro-action:focus-visible{
+        transform:translateY(-1px);
+        border-color:rgba(255,255,255,.28);
+        background:rgba(255,255,255,.07);
+        outline:none;
+      }
+
+      .guided-intro-attachments{
+        margin:0;
+        font-family:var(--ui-font);
+        font-size:.8rem;
+        line-height:1.5;
+        color:rgba(255,255,255,.72);
+        text-align:center;
+      }
+
+      .guided-intro-popup-host{
+        position:relative;
+        min-height:0;
+        width:100%;
+        max-width:560px;
+      }
+
+      .guided-intro-reviews{
+        position:fixed;
+        top:0;
+        right:12px;
+        width:min(420px, 36vw);
+        z-index:3;
+      }
+
+      .guided-review-card{
+        display:grid;
+        gap:10px;
+        padding:12px 16px 10px;
+        border-radius:18px;
+        border:1px solid rgba(255,255,255,.36);
+        background:rgba(0,0,0,.82);
+        color:#fff;
+        box-shadow:0 16px 36px rgba(0,0,0,.24);
+        backdrop-filter:blur(8px);
+      }
+
+      .guided-review-card__header{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:12px;
+        margin-bottom:0;
+      }
+
+      .guided-review-card__author-block{
+        display:grid;
+        gap:2px;
+      }
+
+      .guided-review-card__author{
+        color:#fff;
+        font-family:var(--ui-font);
+        font-size:.96rem;
+        font-weight:800;
+        line-height:1.15;
+      }
+
+      .guided-review-card__stars{
+        font-size:.98rem;
+        line-height:1;
+        letter-spacing:.08em;
+        color:#fbbc04;
+      }
+
+      .guided-review-card__google{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex:0 0 auto;
+      }
+
+      .guided-review-card__google img{
+        display:block;
+        width:min(110px, 10vw);
+        height:auto;
+      }
+
+      .guided-review-card__body{
+        min-height:0;
+        color:rgba(255,255,255,.9);
+        font-family:var(--ui-font);
+        font-size:clamp(.72rem, .76vw, .79rem);
+        line-height:1.34;
+        overflow:hidden;
+      }
+
+      .guided-review-card__body p{
+        margin:0;
+      }
+
+      .guided-review-card__body p + p{
+        margin-top:.55em;
+      }
+
+      .guided-review-card__dots{
+        display:flex;
+        justify-content:center;
+        gap:8px;
+      }
+
+      .guided-review-card__dot{
+        width:8px;
+        height:8px;
+        border-radius:999px;
+        border:0;
+        background:rgba(255,255,255,.24);
+        padding:0;
+        cursor:pointer;
+      }
+
+      .guided-review-card__dot.is-active{
+        background:#fff;
+      }
+
+      .guided-popup--intro{
+        position:relative;
+        inset:auto;
+        left:auto;
+        top:auto;
+        transform:none;
+        width:min(100%, 560px);
+        margin:0 auto;
+      }
+
+      .guided-popup--intro.is-visible{
+        transform:none;
+      }
+
+      .guided-popup__fields{
+        display:grid;
+        gap:10px;
+      }
+
+      .guided-popup__contact-options{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:8px;
+      }
+
+      @media(max-width:680px){
+        .guided-form__intro{
+          padding-top:0;
+          min-height:auto;
+        }
+
+        .guided-form--intro .guided-form__body{
+          padding-top:0;
+          align-content:center;
+        }
+
+        .guided-intro-actions{
+          width:100%;
+          gap:10px;
+          padding-top:0;
+          align-content:center;
+        }
+
+        .guided-intro-actions__row{
+          gap:8px;
+        }
+
+        .guided-intro-action{
+          min-height:60px;
+          padding:10px 6px;
+          border-radius:14px;
+          font-size:.64rem;
+          line-height:1.12;
+        }
+
+        .guided-intro-attachments{
+          font-size:.72rem;
+        }
+
+        .guided-intro-reviews{
+          position:absolute;
+          top:0;
+          right:0;
+          width:min(210px, 46vw);
+        }
+
+        .guided-review-card{
+          gap:8px;
+          padding:10px 10px 9px;
+          border-radius:16px;
+        }
+
+        .guided-review-card__header{
+          gap:10px;
+        }
+
+        .guided-review-card__author{
+          font-size:.76rem;
+        }
+
+        .guided-form__brand{
+          width:100%;
+          margin:0 auto 2px;
+          padding-left:0;
+          justify-content:center;
+        }
+
+        .guided-form__brand img{
+          width:min(132px, 34vw);
+        }
+
+        .guided-review-card__stars{
+          font-size:.8rem;
+        }
+
+        .guided-review-card__google img{
+          width:min(76px, 16vw);
+        }
+
+        .guided-review-card__body{
+          font-size:.62rem;
+          line-height:1.28;
+        }
+
+        .guided-popup--intro{
+          width:100%;
+        }
       }
 
       @keyframes introButtonPulse{
@@ -1766,6 +2102,33 @@
         margin-top:4px;
       }
 
+      .guided-lead-capture{
+        display:grid;
+        gap:12px;
+        width:min(100%, 520px);
+        margin:14px auto 0;
+      }
+
+      .guided-lead-capture__hint{
+        margin:0;
+        font-family:var(--ui-font);
+        font-size:.8rem;
+        line-height:1.45;
+        color:rgba(255,255,255,.7);
+        text-align:center;
+      }
+
+      .guided-lead-capture__fields{
+        display:grid;
+        gap:10px;
+      }
+
+      .guided-lead-capture__contact-options{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:8px;
+      }
+
       .guided-summary__contact-options{
         display:grid;
         gap:8px;
@@ -2145,6 +2508,13 @@
           url("Images/Studio%20portrait%20or%20workshop%20image.png") center/cover no-repeat;
         opacity:0;
         transform:scale(1.035);
+      }
+
+      .design-flow:has(.guided-form--intro)::before{
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.24) 0%, rgba(0,0,0,.62) 18%, rgba(0,0,0,.76) 100%),
+          radial-gradient(circle at 50% 18%, rgba(255,255,255,.05), transparent 28%),
+          url("Images/Studio%20portrait%20or%20workshop%20image.png") center/cover no-repeat;
       }
 
       .design-flow.design-flow--steps::before{
@@ -2981,6 +3351,164 @@
         .guided-form--summary .guided-input{ min-height:40px; padding:9px 11px; font-size:.8rem; }
         .guided-form--summary .guided-form__footer .btn{ min-height:40px; }
       }
+
+      /* Authoritative mobile intro layout. Keep this block last so older
+         responsive rules cannot move the brand, reviews or opening choices. */
+      @media(max-width:760px){
+        .guided-form.guided-form--intro{
+          position:relative;
+          width:100%;
+          min-height:100svh;
+          height:100svh;
+          max-height:100svh;
+          padding:max(8px, env(safe-area-inset-top, 0px)) 14px calc(14px + env(safe-area-inset-bottom, 0px));
+          overflow:hidden;
+          grid-template-rows:90px minmax(0, 1fr);
+          gap:0;
+        }
+
+        .guided-form--intro .guided-form__intro{
+          position:relative;
+          width:100%;
+          min-height:90px;
+          height:90px;
+          padding:0;
+          align-content:start;
+        }
+
+        .guided-form--intro .guided-form__brand{
+          position:absolute;
+          top:0;
+          left:50%;
+          z-index:5;
+          width:auto;
+          margin:0;
+          padding:0;
+          justify-content:center;
+          transform:translateX(-50%);
+        }
+
+        .guided-form--intro .guided-form__brand img{
+          width:clamp(108px, 30vw, 132px);
+          max-height:76px;
+          object-fit:contain;
+        }
+
+        .guided-form--intro .guided-intro-reviews{
+          top:0;
+          right:0;
+          z-index:6;
+          width:clamp(128px, 34vw, 156px);
+        }
+
+        .guided-form--intro .guided-review-card{
+          gap:3px;
+          padding:7px 8px 6px;
+          border-radius:12px;
+          background:rgba(0,0,0,.88);
+          box-shadow:0 8px 22px rgba(0,0,0,.3);
+        }
+
+        .guided-form--intro .guided-review-card__header{
+          display:flex;
+          align-items:flex-start;
+          justify-content:space-between;
+          gap:6px;
+        }
+
+        .guided-form--intro .guided-review-card__author-block{
+          margin-top:16px;
+        }
+
+        .guided-form--intro .guided-review-card__author{
+          display:block;
+          max-width:100%;
+          overflow:hidden;
+          font-size:.54rem;
+          line-height:1.1;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+        }
+
+        .guided-form--intro .guided-review-card__stars{
+          font-size:.56rem;
+          letter-spacing:.02em;
+        }
+
+        .guided-form--intro .guided-review-card__google{
+          justify-content:flex-end;
+          align-self:flex-start;
+        }
+
+        .guided-form--intro .guided-review-card__google img{
+          width:min(66px, 18vw);
+        }
+
+        .guided-form--intro .guided-review-card__body{
+          display:block;
+          font-size:.44rem;
+          line-height:1.16;
+        }
+
+        .guided-form--intro .guided-review-card__body p + p{
+          margin-top:.35em;
+        }
+
+        .guided-form--intro .guided-review-card__dots{
+          display:flex;
+          gap:4px;
+        }
+
+        .guided-form--intro .guided-form__body{
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          width:100%;
+          height:100%;
+          min-height:0;
+          padding:0 0 6vh;
+          overflow:visible;
+        }
+
+        .guided-form--intro .guided-intro-actions{
+          position:relative;
+          display:grid;
+          align-content:center;
+          justify-items:center;
+          width:100%;
+          max-width:360px;
+          height:auto;
+          margin:0 auto;
+          padding:0;
+          gap:10px;
+        }
+
+        .guided-form--intro .guided-intro-actions__row{
+          grid-template-columns:1fr;
+          width:min(100%, 330px);
+          max-width:330px;
+          gap:10px;
+          margin:0 auto;
+        }
+
+        .guided-form--intro .guided-intro-action{
+          width:100%;
+          min-height:58px;
+          padding:12px 16px;
+          border-radius:16px;
+          font-size:.82rem;
+          line-height:1.2;
+        }
+      }
+
+      .guided-form--success{
+        min-height:72svh;
+        align-content:center;
+      }
+
+      .guided-form--success .guided-form__intro{
+        align-content:center;
+      }
     </style>
   <script type="application/ld+json">
   {
@@ -3072,7 +3600,7 @@
         <div class="form-wrap">
           <div class="card">
             <div class="card__actions">
-              <form id="quickStartForm" name="ringpage-quick-start" method="POST" action="/thank-you.html" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field" aria-labelledby="pageTitle quickStartQuestion" novalidate>
+              <form id="quickStartForm" name="ringpage-quick-start" method="POST" action="/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field" aria-labelledby="pageTitle quickStartQuestion" novalidate>
                 <input type="hidden" name="form-name" value="ringpage-quick-start" />
                 <input type="hidden" name="location" id="quickStartLocation" value="Unknown" />
                 <input type="hidden" name="stone_type" id="quickStartStoneType" />
@@ -3087,6 +3615,7 @@
                 <input type="hidden" name="ring_metal" id="quickStartRingMetal" />
                 <input type="hidden" name="ring_size" id="quickStartRingSize" />
                 <input type="hidden" name="budget" id="quickStartBudget" />
+                <input type="hidden" name="design_request_type" id="quickStartDesignRequestType" />
                 <input type="hidden" name="other_notes" id="quickStartNotes" />
                 <input type="hidden" name="email" id="quickStartEmail" />
                 <input type="hidden" name="phone" id="quickStartPhone" />
@@ -3100,9 +3629,7 @@
                 <input type="hidden" name="utm_term" id="quickStartUtmTerm" />
                 <input type="hidden" name="utm_content" id="quickStartUtmContent" />
                 <input type="hidden" name="gclid" id="quickStartGclid" />
-                <input type="file" name="reference_image_1" id="quickStartReferenceImage1" class="guided-upload__input" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" />
-                <input type="file" name="reference_image_2" id="quickStartReferenceImage2" class="guided-upload__input" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" />
-                <input type="file" name="reference_image_3" id="quickStartReferenceImage3" class="guided-upload__input" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" />
+                <input type="file" name="reference_images" id="quickStartReferenceImage1" class="guided-upload__input" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple />
                 <p style="display:none;">
                   <label>Do not fill this in <input name="bot-field" /></label>
                 </p>
@@ -3119,6 +3646,9 @@
                   </div>
 
                   <div class="guided-form__intro" id="quickStartIntro">
+                    <div class="guided-form__brand">
+                      <img src="Images/ladfox logo.png" alt="Ladfox" loading="eager" decoding="async" />
+                    </div>
                     <div class="guided-form__trust" id="quickStartTrust" hidden>
                       <span class="guided-form__trust-badge">
                         <img src="Images/google reviews logo.png" alt="Google Reviews" loading="eager" decoding="async" />
@@ -3128,7 +3658,7 @@
                       <span class="guided-form__trust-item">Lifetime warranty</span>
                     </div>
                     <h2 class="guided-form__question" id="quickStartQuestion" tabindex="-1"></h2>
-                    <p class="guided-form__support" id="quickStartSupport">We will help you visualise your ring, narrow down the details, and get a more accurate price.</p>
+                    <p class="guided-form__support" id="quickStartSupport"></p>
                   </div>
 
                   <div class="guided-form__body" id="quickStartBody" role="group" aria-labelledby="quickStartQuestion"></div>
@@ -3197,7 +3727,7 @@
         });
       })();
 
-      const shouldSkipQuickStartIntro = true;
+      const shouldSkipQuickStartIntro = false;
 
       function trackCtaClick(el){
         if (!el || typeof gtag !== "function") return;
@@ -3297,12 +3827,11 @@
         const progressTrackEl = document.getElementById("quickStartProgressTrack");
         const locationField = document.getElementById("quickStartLocation");
         const referenceImageInputs = [
-          document.getElementById("quickStartReferenceImage1"),
-          document.getElementById("quickStartReferenceImage2"),
-          document.getElementById("quickStartReferenceImage3")
+          document.getElementById("quickStartReferenceImage1")
         ].filter(Boolean);
         const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
         const designFlowEl = document.querySelector(".design-flow");
+        let activeSubmitButton = null;
 
         const hiddenFields = {
           stone_type: document.getElementById("quickStartStoneType"),
@@ -3317,6 +3846,7 @@
           ring_metal: document.getElementById("quickStartRingMetal"),
           ring_size: document.getElementById("quickStartRingSize"),
           budget: document.getElementById("quickStartBudget"),
+          design_request_type: document.getElementById("quickStartDesignRequestType"),
           other_notes: document.getElementById("quickStartNotes"),
           email: document.getElementById("quickStartEmail"),
           phone: document.getElementById("quickStartPhone"),
@@ -3342,6 +3872,45 @@
           SG: { code: "SGD", locale: "en-SG", min: 500, max: 40000, step: 100 },
           HK: { code: "HKD", locale: "en-HK", min: 500, max: 160000, step: 500 }
         };
+
+        const introReviews = [
+          {
+            author: "Dave",
+            href: "https://www.google.com/maps/contrib/108044594221226556453/reviews?hl=en-GB",
+            body: [
+              "The whole process felt personal, relaxed, and genuinely focused on getting the ring right. The quality is incredible and easily better than anything I saw on the high street for the price."
+            ]
+          },
+          {
+            author: "Patri",
+            href: "https://www.google.com/maps/contrib/114515183324213388624/reviews?hl=en-GB",
+            body: [
+              "LADFOX are an amazing company that have just made our dreams come true. Thanks to their care and attention to details, my partner was able to discuss, choose and design my diamond necklace."
+            ]
+          },
+          {
+            author: "Colin",
+            href: "https://www.google.com/maps/contrib/112400784767713421892/reviews?hl=en-GB",
+            body: [
+              "I spent a long time looking around before deciding to go with Ladfox, and it was easily the best decision I made."
+            ]
+          },
+          {
+            author: "Clare",
+            href: "https://www.google.com/maps/contrib/113752906396586676795/reviews?hl=en-GB",
+            body: [
+              "LADFOX offers an amazing bespoke experience from start to finish. If you're looking for a ring that's completely unique and made just for you, I couldn't recommend them more."
+            ]
+          },
+          {
+            author: "Henry",
+            href: "https://www.google.com/maps/contrib/108075808585153107926/reviews?hl=en-GB",
+            body: [
+              "Extremely good service, I was very impressed with the ring I bought, my wife loved it.",
+              "It came rather quick too, I will definitely be buying more jewellery from here."
+            ]
+          }
+        ];
 
         let visitorCurrency = { code: "GBP", locale: "en-GB", min: 500, max: 25000, step: 100 };
         let visitorCountryCode = "GB";
@@ -3501,6 +4070,13 @@
         }
 
         const steps = appendOtherDetailSteps([
+          {
+            key: "design_request_type",
+            label: "How would you like to get started?",
+            support: "",
+            type: "choice",
+            options: ["Design my ring", "Get design ideas & a quote"]
+          },
           {
             key: "ring_metal",
             label: "What would you like your ring to be made from?",
@@ -3737,6 +4313,7 @@
           ring_metal: "",
           ring_size: "",
           budget: "",
+          design_request_type: "",
           other_notes: "",
           email: "",
           phone: "",
@@ -3749,6 +4326,8 @@
         let summaryScreenActive = false;
         let isSubmitting = false;
         let activeRingImage = "plain";
+        let introReviewIndex = 0;
+        let introReviewTimer = null;
         let imageTransformTimer = null;
         let choiceAutoAdvanceTimer = null;
         const settingDesignImageMap = {
@@ -4082,6 +4661,135 @@
           return otherSelectionNotes.join("\n\n");
         }
 
+        function getReferenceFiles(){
+          return referenceImageInputs.flatMap((input) => Array.from(input.files || []));
+        }
+
+        function formatReferenceFilesMeta(){
+          const files = getReferenceFiles();
+          const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
+          return files.length === 0
+            ? ""
+            : `${files.length} image${files.length === 1 ? "" : "s"} attached · ${(totalBytes / 1024 / 1024).toFixed(1)} MB total`;
+        }
+
+        function renderReferenceImageUpload(parentEl, primaryLabel = "Attach an image"){
+          if (!parentEl || !referenceImageInputs.length) return;
+
+          const uploadWrap = document.createElement("div");
+          uploadWrap.className = "guided-upload";
+
+          const uploadButtons = document.createElement("div");
+          uploadButtons.className = "guided-choice-list guided-choice-list--grid";
+
+          const uploadMeta = document.createElement("p");
+          uploadMeta.className = "guided-upload__meta";
+
+          const updateUploadMeta = () => {
+            const files = getReferenceFiles();
+            const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
+            uploadMeta.textContent = files.length === 0
+              ? ""
+              : `${files.length} image${files.length === 1 ? "" : "s"} attached · ${(totalBytes / 1024 / 1024).toFixed(1)} MB total`;
+            setStatus(totalBytes > MAX_UPLOAD_BYTES ? "Your attachments must be under 8 MB in total." : "");
+          };
+
+          referenceImageInputs.forEach((input, index) => {
+            const uploadButton = document.createElement("label");
+            uploadButton.className = "guided-upload__button";
+            uploadButton.htmlFor = input.id;
+            uploadButton.textContent = index === 0 ? primaryLabel : `Add image ${index + 1}`;
+            uploadButtons.appendChild(uploadButton);
+            input.onchange = updateUploadMeta;
+          });
+
+          updateUploadMeta();
+          uploadWrap.appendChild(uploadButtons);
+          uploadWrap.appendChild(uploadMeta);
+          parentEl.appendChild(uploadWrap);
+        }
+
+        function renderLeadCaptureFields(parentEl){
+          if (!parentEl) return;
+
+          const wrap = document.createElement("div");
+          wrap.className = "guided-lead-capture";
+
+          const uploadHint = document.createElement("p");
+          uploadHint.className = "guided-lead-capture__hint";
+          uploadHint.textContent = "Attach what I'm looking for";
+          wrap.appendChild(uploadHint);
+
+          renderReferenceImageUpload(wrap, "Attach what I'm looking for");
+
+          const fields = document.createElement("div");
+          fields.className = "guided-lead-capture__fields";
+
+          const emailField = document.createElement("input");
+          emailField.type = "email";
+          emailField.className = "guided-input";
+          emailField.placeholder = "Email address";
+          emailField.setAttribute("aria-label", "Email address");
+          emailField.value = formValues.email || "";
+          emailField.autocomplete = "email";
+          emailField.inputMode = "email";
+          emailField.addEventListener("input", () => {
+            formValues.email = emailField.value.trim();
+            syncHiddenFields();
+            setStatus("");
+          });
+
+          const phoneField = document.createElement("input");
+          phoneField.type = "tel";
+          phoneField.className = "guided-input";
+          phoneField.placeholder = "Phone number for text / WhatsApp";
+          phoneField.setAttribute("aria-label", "Phone number for text or WhatsApp");
+          phoneField.value = formValues.phone || "";
+          phoneField.autocomplete = "tel";
+          phoneField.inputMode = "tel";
+          phoneField.addEventListener("input", () => {
+            formValues.phone = phoneField.value.trim();
+            if (!formValues.preferred_contact && formValues.phone) {
+              formValues.preferred_contact = "WhatsApp";
+            }
+            syncHiddenFields();
+            setStatus("");
+          });
+
+          fields.appendChild(emailField);
+          fields.appendChild(phoneField);
+          wrap.appendChild(fields);
+
+          const contactOptions = document.createElement("div");
+          contactOptions.className = "guided-lead-capture__contact-options";
+
+          ["Email", "WhatsApp"].forEach((option) => {
+            const optionLabel = document.createElement("label");
+            optionLabel.className = "guided-summary__contact-option";
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "quickStartLeadPreferredContact";
+            input.value = option;
+            input.checked = formValues.preferred_contact === option;
+            input.addEventListener("change", () => {
+              formValues.preferred_contact = option;
+              syncHiddenFields();
+              setStatus("");
+            });
+
+            const text = document.createElement("span");
+            text.textContent = option;
+
+            optionLabel.appendChild(input);
+            optionLabel.appendChild(text);
+            contactOptions.appendChild(optionLabel);
+          });
+
+          wrap.appendChild(contactOptions);
+          parentEl.appendChild(wrap);
+        }
+
         function getCurrencyConfig(){
           return visitorCurrency || currencyByCountryCode.GB;
         }
@@ -4095,6 +4803,99 @@
             currency: currency.code,
             maximumFractionDigits: 0
           }).format(numericValue);
+        }
+
+        function stopIntroReviewRotation(){
+          if (!introReviewTimer) return;
+          window.clearInterval(introReviewTimer);
+          introReviewTimer = null;
+        }
+
+        function createGoogleWordmark(){
+          const wordmark = document.createElement("span");
+          wordmark.className = "guided-review-card__google";
+          const image = document.createElement("img");
+          image.src = "Images/google reviews logo.png";
+          image.alt = "Google Reviews";
+          image.loading = "eager";
+          image.decoding = "async";
+          wordmark.appendChild(image);
+          return wordmark;
+        }
+
+        function renderIntroReviewCarousel(parentEl){
+          if (!parentEl) return;
+
+          parentEl.querySelector(".guided-intro-reviews")?.remove();
+
+          const reviewWrap = document.createElement("div");
+          reviewWrap.className = "guided-intro-reviews";
+
+          const reviewCard = document.createElement("article");
+          reviewCard.className = "guided-review-card";
+
+          const header = document.createElement("div");
+          header.className = "guided-review-card__header";
+
+          const authorBlock = document.createElement("div");
+          authorBlock.className = "guided-review-card__author-block";
+
+          const authorName = document.createElement("div");
+          authorName.className = "guided-review-card__author";
+
+          const stars = document.createElement("div");
+          stars.className = "guided-review-card__stars";
+          stars.textContent = "★★★★★";
+
+          const googleWordmark = createGoogleWordmark();
+
+          const body = document.createElement("div");
+          body.className = "guided-review-card__body";
+
+          const dots = document.createElement("div");
+          dots.className = "guided-review-card__dots";
+
+          const renderReview = (index) => {
+            const safeIndex = ((index % introReviews.length) + introReviews.length) % introReviews.length;
+            introReviewIndex = safeIndex;
+            const review = introReviews[safeIndex];
+            authorName.textContent = review.author;
+            body.innerHTML = review.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
+            dots.querySelectorAll(".guided-review-card__dot").forEach((dot, dotIndex) => {
+              dot.classList.toggle("is-active", dotIndex === safeIndex);
+            });
+          };
+
+          introReviews.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "guided-review-card__dot";
+            dot.setAttribute("aria-label", `Show review ${index + 1}`);
+            dot.addEventListener("click", () => {
+              stopIntroReviewRotation();
+              renderReview(index);
+              introReviewTimer = window.setInterval(() => {
+                renderReview(introReviewIndex + 1);
+              }, 5200);
+            });
+            dots.appendChild(dot);
+          });
+
+          authorBlock.appendChild(authorName);
+          authorBlock.appendChild(stars);
+          header.appendChild(authorBlock);
+          header.appendChild(googleWordmark);
+          reviewCard.appendChild(header);
+          reviewCard.appendChild(body);
+          reviewCard.appendChild(dots);
+          reviewWrap.appendChild(reviewCard);
+          parentEl.appendChild(reviewWrap);
+
+          renderReview(introReviewIndex);
+          stopIntroReviewRotation();
+          introReviewTimer = window.setInterval(() => {
+            renderReview(introReviewIndex + 1);
+          }, 5200);
         }
 
         function isValidEmail(value){
@@ -4162,6 +4963,7 @@
 
         function shouldShowStep(step){
           if (!step) return false;
+          if (step.key === "design_request_type") return false;
           if (isImageSubmissionStyle(formValues.multi_stone_style)) {
             return ["ring_metal", "multi_stone_style", "other_notes", "email_capture"].includes(step.key);
           }
@@ -4666,7 +5468,7 @@
         function renderChoiceStep(step){
           const list = document.createElement("div");
           list.className = "guided-choice-list";
-          const requiresManualAdvance = step.key === "setting_design";
+          const requiresManualAdvance = ["setting_design", "design_request_type"].includes(step.key);
           const isSplitColumnStep = ["ring_metal", "multi_stone_style", "stone_type", "trilogy_centre_shape", "trilogy_side_shape", "toi_et_moi_first_shape", "toi_et_moi_second_shape", "toi_et_moi_first_stone_type", "toi_et_moi_second_stone_type", "stone_shape"].includes(step.key);
           const isStoneShapeStep = ["stone_shape", "toi_et_moi_first_shape", "toi_et_moi_second_shape", "trilogy_centre_shape", "trilogy_side_shape"].includes(step.key);
           if (isSplitColumnStep) {
@@ -4788,6 +5590,9 @@
           });
 
           bodyEl.appendChild(list);
+          if (step.key === "design_request_type") {
+            renderLeadCaptureFields(bodyEl);
+          }
           if (step.key === "setting_design") {
             const designOwnButton = document.createElement("button");
             designOwnButton.type = "button";
@@ -5140,6 +5945,8 @@
 
         function renderSummaryScreen(){
           if (!questionEl || !supportEl || !introEl || !bodyEl || !noteEl || !nextBtn) return;
+          stopIntroReviewRotation();
+          introEl.querySelector(".guided-intro-reviews")?.remove();
           updateProgress();
           designFlowEl?.classList.add("design-flow--steps");
           shellEl.classList.remove("guided-form--intro", "guided-form--email-popup");
@@ -5196,7 +6003,7 @@
           const contactOptions = document.createElement("div");
           contactOptions.className = "guided-summary__contact-options";
 
-          ["Email", "WhatsApp", "Phone call"].forEach((option) => {
+          ["Email", "WhatsApp"].forEach((option) => {
             const optionLabel = document.createElement("label");
             optionLabel.className = "guided-summary__contact-option";
 
@@ -5254,6 +6061,14 @@
           bodyEl.appendChild(field);
 
           if (step.key === "other_notes") {
+            renderReferenceImageUpload(bodyEl, "Attach an image");
+            nextBtn.hidden = false;
+            nextBtn.textContent = stepIndex === steps.length - 1 ? "Submit" : "Next";
+            requestAnimationFrame(() => field.focus());
+            return;
+          }
+
+          if (step.key === "other_notes") {
             const uploadWrap = document.createElement("div");
             uploadWrap.className = "guided-upload";
 
@@ -5271,7 +6086,7 @@
               const files = getReferenceFiles();
               const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
               uploadMeta.textContent = files.length === 0
-                ? "Optional: attach up to 3 images. Maximum 8 MB in total."
+                ? ""
                 : `${files.length} image${files.length === 1 ? "" : "s"} attached · ${(totalBytes / 1024 / 1024).toFixed(1)} MB total`;
               setStatus(totalBytes > MAX_UPLOAD_BYTES ? "Your attachments must be under 8 MB in total." : "");
             };
@@ -5296,14 +6111,124 @@
           requestAnimationFrame(() => field.focus());
         }
 
+        function openIntroComplimentaryPopup(){
+          closeIntroAttachPopup();
+          const popup = bodyEl?.querySelector(".guided-popup--intro");
+          if (!popup) return;
+          popup.hidden = false;
+          popup.classList.add("is-visible");
+          const firstField = popup.querySelector("textarea, input");
+          requestAnimationFrame(() => firstField?.focus());
+        }
+
+        function closeIntroComplimentaryPopup(){
+          const popup = bodyEl?.querySelector(".guided-popup--intro");
+          if (!popup) return;
+          popup.classList.remove("is-visible");
+          popup.hidden = true;
+        }
+
+        function openIntroAttachPopup(){
+          closeIntroComplimentaryPopup();
+          const popup = bodyEl?.querySelector(".guided-popup--attach");
+          if (!popup) return;
+          popup.hidden = false;
+          popup.classList.add("is-visible");
+          referenceImageInputs[0]?.click();
+          const firstField = popup.querySelector("button, input, textarea");
+          requestAnimationFrame(() => firstField?.focus());
+        }
+
+        function closeIntroAttachPopup(){
+          const popup = bodyEl?.querySelector(".guided-popup--attach");
+          if (!popup) return;
+          popup.classList.remove("is-visible");
+          popup.hidden = true;
+        }
+
+        function submitComplimentaryDesign(triggerButton){
+          const description = String(formValues.other_notes || "").trim();
+          const preferredContact = String(formValues.preferred_contact || "").trim();
+          const email = String(formValues.email || "").trim();
+          const phone = String(formValues.phone || "").trim();
+
+          if (!description) {
+            setStatus("Please describe the design you want.");
+            return;
+          }
+          if (!preferredContact) {
+            setStatus("Please choose Email or WhatsApp.");
+            return;
+          }
+          if (preferredContact === "Email" && !email) {
+            setStatus("Please add your email address.");
+            return;
+          }
+          if (preferredContact === "WhatsApp" && !phone) {
+            setStatus("Please add your WhatsApp number.");
+            return;
+          }
+
+          formValues.design_request_type = "Get design ideas & a quote";
+          if (hiddenFields.submission_type) hiddenFields.submission_type.value = "complimentary_design";
+          activeSubmitButton = triggerButton || null;
+          if (activeSubmitButton) {
+            activeSubmitButton.disabled = true;
+            activeSubmitButton.textContent = "Sending...";
+          }
+          if (isSubmitting) return;
+          isSubmitting = true;
+          syncHiddenFields();
+          setStatus("");
+          form.requestSubmit();
+        }
+
+        function submitAttachImagesLead(triggerButton){
+          const files = getReferenceFiles();
+          const preferredContact = String(formValues.preferred_contact || "").trim();
+          const email = String(formValues.email || "").trim();
+          const phone = String(formValues.phone || "").trim();
+
+          if (!files.length) {
+            setStatus("Please attach at least one image first.");
+            return;
+          }
+          if (!preferredContact) {
+            setStatus("Please choose Email or WhatsApp.");
+            return;
+          }
+          if (preferredContact === "Email" && !email) {
+            setStatus("Please add your email address.");
+            return;
+          }
+          if (preferredContact === "WhatsApp" && !phone) {
+            setStatus("Please add your WhatsApp number.");
+            return;
+          }
+
+          formValues.design_request_type = "Send inspiration images";
+          if (hiddenFields.submission_type) hiddenFields.submission_type.value = "image_upload";
+          activeSubmitButton = triggerButton || null;
+          if (activeSubmitButton) {
+            activeSubmitButton.disabled = true;
+            activeSubmitButton.textContent = "Sending...";
+          }
+          if (isSubmitting) return;
+          isSubmitting = true;
+          syncHiddenFields();
+          setStatus("");
+          form.requestSubmit();
+        }
+
         function renderIntroScreen(){
           if (!questionEl || !supportEl || !introEl || !bodyEl || !noteEl || !nextBtn) return;
+          stopIntroReviewRotation();
           updateProgress();
           cancelChoiceAutoAdvance();
           questionEl.textContent = "";
           if (trustEl) trustEl.hidden = true;
           if (backBtn) backBtn.hidden = true;
-          supportEl.textContent = "We will help you visualise your ring, narrow down the details, and get a more accurate price.";
+          supportEl.textContent = "";
           designFlowEl?.classList.remove("design-flow--steps", "design-flow--setting-focus");
           designFlowEl?.style.removeProperty("--setting-focus-image");
           shellEl.classList.add("guided-form--intro");
@@ -5322,9 +6247,248 @@
           bodyEl.innerHTML = "";
           noteEl.textContent = "";
           noteEl.classList.remove("guided-form__note--reassurance");
-          nextBtn.hidden = false;
+          nextBtn.hidden = true;
+          backBtn.hidden = true;
           nextBtn.disabled = false;
           nextBtn.textContent = "Design my ring";
+          setStatus("");
+
+          const actionsWrap = document.createElement("div");
+          actionsWrap.className = "guided-intro-actions";
+
+          const actionsTitle = document.createElement("h3");
+          actionsTitle.className = "guided-intro-actions__title";
+          actionsTitle.textContent = "How would you like to start?";
+
+          const actionsRow = document.createElement("div");
+          actionsRow.className = "guided-intro-actions__row";
+
+          const interactiveButton = document.createElement("button");
+          interactiveButton.type = "button";
+          interactiveButton.className = "guided-intro-action";
+          interactiveButton.textContent = "Design my ring";
+          interactiveButton.addEventListener("click", () => {
+            formValues.design_request_type = "Design my ring";
+            syncHiddenFields();
+            introActive = false;
+            summaryScreenActive = false;
+            stepIndex = 0;
+            renderStep();
+          });
+
+          const complimentaryButton = document.createElement("button");
+          complimentaryButton.type = "button";
+          complimentaryButton.className = "guided-intro-action";
+          complimentaryButton.textContent = "Get design ideas & a quote";
+          complimentaryButton.addEventListener("click", () => {
+            formValues.design_request_type = "Get design ideas & a quote";
+            syncHiddenFields();
+            openIntroComplimentaryPopup();
+          });
+
+          const attachButton = document.createElement("button");
+          attachButton.type = "button";
+          attachButton.className = "guided-intro-action";
+          attachButton.textContent = "Send inspiration images";
+          attachButton.addEventListener("click", () => {
+            formValues.design_request_type = "Send inspiration images";
+            syncHiddenFields();
+            openIntroAttachPopup();
+          });
+
+          actionsRow.appendChild(interactiveButton);
+          actionsRow.appendChild(complimentaryButton);
+          actionsRow.appendChild(attachButton);
+          actionsWrap.appendChild(actionsTitle);
+          actionsWrap.appendChild(actionsRow);
+
+          const attachmentsMeta = document.createElement("p");
+          attachmentsMeta.className = "guided-intro-attachments";
+          attachmentsMeta.textContent = formatReferenceFilesMeta();
+          actionsWrap.appendChild(attachmentsMeta);
+
+          const popupHost = document.createElement("div");
+          popupHost.className = "guided-intro-popup-host";
+
+          const popup = document.createElement("div");
+          popup.className = "guided-popup guided-popup--intro";
+          popup.hidden = true;
+
+          const closeButton = document.createElement("button");
+          closeButton.type = "button";
+          closeButton.className = "guided-popup__close";
+          closeButton.setAttribute("aria-label", "Close complimentary design form");
+          closeButton.textContent = "x";
+          closeButton.addEventListener("click", closeIntroComplimentaryPopup);
+
+          const popupFields = document.createElement("div");
+          popupFields.className = "guided-popup__fields";
+
+          const descriptionField = document.createElement("textarea");
+          descriptionField.className = "guided-textarea";
+          descriptionField.placeholder = "Describe the ring you want, share any design details, and mention anything important about the look.";
+          descriptionField.value = formValues.other_notes || "";
+          descriptionField.addEventListener("input", () => {
+            formValues.other_notes = descriptionField.value.trim();
+            syncHiddenFields();
+            setStatus("");
+          });
+
+          const contactInput = document.createElement("input");
+          contactInput.className = "guided-input";
+          contactInput.placeholder = "Email or WhatsApp number";
+          contactInput.value = formValues.preferred_contact === "Email" ? formValues.email || "" : formValues.phone || "";
+          contactInput.addEventListener("input", () => {
+            const value = contactInput.value.trim();
+            if (formValues.preferred_contact === "Email") {
+              formValues.email = value;
+            } else {
+              formValues.phone = value;
+            }
+            syncHiddenFields();
+            setStatus("");
+          });
+
+          const contactOptions = document.createElement("div");
+          contactOptions.className = "guided-popup__contact-options";
+
+          ["Email", "WhatsApp"].forEach((option) => {
+            const optionLabel = document.createElement("label");
+            optionLabel.className = "guided-summary__contact-option";
+
+            const optionInput = document.createElement("input");
+            optionInput.type = "radio";
+            optionInput.name = "quickStartIntroPreferredContact";
+            optionInput.value = option;
+            optionInput.checked = (formValues.preferred_contact || "Email") === option;
+            optionInput.addEventListener("change", () => {
+              formValues.preferred_contact = option;
+              contactInput.value = option === "Email" ? formValues.email || "" : formValues.phone || "";
+              contactInput.placeholder = option === "Email" ? "Email address" : "WhatsApp number";
+              syncHiddenFields();
+              setStatus("");
+            });
+
+            const optionText = document.createElement("span");
+            optionText.textContent = option;
+
+            optionLabel.appendChild(optionInput);
+            optionLabel.appendChild(optionText);
+            contactOptions.appendChild(optionLabel);
+          });
+
+          formValues.preferred_contact = formValues.preferred_contact || "Email";
+          contactInput.placeholder = formValues.preferred_contact === "Email" ? "Email address" : "WhatsApp number";
+
+          const submitButton = document.createElement("button");
+          submitButton.type = "button";
+          submitButton.className = "btn";
+          submitButton.textContent = "Submit";
+          submitButton.addEventListener("click", () => submitComplimentaryDesign(submitButton));
+
+          popupFields.appendChild(descriptionField);
+          popupFields.appendChild(contactOptions);
+          popupFields.appendChild(contactInput);
+          popupFields.appendChild(submitButton);
+
+          popup.appendChild(closeButton);
+          popup.appendChild(popupFields);
+          popupHost.appendChild(popup);
+
+          const attachPopup = document.createElement("div");
+          attachPopup.className = "guided-popup guided-popup--intro guided-popup--attach";
+          attachPopup.hidden = true;
+
+          const attachCloseButton = document.createElement("button");
+          attachCloseButton.type = "button";
+          attachCloseButton.className = "guided-popup__close";
+          attachCloseButton.setAttribute("aria-label", "Close attach images form");
+          attachCloseButton.textContent = "x";
+          attachCloseButton.addEventListener("click", closeIntroAttachPopup);
+
+          const attachPopupFields = document.createElement("div");
+          attachPopupFields.className = "guided-popup__fields";
+
+          const attachUploadMeta = document.createElement("p");
+          attachUploadMeta.className = "guided-popup__copy";
+          attachUploadMeta.textContent = formatReferenceFilesMeta();
+
+          const attachContactInput = document.createElement("input");
+          attachContactInput.className = "guided-input";
+          attachContactInput.placeholder = "Email or WhatsApp number";
+          attachContactInput.value = formValues.preferred_contact === "Email" ? formValues.email || "" : formValues.phone || "";
+          attachContactInput.addEventListener("input", () => {
+            const value = attachContactInput.value.trim();
+            if (formValues.preferred_contact === "Email") {
+              formValues.email = value;
+            } else {
+              formValues.phone = value;
+            }
+            syncHiddenFields();
+            setStatus("");
+          });
+
+          const attachContactOptions = document.createElement("div");
+          attachContactOptions.className = "guided-popup__contact-options";
+
+          ["Email", "WhatsApp"].forEach((option) => {
+            const optionLabel = document.createElement("label");
+            optionLabel.className = "guided-summary__contact-option";
+
+            const optionInput = document.createElement("input");
+            optionInput.type = "radio";
+            optionInput.name = "quickStartIntroAttachPreferredContact";
+            optionInput.value = option;
+            optionInput.checked = (formValues.preferred_contact || "Email") === option;
+            optionInput.addEventListener("change", () => {
+              formValues.preferred_contact = option;
+              attachContactInput.value = option === "Email" ? formValues.email || "" : formValues.phone || "";
+              attachContactInput.placeholder = option === "Email" ? "Email address" : "WhatsApp number";
+              syncHiddenFields();
+              setStatus("");
+            });
+
+            const optionText = document.createElement("span");
+            optionText.textContent = option;
+
+            optionLabel.appendChild(optionInput);
+            optionLabel.appendChild(optionText);
+            attachContactOptions.appendChild(optionLabel);
+          });
+
+          attachContactInput.placeholder = formValues.preferred_contact === "Email" ? "Email address" : "WhatsApp number";
+
+          const refreshAttachUploadMeta = () => {
+            attachUploadMeta.textContent = formatReferenceFilesMeta();
+            setStatus(validateReferenceImages());
+          };
+
+          const attachSubmitButton = document.createElement("button");
+          attachSubmitButton.type = "button";
+          attachSubmitButton.className = "btn";
+          attachSubmitButton.textContent = "Submit";
+          attachSubmitButton.addEventListener("click", () => submitAttachImagesLead(attachSubmitButton));
+
+          attachPopupFields.appendChild(attachUploadMeta);
+          attachPopupFields.appendChild(attachContactOptions);
+          attachPopupFields.appendChild(attachContactInput);
+          attachPopupFields.appendChild(attachSubmitButton);
+
+          attachPopup.appendChild(attachCloseButton);
+          attachPopup.appendChild(attachPopupFields);
+          popupHost.appendChild(attachPopup);
+          actionsWrap.appendChild(popupHost);
+          renderIntroReviewCarousel(introEl);
+          bodyEl.appendChild(actionsWrap);
+
+          const refreshIntroAttachmentMeta = () => {
+            attachmentsMeta.textContent = formatReferenceFilesMeta();
+            setStatus(validateReferenceImages());
+            refreshAttachUploadMeta();
+          };
+          referenceImageInputs.forEach((input) => {
+            input.onchange = refreshIntroAttachmentMeta;
+          });
         }
 
         function renderStep(){
@@ -5332,6 +6496,8 @@
             renderIntroScreen();
             return;
           }
+          stopIntroReviewRotation();
+          introEl?.querySelector(".guided-intro-reviews")?.remove();
           if (summaryScreenActive) {
             renderSummaryScreen();
             return;
@@ -5441,14 +6607,14 @@
           if (phone && !isValidPhone(phone)) return "Please add a valid contact number.";
           if (!preferredContact) return "Please choose a preferred contact method.";
           if (preferredContact === "Email" && !email) return "Please add an email address for email contact.";
-          if (["WhatsApp", "Phone call"].includes(preferredContact) && !phone) {
-            return "Please add a contact number for WhatsApp or phone contact.";
+          if (preferredContact === "WhatsApp" && !phone) {
+            return "Please add a contact number for WhatsApp.";
           }
           return "";
         }
 
         function validateReferenceImages(){
-          const files = referenceImageInputs.map((input) => input.files?.[0]).filter(Boolean);
+          const files = getReferenceFiles();
           const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
           if (totalBytes > MAX_UPLOAD_BYTES) return "Your attachments must be under 8 MB in total.";
           return "";
@@ -5460,6 +6626,7 @@
           if (hiddenFields.submission_type) hiddenFields.submission_type.value = "complete";
           syncHiddenFields();
           setStatus("");
+          activeSubmitButton = nextBtn;
           nextBtn.disabled = true;
           nextBtn.textContent = "Sending...";
           form.requestSubmit();
@@ -5581,8 +6748,10 @@
           const validationMessage = validateContactDetails() || validateReferenceImages();
           if (validationMessage) {
             isSubmitting = false;
-            nextBtn.disabled = false;
-            nextBtn.textContent = "Request my design & quote";
+            if (activeSubmitButton) {
+              activeSubmitButton.disabled = false;
+              activeSubmitButton.textContent = activeSubmitButton === nextBtn ? "Request my design & quote" : "Request complimentary design";
+            }
             setStatus(validationMessage);
             return;
           }
@@ -5602,12 +6771,32 @@
                 currency: getCurrencyConfig().code
               });
             }
-            window.location.assign(form.getAttribute("action") || "/thank-you.html");
+
+            isSubmitting = false;
+            stopIntroReviewRotation();
+            summaryScreenActive = false;
+            shellEl.classList.remove("guided-form--summary", "guided-form--intro");
+            shellEl.classList.add("guided-form--success");
+            if (progressEl) progressEl.hidden = true;
+            if (trustEl) trustEl.hidden = true;
+            if (previewEl) {
+              previewEl.hidden = true;
+              previewEl.setAttribute("aria-hidden", "true");
+            }
+            if (guideEl) guideEl.hidden = true;
+            if (bodyEl) bodyEl.innerHTML = "";
+            if (noteEl) noteEl.textContent = "";
+            if (nextBtn?.parentElement) nextBtn.parentElement.hidden = true;
+            questionEl.textContent = "Thank you — your ring request is in";
+            supportEl.textContent = "We’ll review your choices personally and contact you shortly with the best next step.";
+            questionEl.focus({ preventScroll:true });
           } catch (error) {
             console.error(error);
             isSubmitting = false;
-            nextBtn.disabled = false;
-            nextBtn.textContent = "Request my design & quote";
+            if (activeSubmitButton) {
+              activeSubmitButton.disabled = false;
+              activeSubmitButton.textContent = activeSubmitButton === nextBtn ? "Request my design & quote" : "Request complimentary design";
+            }
             setStatus("We couldn’t send your enquiry. Please check your connection and try again.");
           }
         });
