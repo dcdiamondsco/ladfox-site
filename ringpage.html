@@ -1348,7 +1348,7 @@
         margin:0;
         color:#fff;
         font-family:var(--ui-font);
-        font-size:clamp(.72rem, 1.4vw, .84rem);
+        font-size:clamp(.84rem, 1.7vw, .98rem);
         font-weight:800;
         line-height:1.18;
         text-align:center;
@@ -1412,7 +1412,7 @@
         position:fixed;
         top:0;
         right:12px;
-        width:min(420px, 36vw);
+        width:min(560px, 44vw);
         z-index:3;
       }
 
@@ -3398,7 +3398,7 @@
           top:0;
           right:0;
           z-index:6;
-          width:clamp(128px, 34vw, 156px);
+          width:clamp(176px, 46vw, 230px);
         }
 
         .guided-form--intro .guided-review-card{
@@ -4075,7 +4075,7 @@
             label: "How would you like to get started?",
             support: "",
             type: "choice",
-            options: ["Design my ring", "Get design ideas & a quote"]
+            options: ["Interactive Ring Designer", "Recieve a complimentery sketch"]
           },
           {
             key: "ring_metal",
@@ -6169,7 +6169,7 @@
             return;
           }
 
-          formValues.design_request_type = "Get design ideas & a quote";
+          formValues.design_request_type = "Recieve a complimentery sketch";
           if (hiddenFields.submission_type) hiddenFields.submission_type.value = "complimentary_design";
           activeSubmitButton = triggerButton || null;
           if (activeSubmitButton) {
@@ -6206,7 +6206,7 @@
             return;
           }
 
-          formValues.design_request_type = "Send inspiration images";
+          formValues.design_request_type = "Send us your idea";
           if (hiddenFields.submission_type) hiddenFields.submission_type.value = "image_upload";
           activeSubmitButton = triggerButton || null;
           if (activeSubmitButton) {
@@ -6266,9 +6266,9 @@
           const interactiveButton = document.createElement("button");
           interactiveButton.type = "button";
           interactiveButton.className = "guided-intro-action";
-          interactiveButton.textContent = "Design my ring";
+          interactiveButton.textContent = "Interactive Ring Designer";
           interactiveButton.addEventListener("click", () => {
-            formValues.design_request_type = "Design my ring";
+            formValues.design_request_type = "Interactive Ring Designer";
             syncHiddenFields();
             introActive = false;
             summaryScreenActive = false;
@@ -6279,9 +6279,9 @@
           const complimentaryButton = document.createElement("button");
           complimentaryButton.type = "button";
           complimentaryButton.className = "guided-intro-action";
-          complimentaryButton.textContent = "Get design ideas & a quote";
+          complimentaryButton.textContent = "Recieve a complimentery sketch";
           complimentaryButton.addEventListener("click", () => {
-            formValues.design_request_type = "Get design ideas & a quote";
+            formValues.design_request_type = "Recieve a complimentery sketch";
             syncHiddenFields();
             openIntroComplimentaryPopup();
           });
@@ -6289,9 +6289,9 @@
           const attachButton = document.createElement("button");
           attachButton.type = "button";
           attachButton.className = "guided-intro-action";
-          attachButton.textContent = "Send inspiration images";
+          attachButton.textContent = "Send us your idea";
           attachButton.addEventListener("click", () => {
-            formValues.design_request_type = "Send inspiration images";
+            formValues.design_request_type = "Send us your idea";
             syncHiddenFields();
             openIntroAttachPopup();
           });
