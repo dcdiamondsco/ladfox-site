@@ -3552,6 +3552,19 @@
           font-size:.82rem;
           line-height:1.2;
         }
+
+        .guided-form--intro .guided-intro-reviews{
+          position:fixed !important;
+          top:auto !important;
+          right:auto !important;
+          bottom:calc(10px + env(safe-area-inset-bottom, 0px)) !important;
+          left:50% !important;
+          transform:translateX(-50%) !important;
+          margin:0 !important;
+          z-index:7 !important;
+          width:clamp(220px, 58vw, 300px) !important;
+          max-width:calc(100vw - 28px) !important;
+        }
       }
 
       .guided-form--success{
