@@ -20,3 +20,19 @@
     Referrer-Policy = "no-referrer"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
+
+[[headers]]
+  for = "/ringpage"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+
+[[headers]]
+  for = "/ringpage.html"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0, must-revalidate"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
