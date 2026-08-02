@@ -992,17 +992,32 @@
 
       .guided-form__brand{
         display:flex;
+        flex-direction:column;
         justify-content:flex-start;
         align-items:center;
         width:min(100%, 820px);
         margin:0 auto 2px;
-        padding-left:24px;
+        padding-left:0;
+        gap:8px;
       }
 
       .guided-form__brand img{
         display:block;
         width:min(170px, 24vw);
         height:auto;
+      }
+
+      .guided-form__brand-copy{
+        margin:0;
+        color:rgba(255,255,255,.72);
+        font-family:var(--ui-font);
+        font-size:clamp(.6rem, .78vw, .74rem);
+        font-weight:600;
+        letter-spacing:.03em;
+        line-height:1.35;
+        text-align:center;
+        white-space:nowrap;
+        text-shadow:0 2px 10px rgba(0,0,0,.24);
       }
 
       .guided-form:not(.guided-form--intro) .guided-form__brand{
@@ -1334,14 +1349,7 @@
       }
 
       .guided-intro-actions::before{
-        content:"";
-        position:absolute;
-        inset:-24px -28px -20px;
-        border-radius:28px;
-        background:linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.4) 58%, rgba(0,0,0,.22));
-        box-shadow:0 18px 42px rgba(0,0,0,.22);
-        z-index:0;
-        pointer-events:none;
+        content:none;
       }
 
       .guided-intro-actions__title{
@@ -1368,12 +1376,43 @@
         z-index:1;
       }
 
+      .guided-intro-trust{
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:center;
+        gap:8px 16px;
+        width:100%;
+        margin:2px 0 0;
+        color:rgba(255,255,255,.74);
+        font-family:var(--ui-font);
+        font-size:clamp(.66rem, .86vw, .76rem);
+        font-weight:600;
+        line-height:1.35;
+        text-align:center;
+        position:relative;
+        z-index:1;
+      }
+
+      .guided-intro-trust__item{
+        white-space:nowrap;
+      }
+
+      .guided-submit-note{
+        margin:4px 0 0;
+        color:rgba(255,255,255,.72);
+        font-family:var(--ui-font);
+        font-size:.72rem;
+        line-height:1.4;
+        text-align:center;
+      }
+
       .guided-intro-action{
         min-height:72px;
         padding:12px 10px;
         border-radius:18px;
         border:1px solid rgba(255,255,255,.14);
-        background:rgba(255,255,255,.035);
+        background:rgba(0,0,0,.5);
         color:#fff;
         font-family:var(--ui-font);
         font-size:clamp(.72rem, 1.4vw, .84rem);
@@ -1410,9 +1449,12 @@
 
       .guided-intro-reviews{
         position:fixed;
-        top:0;
-        right:12px;
-        width:min(560px, 44vw);
+        top:auto;
+        right:auto;
+        left:50%;
+        bottom:24px;
+        transform:translateX(-50%);
+        width:min(680px, 52vw);
         z-index:3;
       }
 
@@ -1421,8 +1463,8 @@
         gap:10px;
         padding:12px 16px 10px;
         border-radius:18px;
-        border:1px solid rgba(255,255,255,.36);
-        background:rgba(0,0,0,.82);
+        border:0;
+        background:transparent;
         color:#fff;
         box-shadow:0 16px 36px rgba(0,0,0,.24);
         backdrop-filter:blur(8px);
@@ -1439,6 +1481,8 @@
       .guided-review-card__author-block{
         display:grid;
         gap:2px;
+        justify-items:start;
+        text-align:left;
       }
 
       .guided-review-card__author{
@@ -1473,9 +1517,10 @@
         min-height:0;
         color:rgba(255,255,255,.9);
         font-family:var(--ui-font);
-        font-size:clamp(.72rem, .76vw, .79rem);
-        line-height:1.34;
+        font-size:clamp(.82rem, .94vw, .96rem);
+        line-height:1.4;
         overflow:hidden;
+        text-align:left;
       }
 
       .guided-review-card__body p{
@@ -1487,9 +1532,7 @@
       }
 
       .guided-review-card__dots{
-        display:flex;
-        justify-content:center;
-        gap:8px;
+        display:none;
       }
 
       .guided-review-card__dot{
@@ -1589,12 +1632,17 @@
         .guided-form__brand{
           width:100%;
           margin:0 auto 2px;
-          padding-left:0;
           justify-content:center;
         }
 
         .guided-form__brand img{
           width:min(132px, 34vw);
+        }
+
+        .guided-form__brand-copy{
+          font-size:.54rem;
+          max-width:none;
+          white-space:nowrap;
         }
 
         .guided-review-card__stars{
@@ -3378,7 +3426,7 @@
 
         .guided-form--intro .guided-form__brand{
           position:absolute;
-          top:0;
+          top:10px;
           left:50%;
           z-index:5;
           width:auto;
@@ -3395,17 +3443,20 @@
         }
 
         .guided-form--intro .guided-intro-reviews{
-          top:0;
-          right:0;
+          top:auto;
+          right:auto;
+          left:50%;
+          bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+          transform:translateX(-50%);
           z-index:6;
-          width:clamp(176px, 46vw, 230px);
+          width:clamp(220px, 58vw, 300px);
         }
 
         .guided-form--intro .guided-review-card{
           gap:3px;
           padding:7px 8px 6px;
           border-radius:12px;
-          background:rgba(0,0,0,.88);
+          background:transparent;
           box-shadow:0 8px 22px rgba(0,0,0,.3);
         }
 
@@ -3417,14 +3468,14 @@
         }
 
         .guided-form--intro .guided-review-card__author-block{
-          margin-top:16px;
+          margin-top:24px;
         }
 
         .guided-form--intro .guided-review-card__author{
           display:block;
           max-width:100%;
           overflow:hidden;
-          font-size:.54rem;
+          font-size:.48rem;
           line-height:1.1;
           text-overflow:ellipsis;
           white-space:nowrap;
@@ -3441,22 +3492,17 @@
         }
 
         .guided-form--intro .guided-review-card__google img{
-          width:min(66px, 18vw);
+          width:min(56px, 15vw);
         }
 
         .guided-form--intro .guided-review-card__body{
           display:block;
-          font-size:.44rem;
-          line-height:1.16;
+          font-size:.62rem;
+          line-height:1.3;
         }
 
         .guided-form--intro .guided-review-card__body p + p{
           margin-top:.35em;
-        }
-
-        .guided-form--intro .guided-review-card__dots{
-          display:flex;
-          gap:4px;
         }
 
         .guided-form--intro .guided-form__body{
@@ -3489,6 +3535,12 @@
           max-width:330px;
           gap:10px;
           margin:0 auto;
+        }
+
+        .guided-form--intro .guided-intro-trust{
+          width:min(100%, 330px);
+          gap:6px 12px;
+          font-size:.62rem;
         }
 
         .guided-form--intro .guided-intro-action{
@@ -3648,6 +3700,7 @@
                   <div class="guided-form__intro" id="quickStartIntro">
                     <div class="guided-form__brand">
                       <img src="Images/ladfox logo.png" alt="Ladfox" loading="eager" decoding="async" />
+                      <p class="guided-form__brand-copy">Family-run Hatton Garden jeweller &middot; Personal guidance &middot; No sales pressure</p>
                     </div>
                     <div class="guided-form__trust" id="quickStartTrust" hidden>
                       <span class="guided-form__trust-badge">
@@ -3671,6 +3724,7 @@
                     <button class="btn" id="quickStartBack" type="button" hidden>Back</button>
                     <button class="btn" id="quickStartNext" type="button">Design my ring</button>
                   </div>
+                  <p class="guided-submit-note" id="quickStartSubmitNote" hidden>No obligation. We&rsquo;ll only use your details to respond to your enquiry.</p>
                   <p class="guided-form__note" id="quickStartNote"></p>
                   <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
                 </div>
@@ -3817,6 +3871,7 @@
         const trustEl = document.getElementById("quickStartTrust");
         const bodyEl = document.getElementById("quickStartBody");
         const noteEl = document.getElementById("quickStartNote");
+        const submitNoteEl = document.getElementById("quickStartSubmitNote");
         const statusEl = document.getElementById("quickStartStatus");
         const nextBtn = document.getElementById("quickStartNext");
         const backBtn = document.getElementById("quickStartBack");
@@ -4075,7 +4130,7 @@
             label: "How would you like to get started?",
             support: "",
             type: "choice",
-            options: ["Interactive Ring Designer", "Recieve a complimentery sketch"]
+            options: ["Interactive Ring Designer", "Get design ideas + Quote"]
           },
           {
             key: "ring_metal",
@@ -5960,6 +6015,7 @@
           renderGuide(null);
           clearMobilePreview();
           if (trustEl) trustEl.hidden = true;
+          if (submitNoteEl) submitNoteEl.hidden = false;
           if (backBtn) backBtn.hidden = false;
 
           const fields = document.createElement("div");
@@ -6169,7 +6225,7 @@
             return;
           }
 
-          formValues.design_request_type = "Recieve a complimentery sketch";
+          formValues.design_request_type = "Get design ideas + Quote";
           if (hiddenFields.submission_type) hiddenFields.submission_type.value = "complimentary_design";
           activeSubmitButton = triggerButton || null;
           if (activeSubmitButton) {
@@ -6247,6 +6303,7 @@
           bodyEl.innerHTML = "";
           noteEl.textContent = "";
           noteEl.classList.remove("guided-form__note--reassurance");
+          if (submitNoteEl) submitNoteEl.hidden = true;
           nextBtn.hidden = true;
           backBtn.hidden = true;
           nextBtn.disabled = false;
@@ -6279,9 +6336,9 @@
           const complimentaryButton = document.createElement("button");
           complimentaryButton.type = "button";
           complimentaryButton.className = "guided-intro-action";
-          complimentaryButton.textContent = "Recieve a complimentery sketch";
+          complimentaryButton.textContent = "Get design ideas + Quote";
           complimentaryButton.addEventListener("click", () => {
-            formValues.design_request_type = "Recieve a complimentery sketch";
+            formValues.design_request_type = "Get design ideas + Quote";
             syncHiddenFields();
             openIntroComplimentaryPopup();
           });
@@ -6301,6 +6358,22 @@
           actionsRow.appendChild(attachButton);
           actionsWrap.appendChild(actionsTitle);
           actionsWrap.appendChild(actionsRow);
+
+          const trustRow = document.createElement("div");
+          trustRow.className = "guided-intro-trust";
+
+          [
+            "Lifetime warranty",
+            "Insured UK delivery",
+            "Free engraving"
+          ].forEach((label) => {
+            const trustItem = document.createElement("span");
+            trustItem.className = "guided-intro-trust__item";
+            trustItem.textContent = `✓ ${label}`;
+            trustRow.appendChild(trustItem);
+          });
+
+          actionsWrap.appendChild(trustRow);
 
           const attachmentsMeta = document.createElement("p");
           attachmentsMeta.className = "guided-intro-attachments";
@@ -6386,10 +6459,15 @@
           submitButton.textContent = "Submit";
           submitButton.addEventListener("click", () => submitComplimentaryDesign(submitButton));
 
+          const popupSubmitNote = document.createElement("p");
+          popupSubmitNote.className = "guided-submit-note";
+          popupSubmitNote.textContent = "No obligation. We’ll only use your details to respond to your enquiry.";
+
           popupFields.appendChild(descriptionField);
           popupFields.appendChild(contactOptions);
           popupFields.appendChild(contactInput);
           popupFields.appendChild(submitButton);
+          popupFields.appendChild(popupSubmitNote);
 
           popup.appendChild(closeButton);
           popup.appendChild(popupFields);
@@ -6469,10 +6547,15 @@
           attachSubmitButton.textContent = "Submit";
           attachSubmitButton.addEventListener("click", () => submitAttachImagesLead(attachSubmitButton));
 
+          const attachPopupSubmitNote = document.createElement("p");
+          attachPopupSubmitNote.className = "guided-submit-note";
+          attachPopupSubmitNote.textContent = "No obligation. We’ll only use your details to respond to your enquiry.";
+
           attachPopupFields.appendChild(attachUploadMeta);
           attachPopupFields.appendChild(attachContactOptions);
           attachPopupFields.appendChild(attachContactInput);
           attachPopupFields.appendChild(attachSubmitButton);
+          attachPopupFields.appendChild(attachPopupSubmitNote);
 
           attachPopup.appendChild(attachCloseButton);
           attachPopup.appendChild(attachPopupFields);
@@ -6570,6 +6653,7 @@
           supportEl.classList.toggle("guided-form__support--phone", isEmailCaptureStep);
           noteEl.textContent = "";
           noteEl.classList.remove("guided-form__note--reassurance");
+          if (submitNoteEl) submitNoteEl.hidden = true;
           bodyEl.innerHTML = "";
           if (nextBtn && nextBtn.parentElement && nextBtn.parentElement.classList.contains("guided-form__footer")) {
             const footerEl = nextBtn.parentElement;
