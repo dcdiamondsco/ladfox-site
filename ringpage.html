@@ -1007,6 +1007,11 @@
         height:auto;
       }
 
+      .guided-form__brand-link{
+        display:block;
+        line-height:0;
+      }
+
       .guided-form__brand-copy{
         margin:0;
         color:rgba(255,255,255,.72);
@@ -3508,12 +3513,14 @@
 
         .guided-form--intro .guided-form__body{
           display:flex;
-          align-items:center;
+          align-items:flex-start;
           justify-content:center;
           width:100%;
           height:100%;
           min-height:0;
-          padding:0 0 6vh;
+          /* Start below the brand instead of centring an over-tall stack upward. */
+          padding:18px 0 clamp(88px, 20svh, 108px);
+          box-sizing:border-box;
           overflow:visible;
         }
 
@@ -3523,34 +3530,63 @@
           align-content:center;
           justify-items:center;
           width:100%;
-          max-width:360px;
+          max-width:320px;
           height:auto;
           margin:0 auto;
           padding:0;
-          gap:10px;
+          gap:8px;
+        }
+
+        .guided-form--intro .guided-intro-actions__title{
+          transform:none;
+          font-size:.78rem;
+          line-height:1.2;
         }
 
         .guided-form--intro .guided-intro-actions__row{
           grid-template-columns:1fr;
-          width:min(100%, 330px);
-          max-width:330px;
-          gap:10px;
+          width:min(100%, 292px);
+          max-width:292px;
+          gap:9px;
           margin:0 auto;
         }
 
         .guided-form--intro .guided-intro-trust{
-          width:min(100%, 330px);
+          width:min(100%, 292px);
           gap:6px 12px;
           font-size:.62rem;
         }
 
         .guided-form--intro .guided-intro-action{
           width:100%;
-          min-height:58px;
-          padding:12px 16px;
-          border-radius:16px;
-          font-size:.82rem;
+          min-height:48px;
+          padding:9px 13px;
+          border-radius:14px;
+          font-size:.76rem;
           line-height:1.2;
+        }
+
+        .guided-form--intro .guided-intro-popup-host{
+          position:relative;
+          z-index:20;
+        }
+
+        .guided-form--intro .guided-popup--intro{
+          z-index:21;
+          max-height:calc(100svh - 28px);
+          overflow-y:auto;
+          overscroll-behavior:contain;
+        }
+
+        .guided-form--intro.guided-form--intro-popup-open .guided-form__body{
+          z-index:20;
+        }
+
+        .guided-form--intro.guided-form--intro-popup-open .guided-intro-reviews{
+          z-index:1 !important;
+          opacity:.22;
+          filter:blur(2px);
+          pointer-events:none;
         }
 
         .guided-form--intro .guided-intro-reviews{
@@ -3564,6 +3600,7 @@
           z-index:7 !important;
           width:clamp(220px, 58vw, 300px) !important;
           max-width:calc(100vw - 28px) !important;
+          transition:opacity .2s ease, filter .2s ease;
         }
       }
 
@@ -3713,7 +3750,9 @@
 
                   <div class="guided-form__intro" id="quickStartIntro">
                     <div class="guided-form__brand">
-                      <img src="Images/ladfox logo.png" alt="Ladfox" loading="eager" decoding="async" />
+                      <a class="guided-form__brand-link" href="index.html" aria-label="Go to the Ladfox homepage">
+                        <img src="Images/ladfox logo.png" alt="Ladfox" loading="eager" decoding="async" />
+                      </a>
                       <p class="guided-form__brand-copy">Family-run Hatton Garden jeweller &middot; Personal guidance &middot; No sales pressure</p>
                     </div>
                     <div class="guided-form__trust" id="quickStartTrust" hidden>
@@ -4635,6 +4674,61 @@
             }
             field.value = formValues[key] || "";
           });
+        }
+
+        function getRelevantSubmissionKeys(){
+          const submissionType = String(hiddenFields.submission_type?.value || "").trim();
+          const relevantKeys = new Set([
+            "design_request_type",
+            "other_notes",
+            "email",
+            "phone",
+            "preferred_contact"
+          ]);
+
+          if (submissionType === "complete") {
+            [
+              "ring_metal",
+              "multi_stone_style",
+              "style_detail",
+              "stone_shape",
+              "stone_size",
+              "ring_size",
+              "pave_band",
+              "pave_coverage",
+              "setting_design",
+              "stone_type",
+              "gemstone_type",
+              "budget"
+            ].forEach((key) => relevantKeys.add(key));
+          }
+
+          return relevantKeys;
+        }
+
+        function buildSubmissionFormData(){
+          const formData = new FormData();
+          const relevantKeys = getRelevantSubmissionKeys();
+
+          formData.append("form-name", form.getAttribute("name") || "ringpage-quick-start");
+
+          if (hiddenFields.submission_type?.value) {
+            formData.append("submission_type", hiddenFields.submission_type.value);
+          }
+
+          Object.entries(hiddenFields).forEach(([key, field]) => {
+            if (!field || key === "submission_type") return;
+            if (!relevantKeys.has(key)) return;
+            const value = String(field.value || "").trim();
+            if (!value) return;
+            formData.append(field.name, value);
+          });
+
+          getReferenceFiles().forEach((file) => {
+            formData.append("reference_images", file, file.name);
+          });
+
+          return formData;
         }
 
         function setStatus(message){
@@ -6185,6 +6279,7 @@
           closeIntroAttachPopup();
           const popup = bodyEl?.querySelector(".guided-popup--intro");
           if (!popup) return;
+          shellEl?.classList.add("guided-form--intro-popup-open");
           popup.hidden = false;
           popup.classList.add("is-visible");
           const firstField = popup.querySelector("textarea, input");
@@ -6196,12 +6291,14 @@
           if (!popup) return;
           popup.classList.remove("is-visible");
           popup.hidden = true;
+          shellEl?.classList.remove("guided-form--intro-popup-open");
         }
 
         function openIntroAttachPopup(){
           closeIntroComplimentaryPopup();
           const popup = bodyEl?.querySelector(".guided-popup--attach");
           if (!popup) return;
+          shellEl?.classList.add("guided-form--intro-popup-open");
           popup.hidden = false;
           popup.classList.add("is-visible");
           referenceImageInputs[0]?.click();
@@ -6214,6 +6311,7 @@
           if (!popup) return;
           popup.classList.remove("is-visible");
           popup.hidden = true;
+          shellEl?.classList.remove("guided-form--intro-popup-open");
         }
 
         function submitComplimentaryDesign(triggerButton){
@@ -6858,7 +6956,7 @@
             syncHiddenFields();
             const response = await fetch("/", {
               method: "POST",
-              body: new FormData(form)
+              body: buildSubmissionFormData()
             });
             if (!response.ok) throw new Error(`Form submission failed with status ${response.status}`);
 

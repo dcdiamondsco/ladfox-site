@@ -43,7 +43,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
 
   <link rel="preload" as="image" href="Images/Logo%20no%20background.png" />
-  <link rel="preload" as="image" href="Images/background%202.png" />
+  <link rel="preload" as="image" href="Images/background-jeweller.png" />
 
   <style>
     :root{
@@ -1446,6 +1446,10 @@
         border-color:rgba(255,255,255,calc(.2 - (var(--brand-fade, 0) * .08)));
       }
 
+      .nav a.nav-recent-work{
+        display:none;
+      }
+
       .nav a.nav-trilogy{
         grid-column:1;
         grid-row:2;
@@ -1809,6 +1813,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="homepage-refresh.css" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -2016,7 +2021,7 @@
 
       <nav class="nav" aria-label="Primary">
         <a href="ringpage.html">Engagement Rings</a>
-        <a class="nav-trilogy" href="trilogy-ring.html">Trilogy Ring <span class="nav-badge">New</span></a>
+        <a class="nav-recent-work" href="ring-gallery.html">Recent Work</a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </nav>
@@ -2029,11 +2034,11 @@
         <aside class="hero-card" aria-label="Ladfox studio promise">
           <div class="hero-visual">
             <img
-              src="Images/background%201.png"
-              alt="Bespoke engagement ring campaign image by Ladfox Hatton Garden jeweller"
+              src="Images/background-jeweller.png"
+              alt="Couple viewing jewellery in an elegant private jewellery showroom"
               class="hero-image"
               data-hero-image
-              data-hero-key="bg1"
+              data-hero-key="jeweller"
               loading="eager"
               decoding="async"
             />
@@ -2043,107 +2048,93 @@
               <h1><span class="hero-heading-line">Bespoke Engagement Rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
               <div class="hero-subcopy-row">
                 <div class="hero-subcopy">
-                  <p>As a family-run jeweller, we take a personal approach to every piece we create. Each piece is made completely bespoke, whether you have a finished design, a screenshot or simply a rough idea and budget. We&rsquo;ll guide you as much or as little as you need, helping you create something that feels entirely your own.</p>
+                  <p>A rough idea, a screenshot or a design you love. Our family-run Hatton Garden team will help you create a ring that feels entirely yours, with personal guidance at every step.</p>
                 </div>
 
-                <div class="hero-primary-actions">
-                  <form
-                    id="heroQuickEnquiryForm"
-                    data-section-id="quick-enquiry"
-                    aria-labelledby="heroQuickEnquiryHeading"
-                    name="quick-enquiry"
-                    method="POST"
-                    action="/"
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
-                    enctype="multipart/form-data"
-                  >
-                    <section id="quick-enquiry" class="hero-enquiry-strip" aria-labelledby="heroQuickEnquiryHeading">
-                    <input type="hidden" name="form-name" value="quick-enquiry" />
-                    <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
-                    <input type="hidden" name="source-page" value="index" />
-                    <input type="hidden" name="source-context" value="hero-quick-enquiry" />
-                    <input type="hidden" name="utm_source" id="heroQuickEnquiryUtmSource" />
-                    <input type="hidden" name="utm_medium" id="heroQuickEnquiryUtmMedium" />
-                    <input type="hidden" name="utm_campaign" id="heroQuickEnquiryUtmCampaign" />
-                    <input type="hidden" name="utm_term" id="heroQuickEnquiryUtmTerm" />
-                    <input type="hidden" name="utm_content" id="heroQuickEnquiryUtmContent" />
-                    <input type="hidden" name="gclid" id="heroQuickEnquiryGclid" />
-                    <input type="hidden" name="subject" id="heroQuickEnquirySubject" />
-                    <textarea name="summary" id="heroQuickEnquirySummary" hidden></textarea>
-                    <h2 id="heroQuickEnquiryHeading">How can we help?</h2>
-                    <div class="hero-enquiry-form">
-                      <div class="hero-enquiry-options" role="radiogroup" aria-label="How can LADFOX help?">
-                        <label class="hero-enquiry-option">
-                          <input type="radio" name="enquiry_route" value="Quick quote" required />
-                          <span>Quick quote</span>
-                        </label>
-                        <label class="hero-enquiry-option">
-                          <input type="radio" name="enquiry_route" value="Quick call" required />
-                          <span>Quick call</span>
-                        </label>
-                        <label class="hero-enquiry-option">
-                          <input type="radio" name="enquiry_route" value="Send an idea" required />
-                          <span>Send an idea</span>
-                        </label>
-                      </div>
-
-                      <div class="hero-enquiry-main">
-                        <label class="skip" for="heroQuickEnquiryContact">Mobile number or email</label>
-                        <input
-                          id="heroQuickEnquiryContact"
-                          class="hero-enquiry-input"
-                          type="text"
-                          name="contact_or_email"
-                          placeholder="Mobile number or email"
-                          autocomplete="email"
-                          required
-                        />
-                        <button id="heroQuickEnquirySubmit" class="btn btn-primary hero-enquiry-submit" type="submit">Get My Quote</button>
-                      </div>
-
-                      <div class="hero-enquiry-message" id="heroQuickEnquiryMessageWrap" hidden>
-                        <label class="skip" for="heroQuickEnquiryMessage">Message</label>
-                        <textarea
-                          id="heroQuickEnquiryMessage"
-                          class="hero-enquiry-textarea"
-                          name="message"
-                          placeholder="Tell us what you need help with, your idea, or the quote you want us to review."
-                        ></textarea>
-                      </div>
-
-                      <div class="hero-enquiry-upload" id="heroQuickEnquiryUpload" hidden>
-                        <label for="heroQuickEnquiryImage">Add image (optional)</label>
-                        <input id="heroQuickEnquiryImage" type="file" name="idea_image" accept="image/*" />
-                        <span class="hero-enquiry-upload-name" id="heroQuickEnquiryUploadName">No file selected</span>
-                      </div>
-
-                      <p class="hero-enquiry-status" id="heroQuickEnquiryStatus" aria-live="polite"></p>
-                    </div>
-                    </section>
-                  </form>
-
-                  <div class="hero-secondary-actions">
-                    <a class="hero-visual-link" id="ringDesignerLink" href="ringpage.html">
-                      <img src="Images/jamie%20sketch.png" alt="" loading="lazy" decoding="async" />
-                      <span class="hero-visual-link-copy">
-                        <span class="hero-visual-link-title">Design My Ring</span>
-                        <span class="hero-visual-link-text">Start with sketches, CAD and stone guidance built around your idea.</span>
-                      </span>
-                    </a>
-                    <a class="hero-visual-link" id="recentWorkLink" href="ring-gallery.html">
-                      <img src="Images/recent%20work%20image.jpg.jpeg" alt="" loading="lazy" decoding="async" />
-                      <span class="hero-visual-link-copy">
-                        <span class="hero-visual-link-title">View Recent Work</span>
-                        <span class="hero-visual-link-text">See finished commissions, proposal moments and recent bespoke pieces.</span>
-                      </span>
-                    </a>
-                  </div>
+                <div class="home-start-actions">
+                  <a class="btn btn-primary" id="ringDesignerLink" href="ringpage.html">Start your ring</a>
+                  <a class="home-text-link" id="recentWorkLink" href="ring-gallery.html">Explore recent work <span aria-hidden="true">&rarr;</span></a>
+                  <p>Begin with a complimentary sketch and a quote.</p>
                 </div>
               </div>
             </div>
           </div>
         </aside>
+
+
+        <section class="home-featured home-section" aria-labelledby="featuredHeading">
+          <div class="home-section-heading">
+            <p class="home-eyebrow">Made around you</p>
+            <h2 id="featuredHeading">A little inspiration for your ring</h2>
+            <p>Find a detail you love. We&rsquo;ll make the design your own.</p>
+          </div>
+          <div class="home-rings-grid">
+            <a class="home-ring" href="trilogy-ring.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/trilogy.jpg" alt="Oval centre stone with pear-shaped side stones on a gold band." width="800" height="800" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>Oval centre stone with pear-shaped side stones on a gold band.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="jewellery-design.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/mens-silver-band.jpg" alt="A textured finish and a distinctive stone-set detail." width="1600" height="900" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>A textured finish and a distinctive stone-set detail.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/rose-gold-ring.jpg" alt="A pink centre stone framed by an ornate rose gold band." width="1600" height="1200" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>A pink centre stone framed by an ornate rose gold band.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/oval-ring.jpg" alt="An oval centre stone with a hidden halo beneath the setting." width="1600" height="1200" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>An oval centre stone with a hidden halo beneath the setting.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/trilogy-detail.jpg" alt="Oval centre stone with pear-shaped side stones in an open trilogy setting." width="1206" height="1272" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>Oval centre stone with pear-shaped side stones in an open trilogy setting.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/large-oval.jpg" alt="A statement oval centre stone on a slender platinum band." width="1125" height="1600" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>A statement oval centre stone on a slender platinum band.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/ornate-trilogy.jpg" alt="Three stones framed by an ornate gold band with engraved details." width="1193" height="843" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>Three stones framed by an ornate gold band with engraved details.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="home-ring" href="ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/pear-emerald.jpg" alt="A pear-shaped emerald in a delicate claw setting on a platinum band." width="735" height="1600" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <p>A pear-shaped emerald in a delicate claw setting on a platinum band.</p>
+                <span class="home-ring-action">Explore this style <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+          </div>
+        </section>
 
         <section class="testimonials" aria-label="Client testimonials">
           <div class="testimonials-slider" data-testimonials-slider>
@@ -2241,17 +2232,17 @@
         </section>
 
         <div class="hero-copy">
-          <span class="service-title">Our Service</span>
+          <h2 class="service-title">From your first idea to your finished ring</h2>
           <div class="routes" aria-label="Process steps">
             <article class="route">
               <a class="route-link" href="ringpage.html">
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">1</span>
-                    <h3>Complimentary sketch and bespoke design direction</h3>
+                    <h3>Your complimentary sketch and quote</h3>
                   </div>
                   <img src="Images/Sketch.png" alt="Bespoke engagement ring sketch stage by Ladfox" loading="lazy" decoding="async" />
-                  <p class="route-caption">Send images, an existing quote or a rough idea and we map the first design direction around the piece you actually want.</p>
+                  <p class="route-caption">Share an idea, a photo or your budget. We&rsquo;ll create a complimentary initial sketch and provide a quote. When you&rsquo;re ready to go ahead, payment starts the CAD design stage.</p>
                 </div>
               </a>
             </article>
@@ -2261,10 +2252,10 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">2</span>
-                    <h3>CAD design and diamond selection</h3>
+                    <h3>See and refine your design</h3>
                   </div>
                   <img src="Images/CAD%20design.png" alt="CAD design for bespoke engagement ring" loading="lazy" decoding="async" />
-                  <p class="route-caption">We refine proportions structure and stone options so the finished piece feels balanced in real life not just on paper.</p>
+                  <p class="route-caption">We provide your CAD design within a week of payment, so you can see the shape and details before your ring is made. We&rsquo;ll adjust it with you until you&rsquo;re happy to approve it.</p>
                 </div>
               </a>
             </article>
@@ -2274,15 +2265,15 @@
                 <div class="route-media">
                   <div class="route-top">
                     <span class="tag" aria-hidden="true">3</span>
-                    <h3>Create</h3>
+                    <h3>Made for you, delivered with care</h3>
                   </div>
-                  <img src="Images/Diamond%20selection.png" alt="Diamond selection for bespoke engagement ring" loading="lazy" decoding="async" />
-                  <p class="route-caption" style="padding-bottom:30px;">From setting and finishing to engraving and delivery we keep the process clean private and closely managed.</p>
+                  <img src="Images/featured-rings/round-platinum.jpg" alt="Finished round platinum ring in a presentation box" loading="lazy" decoding="async" />
+                  <p class="route-caption" style="padding-bottom:30px;">Your ring is typically ready around four weeks after CAD approval. It comes with a lifetime warranty and complimentary insured, tracked delivery.</p>
                 </div>
               </a>
 
               <div class="route-cta">
-                <a class="btn btn-primary" href="ringpage.html">Design your dream ring</a>
+                <a class="btn btn-primary" href="ringpage.html">Start your ring</a>
               </div>
             </article>
           </div>
@@ -2290,10 +2281,98 @@
       </div>
     </section>
 
+    <section class="home-personal home-section" aria-labelledby="personalHeading">
+      <div>
+        <p class="home-eyebrow">Our family-run team</p>
+        <h2 id="personalHeading">Personal guidance, from the first conversation</h2>
+        <p>You don&rsquo;t need to know every detail about rings to begin. Tell us what matters to you, and we&rsquo;ll help you explore the design, stones and budget at your own pace.</p>
+        <a class="home-text-link" href="ringpage.html">Start your ring <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="home-enquiry">
+        <h3>Prefer a quick conversation?</h3>
+        <p>Ask for a quote, request a call or send us your idea.</p>
+        <form
+                    id="heroQuickEnquiryForm"
+                    data-section-id="quick-enquiry"
+                    aria-labelledby="heroQuickEnquiryHeading"
+                    name="quick-enquiry"
+                    method="POST"
+                    action="/"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    enctype="multipart/form-data"
+                  >
+                    <section id="quick-enquiry" class="hero-enquiry-strip" aria-labelledby="heroQuickEnquiryHeading">
+                    <input type="hidden" name="form-name" value="quick-enquiry" />
+                    <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+                    <input type="hidden" name="source-page" value="index" />
+                    <input type="hidden" name="source-context" value="hero-quick-enquiry" />
+                    <input type="hidden" name="utm_source" id="heroQuickEnquiryUtmSource" />
+                    <input type="hidden" name="utm_medium" id="heroQuickEnquiryUtmMedium" />
+                    <input type="hidden" name="utm_campaign" id="heroQuickEnquiryUtmCampaign" />
+                    <input type="hidden" name="utm_term" id="heroQuickEnquiryUtmTerm" />
+                    <input type="hidden" name="utm_content" id="heroQuickEnquiryUtmContent" />
+                    <input type="hidden" name="gclid" id="heroQuickEnquiryGclid" />
+                    <input type="hidden" name="subject" id="heroQuickEnquirySubject" />
+                    <textarea name="summary" id="heroQuickEnquirySummary" hidden></textarea>
+                    <h2 id="heroQuickEnquiryHeading">How can we help?</h2>
+                    <div class="hero-enquiry-form">
+                      <div class="hero-enquiry-options" role="radiogroup" aria-label="How can LADFOX help?">
+                        <label class="hero-enquiry-option">
+                          <input type="radio" name="enquiry_route" value="Quick quote" required />
+                          <span>Quick quote</span>
+                        </label>
+                        <label class="hero-enquiry-option">
+                          <input type="radio" name="enquiry_route" value="Quick call" required />
+                          <span>Quick call</span>
+                        </label>
+                        <label class="hero-enquiry-option">
+                          <input type="radio" name="enquiry_route" value="Send an idea" required />
+                          <span>Send an idea</span>
+                        </label>
+                      </div>
+
+                      <div class="hero-enquiry-main">
+                        <label class="skip" for="heroQuickEnquiryContact">Mobile number or email</label>
+                        <input
+                          id="heroQuickEnquiryContact"
+                          class="hero-enquiry-input"
+                          type="text"
+                          name="contact_or_email"
+                          placeholder="Mobile number or email"
+                          autocomplete="email"
+                          required
+                        />
+                        <button id="heroQuickEnquirySubmit" class="btn btn-primary hero-enquiry-submit" type="submit">Get My Quote</button>
+                      </div>
+
+                      <div class="hero-enquiry-message" id="heroQuickEnquiryMessageWrap" hidden>
+                        <label class="skip" for="heroQuickEnquiryMessage">Message</label>
+                        <textarea
+                          id="heroQuickEnquiryMessage"
+                          class="hero-enquiry-textarea"
+                          name="message"
+                          placeholder="Tell us what you need help with, your idea, or the quote you want us to review."
+                        ></textarea>
+                      </div>
+
+                      <div class="hero-enquiry-upload" id="heroQuickEnquiryUpload" hidden>
+                        <label for="heroQuickEnquiryImage">Add image (optional)</label>
+                        <input id="heroQuickEnquiryImage" type="file" name="idea_image" accept="image/*" />
+                        <span class="hero-enquiry-upload-name" id="heroQuickEnquiryUploadName">No file selected</span>
+                      </div>
+
+                      <p class="hero-enquiry-status" id="heroQuickEnquiryStatus" aria-live="polite"></p>
+                    </div>
+                    </section>
+                  </form>
+      </div>
+    </section>
+
     <section class="sitelinks-section" aria-label="Primary site links">
       <div class="sitelinks-head">
-        <h2>Begin your journey with us</h2>
-        <p>Three direct routes for the pages couples usually want first when they are comparing bespoke jewellers.</p>
+        <h2>Find your next step</h2>
+        <p>Explore our work, start a design or talk it through with us.</p>
       </div>
       <div class="sitelinks-grid">
         <a class="sitelink-card" href="ringpage.html">
@@ -2301,12 +2380,12 @@
           <p>Explore bespoke engagement rings designed around your ideas and budget.</p>
         </a>
         <a class="sitelink-card" href="ring-gallery.html">
-          <h3>Previous Work</h3>
-          <p>Browse three ready-to-start ring directions and open the one you want to customise.</p>
+          <h3>Recent Work</h3>
+          <p>See how ideas become finished rings, from the first sketch to the final piece.</p>
         </a>
         <a class="sitelink-card" href="consultation.html">
           <h3>Consultation</h3>
-          <p>Book a private consultation and discuss the ring you have in mind.</p>
+          <p>Request a call and discuss the ring you have in mind.</p>
         </a>
         <a class="sitelink-card" href="contact-us.html">
           <h3>Contact Us</h3>
@@ -2315,16 +2394,15 @@
       </div>
     </section>
 
-    <section class="testimonials" aria-label="Bespoke jewellery questions">
-      <div class="testimonials-head">
-        <h2>Bespoke jewellery questions</h2>
-        <p><strong>What does Ladfox do?</strong> Ladfox is a family run jeweller creating bespoke engagement rings, wedding bands and custom jewellery with one to one guidance.</p>
-        <p><strong>Can I design a ring from scratch?</strong> Yes. Ladfox can begin with a rough idea, inspiration images or an existing quote, then develop the piece through sketch, CAD design and stone selection.</p>
-        <p><strong>Do Ladfox offer lab grown diamonds?</strong> Yes. Ladfox can source carefully selected lab grown diamonds for bespoke engagement rings and custom jewellery.</p>
-        <div class="route-cta">
-          <a class="btn btn-primary" href="jewellery-design.html">Looking for a different kind of jewellery?</a>
-        </div>
-      </div>
+    <section class="home-faq home-section" aria-labelledby="faqHeading">
+      <div class="home-section-heading"><h2 id="faqHeading">Before you start</h2></div>
+      <details><summary>How much does a bespoke ring cost?</summary><p>All eight featured ring styles start from &pound;1,999. Your design, metal and stones determine the final price. We&rsquo;ll provide a quote before you decide to go ahead.</p></details>
+      <details><summary>Do I need a finished design?</summary><p>No. Start with a rough idea, a screenshot or a budget. Your initial sketch is complimentary, and our family-run team will help you work out the details.</p></details>
+      <details><summary>When do I pay, and when will I see the CAD?</summary><p>We start with a complimentary sketch and a quote. Once you choose to go ahead and make payment, we provide your CAD design within a week.</p></details>
+      <details><summary>Can I make changes before the ring is made?</summary><p>Yes. We&rsquo;ll adjust the CAD with you until you&rsquo;re happy with the design. Your approval comes before production begins.</p></details>
+      <details><summary>How long will my ring take?</summary><p>The typical lead time is four weeks from CAD approval. Allow time before that for your initial sketch, quote and any CAD adjustments.</p></details>
+      <details><summary>What warranty and delivery are included?</summary><p>Your ring comes with a lifetime warranty and complimentary insured, tracked delivery. Contact us if you&rsquo;d like to discuss warranty cover or care for your ring.</p></details>
+      <div class="home-faq-action"><a class="btn btn-primary" href="ringpage.html">Start your ring</a><a class="home-text-link" href="jewellery-design.html">Looking for another kind of jewellery?</a></div>
     </section>
 
   </main>
@@ -2333,7 +2411,7 @@
     <div class="shell">
       <div class="footer-links" aria-label="Footer links">
         <a href="ringpage.html">Engagement Rings</a>
-        <a href="ring-gallery.html">Previous Work</a>
+        <a href="ring-gallery.html">Recent Work</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
@@ -2713,65 +2791,6 @@
           safeTrack(eventName);
         });
       });
-
-      if (heroImage) {
-        const heroSlides = [
-          {
-            image: "Images/background%201.png",
-            key: "bg1",
-            alt: "Ladfox jewellery campaign visual"
-          },
-          {
-            image: "Images/background%202.png",
-            key: "bg2",
-            alt: "Ladfox jewellery campaign visual"
-          },
-          {
-            image: "Images/background%203.png",
-            key: "bg3",
-            alt: "Ladfox signature jewellery campaign visual"
-          },
-          {
-            image: "Images/background%204.png",
-            key: "bg4",
-            alt: "Ladfox jewellery campaign visual"
-          },
-          {
-            image: "Images/background%205.png",
-            key: "bg5",
-            alt: "Ladfox jewellery campaign visual"
-          }
-        ];
-        let heroSlideIndex = 0;
-
-        heroSlides.slice(1).forEach((slide) => {
-          const preloadImage = new Image();
-          preloadImage.src = slide.image;
-        });
-
-        const rotateHeroSlide = () => {
-          heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
-          const nextSlide = heroSlides[heroSlideIndex];
-
-          if (reducedMotionQuery.matches) {
-            heroImage.src = nextSlide.image;
-            heroImage.alt = nextSlide.alt;
-            heroImage.dataset.heroKey = nextSlide.key;
-            return;
-          }
-
-          heroImage.classList.add("is-switching");
-
-          window.setTimeout(() => {
-            heroImage.src = nextSlide.image;
-            heroImage.alt = nextSlide.alt;
-            heroImage.dataset.heroKey = nextSlide.key;
-            heroImage.classList.remove("is-switching");
-          }, 760);
-        };
-
-        window.setInterval(rotateHeroSlide, 5200);
-      }
 
       scrollBlackoutTargets.forEach((element) => {
         element.classList.add("scroll-blackout");
