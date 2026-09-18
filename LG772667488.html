@@ -9,6 +9,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -638,11 +645,14 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body class="lg772667488-page">
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell">
-      <a class="topbar-action" href="ringpage.html">Design a custom piece</a>
+      <a class="topbar-action" href="/ringpage.html">Design a custom piece</a>
 
       <a class="brand" href="index.html" aria-label="Ladfox home">
         <img class="brand-logo" src="Images/ladfox-logo.png" alt="Ladfox" />
@@ -654,19 +664,20 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
     <div class="shell">
       <section class="layout" data-product-page data-product-name="LG772667488 diamond" data-product-slug="LG772667488">
         <article class="panel media-panel" data-reveal>
           <div class="media-inner">
-            <video
+            <img
               class="product-video"
-              src="Images/products/Oval.mov"
-              autoplay
-              muted
-              loop
-              playsinline
-            ></video>
+              src="Images/featured-rings/oval-ring.jpg"
+              alt="Oval lab-grown diamond engagement ring"
+              width="1600"
+              height="1200"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </article>
 
@@ -678,8 +689,8 @@
           <h1>1.60ct D VVS 1 Oval Lab Grown Diamond</h1>
 
           <div class="top-actions">
-            <a class="secondary" href="Images/products/LG772667488%20Cert.pdf" target="_blank" rel="noopener">
-              Certificate
+            <a class="secondary" href="mailto:hello@ladfox.com?subject=LG772667488%20certificate">
+              Request certificate
             </a>
           </div>
 
@@ -736,7 +747,7 @@
           <nav class="footer-links" aria-label="Footer navigation">
             <a href="index.html">Home</a>
             <a href="reviews.html">Reviews</a>
-            <a href="ringpage.html">Design a custom piece</a>
+            <a href="/ringpage.html">Design a custom piece</a>
             <a href="contact-us.html">Contact</a>
           </nav>
         </div>
@@ -744,17 +755,19 @@
         <div>
           <span class="footer-heading">Contact</span>
           <div class="footer-links">
-            <a href="mailto:info@ladfox.com">info@ladfox.com</a>
+            <a href="mailto:hello@ladfox.com">hello@ladfox.com</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
         <p class="footer-meta">
-          &copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved.
+          &copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved.
         </p>
       </div>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <form name="product-buy-intent" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" hidden>
@@ -805,7 +818,7 @@
     }
   </script>
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -814,6 +827,7 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 

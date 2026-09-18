@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag("config", "AW-18173399172");
   </script>
   <title>Lab Emerald Ring | LADFOX</title>
@@ -97,8 +104,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
-<body class="ring-config-page">
+<body class="ring-config-page" data-reveal-none>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell">
       <div class="brand-lockup">
@@ -113,13 +123,14 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
+    <h1 class="visually-hidden">Lab emerald engagement ring</h1>
     <div class="shell">
       <section class="layout" data-ring-config-page data-product-name="Lab Emerald Ring" data-product-slug="lab-emerald-ring">
         <div class="media-column">
           <article class="panel media">
             <div class="media-stage">
-              <video class="product-video product-video--lab-emerald-page" src="Videos/Lab Emerald.mov" poster="Images/products/Emerald.jpeg" preload="metadata" controls autoplay playsinline muted loop aria-label="Lab emerald ring video"></video>
+              <video class="product-video product-video--lab-emerald-page" src="Vids/Lab Emerald.mp4" poster="Images/featured-rings/pear-emerald.jpg" preload="metadata" autoplay playsinline muted loop aria-label="Lab emerald ring video"></video>
             </div>
           </article>
         </div>
@@ -203,5 +214,6 @@
   </main>
 
   <script src="ring-showcase.js"></script>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

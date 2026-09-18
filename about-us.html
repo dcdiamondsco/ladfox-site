@@ -9,6 +9,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -43,8 +50,8 @@
       --text: #f5f2eb;
       --muted: #b9b2a6;
       --line: rgba(255,255,255,0.08);
-      --gold: #d6c29a;
-      --gold-soft: rgba(214, 194, 154, 0.18);
+      --gold: #d7d9de;
+      --gold-soft: rgba(215, 217, 222, 0.18);
       --max: 1180px;
       --radius: 22px;
       --shadow: 0 24px 60px rgba(0,0,0,0.35);
@@ -503,8 +510,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -516,7 +526,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
@@ -690,11 +700,13 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -703,6 +715,7 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 

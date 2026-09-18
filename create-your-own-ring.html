@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag("config", "AW-18173399172");
   </script>
   <title>Create Your Own Ring | LADFOX</title>
@@ -91,8 +98,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body class="ring-config-page create-your-own-page">
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell">
       <div class="brand-lockup">
@@ -107,7 +117,8 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
+    <h1 class="visually-hidden">Create your own engagement ring</h1>
     <div class="shell">
       <section class="layout" data-ring-config-page data-product-name="Create Your Own Ring" data-product-slug="create-your-own-ring">
         <article class="panel copy">
@@ -200,5 +211,6 @@
   </main>
 
   <script src="ring-showcase.js"></script>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'AW-18173399172');
   </script>
   <title>Engagement Ring Advice and Buying Guides | LADFOX</title>
@@ -41,8 +48,8 @@
       --text: #f5f2eb;
       --muted: #b9b2a6;
       --line: rgba(255,255,255,0.08);
-      --gold: #d6c29a;
-      --gold-soft: rgba(214, 194, 154, 0.18);
+      --gold: #d7d9de;
+      --gold-soft: rgba(215, 217, 222, 0.18);
       --max: 1140px;
       --radius: 22px;
       --shadow: 0 24px 60px rgba(0,0,0,0.35);
@@ -387,8 +394,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -396,18 +406,20 @@
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="consultation.html">Consultation</a>
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="/ringpage.html">Engagement Rings</a>
         <a href="advice.html" aria-current="page">Advice</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
         <a href="contact-us.html">Contact Us</a>
-      </nav>
+
+          <a href="/about-us.html">About</a>
+          <a href="/reviews.html">Reviews</a></nav>
       <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
         <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" />
       </a>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container">
         <div class="hero-card">
@@ -433,34 +445,39 @@
             <a class="card-link" href="advice/where-to-buy-an-engagement-ring.html">Read guide</a>
           </article>
 
-          <article class="guide-card guide-card--coming-soon">
-            <span class="status">Coming soon</span>
+          <article class="guide-card">
+            <span class="status">Live guide</span>
             <h3>How Much Should You Spend on an Engagement Ring?</h3>
             <p>A measured guide to setting a realistic budget and deciding where extra spend actually changes the finished ring.</p>
+            <a class="card-link" href="advice/how-much-to-spend-on-an-engagement-ring.html">Read guide</a>
           </article>
 
-          <article class="guide-card guide-card--coming-soon">
-            <span class="status">Coming soon</span>
+          <article class="guide-card">
+            <span class="status">Live guide</span>
             <h3>How to Choose a Diamond</h3>
             <p>An introduction to the details that matter when comparing certificates, proportions, shape, and visual performance.</p>
+            <a class="card-link" href="advice/how-to-choose-a-diamond.html">Read guide</a>
           </article>
 
-          <article class="guide-card guide-card--coming-soon">
-            <span class="status">Coming soon</span>
+          <article class="guide-card">
+            <span class="status">Live guide</span>
             <h3>Lab-Grown Diamonds: A Practical Buying Guide</h3>
             <p>Helpful context on what lab-grown diamonds are, how they compare, and when they make sense for a bespoke project.</p>
+            <a class="card-link" href="advice/lab-grown-diamonds-guide.html">Read guide</a>
           </article>
 
-          <article class="guide-card guide-card--coming-soon">
-            <span class="status">Coming soon</span>
+          <article class="guide-card">
+            <span class="status">Live guide</span>
             <h3>How to Secretly Find a Ring Size</h3>
             <p>Discreet ways to estimate size without making the proposal feel staged or taking unnecessary risks.</p>
+            <a class="card-link" href="advice/how-to-find-ring-size-secretly.html">Read guide</a>
           </article>
 
-          <article class="guide-card guide-card--coming-soon">
-            <span class="status">Coming soon</span>
+          <article class="guide-card">
+            <span class="status">Live guide</span>
             <h3>Bespoke Engagement Rings: How the Process Works</h3>
             <p>A straightforward explanation of how design, sourcing, approvals and final finishing usually come together.</p>
+            <a class="card-link" href="advice/bespoke-engagement-ring-process.html">Read guide</a>
           </article>
         </div>
       </div>
@@ -485,17 +502,21 @@
       <div class="footer-links">
         <a href="advice.html" aria-current="page">Advice</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
-        <a href="ringpage.html">Bespoke Engagement Rings</a>
+        <a href="/ringpage.html">Bespoke Engagement Rings</a>
+        <a href="/cad-service.html">CAD Design</a>
+        <a href="/price-match.html">Price Beater</a>
         <a href="diamonds.html">Diamonds</a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </div>
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -504,5 +525,6 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

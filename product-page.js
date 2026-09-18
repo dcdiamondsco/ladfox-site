@@ -99,13 +99,5 @@ document.querySelectorAll("[data-product-page]").forEach((page) => {
     });
   }
 
-  fetch("https://ipapi.co/json/")
-    .then((response) => response.ok ? response.json() : Promise.reject())
-    .then((data) => {
-      const location = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
-      visitorLocation = location || "Unknown";
-    })
-    .catch(() => {});
-
   updateLinks();
 });

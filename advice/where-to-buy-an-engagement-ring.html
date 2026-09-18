@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'AW-18173399172');
   </script>
   <title>Where to Buy an Engagement Ring in the UK | LADFOX</title>
@@ -41,8 +48,8 @@
       --text: #f5f2eb;
       --muted: #b9b2a6;
       --line: rgba(255,255,255,0.08);
-      --gold: #d6c29a;
-      --gold-soft: rgba(214, 194, 154, 0.18);
+      --gold: #d7d9de;
+      --gold-soft: rgba(215, 217, 222, 0.18);
       --max: 1160px;
       --article-max: 760px;
       --radius: 22px;
@@ -462,8 +469,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="../assets/site-common.css" />
+  <link rel="stylesheet" href="../assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a href="../index.html" aria-label="Ladfox home">
@@ -471,17 +481,19 @@
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="../consultation.html">Consultation</a>
-        <a href="../ringpage.html">Engagement Rings</a>
+        <a href="/ringpage.html">Engagement Rings</a>
         <a href="../advice.html" aria-current="page">Advice</a>
         <a href="../contact-us.html">Contact Us</a>
-      </nav>
+
+          <a href="/about-us.html">About</a>
+          <a href="/reviews.html">Reviews</a></nav>
       <a href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
         <img class="brand-review-badge" src="../Images/google reviews logo.png" alt="Ladfox Google reviews badge" />
       </a>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container">
         <div class="hero-card">
@@ -637,7 +649,7 @@
           <p>Useful next steps if you are still narrowing the brief or comparing the bespoke route in more detail.</p>
           <div class="related-links">
             <a href="../advice.html">Back to Advice</a>
-            <a href="../ringpage.html">Bespoke engagement rings</a>
+            <a href="/ringpage.html">Bespoke engagement rings</a>
             <a href="../diamonds.html">Diamond sourcing</a>
           </div>
         </div>
@@ -649,17 +661,21 @@
     <div class="shell">
       <div class="footer-links">
         <a href="../advice.html">Advice</a>
-        <a href="../ringpage.html">Bespoke Engagement Rings</a>
+        <a href="/ringpage.html">Bespoke Engagement Rings</a>
+        <a href="/cad-service.html">CAD Design</a>
+        <a href="/price-match.html">Price Beater</a>
         <a href="../diamonds.html">Diamonds</a>
         <a href="../consultation.html">Consultation</a>
         <a href="../contact-us.html">Contact Us</a>
       </div>
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="../privacy-policy.html">Privacy</a><a href="../cookie-policy.html">Cookies</a><a href="../returns-cancellations.html">Returns &amp; cancellations</a><a href="../company-information.html">Company information</a></nav>
   </footer>
 
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -668,5 +684,6 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="../assets/privacy-controls.js" defer></script>
 </body>
 </html>

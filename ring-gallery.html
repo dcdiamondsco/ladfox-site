@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag("config", "AW-18173399172");
   </script>
   <title>Previous Work Rings | LADFOX</title>
@@ -105,8 +112,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar topbar--centered">
     <div class="shell">
       <div class="brand-lockup">
@@ -117,10 +127,51 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
     <div class="shell">
       <section class="catalog-intro catalog-intro--compact" aria-label="Recent work introduction">
         <h1>Recent Work</h1>
+      </section>
+
+      <section class="process-strip panel" aria-label="Ornate rose-gold ring recent work">
+        <div class="process-strip__feature-heading">
+          <p class="process-card__title">Ornate Rose-Gold Pink Centre Ring</p>
+        </div>
+
+        <div class="process-strip__timeline" aria-label="Ornate rose-gold ring design timeline">
+          <article class="process-card process-card--timeline">
+            <div class="process-card__copy">
+              <p class="process-card__step">Step 1</p>
+              <h3>Sketch direction</h3>
+              <p>The client had struggled to find the right centre stone, so we sourced it for them. We then suggested custom-cut side stones that echoed the shape and orientation of the main stone, creating a balanced and cohesive design.</p>
+            </div>
+            <div class="process-card__media process-card__media--contain process-card__media--black process-card__media--inset">
+              <img src="Images/rose-gold-sketch.jpeg" alt="Hand-drawn concept for an ornate rose-gold princess-cut ring" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="process-card process-card--timeline">
+            <div class="process-card__copy">
+              <p class="process-card__step">Step 2</p>
+              <h3>CAD refinement</h3>
+              <p>The design was translated into CAD to refine the engraved band, hidden accent stones, setting structure and proportions from every angle.</p>
+            </div>
+            <div class="process-card__media process-card__media--contain">
+              <img src="CADs/rose%20gold%20cad%20no%20measurements.png" alt="CAD views of an ornate rose-gold princess-cut ring" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="process-card process-card--timeline">
+            <div class="process-card__copy">
+              <p class="process-card__step">Step 3</p>
+              <h3>Final piece</h3>
+              <p id="roseGoldVideoDescription">The finished ring brings the pink centre stone, warm rose gold and intricate hand-finished detailing together in the completed piece.</p>
+            </div>
+            <div class="process-card__media">
+              <video class="product-video product-video--zoom-out" src="Vids/rose-gold-ring.mp4" preload="metadata" autoplay playsinline muted loop aria-describedby="roseGoldVideoDescription"></video>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="process-strip panel" aria-label="Emerald Platinum recent work">
@@ -156,10 +207,10 @@
             <div class="process-card__copy">
               <p class="process-card__step">Step 3</p>
               <h3>Final piece</h3>
-              <p>The finished ring brought the design to life exactly as intended, with the completed setting and emerald shown here in the final piece.</p>
+              <p id="emeraldVideoDescription">The finished ring brought the design to life exactly as intended, with the completed setting and emerald shown here in the final piece.</p>
             </div>
             <div class="process-card__media">
-              <video class="product-video" src="Vids/Lab Emerald.mov" preload="metadata" autoplay playsinline muted loop aria-label="Final lab emerald ring video"></video>
+              <video class="product-video" src="Vids/Lab Emerald.mp4" preload="metadata" autoplay playsinline muted loop aria-describedby="emeraldVideoDescription"></video>
             </div>
           </article>
         </div>
@@ -197,19 +248,20 @@
             <div class="process-card__copy">
               <p class="process-card__step">Step 3</p>
               <h3>Final piece</h3>
-              <p>The finished ring brought that guidance and design process together in the completed piece, exactly as intended.</p>
+              <p id="platinumVideoDescription">The finished ring brought that guidance and design process together in the completed piece, exactly as intended.</p>
             </div>
             <div class="process-card__media">
-              <video class="product-video product-video--platinum-crop" src="Images/Jamie%20finished.mp4" preload="metadata" autoplay playsinline muted loop aria-label="Final video of a platinum ring design"></video>
+              <video class="product-video product-video--platinum-crop" src="Images/Jamie%20finished.mp4" preload="metadata" autoplay playsinline muted loop aria-describedby="platinumVideoDescription"></video>
             </div>
           </article>
         </div>
       </section>
 
       <div class="catalog-intro-actions catalog-intro-actions--bottom">
-        <a class="btn btn-primary" href="ringpage.html">Create your own</a>
+        <a class="btn btn-primary" href="/ringpage.html">Create your own</a>
       </div>
     </div>
   </main>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

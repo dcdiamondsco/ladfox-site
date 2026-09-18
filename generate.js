@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Product PC0532 — Ladfox</title>
+  <title>Product PC0532 - Ladfox</title>
   <style>
     body {
       font-family: 'Georgia', serif;

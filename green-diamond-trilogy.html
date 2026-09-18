@@ -9,6 +9,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -20,7 +27,7 @@
   <meta property="og:title" content="Green Diamond Trilogy Ring | Platinum Petal Prong | Ladfox" />
   <meta property="og:description" content="A platinum trilogy ring with a 1.51ct lab green diamond center stone, VVS2 clarity, and a petal prong setting." />
   <meta property="og:url" content="https://ladfox.com/green-diamond-trilogy.html" />
-  <meta property="og:image" content="https://ladfox.com/Images/products/green%20ring.png" />
+  <meta property="og:image" content="https://ladfox.com/Images/featured-rings/trilogy.jpg" />
   <meta property="og:image:alt" content="Green diamond trilogy ring in a platinum petal prong setting" />
   <meta property="og:site_name" content="Ladfox" />
   <meta property="product:price:amount" content="2495.00" />
@@ -28,7 +35,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Green Diamond Trilogy Ring | Platinum Petal Prong | Ladfox" />
   <meta name="twitter:description" content="A platinum trilogy ring with a 1.51ct lab green diamond center stone, VVS2 clarity, and a petal prong setting." />
-  <meta name="twitter:image" content="https://ladfox.com/Images/products/green%20ring.png" />
+  <meta name="twitter:image" content="https://ladfox.com/Images/featured-rings/trilogy.jpg" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
   <link rel="manifest" href="/site.webmanifest" />
@@ -222,8 +229,8 @@
       "url": "https://ladfox.com/green-diamond-trilogy.html",
       "description": "A platinum trilogy ring with a 1.51ct lab green diamond centre stone, VVS2 clarity, triple excellent finish and a petal prong setting.",
       "image": [
-        "https://ladfox.com/Images/products/green%20ring.png",
-        "https://ladfox.com/Images/products/green%20ring%20box.png"
+        "https://ladfox.com/Images/featured-rings/trilogy.jpg",
+        "https://ladfox.com/Images/green%20pear.jpg"
       ],
       "brand": {
         "@type": "Brand",
@@ -323,8 +330,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
-<body class="trilogy-page">
+<body class="trilogy-page" data-reveal-none>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell">
       <div class="brand-lockup">
@@ -338,7 +348,7 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
     <div class="shell">
       <section class="layout" data-product-page data-product-name="green diamond trilogy ring" data-product-slug="green-diamond-trilogy">
         <div class="media-column">
@@ -352,11 +362,11 @@
           <article class="panel media">
             <div class="media-stage">
               <img
-                src="Images/products/green ring.png"
-                alt="Green diamond trilogy ring in platinum"
+                src="Images/featured-rings/trilogy.jpg"
+                alt="Trilogy ring design reference"
                 data-product-image
-                data-image-front="Images/products/green ring.png"
-                data-image-back="Images/products/green ring box.png"
+                data-image-front="Images/featured-rings/trilogy.jpg"
+                data-image-back="Images/green pear.jpg"
               />
             </div>
           </article>
@@ -415,15 +425,17 @@
       <section class="panel related-panel" aria-labelledby="related-rings">
         <h2 id="related-rings">Looking for a different version?</h2>
         <p class="section-copy">If you want this design with a different centre stone size, colour, or metal, Ladfox can build a bespoke variation around the same trilogy layout.</p>
-        <a class="btn btn-primary" href="ringpage.html">Explore bespoke rings</a>
+        <a class="btn btn-primary" href="/ringpage.html">Explore bespoke rings</a>
       </section>
     </div>
   </main>
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <form name="product-buy-intent" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" hidden>
@@ -437,9 +449,8 @@
   </form>
 
   <script src="product-page.js"></script>
-  <script src="scroll-reveal.js"></script>
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -448,6 +459,7 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 

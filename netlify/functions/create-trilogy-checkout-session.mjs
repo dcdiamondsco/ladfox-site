@@ -80,7 +80,7 @@ const metalAdjustmentMap = Object.freeze({
   Platinum: 220
 });
 
-const validateSelections = (raw = {}) => {
+export const validateSelections = (raw = {}) => {
   const metal = requireAllowed(raw.metal, ALLOWED.metals, "metal");
   const shape = requireAllowed(raw.shape || "Round", ALLOWED.shapes, "shape");
   const clarity = requireAllowed(raw.clarity, ALLOWED.clarities, "clarity");
@@ -99,7 +99,7 @@ const validateSelections = (raw = {}) => {
   };
 };
 
-const priceSelections = (selections) => {
+export const priceSelections = (selections) => {
   const rawPrice = (1999 * sizeMultiplier(selections.carat) * clarityMultiplierMap[selections.clarity])
     + colourAdjustmentMap[selections.colour]
     + metalAdjustmentMap[selections.metal];
@@ -110,7 +110,7 @@ const priceSelections = (selections) => {
     ...selections,
     salePriceGbp,
     regularPriceGbp,
-    priceGbp: salePriceGbp,
+    priceGbp: regularPriceGbp,
     saleEndsAt: SALE_ENDS_AT,
     description: `${selections.metal} trilogy ring with a ${selections.stoneSize} round lab-grown diamond, ${selections.colour} colour, ${selections.clarity} clarity, UK size ${selections.ringSize}.`
   };

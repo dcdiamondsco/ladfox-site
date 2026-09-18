@@ -1,11 +1,19 @@
 (() => {
+  if (document.body.hasAttribute("data-reveal-none")) {
+    return;
+  }
+
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   if (reducedMotionQuery.matches) {
     return;
   }
 
-  const selectors = [
+  const selectors = document.body.hasAttribute("data-reveal-text-only") ? [
+    "main h1",
+    "main h2",
+    "main p"
+  ] : [
     "header > *",
     "main > *",
     "main section",

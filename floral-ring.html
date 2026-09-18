@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag("config", "AW-18173399172");
   </script>
   <title>Floral Ring | LADFOX</title>
@@ -97,8 +104,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
-<body class="ring-config-page">
+<body class="ring-config-page" data-reveal-none>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell">
       <div class="brand-lockup">
@@ -113,13 +123,15 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
+    <h1 class="visually-hidden">Floral engagement ring</h1>
     <div class="shell">
       <section class="layout" data-ring-config-page data-product-name="Floral Ring" data-product-slug="floral-ring">
         <div class="media-column">
           <article class="panel media">
             <div class="media-stage">
-              <video class="product-video product-video--floral-page" src="Videos/Floral.mov" poster="Images/petal prong.png" preload="metadata" controls autoplay playsinline muted loop aria-label="Floral ring video"></video>
+              <video class="product-video product-video--floral-page" src="Vids/Floral.mp4" poster="Images/Ringpage Form Background Images/zoomed in petal.png" preload="metadata" autoplay playsinline muted loop aria-describedby="floralVideoDescription"></video>
+              <p id="floralVideoDescription" class="visually-hidden">Video showing the floral ring from several angles, including its petal-inspired setting.</p>
             </div>
           </article>
         </div>
@@ -204,5 +216,6 @@
   </main>
 
   <script src="ring-showcase.js"></script>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

@@ -36,12 +36,15 @@
 .home-section { width: min(1120px, calc(100% - 32px)); margin: 64px auto; }
 .home-featured { margin-top: 32px; }
 .home-section h2 { font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -.025em; }
+.home-featured .home-section-heading h2 { font-size: clamp(1.05rem, 1.8vw, 1.35rem); font-weight: 600; letter-spacing: -.01em; }
 .home-section-heading { max-width: 680px; margin-bottom: 28px; }
 .home-section-heading > p, .home-personal p { color: rgba(255,255,255,.82); line-height: 1.7; }
 .home-eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; margin: 0 0 14px; }
+.home-eyebrow--featured { margin-bottom: 8px; font-family: var(--heading); font-size: clamp(1.45rem, 2.6vw, 2.25rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; text-transform: none; }
 .home-rings-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .home-ring { display: flex; flex-direction: column; min-width: 0; border-bottom: 1px solid var(--line); }
 .home-ring-image { position: relative; aspect-ratio: 1; overflow: hidden; background: #000; }
+.home-ring:nth-child(n+5) .home-ring-image { aspect-ratio: 4 / 5; }
 .home-ring-image::after {
   content: "";
   position: absolute;
@@ -81,7 +84,7 @@
   .nav-recent-work { display: none; }
   .topbar .brand-block { min-height: 100px; margin-bottom: 0; }
   .topbar .brand-logo { width: min(150px, 42vw); transform: none; }
-  .topbar .brand-review-link { top: 60px; }
+  .topbar .brand-review-link { top: 0; right: 0; }
   .topbar .brand-review-badge { width: min(100px, 28vw); }
   .hero { margin-top: -28px; }
   .hero .hero-visual { min-height: 0; padding: 0 20px 64px; overflow: visible; transform: none; filter: none; }

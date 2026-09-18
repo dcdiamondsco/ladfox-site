@@ -127,3 +127,4 @@ async function loadGallery() {
   }
 
   // Add static sold items at the end
+}

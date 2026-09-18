@@ -9,6 +9,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -750,18 +757,18 @@
       "legalName": "LADFOX Ltd",
       "alternateName": "LADFOX",
       "image": "https://ladfox.com/Images/og-banner.jpg",
-      "email": "info@ladfox.com",
+      "email": "hello@ladfox.com",
       "telephone": "+447853362904",
       "identifier": {
         "@type": "PropertyValue",
         "propertyID": "Company Number",
-        "value": "16416135"
+        "value": "17071630"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
         "telephone": "+447853362904",
-        "email": "info@ladfox.com",
+        "email": "hello@ladfox.com",
         "availableLanguage": "English"
       },
       "areaServed": [
@@ -833,8 +840,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -846,7 +856,7 @@
     </div>
   </header>
 
-  <main class="shell">
+  <main id="main-content" class="shell">
     <div class="layout">
       <section class="intro">
         <span class="eyebrow">Quick, personal guidance</span>
@@ -920,7 +930,7 @@
             class="fields"
           >
             <input type="hidden" name="form-name" value="consultation" />
-            <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+            <p style="display:none"><label>Do not fill this out <input type="text" name="bot-field" autocomplete="off" tabindex="-1" /></label></p>
 
             <input type="hidden" name="source-page" value="consultation" />
             <input type="hidden" name="utm_source" id="utm_source" />
@@ -977,7 +987,7 @@
 
         <div class="thank-you-message" id="thankYou">
           <span class="eyebrow">Received</span>
-          <h2>Thanks&mdash;your call request is in.</h2>
+          <h2>Thanks - your call request is in.</h2>
           <p>We&rsquo;ll message you shortly to arrange a convenient time.</p>
         </div>
       </section>
@@ -987,13 +997,17 @@
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
       <div class="footer-links" aria-label="Footer links">
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="/ringpage.html">Engagement Rings</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
+        <a href="/cad-service.html">CAD Design</a>
+        <a href="/price-match.html">Price Beater</a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </div>
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <script>
@@ -1171,6 +1185,7 @@
     </svg>
     <span>WhatsApp us</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 

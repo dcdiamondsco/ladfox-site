@@ -9,6 +9,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -722,8 +729,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -735,82 +745,13 @@
     </div>
   </header>
 
-  <main class="shell">
+  <main id="main-content" class="shell">
     <section class="spotlight" aria-labelledby="spotlight-diamonds-title">
       <div class="spotlight-head">
         <h1 class="spotlight-title" id="spotlight-diamonds-title">Lab Grown Diamonds and Diamond Sourcing</h1>
       </div>
 
       <p class="spotlight-copy">Tell us the shape, budget and overall look you want and we will source shortlisted natural or lab grown diamonds for you privately, with guidance on proportions, light performance and the final design fit.</p>
-
-      <div class="spotlight-grid" hidden>
-        <article class="spotlight-card">
-          <a class="spotlight-link" href="diamonds.html">
-            <div class="spotlight-media spotlight-media--round">
-              <video
-                class="spotlight-video--round"
-                src="Images/products/LG781605782.mp4"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-label="1ct round diamond video"
-              ></video>
-            </div>
-            <div class="spotlight-body">
-              <p class="spotlight-label">1ct Round</p>
-              <h2 class="spotlight-name">1ct Round VVS1</h2>
-              <p class="spotlight-meta">Ideal Cut • Excellent Polish • Excellent Symmetry</p>
-            </div>
-          </a>
-        </article>
-
-        <article class="spotlight-card">
-          <a class="spotlight-link" href="LG772667488.html">
-            <div class="spotlight-media">
-              <video
-                class="spotlight-video--oval"
-                src="Images/products/Oval.mov"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-label="1.6ct oval diamond video"
-              ></video>
-            </div>
-            <div class="spotlight-body">
-              <p class="spotlight-label">1.6ct Oval</p>
-              <h2 class="spotlight-name">1.6ct Oval</h2>
-              <p class="spotlight-meta">Elongated look with strong finger coverage</p>
-            </div>
-          </a>
-        </article>
-
-        <article class="spotlight-card">
-          <a class="spotlight-link" href="diamonds.html">
-            <div class="spotlight-media spotlight-media--emerald">
-              <video
-                class="spotlight-video--emerald"
-                src="Images/products/Emerald.mov"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-label="Emerald cut diamond video"
-              ></video>
-            </div>
-            <div class="spotlight-body">
-              <p class="spotlight-label">2.06ct Emerald</p>
-              <h2 class="spotlight-name">2.06ct Emerald Cut</h2>
-              <p class="spotlight-meta">Clean step-cut character</p>
-            </div>
-          </a>
-        </article>
-
-      </div>
     </section>
 
     <div class="layout">
@@ -838,7 +779,7 @@
             class="fields"
           >
             <input type="hidden" name="form-name" value="diamond-sourcing" />
-            <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+            <p style="display:none"><label>Do not fill this out <input type="text" name="bot-field" autocomplete="off" tabindex="-1" /></label></p>
 
             <input type="hidden" name="source-page" value="diamonds" />
             <input type="hidden" name="location" id="locationField" value="Unknown" />
@@ -925,8 +866,10 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <script>
@@ -961,15 +904,6 @@
       window.addEventListener("scroll", keepSpotlightVideosPlaying, { passive:true });
       document.addEventListener("visibilitychange", keepSpotlightVideosPlaying);
       window.setInterval(keepSpotlightVideosPlaying, 700);
-
-      fetch("https://ipapi.co/json/")
-        .then(r => r.ok ? r.json() : Promise.reject())
-        .then(data => {
-          const loc = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
-          const locField = document.getElementById("locationField");
-          if (locField) locField.value = loc || "Unknown";
-        })
-        .catch(() => {});
 
       form?.addEventListener("submit", () => {
         if (submitStatus) submitStatus.textContent = "";
@@ -1035,7 +969,7 @@
     }
   </script>
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -1044,6 +978,7 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 

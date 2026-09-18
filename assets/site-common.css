@@ -1,0 +1,80 @@
+.site-skip-link {
+  position: fixed;
+  z-index: 100000;
+  top: 12px;
+  left: 12px;
+  padding: 12px 16px;
+  border: 2px solid #e2e4e8;
+  border-radius: 8px;
+  background: #050505;
+  color: #fff;
+  font: 700 1rem/1.2 Arial, sans-serif;
+  text-decoration: none;
+  transform: translateY(-180%);
+}
+
+.site-skip-link:focus {
+  transform: translateY(0);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #e2e4e8;
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.footer-legal {
+  margin: 10px 0 0;
+  color: inherit;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.footer-legal a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.scroll-blackout {
+  opacity: 0;
+  transform: translateY(26px);
+  filter: brightness(.72) saturate(.72) blur(8px);
+  transition: opacity .72s ease, transform .72s ease, filter .72s ease;
+  will-change: opacity, transform, filter;
+}
+
+.scroll-blackout.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scroll-blackout,
+  .scroll-blackout.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

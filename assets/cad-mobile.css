@@ -1,0 +1,254 @@
+@media (max-width: 620px) {
+  .section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .section::before,
+  .section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .section::before {
+    z-index: -2;
+    opacity: .42;
+    background-repeat: no-repeat;
+    filter: grayscale(.12) contrast(1.12);
+  }
+
+  .section::after {
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(0,0,0,.68), rgba(0,0,0,.38) 48%, rgba(0,0,0,.72));
+  }
+
+  #process::before {
+    background-image:
+      url("../CADs/Design.png"),
+      url("../CADs/Charlie%20CAD%20no%20measurements.jpg");
+    background-position: center 12%, center 82%;
+    background-size: 118% auto, 108% auto;
+  }
+
+  .assurance::before {
+    background-image: url("../CADs/JD%20CAD%20no%20measurements.png");
+    background-position: center;
+    background-size: 128% auto;
+  }
+
+  .final-cta::before {
+    background-image: url("../CADs/rose%20gold%20cad%20no%20measurements.png");
+    background-position: center;
+    background-size: 125% auto;
+  }
+
+  .hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 780px;
+    overflow: hidden;
+    padding-inline: 8px;
+  }
+
+  .hero > div:first-child {
+    position: relative;
+    z-index: 2;
+    padding: 40px 4px 150px;
+  }
+
+  .hero > div:first-child::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 -14px 50px;
+    background: linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.3) 55%, rgba(0,0,0,.68));
+  }
+
+  .composition {
+    position: absolute;
+    z-index: 0;
+    inset: 0 -24px;
+    display: block;
+    min-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 88%, transparent 100%);
+  }
+
+  .cad-shot,
+  .cad-shot:nth-child(n) {
+    position: absolute;
+    width: 72%;
+    height: 260px;
+    opacity: .48;
+    filter: grayscale(.12) contrast(1.14);
+    transform: rotate(-5deg);
+  }
+
+  .cad-shot img,
+  .cad-shot:nth-child(n) img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .cad-shot:nth-child(1) { left: -20%; top: 40px; }
+  .cad-shot:nth-child(2) { right: -24%; top: 190px; transform: rotate(6deg); }
+  .cad-shot:nth-child(3) { left: -18%; top: 355px; transform: rotate(4deg); }
+  .cad-shot:nth-child(4) { right: -22%; top: 515px; transform: rotate(-7deg); }
+  .cad-shot:nth-child(5) { left: 1%; top: 650px; width: 96%; transform: rotate(2deg); }
+}
+
+@media (max-width: 620px) and (prefers-reduced-motion: reduce) {
+  .cad-shot,
+  .cad-shot:nth-child(n) { transform: none; }
+}
+
+/* One uninterrupted artwork layer behind the complete mobile page. */
+@media (max-width: 620px) {
+  .section::before,
+  .section::after {
+    display: none;
+  }
+
+  .atelier,
+  .assurance,
+  .section,
+  .site-footer {
+    background-color: rgba(0,0,0,.5);
+  }
+
+  .hero {
+    position: static;
+    isolation: auto;
+    overflow: visible;
+  }
+
+  .hero > div:first-child {
+    position: relative;
+    z-index: 3;
+  }
+
+  .composition {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, #000, #000);
+  }
+
+  .topbar,
+  main,
+  .section,
+  .site-footer {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cad-shot,
+  .cad-shot:nth-child(n) {
+    opacity: .4;
+  }
+
+  .cad-shot:nth-child(1) { left: -18%; top: -2%; }
+  .cad-shot:nth-child(2) { right: -22%; top: 18%; }
+  .cad-shot:nth-child(3) { left: -20%; top: 39%; }
+  .cad-shot:nth-child(4) { right: -20%; top: 60%; }
+  .cad-shot:nth-child(5) { left: -5%; top: 80%; width: 110%; }
+}
+
+/* Full-height irregular CAD wallpaper on mobile. */
+@media (max-width: 620px) {
+  body {
+    position: relative;
+    isolation: isolate;
+    background: #000;
+  }
+
+  .atelier {
+    background: transparent;
+  }
+
+  .atelier::before,
+  .atelier::after {
+    display: none;
+  }
+
+  .composition {
+    display: none;
+  }
+
+  .cad-wallpaper {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: clamp(230px, 68vw, 310px);
+    gap: 12px 2px;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background: #000;
+    pointer-events: none;
+  }
+
+  .cad-wallpaper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.33);
+  }
+
+  .cad-wallpaper img {
+    width: 126%;
+    height: 116%;
+    align-self: center;
+    justify-self: center;
+    object-fit: contain;
+    opacity: .58;
+    filter: grayscale(.1) contrast(1.14);
+    transform: rotate(-5deg) scale(1.08);
+  }
+
+  .cad-wallpaper img:nth-child(4n + 2) {
+    transform: translate(13%, 17%) rotate(7deg) scale(1.28);
+  }
+
+  .cad-wallpaper img:nth-child(4n + 3) {
+    transform: translate(-12%, -10%) rotate(4deg) scale(1.42);
+  }
+
+  .cad-wallpaper img:nth-child(4n) {
+    transform: translate(8%, 4%) rotate(-8deg) scale(.94);
+  }
+
+  .cad-wallpaper img:nth-child(5n) {
+    grid-column: span 2;
+    width: 105%;
+    transform: translateY(-5%) rotate(2deg) scale(1.18);
+  }
+
+  .topbar,
+  main,
+  .site-footer {
+    position: relative;
+    z-index: 2;
+  }
+
+  .atelier,
+  .assurance,
+  .section,
+  .site-footer {
+    background-color: rgba(0,0,0,.42);
+  }
+}

@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag("config", "AW-18173399172");
   </script>
   <title>Our Trilogy | LADFOX</title>
@@ -570,8 +577,11 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
-<body class="trilogy-config-page">
+<body class="trilogy-config-page" data-reveal-none>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell">
       <div class="brand-lockup">
@@ -582,7 +592,7 @@
     </div>
   </header>
 
-  <main class="page">
+  <main id="main-content" class="page">
     <div class="shell">
       <section class="layout" data-trilogy-page>
         <div class="media-column">
@@ -597,18 +607,18 @@
               <video
                 class="product-video"
                 data-trilogy-video
-                src="Images/Trilogy.mov"
+                src="Images/Trilogy.mp4"
                 preload="metadata"
                 autoplay
                 muted
                 loop
                 playsinline
                 webkit-playsinline="true"
-                aria-label="Trilogy engagement ring preview video"
+                aria-describedby="trilogyVideoDescription"
               ></video>
               <button class="option-pill trilogy-video-arrow trilogy-video-arrow--prev" type="button" data-video-direction="-1" aria-label="Show previous video">&#8249;</button>
               <button class="option-pill trilogy-video-arrow trilogy-video-arrow--next" type="button" data-video-direction="1" aria-label="Show next video">&#8250;</button>
-              <p class="trilogy-video-meta">2.2ct centre stone</p>
+              <p class="trilogy-video-meta" id="trilogyVideoDescription">Trilogy engagement ring shown from several angles with a 2.2ct centre stone.</p>
             </div>
           </article>
         </div>
@@ -686,19 +696,14 @@
               </div>
             </div>
 
-            <div class="trilogy-price-panel" aria-live="polite">
-              <p class="trilogy-price-compare" data-price-compare>&pound;2,399</p>
-            </div>
-
             <div class="trilogy-summary">
               <p class="trilogy-summary-label">Selected specification</p>
               <p data-summary-output></p>
             </div>
 
             <div class="actions">
-              <a class="btn btn-primary trilogy-buy-btn" href="ringpage.html" data-config-link>
+              <a class="btn btn-primary trilogy-buy-btn" href="/ringpage.html" data-config-link>
                 <span data-cta-price>Select options</span>
-                <span data-cta-countdown>Sale ends in 4d 00h 00m 00s</span>
               </a>
             </div>
 
@@ -707,11 +712,12 @@
                 <input id="trilogyTermsAccepted" type="checkbox" />
                 <span class="trilogy-terms-copy">
                   <span>I have read and agree to the LADFOX Terms &amp; Conditions.</span>
-                  <a href="Ts%20%26%20C's.pdf" target="_blank" rel="noopener">Read the full Terms &amp; Conditions</a>
+                  <a href="/terms-and-conditions.html" target="_blank" rel="noopener">Read the full Terms &amp; Conditions</a>
                 </span>
               </label>
               <p class="trilogy-checkout-status" data-checkout-status role="status" aria-live="polite"></p>
-              <p class="trilogy-lead-time">All of our pieces are made to order and typically take up to 4 weeks from the time of purchase.</p>
+              <p>Immediate checkout is for UK customers. International customers can <a href="/contact-us.html">request a separate quote</a> including shipping, duties and taxes.</p>
+              <p class="trilogy-lead-time">This bespoke ring can take up to five weeks to produce, depending on complexity.</p>
             </div>
           </div>
         </article>
@@ -721,8 +727,9 @@
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <script>
@@ -739,9 +746,7 @@
     const sizeRanges = Array.from(page.querySelectorAll("[data-size-range]"));
     const discreteRanges = Array.from(page.querySelectorAll("[data-discrete-range]"));
     const summaryOutput = page.querySelector("[data-summary-output]");
-    const priceCompare = page.querySelector("[data-price-compare]");
     const ctaPrice = page.querySelector("[data-cta-price]");
-    const ctaCountdown = page.querySelector("[data-cta-countdown]");
     const checkoutButton = page.querySelector("[data-config-link]");
     const checkoutStatus = page.querySelector("[data-checkout-status]");
     const termsAccepted = page.querySelector("#trilogyTermsAccepted");
@@ -759,8 +764,8 @@
     };
 
     const videos = [
-      { src: "Images/Trilogy.mov", frame: "balanced" },
-      { src: "Images/Trilogy 2.mov", frame: "top-cropped" }
+      { src: "Images/Trilogy.mp4", frame: "balanced" },
+      { src: "Images/Trilogy 2.mp4", frame: "top-cropped" }
     ];
     const termsStorageKey = "ladfox.trilogy.terms-accepted.v1";
     let currentVideoIndex = 0;
@@ -1023,7 +1028,6 @@
 
     const updatePrice = () => {
       if (!hasRequiredSelections()) {
-        if (priceCompare) priceCompare.textContent = "";
         if (ctaPrice) ctaPrice.textContent = "Select options";
         return;
       }
@@ -1036,36 +1040,10 @@
         + (colourAdjustmentMap[colour] || 0)
         + (metalAdjustmentMap[metal] || 0);
 
-      const salePrice = Math.max(1999, price);
-      const regularPrice = Math.round(salePrice * 1.2);
+      const formerSalePrice = Math.max(1999, price);
+      const currentPrice = Math.round(formerSalePrice * 1.2);
 
-      if (priceCompare) priceCompare.textContent = formatPrice(regularPrice);
-      if (ctaPrice) ctaPrice.textContent = formatPrice(salePrice);
-    };
-
-    const startSaleCountdown = () => {
-      const saleCycleDuration = 7 * 24 * 60 * 60 * 1000;
-      let saleEnd = new Date("2026-08-03T00:00:00+01:00").getTime();
-
-      const render = () => {
-        const now = Date.now();
-        if (saleEnd <= now) {
-          const completedCycles = Math.floor((now - saleEnd) / saleCycleDuration) + 1;
-          saleEnd += completedCycles * saleCycleDuration;
-        }
-
-        const remaining = saleEnd - now;
-        const totalSeconds = Math.ceil(remaining / 1000);
-        const days = Math.floor(totalSeconds / 86400);
-        const hours = Math.floor((totalSeconds % 86400) / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-        const countdownText = `Sale ends in ${String(days).padStart(2, "0")}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
-        if (ctaCountdown) ctaCountdown.textContent = countdownText;
-      };
-
-      render();
-      window.setInterval(render, 1000);
+      if (ctaPrice) ctaPrice.textContent = formatPrice(currentPrice);
     };
 
     const beginCheckout = async (event) => {
@@ -1082,11 +1060,10 @@
         return;
       }
 
-      const originalCountdown = ctaCountdown ? ctaCountdown.textContent : "";
       setCheckoutState("");
       checkoutButton.setAttribute("aria-busy", "true");
       checkoutButton.style.pointerEvents = "none";
-      if (ctaCountdown) ctaCountdown.textContent = "Opening secure checkout...";
+      if (ctaPrice) ctaPrice.textContent = "Opening secure checkout...";
 
       try {
         const response = await fetch("/.netlify/functions/create-trilogy-checkout-session", {
@@ -1101,9 +1078,7 @@
         if (!response.ok || !result.url) throw new Error(result.error || "Secure checkout could not be started.");
         window.location.assign(result.url);
       } catch (error) {
-        if (ctaCountdown) {
-          ctaCountdown.textContent = originalCountdown;
-        }
+        refresh();
         setCheckoutState(error instanceof Error ? error.message : "Secure checkout could not be started.", true);
         checkoutButton.removeAttribute("aria-busy");
         updateCheckoutAvailability();
@@ -1204,12 +1179,11 @@
     applyVideo(0);
     refresh();
     updateCheckoutAvailability();
-    startSaleCountdown();
-
     if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
       setCheckoutState("Checkout was cancelled. Your ring selections have been kept.");
     }
   }());
   </script>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

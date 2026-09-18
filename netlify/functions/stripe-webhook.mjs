@@ -1,6 +1,7 @@
 import Stripe from "stripe";
-import { PRODUCT } from "./pricing.mjs";
 import { json } from "./http.mjs";
+
+const ALLOWED_PRODUCTS = new Set(["signature-petal-collection", "our-trilogy-ring", "bespoke-ring-cad-service"]);
 
 const getStripe = () => {
   const key = String(process.env.STRIPE_SECRET_KEY || "").trim();
@@ -65,7 +66,7 @@ export default async (request) => {
       (session.payment_status === "paid" || session.payment_status === "no_payment_required");
     const isAsyncSuccess = event.type === "checkout.session.async_payment_succeeded";
 
-    if ((isPaidCompletion || isAsyncSuccess) && session.metadata?.product_slug === PRODUCT.slug) {
+    if ((isPaidCompletion || isAsyncSuccess) && ALLOWED_PRODUCTS.has(session.metadata?.product_slug || "")) {
       const payload = buildOrderPayload(session, event.id);
       console.log("PAID LADFOX ORDER", JSON.stringify(payload));
       await notifyExternalOrderSystem(payload);

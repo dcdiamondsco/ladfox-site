@@ -8,6 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'AW-18173399172');
   </script>
   <title>Trusted Wedding Suppliers | LADFOX</title>
@@ -530,8 +537,11 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -539,16 +549,18 @@
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="consultation.html">Consultation</a>
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="/ringpage.html">Engagement Rings</a>
         <a href="contact-us.html">Contact Us</a>
-      </nav>
+
+          <a href="/about-us.html">About</a>
+          <a href="/reviews.html">Reviews</a></nav>
       <a class="brand-review-link" href="https://www.google.com/search?q=ladfox+london&amp;oq=ladfox+londo&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxigATIJCAAQRRg7GKABMgYIARBFGDkyBggCEEUYPDIGCAMQRRg8MgYIBBBFGDzSAQg1OTg1ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8#lrd=0x48761b9ead271775:0xc2d0822fe5763a31,1,,,," aria-label="Read Ladfox Google reviews" target="_blank" rel="noopener">
         <img class="brand-review-badge" src="Images/google reviews logo.png" alt="Ladfox Google reviews badge" />
       </a>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container">
         <div class="hero-card">
@@ -683,8 +695,11 @@
 
   <footer class="site-footer" aria-label="Footer">
     <div class="shell">
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

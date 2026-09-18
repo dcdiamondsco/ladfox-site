@@ -9,11 +9,18 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
 <title>Contact LADFOX | Bespoke Engagement Rings</title>
-  <meta name="description" content="Contact Ladfox, a private Hatton Garden jeweller in London, about bespoke engagement rings, custom jewellery, diamond sourcing or a price match." />
+  <meta name="description" content="Contact Ladfox, a private Hatton Garden jeweller in London, about bespoke engagement rings, custom jewellery or diamond sourcing." />
   <link rel="canonical" href="https://ladfox.com/contact-us.html" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
   <link rel="apple-touch-icon" href="/Images/Logo%20Inverted.png" />
@@ -22,12 +29,12 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Contact LADFOX | Bespoke Engagement Rings" />
-  <meta property="og:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing or a price match." />
+  <meta property="og:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery or diamond sourcing." />
   <meta property="og:url" content="https://ladfox.com/contact-us.html" />
   <meta property="og:image" content="https://ladfox.com/Images/ladfox-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact LADFOX | Bespoke Engagement Rings" />
-  <meta name="twitter:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery, diamond sourcing or a price match." />
+  <meta name="twitter:description" content="Contact Ladfox about bespoke engagement rings, custom jewellery or diamond sourcing." />
   <meta name="twitter:image" content="https://ladfox.com/Images/ladfox-logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -542,7 +549,7 @@
       "@id": "https://ladfox.com/contact-us.html#webpage",
       "url": "https://ladfox.com/contact-us.html",
       "name": "Contact LADFOX | Bespoke Engagement Rings",
-      "description": "Contact Ladfox, a private Hatton Garden jeweller in London, about bespoke engagement rings, custom jewellery, diamond sourcing or a price match.",
+      "description": "Contact Ladfox, a private Hatton Garden jeweller in London, about bespoke engagement rings, custom jewellery or diamond sourcing.",
       "isPartOf": {
         "@id": "https://ladfox.com/#website"
       },
@@ -577,8 +584,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="shell">
     <div class="brand-lockup">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -590,7 +600,7 @@
     </div>
   </header>
 
-  <main class="shell">
+  <main id="main-content" class="shell">
     <div class="layout">
       <section class="intro">
         <span class="eyebrow">Private Contact</span>
@@ -632,6 +642,16 @@
               <p>Send screenshots, ideas, links, or a quote for a quick private conversation.</p>
               <a href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer">Message</a>
             </div>
+            <div class="direct-card">
+              <span>CAD design</span>
+              <p>Turn your ring idea into a bespoke CAD design for £149.</p>
+              <a href="/cad-service.html">Explore CAD design</a>
+            </div>
+            <div class="direct-card">
+              <span>Price Beater</span>
+              <p>Send an existing ring or diamond quote for a like-for-like comparison.</p>
+              <a href="/price-match.html">Compare my quote</a>
+            </div>
           </div>
         </div>
 
@@ -649,7 +669,7 @@
             class="fields"
           >
             <input type="hidden" name="form-name" value="contact-us" />
-            <p style="display:none"><label>Do not fill this out <input name="bot-field" /></label></p>
+            <p style="display:none"><label>Do not fill this out <input type="text" name="bot-field" autocomplete="off" tabindex="-1" /></label></p>
 
             <input type="hidden" name="source-page" value="contact-us" />
             <input type="hidden" name="location" id="locationField" value="Unknown" />
@@ -726,13 +746,17 @@
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
       <div class="footer-links" aria-label="Footer links">
-        <a href="ringpage.html">Engagement Rings</a>
+        <a href="/ringpage.html">Engagement Rings</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
+        <a href="/cad-service.html">CAD Design</a>
+        <a href="/price-match.html">Price Beater</a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
       </div>
-      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+      <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <script>
@@ -755,15 +779,6 @@
         const el = document.getElementById(key);
         if (el) el.value = params.get(key) || "";
       });
-
-      fetch("https://ipapi.co/json/")
-        .then(r => r.ok ? r.json() : Promise.reject())
-        .then(data => {
-          const loc = [data.city, data.region, data.country_name].filter(Boolean).join(", ");
-          const locField = document.getElementById("locationField");
-          if (locField) locField.value = loc || "Unknown";
-        })
-        .catch(() => {});
 
       const syncContactMode = () => {
         const pref = form?.querySelector('input[name="preferred_contact"]:checked')?.value || "";
@@ -869,9 +884,8 @@
       return lines.join("\n\n");
     }
   </script>
-  <script src="scroll-reveal.js"></script>
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -880,6 +894,7 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 

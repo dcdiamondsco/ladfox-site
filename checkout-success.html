@@ -11,6 +11,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag("config", "AW-18173399172");
   </script>
   <style>
@@ -24,13 +31,16 @@
     .details{margin:22px auto 0;padding:16px;border:1px solid #252525;border-radius:16px;background:#050505;text-align:left}
     .details p{margin:4px 0;font-size:.92rem}
     .details strong{color:#fff}
-    .btn{display:inline-flex;margin-top:22px;padding:14px 20px;border-radius:999px;background:#f1e0b4;color:#181109;text-decoration:none;font-weight:800}
+    .btn{display:inline-flex;margin-top:22px;padding:14px 20px;border-radius:999px;background:#e2e4e8;color:#111214;text-decoration:none;font-weight:800}
     .error{color:#ffb4b4}
     [hidden]{display:none!important}
   </style>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
-  <main class="card" aria-live="polite">
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
+  <main id="main-content" class="card" aria-live="polite">
     <p class="eyebrow" data-eyebrow>Secure payment verification</p>
     <h1 data-title>Confirming your order…</h1>
     <p data-message>Please keep this page open while LADFOX verifies the payment directly with Stripe.</p>
@@ -38,7 +48,6 @@
       <p><strong>Order:</strong> <span data-order-reference></span></p>
       <p><strong>Total paid:</strong> <span data-total></span></p>
       <p><strong>Specification:</strong> <span data-description></span></p>
-      <p><strong>Confirmation email:</strong> <span data-email></span></p>
     </div>
     <a class="btn" href="index.html" data-home-link hidden>Return to LADFOX</a>
   </main>
@@ -64,7 +73,7 @@
       };
 
       if (!sessionId) {
-        showError("No Stripe checkout reference was supplied. Please check your Stripe receipt or contact info@ladfox.com.");
+        showError("No Stripe checkout reference was supplied. Please check your Stripe receipt or contact hello@ladfox.com.");
         return;
       }
 
@@ -88,30 +97,32 @@
         message.textContent = "Your secure payment has been received. LADFOX will contact you to confirm the centre stone and production details before manufacture begins.";
         document.querySelector("[data-order-reference]").textContent = result.orderReference || "Shown on your Stripe receipt";
         document.querySelector("[data-total]").textContent = formatter.format((result.amountTotal || 0) / 100);
-        document.querySelector("[data-description]").textContent = result.description || "Signature Petal engagement ring";
-        document.querySelector("[data-email]").textContent = result.customerEmail || "The address entered at checkout";
+        document.querySelector("[data-description]").textContent = result.description || result.productName || "LADFOX order";
         details.hidden = false;
         homeLink.hidden = false;
 
         const purchaseKey = `ladfox_purchase_${sessionId}`;
-        if (!sessionStorage.getItem(purchaseKey) && typeof window.gtag === "function") {
+        let purchaseTracked = false;
+        try { purchaseTracked = localStorage.getItem(purchaseKey) === "1"; } catch (_) {}
+        if (!purchaseTracked && typeof window.gtag === "function") {
           window.gtag("event", "purchase", {
             transaction_id: result.orderReference || sessionId,
             currency: String(result.currency || "gbp").toUpperCase(),
             value: (result.amountTotal || 0) / 100,
             items: [{
-              item_id: "signature-petal-collection",
-              item_name: "Signature Petal Collection",
+              item_id: result.productSlug || "ladfox-ring",
+              item_name: result.productName || "LADFOX ring",
               price: (result.amountTotal || 0) / 100,
               quantity: 1
             }]
           });
-          sessionStorage.setItem(purchaseKey, "1");
+          try { localStorage.setItem(purchaseKey, "1"); } catch (_) {}
         }
       } catch (error) {
-        showError(error instanceof Error ? error.message : "The payment could not be verified. Please contact info@ladfox.com.");
+        showError(error instanceof Error ? error.message : "The payment could not be verified. Please contact hello@ladfox.com.");
       }
     }());
   </script>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>

@@ -872,6 +872,10 @@ h1{
 }
 
 @media (max-width:680px){
+  .ring-config-page .topbar .actions{
+    display:none;
+  }
+
   .shell{
     width:min(calc(100% - 24px), var(--max));
   }

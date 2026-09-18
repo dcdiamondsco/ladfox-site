@@ -9,3 +9,6 @@ gallery-deploy/
 netlify-deploy/
 Images/online return center.html
 Images/Online Return Center_files/
+
+# Local Netlify folder
+.netlify

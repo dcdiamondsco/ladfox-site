@@ -1,0 +1,39 @@
+# Local tooling and repository data
+.git/
+.agents/
+.netlify/
+.vscode/
+node_modules/
+test/
+tmp/
+output/
+
+# Source photography, customer material and working folders
+1234/
+Advert Photos/
+Antigua/
+Comparison/
+Customers/
+Random Ring Pics/
+Sketches/
+
+# Backups and superseded project copies
+backup-before-seo-update-*/
+dc-diamonds-server/
+final-clean-deploy/
+ladfox-stripe-checkout-starter/
+mid-deploy/
+test-deploy/
+ring-deploy/
+dream-deploy/
+gallery-deploy/
+netlify-deploy/
+
+# Local notes and source-only files
+*.zip
+desktop.ini
+sitemap - Copy.xml
+TRACKING.md
+TRILOGY-APPROVAL-RESPONSE.md
+LG659458956.pdf
+generate.js

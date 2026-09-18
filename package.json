@@ -9,6 +9,8 @@
     "stripe": "22.3.1"
   },
   "scripts": {
-    "test": "node --test"
+    "audit": "node scripts/audit-site.mjs",
+    "check:js": "node --check script.js && node --check product-page.js && node --check ring-showcase.js && node --check scroll-reveal.js && node --check assets/cad-service.js && node --check assets/cad-mobile.js && node --check assets/privacy-controls.js && node --check netlify/functions/create-checkout-session.mjs && node --check netlify/functions/create-trilogy-checkout-session.mjs && node --check netlify/functions/create-cad-checkout-session.mjs && node --check netlify/functions/get-checkout-session.mjs && node --check netlify/functions/stripe-webhook.mjs",
+    "test": "node --test && npm run audit && npm run check:js"
   }
 }

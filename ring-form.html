@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -9,6 +9,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -970,7 +977,7 @@
           "@type": "ListItem",
           "position": 2,
           "name": "Bespoke Engagement Rings",
-          "item": "https://ladfox.com/ringpage.html"
+          "item": "https://ladfox.com/design/your-ring"
         },
         {
           "@type": "ListItem",
@@ -983,8 +990,11 @@
   ]
 }
   </script>
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css" />
 </head>
 <body>
+  <a class="site-skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="topbar-shell">
       <a class="brand" href="index.html" aria-label="Ladfox home">
@@ -996,9 +1006,11 @@
     </div>
   </header>
 
+  <main id="main-content">
   <section class="form-section" id="formSection">
     <div class="bg-rings" id="bgRings" aria-hidden="true"></div>
 
+      <h1 class="visually-hidden">Tell LADFOX about your engagement ring</h1>
     <form id="nf"
           name="diamond-concierge"
           method="POST"
@@ -1008,7 +1020,7 @@
           enctype="multipart/form-data"
           style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
       <input type="hidden" name="form-name" value="diamond-concierge" />
-      <p hidden><label>Do not fill this out <input name="bot-field" /></label></p>
+      <p hidden><label>Do not fill this out <input type="text" name="bot-field" autocomplete="off" tabindex="-1" /></label></p>
 
       <input type="hidden" name="subject" id="hiddenSubject" />
       <input type="hidden" name="email" id="hiddenEmail" />
@@ -1046,9 +1058,12 @@
       </div>
     </div>
   </section>
+  </main>
 
   <footer class="site-footer" aria-label="Legal information">
-    <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 16416135. All rights reserved. <a href="mailto:info@ladfox.com">info@ladfox.com</a></p>
+    <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
+    <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <script>
@@ -1541,7 +1556,6 @@
           if(!isValidEmail(v)) return;
           formData.email = String(v).trim();
           safeGtagEvent('email_captured', { page_location: window.location.href });
-          requestLocationLookupOnce();
         }
 
         if(step.key === 'metal') formData.metal = v;
@@ -1559,27 +1573,6 @@
       index = nextIndex(index);
       if(index >= steps.length){ sendFinal(); return; }
       renderStep();
-    }
-
-    let didLocationLookup = false;
-    function requestLocationLookupOnce(){
-      if(didLocationLookup) return;
-      didLocationLookup = true;
-
-      try {
-        fetch('https://ipapi.co/json/')
-          .then(r => r.json())
-          .then(loc => {
-            if(!loc) return;
-            const c = document.getElementById('locCity');
-            const r = document.getElementById('locRegion');
-            const k = document.getElementById('locCountry');
-            if(c) c.value = loc.city || '';
-            if(r) r.value = loc.region || '';
-            if(k) k.value = loc.country_name || '';
-          })
-          .catch(()=>{});
-      } catch(_){}
     }
 
     function renderStep(errorText){
@@ -1984,9 +1977,8 @@
     renderStep();
   });
   </script>
-<script src="scroll-reveal.js"></script>
   <div class="quick-message-callout" aria-hidden="true">
-    <span>we&apos;re available 24/7!</span>
+    <span>Message us for personal guidance</span>
   </div>
 
   <a class="quick-message-bubble" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="Send us a quick WhatsApp. We are available 24 hours a day to help with friendly, no-pressure advice.">
@@ -1995,6 +1987,7 @@
     </svg>
     <span>Send us a quick WhatsApp</span>
   </a>
+  <script src="assets/privacy-controls.js" defer></script>
 </body>
 </html>
 
