@@ -1595,20 +1595,39 @@
       }
 
       .menu-panel{
-        width:min(310px, calc(100vw - 24px));
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:8px;
-        padding:12px;
+        left:0;
+        right:auto;
+        width:min(286px, calc(100vw - 24px));
+        max-height:calc(100dvh - 76px);
+        grid-template-columns:minmax(0, 1fr);
+        gap:0;
+        padding:8px;
         text-align:left;
+        overflow-x:hidden;
+        overflow-y:auto;
+        border-color:rgba(255,255,255,.18);
+        border-radius:16px;
+        background:rgba(9,10,13,.985);
+        box-shadow:0 20px 48px rgba(0,0,0,.68);
       }
 
       .menu-panel a{
-        min-height:46px;
-        padding:11px 12px;
-        font-size:.86rem;
-        justify-content:center;
-        text-align:center;
-        background:rgba(255,255,255,.055);
+        width:100%;
+        min-width:0;
+        min-height:44px;
+        padding:11px 13px;
+        border-radius:9px;
+        font-size:.84rem;
+        line-height:1.25;
+        white-space:normal;
+        overflow-wrap:anywhere;
+        justify-content:flex-start;
+        text-align:left;
+        background:transparent;
+      }
+
+      .menu-panel a + a{
+        border-top:1px solid rgba(255,255,255,.08);
       }
 
       .menu-panel a.nav-recent-work{
@@ -2215,72 +2234,6 @@
         </aside>
 
 
-        <section class="home-featured home-section" aria-labelledby="featuredHeading">
-          <div class="home-section-heading">
-            <p class="home-eyebrow home-eyebrow--featured">Our recent work</p>
-            <h2 id="featuredHeading">A little inspiration for your ring</h2>
-            <p>Find a detail you love. We&rsquo;ll make the design your own.</p>
-          </div>
-          <div class="home-rings-grid">
-            <a class="home-ring" href="trilogy-ring.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/trilogy.jpg" alt="Oval centre stone with pear-shaped side stones on a gold band." width="800" height="800" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Create your own</span>
-              </div>
-            </a>
-            <a class="home-ring" href="jewellery-design.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/mens-silver-band.jpg" alt="A textured finish and a distinctive stone-set detail." width="1600" height="900" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Explore this style</span>
-              </div>
-            </a>
-            <a class="home-ring" href="/ringpage.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/rose-gold-ring.jpg" alt="A pink centre stone framed by an ornate rose gold band." width="1600" height="1200" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;2,499</p>
-                <span class="home-ring-action">Create something unique</span>
-              </div>
-            </a>
-            <a class="home-ring" href="signature-collection.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/oval-ring.jpg" alt="An oval centre stone with a hidden halo beneath the setting." width="1600" height="1200" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Discover hidden halos</span>
-              </div>
-            </a>
-            <a class="home-ring" href="trilogy-ring.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/trilogy-detail.jpg" alt="Oval centre stone with pear-shaped side stones in an open trilogy setting." width="1206" height="1272" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Create your own</span>
-              </div>
-            </a>
-            <a class="home-ring" href="signature-collection.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/large-oval.jpg" alt="A statement oval centre stone on a slender platinum band." width="1125" height="1600" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Check out solitaires</span>
-              </div>
-            </a>
-            <a class="home-ring" href="/ringpage.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/ornate-trilogy.jpg" alt="Three stones framed by an ornate gold band with engraved details." width="1193" height="843" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;2,499</p>
-                <span class="home-ring-action">Create your bespoke piece</span>
-              </div>
-            </a>
-            <a class="home-ring" href="lab-emerald-ring.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/pear-emerald.jpg" alt="A pear-shaped emerald in a delicate claw setting on a platinum band." width="735" height="1600" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">See gemstone rings</span>
-              </div>
-            </a>
-          </div>
-        </section>
-
         <section class="testimonials" aria-label="Client testimonials">
           <div class="testimonials-slider" data-testimonials-slider>
             <div class="testimonials-track">
@@ -2373,6 +2326,72 @@
                 <figure class="proposal-shot"><img src="Images/Proposals/20.webp" alt="" loading="lazy" decoding="async" /></figure>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section class="home-featured home-section" aria-labelledby="featuredHeading">
+          <div class="home-section-heading">
+            <p class="home-eyebrow home-eyebrow--featured">Our recent work</p>
+            <h2 id="featuredHeading">A little inspiration for your ring</h2>
+            <p>Find a detail you love. We&rsquo;ll make the design your own.</p>
+          </div>
+          <div class="home-rings-grid">
+            <a class="home-ring" href="trilogy-ring.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/trilogy.jpg" alt="Oval centre stone with pear-shaped side stones on a gold band." width="800" height="800" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <span class="home-ring-action">Create your own</span>
+              </div>
+            </a>
+            <a class="home-ring" href="jewellery-design.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/mens-silver-band.jpg" alt="A textured finish and a distinctive stone-set detail." width="1600" height="900" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <span class="home-ring-action">Explore this style</span>
+              </div>
+            </a>
+            <a class="home-ring" href="/ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/rose-gold-ring.jpg" alt="A pink centre stone framed by an ornate rose gold band." width="1600" height="1200" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;2,499</p>
+                <span class="home-ring-action">Create something unique</span>
+              </div>
+            </a>
+            <a class="home-ring" href="signature-collection.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/oval-ring.jpg" alt="An oval centre stone with a hidden halo beneath the setting." width="1600" height="1200" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <span class="home-ring-action">Discover hidden halos</span>
+              </div>
+            </a>
+            <a class="home-ring" href="trilogy-ring.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/trilogy-detail.jpg" alt="Oval centre stone with pear-shaped side stones in an open trilogy setting." width="1206" height="1272" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <span class="home-ring-action">Create your own</span>
+              </div>
+            </a>
+            <a class="home-ring" href="signature-collection.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/large-oval.jpg" alt="A statement oval centre stone on a slender platinum band." width="1125" height="1600" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <span class="home-ring-action">Check out solitaires</span>
+              </div>
+            </a>
+            <a class="home-ring" href="/ringpage.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/ornate-trilogy.jpg" alt="Three stones framed by an ornate gold band with engraved details." width="1193" height="843" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;2,499</p>
+                <span class="home-ring-action">Create your bespoke piece</span>
+              </div>
+            </a>
+            <a class="home-ring" href="lab-emerald-ring.html">
+              <div class="home-ring-image"><img src="Images/featured-rings/pear-emerald.jpg" alt="A pear-shaped emerald in a delicate claw setting on a platinum band." width="735" height="1600" loading="lazy" decoding="async" /></div>
+              <div class="home-ring-copy">
+                <p class="home-ring-price">From &pound;1,999</p>
+                <span class="home-ring-action">See gemstone rings</span>
+              </div>
+            </a>
           </div>
         </section>
 
