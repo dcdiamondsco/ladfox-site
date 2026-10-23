@@ -15,7 +15,25 @@ const ALLOWED = Object.freeze({
   colours: new Set(["D", "E", "F", "G"]),
   clarities: new Set(["SI1", "VS2", "VS1", "VVS2", "VVS1", "FL"]),
   ringSizes: new Set(["J", "J 1/2", "K", "K 1/2", "L", "L 1/2", "M", "M 1/2", "N", "N 1/2", "O", "O 1/2", "P", "P 1/2", "Q"]),
-  shapes: new Set(["Round"])
+  shapes: new Set(["Round", "Oval", "Emerald", "Radiant", "Cushion", "Elongated cushion", "Pear", "Marquise", "Asscher"]),
+  sideShapes: new Set(["pear", "tapered baguette", "trapezoid"]),
+  elongated: new Set(["Yes", "No"])
+});
+
+const SHOP_DESIGNS = new Set([
+  "Oval centre with pear sides", "Oval centre with tapered baguette sides",
+  "Round centre with pear sides", "Round centre with tapered baguette sides",
+  "Emerald centre with trapezoid sides", "Emerald centre with tapered baguette sides",
+  "Radiant centre with trapezoid sides", "Radiant centre with pear sides",
+  "Elongated cushion centre with pear sides", "Elongated cushion centre with trapezoid sides",
+  "Cushion centre with pear sides", "Pear centre with pear sides",
+  "Marquise centre with pear sides", "Asscher centre with trapezoid sides"
+]);
+
+// Centre stone adjustments match the Signature Collection; side shapes share one price.
+const shapeAdjustmentMap = Object.freeze({
+  Round: 0, Oval: 45, Emerald: 85, Radiant: 75, Cushion: 55,
+  "Elongated cushion": 55, Pear: 70, Marquise: 95, Asscher: 0
 });
 
 const getStripe = () => {
@@ -83,6 +101,16 @@ const metalAdjustmentMap = Object.freeze({
 export const validateSelections = (raw = {}) => {
   const metal = requireAllowed(raw.metal, ALLOWED.metals, "metal");
   const shape = requireAllowed(raw.shape || "Round", ALLOWED.shapes, "shape");
+  const design = cleanText(raw.design);
+  const sideShape = design ? requireAllowed(raw.sideShape, ALLOWED.sideShapes, "side stone shape") : "";
+  if (design && (!SHOP_DESIGNS.has(design) || design !== `${shape} centre with ${sideShape} sides`)) {
+    throw new Error("Invalid trilogy design.");
+  }
+  const elongated = requireAllowed(raw.elongated || (shape === "Elongated cushion" ? "Yes" : "No"), ALLOWED.elongated, "stone proportion");
+  if ((shape === "Elongated cushion" && elongated !== "Yes") ||
+      (elongated === "Yes" && !["Emerald", "Radiant", "Cushion", "Elongated cushion"].includes(shape))) {
+    throw new Error("Invalid stone proportion.");
+  }
   const clarity = requireAllowed(raw.clarity, ALLOWED.clarities, "clarity");
   const colour = requireAllowed(raw.colour, ALLOWED.colours, "colour");
   const ringSize = requireAllowed(raw.ringSize || raw.ring_size, ALLOWED.ringSizes, "ring size");
@@ -91,6 +119,9 @@ export const validateSelections = (raw = {}) => {
   return {
     metal,
     shape,
+    sideShape,
+    design,
+    elongated,
     clarity,
     colour,
     ringSize,
@@ -102,7 +133,10 @@ export const validateSelections = (raw = {}) => {
 export const priceSelections = (selections) => {
   const rawPrice = (1999 * sizeMultiplier(selections.carat) * clarityMultiplierMap[selections.clarity])
     + colourAdjustmentMap[selections.colour]
-    + metalAdjustmentMap[selections.metal];
+    + metalAdjustmentMap[selections.metal]
+    + shapeAdjustmentMap[selections.shape]
+    + (selections.elongated === "Yes" && selections.shape !== "Elongated cushion" ? 60 : 0)
+    + (selections.shape === "Elongated cushion" ? 60 : 0);
   const salePriceGbp = Math.max(1999, Math.round(rawPrice));
   const regularPriceGbp = Math.round(salePriceGbp * 1.2);
 
@@ -112,9 +146,11 @@ export const priceSelections = (selections) => {
     regularPriceGbp,
     priceGbp: regularPriceGbp,
     saleEndsAt: SALE_ENDS_AT,
-    description: `${selections.metal} trilogy ring with a ${selections.stoneSize} round lab-grown diamond, ${selections.colour} colour, ${selections.clarity} clarity, UK size ${selections.ringSize}.`
+    description: `${selections.metal} trilogy ring with a ${selections.stoneSize} ${selections.elongated === "Yes" && selections.shape !== "Elongated cushion" ? "elongated " : ""}${selections.shape.toLowerCase()} lab-grown centre diamond${selections.sideShape ? ` and ${selections.sideShape} side stones` : ""}, ${selections.colour} colour, ${selections.clarity} clarity, UK size ${selections.ringSize}.`
   };
 };
+
+const cleanEngraving = (value) => String(value || "").replace(/[^A-Za-z0-9 &.,'\u2019\-\/]/g, "").replace(/\s+/g, " ").trim().slice(0, 20);
 
 export default async (request) => {
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
@@ -139,10 +175,14 @@ export default async (request) => {
         product: PRODUCT.name,
         metal: priced.metal,
         shape: priced.shape,
+        side_shape: priced.sideShape,
+        design: priced.design,
+        elongated: priced.elongated,
         stone_size: priced.stoneSize,
         colour: priced.colour,
         clarity: priced.clarity,
         ring_size: priced.ringSize,
+        engraving: cleanEngraving(body?.engraving),
         charged_price_gbp: String(priced.priceGbp),
         regular_price_gbp: String(priced.regularPriceGbp),
         sale_ends_at: priced.saleEndsAt
@@ -160,7 +200,9 @@ export default async (request) => {
       phone_number_collection: { enabled: true },
       shipping_address_collection: { allowed_countries: ["GB"] },
       success_url: `${siteUrl}/checkout-success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/trilogy-ring.html?checkout=cancelled`,
+      cancel_url: body?.returnToShop === true
+        ? `${siteUrl}/signature-collection.html?setting=Trilogy&checkout=cancelled`
+        : `${siteUrl}/trilogy-ring.html?checkout=cancelled`,
       line_items: [{
         quantity: 1,
         price_data: {

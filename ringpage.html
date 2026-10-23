@@ -3,18 +3,12 @@
   <head>
       <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <base href="/" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18173399172"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500
-    });
 
       gtag('config', 'AW-18173399172');
     </script>
@@ -3753,28 +3747,22 @@
   }
     </script>
     <link rel="stylesheet" href="assets/site-common.css" />
-  <link rel="stylesheet" href="assets/privacy-controls.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css?v=20261020-2" />
   <style>
     /* Nothing on the ring designer remains pinned to the viewport. */
-    .guided-intro-reviews,
     .guided-form__footer,
-    .cookie-consent {
-      position: static !important;
-    }
-    .site-skip-link {
+.site-skip-link {
       position: absolute !important;
     }
     .guided-intro-reviews {
+      position: relative !important;
       left: auto !important;
       bottom: auto !important;
       width: min(680px, 100%) !important;
       margin: 24px auto 0 !important;
       transform: none !important;
     }
-    .cookie-consent {
-      margin: 16px auto !important;
-    }
-    @media (max-width:760px) {
+@media (max-width:760px) {
       html,
       body {
         width:100%;
@@ -3871,14 +3859,7 @@
       .guided-form--summary .guided-form__preview {
         display:none !important;
       }
-      .cookie-consent {
-        position:absolute !important;
-        inset:auto 10px 10px !important;
-        z-index:10000 !important;
-        max-height:calc(100dvh - 20px);
-        overflow:hidden;
-      }
-    }
+}
     @media (max-width:760px) and (max-height:650px) {
       .guided-form__preview {
         display:none !important;
@@ -3888,11 +3869,33 @@
         display:none !important;
       }
     }
+    @media (min-width:761px) {
+      .guided-choice-list--setting-design{
+        display:grid !important;
+        grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+        width:min(100%, 520px) !important;
+        margin-left:auto !important;
+        margin-right:auto !important;
+        gap:10px !important;
+      }
+      .guided-choice-list--setting-design .guided-choice{
+        min-height:48px !important;
+        font-size:.86rem !important;
+      }
+    }
+
+    .design-flow.design-flow--steps.design-flow--setting-focus::after{
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 100%),
+        var(--setting-focus-image) center/cover no-repeat;
+      opacity:1;
+      transform:scale(1);
+    }
   </style>
 </head>
 
   <body>
-  <a class="site-skip-link" href="#main-content">Skip to content</a>
+  <a class="site-skip-link" href="/design/your-ring#main-content">Skip to content</a>
     <main id="main-content" class="wrap">
       <h1 id="pageTitle" class="visually-hidden">Design your bespoke engagement ring with LADFOX</h1>
       <noscript>
@@ -4638,19 +4641,19 @@
         let imageTransformTimer = null;
         let choiceAutoAdvanceTimer = null;
         const settingDesignImageMap = {
-          "Classic": "zoomed in classic basket.png",
-          "Bezel": "zoomed in bezel.png",
-          "Half bezel": "zoomed in half bezel.png",
-          "High profile": "zoomed in high profile.png",
-          "Low profile": "zoomed in low profile.png",
-          "Milgrain": "zoomed in millgrain.png",
-          "Ornate": "zoomed in ornate.png",
+          "Classic": "setting-classic-basket.png",
+          "Bezel": "setting-bezel.png",
+          "Half bezel": "setting-half-bezel.png",
+          "High profile": "setting-high-profile.png",
+          "Low profile": "setting-low-profile.png",
+          "Milgrain": "setting-milgrain.png",
+          "Ornate": "setting-ornate.png",
           "Petal": "zoomed in petal.png",
-          "Scalloped": "zoomed in scalloped.png",
-          "Split prong": "zoomed in split prong.png",
-          "Supported gallery rail": "zoomed in supported gallery-rail.png",
-          "Trellis": "zoomed in trellis.png",
-          "V basket": "zoomed in v basket.png"
+          "Scalloped": "setting-scalloped.png",
+          "Split prong": "setting-split-prong.png",
+          "Supported gallery rail": "setting-supported-gallery-rail.png",
+          "Trellis": "setting-trellis.png",
+          "V basket": "setting-v-basket.png"
         };
 
         const metalThemes = {
@@ -5924,6 +5927,7 @@
               setStatus("");
               if (step.key === "ring_metal") applyMetalTheme(option);
               if (requiresManualAdvance) {
+                designFlowEl?.classList.add("design-flow--setting-focus");
                 designFlowEl?.style.setProperty("--setting-focus-image", `url("${getSettingDesignImageUrl(option)}")`);
                 triggerRingImageTransform(resolveDisplayedRingImage(step), true);
                 renderMobilePreview(step, resolveDisplayedRingImage(step));
@@ -5963,6 +5967,7 @@
             designOwnButton.addEventListener("click", () => {
               cancelChoiceAutoAdvance();
               setStepValue(step, "Other");
+              designFlowEl?.classList.add("design-flow--setting-focus");
               designFlowEl?.style.setProperty("--setting-focus-image", `url("${getSettingDesignImageUrl("Other")}")`);
               triggerRingImageTransform(resolveDisplayedRingImage(step), true);
               renderMobilePreview(step, resolveDisplayedRingImage(step));
@@ -6314,7 +6319,7 @@
           shellEl.classList.remove("guided-form--intro", "guided-form--email-popup");
           shellEl.classList.add("guided-form--summary");
           questionEl.textContent = "Your design is ready";
-          supportEl.textContent = "Add the best way to contact you and we’ll review your choices personally before sending design guidance and a tailored quote.";
+          supportEl.textContent = "Add your email and we’ll review your choices personally, then send your complimentary sketch and a tailored quote.";
           supportEl.classList.remove("guided-form__support--phone");
           noteEl.textContent = "";
           noteEl.classList.remove("guided-form__note--reassurance");
@@ -6345,8 +6350,8 @@
           const phoneField = document.createElement("input");
           phoneField.type = "tel";
           phoneField.className = "guided-input";
-          phoneField.placeholder = "Phone number";
-          phoneField.setAttribute("aria-label", "Mobile or contact number");
+          phoneField.placeholder = "Phone number (optional)";
+          phoneField.setAttribute("aria-label", "Phone number, optional");
           phoneField.value = formValues.phone || "";
           phoneField.autocomplete = "tel";
           phoneField.inputMode = "tel";
@@ -6356,44 +6361,8 @@
             setStatus("");
           });
 
-          const contactWrap = document.createElement("div");
-          contactWrap.className = "guided-summary__contact";
-
-          const contactLabel = document.createElement("div");
-          contactLabel.className = "guided-summary__label";
-          contactLabel.textContent = "Preferred method of contact";
-
-          const contactOptions = document.createElement("div");
-          contactOptions.className = "guided-summary__contact-options";
-
-          ["Email", "WhatsApp"].forEach((option) => {
-            const optionLabel = document.createElement("label");
-            optionLabel.className = "guided-summary__contact-option";
-
-            const input = document.createElement("input");
-            input.type = "radio";
-            input.name = "quickStartPreferredContactChoice";
-            input.value = option;
-            input.checked = formValues.preferred_contact === option;
-            input.addEventListener("change", () => {
-              formValues.preferred_contact = option;
-              syncHiddenFields();
-              setStatus("");
-            });
-
-            const text = document.createElement("span");
-            text.textContent = option;
-
-            optionLabel.appendChild(input);
-            optionLabel.appendChild(text);
-            contactOptions.appendChild(optionLabel);
-          });
-
           fields.appendChild(emailField);
           fields.appendChild(phoneField);
-          contactWrap.appendChild(contactLabel);
-          contactWrap.appendChild(contactOptions);
-          fields.appendChild(contactWrap);
           bodyEl.appendChild(fields);
 
           nextBtn.hidden = false;
@@ -6671,7 +6640,7 @@
           const priceBeaterLink = document.createElement("a");
           priceBeaterLink.className = "secondary-form-link";
           priceBeaterLink.href = "/price-beater";
-          priceBeaterLink.append("Already found your dream ring?", document.createElement("br"), "Beat the price. No compromise.");
+          priceBeaterLink.append("Already found your dream ring? ", document.createElement("br"), "Beat the price. No compromise.");
           actionsWrap.appendChild(priceBeaterLink);
 
           const trustRow = document.createElement("div");
@@ -6938,6 +6907,10 @@
           designFlowEl?.classList.add("design-flow--steps");
           designFlowEl?.classList.remove("design-flow--setting-focus");
           designFlowEl?.style.removeProperty("--setting-focus-image");
+          if (step.key === "setting_design") {
+            designFlowEl?.classList.add("design-flow--setting-focus");
+            designFlowEl?.style.setProperty("--setting-focus-image", `url("${getSettingDesignImageUrl(formValues.setting_design || "Classic")}")`);
+          }
           shellEl.classList.remove("guided-form--intro");
           shellEl.classList.remove("guided-form--summary");
           questionEl.textContent = isEmailCaptureStep ? "" : getStepLabel(step);
@@ -7017,16 +6990,15 @@
         function validateContactDetails(){
           const email = String(formValues.email || "").trim();
           const phone = String(formValues.phone || "").trim();
-          const preferredContact = String(formValues.preferred_contact || "").trim();
 
-          if (!email && !phone) return "Please add an email address or contact number.";
-          if (email && !isValidEmail(email)) return "Please add a valid email address.";
-          if (phone && !isValidPhone(phone)) return "Please add a valid contact number.";
-          if (!preferredContact) return "Please choose a preferred contact method.";
-          if (preferredContact === "Email" && !email) return "Please add an email address for email contact.";
-          if (preferredContact === "WhatsApp" && !phone) {
-            return "Please add a contact number for WhatsApp.";
+          if (!email && String(formValues.preferred_contact || "") === "WhatsApp" && phone) {
+            return isValidPhone(phone) ? "" : "Please add a valid phone number.";
           }
+          if (!email) return "Please add your email address so we can send your sketch.";
+          if (!isValidEmail(email)) return "Please add a valid email address.";
+          if (phone && !isValidPhone(phone)) return "Please add a valid phone number, or leave it blank.";
+          if (!formValues.preferred_contact) formValues.preferred_contact = "Email";
+          syncHiddenFields();
           return "";
         }
 
@@ -7188,6 +7160,9 @@
                 currency: getCurrencyConfig().code
               });
             }
+            if (typeof gtag === "function") {
+              gtag("event", "conversion", { send_to: "AW-18173399172/PpNpCLbcpaQdEISh4NlD" });
+            }
 
             isSubmitting = false;
             stopIntroReviewRotation();
@@ -7228,6 +7203,7 @@
       })();
 
     </script>
-  <script src="assets/privacy-controls.js" defer></script>
+  <script src="assets/privacy-controls.js?v=20261020-2" defer></script>
+<style>.guided-intro-actions__title{transform:none!important;margin-top:26px!important}.guided-form__brand-copy{margin-bottom:10px!important}</style>
 </body>
   </html>

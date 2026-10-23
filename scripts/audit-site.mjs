@@ -1,21 +1,19 @@
-import { existsSync, readFileSync } from "node:fs";
-import { dirname, extname, join, normalize, resolve } from "node:path";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { dirname, extname, join, normalize, relative, resolve, sep } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const pages = [
-  "index.html", "consultation.html", "diamonds.html", "contact-us.html",
-  "ringpage.html", "ring-gallery.html", "about-us.html", "bracelets.html",
-  "faq.html", "floral-ring.html", "trilogy-ring.html", "tantalum-ring.html",
-  "ring-form.html", "trusted-suppliers.html", "thank-you.html",
-  "advice/where-to-buy-an-engagement-ring.html", "checkout-success.html", "cad-service.html", "price-match.html",
-  "create-your-own-ring.html", "lab-emerald-ring.html", "jewellery-design.html",
-  "green-diamond-trilogy.html", "reviews.html", "advice.html", "necklaces.html",
-  "signature-collection.html", "LG772667488.html", "privacy-policy.html", "cookie-policy.html",
-  "returns-cancellations.html", "company-information.html", "terms-and-conditions.html",
-  "advice/how-much-to-spend-on-an-engagement-ring.html",
-  "advice/how-to-choose-a-diamond.html", "advice/lab-grown-diamonds-guide.html",
-  "advice/how-to-find-ring-size-secretly.html", "advice/bespoke-engagement-ring-process.html"
-];
+const ignoredDirectories = new Set([".git", "node_modules", "tmp", "ladfox-stripe-checkout-starter"]);
+const ignoredFiles = new Set(["Images/gallery.html"]);
+const findPages = (directory) => readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+  if (entry.isDirectory()) {
+    if (ignoredDirectories.has(entry.name) || entry.name.startsWith("backup-before-")) return [];
+    return findPages(join(directory, entry.name));
+  }
+  if (!entry.isFile() || extname(entry.name).toLowerCase() !== ".html") return [];
+  const file = relative(root, join(directory, entry.name)).split(sep).join("/");
+  return ignoredFiles.has(file) ? [] : [file];
+});
+const pages = findPages(root).sort();
 const errors = [];
 const titles = new Map();
 const descriptions = new Map();
@@ -41,8 +39,17 @@ for (const file of pages) {
   if (count(html, /<main\b/gi) !== 1) errors.push(`${file}: expected exactly one main landmark`);
   if (!/site-skip-link/.test(html)) errors.push(`${file}: missing shared skip link`);
   if (!/assets\/site-common\.css/.test(html)) errors.push(`${file}: missing shared accessibility CSS`);
-  if (/available 24\/7/i.test(html)) errors.push(`${file}: contains unsupported 24/7 claim`);
+  if (/(?:available|open|support)[^<\n]{0,40}24\s*(?:\/\s*7|hours?)/i.test(html)) errors.push(`${file}: contains unsupported round-the-clock availability claim`);
+  if (/\b(?:16416135|info@ladfox\.com)\b/i.test(html)) errors.push(`${file}: contains inconsistent company or contact details`);
   if (/ipapi\.co|ipinfo\.io|api\.ipify\.org/i.test(html)) errors.push(`${file}: contains third-party IP geolocation`);
+  if (/\b(?:href|src|poster)=["']\s*["']/i.test(html)) errors.push(`${file}: contains an empty link or asset reference`);
+
+  for (const match of html.matchAll(/<a\b([^>]*)>/gi)) {
+    const attributes = match[1];
+    if (/\btarget=["']_blank["']/i.test(attributes) && !/\brel=["'][^"']*\bnoopener\b/i.test(attributes)) {
+      errors.push(`${file}: target=_blank link is missing rel=noopener`);
+    }
+  }
 
   const title = capture(html, /<title>([\s\S]*?)<\/title>/i);
   const description = capture(html, /<meta\s+name=["']description["']\s+content=["']([^"']+)/i);
@@ -65,23 +72,33 @@ for (const file of pages) {
 
   for (const match of html.matchAll(/(?:href|src|poster)=(["'])(.*?)\1/gi)) {
     const raw = match[2].trim();
-    if (!raw || /^(?:https?:|mailto:|tel:|data:|javascript:|#|\/\/)/i.test(raw)) continue;
+    if (!raw || /^(?:https?:|mailto:|tel:|data:|javascript:|\/\/)/i.test(raw)) continue;
+    if (raw.startsWith("#")) {
+      const anchor = decodeURIComponent(raw.slice(1));
+      if (anchor && !new RegExp(`\\b(?:id|name)=["']${anchor.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`, "i").test(html)) {
+        errors.push(`${file}: unresolved page anchor ${raw}`);
+      }
+      continue;
+    }
     const withoutQuery = raw.split(/[?#]/, 1)[0];
     if (!withoutQuery) continue;
     const decoded = decodeURIComponent(withoutQuery);
     if (decoded.startsWith("/")) {
       if (routeTargets.has(decoded)) continue;
       const target = join(root, decoded.slice(1));
-      if (!existsSync(target)) errors.push(`${file}: unresolved local reference ${raw}`);
+      if (!existsSync(target) && !existsSync(`${target}.html`)) errors.push(`${file}: unresolved local reference ${raw}`);
     } else {
       const target = normalize(join(dirname(absolute), decoded));
-      if (!existsSync(target)) errors.push(`${file}: unresolved local reference ${raw}`);
+      if (!existsSync(target) && !existsSync(`${target}.html`)) errors.push(`${file}: unresolved local reference ${raw}`);
     }
   }
 }
 
 if (!readFileSync(join(root, "_redirects"), "utf8").includes("/design/your-ring  /ringpage.html  200")) {
   errors.push("_redirects: canonical ring designer rewrite is missing");
+}
+if (!/<base\s+href=["']\/["']/i.test(readFileSync(join(root, "ringpage.html"), "utf8"))) {
+  errors.push("ringpage.html: clean nested route requires a root base URL for relative assets");
 }
 if (extname(join(root, "sitemap.xml")) !== ".xml" || !readFileSync(join(root, "sitemap.xml"), "utf8").includes("https://ladfox.com/design/your-ring")) {
   errors.push("sitemap.xml: canonical ring designer URL is missing");
@@ -97,6 +114,54 @@ if (!readFileSync(join(root, "_redirects"), "utf8").includes("/price-beater  /pr
 }
 if (!readFileSync(join(root, "sitemap.xml"), "utf8").includes("https://ladfox.com/price-beater")) {
   errors.push("sitemap.xml: canonical price-beater URL is missing");
+}
+if (!readFileSync(join(root, "_redirects"), "utf8").includes("/signature-collection.html  /classic-collection.html  301!")) {
+  errors.push("_redirects: legacy Signature Collection redirect is missing");
+}
+if (!readFileSync(join(root, "sitemap.xml"), "utf8").includes("https://ladfox.com/classic-collection.html")) {
+  errors.push("sitemap.xml: canonical Ring Collection URL is missing");
+}
+if (!readFileSync(join(root, "sitemap.xml"), "utf8").includes("https://ladfox.com/classic-solitaire.html")) {
+  errors.push("sitemap.xml: Classic Solitaire URL is missing");
+}
+if (existsSync(join(root, "signature-collection.html"))) {
+  errors.push("signature-collection.html: legacy page should remain a redirect, not a duplicate document");
+}
+for (const configurator of ["classic-solitaire.html", "trilogy-ring.html"]) {
+  const html = readFileSync(join(root, configurator), "utf8");
+  if (!/data-option-value=["']9k["'][^>]*>9kt</i.test(html)) {
+    errors.push(`${configurator}: 9kt gold purity option is missing`);
+  }
+}
+
+const netlifyIgnore = readFileSync(join(root, ".netlifyignore"), "utf8");
+for (const excluded of ["Customers/", "1234/", "backup-before-seo-update-*/", ".env.example", "Images/gallery.html"]) {
+  if (!netlifyIgnore.includes(excluded)) errors.push(`.netlifyignore: sensitive or unused path is not excluded: ${excluded}`);
+}
+
+const privacyControls = readFileSync(join(root, "assets/privacy-controls.js"), "utf8");
+if (/cookie-consent|data-cookie-(?:accept|reject)|ladfox_cookie_choice/.test(privacyControls)) {
+  errors.push("assets/privacy-controls.js: cookie or tracking popup code must remain disabled");
+}
+
+const classicCheckout = readFileSync(join(root, "netlify/functions/create-checkout-session.mjs"), "utf8");
+if (!classicCheckout.includes('shipping_address_collection: { allowed_countries: ["GB"] }')) {
+  errors.push("create-checkout-session.mjs: immediate-purchase shipping must remain UK-only");
+}
+if (!classicCheckout.includes('/checkout-success.html?session_id={CHECKOUT_SESSION_ID}')) {
+  errors.push("create-checkout-session.mjs: success return URL is missing");
+}
+if (!classicCheckout.includes('returnPage = ["classic-solitaire.html", "signature-solitaire.html", "lab-gemstone-signature.html"]') ||
+    !classicCheckout.includes('`${siteUrl}/${returnPage}?checkout=cancelled`')) {
+  errors.push("create-checkout-session.mjs: Classic Solitaire cancellation URL is missing");
+}
+
+const cadCheckout = readFileSync(join(root, "netlify/functions/create-cad-checkout-session.mjs"), "utf8");
+if (!cadCheckout.includes('/checkout-success.html?session_id={CHECKOUT_SESSION_ID}')) {
+  errors.push("create-cad-checkout-session.mjs: success return URL is missing");
+}
+if (!cadCheckout.includes('/cad-design?checkout=cancelled')) {
+  errors.push("create-cad-checkout-session.mjs: CAD cancellation URL is missing");
 }
 
 if (errors.length) {

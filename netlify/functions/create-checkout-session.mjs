@@ -9,6 +9,8 @@ const getStripe = () => {
 
 const validRequestId = (value) => /^[A-Za-z0-9_-]{12,100}$/.test(String(value || ""));
 
+const cleanEngraving = (value) => String(value || "").replace(/[^A-Za-z0-9 &.,'\u2019\-\/]/g, "").replace(/\s+/g, " ").trim().slice(0, 20);
+
 export default async (request) => {
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
 
@@ -43,6 +45,7 @@ export default async (request) => {
       colour: priced.selections.colour,
       clarity: priced.selections.clarity,
       ring_size: priced.selections.ringSize,
+      engraving: cleanEngraving(body?.engraving),
       charged_price_gbp: String(priced.priceGbp),
       regular_price_gbp: String(priced.regularPriceGbp),
       sale_active: String(priced.saleActive),

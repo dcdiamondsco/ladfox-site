@@ -1,28 +1,38 @@
+import { saleEndsAt } from "./sale.mjs";
+import { RING_PRICES, RING_PRICES_9K, COLOUR_ORDER, CLARITY_ORDER, PRICE_TABLE_VERSION } from "./diamond-ring-prices.mjs";
+
 export const PRODUCT = Object.freeze({
   slug: "signature-petal-collection",
-  name: "LADFOX Signature Petal Collection",
+  name: "LADFOX Classic Collection",
   currency: "gbp",
-  priceVersion: "2026-07-26-sale"
+  priceVersion: `2026-10-19-${PRICE_TABLE_VERSION}`
 });
 
-export const SALE = Object.freeze({
-  discountPercent: 20,
-  // End of Sunday 2 August 2026 in UK summer time.
-  endsAt: "2026-08-03T00:00:00+01:00"
-});
+// Rolling weekly sale ending midnight UK time on Sunday (see sale.mjs).
+// The "was" price is the sale price x regularMarkup.
+export const SALE = Object.freeze({ regularMarkup: 1.2 });
 
 const PRICE_CONFIG = Object.freeze({
   minimumSalePrice: 1999,
   gemstoneDiscountMultiplier: 0.83,
+  // Gemstone rings are priced at this share of the equivalent F VS2 lab-diamond ring (plus colour add-on).
+  gemstoneFromDiamondMultiplier: 0.8,
+  // Metal differences apply to lab diamonds and gemstones. The diamond table is priced in 14k yellow gold.
   metalAddons: Object.freeze({
+    // 9k diamond rings use RING_PRICES_9K (real 9KT mount prices); these add-ons are on top of the 9k yellow price. White/rose offsets copied from 14k, unverified for 9k.
+    "9k Gold": 0,
+    "9k White Gold": 30,
+    "9k Rose Gold": 10,
     "14k Gold": 0,
-    "18k Gold": 110,
+    "18k Gold": 190,
     "14k White Gold": 30,
-    "18k White Gold": 130,
-    "14k Rose Gold": 30,
-    "18k Rose Gold": 130,
-    "Platinum": 230
+    "18k White Gold": 220,
+    "14k Rose Gold": 10,
+    "18k Rose Gold": 200,
+    "Platinum": 150
   }),
+  // The shape, elongated, clarity and colour adjustments below now apply to lab GEMSTONES only.
+  // Lab diamonds are priced directly from RING_PRICES (shape, size, colour and clarity are all in the table).
   shapeAddons: Object.freeze({
     Round: 0,
     Oval: 45,
@@ -62,22 +72,17 @@ const PRICE_CONFIG = Object.freeze({
     "Emerald - Teal Green": 170,
     "Alexandrite - Colour Changing": 220
   }),
-  clarityAddons: Object.freeze({
-    VS2: 20,
-    VS1: 45,
-    VVS2: 75,
-    VVS1: 100,
-    "Internally Flawless": 130,
-    Flawless: 150
-  }),
-  colourAddons: Object.freeze({
-    D: 0,
-    E: -20,
-    F: -40,
-    G: -40,
-    H: -40
+  // Customer-facing clarity names mapped to the codes used in RING_PRICES.
+  clarityCodes: Object.freeze({
+    VS2: "VS2",
+    VS1: "VS1",
+    VVS2: "VVS2",
+    VVS1: "VVS1",
+    "Internally Flawless": "IF",
+    Flawless: "FL"
   }),
   ringSizeAddonPerHalfSizeAboveM: 12,
+  // Used by gemstones only.
   diamondPricePoints: Object.freeze([
     { size: 0.3, price: 1999 },
     { size: 0.5, price: 2199 },
@@ -95,6 +100,9 @@ const PRICE_CONFIG = Object.freeze({
   ])
 });
 
+// The sizes the Classic configurator offers.
+const SIGNATURE_SIZES = Object.freeze([0.33, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6]);
+
 const RING_SIZES = Object.freeze([
   "J", "J 1/2", "K", "K 1/2", "L", "L 1/2", "M", "M 1/2",
   "N", "N 1/2", "O", "O 1/2", "P", "P 1/2", "Q"
@@ -108,8 +116,8 @@ const ALLOWED = Object.freeze({
   elongated: new Set(["Yes", "No"]),
   elongatedShapes: new Set(["Emerald", "Radiant", "Cushion"]),
   gemstones: new Set(GEMSTONES),
-  colours: new Set(["D", "E", "F", "G", "H"]),
-  clarities: new Set(Object.keys(PRICE_CONFIG.clarityAddons)),
+  colours: new Set(COLOUR_ORDER),
+  clarities: new Set(Object.keys(PRICE_CONFIG.clarityCodes)),
   ringSizes: new Set(RING_SIZES)
 });
 
@@ -125,10 +133,16 @@ const parseCarat = (value) => {
   if (!Number.isFinite(carat) || carat < 0.3 || carat > 6.0) {
     throw new Error("Centre stone size must be between 0.3 ct and 6.0 ct.");
   }
+  const listed = SIGNATURE_SIZES.find((size) => Math.abs(size - carat) < 0.0001);
+  if (listed !== undefined) return listed;
   const rounded = Math.round(carat * 10) / 10;
   if (Math.abs(carat - rounded) > 0.0001) throw new Error("Centre stone size must use 0.1 ct increments.");
   return rounded;
 };
+
+// 1 -> "1", 0.33 -> "0.33", 2.5 -> "2.5" (the keys used in RING_PRICES).
+const sizeKey = (carat) => String(Number(carat.toFixed(2)));
+const formatCarat = (carat) => (Math.abs(carat * 10 - Math.round(carat * 10)) < 1e-6 ? carat.toFixed(1) : carat.toFixed(2));
 
 const interpolateDiamondBasePrice = (carat) => {
   const points = PRICE_CONFIG.diamondPricePoints;
@@ -142,6 +156,53 @@ const interpolateDiamondBasePrice = (carat) => {
     }
   }
   return points[points.length - 1].price;
+};
+
+// Whole-ring price for a lab diamond in 14k yellow gold, or null when the combination is not sold online.
+export const lookupDiamondRingPrice = ({ shape, elongated, carat, colour, clarity, metal = "" }) => {
+  const tableShape = elongated === "Yes" ? `Elongated ${shape}` : shape;
+  const sizes = (String(metal).startsWith("9k") ? RING_PRICES_9K : RING_PRICES)[tableShape];
+  if (!sizes) return null;
+  const index = COLOUR_ORDER.indexOf(colour) * CLARITY_ORDER.length + CLARITY_ORDER.indexOf(PRICE_CONFIG.clarityCodes[clarity]);
+  const listed = Object.keys(sizes).map(Number).filter((size) => Number.isFinite(sizes[String(size)]?.[index])).sort((x, y) => x - y);
+  if (!listed.length) return null;
+  const price = (size) => sizes[String(size)][index];
+  if (carat <= listed[0]) return price(listed[0]);
+  if (carat >= listed[listed.length - 1]) return price(listed[listed.length - 1]);
+  const exact = listed.find((size) => Math.abs(size - carat) < 1e-6);
+  if (exact !== undefined) return price(exact);
+  // Sizes between the listed ones are priced on a straight line between their neighbours, rounded up to end in 9.
+  const upper = listed.find((size) => size > carat);
+  const lower = [...listed].reverse().find((size) => size < carat);
+  const raw = price(lower) + (price(upper) - price(lower)) * ((carat - lower) / (upper - lower));
+  return Math.ceil((raw + 1) / 10) * 10 - 1;
+};
+
+// Reference lab-diamond ring price for a gemstone ring: F VS2 where the table has it, otherwise the cheapest
+// listed colour/clarity for that shape and size, interpolated between listed sizes. Shapes missing from the
+// table (e.g. Heart) use Round plus the shape add-on.
+const gemstoneReferencePrice = ({ shape, elongated, carat, metal }) => {
+  const table = String(metal).startsWith("9k") ? RING_PRICES_9K : RING_PRICES;
+  const tableShape = elongated === "Yes" ? `Elongated ${shape}` : shape;
+  const rows = table[tableShape] || table[shape] || table.Round;
+  const shapeExtra = table[tableShape] || table[shape] ? 0 : PRICE_CONFIG.shapeAddons[shape] ?? 0;
+  const f = COLOUR_ORDER.indexOf("F") * CLARITY_ORDER.length + CLARITY_ORDER.indexOf("VS2");
+  const points = Object.entries(rows).map(([size, row]) => {
+    const preferred = row[f];
+    const cheapest = Math.min(...row.filter(Number.isFinite));
+    return { size: Number(size), price: Number.isFinite(preferred) ? preferred : cheapest };
+  }).filter((point) => Number.isFinite(point.price)).sort((x, y) => x.size - y.size);
+  // A bigger stone never costs less than a smaller one.
+  points.forEach((point, i) => { if (i > 0) point.price = Math.max(point.price, points[i - 1].price); });
+  if (!points.length) return interpolateDiamondBasePrice(carat) + shapeExtra;
+  if (carat <= points[0].size) return points[0].price + shapeExtra;
+  for (let i = 1; i < points.length; i += 1) {
+    if (carat <= points[i].size) {
+      const t = (carat - points[i - 1].size) / (points[i].size - points[i - 1].size);
+      return points[i - 1].price + (points[i].price - points[i - 1].price) * t + shapeExtra;
+    }
+  }
+  return points[points.length - 1].price + shapeExtra;
 };
 
 const getRingSizeAddon = (ringSize) => {
@@ -175,7 +236,7 @@ export function validateSelections(raw = {}) {
     shape,
     elongated,
     gemstone: isGemstone ? requireAllowed(raw.gemstone, ALLOWED.gemstones, "gemstone colour") : "",
-    stoneSize: `${carat.toFixed(1)} ct`,
+    stoneSize: `${formatCarat(carat)} ct`,
     carat,
     colour: isGemstone ? "" : requireAllowed(raw.colour, ALLOWED.colours, "diamond colour"),
     clarity: isGemstone ? "" : requireAllowed(raw.clarity, ALLOWED.clarities, "diamond clarity"),
@@ -186,29 +247,30 @@ export function validateSelections(raw = {}) {
 export function validateAndPrice(rawSelections = {}, now = new Date()) {
   const selections = validateSelections(rawSelections);
   const isGemstone = selections.stoneType === "Lab Gemstone";
-  const elongatedAddon = ALLOWED.elongatedShapes.has(selections.shape) && selections.elongated === "Yes"
-    ? PRICE_CONFIG.elongatedAddon : 0;
-  const stoneAddon = isGemstone
-    ? PRICE_CONFIG.gemstoneAddons[selections.gemstone]
-    : PRICE_CONFIG.clarityAddons[selections.clarity];
-  const colourAddon = isGemstone ? 0 : PRICE_CONFIG.colourAddons[selections.colour];
-  const diamondBasePrice = interpolateDiamondBasePrice(selections.carat);
-  const basePrice = isGemstone
-    ? diamondBasePrice * PRICE_CONFIG.gemstoneDiscountMultiplier
-    : diamondBasePrice;
 
-  // These are the existing LADFOX sale prices. The regular price is derived so the reduction is exactly 20%.
-  const salePriceGbp = Math.max(PRICE_CONFIG.minimumSalePrice, Math.round(
-    basePrice +
-    PRICE_CONFIG.metalAddons[selections.metal] +
-    PRICE_CONFIG.shapeAddons[selections.shape] +
-    elongatedAddon +
-    stoneAddon +
-    colourAddon +
-    getRingSizeAddon(selections.ringSize)
-  ));
-  const regularPriceGbp = Math.ceil((salePriceGbp / 0.8) / 10) * 10;
-  const saleActive = now.getTime() < new Date(SALE.endsAt).getTime();
+  let rawPrice;
+  if (isGemstone) {
+    // Gemstones are priced off the lab-diamond ring table (same shape and size, F colour, VS2 clarity, in the
+    // selected metal family) less the gemstone discount, plus the colour add-on. Falls back to the old list
+    // for any shape/size the diamond table does not cover.
+    const base = gemstoneReferencePrice(selections) * PRICE_CONFIG.gemstoneFromDiamondMultiplier;
+    rawPrice = base +
+      PRICE_CONFIG.metalAddons[selections.metal] +
+      PRICE_CONFIG.gemstoneAddons[selections.gemstone] +
+      getRingSizeAddon(selections.ringSize);
+  } else {
+    const tablePrice = lookupDiamondRingPrice(selections);
+    if (tablePrice === null) {
+      // The message starts with "Centre stone" so checkout shows it to the customer.
+      throw new Error("Centre stone combination is made to order, so please contact LADFOX for a personal quote.");
+    }
+    rawPrice = tablePrice + PRICE_CONFIG.metalAddons[selections.metal] + getRingSizeAddon(selections.ringSize);
+  }
+
+    const salePriceGbp = Math.round(rawPrice);
+  const regularPriceGbp = Math.ceil((salePriceGbp * SALE.regularMarkup + 1) / 10) * 10 - 1;
+  const saleEndsAtIso = saleEndsAt(now);
+  const saleActive = true;
   const priceGbp = saleActive ? salePriceGbp : regularPriceGbp;
   const displayShape = `${selections.elongated === "Yes" ? "Elongated " : ""}${selections.shape}`;
   const stoneDescription = isGemstone
@@ -221,15 +283,13 @@ export function validateAndPrice(rawSelections = {}, now = new Date()) {
     salePriceGbp,
     regularPriceGbp,
     saleActive,
-    saleEndsAt: SALE.endsAt,
-    discountPercent: SALE.discountPercent,
+    saleEndsAt: saleEndsAtIso,
+    discountPercent: Math.round((1 - salePriceGbp / regularPriceGbp) * 100),
     unitAmount: priceGbp * 100,
     priceVersion: PRODUCT.priceVersion,
     selections,
     imagePath: getImagePath(selections),
     description: `${selections.metal} · ${selections.stoneSize} ${displayShape} · ${stoneDescription} · UK size ${selections.ringSize}`,
-    customerMessage: saleActive
-      ? `20% sale price. Offer ends at midnight after Sunday 2 August 2026.`
-      : "This price is calculated securely from the selected specification and includes insured UK delivery."
+    customerMessage: "This price is calculated securely from the selected specification and includes insured UK delivery."
   };
 }

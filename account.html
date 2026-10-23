@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Account | LADFOX</title>
+  <meta name="description" content="Sign in to follow your LADFOX ring's progress, request a design and message us." />
+  <meta name="robots" content="noindex,follow" />
+  <meta property="og:image" content="https://ladfox.com/Images/og-banner.jpg" />
+  <link rel="canonical" href="https://ladfox.com/account" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/Images/Logo%20Inverted.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <style>
+    :root{--line:rgba(255,255,255,.14);--soft:rgba(255,255,255,.07);--mute:rgba(255,255,255,.66)}
+    *{box-sizing:border-box}
+    html{background:#000}
+    body{margin:0;background:#000;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+    a{color:#fff}
+    .top{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;max-width:860px;width:100%;margin:0 auto}
+    .top img{width:150px;height:auto;filter:invert(1);display:block}
+    .top button{background:none;border:1px solid var(--line);color:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-size:.85rem;cursor:pointer}
+    main{flex:1;width:100%;max-width:860px;margin:0 auto;padding:10px 22px 60px}
+    h1{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:600;margin:14px 0 8px;line-height:1.15}
+    h2{font-size:1.15rem;margin:0 0 10px;font-weight:600}
+    p{color:var(--mute);line-height:1.6;margin:0 0 14px}
+    .card{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px;margin:0 0 18px}
+    label{display:block;font-size:.82rem;color:var(--mute);margin:14px 0 6px}
+    input,select,textarea{width:100%;background:#0b0b0b;border:1px solid var(--line);color:#fff;border-radius:12px;padding:13px 14px;font:inherit;font-size:1rem}
+    textarea{min-height:120px;resize:vertical}
+    input:focus,select:focus,textarea:focus{outline:2px solid #fff;outline-offset:1px}
+    .btn{display:inline-block;background:#fff;color:#000;border:0;border-radius:999px;padding:13px 24px;font:inherit;font-weight:600;cursor:pointer;margin-top:18px;text-decoration:none}
+    .btn[disabled]{opacity:.55;cursor:wait}
+    .btn.ghost{background:none;color:#fff;border:1px solid var(--line)}
+    .msg{margin-top:14px;font-size:.92rem;min-height:1.2em}
+    .msg.err{color:#ff9d9d}.msg.ok{color:#9fe3b0}
+    .hidden{display:none!important}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:600px){.row{grid-template-columns:1fr}}
+    .proj-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .tag{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+    .badge{background:#fff;color:#000;border-radius:999px;padding:5px 12px;font-size:.8rem;font-weight:600;white-space:nowrap}
+    ol.steps{list-style:none;margin:20px 0 6px;padding:0}
+    ol.steps li{position:relative;padding:0 0 16px 34px;color:var(--mute);font-size:.95rem}
+    ol.steps li::before{content:"";position:absolute;left:8px;top:22px;bottom:0;width:2px;background:var(--line)}
+    ol.steps li:last-child::before{display:none}
+    ol.steps li .dot{position:absolute;left:0;top:2px;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:#000}
+    ol.steps li.done{color:#fff}
+    ol.steps li.done .dot{background:#fff;border-color:#fff}
+    ol.steps li.current{color:#fff;font-weight:600}
+    ol.steps li.current .dot{background:#000;border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.2)}
+    .files{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:18px 0 6px}
+    .files figure{margin:0;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .files img{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#000}
+    .files figcaption{padding:8px 10px;font-size:.78rem;color:var(--mute);word-break:break-word}
+    .files a.pdf{display:flex;align-items:center;justify-content:center;aspect-ratio:1;color:#fff;font-weight:600;text-decoration:none;background:#111}
+    .box{background:#0b0b0b;border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0 0}
+    .box h3{margin:0 0 6px;font-size:1rem}
+    .banner{background:#10261a;border:1px solid #2f6b47;color:#bff0cf;border-radius:14px;padding:14px 16px;margin:14px 0}
+    .thread{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+    .bubble{padding:10px 14px;border-radius:14px;margin:8px 0;max-width:88%;font-size:.93rem;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+    .bubble.ladfox{background:#fff;color:#000}
+    .bubble.customer{background:#1b1b1b;border:1px solid var(--line);margin-left:auto}
+    .bubble small{display:block;opacity:.6;font-size:.72rem;margin-top:4px}
+    .reply{display:flex;gap:10px;margin-top:10px}
+    .reply input{flex:1}
+    .reply .btn{margin:0;padding:12px 18px}
+    footer{padding:26px 22px 40px;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:rgba(255,255,255,.6);font-size:.82rem}
+    footer a{color:#fff}
+  </style>
+<link rel="stylesheet" href="/assets/lfx-polish.css" />
+</head>
+<body>
+  <a class="site-skip-link" href="#main-content">Skip to main content</a>
+  <div class="top">
+    <a href="/" aria-label="LADFOX home"><img src="Images/ladfox-logo.png" alt="LADFOX" /></a>
+    <button id="logout" class="hidden" type="button">Sign out</button>
+  </div>
+
+  <main id="main-content">
+    <section id="loading"><p>Loading…</p></section>
+
+    <section id="signin" class="hidden">
+      <h1>Design your ring with LADFOX</h1>
+      <p>Create your free account to start your design, get a complimentary sketch, and follow every step from sketch to CAD to delivery. No password needed: we email you a secure sign-in link.</p>
+      <form id="signinForm" class="card" novalidate>
+        <label for="si-name">Your name</label>
+        <input id="si-name" name="name" autocomplete="name" maxlength="80" placeholder="Optional" />
+        <label for="si-email">Email address</label>
+        <input id="si-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
+        <button class="btn" type="submit">Email me my sign-in link</button>
+        <div id="signinMsg" class="msg" role="status" aria-live="polite"></div>
+      </form>
+      <p style="font-size:.85rem">If you have already ordered, use the email address you gave at checkout and your order will be waiting here. <a href="privacy-policy.html">Privacy</a></p>
+    </section>
+
+    <section id="dash" class="hidden">
+      <h2 id="hello" class="account-title">Welcome</h2>
+      <p id="helloSub">Everything about your ring, in one place.</p>
+      <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s create your ring</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary sketch and a clear quote.</p>
+        <ol class="w-steps"><li class="on"><b>1</b><span>Your ideas</span></li><li><b>2</b><span>Free sketch &amp; quote</span></li><li><b>3</b><span>CAD &amp; approval</span></li><li><b>4</b><span>Made &amp; delivered</span></li></ol></div>
+      <style>.welcome{text-align:center;margin:0 0 20px;padding:26px 18px;border:1px solid #3a3e46;border-radius:20px;background:radial-gradient(120% 140% at 50% 0%,#1a1c21 0%,#0b0b0d 70%)}.welcome.hidden{display:none}.w-eyebrow{margin:0 0 8px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c8ccd4}.welcome h2{margin:0 0 8px;font-size:1.6rem}.w-lead{margin:0 auto 20px;max-width:46ch;color:#c8ccd4;line-height:1.55}.w-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.w-steps li{display:grid;justify-items:center;gap:6px;font-size:.74rem;color:#9a9fa8;line-height:1.25}.w-steps b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid #3a3e46;font-weight:600}.w-steps li.on{color:#fff}.w-steps li.on b{background:#dfe3ea;color:#0b0b0d;border-color:#dfe3ea}.rq-progress{height:4px;border-radius:4px;background:#23262c;margin:0 0 16px;overflow:hidden}.rq-progress i{display:block;height:100%;width:0;background:#dfe3ea;transition:width .3s}.rq-count{font-size:.8rem;color:#c8ccd4;margin:-8px 0 14px}</style>
+      <div class="box" id="optionsBox"><h3>What would you like us to help you with?</h3>
+        <div class="opt-grid">
+          <button type="button" class="opt" data-kind="design">Help me design my ring</button>
+          <button type="button" class="opt" data-kind="price">I know what I want - give me a price</button>
+          <a class="opt" href="/cad-design">I&rsquo;ve seen what I want - order a CAD design</a>
+        </div>
+        <p class="opt-beat"><a href="/price-beater">Already found your dream ring?<br>Beat the price. No compromise.</a></p>
+        <p class="opt-trust"><span>&#10003; Lifetime warranty</span><span>&#10003; Insured UK delivery</span><span>&#10003; Free engraving</span></p>
+      </div>
+      <button id="newRequestBtn" class="btn ghost hidden" type="button">Start a new request</button>
+      <style>.opt-grid{display:grid;gap:10px}.opt{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:10px 14px;border:1px solid #3a3e46;border-radius:14px;background:#0b0b0d;color:#fff;font:inherit;font-weight:600;line-height:1.25;text-decoration:none;cursor:pointer}.opt:hover,.opt:focus-visible{border-color:#dfe3ea;outline:none}.opt-beat{text-align:center;margin:16px 0 0}.opt-beat a{color:#c8ccd4;text-decoration:none}.opt-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin:12px 0 0;font-size:.85rem;color:#c8ccd4}</style>
+
+      <form id="requestForm" class="card hidden" style="margin-top:18px" novalidate>
+        <h2 id="rqHeading">Tell us about your ring</h2>
+        <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
+        <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Three-stone ring">Three-stone ring</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
+        <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="size"><div class="rq-label">Stone size</div><div class="rq-chips"><button type="button" class="chip" data-v="Under 1ct">Under 1ct</button><button type="button" class="chip" data-v="1 - 1.5ct">1 - 1.5ct</button><button type="button" class="chip" data-v="1.5 - 2ct">1.5 - 2ct</button><button type="button" class="chip" data-v="2 - 3ct">2 - 3ct</button><button type="button" class="chip" data-v="3ct+">3ct+</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><div class="rq-chips"><button type="button" class="chip" data-v="Yellow gold">Yellow gold</button><button type="button" class="chip" data-v="White gold">White gold</button><button type="button" class="chip" data-v="Rose gold">Rose gold</button><button type="button" class="chip" data-v="Platinum">Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="row">
+          <div><label for="rq-budget">Budget (optional)</label>
+            <select id="rq-budget"><option value="">Not sure yet</option><option>Under &pound;1,500</option><option>&pound;1,500&ndash;&pound;3,000</option><option>&pound;3,000&ndash;&pound;5,000</option><option>&pound;5,000+</option></select></div>
+          <div><label for="rq-ringsize">Ring size (optional)</label>
+            <input id="rq-ringsize" maxlength="10" placeholder="e.g. M" /></div>
+        </div>
+        <label for="rq-title">Name your design (optional)</label>
+        <input id="rq-title" maxlength="140" placeholder="e.g. Oval ring with hidden halo" />
+        <label for="rq-details" id="rq-details-label">Anything else? Inspiration, timing, a link to a ring you love</label>
+        <textarea id="rq-details" maxlength="2000" placeholder="Tell us in your own words. You can send photos from your account afterwards."></textarea>
+        <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Three-stone ring</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
+        <button class="btn" type="submit">Send my request</button>
+        <button class="btn ghost" type="button" id="cancelRequest" style="margin-left:8px">Cancel</button>
+        <div id="requestMsg" class="msg" role="status" aria-live="polite"></div>
+        <style>.rq-sub{margin:0 0 14px;opacity:.8}.rq-group{margin:0 0 16px}.rq-label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin:0 0 8px}.rq-chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #3a3e46;background:#0b0b0d;color:#fff;border-radius:999px;padding:9px 14px;font:inherit;font-size:.9rem;cursor:pointer}.chip:hover{border-color:#dfe3ea}.chip[aria-pressed="true"]{background:#dfe3ea;color:#0b0b0d;border-color:#dfe3ea;font-weight:600}</style>
+      </form>
+
+      <div id="paidBanner" class="banner hidden" role="status">Thank you. Your payment is being confirmed and will show here in a moment.</div>
+      <div id="draftBox" class="box hidden"><h3>Your saved ring design</h3><p style="margin:0 0 12px;opacity:.8">You started designing a ring. Pick up exactly where you left off.</p><a class="btn" id="draftLink" href="/design/your-ring">Continue your design</a></div>
+      <div id="designsBox" class="box"><h3>Your saved ring designs</h3><p id="designsEmpty" style="margin:0 0 12px;opacity:.8">Nothing saved yet. Choose your metal, stone and size on any of our rings, then press &ldquo;Save my design&rdquo; to keep it here.</p><div id="designsList"></div><a class="btn" id="designsBrowse" href="classic-collection.html">Browse our rings</a></div>
+      <div id="projects" style="margin-top:22px"></div>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com">hello@ladfox.com</a> &middot; <a href="privacy-policy.html">Privacy</a></footer>
+
+<script>
+(() => {
+  const STAGES = ["Enquiry received","Complimentary sketch created","Payment received","Design in progress","Design approved","In production","Quality check","Dispatched","Delivered"];
+  const $ = (id) => document.getElementById(id);
+  const show = (id) => { for (const s of ["loading","signin","dash"]) $(s).classList.toggle("hidden", s !== id); $("logout").classList.toggle("hidden", id !== "dash"); };
+  const api = async (url, opts = {}) => {
+    const res = await fetch(url, { credentials: "same-origin", ...opts, headers: { "Content-Type": "application/json", ...(opts.headers || {}) } });
+    let data = {}; try { data = await res.json(); } catch {}
+    return { res, data };
+  };
+  const post = (url, body) => api(url, { method: "POST", body: JSON.stringify(body) });
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const fmtDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  const setMsg = (node, text, kind) => { node.textContent = text || ""; node.className = "msg" + (kind ? " " + kind : ""); };
+
+  const renderProject = (p) => {
+    const card = el("article", "card");
+    const head = el("div", "proj-head");
+    const left = el("div");
+    left.append(el("div", "tag", p.type === "order" ? "Order" + (p.orderReference ? " · " + p.orderReference : "") : "Design request"), el("h2", "", p.title));
+    if (p.details) left.append(el("p", "", p.details));
+    head.append(left, el("span", "badge", STAGES[p.stage] || "Enquiry received"));
+    card.append(head);
+    if (p.estimate) card.append(el("p", "", "Estimated: " + p.estimate + " (an estimate, not a guarantee)"));
+
+    const steps = el("ol", "steps");
+    STAGES.forEach((label, i) => {
+      // Standard website orders are paid up front and skip the enquiry and design steps.
+      if (p.standard && p.stage >= 2 && (i <= 1 || i === 3 || i === 4)) return;
+      const li = el("li", i < p.stage ? "done" : i === p.stage ? "current" : "");
+      li.append(el("span", "dot"), document.createTextNode(label));
+      steps.append(li);
+    });
+    card.append(steps);
+
+    if ((p.files || []).length) {
+      const grid = el("div", "files");
+      for (const f of p.files) {
+        const url = "/.netlify/functions/account-file?p=" + encodeURIComponent(p.id) + "&f=" + encodeURIComponent(f.id);
+        const fig = el("figure");
+        if (f.type === "application/pdf") {
+          const a = el("a", "pdf", "Open PDF"); a.href = url; a.target = "_blank"; a.rel = "noopener"; fig.append(a);
+        } else {
+          const a = el("a"); a.href = url; a.target = "_blank"; a.rel = "noopener";
+          const img = el("img"); img.src = url; img.alt = f.name; img.loading = "lazy"; a.append(img); fig.append(a);
+        }
+        fig.append(el("figcaption", "", (f.note || f.name) + " · " + fmtDate(f.at)));
+        grid.append(fig);
+      }
+      card.append(grid);
+    }
+
+    if ((p.files || []).length && p.stage === 3) {
+      const box = el("div", "box");
+      box.append(el("h3", "", "Happy with this design?"), el("p", "", "Approve it and we will move on to production. If you would like changes, send us a message below."));
+      const ap = el("button", "btn", "Approve this design"); ap.type = "button";
+      ap.addEventListener("click", async () => {
+        if (!confirm("Approve this design? We will then start making your piece.")) return;
+        ap.disabled = true;
+        const { res, data } = await post("/.netlify/functions/account", { action: "approve", id: p.id });
+        ap.disabled = false;
+        if (res.ok) load(); else alert(data.error || "Could not approve.");
+      });
+      box.append(ap); card.append(box);
+    }
+
+    for (const pay of p.payments || []) {
+      const box = el("div", "box");
+      const amount = "£" + (pay.amountPence / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 });
+      if (pay.status === "paid") {
+        box.append(el("h3", "", "Paid: " + amount), el("p", "", pay.label + (pay.paidAt ? " · " + fmtDate(pay.paidAt) : "") + ". Thank you."));
+      } else {
+        box.append(el("h3", "", "Payment due: " + amount), el("p", "", pay.label + ". Secure card payment through Stripe."));
+        const pb = el("button", "btn", "Pay " + amount + " securely"); pb.type = "button";
+        pb.addEventListener("click", async () => {
+          pb.disabled = true;
+          const { res, data } = await post("/.netlify/functions/account", { action: "pay", id: p.id, paymentId: pay.id });
+          if (res.ok && data.url) { location.href = data.url; return; }
+          pb.disabled = false; alert(data.error || "Could not start the payment.");
+        });
+        box.append(pb);
+      }
+      card.append(box);
+    }
+
+    const thread = el("div", "thread");
+    for (const u of p.updates || []) {
+      const b = el("div", "bubble " + (u.by === "customer" ? "customer" : "ladfox"), u.text);
+      b.append(el("small", "", (u.by === "customer" ? "You" : "LADFOX") + " · " + fmtDate(u.at)));
+      thread.append(b);
+    }
+    const reply = el("form", "reply");
+    const input = el("input"); input.maxLength = 2000; input.placeholder = "Write a message to LADFOX…"; input.setAttribute("aria-label", "Message");
+    const send = el("button", "btn", "Send"); send.type = "submit";
+    reply.append(input, send);
+    reply.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = input.value.trim(); if (!text) return;
+      send.disabled = true;
+      const { res, data } = await post("/.netlify/functions/account", { action: "message", id: p.id, text });
+      send.disabled = false;
+      if (res.ok) load(); else alert(data.error || "Could not send your message.");
+    });
+    thread.append(reply);
+    card.append(thread);
+    return card;
+  };
+
+  const SAFE_RESUME = /^\/(classic-solitaire|signature-solitaire|trilogy-ring)\.html\?[A-Za-z0-9%_.=&+~-]*$/;
+  async function loadDesigns() {
+    const { res, data } = await api("/.netlify/functions/save-design");
+    const list = $("designsList"); list.replaceChildren();
+    const designs = res.ok && Array.isArray(data.designs) ? data.designs : [];
+    $("designsEmpty").classList.toggle("hidden", designs.length > 0);
+    $("designsBrowse").classList.toggle("hidden", designs.length > 0);
+    designs.forEach((d) => {
+      const row = el("div", "", ""); row.style.cssText = "border-top:1px solid rgba(255,255,255,.15);padding:12px 0";
+      const t = el("strong", "", d.title || "My LADFOX ring");
+      const sm = el("p", "", d.summary || ""); sm.style.cssText = "margin:4px 0 8px;opacity:.8;font-size:.9rem";
+      const meta = el("p", "", (d.price ? d.price + " \u00b7 " : "") + "Saved " + new Date(d.createdAt).toLocaleDateString("en-GB")); meta.style.cssText = "margin:0 0 10px;opacity:.65;font-size:.82rem";
+      const actions = el("div", ""); actions.style.cssText = "display:flex;gap:10px;flex-wrap:wrap";
+      if (SAFE_RESUME.test(d.resumeUrl || "")) { const go = el("a", "btn", "Continue this design"); go.href = d.resumeUrl; actions.append(go); }
+      const del = el("button", "btn", "Remove"); del.type = "button"; del.style.opacity = ".7";
+      del.addEventListener("click", async () => { if (!confirm("Remove this saved design?")) return; await post("/.netlify/functions/save-design", { action: "delete", id: d.id }); loadDesigns(); });
+      actions.append(del);
+      row.append(t, sm, meta, actions); list.append(row);
+    });
+  }
+
+  async function load() {
+    const { res, data } = await api("/.netlify/functions/account");
+    if (res.status === 401) { show("signin"); return; }
+    if (!res.ok) { show("signin"); setMsg($("signinMsg"), "We could not load your account just now. Please try again.", "err"); return; }
+    $("hello").textContent = data.customer.name ? "Welcome, " + data.customer.name.split(" ")[0] : "Welcome";
+    $("helloSub").textContent = data.projects.length ? "Here is where everything stands." : "You have nothing here yet. Request a design to get started.";
+    const draftBox = $("draftBox");
+    if (false && data.draft && /^\/design\/your-ring\?resume=[A-Za-z0-9_%-]+$/.test(data.draft.resumeUrl)) { $("draftLink").setAttribute("href", data.draft.resumeUrl); draftBox.classList.remove("hidden"); } else { draftBox.classList.add("hidden"); }
+    const wrap = $("projects"); wrap.replaceChildren(...data.projects.map(renderProject));
+    loadDesigns();
+    show("dash");
+  }
+
+  $("signinForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector("button"); btn.disabled = true; setMsg($("signinMsg"), "");
+    const { res, data } = await post("/.netlify/functions/account-auth", { action: "request", email: $("si-email").value, name: $("si-name").value });
+    btn.disabled = false;
+    setMsg($("signinMsg"), res.ok ? data.message : (data.error || "Something went wrong."), res.ok ? "ok" : "err");
+  });
+
+  let requestKind = "";
+  const chosen = {};
+  document.querySelectorAll("#requestForm .rq-group").forEach((g) => g.addEventListener("click", (e) => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    const key = g.dataset.key, on = b.getAttribute("aria-pressed") === "true";
+    g.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
+    if (on) delete chosen[key]; else { b.setAttribute("aria-pressed", "true"); chosen[key] = b.dataset.v; }
+    const n = Object.keys(chosen).length; $("rqBar").style.width = Math.round(n / 6 * 100) + "%";
+    $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of 6 chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
+  }));
+  const LBL = { type: "Piece", stone: "Stone", shape: "Shape", size: "Stone size", metal: "Metal", style: "Style" };
+  function composeDetails() {
+    const lines = [];
+    if (requestKind) lines.push("[" + KIND_LABEL[requestKind] + "]");
+    Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
+    const rs = $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
+    const t = $("rq-details").value.trim(); if (t) lines.push("", t);
+    const out = lines.join("\n");
+    return out.length >= 10 ? out : out + " (no details yet, please advise)";
+  }
+  const KIND_LABEL = { design: "Help me design my ring", price: "Price request" };
+  function openRequest(kind) {
+    requestKind = kind || "";
+    $("rqHeading").textContent = kind === "price" ? "Tell us what you want and we will price it" : "Tell us about your ring";
+    
+    $("requestForm").classList.remove("hidden");
+    $("requestForm").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  document.querySelectorAll("#optionsBox .opt[data-kind]").forEach((b) => b.addEventListener("click", () => openRequest(b.dataset.kind)));
+  $("newRequestBtn").addEventListener("click", () => openRequest(requestKind));
+  const rememberStart = () => { const k = new URLSearchParams(location.search).get("start"); if (k === "design" || k === "price") { try { localStorage.setItem("lfxStart", k); } catch (e) {} } };
+  const takeStart = () => { let k = ""; try { k = localStorage.getItem("lfxStart") || ""; localStorage.removeItem("lfxStart"); } catch (e) {} return k === "design" || k === "price" ? k : ""; };
+  rememberStart();
+  $("cancelRequest").addEventListener("click", () => $("requestForm").classList.add("hidden"));
+  $("requestForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector("button[type=submit]"); btn.disabled = true;
+    const { res, data } = await post("/.netlify/functions/account", {
+      action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure yet").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: $("rq-budget").value, details: composeDetails()
+    });
+    btn.disabled = false;
+    if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
+    e.target.reset(); Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
+    load();
+  });
+
+  $("logout").addEventListener("click", async () => { await post("/.netlify/functions/account-auth", { action: "logout" }); show("signin"); });
+
+  (async () => {
+    const qs = new URLSearchParams(location.search);
+    const token = qs.get("token");
+    const wantNew = qs.get("new") === "1";
+    if (token) {
+      history.replaceState(null, "", location.pathname);
+      const { res, data } = await post("/.netlify/functions/account-auth", { action: "verify", token });
+      if (!res.ok) { show("signin"); setMsg($("signinMsg"), data.error || "That link did not work.", "err"); return; }    }
+    const startKind = takeStart();
+    if (startKind) { await load(); if (!$("dash").classList.contains("hidden")) { const nm = ($("hello").textContent.match(/,\s*([^!.]+)/) || [])[1]; $("wTitle").textContent = (nm ? nm.trim() + ", l" : "L") + "et\u2019s " + (startKind === "price" ? "price your ring" : "create your ring"); $("welcome").classList.remove("hidden"); $("optionsBox").classList.add("hidden"); $("newRequestBtn").classList.add("hidden"); openRequest(startKind); } else { try { localStorage.setItem("lfxStart", startKind); } catch (e) {} } return; }
+    if (wantNew) {
+      await load();
+      $("requestForm").classList.remove("hidden");
+      
+      return;
+    }
+    if (new URLSearchParams(location.search).get("paid") === "1") {
+      history.replaceState(null, "", location.pathname);
+      await load();
+      $("paidBanner").classList.remove("hidden");
+      setTimeout(load, 4000);
+      return;
+    }
+    load();
+  })();
+})();
+</script>
+</body>
+</html>

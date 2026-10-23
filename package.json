@@ -6,11 +6,13 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@netlify/blobs": "^8.1.0",
+    "nodemailer": "^10.2.0",
     "stripe": "22.3.1"
   },
   "scripts": {
     "audit": "node scripts/audit-site.mjs",
-    "check:js": "node --check script.js && node --check product-page.js && node --check ring-showcase.js && node --check scroll-reveal.js && node --check assets/cad-service.js && node --check assets/cad-mobile.js && node --check assets/privacy-controls.js && node --check assets/video-autoplay.js && node --check netlify/functions/create-checkout-session.mjs && node --check netlify/functions/create-trilogy-checkout-session.mjs && node --check netlify/functions/create-cad-checkout-session.mjs && node --check netlify/functions/get-checkout-session.mjs && node --check netlify/functions/stripe-webhook.mjs",
+    "check:js": "node --check netlify/functions/save-progress.mjs && node --check netlify/functions/account-file.mjs && node --check script.js && node --check product-page.js && node --check ring-showcase.js && node --check scroll-reveal.js && node --check assets/cad-service.js && node --check assets/cad-mobile.js && node --check assets/privacy-controls.js && node --check assets/video-autoplay.js && node --check netlify/functions/create-checkout-session.mjs && node --check netlify/functions/create-trilogy-checkout-session.mjs && node --check netlify/functions/create-cad-checkout-session.mjs && node --check netlify/functions/get-checkout-session.mjs && node --check netlify/functions/stripe-webhook.mjs && node --check netlify/functions/account-lib.mjs && node --check netlify/functions/account-auth.mjs && node --check netlify/functions/account.mjs && node --check netlify/functions/admin.mjs",
     "test": "node --test && npm run audit && npm run check:js"
   }
 }

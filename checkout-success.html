@@ -11,13 +11,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500
-    });
     gtag("config", "AW-18173399172");
   </script>
   <style>
@@ -36,7 +29,8 @@
     [hidden]{display:none!important}
   </style>
   <link rel="stylesheet" href="assets/site-common.css" />
-  <link rel="stylesheet" href="assets/privacy-controls.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css?v=20261020-2" />
+<link rel="stylesheet" href="/assets/lfx-polish.css" />
 </head>
 <body>
   <a class="site-skip-link" href="#main-content">Skip to content</a>
@@ -49,6 +43,7 @@
       <p><strong>Total paid:</strong> <span data-total></span></p>
       <p><strong>Specification:</strong> <span data-description></span></p>
     </div>
+    <a class="btn" href="/account" data-account-link hidden>Follow your order online</a>
     <a class="btn" href="index.html" data-home-link hidden>Return to LADFOX</a>
   </main>
 
@@ -94,12 +89,14 @@
 
         eyebrow.textContent = "Payment confirmed";
         title.textContent = "Thank you for your order.";
-        message.textContent = "Your secure payment has been received. LADFOX will contact you to confirm the centre stone and production details before manufacture begins.";
+        message.textContent = "Your secure payment has been received. LADFOX will contact you to confirm the centre stone and production details before manufacture begins. You can follow progress and message us in your account: sign in with the email you used at checkout.";
         document.querySelector("[data-order-reference]").textContent = result.orderReference || "Shown on your Stripe receipt";
         document.querySelector("[data-total]").textContent = formatter.format((result.amountTotal || 0) / 100);
         document.querySelector("[data-description]").textContent = result.description || result.productName || "LADFOX order";
         details.hidden = false;
         homeLink.hidden = false;
+        const accountLink = document.querySelector("[data-account-link]");
+        if (accountLink) accountLink.hidden = false;
 
         const purchaseKey = `ladfox_purchase_${sessionId}`;
         let purchaseTracked = false;
@@ -116,6 +113,12 @@
               quantity: 1
             }]
           });
+          window.gtag("event", "conversion", {
+            send_to: "AW-18173399172/GbAXCLPcpaQdEISh4NlD",
+            value: (result.amountTotal || 0) / 100,
+            currency: String(result.currency || "gbp").toUpperCase(),
+            transaction_id: result.orderReference || sessionId
+          });
           try { localStorage.setItem(purchaseKey, "1"); } catch (_) {}
         }
       } catch (error) {
@@ -123,6 +126,6 @@
       }
     }());
   </script>
-  <script src="assets/privacy-controls.js" defer></script>
+  <script src="assets/privacy-controls.js?v=20261020-2" defer></script>
 </body>
 </html>

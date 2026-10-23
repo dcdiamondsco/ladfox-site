@@ -10,6 +10,8 @@
 }
 .nav a:hover,
 .nav a:focus-visible { text-decoration: underline; text-underline-offset: 5px; }
+.topbar .brand-logo { width: min(190px, 32vw); }
+.topbar .brand-review-badge { width: 124px; }
 .hero { padding-bottom: 64px; }
 .hero .hero-visual { min-height: 660px; padding: 80px max(24px, calc((100vw - 1120px) / 2)) 84px; }
 .hero .hero-overlay { max-width: 760px; text-align: left; opacity: 1; }
@@ -82,23 +84,27 @@
 }
 @media (max-width: 720px) {
   .nav-recent-work { display: none; }
-  .topbar .brand-block { min-height: 100px; margin-bottom: 0; }
+  .topbar .shell { min-width: 0; }
+  .topbar .brand-block { min-height: 88px; margin: 0; }
   .topbar .brand-logo { width: min(150px, 42vw); transform: none; }
   .topbar .brand-review-link { top: 0; right: 0; }
   .topbar .brand-review-badge { width: min(100px, 28vw); }
-  .hero { margin-top: -28px; }
-  .hero .hero-visual { min-height: 0; padding: 0 20px 64px; overflow: visible; transform: none; filter: none; }
-  .hero .hero-overlay { z-index: 50; }
+  .hero { margin-top: 0; }
+  .hero .hero-card { width: 100%; margin-left: 0; }
+  .hero .hero-visual { min-height: 780px; width: 100%; padding: 32px 20px 56px; overflow: hidden; transform: none; filter: none; }
+  .hero .hero-overlay { z-index: 50; width: 100%; min-width: 0; max-width: 100%; }
   .hero .hero-image[data-hero-key="jeweller"] { object-position: center 58%; transform: none; }
   .hero .eyebrow-hero { margin-top: 0; }
-  .hero h1 { max-width: 20ch; font-size: clamp(1.5rem, 6.2vw, 2.1rem); }
+  .hero h1 { width: 100%; max-width: 100%; margin-top: 0; font-size: clamp(1.75rem, 7.6vw, 2.1rem); overflow-wrap: break-word; }
   .hero .hero-subcopy { margin-top: 24px; }
   .hero .eyebrow-hero,
   .hero h1,
-  .hero .hero-subcopy { position: relative; top: 20px; }
-  .hero .home-start-actions { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 288px; }
+  .hero .hero-subcopy { position: relative; top: 0; }
+  .hero .hero-subcopy-row { width: 100%; min-width: 0; }
+  .hero .home-start-actions { width: 100%; min-width: 0; flex-direction: column; align-items: stretch; gap: 10px; margin-top: 260px; }
   .hero .home-start-actions > p { flex-basis: auto; }
-  .hero .home-start-actions #ringDesignerLink { min-height: 38px; padding: 6px 14px; border-radius: 14px; font-size: .82rem; }
+  .hero .home-start-actions .btn { width: 100%; max-width: 360px; white-space: normal; text-align: center; }
+  .hero .home-start-actions #ringDesignerLink { min-height: 46px; padding: 8px 14px; border-radius: 14px; font-size: .86rem; }
   .hero .hero-heading-line--gap { margin-top: .35em; }
   .hero .hero-visual::after { opacity: .7; }
   .home-start-actions { gap: 14px 24px; }
@@ -111,6 +117,10 @@
   .home-rings-grid { gap: 24px 14px; }
   .home-assurances { flex-direction: column; }
   .home-faq-action { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .quick-message-bubble { right: 12px; bottom: 12px; width: 48px; min-width: 48px; padding: 0; }
+  .quick-message-bubble span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 @media (max-width: 360px) {
   .home-rings-grid { grid-template-columns: 1fr; }

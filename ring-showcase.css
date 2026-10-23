@@ -253,10 +253,9 @@
 }
 
 .product-video--platinum-crop{
-  object-fit:contain;
-  object-position:center;
-  transform:translateY(-18%) scale(.9);
-  transform-origin:center;
+  object-fit:cover;
+  object-position:center 78%;
+  transform:none;
   background:#000;
 }
 

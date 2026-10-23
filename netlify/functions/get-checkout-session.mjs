@@ -43,7 +43,9 @@ export default async (request) => {
       description: session.metadata ? [
         session.metadata.metal,
         session.metadata.stone_size,
-        session.metadata.elongated === "Yes" ? `Elongated ${session.metadata.shape}` : session.metadata.shape,
+        session.metadata.elongated === "Yes" && !/^Elongated /i.test(session.metadata.shape || "")
+          ? `Elongated ${session.metadata.shape}` : session.metadata.shape,
+        session.metadata.side_shape ? `${session.metadata.side_shape} side stones` : "",
         session.metadata.colour ? `${session.metadata.colour} / ${session.metadata.clarity}` : session.metadata.gemstone,
         session.metadata.ring_size ? `UK size ${session.metadata.ring_size}` : ""
       ].filter(Boolean).join(" · ") : ""

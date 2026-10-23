@@ -1,0 +1,4226 @@
+{
+  "yellowGold:14k": {
+    "0.33": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEXZ10L1M9A",
+        "score": 0.0,
+        "margin": 2.508
+      },
+      "oval": {
+        "correction": 7,
+        "id": "6GBCIEX1G0L1M9A",
+        "score": 0.0,
+        "margin": 2.89
+      },
+      "pear": {
+        "correction": 7,
+        "id": "6GBCIEX1Q0L1M9A",
+        "score": 0.0,
+        "margin": 2.827
+      },
+      "emerald": {
+        "correction": 7,
+        "id": "6GBCIEX1L0L1M9A",
+        "score": 0.0,
+        "margin": 2.024
+      },
+      "marquise": {
+        "correction": 7,
+        "id": "6GBCIEX1V0L1M9A",
+        "score": 0.0,
+        "margin": 2.792
+      },
+      "radiant": {
+        "correction": 7,
+        "id": "6GBCIEX110L1M9A",
+        "score": 0.0,
+        "margin": 2.024
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6GBCIEX3B0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GBCIEX3Q0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GBCIEX3L0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GBCIEX3G0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GBCIEX310L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GBCIEX3V0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GBCIEX360L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GBCIEX4B0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEX6V0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEX7B0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEX660L1M9A",
+        "score": 0.0,
+        "margin": 4.496
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEX610L1M9A",
+        "score": 0.0,
+        "margin": 4.96
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEX7L0L1M9A",
+        "score": 0.0,
+        "margin": 3.701
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEX7G0L1M9A",
+        "score": 0.0,
+        "margin": 3.947
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEX7Q0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEX7V0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYBB0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYBQ0L1M9A",
+        "score": 0.0,
+        "margin": 4.496
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYBL0L1M9A",
+        "score": 0.0,
+        "margin": 4.96
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEYBG0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYB10L1M9A",
+        "score": 0.0,
+        "margin": 3.947
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYBV0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYB60L1M9A",
+        "score": 0.0,
+        "margin": 3.701
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYCB0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYEQ0L1M9A",
+        "score": 0.0,
+        "margin": 6.714
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYE60L1M9A",
+        "score": 0.0,
+        "margin": 6.399
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYE10L1M9A",
+        "score": 0.0,
+        "margin": 7.008
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYFG0L1M9A",
+        "score": 0.0,
+        "margin": 6.338
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYFB0L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYFL0L1M9A",
+        "score": 0.0,
+        "margin": 8.382
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYFQ0L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      }
+    },
+    "2": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYH60L1M9A",
+        "score": 0.0,
+        "margin": 6.714
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYIL0L1M9A",
+        "score": 0.0,
+        "margin": 6.399
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYIG0L1M9A",
+        "score": 0.0,
+        "margin": 7.008
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEYIB0L1M9A",
+        "score": 0.0,
+        "margin": 6.338
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYIV0L1M9A",
+        "score": 0.0,
+        "margin": 6.338
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYIQ0L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYI10L1M9A",
+        "score": 0.0,
+        "margin": 8.382
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYI60L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYLL0L1M9A",
+        "score": 0.0,
+        "margin": 6.714
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYL10L1M9A",
+        "score": 0.0,
+        "margin": 6.399
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYLV0L1M9A",
+        "score": 0.0,
+        "margin": 7.008
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEYLQ0L1M9A",
+        "score": 0.0,
+        "margin": 6.338
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYMB0L1M9A",
+        "score": 0.0,
+        "margin": 6.338
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYL60L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYMG0L1M9A",
+        "score": 0.0,
+        "margin": 8.382
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYML0L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      }
+    },
+    "3": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYO10L1M9A",
+        "score": 0.0,
+        "margin": 8.65
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYPG0L1M9A",
+        "score": 0.0,
+        "margin": 8.476
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYPB0L1M9A",
+        "score": 0.0,
+        "margin": 9.396
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEYO60L1M9A",
+        "score": 0.0,
+        "margin": 7.97
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYPQ0L1M9A",
+        "score": 0.0,
+        "margin": 7.306
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYPL0L1M9A",
+        "score": 0.0,
+        "margin": 6.25
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYPV0L1M9A",
+        "score": 0.0,
+        "margin": 8.292
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYP10L1M9A",
+        "score": 0.0,
+        "margin": 6.25
+      }
+    },
+    "4": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYSG0L1M9A",
+        "score": 0.0,
+        "margin": 8.65
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYSV0L1M9A",
+        "score": 0.0,
+        "margin": 8.476
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYSQ0L1M9A",
+        "score": 0.0,
+        "margin": 9.396
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEYSL0L1M9A",
+        "score": 0.0,
+        "margin": 7.97
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYS60L1M9A",
+        "score": 0.0,
+        "margin": 7.306
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYS10L1M9A",
+        "score": 0.0,
+        "margin": 6.25
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYTB0L1M9A",
+        "score": 0.0,
+        "margin": 8.292
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYTG0L1M9A",
+        "score": 0.0,
+        "margin": 6.25
+      }
+    },
+    "5": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYVV0L1M9A",
+        "score": 0.0,
+        "margin": 8.65
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYWB0L1M9A",
+        "score": 0.0,
+        "margin": 8.476
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYV60L1M9A",
+        "score": 0.0,
+        "margin": 9.396
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GBCIEYV10L1M9A",
+        "score": 0.0,
+        "margin": 8.65
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYWL0L1M9A",
+        "score": 0.0,
+        "margin": 7.306
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYWG0L1M9A",
+        "score": 0.0,
+        "margin": 6.25
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYWQ0L1M9A",
+        "score": 0.0,
+        "margin": 8.292
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GBCIEYWV0L1M9A",
+        "score": 0.0,
+        "margin": 6.25
+      }
+    },
+    "6": {
+      "round": {
+        "correction": 0,
+        "id": "6GBCIEYZB0L1M9A",
+        "score": 0.0,
+        "margin": 9.868
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GBCIEYZQ0L1M9A",
+        "score": 0.0,
+        "margin": 9.856
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GBCIEYZL0L1M9A",
+        "score": 0.0,
+        "margin": 11.037
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GBCIEYZ10L1M9A",
+        "score": 0.0,
+        "margin": 10.006
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GBCIEYZV0L1M9A",
+        "score": 0.0,
+        "margin": 8.173
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GBCIEYZ60L1M9A",
+        "score": 0.0,
+        "margin": 9.373
+      },
+      "radiant": {
+        "correction": 7,
+        "id": "6GBCIEY1B0L1M9A",
+        "score": 0.0,
+        "margin": 8.173
+      }
+    }
+  },
+  "yellowGold:18k": {
+    "0.33": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATHJV0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATHKB0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATHKL0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATHKG0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATHKQ0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATHKV0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATHNB0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATHNQ0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATHNL0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GKXATHNG0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATHN10L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATHNV0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATHN60L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATHOB0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6GKXATHQV0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GKXATHRB0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GKXATHQ60L1M9A",
+        "score": 0.0,
+        "margin": 4.496
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GKXATHQ10L1M9A",
+        "score": 0.0,
+        "margin": 4.96
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GKXATHRL0L1M9A",
+        "score": 0.0,
+        "margin": 3.701
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GKXATHRG0L1M9A",
+        "score": 0.0,
+        "margin": 3.947
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GKXATHRQ0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GKXATHRV0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6GKXATHVB0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GKXATHVQ0L1M9A",
+        "score": 0.0,
+        "margin": 4.496
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GKXATHVL0L1M9A",
+        "score": 0.0,
+        "margin": 4.96
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6GKXATHVG0L1M9A",
+        "score": 0.0,
+        "margin": 4.707
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GKXATHV10L1M9A",
+        "score": 0.0,
+        "margin": 3.947
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GKXATHVV0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GKXATHV60L1M9A",
+        "score": 0.0,
+        "margin": 3.701
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GKXATHWB0L1M9A",
+        "score": 0.0,
+        "margin": 3.218
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6GKXATHYQ0L1M9A",
+        "score": 0.0,
+        "margin": 6.714
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6GKXATHY60L1M9A",
+        "score": 0.0,
+        "margin": 6.399
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6GKXATHY10L1M9A",
+        "score": 0.0,
+        "margin": 7.008
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6GKXATHZG0L1M9A",
+        "score": 0.0,
+        "margin": 6.338
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6GKXATHZB0L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6GKXATHZL0L1M9A",
+        "score": 0.0,
+        "margin": 8.382
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6GKXATHZQ0L1M9A",
+        "score": 0.0,
+        "margin": 5.037
+      }
+    },
+    "2": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATH110L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATH2G0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATH2B0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GKXATH160L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATH2Q0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATH2L0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATH2V0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATH210L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATH5G0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATH5V0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATH5Q0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GKXATH5L0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATH560L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATH510L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATH6B0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATH6G0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "3": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATH8V0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATH9B0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATH860L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GKXATH810L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATH9L0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATH9G0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATH9Q0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATH9V0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "4": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATICB0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATICQ0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATICL0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GKXATICG0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATIC10L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATICV0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATIC60L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATIDB0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "5": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATIFQ0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATIF60L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATIF10L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6GKXATIFV0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATIGG0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATIGB0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATIGL0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATIGQ0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    },
+    "6": {
+      "round": {
+        "correction": -1,
+        "id": "6GKXATII60L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6GKXATIJL0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6GKXATIJG0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6GKXATIJV0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6GKXATIJQ0L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6GKXATIJ10L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6GKXATIJ60L1M9A",
+        "score": 0.0,
+        "margin": 0.0
+      }
+    }
+  },
+  "whiteGold:9k": {
+    "0.33": {
+      "round": {
+        "correction": -1,
+        "id": "6EV0L1M9A",
+        "score": 1.291,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6FB0L1M9A",
+        "score": 1.271,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6FL0L1M9A",
+        "score": 1.287,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6FG0L1M9A",
+        "score": 1.32,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6FQ0L1M9A",
+        "score": 1.277,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6FV0L1M9A",
+        "score": 1.308,
+        "margin": 0.0
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6IB0L1M9A",
+        "score": 1.284,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6IQ0L1M9A",
+        "score": 1.268,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6IL0L1M9A",
+        "score": 1.245,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6IG0L1M9A",
+        "score": 1.306,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6I10L1M9A",
+        "score": 1.279,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6IV0L1M9A",
+        "score": 1.278,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6I60L1M9A",
+        "score": 1.252,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6JB0L1M9A",
+        "score": 1.269,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6LV0L1M9A",
+        "score": 1.306,
+        "margin": 4.409
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6MB0L1M9A",
+        "score": 1.278,
+        "margin": 3.081
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L60L1M9A",
+        "score": 1.268,
+        "margin": 4.248
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L10L1M9A",
+        "score": 1.245,
+        "margin": 4.694
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6ML0L1M9A",
+        "score": 1.252,
+        "margin": 3.504
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6MG0L1M9A",
+        "score": 1.279,
+        "margin": 3.777
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6MQ0L1M9A",
+        "score": 1.269,
+        "margin": 3.1
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6MV0L1M9A",
+        "score": 1.284,
+        "margin": 4.44
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6QB0L1M9A",
+        "score": 1.284,
+        "margin": 4.44
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6QQ0L1M9A",
+        "score": 1.268,
+        "margin": 4.248
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6QL0L1M9A",
+        "score": 1.245,
+        "margin": 4.694
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6QG0L1M9A",
+        "score": 1.306,
+        "margin": 4.409
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6Q10L1M9A",
+        "score": 1.279,
+        "margin": 3.777
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6QV0L1M9A",
+        "score": 1.278,
+        "margin": 3.081
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6Q60L1M9A",
+        "score": 1.252,
+        "margin": 3.504
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6RB0L1M9A",
+        "score": 1.269,
+        "margin": 3.1
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6TQ0L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6T60L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6T10L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6UG0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6UB0L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6UL0L1M9A",
+        "score": 1.199,
+        "margin": 7.33
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6UQ0L1M9A",
+        "score": 1.262,
+        "margin": 4.919
+      }
+    },
+    "2": {
+      "round": {
+        "correction": 0,
+        "id": "6W60L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6XL0L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6XG0L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6XB0L1M9A",
+        "score": 1.259,
+        "margin": 6.06
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6XV0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6XQ0L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6X10L1M9A",
+        "score": 1.199,
+        "margin": 7.33
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6X60L1M9A",
+        "score": 1.262,
+        "margin": 4.919
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": 7,
+        "id": "61L0L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 7,
+        "id": "6110L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 7,
+        "id": "61V0L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "princess": {
+        "correction": 7,
+        "id": "61Q0L1M9A",
+        "score": 1.259,
+        "margin": 6.06
+      },
+      "pear": {
+        "correction": 7,
+        "id": "62B0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 7,
+        "id": "6160L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "61B0L1M9A",
+        "score": 1.199,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "61G0L1M9A",
+        "score": 1.262,
+        "margin": 0.0
+      }
+    },
+    "3": {
+      "round": {
+        "correction": -1,
+        "id": "63V0L1M9A",
+        "score": 1.223,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "64B0L1M9A",
+        "score": 1.214,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6360L1M9A",
+        "score": 1.17,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6310L1M9A",
+        "score": 1.325,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "64L0L1M9A",
+        "score": 1.224,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "64G0L1M9A",
+        "score": 1.253,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "64Q0L1M9A",
+        "score": 1.233,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "64V0L1M9A",
+        "score": 1.234,
+        "margin": 0.0
+      }
+    },
+    "4": {
+      "round": {
+        "correction": -1,
+        "id": "67B0L1M9A",
+        "score": 1.223,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "67Q0L1M9A",
+        "score": 1.214,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "67L0L1M9A",
+        "score": 1.17,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "67G0L1M9A",
+        "score": 1.325,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6710L1M9A",
+        "score": 1.224,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "67V0L1M9A",
+        "score": 1.253,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6760L1M9A",
+        "score": 1.233,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "68B0L1M9A",
+        "score": 1.234,
+        "margin": 0.0
+      }
+    },
+    "5": {
+      "round": {
+        "correction": -5,
+        "id": "6960L1M9A",
+        "score": 10.079,
+        "margin": 0.021
+      },
+      "oval": {
+        "correction": -1,
+        "id": "7A60L1M9A",
+        "score": 10.286,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -7,
+        "id": "6960L1M9A",
+        "score": 10.753,
+        "margin": 0.428
+      },
+      "princess": {
+        "correction": 0,
+        "id": "7A10L1M9A",
+        "score": 9.782,
+        "margin": 0.02
+      },
+      "pear": {
+        "correction": -2,
+        "id": "7BB0L1M9A",
+        "score": 8.665,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -2,
+        "id": "7A60L1M9A",
+        "score": 8.724,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -3,
+        "id": "7BB0L1M9A",
+        "score": 9.423,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -4,
+        "id": "7BB0L1M9A",
+        "score": 8.342,
+        "margin": 0.0
+      }
+    },
+    "6": {
+      "round": {
+        "correction": 0,
+        "id": "7EB0L1M9A",
+        "score": 10.73,
+        "margin": 0.053
+      },
+      "oval": {
+        "correction": 0,
+        "id": "7EQ0L1M9A",
+        "score": 11.15,
+        "margin": 0.109
+      },
+      "cushion": {
+        "correction": -5,
+        "id": "7DV0L1M9A",
+        "score": 12.637,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -5,
+        "id": "7EB0L1M9A",
+        "score": 11.323,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -4,
+        "id": "7EB0L1M9A",
+        "score": 10.414,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -4,
+        "id": "7EL0L1M9A",
+        "score": 10.74,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -7,
+        "id": "7EB0L1M9A",
+        "score": 10.468,
+        "margin": 0.0
+      }
+    }
+  },
+  "whiteGold:14k": {
+    "0.33": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4CJV0L1M9A",
+        "score": 1.291,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4CKB0L1M9A",
+        "score": 1.271,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4CKL0L1M9A",
+        "score": 1.287,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4CKG0L1M9A",
+        "score": 1.32,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4CKQ0L1M9A",
+        "score": 1.277,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4CKV0L1M9A",
+        "score": 1.308,
+        "margin": 0.0
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4CNB0L1M9A",
+        "score": 1.284,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4CNQ0L1M9A",
+        "score": 1.268,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4CNL0L1M9A",
+        "score": 1.245,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6TGT4CNG0L1M9A",
+        "score": 1.306,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4CN10L1M9A",
+        "score": 1.279,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4CNV0L1M9A",
+        "score": 1.278,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4CN60L1M9A",
+        "score": 1.252,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4COB0L1M9A",
+        "score": 1.269,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6TGT4CQV0L1M9A",
+        "score": 1.306,
+        "margin": 4.409
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6TGT4CRB0L1M9A",
+        "score": 1.278,
+        "margin": 3.081
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6TGT4CQ60L1M9A",
+        "score": 1.268,
+        "margin": 4.248
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6TGT4CQ10L1M9A",
+        "score": 1.245,
+        "margin": 4.694
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6TGT4CRL0L1M9A",
+        "score": 1.252,
+        "margin": 3.504
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6TGT4CRG0L1M9A",
+        "score": 1.279,
+        "margin": 3.777
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6TGT4CRQ0L1M9A",
+        "score": 1.269,
+        "margin": 3.1
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6TGT4CRV0L1M9A",
+        "score": 1.284,
+        "margin": 4.44
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6TGT4CVB0L1M9A",
+        "score": 1.284,
+        "margin": 4.44
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6TGT4CVQ0L1M9A",
+        "score": 1.268,
+        "margin": 4.248
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6TGT4CVL0L1M9A",
+        "score": 1.245,
+        "margin": 4.694
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6TGT4CVG0L1M9A",
+        "score": 1.306,
+        "margin": 4.409
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6TGT4CV10L1M9A",
+        "score": 1.279,
+        "margin": 3.777
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6TGT4CVV0L1M9A",
+        "score": 1.278,
+        "margin": 3.081
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6TGT4CV60L1M9A",
+        "score": 1.252,
+        "margin": 3.504
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6TGT4CWB0L1M9A",
+        "score": 1.269,
+        "margin": 3.1
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6TGT4CYQ0L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6TGT4CY60L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6TGT4CY10L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6TGT4CZG0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6TGT4CZB0L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6TGT4CZL0L1M9A",
+        "score": 1.199,
+        "margin": 7.33
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6TGT4CZQ0L1M9A",
+        "score": 1.262,
+        "margin": 4.919
+      }
+    },
+    "2": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4C110L1M9A",
+        "score": 1.226,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4C2G0L1M9A",
+        "score": 1.244,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4C2B0L1M9A",
+        "score": 1.23,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6TGT4C160L1M9A",
+        "score": 1.259,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4C2Q0L1M9A",
+        "score": 1.251,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4C2L0L1M9A",
+        "score": 1.275,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4C2V0L1M9A",
+        "score": 1.199,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4C210L1M9A",
+        "score": 1.262,
+        "margin": 0.0
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4C5G0L1M9A",
+        "score": 1.226,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4C5V0L1M9A",
+        "score": 1.244,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4C5Q0L1M9A",
+        "score": 1.23,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6TGT4C5L0L1M9A",
+        "score": 1.259,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4C560L1M9A",
+        "score": 1.251,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4C510L1M9A",
+        "score": 1.275,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4C6B0L1M9A",
+        "score": 1.199,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4C6G0L1M9A",
+        "score": 1.262,
+        "margin": 0.0
+      }
+    },
+    "3": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4C8V0L1M9A",
+        "score": 1.223,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4C9B0L1M9A",
+        "score": 1.214,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4C860L1M9A",
+        "score": 1.17,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6TGT4C810L1M9A",
+        "score": 1.325,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4C9L0L1M9A",
+        "score": 1.224,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4C9G0L1M9A",
+        "score": 1.253,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4C9Q0L1M9A",
+        "score": 1.233,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4C9V0L1M9A",
+        "score": 1.234,
+        "margin": 0.0
+      }
+    },
+    "4": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4DCB0L1M9A",
+        "score": 1.223,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4DCQ0L1M9A",
+        "score": 1.214,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4DCL0L1M9A",
+        "score": 1.17,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6TGT4DCG0L1M9A",
+        "score": 1.325,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4DC10L1M9A",
+        "score": 1.224,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4DCV0L1M9A",
+        "score": 1.253,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4DC60L1M9A",
+        "score": 1.233,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4DDB0L1M9A",
+        "score": 1.234,
+        "margin": 0.0
+      }
+    },
+    "5": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4DFQ0L1M9A",
+        "score": 1.223,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4DF60L1M9A",
+        "score": 1.214,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4DF10L1M9A",
+        "score": 1.17,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6TGT4DFV0L1M9A",
+        "score": 1.325,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4DGG0L1M9A",
+        "score": 1.224,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4DGB0L1M9A",
+        "score": 1.253,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4DGL0L1M9A",
+        "score": 1.233,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4DGQ0L1M9A",
+        "score": 1.234,
+        "margin": 0.0
+      }
+    },
+    "6": {
+      "round": {
+        "correction": -1,
+        "id": "6TGT4DI60L1M9A",
+        "score": 1.188,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6TGT4DJL0L1M9A",
+        "score": 1.207,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6TGT4DJG0L1M9A",
+        "score": 1.164,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6TGT4DJV0L1M9A",
+        "score": 1.195,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6TGT4DJQ0L1M9A",
+        "score": 1.196,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6TGT4DJ10L1M9A",
+        "score": 1.242,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6TGT4DJ60L1M9A",
+        "score": 1.207,
+        "margin": 0.0
+      }
+    }
+  },
+  "whiteGold:18k": {
+    "0.33": {
+      "round": {
+        "correction": -1,
+        "id": "632MIU4V0L1M9A",
+        "score": 1.291,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "632MIU5B0L1M9A",
+        "score": 1.271,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "632MIU5L0L1M9A",
+        "score": 1.287,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "632MIU5G0L1M9A",
+        "score": 1.32,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "632MIU5Q0L1M9A",
+        "score": 1.277,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "632MIU5V0L1M9A",
+        "score": 1.308,
+        "margin": 0.0
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "632MIU8B0L1M9A",
+        "score": 1.284,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "632MIU8Q0L1M9A",
+        "score": 1.268,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "632MIU8L0L1M9A",
+        "score": 1.245,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "632MIU8G0L1M9A",
+        "score": 1.306,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "632MIU810L1M9A",
+        "score": 1.279,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "632MIU8V0L1M9A",
+        "score": 1.278,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "632MIU860L1M9A",
+        "score": 1.252,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "632MIU9B0L1M9A",
+        "score": 1.269,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVBV0L1M9A",
+        "score": 1.306,
+        "margin": 4.409
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVCB0L1M9A",
+        "score": 1.278,
+        "margin": 3.081
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVB60L1M9A",
+        "score": 1.268,
+        "margin": 4.248
+      },
+      "princess": {
+        "correction": 0,
+        "id": "632MIVB10L1M9A",
+        "score": 1.245,
+        "margin": 4.694
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVCL0L1M9A",
+        "score": 1.252,
+        "margin": 3.504
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVCG0L1M9A",
+        "score": 1.279,
+        "margin": 3.777
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVCQ0L1M9A",
+        "score": 1.269,
+        "margin": 3.1
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVCV0L1M9A",
+        "score": 1.284,
+        "margin": 4.44
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVGB0L1M9A",
+        "score": 1.284,
+        "margin": 4.44
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVGQ0L1M9A",
+        "score": 1.268,
+        "margin": 4.248
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVGL0L1M9A",
+        "score": 1.245,
+        "margin": 4.694
+      },
+      "princess": {
+        "correction": 0,
+        "id": "632MIVGG0L1M9A",
+        "score": 1.306,
+        "margin": 4.409
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVG10L1M9A",
+        "score": 1.279,
+        "margin": 3.777
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVGV0L1M9A",
+        "score": 1.278,
+        "margin": 3.081
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVG60L1M9A",
+        "score": 1.252,
+        "margin": 3.504
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVHB0L1M9A",
+        "score": 1.269,
+        "margin": 3.1
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVJQ0L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVJ60L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVJ10L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVKG0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVKB0L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVKL0L1M9A",
+        "score": 1.199,
+        "margin": 7.33
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVKQ0L1M9A",
+        "score": 1.262,
+        "margin": 4.919
+      }
+    },
+    "2": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVM60L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVNL0L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVNG0L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "princess": {
+        "correction": 0,
+        "id": "632MIVNB0L1M9A",
+        "score": 1.259,
+        "margin": 6.06
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVNV0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVNQ0L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVN10L1M9A",
+        "score": 1.199,
+        "margin": 7.33
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVN60L1M9A",
+        "score": 1.262,
+        "margin": 4.919
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVQL0L1M9A",
+        "score": 1.226,
+        "margin": 6.421
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVQ10L1M9A",
+        "score": 1.244,
+        "margin": 6.166
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVQV0L1M9A",
+        "score": 1.23,
+        "margin": 6.569
+      },
+      "princess": {
+        "correction": 0,
+        "id": "632MIVQQ0L1M9A",
+        "score": 1.259,
+        "margin": 6.06
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVRB0L1M9A",
+        "score": 1.251,
+        "margin": 5.958
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVQ60L1M9A",
+        "score": 1.275,
+        "margin": 4.872
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVRG0L1M9A",
+        "score": 1.199,
+        "margin": 7.33
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVRL0L1M9A",
+        "score": 1.262,
+        "margin": 4.919
+      }
+    },
+    "3": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVT10L1M9A",
+        "score": 1.223,
+        "margin": 8.261
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVUG0L1M9A",
+        "score": 1.214,
+        "margin": 8.236
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVUB0L1M9A",
+        "score": 1.17,
+        "margin": 9.08
+      },
+      "princess": {
+        "correction": 0,
+        "id": "632MIVT60L1M9A",
+        "score": 1.325,
+        "margin": 7.605
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVUQ0L1M9A",
+        "score": 1.224,
+        "margin": 6.979
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVUL0L1M9A",
+        "score": 1.253,
+        "margin": 6.086
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVUV0L1M9A",
+        "score": 1.233,
+        "margin": 7.621
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVU10L1M9A",
+        "score": 1.234,
+        "margin": 6.129
+      }
+    },
+    "4": {
+      "round": {
+        "correction": 0,
+        "id": "632MIVXG0L1M9A",
+        "score": 1.223,
+        "margin": 8.261
+      },
+      "oval": {
+        "correction": 0,
+        "id": "632MIVXV0L1M9A",
+        "score": 1.214,
+        "margin": 8.236
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "632MIVXQ0L1M9A",
+        "score": 1.17,
+        "margin": 9.08
+      },
+      "princess": {
+        "correction": 0,
+        "id": "632MIVXL0L1M9A",
+        "score": 1.325,
+        "margin": 7.605
+      },
+      "pear": {
+        "correction": 0,
+        "id": "632MIVX60L1M9A",
+        "score": 1.224,
+        "margin": 6.979
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "632MIVX10L1M9A",
+        "score": 1.253,
+        "margin": 6.086
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "632MIVYB0L1M9A",
+        "score": 1.233,
+        "margin": 7.621
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "632MIVYG0L1M9A",
+        "score": 1.234,
+        "margin": 6.129
+      }
+    },
+    "5": {
+      "round": {
+        "correction": 7,
+        "id": "632MIV1V0L1M9A",
+        "score": 1.223,
+        "margin": 8.261
+      },
+      "oval": {
+        "correction": 7,
+        "id": "632MIV2B0L1M9A",
+        "score": 1.214,
+        "margin": 8.236
+      },
+      "cushion": {
+        "correction": 7,
+        "id": "632MIV160L1M9A",
+        "score": 1.17,
+        "margin": 9.08
+      },
+      "princess": {
+        "correction": 7,
+        "id": "632MIV110L1M9A",
+        "score": 1.325,
+        "margin": 8.228
+      },
+      "pear": {
+        "correction": -1,
+        "id": "632MIV1G0L1M9A",
+        "score": 1.224,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "632MIV1B0L1M9A",
+        "score": 1.253,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "632MIV1L0L1M9A",
+        "score": 1.233,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "632MIV1Q0L1M9A",
+        "score": 1.234,
+        "margin": 0.0
+      }
+    },
+    "6": {
+      "round": {
+        "correction": -1,
+        "id": "632MIV360L1M9A",
+        "score": 1.188,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "632MIV4L0L1M9A",
+        "score": 1.207,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "632MIV4G0L1M9A",
+        "score": 1.164,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "632MIV4V0L1M9A",
+        "score": 1.195,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "632MIV4Q0L1M9A",
+        "score": 1.196,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "632MIV410L1M9A",
+        "score": 1.242,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "632MIV460L1M9A",
+        "score": 1.207,
+        "margin": 0.0
+      }
+    }
+  },
+  "roseGold:9k": {
+    "0.33": {
+      "round": {
+        "correction": -1,
+        "id": "6K81LVH9V0L1M9A",
+        "score": 0.497,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6K81LVIAB0L1M9A",
+        "score": 0.498,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6K81LVIAL0L1M9A",
+        "score": 0.501,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6K81LVIAG0L1M9A",
+        "score": 0.512,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6K81LVIAQ0L1M9A",
+        "score": 0.644,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6K81LVIAV0L1M9A",
+        "score": 0.505,
+        "margin": 0.0
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6K81LVIDB0L1M9A",
+        "score": 0.492,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6K81LVIDQ0L1M9A",
+        "score": 0.487,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6K81LVIDL0L1M9A",
+        "score": 0.477,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6K81LVIDG0L1M9A",
+        "score": 0.506,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6K81LVID10L1M9A",
+        "score": 0.486,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6K81LVIDV0L1M9A",
+        "score": 0.491,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6K81LVID60L1M9A",
+        "score": 0.639,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6K81LVIEB0L1M9A",
+        "score": 0.486,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6K81LVIGV0L1M9A",
+        "score": 0.506,
+        "margin": 4.581
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6K81LVIHB0L1M9A",
+        "score": 0.491,
+        "margin": 3.158
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6K81LVIG60L1M9A",
+        "score": 0.487,
+        "margin": 4.396
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6K81LVIG10L1M9A",
+        "score": 0.477,
+        "margin": 4.849
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6K81LVIHL0L1M9A",
+        "score": 0.639,
+        "margin": 3.475
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6K81LVIHG0L1M9A",
+        "score": 0.486,
+        "margin": 3.937
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6K81LVIHQ0L1M9A",
+        "score": 0.486,
+        "margin": 3.155
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6K81LVIHV0L1M9A",
+        "score": 0.492,
+        "margin": 4.607
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6K81LVILB0L1M9A",
+        "score": 0.492,
+        "margin": 4.607
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6K81LVILQ0L1M9A",
+        "score": 0.487,
+        "margin": 4.396
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6K81LVILL0L1M9A",
+        "score": 0.477,
+        "margin": 4.849
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6K81LVILG0L1M9A",
+        "score": 0.506,
+        "margin": 4.581
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6K81LVIL10L1M9A",
+        "score": 0.486,
+        "margin": 3.937
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6K81LVILV0L1M9A",
+        "score": 0.491,
+        "margin": 3.158
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6K81LVIL60L1M9A",
+        "score": 0.639,
+        "margin": 3.475
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6K81LVIMB0L1M9A",
+        "score": 0.486,
+        "margin": 3.155
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6K81LVIOQ0L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6K81LVIO60L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6K81LVIO10L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6K81LVIPG0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6K81LVIPB0L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6K81LVIPL0L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6K81LVIPQ0L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "2": {
+      "round": {
+        "correction": 0,
+        "id": "6K81LVIR60L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6K81LVISL0L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6K81LVISG0L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6K81LVISB0L1M9A",
+        "score": 0.48,
+        "margin": 6.205
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6K81LVISV0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6K81LVISQ0L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6K81LVIS10L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6K81LVIS60L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": 0,
+        "id": "6K81LVIVL0L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6K81LVIV10L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6K81LVIVV0L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6K81LVIVQ0L1M9A",
+        "score": 0.48,
+        "margin": 6.205
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6K81LVIWB0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6K81LVIV60L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6K81LVIWG0L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6K81LVIWL0L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "3": {
+      "round": {
+        "correction": 0,
+        "id": "6K81LVIY10L1M9A",
+        "score": 0.466,
+        "margin": 8.495
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6K81LVIZG0L1M9A",
+        "score": 0.46,
+        "margin": 8.378
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6K81LVIZB0L1M9A",
+        "score": 0.436,
+        "margin": 9.272
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6K81LVIY60L1M9A",
+        "score": 0.51,
+        "margin": 7.815
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6K81LVIZQ0L1M9A",
+        "score": 0.46,
+        "margin": 7.177
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6K81LVIZL0L1M9A",
+        "score": 0.469,
+        "margin": 6.178
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6K81LVIZV0L1M9A",
+        "score": 0.641,
+        "margin": 7.805
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6K81LVIZ10L1M9A",
+        "score": 0.459,
+        "margin": 6.192
+      }
+    },
+    "4": {
+      "round": {
+        "correction": -1,
+        "id": "6K81LVI2B0L1M9A",
+        "score": 0.466,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6K81LVI2Q0L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6K81LVI2L0L1M9A",
+        "score": 0.436,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6K81LVI2G0L1M9A",
+        "score": 0.51,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6K81LVI210L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6K81LVI2V0L1M9A",
+        "score": 0.469,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6K81LVI260L1M9A",
+        "score": 0.641,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6K81LVI3B0L1M9A",
+        "score": 0.459,
+        "margin": 0.0
+      }
+    },
+    "5": {
+      "round": {
+        "correction": -1,
+        "id": "6K81LVI5Q0L1M9A",
+        "score": 0.466,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6K81LVI560L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6K81LVI510L1M9A",
+        "score": 0.436,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6K81LVI5V0L1M9A",
+        "score": 0.51,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6K81LVI6G0L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6K81LVI6B0L1M9A",
+        "score": 0.469,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6K81LVI6L0L1M9A",
+        "score": 0.641,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6K81LVI6Q0L1M9A",
+        "score": 0.459,
+        "margin": 0.0
+      }
+    },
+    "6": {
+      "round": {
+        "correction": -1,
+        "id": "6K81LVI860L1M9A",
+        "score": 0.444,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6K81LVI9L0L1M9A",
+        "score": 0.458,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6K81LVI9G0L1M9A",
+        "score": 0.429,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6K81LVI9V0L1M9A",
+        "score": 0.455,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6K81LVI9Q0L1M9A",
+        "score": 0.458,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6K81LVI910L1M9A",
+        "score": 0.759,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6K81LVI960L1M9A",
+        "score": 0.462,
+        "margin": 0.0
+      }
+    }
+  },
+  "roseGold:14k": {
+    "0.33": {
+      "round": {
+        "correction": -1,
+        "id": "6LR76PKEV0L1M9A",
+        "score": 0.497,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6LR76PKFB0L1M9A",
+        "score": 0.498,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6LR76PKFL0L1M9A",
+        "score": 0.501,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6LR76PKFG0L1M9A",
+        "score": 0.512,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PKFQ0L1M9A",
+        "score": 0.644,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PKFV0L1M9A",
+        "score": 0.505,
+        "margin": 0.0
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6LR76PKIB0L1M9A",
+        "score": 0.492,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6LR76PKIQ0L1M9A",
+        "score": 0.487,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6LR76PKIL0L1M9A",
+        "score": 0.477,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6LR76PKIG0L1M9A",
+        "score": 0.506,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6LR76PKI10L1M9A",
+        "score": 0.486,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6LR76PKIV0L1M9A",
+        "score": 0.491,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PKI60L1M9A",
+        "score": 0.639,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PKJB0L1M9A",
+        "score": 0.486,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6LR76PKLV0L1M9A",
+        "score": 0.506,
+        "margin": 4.581
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6LR76PKMB0L1M9A",
+        "score": 0.491,
+        "margin": 3.158
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6LR76PKL60L1M9A",
+        "score": 0.487,
+        "margin": 4.396
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6LR76PKL10L1M9A",
+        "score": 0.477,
+        "margin": 4.849
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6LR76PKML0L1M9A",
+        "score": 0.639,
+        "margin": 3.475
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6LR76PKMG0L1M9A",
+        "score": 0.486,
+        "margin": 3.937
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6LR76PKMQ0L1M9A",
+        "score": 0.486,
+        "margin": 3.155
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6LR76PKMV0L1M9A",
+        "score": 0.492,
+        "margin": 4.607
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6LR76PKQB0L1M9A",
+        "score": 0.492,
+        "margin": 4.607
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6LR76PKQQ0L1M9A",
+        "score": 0.487,
+        "margin": 4.396
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6LR76PKQL0L1M9A",
+        "score": 0.477,
+        "margin": 4.849
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6LR76PKQG0L1M9A",
+        "score": 0.506,
+        "margin": 4.581
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6LR76PKQ10L1M9A",
+        "score": 0.486,
+        "margin": 3.937
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6LR76PKQV0L1M9A",
+        "score": 0.491,
+        "margin": 3.158
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6LR76PKQ60L1M9A",
+        "score": 0.639,
+        "margin": 3.475
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6LR76PKRB0L1M9A",
+        "score": 0.486,
+        "margin": 3.155
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6LR76PKTQ0L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6LR76PKT60L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6LR76PKT10L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6LR76PKUG0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6LR76PKUB0L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6LR76PKUL0L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6LR76PKUQ0L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "2": {
+      "round": {
+        "correction": 0,
+        "id": "6LR76PKW60L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6LR76PKXL0L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6LR76PKXG0L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6LR76PKXB0L1M9A",
+        "score": 0.48,
+        "margin": 6.205
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6LR76PKXV0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6LR76PKXQ0L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6LR76PKX10L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6LR76PKX60L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": 7,
+        "id": "6LR76PK1L0L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 7,
+        "id": "6LR76PK110L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 7,
+        "id": "6LR76PK1V0L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "princess": {
+        "correction": 7,
+        "id": "6LR76PK1Q0L1M9A",
+        "score": 0.48,
+        "margin": 6.205
+      },
+      "pear": {
+        "correction": 7,
+        "id": "6LR76PK2B0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 7,
+        "id": "6LR76PK160L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PK1B0L1M9A",
+        "score": 0.646,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PK1G0L1M9A",
+        "score": 0.482,
+        "margin": 0.0
+      }
+    },
+    "3": {
+      "round": {
+        "correction": -1,
+        "id": "6LR76PK3V0L1M9A",
+        "score": 0.466,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6LR76PK4B0L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6LR76PK360L1M9A",
+        "score": 0.436,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6LR76PK310L1M9A",
+        "score": 0.51,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6LR76PK4L0L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6LR76PK4G0L1M9A",
+        "score": 0.469,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PK4Q0L1M9A",
+        "score": 0.641,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PK4V0L1M9A",
+        "score": 0.459,
+        "margin": 0.0
+      }
+    },
+    "4": {
+      "round": {
+        "correction": -1,
+        "id": "6LR76PK7B0L1M9A",
+        "score": 0.466,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6LR76PK7Q0L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6LR76PK7L0L1M9A",
+        "score": 0.436,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6LR76PK7G0L1M9A",
+        "score": 0.51,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6LR76PK710L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6LR76PK7V0L1M9A",
+        "score": 0.469,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PK760L1M9A",
+        "score": 0.641,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PK8B0L1M9A",
+        "score": 0.459,
+        "margin": 0.0
+      }
+    },
+    "5": {
+      "round": {
+        "correction": -1,
+        "id": "6LR76PLAQ0L1M9A",
+        "score": 0.466,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6LR76PLA60L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6LR76PLA10L1M9A",
+        "score": 0.436,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6LR76PLAV0L1M9A",
+        "score": 0.51,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6LR76PLBG0L1M9A",
+        "score": 0.46,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6LR76PLBB0L1M9A",
+        "score": 0.469,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PLBL0L1M9A",
+        "score": 0.641,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PLBQ0L1M9A",
+        "score": 0.459,
+        "margin": 0.0
+      }
+    },
+    "6": {
+      "round": {
+        "correction": -1,
+        "id": "6LR76PLD60L1M9A",
+        "score": 0.444,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6LR76PLEL0L1M9A",
+        "score": 0.458,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6LR76PLEG0L1M9A",
+        "score": 0.429,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6LR76PLEV0L1M9A",
+        "score": 0.455,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6LR76PLEQ0L1M9A",
+        "score": 0.458,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6LR76PLE10L1M9A",
+        "score": 0.759,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6LR76PLE60L1M9A",
+        "score": 0.462,
+        "margin": 0.0
+      }
+    }
+  },
+  "roseGold:18k": {
+    "0.33": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX43Z10L1M9A",
+        "score": 0.497,
+        "margin": 2.428
+      },
+      "oval": {
+        "correction": 7,
+        "id": "6L2SX431G0L1M9A",
+        "score": 0.498,
+        "margin": 2.81
+      },
+      "pear": {
+        "correction": 7,
+        "id": "6L2SX431Q0L1M9A",
+        "score": 0.501,
+        "margin": 2.743
+      },
+      "emerald": {
+        "correction": 7,
+        "id": "6L2SX431L0L1M9A",
+        "score": 0.512,
+        "margin": 1.958
+      },
+      "marquise": {
+        "correction": 7,
+        "id": "6L2SX431V0L1M9A",
+        "score": 0.644,
+        "margin": 2.56
+      },
+      "radiant": {
+        "correction": 7,
+        "id": "6L2SX43110L1M9A",
+        "score": 0.505,
+        "margin": 1.963
+      }
+    },
+    "0.5": {
+      "round": {
+        "correction": -1,
+        "id": "6L2SX433B0L1M9A",
+        "score": 0.492,
+        "margin": 0.0
+      },
+      "oval": {
+        "correction": -1,
+        "id": "6L2SX433Q0L1M9A",
+        "score": 0.487,
+        "margin": 0.0
+      },
+      "cushion": {
+        "correction": -1,
+        "id": "6L2SX433L0L1M9A",
+        "score": 0.477,
+        "margin": 0.0
+      },
+      "princess": {
+        "correction": -1,
+        "id": "6L2SX433G0L1M9A",
+        "score": 0.506,
+        "margin": 0.0
+      },
+      "pear": {
+        "correction": -1,
+        "id": "6L2SX43310L1M9A",
+        "score": 0.486,
+        "margin": 0.0
+      },
+      "emerald": {
+        "correction": -1,
+        "id": "6L2SX433V0L1M9A",
+        "score": 0.491,
+        "margin": 0.0
+      },
+      "marquise": {
+        "correction": -1,
+        "id": "6L2SX43360L1M9A",
+        "score": 0.639,
+        "margin": 0.0
+      },
+      "radiant": {
+        "correction": -1,
+        "id": "6L2SX434B0L1M9A",
+        "score": 0.486,
+        "margin": 0.0
+      }
+    },
+    "0.75": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX436V0L1M9A",
+        "score": 0.506,
+        "margin": 4.581
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX437B0L1M9A",
+        "score": 0.491,
+        "margin": 3.158
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX43660L1M9A",
+        "score": 0.487,
+        "margin": 4.396
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX43610L1M9A",
+        "score": 0.477,
+        "margin": 4.849
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX437L0L1M9A",
+        "score": 0.639,
+        "margin": 3.475
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX437G0L1M9A",
+        "score": 0.486,
+        "margin": 3.937
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX437Q0L1M9A",
+        "score": 0.486,
+        "margin": 3.155
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX437V0L1M9A",
+        "score": 0.492,
+        "margin": 4.607
+      }
+    },
+    "1": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44BB0L1M9A",
+        "score": 0.492,
+        "margin": 4.607
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44BQ0L1M9A",
+        "score": 0.487,
+        "margin": 4.396
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44BL0L1M9A",
+        "score": 0.477,
+        "margin": 4.849
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX44BG0L1M9A",
+        "score": 0.506,
+        "margin": 4.581
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44B10L1M9A",
+        "score": 0.486,
+        "margin": 3.937
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44BV0L1M9A",
+        "score": 0.491,
+        "margin": 3.158
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44B60L1M9A",
+        "score": 0.639,
+        "margin": 3.475
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44CB0L1M9A",
+        "score": 0.486,
+        "margin": 3.155
+      }
+    },
+    "1.5": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44EQ0L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44E60L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44E10L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44FG0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44FB0L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44FL0L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44FQ0L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "2": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44H60L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44IL0L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44IG0L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX44IB0L1M9A",
+        "score": 0.48,
+        "margin": 6.205
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44IV0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44IQ0L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44I10L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44I60L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "2.5": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44LL0L1M9A",
+        "score": 0.454,
+        "margin": 6.605
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44L10L1M9A",
+        "score": 0.475,
+        "margin": 6.296
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44LV0L1M9A",
+        "score": 0.461,
+        "margin": 6.769
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX44LQ0L1M9A",
+        "score": 0.48,
+        "margin": 6.205
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44MB0L1M9A",
+        "score": 0.481,
+        "margin": 6.176
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44L60L1M9A",
+        "score": 0.487,
+        "margin": 4.958
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44MG0L1M9A",
+        "score": 0.646,
+        "margin": 7.772
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44ML0L1M9A",
+        "score": 0.482,
+        "margin": 4.965
+      }
+    },
+    "3": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44O10L1M9A",
+        "score": 0.466,
+        "margin": 8.495
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44PG0L1M9A",
+        "score": 0.46,
+        "margin": 8.378
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44PB0L1M9A",
+        "score": 0.436,
+        "margin": 9.272
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX44O60L1M9A",
+        "score": 0.51,
+        "margin": 7.815
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44PQ0L1M9A",
+        "score": 0.46,
+        "margin": 7.177
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44PL0L1M9A",
+        "score": 0.469,
+        "margin": 6.178
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44PV0L1M9A",
+        "score": 0.641,
+        "margin": 7.805
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44P10L1M9A",
+        "score": 0.459,
+        "margin": 6.192
+      }
+    },
+    "4": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44SG0L1M9A",
+        "score": 0.466,
+        "margin": 8.495
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44SV0L1M9A",
+        "score": 0.46,
+        "margin": 8.378
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44SQ0L1M9A",
+        "score": 0.436,
+        "margin": 9.272
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX44SL0L1M9A",
+        "score": 0.51,
+        "margin": 7.815
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44S60L1M9A",
+        "score": 0.46,
+        "margin": 7.177
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44S10L1M9A",
+        "score": 0.469,
+        "margin": 6.178
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44TB0L1M9A",
+        "score": 0.641,
+        "margin": 7.805
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44TG0L1M9A",
+        "score": 0.459,
+        "margin": 6.192
+      }
+    },
+    "5": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44VV0L1M9A",
+        "score": 0.466,
+        "margin": 8.495
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44WB0L1M9A",
+        "score": 0.46,
+        "margin": 8.378
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44V60L1M9A",
+        "score": 0.436,
+        "margin": 9.272
+      },
+      "princess": {
+        "correction": 0,
+        "id": "6L2SX44V10L1M9A",
+        "score": 0.51,
+        "margin": 8.472
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44WL0L1M9A",
+        "score": 0.46,
+        "margin": 7.177
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44WG0L1M9A",
+        "score": 0.469,
+        "margin": 6.178
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44WQ0L1M9A",
+        "score": 0.641,
+        "margin": 7.805
+      },
+      "radiant": {
+        "correction": 0,
+        "id": "6L2SX44WV0L1M9A",
+        "score": 0.459,
+        "margin": 6.192
+      }
+    },
+    "6": {
+      "round": {
+        "correction": 0,
+        "id": "6L2SX44ZB0L1M9A",
+        "score": 0.444,
+        "margin": 9.691
+      },
+      "oval": {
+        "correction": 0,
+        "id": "6L2SX44ZQ0L1M9A",
+        "score": 0.458,
+        "margin": 9.68
+      },
+      "cushion": {
+        "correction": 0,
+        "id": "6L2SX44ZL0L1M9A",
+        "score": 0.429,
+        "margin": 10.909
+      },
+      "pear": {
+        "correction": 0,
+        "id": "6L2SX44Z10L1M9A",
+        "score": 0.455,
+        "margin": 10.007
+      },
+      "emerald": {
+        "correction": 0,
+        "id": "6L2SX44ZV0L1M9A",
+        "score": 0.458,
+        "margin": 8.087
+      },
+      "marquise": {
+        "correction": 0,
+        "id": "6L2SX44Z60L1M9A",
+        "score": 0.759,
+        "margin": 8.885
+      },
+      "radiant": {
+        "correction": 7,
+        "id": "6L2SX441B0L1M9A",
+        "score": 0.462,
+        "margin": 8.081
+      }
+    }
+  }
+}

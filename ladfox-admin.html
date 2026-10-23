@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LADFOX Admin</title>
+  <meta name="description" content="Secure LADFOX customer project administration." />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta property="og:image" content="https://ladfox.com/Images/og-banner.jpg" />
+  <link rel="canonical" href="https://ladfox.com/ladfox-admin" />
+  <link rel="stylesheet" href="assets/site-common.css" />
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0a0a0a;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding:20px}
+    .wrap{max-width:980px;margin:0 auto}
+    h1{font-size:1.4rem;margin:0 0 14px}
+    .card{background:#151515;border:1px solid #2a2a2a;border-radius:14px;padding:18px;margin:0 0 14px}
+    input,select,textarea{width:100%;background:#0b0b0b;border:1px solid #333;color:#fff;border-radius:10px;padding:10px 12px;font:inherit}
+    textarea{min-height:70px}
+    label{display:block;font-size:.78rem;color:#aaa;margin:10px 0 4px}
+    button{background:#fff;color:#000;border:0;border-radius:999px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+    button.ghost{background:none;color:#fff;border:1px solid #444}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+    .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#aaa}
+    .new{background:#ffd36b;color:#000;border-radius:999px;padding:2px 9px;font-size:.72rem;font-weight:700;margin-left:6px}
+    .meta{color:#bbb;font-size:.88rem;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+    .log{margin-top:10px;max-height:190px;overflow:auto;font-size:.85rem;border-top:1px solid #2a2a2a;padding-top:8px}
+    .log div{margin:5px 0;color:#ccc}.log b{color:#fff}
+    .hidden{display:none}
+    .sec{margin-top:16px;border-top:1px solid #2a2a2a;padding-top:12px}
+    .sec h3{margin:0 0 8px;font-size:.95rem}
+    .thumbs{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+    .thumb{width:110px;font-size:.72rem;color:#bbb;word-break:break-word}
+    .thumb img{display:block;width:110px;height:110px;object-fit:contain;background:#000;border-radius:8px;border:1px solid #333}
+    .thumb button{margin-top:4px;padding:4px 10px;font-size:.72rem}
+    .pay{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0;font-size:.9rem}
+    .pill{border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:700}
+    .pill.paid{background:#9fe3b0;color:#000}.pill.due{background:#ffd36b;color:#000}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+    .row label{margin:0;display:flex;gap:6px;align-items:center;color:#ddd;font-size:.9rem}
+    .row input[type=checkbox]{width:auto}
+    #status{margin:10px 0;color:#9fe3b0;min-height:1.2em}#status.err{color:#ff9d9d}
+  </style>
+</head>
+<body>
+<a class="site-skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" class="wrap">
+  <h1>LADFOX customer projects</h1>
+  <form id="login" class="card">
+    <label for="pw">Admin password</label>
+    <input id="pw" type="password" autocomplete="current-password" required />
+    <div class="row"><button type="submit">Open</button></div>
+  </form>
+  <div id="status" role="status"></div>
+  <div id="app" class="hidden">
+    <div class="row" style="margin:0 0 14px"><button class="ghost" id="reload" type="button">Refresh</button><button class="ghost" id="addBtn" type="button">Add an existing order</button><button class="ghost" id="out" type="button">Lock</button></div>
+    <form id="addForm" class="card hidden">
+      <div class="grid">
+        <div><label>Customer email</label><input id="a-email" type="email" required /></div>
+        <div><label>Customer name</label><input id="a-name" /></div>
+        <div><label>Ring / title</label><input id="a-title" required placeholder="e.g. 2ct oval, 18K white gold" /></div>
+        <div><label>Order reference</label><input id="a-ref" /></div>
+      </div>
+      <label>Details</label><textarea id="a-details"></textarea>
+      <div class="row"><label><input type="checkbox" id="a-notify" checked /> Email them that it's in their account</label><button type="submit">Add</button></div>
+    </form>
+    <div id="list"></div>
+    <h2 style="margin:28px 0 10px">Saved designs (from the website)</h2>
+    <div id="designs"></div>
+  </div>
+</main>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const API = "/.netlify/functions/admin";
+  let pw = ""; try { pw = sessionStorage.getItem("lfx_admin") || ""; } catch {}
+  let STAGES = [];
+  const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; };
+  const status = (t, err) => { $("status").textContent = t || ""; $("status").className = err ? "err" : ""; };
+  const call = async (body) => {
+    const res = await fetch(API, { method: body ? "POST" : "GET", headers: { Authorization: "Bearer " + pw, "Content-Type": "application/json" }, body: body ? JSON.stringify(body) : undefined });
+    let data = {}; try { data = await res.json(); } catch {}
+    return { res, data };
+  };
+  const readB64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
+  async function prepareFile(file) {
+    if (file.type === "application/pdf") {
+      if (file.size > 4 * 1024 * 1024) throw new Error("PDF must be under 4 MB.");
+      return { type: file.type, data: await readB64(file) };
+    }
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) throw new Error("Use a JPG, PNG, WebP or PDF.");
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, 1800 / Math.max(bmp.width, bmp.height));
+    const cv = document.createElement("canvas"); cv.width = Math.round(bmp.width * scale); cv.height = Math.round(bmp.height * scale);
+    const ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cv.width, cv.height); ctx.drawImage(bmp, 0, 0, cv.width, cv.height);
+    const blob = await new Promise((ok) => cv.toBlob(ok, "image/jpeg", 0.88));
+    return { type: "image/jpeg", data: await readB64(blob) };
+  }
+  const fmt = (iso) => new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+
+  function card(p) {
+    const c = el("div", "card");
+    const head = el("div"); head.append(el("div", "tag", (p.type === "order" ? "Order" : "Design request") + (p.orderReference ? " · " + p.orderReference : "")));
+    const t = el("strong", "", p.title); if (p.customerUnread) t.append(el("span", "new", "NEW MESSAGE"));
+    head.append(t);
+    c.append(head, el("div", "meta", `${p.name || ""} <${p.email}>\n${p.ringType ? p.ringType + " · " : ""}${p.budget ? "Budget " + p.budget + " · " : ""}Created ${fmt(p.createdAt)}\n${p.details || ""}`));
+    const g = el("div", "grid");
+    const sWrap = el("div"); sWrap.append(el("label", "", "Stage"));
+    const sel = el("select"); STAGES.forEach((s, i) => { const o = el("option", "", s); o.value = i; if (i === p.stage) o.selected = true; sel.append(o); }); sWrap.append(sel);
+    const eWrap = el("div"); eWrap.append(el("label", "", "Estimated date (shown to customer)"));
+    const est = el("input"); est.value = p.estimate || ""; est.placeholder = "e.g. 12 December"; eWrap.append(est);
+    g.append(sWrap, eWrap); c.append(g);
+    c.append(el("label", "", "Note to customer (optional)"));
+    const note = el("textarea"); c.append(note);
+    const row = el("div", "row"); const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = true; lab.append(ck, document.createTextNode("Email them this update"));
+    const save = el("button", "", "Save update"); row.append(lab, save); c.append(row);
+    save.onclick = async () => {
+      save.disabled = true;
+      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, estimate: est.value, note: note.value, notify: ck.checked });
+      save.disabled = false;
+      if (!res.ok) return status(data.error || "Failed", true);
+      status(data.emailed ? "Saved and customer emailed." : "Saved." + (ck.checked ? " (No email sent.)" : ""));
+      load();
+    };
+    // ----- design files -----
+    const fsec = el("div", "sec"); fsec.append(el("h3", "", "Designs & sketches (JPG, PNG, WebP or PDF)"));
+    const thumbs = el("div", "thumbs");
+    for (const f of p.files || []) {
+      const t = el("div", "thumb");
+      if (f.type === "application/pdf") { t.append(el("div", "", "PDF")); }
+      else {
+        const img = el("img"); img.alt = f.name; t.append(img);
+        fetch(`/.netlify/functions/account-file?p=${encodeURIComponent(p.id)}&f=${encodeURIComponent(f.id)}&e=${encodeURIComponent(p.email)}`, { headers: { Authorization: "Bearer " + pw } })
+          .then((r) => r.ok ? r.blob() : null).then((b) => { if (b) img.src = URL.createObjectURL(b); });
+      }
+      t.append(el("div", "", f.note || f.name));
+      const del = el("button", "ghost", "Remove");
+      del.onclick = async () => { if (!confirm("Remove this file?")) return; const { res, data } = await call({ action: "delete-file", email: p.email, id: p.id, fileId: f.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
+      t.append(del); thumbs.append(t);
+    }
+    fsec.append(thumbs);
+    const fileIn = el("input"); fileIn.type = "file"; fileIn.accept = "image/jpeg,image/png,image/webp,application/pdf";
+    const fnote = el("input"); fnote.placeholder = "Note for the customer (optional), e.g. Complimentary sketch";
+    const frow = el("div", "row"); const flab = el("label"); const fck = el("input"); fck.type = "checkbox"; fck.checked = true; flab.append(fck, document.createTextNode("Email them"));
+    const fbtn = el("button", "", "Upload"); frow.append(flab, fbtn);
+    fsec.append(fileIn, fnote, frow);
+    fbtn.onclick = async () => {
+      const file = fileIn.files[0]; if (!file) return status("Choose a file first.", true);
+      fbtn.disabled = true; status("Uploading…");
+      try {
+        const { type, data } = await prepareFile(file);
+        const { res, data: out } = await call({ action: "upload", email: p.email, id: p.id, name: file.name, data, note: fnote.value, notify: fck.checked });
+        if (!res.ok) throw new Error(out.error || "Upload failed");
+        status(out.emailed ? "Uploaded and customer emailed." : "Uploaded."); load();
+      } catch (e) { status(e.message, true); }
+      fbtn.disabled = false;
+    };
+    c.append(fsec);
+
+    // ----- payments -----
+    const psec = el("div", "sec"); psec.append(el("h3", "", "Payment"));
+    for (const pay of p.payments || []) {
+      const r = el("div", "pay");
+      r.append(el("span", "pill " + (pay.status === "paid" ? "paid" : "due"), pay.status === "paid" ? "PAID" : "DUE"), document.createTextNode(`£${(pay.amountPence / 100).toFixed(2)} · ${pay.label}`));
+      if (pay.status !== "paid") {
+        const cancel = el("button", "ghost", "Cancel request");
+        cancel.onclick = async () => { const { res, data } = await call({ action: "cancel-payment", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
+        const manual = el("button", "ghost", "Mark as paid (bank transfer)");
+        manual.onclick = async () => { if (!confirm("Mark this as paid?")) return; const { res, data } = await call({ action: "mark-paid", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
+        r.append(cancel, manual);
+      }
+      psec.append(r);
+    }
+    if (!(p.payments || []).some((x) => x.status === "requested") && !(p.payments || []).some((x) => x.status === "paid")) {
+      const prow = el("div", "grid");
+      const amt = el("input"); amt.type = "number"; amt.min = "1"; amt.step = "0.01"; amt.placeholder = "Full amount in £, e.g. 1850";
+      const lab2 = el("input"); lab2.value = "Full payment";
+      prow.append(amt, lab2); psec.append(prow);
+      const prow2 = el("div", "row"); const plab = el("label"); const pck = el("input"); pck.type = "checkbox"; pck.checked = true; plab.append(pck, document.createTextNode("Email them"));
+      const pbtn = el("button", "", "Request payment"); prow2.append(plab, pbtn); psec.append(prow2);
+      pbtn.onclick = async () => {
+        const { res, data } = await call({ action: "request-payment", email: p.email, id: p.id, amount: amt.value, label: lab2.value, notify: pck.checked });
+        if (!res.ok) return status(data.error || "Failed", true);
+        status(data.emailed ? "Payment requested and customer emailed." : "Payment requested."); load();
+      };
+    }
+    c.append(psec);
+
+    const log = el("div", "log");
+    for (const u of p.updates) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
+    c.append(log);
+    return c;
+  }
+
+  async function load() {
+    const { res, data } = await call();
+    if (res.status === 401) { status("Wrong password.", true); $("app").classList.add("hidden"); $("login").classList.remove("hidden"); return; }
+    if (!res.ok) return status(data.error || "Could not load.", true);
+    STAGES = data.stages;
+    const rows = data.projects.sort((a, b) => (b.customerUnread ? 1 : 0) - (a.customerUnread ? 1 : 0) || String(b.updatedAt).localeCompare(String(a.updatedAt)));
+    $("list").replaceChildren(...(rows.length ? rows.map(card) : [el("p", "meta", "Nothing here yet.")]));
+    const ds = Array.isArray(data.designs) ? data.designs : [];
+    $("designs").replaceChildren(...(ds.length ? ds.map((d) => {
+      const c = el("div", "card", "");
+      const head = el("strong", "", (d.title || "Ring") + " \u00b7 " + (d.email || ""));
+      const sm = el("p", "meta", d.summary || "");
+      const meta = el("p", "meta", (d.name ? d.name + " \u00b7 " : "") + (d.price ? d.price + " \u00b7 " : "") + new Date(d.createdAt).toLocaleString("en-GB") + (d.marketing ? " \u00b7 OK to email offers" : ""));
+      c.append(head, sm, meta);
+      if (/^\/(classic-solitaire|signature-solitaire|trilogy-ring)\.html\?[A-Za-z0-9%_.=&+~-]*$/.test(d.resumeUrl || "")) { const a = el("a", "", "Open this design"); a.href = d.resumeUrl; a.target = "_blank"; c.append(a); }
+      return c;
+    }) : [el("p", "meta", "No saved designs yet.")]));
+    $("login").classList.add("hidden"); $("app").classList.remove("hidden"); status("");
+  }
+  $("login").addEventListener("submit", (e) => { e.preventDefault(); pw = $("pw").value; try { sessionStorage.setItem("lfx_admin", pw); } catch {} load(); });
+  $("reload").onclick = load;
+  $("out").onclick = () => { pw = ""; try { sessionStorage.removeItem("lfx_admin"); } catch {} location.reload(); };
+  $("addBtn").onclick = () => $("addForm").classList.toggle("hidden");
+  $("addForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const { res, data } = await call({ action: "create", email: $("a-email").value, name: $("a-name").value, title: $("a-title").value, orderReference: $("a-ref").value, details: $("a-details").value, notify: $("a-notify").checked });
+    if (!res.ok) return status(data.error || "Failed", true);
+    e.target.reset(); e.target.classList.add("hidden"); status("Added."); load();
+  });
+  if (pw) load();
+})();
+</script>
+</body>
+</html>

@@ -9,13 +9,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500
-    });
 
     gtag('config', 'AW-18173399172');
   </script>
@@ -53,6 +46,24 @@
   <link rel="preload" as="image" href="assets/images/background-jeweller-640.avif" type="image/avif" imagesrcset="assets/images/background-jeweller-640.avif 640w, assets/images/background-jeweller-1024.avif 1024w" imagesizes="(max-width: 720px) 100vw, 50vw" fetchpriority="high" />
 
   <style>
+    .xmas-strip{position:relative;margin:0 0 24px;padding:34px 24px 26px;text-align:center}
+    .xmas-strip::before,.xmas-strip::after{content:"";position:absolute;top:calc(-1 * var(--xs-up,140px));bottom:calc(-1 * var(--xs-down,0px));left:calc(50% - 50vw);width:100vw;z-index:30;pointer-events:none;background-repeat:repeat}
+    .xmas-strip::before{opacity:.85;background-image:radial-gradient(2.5px 2.5px at 20px 30px,#fff,transparent),radial-gradient(2px 2px at 90px 120px,#fff,transparent),radial-gradient(3px 3px at 160px 70px,#fff,transparent),radial-gradient(2px 2px at 230px 170px,#fff,transparent),radial-gradient(2.5px 2.5px at 300px 20px,#fff,transparent);background-size:340px 200px;animation:xsSnowA 9s linear infinite}
+    .xmas-strip::after{opacity:.6;background-image:radial-gradient(1.5px 1.5px at 50px 60px,#fff,transparent),radial-gradient(1.5px 1.5px at 130px 150px,#fff,transparent),radial-gradient(1.5px 1.5px at 210px 20px,#fff,transparent),radial-gradient(1.5px 1.5px at 280px 110px,#fff,transparent);background-size:290px 160px;animation:xsSnowB 14s linear infinite}
+    @keyframes xsSnowA{from{background-position:0 0}to{background-position:-40px 200px}}
+    @keyframes xsSnowB{from{background-position:0 0}to{background-position:30px 160px}}
+    @media (prefers-reduced-motion:reduce){.xmas-strip::before,.xmas-strip::after{animation:none}}
+    .xmas-strip .xs-orn{display:block;color:rgba(255,255,255,.7);letter-spacing:.7em;font-size:.8rem;margin:0 0 10px;padding-left:.7em}
+    .xmas-strip h2{margin:0 0 8px;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.15;color:#fff;text-shadow:0 2px 18px rgba(214,180,120,.35)}
+    .xmas-strip p{position:relative;margin:0 auto 18px;max-width:34em;font-size:1rem;line-height:1.55;color:rgba(255,255,255,.88)}
+    .xmas-strip a{position:relative;display:inline-block;color:#000;background:#fff;border-radius:999px;padding:12px 28px;font-weight:700;font-size:.92rem;letter-spacing:.03em;text-decoration:none}
+    .xs-sketch{position:relative;z-index:3;margin-top:4px}
+    .xmas-strip a.xs-designs-btn{padding:9px 20px;font-weight:600;font-size:.82rem;letter-spacing:.02em}.xs-btns{margin-top:32px;display:flex;justify-content:center;gap:10px;flex-wrap:nowrap}.xs-btns .xs-sketch-btn,.xmas-strip .xs-btns a{flex:1 1 0;max-width:200px;font-size:.74rem!important;line-height:1.2;min-width:0;padding-left:10px!important;padding-right:10px!important;white-space:normal;text-align:center}.xs-sketch-btn{display:inline-block;text-decoration:none;position:relative;z-index:3;cursor:pointer;border:0;color:#000;background:#fff;border-radius:999px;padding:9px 20px;font-weight:600;font-size:.82rem;letter-spacing:.02em;font-family:inherit}
+    .xs-form{position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 auto;max-width:32rem}
+    .xs-form[hidden]{display:none}
+    .xs-form input{flex:1 1 14rem;min-width:0;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:.95rem}
+    .xs-form button{cursor:pointer;border:0;color:#000;background:#fff;border-radius:999px;padding:12px 24px;font-weight:700;font-size:.92rem;font-family:inherit}
+    .xs-msg:empty{display:none}.xs-msg{position:relative;z-index:3;margin:16px auto 0;max-width:32rem;font-size:.9rem;color:rgba(255,255,255,.8);min-height:1.3em}
     :root{
       --bg:#0B0C10;
       --bg-soft:#101218;
@@ -144,14 +155,14 @@
       padding:10px 0 8px;
       position:relative;
       z-index:40;
-      background:#000;
+      background:transparent;
       border-bottom:none;
       transition:background .2s ease, backdrop-filter .2s ease, border-color .2s ease;
       backdrop-filter:none;
     }
 
     .topbar.is-sticky{
-      background:#000;
+      background:transparent;
       backdrop-filter:none;
       border-bottom:none;
     }
@@ -1447,7 +1458,7 @@
       }
 
       .topbar{
-        background:#000;
+        background:transparent;
         backdrop-filter:none;
         border-bottom:none;
       }
@@ -2174,7 +2185,35 @@
 }
   </script>
   <link rel="stylesheet" href="assets/site-common.css" />
-  <link rel="stylesheet" href="assets/privacy-controls.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css?v=20261020-2" />
+  <style>
+    .home-process{width:min(1120px,calc(100vw - 48px));margin:0 auto 72px}
+    .hp-story{margin:34px 0 0}
+    .hp-story-title{margin:0 0 6px;text-align:left;color:#fff;font-family:var(--heading);font-size:clamp(1.2rem,2.2vw,1.6rem)}
+    .hp-story-quote{margin:0 0 14px;color:rgba(255,255,255,.72);font-style:italic;line-height:1.6}
+    .hp-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .hp-step{margin:0;display:grid;grid-template-rows:subgrid;grid-row:span 2;gap:14px}
+    .hp-step figcaption{order:-1;margin-top:0;align-content:start;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center}
+    .hp-step figcaption strong{color:#fff;letter-spacing:.02em}
+    .hp-step figcaption em{grid-column:1/-1;font-style:normal;color:var(--muted);line-height:1.6;font-size:.94rem}
+    .hp-step figcaption span{display:grid;place-items:center;width:28px;height:28px;border:1px solid rgba(255,255,255,.3);border-radius:10px}
+    .hp-media{aspect-ratio:4/5;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:#000}
+    .hp-media--black{background:#000}
+    .hp-media img{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+    .hp-media video{width:100%;height:100%;object-fit:cover;object-position:center 32%;display:block;background:#000}
+    .hp-media--platinum-final video{object-position:center 78%}
+    .hp-actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:center;margin-top:26px}
+    @media (max-width:720px){.home-process{width:min(calc(100vw - 32px),100%);margin-bottom:56px}.hp-steps{grid-template-columns:1fr}.hp-step{display:flex;flex-direction:column;grid-row:auto}.hp-media{aspect-ratio:1/1}}
+    .hp-process{width:min(1120px,calc(100vw - 48px));margin:0 auto 72px}
+    .hp-process h2{text-align:center;margin-bottom:24px;font-size:clamp(1.7rem,3vw,2.4rem)}
+    .hp-process-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .hp-process-steps li{padding:22px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.04)}
+    .hp-process-steps li span{display:grid;place-items:center;width:34px;height:34px;margin-bottom:12px;border:1px solid rgba(255,255,255,.3);border-radius:12px;font-weight:800}
+    .hp-process-steps h3{margin:0 0 8px;font-size:1.1rem}
+    .hp-process-steps p{margin:0;color:var(--muted);line-height:1.65;font-size:.96rem}
+    @media (max-width:720px){.hp-process{width:min(calc(100vw - 32px),100%);margin-bottom:56px}.hp-process-steps{grid-template-columns:1fr}}
+  </style>
+<link rel="stylesheet" href="/assets/lfx-polish.css" />
 </head>
 
 <body>
@@ -2208,20 +2247,30 @@
           <span>Menu</span>
         </button>
         <nav class="menu-panel" id="home-menu-panel" aria-label="Primary" hidden>
-          <a href="/ringpage.html">Engagement Rings</a>
+          <a href="classic-collection.html">Collection</a>
+          <a href="/account.html?start=design">Bespoke</a>
           <a class="nav-recent-work" href="ring-gallery.html">Recent Work</a>
-          <a href="/cad-service.html">CAD Design</a>
-          <a href="/price-match.html">Price Beater</a>
-          <a href="consultation.html">Consultation</a>
-          <a href="contact-us.html">Contact Us</a>
-
+          <a href="/reviews.html">Reviews</a>
           <a href="/about-us.html">About</a>
-          <a href="/reviews.html">Reviews</a></nav>
+          <a href="/account">My Account</a></nav>
       </div>
     </div>
   </header>
 
   <main id="main" class="shell">
+    <aside class="xmas-strip" aria-label="Christmas proposals">
+      <span class="xs-orn" aria-hidden="true">&#10052; &#10022; &#10052;</span>
+      <h2>Give them a Christmas they&rsquo;ll never forget.</h2>
+      <p>With our festive Guarantee, it will be on their hand by Christmas morning.</p>
+      <div class="xs-sketch">
+        <div class="xs-btns"><a class="xs-sketch-btn xs-designs-btn" href="/account.html?start=design">Design A<br>Bespoke Piece</a><a class="xs-sketch-btn xs-designs-btn" href="classic-collection.html">Shop Our<br>Collections</a></div>
+        <form class="xs-form" id="xsForm" hidden novalidate>
+          <input type="email" id="xsEmail" name="email" placeholder="Your email address" autocomplete="email" inputmode="email" aria-label="Your email address" required>
+          <button type="submit">Submit</button>
+        </form>
+        <p class="xs-msg" id="xsMsg" role="status" aria-live="polite"></p>
+      </div>
+    </aside>
     <section class="hero" id="our-process" aria-label="Ladfox introduction">
       <div class="hero-grid">
         <aside class="hero-card" aria-label="Ladfox studio promise">
@@ -2237,13 +2286,12 @@
               <h1><span class="hero-heading-line">Bespoke Engagement Rings.</span> <span class="hero-heading-line hero-heading-line--gap">Created personally for the one you love.</span></h1>
               <div class="hero-subcopy-row">
                 <div class="hero-subcopy">
-                  <p>As your family jeweller, we&rsquo;ll help you create something completely personal, guiding you through every decision without the pressure of a traditional jewellery shop.</p>
+                  <p><a href="/account.html?start=design" style="color:inherit;text-decoration:none"><strong>Bespoke designs</strong></a> created entirely around your ideas, or choose from our <a href="classic-collection.html" style="color:inherit;text-decoration:none"><strong>signature collection</strong></a>, with every ring made to order and created for you.</p>
                 </div>
 
                 <div class="home-start-actions">
-                  <a class="btn btn-primary" id="ringDesignerLink" href="/ringpage.html">Start your ring</a>
-                  <a class="home-text-link" id="recentWorkLink" href="ring-gallery.html">See the process <span aria-hidden="true">&rarr;</span></a>
-                  <p>Begin with a complimentary sketch and a quote.</p>
+                  <a class="btn btn-primary" id="ringDesignerLink" href="/account.html?start=design">Design A<br>Bespoke Piece</a>
+                  <a class="btn btn-secondary" id="classicShopLink" href="classic-collection.html">Shop Our<br>Collections</a>
                 </div>
               </div>
             </div>
@@ -2346,119 +2394,58 @@
           </div>
         </section>
 
-        <section class="home-featured home-section" aria-labelledby="featuredHeading">
+        <section class="home-process home-section" aria-labelledby="processShowHeading">
           <div class="home-section-heading">
-            <p class="home-eyebrow home-eyebrow--featured">Our recent work</p>
-            <h2 id="featuredHeading">A little inspiration for your ring</h2>
-            <p>Find a detail you love. We&rsquo;ll make the design your own.</p>
+            <h2 id="processShowHeading">Our Bespoke Process</h2>
           </div>
-          <div class="home-rings-grid">
-            <a class="home-ring" href="trilogy-ring.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/trilogy.jpg" alt="Oval centre stone with pear-shaped side stones on a gold band." width="800" height="800" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Create your own</span>
-              </div>
-            </a>
-            <a class="home-ring" href="jewellery-design.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/mens-silver-band.jpg" alt="A textured finish and a distinctive stone-set detail." width="1600" height="900" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Explore this style</span>
-              </div>
-            </a>
-            <a class="home-ring" href="/ringpage.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/rose-gold-ring.jpg" alt="A pink centre stone framed by an ornate rose gold band." width="1600" height="1200" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;2,499</p>
-                <span class="home-ring-action">Create something unique</span>
-              </div>
-            </a>
-            <a class="home-ring" href="signature-collection.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/oval-ring.jpg" alt="An oval centre stone with a hidden halo beneath the setting." width="1600" height="1200" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Discover hidden halos</span>
-              </div>
-            </a>
-            <a class="home-ring" href="trilogy-ring.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/trilogy-detail.jpg" alt="Oval centre stone with pear-shaped side stones in an open trilogy setting." width="1206" height="1272" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Create your own</span>
-              </div>
-            </a>
-            <a class="home-ring" href="signature-collection.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/large-oval.jpg" alt="A statement oval centre stone on a slender platinum band." width="1125" height="1600" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">Check out solitaires</span>
-              </div>
-            </a>
-            <a class="home-ring" href="/ringpage.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/ornate-trilogy.jpg" alt="Three stones framed by an ornate gold band with engraved details." width="1193" height="843" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;2,499</p>
-                <span class="home-ring-action">Create your bespoke piece</span>
-              </div>
-            </a>
-            <a class="home-ring" href="lab-emerald-ring.html">
-              <div class="home-ring-image"><img src="Images/featured-rings/pear-emerald.jpg" alt="A pear-shaped emerald in a delicate claw setting on a platinum band." width="735" height="1600" loading="lazy" decoding="async" /></div>
-              <div class="home-ring-copy">
-                <p class="home-ring-price">From &pound;1,999</p>
-                <span class="home-ring-action">See gemstone rings</span>
-              </div>
-            </a>
+          <article class="hp-story">
+            <div class="hp-steps">
+              <figure class="hp-step"><div class="hp-media hp-media--black"><img src="Images/jamie%20sketch.png" alt="Sketch concept for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>1</span><strong>Complimentary sketch</strong><em>We turn your idea into a hand-drawn sketch and a clear quote, at no cost and with no obligation.</em></figcaption></figure>
+              <figure class="hp-step"><div class="hp-media"><img src="Images/jamie%20cad.jpeg" alt="CAD design views for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>2</span><strong>CAD design</strong><em>We model your ring in 3D so you can review the setting and proportions from every angle before anything is made.</em></figcaption></figure>
+              <figure class="hp-step"><div class="hp-media hp-media--platinum-final"><video src="Images/Jamie%20finished%20hd.mp4" preload="none" muted loop playsinline data-hp-video aria-label="The finished ring"></video></div><figcaption><span>3</span><strong>Finished piece</strong><em>Once you approve the design, your ring is crafted, hand-finished and delivered to you.</em></figcaption></figure>
+            </div>
+          </article>
+          <div class="hp-actions">
+            <a class="btn btn-primary" href="/account.html?start=design">Get your free sketch</a>
+            <a class="btn btn-secondary" href="ring-gallery.html">See our recent pieces</a>
           </div>
         </section>
 
-        <div class="hero-copy">
-          <h2 class="service-title">From your first idea to your finished ring</h2>
-          <div class="routes" aria-label="Process steps">
-            <article class="route">
-              <a class="route-link" href="/ringpage.html">
-                <div class="route-media">
-                  <div class="route-top">
-                    <span class="tag" aria-hidden="true">1</span>
-                    <h3>Your complimentary sketch and quote</h3>
-                  </div>
-                  <img src="Images/Sketch.png" alt="Bespoke engagement ring sketch stage by Ladfox" loading="lazy" decoding="async" />
-                  <p class="route-caption">Share an idea, a photo or your budget. We&rsquo;ll create a complimentary initial sketch and provide a quote. When you&rsquo;re ready to go ahead, payment starts the CAD design stage.</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="route">
-              <a class="route-link" href="/ringpage.html">
-                <div class="route-media">
-                  <div class="route-top">
-                    <span class="tag" aria-hidden="true">2</span>
-                    <h3>See and refine your design</h3>
-                  </div>
-                  <img src="Images/CAD%20design.png" alt="CAD design for bespoke engagement ring" loading="lazy" decoding="async" />
-                  <p class="route-caption">We provide your CAD design within a week of payment, so you can see the shape and details before your ring is made. We&rsquo;ll adjust it with you until you&rsquo;re happy to approve it.</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="route">
-              <a class="route-link" href="/ringpage.html">
-                <div class="route-media">
-                  <div class="route-top">
-                    <span class="tag" aria-hidden="true">3</span>
-                    <h3>Made for you, delivered with care</h3>
-                  </div>
-                  <img src="Images/featured-rings/round-platinum.jpg" alt="Finished round platinum ring in a presentation box" loading="lazy" decoding="async" />
-                  <p class="route-caption" style="padding-bottom:30px;">Your ring is normally completed within five weeks of final CAD approval, depending on complexity. It comes with a lifetime warranty and insured, tracked delivery under our terms.</p>
-                </div>
-              </a>
-
-              <div class="route-cta">
-                <a class="btn btn-primary" href="/ringpage.html">Start your ring</a>
-              </div>
-            </article>
+        <section class="hp-help" aria-labelledby="hpHelpHeading">
+          <h2 id="hpHelpHeading">What would you like us to help you with?</h2>
+          <div class="hp-help__row">
+            <a href="/account.html?start=design" data-lfx-start="design">Help me design my ring</a>
+            <a href="/account.html?start=price" data-lfx-start="price">I know what I want - give me a price</a>
+            <button type="button" data-hp-open="hpCad" aria-expanded="false">I&rsquo;ve seen what I want - order a CAD design</button>
+            <div class="hp-panel" id="hpCad" hidden>
+                            <p>See your ring in 3D before it is made. Revisions are included, and the fee is credited towards your ring order. Production only begins after your approval.</p>
+              <button class="btn btn-primary" type="button" id="hpCadBtn">Request CAD</button>
+              <p class="hp-msg" id="hpCadMsg" role="status" aria-live="polite"></p>
+              <p class="hp-fine"><a href="/cad-design">More about the CAD service</a></p>
+            </div>
           </div>
-        </div>
+          <style>.hp-help{text-align:center;margin:44px auto 0;max-width:640px;padding:0 4px}.hp-help h2{font-size:1.25rem;margin:0 0 18px}.hp-help__row{display:grid;gap:12px}.hp-help__row>a,.hp-help__row>button{display:flex;align-items:center;justify-content:center;min-height:54px;padding:10px 16px;border:1px solid #3a3e46;border-radius:14px;background:#0b0b0d;color:#fff;text-decoration:none;font:inherit;font-weight:600;line-height:1.25;cursor:pointer;text-align:center}.hp-help__row>a:hover,.hp-help__row>button:hover,.hp-help__row>button[aria-expanded="true"]{border-color:#dfe3ea}.hp-panel{text-align:left;border:1px solid #2a2d33;border-radius:14px;background:#0b0b0d;padding:18px}.hp-panel[hidden]{display:none}.hp-panel label{display:block;margin:12px 0 5px;font-size:.85rem;color:#c8ccd4}.hp-panel input,.hp-panel textarea,.hp-panel select{width:100%;box-sizing:border-box;background:#000;border:1px solid #3a3e46;border-radius:10px;color:#fff;padding:11px 12px;font:inherit}.hp-panel textarea{min-height:96px}.hp-panel .btn{margin-top:16px;width:100%}.hp-msg{margin:10px 0 0;font-size:.9rem}.hp-fine{margin:10px 0 0;font-size:.8rem;color:#9a9fa8}.hp-fine a{color:#c8ccd4}.hp-cadprice{font-size:1.1rem;margin:0 0 8px}.hp-help__beat{display:block;margin-top:20px;color:#c8ccd4;text-decoration:none;line-height:1.5}.hp-help__trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin:16px 0 0;font-size:.85rem;color:#c8ccd4}</style>
+          <script>
+          (function(){
+            var $=function(i){return document.getElementById(i)};
+            document.querySelectorAll("[data-hp-open]").forEach(function(b){b.addEventListener("click",function(){
+              var p=$(b.dataset.hpOpen),open=p.hidden;
+              document.querySelectorAll(".hp-panel").forEach(function(x){x.hidden=true});
+              document.querySelectorAll("[data-hp-open]").forEach(function(x){x.setAttribute("aria-expanded","false")});
+              if(open){p.hidden=false;b.setAttribute("aria-expanded","true");p.scrollIntoView({behavior:"smooth",block:"nearest"});}
+            })});
+            function post(u,d){return fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})}
+            $("hpCadBtn").addEventListener("click",function(){
+              var m=$("hpCadMsg"),b=this;b.disabled=true;m.textContent="Opening secure checkout…";
+              var id=(window.crypto&&crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2)).replace(/[^A-Za-z0-9_-]/g,"").padEnd(12,"x");
+              post("/.netlify/functions/create-cad-checkout-session",{requestId:id}).then(function(r){
+                if(r.ok&&r.j.url){location.assign(r.j.url)}else{b.disabled=false;m.textContent=(r.j&&r.j.error)||"Checkout could not start. Please try again."}
+              }).catch(function(){b.disabled=false;m.textContent="Checkout could not start. Please try again."});
+            });
+          })();
+          </script>
+        </section>
+
       </div>
     </section>
 
@@ -2467,7 +2454,6 @@
         <p class="home-eyebrow">Our family-run team</p>
         <h2 id="personalHeading">Personal guidance, from the first conversation</h2>
         <p>You don&rsquo;t need to know every detail about rings to begin. Tell us what matters to you, and we&rsquo;ll help you explore the design, stones and budget at your own pace.</p>
-        <a class="home-text-link" href="/ringpage.html">Start your ring <span aria-hidden="true">&rarr;</span></a>
       </div>
       <div class="home-enquiry">
         <h3>Prefer a quick conversation?</h3>
@@ -2553,48 +2539,15 @@
       </div>
     </section>
 
-    <section class="sitelinks-section" aria-label="Primary site links">
-      <div class="sitelinks-head">
-        <h2>Find your next step</h2>
-        <p>Explore our work, start a design or talk it through with us.</p>
-      </div>
-      <div class="sitelinks-grid">
-        <a class="sitelink-card" href="/ringpage.html">
-          <h3>Engagement Rings</h3>
-          <p>Explore bespoke engagement rings designed around your ideas and budget.</p>
-        </a>
-        <a class="sitelink-card" href="ring-gallery.html">
-          <h3>Recent Work</h3>
-          <p>See how ideas become finished rings, from the first sketch to the final piece.</p>
-        </a>
-        <a class="sitelink-card" href="consultation.html">
-          <h3>Consultation</h3>
-          <p>Request a call and discuss the ring you have in mind.</p>
-        </a>
-        <a class="sitelink-card" href="contact-us.html">
-          <h3>Contact Us</h3>
-          <p>Get in touch with LADFOX.</p>
-        </a>
-        <a class="sitelink-card" href="/cad-service.html">
-          <h3>CAD Design Service</h3>
-          <p>Turn your ring idea into a bespoke CAD design for £149, credited back if LADFOX makes the ring.</p>
-        </a>
-        <a class="sitelink-card" href="/price-match.html">
-          <h3>Price Beater</h3>
-          <p>Found the right ring or diamond elsewhere? Send the quote for a private like-for-like comparison.</p>
-        </a>
-      </div>
-    </section>
-
     <section class="home-faq home-section" aria-labelledby="faqHeading">
       <div class="home-section-heading"><h2 id="faqHeading">Before you start</h2></div>
       <details><summary>How much does a bespoke ring cost?</summary><p>Bespoke engagement rings ordinarily start from &pound;1,999. Your design, metal and stones determine the final price. We&rsquo;ll provide a quote before you decide to go ahead.</p></details>
+      <details><summary>What is the Ring Collection?</summary><p>A curated selection of made-to-order solitaire, trilogy and lab gemstone rings. Choose a design, customise the available details and see the price online. For a completely original piece, start with a complimentary sketch.</p></details>
       <details><summary>Do I need a finished design?</summary><p>No. Start with a rough idea, a screenshot or a budget. Your initial sketch is complimentary, and our family-run team will help you work out the details.</p></details>
       <details><summary>When do I pay, and when will I see the CAD?</summary><p>We start with a complimentary sketch and a quote. Once you choose to go ahead and make payment, we provide your CAD design within a week.</p></details>
       <details><summary>Can I make changes before the ring is made?</summary><p>Yes. We&rsquo;ll adjust the CAD with you until you&rsquo;re happy with the design. Your approval comes before production begins.</p></details>
       <details><summary>How long will my ring take?</summary><p>Production can take up to five weeks depending on complexity. Allow time before that for your initial sketch, quote and any CAD adjustments.</p></details>
       <details><summary>What warranty and delivery are included?</summary><p>Your bespoke engagement ring comes with a lifetime manufacturing warranty and insured, tracked delivery. Read the <a href="/terms-and-conditions.html" target="_blank" rel="noopener">full terms and exclusions</a>.</p></details>
-      <div class="home-faq-action"><a class="btn btn-primary" href="/ringpage.html">Start your ring</a><a class="home-text-link" href="jewellery-design.html">Looking for another kind of jewellery?</a></div>
     </section>
 
   </main>
@@ -2602,18 +2555,20 @@
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
       <div class="footer-links" aria-label="Footer links">
-        <a href="/ringpage.html">Engagement Rings</a>
+        <a href="/account.html?start=design">Design a Bespoke Ring</a>
+        <a href="classic-collection.html">Ring Collection</a>
         <a href="ring-gallery.html">Recent Work</a>
         <a href="trusted-suppliers.html">Trusted Suppliers</a>
         <a href="/cad-service.html">CAD Design</a>
         <a href="/price-match.html">Price Beater</a>
         <a href="consultation.html">Consultation</a>
         <a href="contact-us.html">Contact Us</a>
+        <a href="/account">My Account</a>
       </div>
       <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
     <p class="footer-legal"><a href="/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></p>
-  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <a class="quick-message-bubble" id="quickMessageToggle" href="https://wa.me/447853362904" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp us for friendly, no-pressure guidance">
@@ -2762,7 +2717,7 @@
       };
       let quickFormStarted = false;
 
-      if (!heroVisual || !heroCopy || !topbar || !processSection) {
+      if (!heroVisual || !topbar || !processSection) {
         return;
       }
 
@@ -3022,7 +2977,7 @@
       [
         { id: "quickMessageToggle", eventName: "whatsapp_click" },
         { id: "ringDesignerLink", eventName: "ring_designer_click" },
-        { id: "recentWorkLink", eventName: "recent_commissions_click" }
+        { id: "classicShopLink", eventName: "classic_collection_click" }
       ].forEach(({ id, eventName }) => {
         document.getElementById(id)?.addEventListener("click", () => {
           safeTrack(eventName);
@@ -3047,7 +3002,7 @@
 
         const heroRect = heroVisual.getBoundingClientRect();
         const heroFadeDistance = Math.max(heroRect.height * 0.42, 220);
-        const heroProgress = Math.min(Math.max(-heroRect.top / heroFadeDistance, 0), 1);
+        const heroProgress = Math.min(Math.max((-heroRect.top - 160) / heroFadeDistance, 0), 1);
         document.documentElement.style.setProperty("--hero-fade", heroProgress.toFixed(3));
 
         const brandProgress = mobileQuery.matches
@@ -3143,7 +3098,113 @@
       }
     })();
   </script>
-  <script src="assets/privacy-controls.js" defer></script>
+    <script>
+    (() => {
+      const videos = Array.from(document.querySelectorAll("[data-hp-video]"));
+      if (!videos.length || !("IntersectionObserver" in window)) return;
+      const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
+        const v = entry.target;
+        if (entry.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else { v.pause(); }
+      }), { threshold: 0.3 });
+      videos.forEach((v) => io.observe(v));
+    })();
+  </script>
+<script src="assets/privacy-controls.js?v=20261020-2" defer></script>
+<script>
+(function(){var s=document.querySelector(".xmas-strip");if(!s)return;function f(){var r=s.getBoundingClientRect(),y=window.pageYOffset,e=document.querySelector(".eyebrow-hero"),d=0;if(e){d=Math.max(0,e.getBoundingClientRect().top-r.bottom-16)}s.style.setProperty("--xs-up",Math.max(0,r.top+y)+"px");s.style.setProperty("--xs-down",d+"px")}f();window.addEventListener("load",f);window.addEventListener("resize",f);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)})();
+</script>
+<script>
+(function(){var open=document.getElementById("xsOpen"),form=document.getElementById("xsForm"),email=document.getElementById("xsEmail"),msg=document.getElementById("xsMsg");if(!open||!form)return;
+open.addEventListener("click",function(){form.classList.add("is-visible");form.hidden=false;open.hidden=true;open.setAttribute("aria-expanded","true");msg.textContent="";email.focus()});
+form.addEventListener("submit",function(e){e.preventDefault();var v=email.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){msg.textContent="Please enter a valid email address.";email.focus();return}
+var b=form.querySelector("button");b.disabled=true;msg.textContent="Sending\u2026";
+fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:v,intent:"sketch"})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){if(x.ok){form.hidden=true;msg.textContent="Check your inbox. We\u2019ve sent you a link to request your complimentary sketch.";if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}}else{b.disabled=false;msg.textContent=x.d&&x.d.error||"Something went wrong. Please try again."}}).catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."})});
+})();
+</script>
+<style>
+.topbar .brand-location,.topbar .brand-review-link,.topbar .menu-toggle{opacity:calc(1 - var(--lfx-top-fade,0))!important;transition:none!important}
+.topbar .brand-block > *,.topbar .brand-block .brand,.topbar .brand-block .brand-logo{opacity:1!important;transition:none!important;filter:none!important;transform:none!important}
+</style>
+<style>.topbar .brand-block{opacity:calc(1 - var(--lfx-logo-fade,0))!important;transition:none!important}</style>
+<script>(function(){var r=document.documentElement,t=0;function u(){t=0;var v=Math.min(Math.max(window.scrollY/50,0),1);r.style.setProperty('--lfx-top-fade',v.toFixed(3));r.style.setProperty('--lfx-logo-fade',Math.min(Math.max((window.scrollY-25)/40,0),1).toFixed(3))}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(u)},{passive:true});u()})();</script>
+<style>@media (max-width:720px){.hero .home-start-actions{flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;gap:8px!important}.hero .home-start-actions .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-left:8px!important;padding-right:8px!important;font-size:.78rem!important;text-align:center;justify-content:center}}</style>
+<script>
+/* Centre the two Christmas buttons between the text above and the hero below (mobile) */
+(function(){
+  var b=document.querySelector('.xs-btns'),p=document.querySelector('.xmas-strip > p'),e=document.querySelector('.eyebrow-hero');
+  if(!b||!p||!e)return;
+  var mq=window.matchMedia('(max-width:720px)');
+  function fit(){
+    if(!mq.matches){b.style.removeProperty('margin-top');return}
+    b.style.setProperty('margin-top','0px','important');
+    var pb=p.getBoundingClientRect().bottom,r=b.getBoundingClientRect(),eT=e.getBoundingClientRect().top;
+    var above=r.top-pb,below=eT-r.bottom;
+    var m=Math.max(0,Math.round(below-above));
+    b.style.setProperty('margin-top',m+'px','important');
+  }
+  window.addEventListener('load',fit);window.addEventListener('resize',fit);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+  setTimeout(fit,300);fit();
+})();
+</script>
+<script>
+/* Fade the Christmas-box buttons in and out as they enter/leave the screen */
+(function(){
+  var els=Array.prototype.slice.call(document.querySelectorAll('.xs-btns > a, .xs-btns > button'));
+  if(!els.length||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-visible',e.isIntersecting)})},{threshold:.16});
+  els.forEach(function(el){el.classList.add('scroll-blackout')});
+  setTimeout(function(){els.forEach(function(el){io.observe(el)})},3800);
+})();
+</script>
+<style>@media (max-width:720px){.hero{padding-bottom:0!important}.hero .hero-visual{padding-bottom:16px!important}.testimonials{margin-top:16px!important}}</style>
+<style>.testimonials{margin-top:34px!important;margin-bottom:34px!important}.proposal-showcase{margin-top:0!important}.testimonials-controls{margin-top:6px!important;margin-bottom:0!important}@media(max-width:720px){.hero{padding-bottom:0!important;margin-bottom:0!important}.hero .hero-visual{padding-bottom:0!important}}</style>
+<style>@media(max-width:900px){.hp-steps{display:flex!important;grid-template-columns:none!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0 6px}.hp-steps::-webkit-scrollbar{display:none}.hp-step{flex:0 0 82%!important;scroll-snap-align:center;display:flex!important;flex-direction:column;grid-row:auto!important}.hp-step{flex-basis:76%!important}.hp-dots{display:flex;justify-content:center;gap:8px;margin:12px 0 0}.hp-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:background .2s,transform .2s}.hp-dots i.on{background:#dfe3ea;transform:scale(1.25)}}@media(min-width:901px){.hp-dots{display:none}}</style>
+<script>(function(){var t=document.querySelector(".hp-steps");if(!t)return;var n=t.children.length,d=document.createElement("div");d.className="hp-dots";d.setAttribute("aria-hidden","true");for(var i=0;i<n;i++)d.appendChild(document.createElement("i"));t.parentNode.insertBefore(d,t.nextSibling);var dots=d.children;function up(){var w=t.scrollWidth/n,k=Math.round(t.scrollLeft/w);for(var i=0;i<n;i++)dots[i].className=i===k?"on":""}t.addEventListener("scroll",function(){requestAnimationFrame(up)},{passive:true});up()})();</script>
+<style>.hp-media{aspect-ratio:1/1!important}.hp-media img{padding:4%;box-sizing:border-box}.hp-media--black img{padding:16%}@media(max-width:900px){.hp-step{flex-basis:70%!important}}.hp-media--platinum-final video{object-position:center center!important}.hp-step figcaption em{font-size:.9rem}@media(max-width:900px){.hp-step figcaption{min-height:10.5em}.hp-step .hp-media{width:100%;margin-top:auto;flex:0 0 auto}}.hp-media{aspect-ratio:1/1!important;width:100%}</style>
+<style>.testimonial::before{content:"\2605\2605\2605\2605\2605";display:block;margin:0 0 10px;color:#dfe3ea;font-size:1.15rem;letter-spacing:.14em;line-height:1}</style>
+<style>.hp-actions{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:center;align-items:stretch;gap:10px}.hp-actions .btn{flex:1 1 0;max-width:260px;min-width:0;display:inline-flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;white-space:normal;line-height:1.2;padding-left:12px;padding-right:12px}@media(max-width:720px){.hp-actions .btn{font-size:.82rem}}</style>
+<div class="lfx-modal" id="lfxStart" role="dialog" aria-modal="true" aria-labelledby="lfxStartTitle" hidden>
+  <div class="lfx-modal__card">
+    <button type="button" class="lfx-modal__x" aria-label="Close" data-lfx-close>&times;</button>
+    <p class="lfx-modal__eyebrow">Complimentary &middot; No obligation</p>
+    <h2 id="lfxStartTitle">Let&rsquo;s design your ring</h2>
+    <p class="lfx-modal__lead" id="lfxStartLead">Tell us where to send your personal design page. In about two minutes you can describe your ring, and we&rsquo;ll create a complimentary sketch and a clear quote.</p>
+    <form id="lfxStartForm" novalidate>
+      <input id="lfxStartName" autocomplete="given-name" maxlength="80" placeholder="Your first name">
+      <input id="lfxStartEmail" type="email" autocomplete="email" maxlength="254" placeholder="Your email address" required>
+      <button type="submit" class="btn btn-primary">Start my design</button>
+      <p class="lfx-modal__msg" id="lfxStartMsg" role="status" aria-live="polite"></p>
+    </form>
+    <ul class="lfx-modal__ticks"><li>Free sketch and quote</li><li>Follow every step from sketch to delivery</li><li>Lifetime warranty &middot; Free engraving</li></ul>
+    <div class="lfx-modal__done" id="lfxStartDone" hidden><h3>Check your inbox</h3><p>We&rsquo;ve emailed you a secure link to your personal design page. Open it to finish telling us about your ring.</p><p class="lfx-modal__small">Nothing there? Check spam, or message us on WhatsApp.</p></div>
+  </div>
+</div>
+<style>.lfx-modal{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.78);backdrop-filter:blur(4px)}.lfx-modal[hidden]{display:none}.lfx-modal__card{position:relative;width:min(440px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#0b0b0d;border:1px solid #3a3e46;border-radius:20px;padding:30px 24px 24px;text-align:center;color:#fff;box-shadow:0 30px 80px rgba(0,0,0,.6)}.lfx-modal__x{position:absolute;top:10px;right:14px;background:none;border:0;color:#c8ccd4;font-size:1.8rem;line-height:1;cursor:pointer}.lfx-modal__eyebrow{margin:0 0 8px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#c8ccd4}.lfx-modal h2{margin:0 0 10px;font-size:1.5rem}.lfx-modal__lead{margin:0 0 18px;color:#c8ccd4;line-height:1.55;font-size:.95rem}.lfx-modal form{display:grid;gap:10px}.lfx-modal input{width:100%;box-sizing:border-box;background:#000;border:1px solid #3a3e46;border-radius:12px;color:#fff;padding:13px 14px;font:inherit}.lfx-modal input:focus{outline:none;border-color:#dfe3ea}.lfx-modal__msg{margin:0;min-height:1.2em;font-size:.88rem;color:#dfe3ea}.lfx-modal__ticks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:6px;font-size:.85rem;color:#c8ccd4}.lfx-modal__ticks li:before{content:"\2713  ";color:#dfe3ea}.lfx-modal__done h3{margin:0 0 8px}.lfx-modal__done p{color:#c8ccd4;line-height:1.55}.lfx-modal__small{font-size:.82rem}@media(max-height:720px){.lfx-modal__card{padding:22px 20px 18px;overflow:visible}.lfx-modal h2{font-size:1.3rem;margin-bottom:8px}.lfx-modal__lead{font-size:.85rem;margin-bottom:12px;line-height:1.45}.lfx-modal input{padding:11px 13px}.lfx-modal form{gap:8px}.lfx-modal__ticks{margin-top:10px;font-size:.78rem;gap:3px}}@media(max-height:560px){.lfx-modal__lead,.lfx-modal__ticks{display:none}.lfx-modal__card{padding:18px 18px 14px}.lfx-modal h2{margin-bottom:12px}}</style>
+<script>
+(function(){
+  var m=document.getElementById("lfxStart"),f=document.getElementById("lfxStartForm"),kind="design";
+  if(!m||!f)return;
+  var $=function(i){return document.getElementById(i)};
+  function open(k){kind=k;$("lfxStartTitle").textContent=k==="price"?"Let\u2019s price your ring":"Let\u2019s design your ring";$("lfxStartLead").textContent=k==="price"?"Tell us where to send your personal page. Describe the ring you want and we\u2019ll come back with a clear quote and a complimentary sketch.":"Tell us where to send your personal design page. In about two minutes you can describe your ring, and we\u2019ll create a complimentary sketch and a clear quote.";f.hidden=false;$("lfxStartDone").hidden=true;$("lfxStartMsg").textContent="";m.hidden=false;document.documentElement.style.overflow="hidden";setTimeout(function(){$("lfxStartEmail").focus()},50)}
+  function close(){m.hidden=true;document.documentElement.style.overflow=""}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("a[href*='account.html?start=']");
+    if(a){var k=/start=price/.test(a.getAttribute("href"))?"price":"design";e.preventDefault();open(k);return}
+    if(e.target.closest("[data-lfx-close]")||e.target===m)close();
+  });
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!m.hidden)close()});
+  f.addEventListener("submit",function(e){
+    e.preventDefault();var em=$("lfxStartEmail").value.trim(),msg=$("lfxStartMsg"),b=f.querySelector("button");
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){msg.textContent="Please enter a valid email address.";return}
+    b.disabled=true;msg.textContent="Sending\u2026";
+    fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:em,name:$("lfxStartName").value,intent:kind})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(d){return {ok:r.ok,d:d}})})
+    .then(function(x){b.disabled=false;if(x.ok){f.hidden=true;$("lfxStartDone").hidden=false;if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/PpNpCLbcpaQdEISh4NlD"})}catch(err){}}}else msg.textContent=(x.d&&x.d.error)||"Something went wrong. Please try again."})
+    .catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."});
+  });
+})();
+</script>
 </body>
 </html>
 

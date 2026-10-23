@@ -6,7 +6,7 @@
   node_bundler = "esbuild"
 
 [[headers]]
-  for = "/signature-collection.html"
+  for = "/classic-collection.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
     Referrer-Policy = "strict-origin-when-cross-origin"
@@ -38,6 +38,41 @@
 
 [[headers]]
   for = "/checkout-success.html"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+
+[[headers]]
+  for = "/account"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+
+
+[[headers]]
+  for = "/account.html"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+
+
+[[headers]]
+  for = "/ladfox-admin"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+
+
+[[headers]]
+  for = "/ladfox-admin.html"
   [headers.values]
     Cache-Control = "no-store, max-age=0"
     Referrer-Policy = "no-referrer"

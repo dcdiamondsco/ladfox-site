@@ -1,0 +1,32 @@
+/* LADFOX shared polish: additive, keeps each page's own look. Silver only, never gold. */
+:root{--lfx-silver:#dfe3ea;--lfx-silver-2:#c8ccd4;--lfx-ease:cubic-bezier(.22,.61,.36,1)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+::selection{background:rgba(223,227,234,.28);color:#fff}
+:focus-visible{outline:2px solid var(--lfx-silver);outline-offset:3px;border-radius:6px}
+/* slim silver scrollbar */
+*{scrollbar-width:thin;scrollbar-color:#4a4e57 transparent}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#3a3e46;border-radius:10px;border:2px solid #000}::-webkit-scrollbar-thumb:hover{background:#5a5f69}::-webkit-scrollbar-track{background:transparent}
+/* buttons and links: smooth, tactile */
+a,button,.btn,[role="button"],input,select,textarea{transition:color .25s var(--lfx-ease),background-color .25s var(--lfx-ease),border-color .25s var(--lfx-ease),box-shadow .3s var(--lfx-ease),transform .25s var(--lfx-ease),opacity .25s var(--lfx-ease)}
+.btn:not([disabled]):hover,button.btn:not([disabled]):hover,a.btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 1px rgba(223,227,234,.18)}
+.btn:not([disabled]):active,a.btn:active{transform:translateY(0);box-shadow:none}
+input:focus,select:focus,textarea:focus{border-color:var(--lfx-silver)!important;box-shadow:0 0 0 3px rgba(223,227,234,.14);outline:none}
+/* cards and imagery */
+.card,.box,article,figure{transition:transform .4s var(--lfx-ease),box-shadow .4s var(--lfx-ease),border-color .3s var(--lfx-ease)}
+a.card:hover,.collection .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.55);border-color:rgba(223,227,234,.35)}
+a.card img,.collection .card img,figure img{transition:transform .8s var(--lfx-ease),filter .5s var(--lfx-ease)}
+a.card:hover img,.collection .card:hover img{transform:scale(1.035)}
+img{image-rendering:auto}
+/* headings: refined rhythm */
+h1,h2{letter-spacing:.005em;text-wrap:balance}
+p{text-wrap:pretty}
+/* soft page entrance */
+@keyframes lfxIn{from{opacity:0}to{opacity:1}}
+main{animation:lfxIn .6s var(--lfx-ease) both}
+/* hairline dividers in silver */
+hr{border:0;height:1px;background:linear-gradient(90deg,transparent,rgba(223,227,234,.35),transparent)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* borderless containers, matching homepage */
+.panel,.process-strip,.process-card,.process-card__media{border:0!important;box-shadow:none!important}

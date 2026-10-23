@@ -8,13 +8,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500
-    });
     gtag("config", "AW-18173399172");
   </script>
   <title>Our Trilogy | LADFOX</title>
@@ -255,6 +248,14 @@
       grid-template-columns:repeat(2, minmax(0, 1fr));
       gap:16px 18px;
     }
+    .diamond-specification{grid-column:1/-1;border-block:1px solid rgba(255,255,255,.14);padding:2px 0}
+    .diamond-specification summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;cursor:pointer;list-style:none}
+    .diamond-specification summary::-webkit-details-marker{display:none}
+    .diamond-specification summary::after{content:"+";font-size:1.25rem;color:rgba(255,255,255,.7)}
+    .diamond-specification[open] summary::after{content:"−"}
+    .diamond-specification-title{display:block;font-weight:700}
+    .diamond-specification-note{display:block;margin-top:4px;color:rgba(255,255,255,.58);font-size:.78rem;line-height:1.45}
+    .diamond-specification-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:0 0 20px}
 
     .trilogy-config-page .field{
       min-width:0;
@@ -452,6 +453,7 @@
     }
 
     @media (max-width: 680px){
+      .diamond-specification-fields{grid-template-columns:1fr}
       .trilogy-config-page .media-column{
         width:min(100%, 100%);
       }
@@ -578,7 +580,8 @@
   }
   </script>
   <link rel="stylesheet" href="assets/site-common.css" />
-  <link rel="stylesheet" href="assets/privacy-controls.css" />
+  <link rel="stylesheet" href="assets/privacy-controls.css?v=20261020-2" />
+<link rel="stylesheet" href="/assets/lfx-polish.css" />
 </head>
 <body class="trilogy-config-page" data-reveal-none>
   <a class="site-skip-link" href="#main-content">Skip to content</a>
@@ -594,6 +597,7 @@
 
   <main id="main-content" class="page">
     <div class="shell">
+      <p style="margin:0 0 16px;min-height:22px;"><a href="classic-collection.html" style="position:absolute;top:84px;left:20px;z-index:5;color:#c8ccd4;">&larr; Back</a></p>
       <section class="layout" data-trilogy-page>
         <div class="media-column">
           <div class="trilogy-media-hero">
@@ -646,6 +650,7 @@
                 <label for="trilogyMetalKarat">Gold purity</label>
                 <div class="field-input">
                   <div class="option-slider" data-option-slider="trilogyMetalKarat" aria-label="Gold purity">
+                    <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="9k" aria-pressed="false">9kt</button>
                     <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="14k" aria-pressed="false">14k</button>
                     <button class="option-pill option-pill--yellow-gold" type="button" data-option-value="18k" aria-pressed="false">18k</button>
                   </div>
@@ -662,12 +667,15 @@
                 </div>
               </div>
 
+              <details class="diamond-specification" data-diamond-specification>
+                <summary><span><span class="diamond-specification-title">Specification</span><small class="diamond-specification-note">F colour · VS2 clarity included as standard</small></span></summary>
+                <div class="diamond-specification-fields">
               <div class="field">
                 <label for="trilogyClarity">Clarity</label>
                 <div class="field-input field-input--range">
-                  <input class="config-hidden" id="trilogyClarity" type="hidden" value="" />
+                  <input class="config-hidden" id="trilogyClarity" type="hidden" value="VS2" />
                   <div class="range-readout"><span>Selected clarity</span><strong data-discrete-output="trilogyClarity"></strong></div>
-                  <input class="stone-size-range" type="range" min="0" max="5" step="1" value="0" data-discrete-range="trilogyClarity" data-range-values="SI1|VS2|VS1|VVS2|VVS1|FL" aria-label="Clarity slider" />
+                  <input class="stone-size-range" type="range" min="0" max="5" step="1" value="1" data-discrete-range="trilogyClarity" data-range-values="SI1|VS2|VS1|VVS2|VVS1|FL" aria-label="Clarity slider" />
                   <div class="range-scale"><span>SI1</span><span>FL</span></div>
                 </div>
               </div>
@@ -675,7 +683,7 @@
               <div class="field">
                 <label for="trilogyColour">Colour</label>
                 <div class="field-input">
-                  <input class="config-hidden" id="trilogyColour" type="hidden" value="" />
+                  <input class="config-hidden" id="trilogyColour" type="hidden" value="F" />
                   <div class="option-slider" data-option-slider="trilogyColour" aria-label="Diamond colour">
                     <button class="option-pill" type="button" data-option-value="D" aria-pressed="false">D</button>
                     <button class="option-pill" type="button" data-option-value="E" aria-pressed="false">E</button>
@@ -684,6 +692,8 @@
                   </div>
                 </div>
               </div>
+                </div>
+              </details>
 
               <div class="field">
                 <label for="trilogyRingSize">Ring size</label>
@@ -692,6 +702,13 @@
                   <div class="range-readout"><span>Selected ring size</span><strong data-discrete-output="trilogyRingSize"></strong></div>
                   <input class="stone-size-range" type="range" min="0" max="14" step="1" value="10" data-discrete-range="trilogyRingSize" data-range-values="J|J 1/2|K|K 1/2|L|L 1/2|M|M 1/2|N|N 1/2|O|O 1/2|P|P 1/2|Q" aria-label="Ring size slider" />
                   <div class="range-scale"><span>J</span><span>Q</span></div>
+                </div>
+              </div>
+              <div class="field field--full lfx-engraving-field">
+                <label for="lfxEngraving">Complimentary engraving <span style="opacity:.7;font-weight:400">(optional)</span></label>
+                <div class="field-input">
+                  <input id="lfxEngraving" type="text" maxlength="20" autocomplete="off" spellcheck="false" placeholder="e.g. Always, 12.06.26" aria-describedby="lfxEngravingCount" style="width:100%;box-sizing:border-box;min-height:44px;padding:0 12px;background:transparent;color:inherit;border:1px solid rgba(255,255,255,.28);border-radius:6px;font:inherit" />
+                  <p id="lfxEngravingCount" class="signature-helper" style="margin:6px 0 0">0 / 20 characters</p>
                 </div>
               </div>
             </div>
@@ -716,20 +733,42 @@
                 </span>
               </label>
               <p class="trilogy-checkout-status" data-checkout-status role="status" aria-live="polite"></p>
-              <p>Immediate checkout is for UK customers. International customers can <a href="/contact-us.html">request a separate quote</a> including shipping, duties and taxes.</p>
-              <p class="trilogy-lead-time">This bespoke ring can take up to five weeks to produce, depending on complexity.</p>
+              <p>For international delivery, <a href="/contact-us.html">request a separate quote</a></p>
+              <p style="font-size:.75rem;opacity:.7;margin-top:-.4rem">Christmas delivery applies to orders placed by 15 November. Each ring is made to order, typically up to 6 weeks.</p>
             </div>
           </div>
         </article>
       </section>
     </div>
+  <style>
+.lfx-reviews{max-width:1120px;margin:56px auto 0;padding:0 20px 24px;color:#fff}
+.lfx-reviews h2{margin:0 0 6px;font-size:clamp(1.5rem,4vw,2rem);text-align:center}
+.lfx-reviews__sub{margin:0 0 22px;text-align:center;color:rgba(255,255,255,.65);font-size:.92rem}
+.lfx-reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.lfx-review{border:1px solid #292929;border-radius:18px;background:#0b0b0b;padding:20px}
+.lfx-review__stars{color:#d8c18c;letter-spacing:.12em;font-size:.95rem}
+.lfx-review p{margin:10px 0 14px;color:#ddd;line-height:1.6;font-size:.94rem}
+.lfx-review strong{display:block;font-size:.9rem}.lfx-review span{color:rgba(255,255,255,.6);font-size:.82rem}
+.lfx-reviews__more{margin:20px 0 0;text-align:center}.lfx-reviews__more a{color:#d8c18c}
+@media(max-width:820px){.lfx-reviews__grid{grid-template-columns:1fr}}
+</style>
+  <section class="lfx-reviews" aria-labelledby="lfxReviewsTitle">
+    <h2 id="lfxReviewsTitle">What our clients say</h2>
+    <p class="lfx-reviews__sub">Real feedback from LADFOX customers.</p>
+    <div class="lfx-reviews__grid">
+      <article class="lfx-review"><div class="lfx-review__stars" aria-label="5 star review">★★★★★</div><p>What stood out most was the attention to detail. The design was refined properly rather than rushed, and the advice around the centre stone and side stones made a huge difference. The ring felt special the moment I opened it, and my fiancée absolutely loves it.</p><strong>James</strong><span>Three stone engagement ring</span></article>
+      <article class="lfx-review"><div class="lfx-review__stars" aria-label="5 star review">★★★★★</div><p>From the start, the process felt calm and very personal. I had looked at a lot of engagement rings online and in shops, but this was the first time someone properly explained the difference between what looked good on paper and what would actually look good once made. The final ring is beautiful, balanced, and exactly what I hoped for.</p><strong>Charlotte</strong><span>Bespoke engagement ring</span></article>
+      <article class="lfx-review"><div class="lfx-review__stars" aria-label="5 star review">★★★★★</div><p>I appreciated how straightforward everything was. I did not know much about diamonds going into it, but the advice was clear without ever feeling pushy. The ring looked far better than the examples I had seen elsewhere, and the whole process felt much more considered than going into a typical jeweller.</p><strong>Ben</strong><span>Oval engagement ring</span></article>
+    </div>
+    <p class="lfx-reviews__more"><a href="/reviews.html">Read more reviews</a></p>
+  </section>
   </main>
 
   <footer class="site-footer" aria-label="Legal information">
     <div class="shell">
       <p class="footer-meta">&copy; 2026 LADFOX Ltd Company No. 17071630. Registered office: 6 High Street, Maidenhead, England, SL6 1QJ. All rights reserved. <a href="mailto:hello@ladfox.com">hello@ladfox.com</a></p>
     </div>
-  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="cookie-policy.html">Cookies</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
+  <nav class="legal-links" aria-label="Legal information"><a href="privacy-policy.html">Privacy</a><a href="returns-cancellations.html">Returns &amp; cancellations</a><a href="company-information.html">Company information</a></nav>
   </footer>
 
   <script>
@@ -770,7 +809,7 @@
     const termsStorageKey = "ladfox.trilogy.terms-accepted.v1";
     let currentVideoIndex = 0;
     let hasShownStoneSize = false;
-    let hasShownClarity = false;
+    let hasShownClarity = true;
     let hasShownRingSize = false;
 
     if (fields.metalBase) fields.metalBase.value = "";
@@ -866,10 +905,13 @@
     };
 
     const metalAdjustmentMap = {
+      "9k Yellow Gold": -370,
       "14k Yellow Gold": -120,
       "18k Yellow Gold": 0,
+      "9k White Gold": -370,
       "14k White Gold": -40,
       "18k White Gold": 80,
+      "9k Rose Gold": -370,
       "14k Rose Gold": -40,
       "18k Rose Gold": 80,
       "Platinum": 220
@@ -1185,6 +1227,124 @@
   }());
   </script>
   <script src="assets/video-autoplay.js" defer></script>
-  <script src="assets/privacy-controls.js" defer></script>
+  <script src="assets/privacy-controls.js?v=20261020-2" defer></script>
+<script src="/assets/lfx-capture.js" defer></script>
+<style>
+  [data-option-slider$="MetalKarat"]{display:none!important}
+  [data-karat-field],[data-metal-karat-field]{display:none!important}
+  .lfx-purity-row{display:flex;gap:10px;flex-wrap:wrap}
+  .lfx-purity-btn{width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:#0b0b0b;color:#fff;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;touch-action:manipulation}
+  .lfx-purity-btn[aria-pressed="true"]{background:#ece3cf;color:#111;border-color:#f1e0b4}
+  .lfx-purity-btn:focus-visible{outline:2px solid #c8ccd4;outline-offset:2px}
+</style>
+<script>
+(function(){
+  /* Gold purity: round buttons shown with the diamond specification, mirroring the hidden original control */
+  var slider=document.querySelector('[data-option-slider$="MetalKarat"]');if(!slider)return;
+  var input=document.getElementById(slider.getAttribute('data-option-slider'));if(!input)return;
+  var origField=slider.closest('.field');
+  var wrap=document.createElement('div');wrap.className='field field--full lfx-purity-field';
+  var lab=document.createElement('label');lab.textContent='Gold purity';wrap.appendChild(lab);
+  var row=document.createElement('div');row.className='lfx-purity-row';row.setAttribute('role','group');row.setAttribute('aria-label','Gold purity');wrap.appendChild(row);
+  function pill(v){return slider.querySelector('[data-option-value="'+v+'"]')}
+  [['9k','9k'],['14k','14k'],['18k','18k']].forEach(function(o){
+    var b=document.createElement('button');b.type='button';b.className='lfx-purity-btn';b.dataset.v=o[0];b.textContent=o[1];b.setAttribute('aria-label',o[1]+' gold');
+    b.addEventListener('click',function(){var p=pill(o[0]);if(p)p.click();setTimeout(sync,0)});row.appendChild(b);
+  });
+  var spec=document.querySelector('[data-diamond-specification]');
+  var specFields=spec&&spec.querySelector('.diamond-specification-fields');
+  var note=spec&&spec.querySelector('.diamond-specification-note');
+  function place(){
+    if(!spec||!spec.parentNode){if(!wrap.parentNode&&origField&&origField.parentNode)origField.parentNode.insertBefore(wrap,origField.nextSibling);return}
+    if(spec.hidden){if(wrap.parentNode!==spec.parentNode||wrap.nextSibling!==spec)spec.parentNode.insertBefore(wrap,spec)}
+    else if(specFields&&wrap.parentNode!==specFields)specFields.insertBefore(wrap,specFields.firstChild);
+  }
+  function fixNote(visible){
+    if(!note)return;var base=note.textContent.replace(/^(9k|14k|18k) gold( \u00b7 )?/,'').replace(/^[0-9.]+ ct( \u00b7 )?/,'');
+    var cfld=document.querySelector('[data-colour-field]');var gem=!!(cfld&&cfld.hidden);
+    base=base.replace(/ included as standard| \(your selection\)/,'');
+    var sq=document.querySelector('input[id$="StoneSize"]');var sz=(sq&&sq.value)?sq.value.trim():'';
+    var gq=document.querySelector('input[id$="Gemstone"]');var gv=(gem&&gq&&gq.value)?gq.value.replace(' - ',' '):'';
+    var parts=[];
+    if(visible&&input.value)parts.push(input.value+' gold');
+    if(sz)parts.push(sz);
+    var shq=document.querySelector('input[id$="Shape"]');var shv=(shq&&shq.value)?shq.value.trim():'';if(shv)parts.push(shv.toLowerCase());
+    if(gem){parts.push(gv||'choose a gemstone colour')}else if(base)parts.push(base);
+    var want=parts.join(' \u00b7 ');
+    if(note.textContent!==want)note.textContent=want;
+  }
+  if(note&&window.MutationObserver)new MutationObserver(function(){fixNote(!wrap.hidden)}).observe(note,{childList:true,characterData:true,subtree:true});
+  function sync(){
+    var visible=!origField||(!origField.hidden&&origField.style.display!=='none');
+    wrap.hidden=!visible;place();fixNote(visible);
+    if(visible&&!input.value){var p=pill('18k');if(p)p.click();return}
+    row.querySelectorAll('.lfx-purity-btn').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===input.value))});
+  }
+  setInterval(sync,250);document.addEventListener('click',function(){setTimeout(sync,0)});sync();
+})();
+</script>
+<script>
+(function(){
+  /* Information (i) buttons with pop-out explainers */
+  var INFO={
+    'gold purity':{t:'Gold purity',h:'<p>Purity is how much of the metal is pure gold, measured in karats out of 24.</p><ul><li><strong>9k</strong> is 37.5% gold: the most affordable and the hardest wearing.</li><li><strong>14k</strong> is 58.5% gold: a balance of colour, strength and price.</li><li><strong>18k</strong> is 75% gold: a richer colour and a higher price, slightly softer.</li></ul><p>The rest of the metal is alloyed to give yellow, white or rose gold and to add strength.</p>'},
+    'diamond colour':{t:'Diamond colour',h:'<p>Colour is graded from D (completely colourless) downwards.</p><ul><li><strong>D, E, F</strong>: colourless, the whitest and most expensive.</li><li><strong>G, H</strong>: near colourless. A trace of warmth that is very hard to see once the diamond is set.</li></ul><p>A higher grade costs more. Many people choose F or G for a very white look at a sensible price.</p>'},
+    'diamond clarity':{t:'Diamond clarity',h:'<p>Clarity describes the tiny natural characteristics inside a diamond.</p><ul><li><strong>VS2, VS1</strong>: very slightly included. Usually not visible to the naked eye.</li><li><strong>VVS2, VVS1</strong>: very, very slightly included. Very hard to see even under magnification.</li><li><strong>IF</strong>: internally flawless. <strong>FL</strong>: flawless, the rarest grade.</li></ul><p>Higher grades are rarer and cost more, but the difference is mostly seen only under magnification.</p>'}
+  };
+  var st=document.createElement('style');st.textContent=
+    '.lfx-info-label{display:flex!important;align-items:center;gap:10px}'+
+    '.lfx-info-btn{width:22px;height:22px;min-width:22px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;font:italic 700 .8rem/1 Georgia,serif;cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}'+
+    '.lfx-info-btn[aria-expanded="true"]{background:#ece3cf;color:#111;border-color:#f1e0b4}'+
+    '.lfx-info-btn:focus-visible{outline:2px solid #c8ccd4;outline-offset:2px}'+
+    '.lfx-info-box{grid-column:1/-1;margin:8px 0 12px;padding:14px 16px;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:#0d0d0d;color:rgba(255,255,255,.88);font-size:.88rem;line-height:1.5}'+
+    '.lfx-info-box[hidden]{display:none}.lfx-info-box h4{margin:0 0 6px;font-size:.95rem;color:#fff}.lfx-info-box p{margin:0 0 8px}.lfx-info-box ul{margin:0 0 8px;padding-left:18px}.lfx-info-box li{margin:0 0 4px}';
+  document.head.appendChild(st);
+  var uid=0;
+  function closeAll(except){document.querySelectorAll('.lfx-info-box').forEach(function(b){if(b!==except){b.hidden=true;var o=document.querySelector('[aria-controls="'+b.id+'"]');if(o)o.setAttribute('aria-expanded','false')}})}
+  function add(label){
+    if(label.querySelector('.lfx-info-btn'))return;
+    var key=(label.firstChild&&label.firstChild.nodeType===3?label.firstChild.textContent:label.textContent).trim().toLowerCase();
+    var d=INFO[key];if(!d)return;
+    var id='lfxInfo'+(++uid);
+    var box=document.createElement('div');box.className='lfx-info-box';box.id=id;box.hidden=true;box.setAttribute('role','region');box.setAttribute('aria-label',d.t+' explained');
+    box.innerHTML='<h4>'+d.t+'</h4>'+d.h;
+    var b=document.createElement('button');b.type='button';b.className='lfx-info-btn';b.textContent='i';b.setAttribute('aria-label','About '+d.t.toLowerCase());b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls',id);
+    b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var open=box.hidden;closeAll(open?box:null);box.hidden=!open;b.setAttribute('aria-expanded',String(open))});
+    label.classList.add('lfx-info-label');label.appendChild(b);
+    var nx=label.nextElementSibling;if(nx&&nx.classList.contains('lfx-info-box'))nx.remove();
+    label.insertAdjacentElement('afterend',box);
+  }
+  function scan(){document.querySelectorAll('.field > label, .field label').forEach(add)}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null)});
+  document.addEventListener('click',function(e){if(!e.target.closest('.lfx-info-box,.lfx-info-btn'))closeAll(null)});
+  setInterval(scan,1000);scan();
+})();
+</script>
+<script>
+/* Complimentary engraving: limited text box, sent with the checkout request */
+(function(){
+  var el=document.getElementById('lfxEngraving'),ct=document.getElementById('lfxEngravingCount');
+  if(!el)return;
+  var BAD=/[^A-Za-z0-9 &.,'\u2019\-\/]/g;
+  function clean(v){return String(v||'').replace(BAD,'').replace(/\s+/g,' ').slice(0,20)}
+  el.addEventListener('input',function(){var c=clean(el.value.replace(/^\s+/,''));if(c!==el.value)el.value=c;ct.textContent=c.length+' / 20 characters'});
+  var of=window.fetch;
+  window.fetch=function(u,o){
+    try{if(typeof u==='string'&&/create(-trilogy)?-checkout-session/.test(u)&&o&&typeof o.body==='string'){var b=JSON.parse(o.body);b.engraving=clean(el.value).trim();o=Object.assign({},o,{body:JSON.stringify(b)})}}catch(e){}
+    return of.call(this,u,o)
+  };
+})();
+</script>
+<style>
+/* Consistent compact buttons on phones across all three product pages */
+@media(max-width:600px){
+  .signature-page [data-option-slider="signatureMetalBase"],.trilogy-config-page [data-option-slider="trilogyMetalBase"]{gap:8px!important}
+  .signature-page .option-pill:not(.option-pill--gem),.trilogy-config-page .option-pill:not(.option-pill--gem):not(.trilogy-video-arrow){min-height:44px!important;font-size:.9rem!important;padding:8px 10px!important;white-space:nowrap!important;line-height:1.15!important}
+  .signature-page [data-option-slider="signatureMetalBase"] .option-pill,.trilogy-config-page [data-option-slider="trilogyMetalBase"] .option-pill{min-height:44px!important;font-size:.9rem!important;padding:0 10px!important}
+  .signature-page .field label,.trilogy-config-page .field label{font-size:.95rem!important}
+  .signature-page .product-form-grid,.signature-page .option-slider,.trilogy-config-page .option-slider{gap:8px!important}
+}
+</style>
+<script src="assets/lfx-save-design.js" defer></script>
 </body>
 </html>

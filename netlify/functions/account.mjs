@@ -1,0 +1,133 @@
+import { json, readJsonBody } from "./http.mjs";
+import {
+  getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
+  publicProject, clean, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
+} from "./account-lib.mjs";
+
+const notifyOwner = async (request, subject, lines) => {
+  try {
+    const to = String(process.env.ADMIN_NOTIFY_EMAIL || "hello@ladfox.com").trim();
+    const body = lines.map((l) => `<p style="margin:0 0 8px">${escapeHtml(l)}</p>`).join("");
+    await sendEmail({
+      to, subject, text: lines.join("\n"),
+      html: emailShell(subject, body, "Open admin", `${siteUrl(request)}/ladfox-admin`)
+    });
+  } catch (error) {
+    console.error("owner notification failed", error.message);
+  }
+};
+
+export default async (request) => {
+  const db = await getDb();
+  const session = await getSession(db, request);
+  if (!session) return json({ error: "signed_out" }, 401);
+  const email = session.email;
+
+  if (request.method === "GET") {
+    const customer = (await getCustomer(db, email)) || { email };
+    const projects = (await listProjects(db, email)).map(publicProject);
+    const draft = await db.get(draftKey(email), { type: "json" });
+    const openDraft = draft && !draft.projectId && draft.exp > Date.now()
+      ? { resumeUrl: `/design/your-ring?resume=${encodeURIComponent(draft.token)}`, updatedAt: draft.updatedAt }
+      : null;
+    return json({ customer: { email, name: customer.name || "", phone: customer.phone || "" }, projects, draft: openDraft });
+  }
+
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "GET, POST" });
+
+  let body;
+  try { body = await readJsonBody(request, 12_000); } catch (e) { return json({ error: e.message }, 400); }
+
+  if (body.action === "profile") {
+    const name = clean(body.name, 80);
+    const phone = clean(body.phone, 30);
+    await upsertCustomer(db, email, { name, phone });
+    return json({ ok: true });
+  }
+
+  if (body.action === "request") {
+    const customer = (await getCustomer(db, email)) || { email };
+    const title = clean(body.title, 140);
+    const details = clean(body.details, 3000);
+    if (!title || details.length < 10) return json({ error: "Please give your design a name and describe what you have in mind." }, 400);
+
+    const existing = await listProjects(db, email);
+    if (existing.filter((p) => p.type === "design-request" && Date.now() - Date.parse(p.createdAt) < 24 * 3600_000).length >= 5) {
+      return json({ error: "You have sent several requests today. We will reply to those first." }, 429);
+    }
+
+    const project = await createProject(db, {
+      email, name: customer.name, type: "design-request", title, details,
+      ringType: body.ringType, budget: body.budget
+    });
+    await notifyOwner(request, "New design request", [
+      `${customer.name || email} (${email})`, `Title: ${project.title}`,
+      `Type: ${project.ringType || "-"}  Budget: ${project.budget || "-"}`, project.details
+    ]);
+    return json({ ok: true, project: publicProject(project) });
+  }
+
+  if (body.action === "message") {
+    const project = await loadProject(db, email, clean(body.id, 40));
+    const text = clean(body.text, 2000);
+    if (!project) return json({ error: "Order not found." }, 404);
+    if (!text) return json({ error: "Please write a message." }, 400);
+    if (project.updates.length > 200) return json({ error: "This thread is full. Please email hello@ladfox.com." }, 400);
+    const now = new Date().toISOString();
+    project.updates.push({ at: now, by: "customer", text });
+    project.updatedAt = now;
+    project.customerUnread = true;
+    await saveProject(db, project);
+    await notifyOwner(request, `Message about "${project.title}"`, [`${project.name || email} (${email})`, text]);
+    return json({ ok: true, project: publicProject(project) });
+  }
+
+  if (body.action === "approve") {
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Order not found." }, 404);
+    if (!project.files?.length) return json({ error: "There is no design to approve yet." }, 400);
+    if (project.stage !== 3) return json({ error: "This design is not waiting for approval." }, 400);
+    const now = new Date().toISOString();
+    project.stage = 4;
+    project.updatedAt = now;
+    project.updates.push({ at: now, by: "customer", text: "I approve the design.", stage: 4 });
+    await saveProject(db, project);
+    await notifyOwner(request, `Design approved: "${project.title}"`, [`${project.name || email} (${email})`, "The customer approved the design."]);
+    return json({ ok: true, project: publicProject(project) });
+  }
+
+  if (body.action === "pay") {
+    const project = await loadProject(db, email, clean(body.id, 40));
+    const payment = project?.payments?.find((p) => p.id === clean(body.paymentId, 40));
+    if (!project || !payment) return json({ error: "Payment not found." }, 404);
+    if (payment.status === "paid") return json({ error: "This has already been paid." }, 400);
+    const stripe = await getStripe();
+    if (!stripe) return json({ error: "Payments are temporarily unavailable. Please contact hello@ladfox.com." }, 503);
+    const origin = siteUrl(request);
+    try {
+      const session = await stripe.checkout.sessions.create({
+        mode: "payment",
+        customer_email: email,
+        client_reference_id: `acct-${project.id}-${payment.id}`,
+        line_items: [{
+          quantity: 1,
+          price_data: {
+            currency: "gbp",
+            unit_amount: payment.amountPence,
+            product_data: { name: `LADFOX: ${project.title}`, description: payment.label }
+          }
+        }],
+        metadata: { account_payment: "1", project_id: project.id, payment_id: payment.id, customer_email: email, product: project.title },
+        payment_intent_data: { metadata: { account_payment: "1", project_id: project.id, payment_id: payment.id } },
+        success_url: `${origin}/account?paid=1`,
+        cancel_url: `${origin}/account`
+      });
+      return json({ ok: true, url: session.url });
+    } catch (error) {
+      console.error("account checkout failed", error.message);
+      return json({ error: "We could not start the payment. Please try again or contact hello@ladfox.com." }, 502);
+    }
+  }
+
+  return json({ error: "Unknown action." }, 400);
+};
