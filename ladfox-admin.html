@@ -112,8 +112,7 @@
     const eWrap = el("div"); eWrap.append(el("label", "", "Estimated delivery date"));
     const est = el("input"); est.value = p.estimate || ""; est.placeholder = "e.g. 12 December"; eWrap.append(est);
     g.append(sWrap, eWrap); c.append(g);
-    c.append(el("label", "", "Note to customer (optional)"));
-    const note = el("textarea"); c.append(note);
+    const note = { value: "" };
     const row = el("div", "row"); const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = false; lab.append(ck, document.createTextNode("Email them this update"));
     const save = el("button", "", "Save update"); row.append(lab, save);
     save.onclick = async () => {
@@ -175,9 +174,9 @@
     }
     if (!(p.payments || []).some((x) => x.status === "requested") && !(p.payments || []).some((x) => x.status === "paid")) {
       const prow = el("div", "grid");
-      const amt = el("input"); amt.type = "number"; amt.min = "1"; amt.step = "0.01"; amt.placeholder = "Full amount in £, e.g. 1850";
-      const lab2 = el("input"); lab2.value = "Full payment";
-      prow.append(amt, lab2); psec.append(prow);
+      const amt = el("input"); amt.type = "number"; amt.min = "1"; amt.step = "0.01"; amt.placeholder = "£";
+      const lab2 = { value: "Full payment" };
+      prow.append(amt); psec.append(prow);
       const prow2 = el("div", "row"); const plab = el("label"); const pck = el("input"); pck.type = "checkbox"; pck.checked = false; plab.append(pck, document.createTextNode("Email them"));
       const pbtn = el("button", "", "Request payment"); prow2.append(plab, pbtn); psec.append(prow2);
       pbtn.onclick = async () => {
@@ -188,6 +187,18 @@
     }
     c.append(psec);
 
+    const csec = el("div", "sec"); csec.append(el("h3", "", "Message"));
+    const msg = el("textarea"); msg.placeholder = "Write a message to the customer"; csec.append(msg);
+    const mrow = el("div", "row"); const mlab = el("label"); const mck = el("input"); mck.type = "checkbox"; mck.checked = false; mlab.append(mck, document.createTextNode("Email them"));
+    const msend = el("button", "", "Send message"); mrow.append(mlab, msend); csec.append(mrow); c.append(csec);
+    msend.onclick = async () => {
+      if (!msg.value.trim()) return;
+      msend.disabled = true;
+      const { res, data } = await call({ action: "message", email: p.email, id: p.id, text: msg.value, notify: mck.checked });
+      msend.disabled = false;
+      if (!res.ok) return status(data.error || "Could not send.", true);
+      status(data.emailed ? "Message sent and customer emailed." : "Message added."); load();
+    };
     const log = el("div", "log");
     for (const u of p.updates) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
     c.append(log);

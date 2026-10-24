@@ -118,6 +118,25 @@ export default async (request) => {
     return json({ ok: true, emailed, project });
   }
 
+  if (body.action === "message") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    const text = clean(body.text, 2000);
+    if (!text) return json({ error: "Write a message first." }, 400);
+    if ((project.updates || []).length > 200) return json({ error: "This thread is full." }, 400);
+    const now = new Date().toISOString();
+    project.updates.push({ at: now, by: "ladfox", text, stage: project.stage });
+    project.updatedAt = now;
+    project.customerUnread = false;
+    await saveProject(db, project);
+    let emailed = false;
+    if (body.notify) {
+      try { await emailCustomer(request, project, text); emailed = true; } catch (e) { console.error("customer email failed", e.message); }
+    }
+    return json({ ok: true, emailed, project });
+  }
+
   if (body.action === "delete-project") {
     const email = normaliseEmail(body.email);
     const project = await loadProject(db, email, clean(body.id, 40));
