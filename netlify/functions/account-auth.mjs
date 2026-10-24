@@ -55,7 +55,7 @@ export default async (request) => {
     await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + LOGIN_TTL_MS });
     const sketch = body.intent === "sketch";
     const startKind = body.intent === "design" || body.intent === "price" ? body.intent : "";
-    const link = `${siteUrl(request)}/account?token=${encodeURIComponent(token)}${sketch ? "&new=1" : ""}${startKind ? `&start=${startKind}` : ""}`;
+    const link = `${siteUrl(request)}/account?token=${encodeURIComponent(token)}${sketch ? "&new=1" : ""}${startKind ? `&start=${startKind}` : ""}${body.type === "other" ? "&type=other" : ""}`;
     const hello = name ? `Hi ${name.split(" ")[0]}, ` : "";
 
     try {

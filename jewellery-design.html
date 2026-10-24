@@ -999,35 +999,19 @@
       <div class="form-wrap">
         <div class="card">
           <div class="card__actions">
-            <form id="quickStartForm" name="jewellery-design-quick-start" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="jewellery-design-quick-start" />
-              <input type="hidden" name="location" id="quickStartLocation" value="Unknown" />
-              <input type="hidden" name="jewellery_type" id="quickStartJewelleryType" />
-              <input type="hidden" name="band_wearer" id="quickStartBandWearer" />
-              <input type="hidden" name="necklace_type" id="quickStartNecklaceType" />
-              <input type="hidden" name="stone_type" id="quickStartStoneType" />
-              <input type="hidden" name="stone_shape" id="quickStartStoneShape" />
-              <input type="hidden" name="stone_size" id="quickStartStoneSize" />
-              <input type="hidden" name="jewellery_metal" id="quickStartJewelleryMetal" />
-              <input type="hidden" name="other_notes" id="quickStartNotes" />
-              <input type="hidden" name="email" id="quickStartEmail" />
-              <p style="display:none;">
-                <label>Do not fill this in <input name="bot-field" /></label>
-              </p>
-
+            <form id="jdStartForm" novalidate>
               <div class="guided-form">
                 <div class="guided-form__intro">
-                  <h3 class="guided-form__question" id="quickStartQuestion">What type of jewellery?</h3>
-                  <p class="guided-form__support" id="quickStartSupport">Choose the kind of piece first and we will build the design around it.</p>
+                  <h3 class="guided-form__question">Start your design</h3>
+                  <p class="guided-form__support">Enter your name and email to open your personal design dashboard. Tell us about your piece, track every step and message us any time.</p>
                 </div>
-
-                <div class="guided-form__body" id="quickStartBody"></div>
-                <p class="guided-form__note" id="quickStartNote"></p>
-                <p class="quick-start-status" id="quickStartStatus" aria-live="polite"></p>
-
+                <div class="guided-form__body">
+                  <input class="guided-input" id="jdName" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Your name" aria-label="Your name" />
+                  <input class="guided-input" id="jdEmail" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="Your email address" aria-label="Your email address" required />
+                </div>
+                <p class="quick-start-status" id="jdStatus" aria-live="polite"></p>
                 <div class="guided-form__footer">
-                  <button class="btn btn--secondary" id="quickStartBack" type="button" hidden>Back</button>
-                  <button class="btn" id="quickStartNext" type="button">Continue</button>
+                  <button class="btn" id="jdSubmit" type="submit">Start my design</button>
                 </div>
               </div>
             </form>
@@ -1122,279 +1106,28 @@
       }
     });
 
-    (function handleQuickStartSubmit(){
-      const form = document.getElementById("quickStartForm");
+    (function handleDesignStart(){
+      const form = document.getElementById("jdStartForm");
       if (!form) return;
-
-      const questionEl = document.getElementById("quickStartQuestion");
-      const supportEl = document.getElementById("quickStartSupport");
-      const bodyEl = document.getElementById("quickStartBody");
-      const noteEl = document.getElementById("quickStartNote");
-      const statusEl = document.getElementById("quickStartStatus");
-      const backBtn = document.getElementById("quickStartBack");
-      const nextBtn = document.getElementById("quickStartNext");
-      const locationField = document.getElementById("quickStartLocation");
-
-      const hiddenFields = {
-        jewellery_type: document.getElementById("quickStartJewelleryType"),
-        band_wearer: document.getElementById("quickStartBandWearer"),
-        necklace_type: document.getElementById("quickStartNecklaceType"),
-        stone_type: document.getElementById("quickStartStoneType"),
-        stone_shape: document.getElementById("quickStartStoneShape"),
-        stone_size: document.getElementById("quickStartStoneSize"),
-        jewellery_metal: document.getElementById("quickStartJewelleryMetal"),
-        other_notes: document.getElementById("quickStartNotes"),
-        email: document.getElementById("quickStartEmail")
-      };
-
-      const baseSteps = [
-        {
-          key: "jewellery_type",
-          label: "What type of jewellery?",
-          support: "Choose the kind of piece first and we will build the design around it.",
-          type: "choice",
-          options: ["Engagement ring", "Wedding band", "Bracelet", "Necklace", "Pendant", "Earrings", "Not sure yet"]
-        },
-        {
-          key: "stone_type",
-          label: "Which stone type?",
-          support: "Choose the stone direction and we will build the design around it.",
-          type: "choice",
-          options: ["Lab grown diamond", "Natural diamond", "Gemstone", "Not sure yet"]
-        },
-        {
-          key: "stone_shape",
-          label: "Stone shape",
-          support: "Most people know what they are drawn to, even if they are not fully certain yet.",
-          type: "choice",
-          options: ["Round", "Oval", "Emerald", "Radiant", "Princess", "Cushion", "Pear", "Marquise", "Not sure yet"]
-        },
-        {
-          key: "stone_size",
-          label: "TCW",
-          support: "A rough total carat weight is enough to start the sketch properly.",
-          type: "choice",
-          options: ["Under 1 TCW", "1 to 2 TCW", "2 to 3 TCW", "3 to 5 TCW", "5 TCW plus", "Not sure yet"]
-        },
-        {
-          key: "jewellery_metal",
-          label: "Metal",
-          support: "Pick a metal if you know it, or leave room for us to guide you.",
-          type: "choice",
-          options: ["Yellow gold", "White gold", "Rose gold", "Platinum", "Not sure yet"]
-        },
-        {
-          key: "other_notes",
-          label: "Other notes",
-          support: "Tell us what you have in mind. Links, screenshots, reference pieces, and budget are all useful here.",
-          type: "textarea",
-          placeholder: "Style direction, reference links, screenshots, budget, or anything else you want us to know."
-        },
-        {
-          key: "email",
-          label: "Email",
-          support: "We will reply here.",
-          type: "email",
-          placeholder: "you@example.com"
-        }
-      ];
-
-      const necklaceTypeStep = {
-        key: "necklace_type",
-        label: "What type of necklace?",
-        support: "Choose the direction you want and we will shape the design around it.",
-        type: "choice",
-        options: ["Tennis necklace", "Pendant necklace", "Station necklace", "Choker", "Not sure yet"]
-      };
-
-      const bandWearerStep = {
-        key: "band_wearer",
-        label: "Mens or Womens?",
-        support: "This helps set the proportions and overall direction properly from the start.",
-        type: "choice",
-        options: ["Mens", "Womens", "Unisex", "Not sure yet"]
-      };
-
-      const formValues = {
-        jewellery_type: "",
-        band_wearer: "",
-        necklace_type: "",
-        stone_type: "",
-        stone_shape: "",
-        stone_size: "",
-        jewellery_metal: "",
-        other_notes: "",
-        email: ""
-      };
-
-      let stepIndex = 0;
-      let isSubmitting = false;
-
-      function getSteps(){
-        if (formValues.jewellery_type === "Wedding band") {
-          return [
-            baseSteps[0],
-            bandWearerStep,
-            baseSteps[4],
-            baseSteps[5],
-            baseSteps[6]
-          ];
-        }
-
-        const steps = [...baseSteps];
-        if (formValues.jewellery_type === "Necklace") {
-          steps.splice(1, 0, necklaceTypeStep);
-        }
-        return steps;
-      }
-
-      function syncHiddenFields(){
-        Object.entries(hiddenFields).forEach(([key, field]) => {
-          if (field) field.value = formValues[key] || "";
-        });
-      }
-
-      function setStatus(message){
-        if (statusEl) statusEl.textContent = message || "";
-      }
-
-      function renderChoiceStep(step){
-        const steps = getSteps();
-        const list = document.createElement("div");
-        list.className = "guided-choice-list";
-
-        step.options.forEach((option) => {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "guided-choice";
-          button.textContent = option;
-          button.addEventListener("click", () => {
-            if (step.key === "jewellery_type" && option === "Engagement ring") {
-              const currentParams = new URLSearchParams(window.location.search);
-              const targetUrl = new URL("/design/your-ring?skipIntro=1", window.location.href);
-              currentParams.forEach((value, key) => {
-                if (!targetUrl.searchParams.has(key)) {
-                  targetUrl.searchParams.set(key, value);
-                }
-              });
-              window.location.assign(targetUrl.toString());
+      const status = document.getElementById("jdStatus"), btn = document.getElementById("jdSubmit");
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const email = document.getElementById("jdEmail").value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { status.textContent = "Please enter a valid email address."; return; }
+        btn.disabled = true; status.textContent = "One moment\u2026";
+        fetch("/.netlify/functions/account-auth", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "request", email: email, name: document.getElementById("jdName").value, intent: "design", type: "other" }) })
+          .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok: r.ok, d: d }; }); })
+          .then(function(x){
+            btn.disabled = false;
+            if (x.ok && x.d && x.d.instant) {
+              if (typeof gtag === "function") { try { gtag("event", "generate_lead", { form_name: "jewellery-design-start" }); gtag("event", "conversion", { send_to: "AW-18173399172/PpNpCLbcpaQdEISh4NlD" }); } catch (err) {} }
+              window.location.href = "account.html?start=design&type=other";
               return;
             }
-            formValues[step.key] = option;
-            if (step.key === "jewellery_type" && option !== "Necklace") {
-              formValues.necklace_type = "";
-            }
-            if (step.key === "jewellery_type" && option !== "Wedding band") {
-              formValues.band_wearer = "";
-            }
-            syncHiddenFields();
-            setStatus("");
-            if (stepIndex < steps.length - 1) {
-              stepIndex += 1;
-              renderStep();
-            }
-          });
-          list.appendChild(button);
-        });
-
-        bodyEl.appendChild(list);
-        nextBtn.hidden = true;
-      }
-
-      function renderInputStep(step){
-        const steps = getSteps();
-        const field = step.type === "textarea"
-          ? document.createElement("textarea")
-          : document.createElement("input");
-
-        field.className = step.type === "textarea" ? "guided-textarea" : "guided-input";
-        if (step.type !== "textarea") field.type = step.type;
-        field.placeholder = step.placeholder || "";
-        field.value = formValues[step.key] || "";
-        field.autocomplete = step.type === "email" ? "email" : "off";
-        if (step.type === "email") field.inputMode = "email";
-
-        field.addEventListener("input", () => {
-          formValues[step.key] = field.value.trim();
-          syncHiddenFields();
-          setStatus("");
-        });
-
-        bodyEl.appendChild(field);
-        nextBtn.hidden = false;
-        nextBtn.textContent = stepIndex === steps.length - 1 ? "Submit" : "Continue";
-        requestAnimationFrame(() => field.focus());
-      }
-
-      function renderStep(){
-        const steps = getSteps();
-        const step = steps[stepIndex];
-        if (!step || !questionEl || !supportEl || !bodyEl || !noteEl || !backBtn || !nextBtn) return;
-
-        questionEl.textContent = step.label;
-        supportEl.textContent = step.support;
-        noteEl.textContent = stepIndex === steps.length - 1
-          ? "We will come back with the first design direction by email."
-          : "";
-        bodyEl.innerHTML = "";
-        backBtn.hidden = stepIndex === 0;
-
-        if (step.type === "choice") {
-          renderChoiceStep(step);
-        } else {
-          renderInputStep(step);
-        }
-      }
-
-      backBtn.addEventListener("click", () => {
-        if (isSubmitting || stepIndex === 0) return;
-        stepIndex -= 1;
-        setStatus("");
-        renderStep();
+            status.textContent = x.ok ? (x.d && x.d.message) || "We have emailed you a sign-in link." : (x.d && x.d.error) || "Something went wrong. Please try again.";
+          })
+          .catch(function(){ btn.disabled = false; status.textContent = "We could not send that just now. Please try again."; });
       });
-
-      nextBtn.addEventListener("click", () => {
-        const steps = getSteps();
-        const step = steps[stepIndex];
-        if (!step) return;
-
-        if (step.type === "textarea") {
-          syncHiddenFields();
-          stepIndex += 1;
-          renderStep();
-          return;
-        }
-
-        if (step.type === "email") {
-          const email = String(formValues.email || "").trim();
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setStatus("Please add a valid email address.");
-            return;
-          }
-
-          if (isSubmitting) return;
-          isSubmitting = true;
-          syncHiddenFields();
-          setStatus("");
-          nextBtn.disabled = true;
-          nextBtn.textContent = "Sending...";
-          form.requestSubmit();
-        }
-      });
-
-      form.addEventListener("submit", (event) => {
-        const email = String(formValues.email || "").trim();
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          event.preventDefault();
-          isSubmitting = false;
-          nextBtn.disabled = false;
-          nextBtn.textContent = "Submit";
-          setStatus("Please add a valid email address.");
-        }
-      });
-
-      syncHiddenFields();
-      renderStep();
     })();
 
     (function handleFaqToggle(){
