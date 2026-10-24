@@ -41,6 +41,13 @@
     .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
     .row label{margin:0;display:flex;gap:6px;align-items:center;color:#ddd;font-size:.9rem}
     .row input[type=checkbox]{width:auto}
+    .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px;margin:14px 0 6px}
+    .fact{background:rgba(255,255,255,.05);border-radius:12px;padding:10px 12px}
+    .fact span{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#8b9099;margin:0 0 3px}
+    .fact b{font-weight:600;color:#fff;font-size:.95rem}
+    .say{margin:10px 0 6px;padding:12px 14px;background:rgba(255,255,255,.05);border-radius:12px}
+    .say span{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#8b9099;margin:0 0 4px}
+    .say p{margin:0;white-space:pre-wrap;color:#e6e8ec;line-height:1.55}
     #status{margin:10px 0;color:#9fe3b0;min-height:1.2em}#status.err{color:#ff9d9d}
   </style>
 </head>
@@ -108,7 +115,21 @@
     const head = el("div"); head.append(el("div", "tag", (p.type === "order" ? "Order" : "Design request") + (p.orderReference ? " · " + p.orderReference : "")));
     const t = el("strong", "", p.title); if (p.customerUnread) t.append(el("span", "new", "NEW MESSAGE"));
     head.append(t);
-    c.append(head, el("div", "meta", `${p.name || ""} <${p.email}>\n${p.ringType ? p.ringType + " · " : ""}${p.budget ? "Budget " + p.budget + " · " : ""}Created ${fmt(p.createdAt)}\n${p.details || ""}`));
+    c.append(head);
+    c.append(el("div", "meta", `${p.name ? p.name + " \u00b7 " : ""}${p.email}\nCreated ${fmt(p.createdAt)}`));
+    const facts = [], said = [];
+    for (const raw of String(p.details || "").split("\n")) {
+      const line = raw.trim(); if (!line || /^\[.*\]$/.test(line)) continue;
+      const m = line.match(/^([A-Za-z][A-Za-z ]{0,24}):\s*(.+)$/);
+      if (m) facts.push([m[1], m[2]]); else said.push(line);
+    }
+    if (p.budget && !facts.some((x) => x[0] === "Budget")) facts.push(["Budget", p.budget]);
+    if (facts.length) {
+      const gridF = el("div", "facts");
+      for (const [k, v] of facts) { const d = el("div", "fact"); d.append(el("span", "", k.replace(/^Ring is for$/, "For")), el("b", "", v)); gridF.append(d); }
+      c.append(gridF);
+    }
+    if (said.length) { const sy = el("div", "say"); sy.append(el("span", "", "Their message"), el("p", "", said.join("\n"))); c.append(sy); }
     const g = el("div", "grid");
     const sWrap = el("div"); sWrap.append(el("label", "", "Stage"));
     const sel = el("select"); STAGES.forEach((s, i) => { const o = el("option", "", s); o.value = i; if (i === p.stage) o.selected = true; sel.append(o); }); sWrap.append(sel);
