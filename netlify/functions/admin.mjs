@@ -3,7 +3,7 @@ import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
   FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
-  PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey
+  PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey, sheetEvent
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
 
@@ -187,6 +187,7 @@ export default async (request) => {
     const now = new Date().toISOString();
     project.payments = [...(project.payments || []), { id: newToken(9), label, amountPence: pence, status: "requested", createdAt: now }];
     project.updates.push({ at: now, by: "ladfox", text: `Payment requested: ${label}, £${(pence / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })}.`, stage: project.stage });
+    await sheetEvent({ type: "price", email, title: project.title, amount: pence / 100 });
     project.updatedAt = now;
     await saveProject(db, project);
     let emailed = false;
