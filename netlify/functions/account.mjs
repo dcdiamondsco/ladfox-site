@@ -95,11 +95,11 @@ export default async (request) => {
       const WA = "https://wa.me/447853362904", CALL = "tel:+447853362904";
       const pill = (href, label, solid) => `<a href="${href}" style="display:inline-block;margin:5px 4px;padding:13px 26px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;${solid ? "background:#dfe3ea;color:#0a0a0a" : "background:#26272b;color:#ffffff"}">${label}</a>`;
       const bodyHtml = `<p style="margin:0">Thank you for your design request: <strong style="color:#fff">${escapeHtml(project.title)}</strong>.</p><p style="margin:16px 0 0">We will create your complimentary initial design and be in touch shortly. Your personal design dashboard is open whenever you want to check progress, add details or message us.</p>`;
-      const buttons = `${pill(link, "Sign in to my dashboard", true)}<p style="margin:30px 0 8px;font-size:14px;color:#8b9099">Prefer to talk it through?</p>${pill(WA, "WhatsApp us")}${pill(CALL, "Call us")}`;
+      const buttons = `${pill(link, "Go to my dashboard", true)}<p style="margin:30px 0 8px;font-size:14px;color:#8b9099">Prefer to talk it through?</p>${pill(WA, "WhatsApp us")}${pill(CALL, "Call us")}`;
       await sendEmail({
         to: email,
         subject: "Welcome to LADFOX: we have your design request",
-        text: `${hi}\n\nThank you for your design request: ${project.title}.\n\nWe will create your complimentary initial design and be in touch shortly.\n\nSign in to your dashboard:\n${link}\n\nPrefer to talk it through? WhatsApp us: ${WA}\nOr call us: ${CALL}`,
+        text: `${hi}\n\nThank you for your design request: ${project.title}.\n\nWe will create your complimentary initial design and be in touch shortly.\n\nGo to your dashboard:\n${link}\n\nPrefer to talk it through? WhatsApp us: ${WA}\nOr call us: ${CALL}`,
         html: plainShell(hi, bodyHtml, buttons)
       });
     } catch (error) {
