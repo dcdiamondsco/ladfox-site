@@ -18,7 +18,7 @@
     body{margin:0;background:#000;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;display:flex;flex-direction:column}
     a{color:#fff}
     .top{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;max-width:860px;width:100%;margin:0 auto}
-    .top img{width:150px;height:auto;filter:invert(1);display:block}
+    .top img{width:150px;height:auto;filter:none;display:block}
     .top button{background:none;border:1px solid var(--line);color:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-size:.85rem;cursor:pointer}
     main{flex:1;width:100%;max-width:860px;margin:0 auto;padding:10px 22px 60px}
     h1{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:600;margin:14px 0 8px;line-height:1.15}
@@ -73,7 +73,7 @@
 <body>
   <a class="site-skip-link" href="#main-content">Skip to main content</a>
   <div class="top">
-    <a href="/" aria-label="LADFOX home"><img src="Images/ladfox-logo.png" alt="LADFOX" /></a>
+    <a href="/" aria-label="LADFOX home"><img src="Images/Logo%20no%20background.png" alt="LADFOX" /></a>
     <button id="logout" class="hidden" type="button">Sign out</button>
   </div>
 
@@ -81,14 +81,14 @@
     <section id="loading"><p>Loading…</p></section>
 
     <section id="signin" class="hidden">
-      <h1>Design your ring with LADFOX</h1>
-      <p>Create your free account to start your design, get a complimentary sketch, and follow every step from sketch to CAD to delivery. No password needed: we email you a secure sign-in link.</p>
+      <h1>Log in to your LADFOX account</h1>
+      <p>Enter your email and we&rsquo;ll send you a secure link to log in. No password needed. New here? The same link creates your free account, so you can start your design and follow every step from sketch to delivery.</p>
       <form id="signinForm" class="card" novalidate>
-        <label for="si-name">Your name</label>
+        <label for="si-name">Your name (new customers)</label>
         <input id="si-name" name="name" autocomplete="name" maxlength="80" placeholder="Optional" />
         <label for="si-email">Email address</label>
         <input id="si-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
-        <button class="btn" type="submit">Email me my sign-in link</button>
+        <button class="btn" type="submit">Email me my login link</button>
         <div id="signinMsg" class="msg" role="status" aria-live="polite"></div>
       </form>
       <p style="font-size:.85rem">If you have already ordered, use the email address you gave at checkout and your order will be waiting here. <a href="privacy-policy.html">Privacy</a></p>
@@ -97,18 +97,34 @@
     <section id="dash" class="hidden">
       <h2 id="hello" class="account-title">Welcome</h2>
       <p id="helloSub">Everything about your ring, in one place.</p>
-      <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s create your ring</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary sketch and a clear quote.</p>
+      <section id="concierge" class="cg hidden" aria-live="polite">
+        <p class="cg-eye" id="cgEye"></p>
+        <h2 class="cg-line" id="cgLine"></h2>
+        <div class="cg-opts" id="cgOpts" hidden>
+          <button type="button" class="cg-opt" data-for="Myself">For myself</button>
+          <button type="button" class="cg-opt" data-for="A loved one">For a loved one</button>
+        </div>
+      </section>
+      <style>
+        #dash.cg-only > :not(#concierge){display:none!important}
+        .cg{min-height:46vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:34px 8px 40px;background:radial-gradient(70% 60% at 50% 0%,rgba(223,227,234,.08),transparent 70%)}
+        .cg-eye{font:500 .78rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.3em;text-transform:uppercase;color:#9aa0aa;margin:0 0 18px;min-height:1.2em}
+        .cg-line{font-size:clamp(1.9rem,7vw,3rem);font-weight:300;letter-spacing:.01em;line-height:1.15;margin:0;color:#fff;min-height:1.2em;text-shadow:0 0 28px rgba(223,227,234,.25)}
+        .cg-line.typing::after,.cg-eye.typing::after{content:"";display:inline-block;width:.09em;height:.95em;margin-left:.12em;vertical-align:-.1em;background:#dfe3ea;animation:cgBlink .8s steps(1) infinite}
+        .cg-eye.typing::after{width:.5em;height:2px;vertical-align:baseline;margin-left:.2em}
+        @keyframes cgBlink{50%{opacity:0}}
+        .cg-opts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;width:100%}
+        .cg-opts[hidden]{display:none}
+        .cg-opt{flex:1 1 200px;max-width:280px;padding:20px 22px;border:0;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));color:#fff;font-size:1.05rem;font-weight:500;font-family:inherit;letter-spacing:.04em;cursor:pointer;opacity:0;transform:translateY(12px);animation:cgIn .6s cubic-bezier(.2,.7,.2,1) forwards;transition:background .25s,box-shadow .25s,transform .25s}
+        .cg-opt:nth-child(2){animation-delay:.18s}
+        .cg-opt:hover,.cg-opt:focus-visible{background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a;box-shadow:0 0 34px rgba(223,227,234,.35);outline:none;transform:translateY(-2px)}
+        @keyframes cgIn{to{opacity:1;transform:none}}
+        @media (prefers-reduced-motion:reduce){.cg-opt{animation:none;opacity:1;transform:none}.cg-line.typing::after,.cg-eye.typing::after{animation:none}}
+      </style>
+      <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s design your ring!</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary sketch and a clear quote.</p>
         <ol class="w-steps"><li class="on"><b>1</b><span>Your ideas</span></li><li><b>2</b><span>Free sketch &amp; quote</span></li><li><b>3</b><span>CAD &amp; approval</span></li><li><b>4</b><span>Made &amp; delivered</span></li></ol></div>
       <style>.welcome{text-align:center;margin:0 0 20px;padding:26px 18px;border:1px solid #3a3e46;border-radius:20px;background:radial-gradient(120% 140% at 50% 0%,#1a1c21 0%,#0b0b0d 70%)}.welcome.hidden{display:none}.w-eyebrow{margin:0 0 8px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c8ccd4}.welcome h2{margin:0 0 8px;font-size:1.6rem}.w-lead{margin:0 auto 20px;max-width:46ch;color:#c8ccd4;line-height:1.55}.w-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.w-steps li{display:grid;justify-items:center;gap:6px;font-size:.74rem;color:#9a9fa8;line-height:1.25}.w-steps b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid #3a3e46;font-weight:600}.w-steps li.on{color:#fff}.w-steps li.on b{background:#dfe3ea;color:#0b0b0d;border-color:#dfe3ea}.rq-progress{height:4px;border-radius:4px;background:#23262c;margin:0 0 16px;overflow:hidden}.rq-progress i{display:block;height:100%;width:0;background:#dfe3ea;transition:width .3s}.rq-count{font-size:.8rem;color:#c8ccd4;margin:-8px 0 14px}</style>
-      <div class="box" id="optionsBox"><h3>What would you like us to help you with?</h3>
-        <div class="opt-grid">
-          <button type="button" class="opt" data-kind="design">Help me design my ring</button>
-          <button type="button" class="opt" data-kind="price">I know what I want - give me a price</button>
-          <a class="opt" href="/cad-design">I&rsquo;ve seen what I want - order a CAD design</a>
-        </div>
-        <p class="opt-beat"><a href="/price-beater">Already found your dream ring?<br>Beat the price. No compromise.</a></p>
-        <p class="opt-trust"><span>&#10003; Lifetime warranty</span><span>&#10003; Insured UK delivery</span><span>&#10003; Free engraving</span></p>
-      </div>
+      <div id="optionsBox" class="hidden" hidden></div>
       <button id="newRequestBtn" class="btn ghost hidden" type="button">Start a new request</button>
       <style>.opt-grid{display:grid;gap:10px}.opt{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:10px 14px;border:1px solid #3a3e46;border-radius:14px;background:#0b0b0d;color:#fff;font:inherit;font-weight:600;line-height:1.25;text-decoration:none;cursor:pointer}.opt:hover,.opt:focus-visible{border-color:#dfe3ea;outline:none}.opt-beat{text-align:center;margin:16px 0 0}.opt-beat a{color:#c8ccd4;text-decoration:none}.opt-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin:12px 0 0;font-size:.85rem;color:#c8ccd4}</style>
 
@@ -122,8 +138,12 @@
         <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><div class="rq-chips"><button type="button" class="chip" data-v="Yellow gold">Yellow gold</button><button type="button" class="chip" data-v="White gold">White gold</button><button type="button" class="chip" data-v="Rose gold">Rose gold</button><button type="button" class="chip" data-v="Platinum">Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="row">
-          <div><label for="rq-budget">Budget (optional)</label>
-            <select id="rq-budget"><option value="">Not sure yet</option><option>Under &pound;1,500</option><option>&pound;1,500&ndash;&pound;3,000</option><option>&pound;3,000&ndash;&pound;5,000</option><option>&pound;5,000+</option></select></div>
+          <div class="bud"><label for="rq-budget">Budget (optional)</label>
+            <div class="bud-row"><output id="rq-budget-out" for="rq-budget">Not sure yet</output></div>
+            <input id="rq-budget" type="range" min="500" max="10000" step="250" value="3000" aria-label="Budget in pounds" />
+            <div class="bud-scale"><span>&pound;500</span><span>&pound;10,000+</span></div>
+            <button type="button" class="bud-clear" id="rq-budget-clear">Not sure yet</button></div>
+          <style>.bud-row{margin:6px 0 10px;text-align:center;font-size:1.5rem;font-weight:700;color:#fff}.bud input[type=range]{width:100%;accent-color:#dfe3ea;height:28px;padding:0;background:transparent;border:0}.bud-scale{display:flex;justify-content:space-between;font-size:.8rem;color:#9a9fa8}.bud-clear{display:block;margin:10px auto 0;background:none;border:0;color:#c8ccd4;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}.bud.untouched input[type=range]{opacity:.45}</style>
           <div><label for="rq-ringsize">Ring size (optional)</label>
             <input id="rq-ringsize" maxlength="10" placeholder="e.g. M" /></div>
         </div>
@@ -140,7 +160,7 @@
 
       <div id="paidBanner" class="banner hidden" role="status">Thank you. Your payment is being confirmed and will show here in a moment.</div>
       <div id="draftBox" class="box hidden"><h3>Your saved ring design</h3><p style="margin:0 0 12px;opacity:.8">You started designing a ring. Pick up exactly where you left off.</p><a class="btn" id="draftLink" href="/design/your-ring">Continue your design</a></div>
-      <div id="designsBox" class="box"><h3>Your saved ring designs</h3><p id="designsEmpty" style="margin:0 0 12px;opacity:.8">Nothing saved yet. Choose your metal, stone and size on any of our rings, then press &ldquo;Save my design&rdquo; to keep it here.</p><div id="designsList"></div><a class="btn" id="designsBrowse" href="classic-collection.html">Browse our rings</a></div>
+      <div id="designsBox" class="box"><h3>Your saved ring designs</h3><p id="designsEmpty" style="margin:0 0 12px;opacity:.8">Nothing saved yet. Choose your metal, stone and size on any of our rings, then press &ldquo;Save my design&rdquo; to keep it here.</p><div id="designsList"></div><a id="designsBrowse" hidden style="display:none" href="classic-collection.html">Browse our rings</a></div>
       <div id="projects" style="margin-top:22px"></div>
     </section>
   </main>
@@ -261,7 +281,7 @@
     const list = $("designsList"); list.replaceChildren();
     const designs = res.ok && Array.isArray(data.designs) ? data.designs : [];
     $("designsEmpty").classList.toggle("hidden", designs.length > 0);
-    $("designsBrowse").classList.toggle("hidden", designs.length > 0);
+    
     designs.forEach((d) => {
       const row = el("div", "", ""); row.style.cssText = "border-top:1px solid rgba(255,255,255,.15);padding:12px 0";
       const t = el("strong", "", d.title || "My LADFOX ring");
@@ -280,8 +300,9 @@
     const { res, data } = await api("/.netlify/functions/account");
     if (res.status === 401) { show("signin"); return; }
     if (!res.ok) { show("signin"); setMsg($("signinMsg"), "We could not load your account just now. Please try again.", "err"); return; }
+    hasProjects = data.projects.length > 0;
     $("hello").textContent = data.customer.name ? "Welcome, " + data.customer.name.split(" ")[0] : "Welcome";
-    $("helloSub").textContent = data.projects.length ? "Here is where everything stands." : "You have nothing here yet. Request a design to get started.";
+    $("helloSub").textContent = data.projects.length ? "Here is where everything stands." : "";
     const draftBox = $("draftBox");
     if (false && data.draft && /^\/design\/your-ring\?resume=[A-Za-z0-9_%-]+$/.test(data.draft.resumeUrl)) { $("draftLink").setAttribute("href", data.draft.resumeUrl); draftBox.classList.remove("hidden"); } else { draftBox.classList.add("hidden"); }
     const wrap = $("projects"); wrap.replaceChildren(...data.projects.map(renderProject));
@@ -293,11 +314,44 @@
     e.preventDefault();
     const btn = e.target.querySelector("button"); btn.disabled = true; setMsg($("signinMsg"), "");
     const { res, data } = await post("/.netlify/functions/account-auth", { action: "request", email: $("si-email").value, name: $("si-name").value });
+    if (res.ok && data.instant) { window.location.href = "account.html?start=design"; return; }
     btn.disabled = false;
     setMsg($("signinMsg"), res.ok ? data.message : (data.error || "Something went wrong."), res.ok ? "ok" : "err");
   });
 
   let requestKind = "";
+
+  let forWho = "", hasProjects = false;
+  const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const typeInto = (node, text, speed) => new Promise((done) => {
+    if (reduceMotion) { node.textContent = text; done(); return; }
+    node.textContent = ""; node.classList.add("typing");
+    let i = 0;
+    const tick = () => { node.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(tick, (speed || 38) + Math.random() * 30); else { node.classList.remove("typing"); done(); } };
+    setTimeout(tick, 250);
+  });
+  const sleep = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
+  async function concierge(kind) {
+    const first = (($("hello").textContent.match(/,\s*(.+)$/) || [])[1] || "").trim();
+    $("dash").classList.add("cg-only");
+    $("welcome").classList.add("hidden"); $("requestForm").classList.add("hidden");
+    $("concierge").classList.remove("hidden"); $("cgOpts").hidden = true;
+    await typeInto($("cgEye"), first ? "Welcome, " + first : "Welcome", 55);
+    await sleep(350);
+    await typeInto($("cgLine"), "Who is the ring for?", 52);
+    $("cgOpts").hidden = false;
+    $("cgOpts").onclick = async (e) => {
+      const b = e.target.closest(".cg-opt"); if (!b) return;
+      forWho = b.dataset.for; $("cgOpts").hidden = true;
+      await typeInto($("cgEye"), forWho === "Myself" ? "For you" : "For someone special", 45);
+      await typeInto($("cgLine"), forWho === "Myself" ? "Wonderful. Let\u2019s make it yours." : "How lovely. Let\u2019s make it unforgettable.", 40);
+      await sleep(700);
+      $("concierge").classList.add("hidden");
+      $("dash").classList.remove("cg-only");
+      $("welcome").classList.remove("hidden");
+      openRequest(kind);
+    };
+  }
   const chosen = {};
   document.querySelectorAll("#requestForm .rq-group").forEach((g) => g.addEventListener("click", (e) => {
     const b = e.target.closest(".chip"); if (!b) return;
@@ -311,6 +365,7 @@
   function composeDetails() {
     const lines = [];
     if (requestKind) lines.push("[" + KIND_LABEL[requestKind] + "]");
+    if (forWho) lines.push("Ring is for: " + forWho);
     Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
     const rs = $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
     const t = $("rq-details").value.trim(); if (t) lines.push("", t);
@@ -330,16 +385,27 @@
   const rememberStart = () => { const k = new URLSearchParams(location.search).get("start"); if (k === "design" || k === "price") { try { localStorage.setItem("lfxStart", k); } catch (e) {} } };
   const takeStart = () => { let k = ""; try { k = localStorage.getItem("lfxStart") || ""; localStorage.removeItem("lfxStart"); } catch (e) {} return k === "design" || k === "price" ? k : ""; };
   rememberStart();
+
+  (function () {
+    const r = $("rq-budget"), out = $("rq-budget-out"), box = r.closest(".bud");
+    let touched = false;
+    const fmt = (v) => "\u00a3" + Number(v).toLocaleString("en-GB") + (Number(v) >= 10000 ? "+" : "");
+    const paint = () => { out.textContent = touched ? fmt(r.value) : "Not sure yet"; box.classList.toggle("untouched", !touched); };
+    r.addEventListener("input", () => { touched = true; paint(); });
+    $("rq-budget-clear").addEventListener("click", () => { touched = false; r.value = 3000; paint(); });
+    window.lfxBudget = () => (touched ? fmt(r.value) : "");
+    paint();
+  })();
   $("cancelRequest").addEventListener("click", () => $("requestForm").classList.add("hidden"));
   $("requestForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = e.target.querySelector("button[type=submit]"); btn.disabled = true;
     const { res, data } = await post("/.netlify/functions/account", {
-      action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure yet").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: $("rq-budget").value, details: composeDetails()
+      action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure yet").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: window.lfxBudget(), details: composeDetails()
     });
     btn.disabled = false;
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
-    e.target.reset(); Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = ""; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
     load();
   });
@@ -355,7 +421,7 @@
       const { res, data } = await post("/.netlify/functions/account-auth", { action: "verify", token });
       if (!res.ok) { show("signin"); setMsg($("signinMsg"), data.error || "That link did not work.", "err"); return; }    }
     const startKind = takeStart();
-    if (startKind) { await load(); if (!$("dash").classList.contains("hidden")) { const nm = ($("hello").textContent.match(/,\s*([^!.]+)/) || [])[1]; $("wTitle").textContent = (nm ? nm.trim() + ", l" : "L") + "et\u2019s " + (startKind === "price" ? "price your ring" : "create your ring"); $("welcome").classList.remove("hidden"); $("optionsBox").classList.add("hidden"); $("newRequestBtn").classList.add("hidden"); openRequest(startKind); } else { try { localStorage.setItem("lfxStart", startKind); } catch (e) {} } return; }
+    if (startKind) { await load(); if (!$("dash").classList.contains("hidden")) { $("optionsBox").classList.add("hidden"); $("newRequestBtn").classList.add("hidden"); concierge(startKind); } else { try { localStorage.setItem("lfxStart", startKind); } catch (e) {} } return; }
     if (wantNew) {
       await load();
       $("requestForm").classList.remove("hidden");
@@ -369,7 +435,8 @@
       setTimeout(load, 4000);
       return;
     }
-    load();
+    await load();
+    if (!$("dash").classList.contains("hidden")) { if (!hasProjects) { $("newRequestBtn").classList.add("hidden"); concierge("design"); } else { requestKind = "design"; $("newRequestBtn").classList.remove("hidden"); } }
   })();
 })();
 </script>

@@ -17,7 +17,7 @@ export const STAGE_PAID = 2;
 export const STAGE_DESIGN = 3;
 export const STAGE_APPROVED = 4;
 
-export const LOGIN_TTL_MS = 20 * 60 * 1000;
+export const LOGIN_TTL_MS = 365 * 24 * 60 * 60 * 1000;
 export const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 export const COOKIE_NAME = "lfx_session";
 
@@ -99,14 +99,21 @@ export const sendEmail = async ({ to, subject, text, html }) => {
   throw emailError("Email is not configured.", "email_not_configured");
 };
 
-export const emailShell = (heading, bodyHtml, buttonLabel, buttonUrl) => `<!doctype html><html><body style="margin:0;background:#f4f2ee;font-family:Arial,Helvetica,sans-serif;color:#111">
-<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:28px 12px">
-<table width="520" cellpadding="0" cellspacing="0" style="max-width:520px;background:#fff;border-radius:14px;padding:32px">
-<tr><td style="font-size:13px;letter-spacing:.18em;font-weight:700">LADFOX</td></tr>
-<tr><td style="font-size:22px;font-weight:600;padding:18px 0 10px">${escapeHtml(heading)}</td></tr>
-<tr><td style="font-size:15px;line-height:1.6;color:#333">${bodyHtml}</td></tr>
-${buttonUrl ? `<tr><td style="padding:24px 0 6px"><a href="${escapeHtml(buttonUrl)}" style="background:#111;color:#fff;text-decoration:none;padding:13px 22px;border-radius:999px;font-size:14px;font-weight:600;display:inline-block">${escapeHtml(buttonLabel)}</a></td></tr>` : ""}
-<tr><td style="font-size:12px;color:#777;padding-top:22px">LADFOX Ltd &middot; hello@ladfox.com</td></tr>
+export const emailShell = (heading, bodyHtml, buttonLabel, buttonUrl) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head>
+<body style="margin:0;padding:0;background:#000000;font-family:Arial,Helvetica,sans-serif;color:#ffffff" bgcolor="#000000">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#000000" style="background:#000000"><tr><td align="center" style="padding:32px 14px">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
+<tr><td align="center" style="padding:6px 0 26px"><img src="https://ladfox.com/Images/Logo%20no%20background.png" width="150" alt="LADFOX" style="display:block;border:0;height:auto;width:150px;max-width:60%"></td></tr>
+<tr><td bgcolor="#111113" style="background:#111113;border-radius:20px;padding:36px 30px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr><td align="center" style="font-size:26px;line-height:1.25;font-weight:700;color:#ffffff;padding:0 0 14px">${escapeHtml(heading)}</td></tr>
+<tr><td align="center" style="font-size:16px;line-height:1.65;color:#d6d9df">${bodyHtml}</td></tr>
+${buttonUrl ? `<tr><td align="center" style="padding:30px 0 8px"><a href="${escapeHtml(buttonUrl)}" style="background:#dfe3ea;color:#0a0a0a;text-decoration:none;padding:16px 38px;border-radius:999px;font-size:16px;font-weight:700;display:inline-block">${escapeHtml(buttonLabel)}</a></td></tr>
+<tr><td align="center" style="font-size:12px;line-height:1.5;color:#8b9099;padding:14px 0 0">Button not working? Copy this link into your browser:<br><a href="${escapeHtml(buttonUrl)}" style="color:#c8ccd4;word-break:break-all">${escapeHtml(buttonUrl)}</a></td></tr>` : ""}
+</table></td></tr>
+<tr><td align="center" style="font-size:13px;line-height:1.7;color:#c8ccd4;padding:26px 10px 4px">&#10003; Lifetime warranty &nbsp;&nbsp; &#10003; Insured UK delivery &nbsp;&nbsp; &#10003; Free engraving</td></tr>
+<tr><td align="center" style="font-size:14px;line-height:1.7;color:#d6d9df;padding:12px 10px 0">Questions? Message us on <a href="https://wa.me/447853362904" style="color:#ffffff;font-weight:600">WhatsApp</a> or reply to this email.</td></tr>
+<tr><td align="center" style="font-size:12px;color:#8b9099;padding:20px 10px 0">LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com" style="color:#8b9099">hello@ladfox.com</a></td></tr>
 </table></td></tr></table></body></html>`;
 
 /* ---------- data access ---------- */

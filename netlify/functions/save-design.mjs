@@ -90,7 +90,7 @@ export default async (request) => {
         await sendEmail({
           to: email,
           subject: "Your LADFOX ring design is saved",
-          text: `Your ring design is saved: ${design.summary || design.title}\n\nSign in to your LADFOX account to see it, change it or order it (this link works once and lasts 20 minutes):\n${link}\n\nOr go straight back to your design: ${design.resumeAbsolute}\n\nIf you did not ask for this, you can ignore this email.`,
+          text: `Your ring design is saved: ${design.summary || design.title}\n\nSign in to your LADFOX account to see it, change it or order it:\n${link}\n\nOr go straight back to your design: ${design.resumeAbsolute}\n\nIf you did not ask for this, you can ignore this email.`,
           html: emailShell("Your ring design is saved",
             `<p style="margin:0">${(design.summary || design.title).replace(/[<>&]/g, "")}</p><p style="margin:14px 0 0;font-size:13px;color:#555">Sign in to see it any time, or go straight back to it: <a href="${design.resumeAbsolute}">${design.resumeAbsolute.replace(/[<>&"]/g, "")}</a></p>`,
             "Sign in to my account", link)

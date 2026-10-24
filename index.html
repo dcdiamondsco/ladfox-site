@@ -2402,7 +2402,7 @@
             <div class="hp-steps">
               <figure class="hp-step"><div class="hp-media hp-media--black"><img src="Images/jamie%20sketch.png" alt="Sketch concept for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>1</span><strong>Complimentary sketch</strong><em>We turn your idea into a hand-drawn sketch and a clear quote, at no cost and with no obligation.</em></figcaption></figure>
               <figure class="hp-step"><div class="hp-media"><img src="Images/jamie%20cad.jpeg" alt="CAD design views for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>2</span><strong>CAD design</strong><em>We model your ring in 3D so you can review the setting and proportions from every angle before anything is made.</em></figcaption></figure>
-              <figure class="hp-step"><div class="hp-media hp-media--platinum-final"><video src="Images/Jamie%20finished%20hd.mp4" preload="none" muted loop playsinline data-hp-video aria-label="The finished ring"></video></div><figcaption><span>3</span><strong>Finished piece</strong><em>Once you approve the design, your ring is crafted, hand-finished and delivered to you.</em></figcaption></figure>
+              <figure class="hp-step"><div class="hp-media hp-media--platinum-final"><video src="Images/Jamie%20finished%20hd.mp4" poster="Images/jamie-finished-poster.jpg" preload="auto" muted loop playsinline data-hp-video aria-label="The finished ring"></video></div><figcaption><span>3</span><strong>Final piece</strong><em>Once you approve the design, your ring is crafted, hand-finished and delivered to you.</em></figcaption></figure>
             </div>
           </article>
           <div class="hp-actions">
@@ -3105,7 +3105,7 @@
       const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
         const v = entry.target;
         if (entry.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else { v.pause(); }
-      }), { threshold: 0.3 });
+      }), { threshold: 0.3, rootMargin: "300px 0px" });
       videos.forEach((v) => io.observe(v));
     })();
   </script>
@@ -3118,7 +3118,7 @@
 open.addEventListener("click",function(){form.classList.add("is-visible");form.hidden=false;open.hidden=true;open.setAttribute("aria-expanded","true");msg.textContent="";email.focus()});
 form.addEventListener("submit",function(e){e.preventDefault();var v=email.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){msg.textContent="Please enter a valid email address.";email.focus();return}
 var b=form.querySelector("button");b.disabled=true;msg.textContent="Sending\u2026";
-fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:v,intent:"sketch"})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){if(x.ok){form.hidden=true;msg.textContent="Check your inbox. We\u2019ve sent you a link to request your complimentary sketch.";if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}}else{b.disabled=false;msg.textContent=x.d&&x.d.error||"Something went wrong. Please try again."}}).catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."})});
+fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:v,intent:"sketch"})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){if(x.ok&&x.d&&x.d.instant){if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}window.location.href="account.html?start=design";return}if(x.ok){form.hidden=true;msg.textContent="Check your inbox. We\u2019ve sent you a link to request your complimentary sketch.";if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}}else{b.disabled=false;msg.textContent=x.d&&x.d.error||"Something went wrong. Please try again."}}).catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."})});
 })();
 </script>
 <style>
@@ -3200,7 +3200,7 @@ fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":
     b.disabled=true;msg.textContent="Sending\u2026";
     fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:em,name:$("lfxStartName").value,intent:kind})})
     .then(function(r){return r.json().catch(function(){return {}}).then(function(d){return {ok:r.ok,d:d}})})
-    .then(function(x){b.disabled=false;if(x.ok){f.hidden=true;$("lfxStartDone").hidden=false;if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/PpNpCLbcpaQdEISh4NlD"})}catch(err){}}}else msg.textContent=(x.d&&x.d.error)||"Something went wrong. Please try again."})
+    .then(function(x){b.disabled=false;if(x.ok&&x.d&&x.d.instant){if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/PpNpCLbcpaQdEISh4NlD"})}catch(err){}}window.location.href="account.html?start="+kind;return}if(x.ok){f.hidden=true;$("lfxStartDone").hidden=false;if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/PpNpCLbcpaQdEISh4NlD"})}catch(err){}}}else msg.textContent=(x.d&&x.d.error)||"Something went wrong. Please try again."})
     .catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."});
   });
 })();
