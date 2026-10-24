@@ -18,6 +18,7 @@ const emailCustomer = async (request, project, note) => {
   const stage = STAGES[project.stage];
   const body = `<p style="margin:0 0 10px">Your ring "<strong>${escapeHtml(project.title)}</strong>" is now: <strong>${escapeHtml(stage)}</strong>.</p>` +
     (project.estimate ? `<p style="margin:0 0 10px">Estimated date: ${escapeHtml(project.estimate)} (this is an estimate, not a guarantee).</p>` : "") +
+    (project.stage === 7 && project.trackingUrl ? `<p style="margin:0 0 10px"><a href="${escapeHtml(project.trackingUrl)}" style="color:#dfe3ea">Track your parcel</a></p>` : "") +
     (note ? `<p style="margin:0 0 10px;padding:12px;background:#f4f2ee;border-radius:8px">${escapeHtml(note)}</p>` : "");
   await sendEmail({
     to: project.email,
@@ -61,6 +62,10 @@ export default async (request) => {
     const stageChanged = Number.isInteger(stage) && stage >= 0 && stage < STAGES.length && stage !== project.stage;
     if (Number.isInteger(stage) && stage >= 0 && stage < STAGES.length) project.stage = stage;
     if (typeof body.estimate === "string") project.estimate = clean(body.estimate, 80);
+    if (typeof body.trackingUrl === "string") {
+      const u = clean(body.trackingUrl, 500);
+      project.trackingUrl = /^https:\/\/[^\s"'<>]{4,480}$/.test(u) ? u : "";
+    }
     if (stageChanged || note) project.updates.push({ at: now, by: "ladfox", text: note || `Status updated to "${STAGES[project.stage]}".`, stage: project.stage });
     project.updatedAt = now;
     project.customerUnread = false;

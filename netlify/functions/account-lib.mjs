@@ -15,6 +15,7 @@ export const STAGES = [
 // Stage positions (keep in step with STAGES above and the list in account.html).
 export const STAGE_PAID = 2;
 export const STAGE_DESIGN = 3;
+export const STAGE_DISPATCHED = 7;
 export const STAGE_APPROVED = 4;
 
 export const LOGIN_TTL_MS = 365 * 24 * 60 * 60 * 1000;
@@ -201,7 +202,7 @@ export const createProject = async (db, fields) => {
 export const publicProject = (p) => ({
   id: p.id, type: p.type, title: p.title, details: p.details, ringType: p.ringType, budget: p.budget,
   orderReference: p.orderReference, standard: p.standard === true,
-  files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate,
+  files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "",
   createdAt: p.createdAt, updatedAt: p.updatedAt, updates: p.updates
 });
 
