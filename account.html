@@ -102,18 +102,18 @@
 .a2 .pulse{animation:a2p 2.6s ease-out infinite;transform-origin:center}
 @keyframes a2p{0%,40%{opacity:0;transform:scale(.7)}60%{opacity:.8}100%{opacity:0;transform:scale(1.5)}}
 /* 3 CAD in progress: wireframe gem turning */
-.a3 .turn{animation:a3t 3.4s ease-in-out infinite;transform-origin:center}
+.a3 .turn{animation:a3t 3.4s ease-in-out infinite;transform-origin:80px 60px}
 @keyframes a3t{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.18)}}
 .a3 .scan{animation:a3s 3.4s ease-in-out infinite}
 @keyframes a3s{0%,100%{transform:translateX(-46px);opacity:.2}50%{transform:translateX(46px);opacity:.9}}
 /* 4 CAD approved: seal pops with tick */
-.a4 .seal{animation:a4s 2.4s ease-in-out infinite;transform-origin:center}
+.a4 .seal{animation:a4s 2.4s ease-in-out infinite;transform-origin:80px 60px}
 @keyframes a4s{0%,100%{transform:scale(.94)}45%{transform:scale(1.06)}}
 .a4 .tick{stroke-dasharray:50;stroke-dashoffset:50;animation:a4t 2.4s ease-out infinite}
 @keyframes a4t{0%,10%{stroke-dashoffset:50}50%,100%{stroke-dashoffset:0}}
 /* 5 production: hammer taps the ring, sparks fly */
-.a5 .hammer{animation:a5h 1.1s cubic-bezier(.5,0,.8,.6) infinite;transform-origin:118px 22px}
-@keyframes a5h{0%{transform:rotate(-34deg)}42%{transform:rotate(8deg)}52%{transform:rotate(8deg)}100%{transform:rotate(-34deg)}}
+.a5 .hammer{animation:a5h 1.1s cubic-bezier(.5,0,.8,.6) infinite}
+@keyframes a5h{0%{transform:rotate(36deg)}42%{transform:rotate(0)}52%{transform:rotate(0)}100%{transform:rotate(36deg)}}
 .a5 .spark{animation:a5s 1.1s ease-out infinite;opacity:0}
 .a5 .spark.s2{animation-delay:.02s}
 @keyframes a5s{0%,40%{opacity:0;transform:translate(0,0)}46%{opacity:1}100%{opacity:0;transform:translate(var(--dx,10px),var(--dy,-12px))}}
@@ -172,8 +172,6 @@
 
     <section id="dash" class="hidden">
       <h2 id="hello" class="account-title">Hi</h2>
-      <style>.salebar{text-align:center;margin:0 0 18px}.salebar b{display:block;font-size:1.1rem;font-weight:800;letter-spacing:.02em;color:#c95858;margin:0 0 4px}.salebar span{font-size:.84rem;font-weight:700;letter-spacing:.02em;color:#c95858;font-variant-numeric:tabular-nums}</style>
-      <div class="salebar" id="salebar" hidden><b>20% off your ring this week</b><span id="saleTime"></span></div>
       <p id="helloSub" class="hidden"></p>
       <section id="concierge" class="cg hidden" aria-live="polite">
         <p class="cg-eye" id="cgEye"></p>
@@ -278,18 +276,19 @@
     0: '<svg class="ico a0" viewBox="0 0 160 110" aria-hidden="true"><rect class="paper" x="52" y="40" width="56" height="40" rx="4" fill="#000"/><path class="paper soft" d="M62 52h36M62 60h36M62 68h24"/><path class="solid" d="M32 48l48 30 48-30v42H32z"/><path d="M32 48l48 30 48-30"/><path class="glow tw" d="M128 26l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" style="transform-origin:128px 34px"/></svg>',
     1: '<svg class="ico a1" viewBox="0 0 160 110" aria-hidden="true"><circle class="soft" cx="80" cy="56" r="24" style="stroke-dasharray:3 6"/><circle class="draw" cx="80" cy="56" r="24"/><path class="draw" d="M70 26l10-10 10 10-10 10z" style="stroke-dasharray:60;stroke-dashoffset:0;animation:none"/><g class="pencil"><path d="M0 0l-14 4 2-14 24-24 12 12z" class="solid"/><path d="M-12 -10l12 12"/></g></svg>',
     2: '<svg class="ico a2" viewBox="0 0 160 110" aria-hidden="true"><rect x="30" y="32" width="100" height="62" rx="8"/><path d="M30 50h100M44 78h24"/><circle class="solid" cx="116" cy="34" r="19"/><circle class="pulse soft" cx="116" cy="34" r="19"/><path class="tick" d="M106 34l7 8 14-16"/></svg>',
-    3: '<svg class="ico a3" viewBox="0 0 160 110" aria-hidden="true">' + gem("") + '<g class="turn">' + '<path d="M56 34l8 16 16 42M104 34l-8 16-16 42"/></g><path class="scan soft" d="M80 28v70" style="stroke-dasharray:3 5"/><path class="soft" d="M30 100h100M30 96v8M130 96v8"/></svg>',
-    4: '<svg class="ico a4" viewBox="0 0 160 110" aria-hidden="true"><g class="seal fb"><path d="M80 14l30 12v26c0 20-13 36-30 44-17-8-30-24-30-44V26z"/></g><path class="tick" d="M65 56l11 12 22-24"/></svg>',
-    5: '<svg class="ico a5" viewBox="0 0 160 110" aria-hidden="true"><path d="M44 96h72M56 96l6-18h36l6 18" class="solid"/><circle cx="80" cy="64" r="14"/><path class="glow" d="M80 46l6 5-6 4-6-4z"/><g class="hammer"><path d="M118 22l-30 34"/><path class="solid" d="M104 12l24 18-8 10-26-16z"/></g><path class="spark" d="M70 52l-8-8" style="--dx:-10px;--dy:-10px"/><path class="spark s2" d="M92 52l8-8" style="--dx:10px;--dy:-10px"/><path class="spark" d="M80 48v-12" style="--dy:-14px;--dx:0"/></svg>',
-    6: '<svg class="ico a6" viewBox="0 0 160 110" aria-hidden="true">' + gem("") + '<path class="glow glint" d="M80 64l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><g class="lens"><circle class="solid" cx="80" cy="56" r="20" fill-opacity=".15"/><circle cx="80" cy="56" r="20"/><path d="M95 71l20 20" stroke-width="5"/></g></svg>',
+    3: '<svg class="ico a3" viewBox="0 0 160 110" aria-hidden="true"><g class="turn"><g class="rg"><circle cx="80" cy="68" r="22"/><circle class="soft" cx="80" cy="68" r="17" style="stroke-dasharray:2 5"/><path class="solid" d="M68 40l5-9h14l5 9-12 14z"/><path class="soft" d="M68 40h24M73 31l7 23M87 31l-7 23"/></g></g><path class="scan soft" d="M80 28v76" style="stroke-dasharray:3 5"/><path class="soft" d="M40 102h80M40 98v8M120 98v8"/></svg>',
+    4: '<svg class="ico a4" viewBox="0 0 160 110" aria-hidden="true"><g class="seal fb"><g class="rg"><circle cx="80" cy="68" r="22"/><circle class="soft" cx="80" cy="68" r="17" style="stroke-dasharray:2 5"/><path class="solid" d="M68 40l5-9h14l5 9-12 14z"/><path class="soft" d="M68 40h24M73 31l7 23M87 31l-7 23"/></g></g><circle class="solid" cx="116" cy="34" r="19"/><circle class="pulse soft" cx="116" cy="34" r="19"/><path class="tick" d="M106 34l7 8 14-16"/></svg>',
+    5: '<svg class="ico a5" viewBox="0 0 160 110" aria-hidden="true"><path d="M44 100h72M56 100l6-18h36l6 18" class="solid"/><circle cx="80" cy="64" r="14"/><path class="glow" d="M80 46l6 5-6 4-6-4z"/><g class="hammer" style="transform-origin:128px 20px"><path d="M128 20L87 52"/><g transform="translate(87 52) rotate(142)"><rect class="solid" x="-14" y="-13" width="14" height="26" rx="2"/></g></g><path class="spark" d="M70 50l-8-8" style="--dx:-10px;--dy:-10px"/><path class="spark s2" d="M92 46l8-8" style="--dx:10px;--dy:-10px"/><path class="spark" d="M80 46v-12" style="--dy:-14px;--dx:0"/></svg>',
+    6: '<svg class="ico a6" viewBox="0 0 160 110" aria-hidden="true"><g class="rg"><circle cx="80" cy="68" r="22"/><circle class="soft" cx="80" cy="68" r="17" style="stroke-dasharray:2 5"/><path class="solid" d="M68 40l5-9h14l5 9-12 14z"/><path class="soft" d="M68 40h24M73 31l7 23M87 31l-7 23"/></g><path class="glow glint" d="M80 64l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><g class="lens"><circle class="solid" cx="80" cy="56" r="20" fill-opacity=".15"/><circle cx="80" cy="56" r="20"/><path d="M95 71l20 20" stroke-width="5"/></g></svg>',
     7: '<svg class="ico a7" viewBox="0 0 240 120" aria-hidden="true"><defs><clipPath id="vclip"><rect x="0" y="0" width="240" height="120"/></clipPath></defs><g clip-path="url(#vclip)"><g class="scenery soft"><path d="M10 82V62l10-8 10 8v20M60 82V50M52 62l8-12 8 12M104 82V66h14v16M150 82V58l10-9 10 9v24M200 82V52M192 64l8-12 8 12M250 82V62l10-8 10 8v20M300 82V50M292 62l8-12 8 12"/></g><path class="road" d="M0 100h240"/><g class="bob"><g class="speed"><path d="M26 56h-14"/></g><g class="speed l2"><path d="M30 68h-18"/></g><g class="speed l3"><path d="M26 80h-12"/></g><path class="solid" d="M34 40q0-6 6-6h92q6 0 6 6v46H34z"/><path class="solid" d="M138 50h26l24 22v14h-50z"/><path d="M146 56h16l16 16h-32z" class="soft"/><path d="M34 70h104" class="soft"/><circle class="glow" cx="184" cy="78" r="2.4"/><path d="M188 86h6" /><g class="wheel" style="transform-origin:70px 90px"><circle class="solid" cx="70" cy="90" r="12"/><path d="M70 80v20M60 90h20"/></g><g class="wheel" style="transform-origin:162px 90px"><circle class="solid" cx="162" cy="90" r="12"/><path d="M162 80v20M152 90h20"/></g></g></g></svg>',
-    8: '<svg class="ico a8" viewBox="0 0 160 110" aria-hidden="true"><path class="solid" d="M44 52h72v40H44z"/><g class="gem fb"><path d="M72 40l8-10 8 10-8 14z"/></g><path class="glow twk" d="M104 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" style="transform-origin:104px 37px"/><g class="lid"><path class="solid" d="M40 40h80v12H40z"/></g><path class="soft" d="M80 52v40"/></svg>'
+    8: '<svg class="ico a8" viewBox="0 0 160 110" aria-hidden="true"><path class="solid" d="M44 52h72v40H44z"/><path class="glow twk" d="M104 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" style="transform-origin:104px 37px"/><g class="lid"><path class="solid" d="M40 40h80v12H40z"/></g><path class="soft" d="M80 52v40"/></svg>'
   };
   window.lfxStageIcon = function (i) { return I[i] || I[0]; };
 })();
 
+
 (() => {
-  const STAGES = ["Enquiry received","Complimentary initial design created","Payment received","CAD in progress","CAD approved","In production","Quality check","Dispatched","Delivered"];
+  const STAGES = ["Enquiry received","Initial design created","Payment received","CAD in progress","CAD approved","In production","Quality check","Dispatched","Delivered"];
   const $ = (id) => document.getElementById(id);
   const show = (id) => { for (const s of ["loading","signin","dash"]) $(s).classList.toggle("hidden", s !== id); $("logout").classList.toggle("hidden", id !== "dash"); };
   const api = async (url, opts = {}) => {
@@ -311,12 +310,11 @@
     head.append(left, el("span", "badge", STAGES[p.stage] || "Enquiry received"));
     if (p.type !== "design-request") card.append(head);
     {
-      const BL = ["We have received your enquiry and will be in touch shortly.","Your complimentary initial design is ready to view below.","Payment received. Thank you!","We are building your ring in 3D so you can see every detail before it is made.","Your CAD is approved. We are preparing to make your ring.","Your ring is being handcrafted.","A final inspection and hallmark check before it leaves us.","Your ring is on its way to you.","Delivered. We hope you love it."];
+      const BL = ["We have received your enquiry and will be in touch shortly.","Your complimentary initial design is ready to view below.","Payment received. Thank you!","We are building your ring in 3D so you can see every detail before it is made.","Your CAD is approved. We are preparing to make your ring.","Your ring is being handcrafted.","Final inspection and polish.","Your ring is on its way to you.","Delivered. We hope you love it."];
       const sp = el("div", "sp");
       sp.innerHTML = window.lfxStageIcon(p.stage);
       sp.append(el("h3", "", p.stage === 7 ? "On route" : (STAGES[p.stage] || "")));
       sp.append(el("p", "", BL[p.stage] || ""));
-      if (p.estimate) sp.append(el("p", "", "Estimated delivery: " + p.estimate));
       if (p.stage === 7 && p.trackingUrl && /^https:\/\//.test(p.trackingUrl)) { const a2 = el("a", "btn", "Track your parcel"); a2.href = p.trackingUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer"; sp.append(a2); }
       card.append(sp);
     }
@@ -330,6 +328,7 @@
       steps.append(li);
     });
     card.append(steps);
+    if (p.estimate) { const ed = el("p", "", "Estimated delivery: " + p.estimate); ed.style.cssText = "text-align:center;margin:14px 0;color:#dfe3ea;font-weight:600"; card.append(ed); }
 
     if ((p.files || []).length) {
       const grid = el("div", "files");
@@ -368,11 +367,13 @@
       if (pay.status === "paid") {
         box.append(el("h3", "", "Paid: " + amount), el("p", "", (pay.paidAt ? fmtDate(pay.paidAt) + ". " : "") + "Thank you."));
       } else {
-        const h3 = el("h3", "", "Payment due: ");
-        if (window.lfxSaleEnd && Date.now() < window.lfxSaleEnd) { const was = el("s", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "display:block;color:rgba(255,255,255,.92);font-weight:700;font-size:.92rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:1.5px;margin:0 0 2px"; h3.append(was); }
-        h3.append(document.createTextNode(amount));
-        box.append(h3);
-        const pb = el("button", "btn", "Pay " + amount + " securely"); pb.type = "button";
+        const sale = window.lfxSaleEnd && Date.now() < window.lfxSaleEnd;
+        box.append(el("h3", "", "Payment due"));
+        if (sale) { const was = el("div", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "text-align:center;color:rgba(255,255,255,.92);font-weight:700;font-size:.92rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:1.5px;margin:6px 0 8px"; box.append(was); }
+        const pb = el("button", "btn"); pb.type = "button";
+        const lbl = el("span", "", amount); lbl.style.cssText = "display:block;color:" + (sale ? "#c95858" : "inherit") + ";font-weight:800;font-size:1.1rem;letter-spacing:.02em";
+        pb.append(lbl);
+        if (sale) { const tm = el("span", "", ""); tm.style.cssText = "display:block;color:#c95858;font-weight:700;font-size:.84rem;letter-spacing:.02em;margin-top:4px"; pb.append(tm); const tk = () => { const r = window.lfxSaleEnd - Date.now(); if (r <= 0) { tm.textContent = ""; return; } tm.textContent = "Sale ends in " + Math.floor(r / 864e5) + "d " + String(Math.floor(r % 864e5 / 36e5)).padStart(2, "0") + "h " + String(Math.floor(r % 36e5 / 6e4)).padStart(2, "0") + "m " + String(Math.floor(r % 6e4 / 1e3)).padStart(2, "0") + "s"; }; tk(); setInterval(tk, 1000); }
         pb.addEventListener("click", async () => {
           pb.disabled = true;
           const { res, data } = await post("/.netlify/functions/account", { action: "pay", id: p.id, paymentId: pay.id });
@@ -385,7 +386,7 @@
     }
 
     const thread = el("div", "thread");
-    for (const u of p.updates || []) {
+    for (const u of (p.updates || []).filter((x) => x.kind === "msg" || (x.by === "customer" && x.stage === undefined))) {
       const b = el("div", "bubble " + (u.by === "customer" ? "customer" : "ladfox"), u.text);
       b.append(el("small", "", (u.by === "customer" ? "You" : "LADFOX") + " · " + fmtDate(u.at)));
       thread.append(b);
@@ -674,7 +675,7 @@
   const part = (d) => Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" }).formatToParts(d).map((x) => [x.type, x.value]));
   const off = (d) => { const p = part(d); return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - Math.floor(d.getTime() / 1000) * 1000; };
   const ends = () => { const p = part(new Date()); const dow = new Date(Date.UTC(+p.year, +p.month - 1, +p.day)).getUTCDay(); const days = ((8 - dow) % 7) || 7; const t = Date.UTC(+p.year, +p.month - 1, +p.day + days); let u = t - off(new Date(t)); u = t - off(new Date(u)); return u; };
-  const bar = document.getElementById("salebar"), out = document.getElementById("saleTime"); if (!bar || !out) return;
+  const bar = { hidden: false }, out = { textContent: "" };
   const end = ends(); window.lfxSaleEnd = end;
   const tick = () => { const r = end - Date.now(); if (r <= 0) { bar.hidden = true; return; } const d = Math.floor(r / 864e5), h = Math.floor(r % 864e5 / 36e5), m = Math.floor(r % 36e5 / 6e4), sc = Math.floor(r % 6e4 / 1e3); out.textContent = "Sale ends in " + d + "d " + String(h).padStart(2, "0") + "h " + String(m).padStart(2, "0") + "m " + String(sc).padStart(2, "0") + "s"; bar.hidden = false; };
   tick(); setInterval(tick, 1000);

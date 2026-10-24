@@ -2,7 +2,7 @@ import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 
 export const STAGES = [
   "Enquiry received",
-  "Complimentary initial design created",
+  "Initial design created",
   "Payment received",
   "CAD in progress",
   "CAD approved",
