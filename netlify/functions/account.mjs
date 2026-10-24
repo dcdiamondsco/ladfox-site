@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
-  publicProject, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey, plainShell
+  publicProject, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey, plainShell, newToken, sha, LOGIN_TTL_MS
 } from "./account-lib.mjs";
 
 const notifyOwner = async (request, subject, lines) => {
@@ -88,14 +88,18 @@ export default async (request) => {
     ]);
     try {
       const first = String(customer.name || "").trim().split(/\s+/)[0];
-      const hi = first ? `Hi ${first},` : "Hi there,";
-      const link = `${siteUrl(request)}/account`;
-      const bodyHtml = `<p style="margin:0">We have received your design request: <strong style="color:#fff">${escapeHtml(project.title)}</strong>.</p><p style="margin:16px 0 0">We will create your complimentary initial design and be in touch shortly. You can follow every step from your personal design page.</p>`;
-      const buttons = `<a href="${link}" style="display:inline-block;margin:5px 4px;padding:13px 26px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;background:#dfe3ea;color:#0a0a0a">View my design page</a>`;
+      const hi = first ? `Welcome to LADFOX, ${first}.` : "Welcome to LADFOX.";
+      const token = newToken();
+      await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + LOGIN_TTL_MS });
+      const link = `${siteUrl(request)}/account?token=${encodeURIComponent(token)}`;
+      const WA = "https://wa.me/447853362904", CALL = "tel:+447853362904";
+      const pill = (href, label, solid) => `<a href="${href}" style="display:inline-block;margin:5px 4px;padding:13px 26px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;${solid ? "background:#dfe3ea;color:#0a0a0a" : "background:#26272b;color:#ffffff"}">${label}</a>`;
+      const bodyHtml = `<p style="margin:0">Thank you for your design request: <strong style="color:#fff">${escapeHtml(project.title)}</strong>.</p><p style="margin:16px 0 0">We will create your complimentary initial design and be in touch shortly. Your personal design dashboard is open whenever you want to check progress, add details or message us.</p>`;
+      const buttons = `${pill(link, "Sign in to my dashboard", true)}<p style="margin:30px 0 8px;font-size:14px;color:#8b9099">Prefer to talk it through?</p>${pill(WA, "WhatsApp us")}${pill(CALL, "Call us")}`;
       await sendEmail({
         to: email,
-        subject: "We have received your design request",
-        text: `${hi}\n\nWe have received your design request: ${project.title}.\n\nWe will create your complimentary initial design and be in touch shortly. You can follow every step from your personal design page:\n${link}`,
+        subject: "Welcome to LADFOX: we have your design request",
+        text: `${hi}\n\nThank you for your design request: ${project.title}.\n\nWe will create your complimentary initial design and be in touch shortly.\n\nSign in to your dashboard:\n${link}\n\nPrefer to talk it through? WhatsApp us: ${WA}\nOr call us: ${CALL}`,
         html: plainShell(hi, bodyHtml, buttons)
       });
     } catch (error) {
