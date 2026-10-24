@@ -262,7 +262,7 @@
     if (cur) { $("detailBody").replaceChildren(card(cur)); window.scrollTo(0, 0); return; }
     const today = new Date().toDateString();
     const stat = (n, l) => { const d = el("div", "stat"); d.append(el("b", "", String(n)), el("span", "", l)); return d; };
-    $("stats").replaceChildren(stat(rows.length, "Enquiries"), stat(cs.filter((u) => isOn(u.lastSeenAt)).length, "Online now"), stat(rows.filter((p) => p.stage < 8).length, "Open"), stat(rows.filter((p) => p.customerUnread).length, "New messages"));
+    $("stats").replaceChildren(stat(rows.length, "Enquiries"), stat(rows.filter((p) => p.stage < 8).length, "Open"), stat(rows.filter((p) => p.customerUnread).length, "New messages"));
     const q = ($("q").value || "").toLowerCase(), f = $("flt").value;
     const vis = rows.filter((p) => (f === "all" || (f === "unread" && p.customerUnread) || (f === "open" && p.stage < 8) || (f === "done" && p.stage >= 8)) && (!q || (p.title + " " + p.email + " " + (p.name || "")).toLowerCase().includes(q)));
     $("list").replaceChildren(...(vis.length ? vis.map((p) => {
@@ -279,7 +279,9 @@
     $("activity").replaceChildren(...(none.length ? none.map((u) => {
       const r = el("div", "erow"); r.style.cursor = "default";
       const w = el("div", "who"); w.append(el("strong", "", u.name || u.email), el("small", "", (u.name ? u.email + " \u00b7 " : "") + (u.lastSeenAt ? "seen " + ago(u.lastSeenAt) : "signed up " + when(u.createdAt)) + (u.loginCount ? " \u00b7 " + u.loginCount + " login" + (u.loginCount > 1 ? "s" : "") : "")));
-      r.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w); return r;
+      const rm = el("button", "ghost", "Remove"); rm.type = "button";
+      rm.onclick = async () => { if (!confirm("Remove " + (u.name || u.email) + " from the dashboard?")) return; const { res, data } = await call({ action: "delete-customer", email: u.email }); if (!res.ok) return status(data.error || "Failed", true); status(""); load(); };
+      r.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w, rm); return r;
     }) : [el("p", "meta", "None.")]));
   }
   window.addEventListener("hashchange", render);

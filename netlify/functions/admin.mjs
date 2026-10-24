@@ -3,7 +3,7 @@ import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
   FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
-  PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE
+  PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
 
@@ -153,6 +153,14 @@ export default async (request) => {
     if (!project) return json({ error: "Project not found." }, 404);
     for (const f of project.files || []) await db.delete(fileKey(email, project.id, f.id)).catch(() => {});
     await db.delete(`${projectPrefix(email)}${project.id}`);
+    if (!(await listProjects(db, email)).length) { await db.delete(customerKey(email)).catch(() => {}); await db.delete(followKey(email)).catch(() => {}); }
+    return json({ ok: true });
+  }
+
+  if (body.action === "delete-customer") {
+    const email = normaliseEmail(body.email);
+    if ((await listProjects(db, email)).length) return json({ error: "This customer still has a project." }, 400);
+    await db.delete(customerKey(email)).catch(() => {}); await db.delete(followKey(email)).catch(() => {});
     return json({ ok: true });
   }
 
