@@ -172,7 +172,7 @@
 
     <section id="dash" class="hidden">
       <h2 id="hello" class="account-title">Hi</h2>
-      <style>.salebar{text-align:center;margin:0 0 18px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06);color:#dfe3ea}.salebar b{display:block;font-size:1.05rem;color:#fff;margin:0 0 3px}.salebar span{font-size:.9rem;font-variant-numeric:tabular-nums}</style>
+      <style>.salebar{text-align:center;margin:0 0 18px}.salebar b{display:block;font-size:1.1rem;font-weight:800;letter-spacing:.02em;color:#c95858;margin:0 0 4px}.salebar span{font-size:.84rem;font-weight:700;letter-spacing:.02em;color:#c95858;font-variant-numeric:tabular-nums}</style>
       <div class="salebar" id="salebar" hidden><b>20% off your ring this week</b><span id="saleTime"></span></div>
       <p id="helloSub" class="hidden"></p>
       <section id="concierge" class="cg hidden" aria-live="polite">
@@ -369,7 +369,7 @@
         box.append(el("h3", "", "Paid: " + amount), el("p", "", pay.label + (pay.paidAt ? " · " + fmtDate(pay.paidAt) : "") + ". Thank you."));
       } else {
         const h3 = el("h3", "", "Payment due: ");
-        if (window.lfxSaleEnd && Date.now() < window.lfxSaleEnd) { const was = el("s", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "opacity:.55;margin-right:8px;font-weight:400"; h3.append(was); }
+        if (window.lfxSaleEnd && Date.now() < window.lfxSaleEnd) { const was = el("s", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "display:block;color:rgba(255,255,255,.92);font-weight:700;font-size:.92rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:1.5px;margin:0 0 2px"; h3.append(was); }
         h3.append(document.createTextNode(amount));
         box.append(h3, el("p", "", pay.label + ". Secure card payment through Stripe."));
         const pb = el("button", "btn", "Pay " + amount + " securely"); pb.type = "button";
