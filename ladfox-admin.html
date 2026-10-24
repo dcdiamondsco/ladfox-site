@@ -123,7 +123,7 @@
       const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, estimate: est.value, note: note.value, notify: ck.checked });
       save.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
-      status(data.emailed ? "Saved and customer emailed." : "Saved." + (ck.checked ? " (No email sent.)" : ""));
+      status("");
       load();
     };
     // ----- design files -----
@@ -150,12 +150,12 @@
     fsec.append(fileIn, fnote, frow);
     fbtn.onclick = async () => {
       const file = fileIn.files[0]; if (!file) return status("Choose a file first.", true);
-      fbtn.disabled = true; status("Uploading…");
+      fbtn.disabled = true; status("");
       try {
         const { type, data } = await prepareFile(file);
         const { res, data: out } = await call({ action: "upload", email: p.email, id: p.id, name: file.name, data, note: fnote.value, notify: fck.checked });
         if (!res.ok) throw new Error(out.error || "Upload failed");
-        status(out.emailed ? "Uploaded and customer emailed." : "Uploaded."); load();
+        status(""); load();
       } catch (e) { status(e.message, true); }
       fbtn.disabled = false;
     };
@@ -185,7 +185,7 @@
       pbtn.onclick = async () => {
         const { res, data } = await call({ action: "request-payment", email: p.email, id: p.id, amount: amt.value, label: lab2.value, notify: pck.checked });
         if (!res.ok) return status(data.error || "Failed", true);
-        status(data.emailed ? "Payment requested and customer emailed." : "Payment requested."); load();
+        status(""); load();
       };
     }
     c.append(psec);
@@ -200,7 +200,7 @@
       const { res, data } = await call({ action: "message", email: p.email, id: p.id, text: msg.value, notify: mck.checked });
       msend.disabled = false;
       if (!res.ok) return status(data.error || "Could not send.", true);
-      status(data.emailed ? "Message sent and customer emailed." : "Message added."); load();
+      status(""); load();
     };
     const log = el("div", "log");
     for (const u of p.updates) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
@@ -213,7 +213,7 @@
       const { res, data } = await call({ action: "delete-project", email: p.email, id: p.id });
       del.disabled = false;
       if (!res.ok) return status(data.error || "Could not delete.", true);
-      status("Project deleted."); load();
+      status(""); load();
     };
     dsec.append(del); c.append(dsec);
     return c;
@@ -258,7 +258,7 @@
     e.preventDefault();
     const { res, data } = await call({ action: "create", email: $("a-email").value, name: $("a-name").value, title: $("a-title").value, orderReference: $("a-ref").value, details: $("a-details").value, notify: $("a-notify").checked });
     if (!res.ok) return status(data.error || "Failed", true);
-    e.target.reset(); e.target.classList.add("hidden"); status("Added."); load();
+    e.target.reset(); e.target.classList.add("hidden"); status(""); load();
   });
   if (pw) load();
 })();
