@@ -368,7 +368,10 @@
       if (pay.status === "paid") {
         box.append(el("h3", "", "Paid: " + amount), el("p", "", pay.label + (pay.paidAt ? " · " + fmtDate(pay.paidAt) : "") + ". Thank you."));
       } else {
-        box.append(el("h3", "", "Payment due: " + amount), el("p", "", pay.label + ". Secure card payment through Stripe."));
+        const h3 = el("h3", "", "Payment due: ");
+        if (window.lfxSaleEnd && Date.now() < window.lfxSaleEnd) { const was = el("s", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "opacity:.55;margin-right:8px;font-weight:400"; h3.append(was); }
+        h3.append(document.createTextNode(amount));
+        box.append(h3, el("p", "", pay.label + ". Secure card payment through Stripe."));
         const pb = el("button", "btn", "Pay " + amount + " securely"); pb.type = "button";
         pb.addEventListener("click", async () => {
           pb.disabled = true;
@@ -672,7 +675,7 @@
   const off = (d) => { const p = part(d); return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - Math.floor(d.getTime() / 1000) * 1000; };
   const ends = () => { const p = part(new Date()); const dow = new Date(Date.UTC(+p.year, +p.month - 1, +p.day)).getUTCDay(); const days = ((8 - dow) % 7) || 7; const t = Date.UTC(+p.year, +p.month - 1, +p.day + days); let u = t - off(new Date(t)); u = t - off(new Date(u)); return u; };
   const bar = document.getElementById("salebar"), out = document.getElementById("saleTime"); if (!bar || !out) return;
-  const end = ends();
+  const end = ends(); window.lfxSaleEnd = end;
   const tick = () => { const r = end - Date.now(); if (r <= 0) { bar.hidden = true; return; } const d = Math.floor(r / 864e5), h = Math.floor(r % 864e5 / 36e5), m = Math.floor(r % 36e5 / 6e4), sc = Math.floor(r % 6e4 / 1e3); out.textContent = "Sale ends in " + d + "d " + String(h).padStart(2, "0") + "h " + String(m).padStart(2, "0") + "m " + String(sc).padStart(2, "0") + "s"; bar.hidden = false; };
   tick(); setInterval(tick, 1000);
 })();
