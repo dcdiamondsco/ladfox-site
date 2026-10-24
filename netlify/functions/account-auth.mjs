@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, sha, newToken, normaliseEmail, validEmail, clean, siteUrl, sendEmail, emailShell,
-  upsertCustomer, getCustomer, sessionCookie, LOGIN_TTL_MS, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
+  upsertCustomer, getCustomer, sheetEvent, sessionCookie, LOGIN_TTL_MS, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
 } from "./account-lib.mjs";
 
 const GENERIC = { ok: true, message: "If that email address is valid, a sign-in link is on its way." };
@@ -31,6 +31,7 @@ export default async (request) => {
     await db.setJSON(limitKey, { at: Date.now() });
 
     if (name || instant) await upsertCustomer(db, email, { name });
+    if (instant) await sheetEvent({ type: "signup", email, name, intent: clean(body.intent, 20) || "login" });
     let instantHeaders = null;
     if (instant) {
       const sessionId = newToken();
@@ -50,17 +51,17 @@ export default async (request) => {
         to: email,
         subject: startKind ? "Your LADFOX ring is waiting" : sketch ? "Start your complimentary LADFOX sketch" : "Your LADFOX sign-in link",
         text: startKind
-          ? `${hello}thank you for choosing LADFOX. Your personal design page is ready. It takes about two minutes to tell us about your ring, and we then send you a complimentary sketch and a clear quote, with no obligation. You can follow every step there.\n\nContinue here:\n${link}\n\nIf you did not ask for this, you can ignore this email.`
+          ? `${hello}thank you for choosing LADFOX. Your personal design page is ready. It takes about two minutes to tell us about your ring, and we then send you a complimentary initial design and a clear quote, with no obligation. You can follow every step there.\n\nContinue here:\n${link}\n\nIf you did not ask for this, you can ignore this email.`
           : sketch
-          ? `Thank you for your interest in LADFOX. Use this link to tell us about your ring and request your complimentary sketch:\n\n${link}\n\nIf you did not ask for this, you can ignore this email.`
+          ? `Thank you for your interest in LADFOX. Use this link to tell us about your ring and request your complimentary initial design:\n\n${link}\n\nIf you did not ask for this, you can ignore this email.`
           : `Use this link to sign in to your LADFOX account:\n\n${link}\n\nIf you did not ask for this, you can ignore this email.`,
         html: startKind
           ? emailShell("Your ring is waiting",
-              `<p style="margin:0">${hello.replace(/[<>&"]/g, "")}thank you for choosing LADFOX. Your personal design page is ready.</p><p style="margin:14px 0 0">Tell us about your ring in about two minutes and we will send you a complimentary sketch and a clear quote. No obligation, and you can follow every step in one place.</p><p style="margin:14px 0 0;color:#8b9099;font-size:13px">If you did not ask for this, you can safely ignore this email.</p>`,
+              `<p style="margin:0">${hello.replace(/[<>&"]/g, "")}thank you for choosing LADFOX. Your personal design page is ready.</p><p style="margin:14px 0 0">Tell us about your ring in about two minutes and we will send you a complimentary initial design and a clear quote. No obligation, and you can follow every step in one place.</p><p style="margin:14px 0 0;color:#8b9099;font-size:13px">If you did not ask for this, you can safely ignore this email.</p>`,
               "Continue my design", link)
           : sketch
-          ? emailShell("Start your complimentary sketch",
-              "<p style=\"margin:0\">Tap the button below to tell us about the ring you have in mind. We will create a complimentary sketch and quote, and you can follow every step in your LADFOX account.</p><p style=\"margin:14px 0 0;color:#8b9099;font-size:13px\">If you did not ask for this, you can safely ignore this email.</p>",
+          ? emailShell("Start your complimentary initial design",
+              "<p style=\"margin:0\">Tap the button below to tell us about the ring you have in mind. We will create a complimentary initial design and quote, and you can follow every step in your LADFOX account.</p><p style=\"margin:14px 0 0;color:#8b9099;font-size:13px\">If you did not ask for this, you can safely ignore this email.</p>",
               "Request my sketch", link)
           : emailShell("Sign in to your LADFOX account",
               "<p style=\"margin:0\">Tap the button below to sign in.</p><p style=\"margin:14px 0 0;color:#8b9099;font-size:13px\">If you did not ask for this, you can safely ignore this email.</p>",

@@ -82,30 +82,34 @@
 
     <section id="signin" class="hidden">
       <h1>Log in to your LADFOX account</h1>
-      <p>Enter your email and we&rsquo;ll send you a secure link to log in. No password needed. New here? The same link creates your free account, so you can start your design and follow every step from sketch to delivery.</p>
+      <p>Enter your email and we&rsquo;ll send you a secure link to log in. No password needed. New here? The same link creates your free account, so you can start your design and follow every step from initial design to delivery.</p>
       <form id="signinForm" class="card" novalidate>
         <label for="si-name">Your name (new customers)</label>
         <input id="si-name" name="name" autocomplete="name" maxlength="80" placeholder="Optional" />
         <label for="si-email">Email address</label>
         <input id="si-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
-        <button class="btn" type="submit">Email me my login link</button>
+        <button class="btn" type="submit">Let&rsquo;s design</button>
         <div id="signinMsg" class="msg" role="status" aria-live="polite"></div>
       </form>
       <p style="font-size:.85rem">If you have already ordered, use the email address you gave at checkout and your order will be waiting here. <a href="privacy-policy.html">Privacy</a></p>
     </section>
 
     <section id="dash" class="hidden">
-      <h2 id="hello" class="account-title">Welcome</h2>
+      <h2 id="hello" class="account-title">Hi</h2>
       <p id="helloSub">Everything about your ring, in one place.</p>
       <section id="concierge" class="cg hidden" aria-live="polite">
         <p class="cg-eye" id="cgEye"></p>
         <h2 class="cg-line" id="cgLine"></h2>
-        <div class="cg-opts" id="cgOpts" hidden>
-          <button type="button" class="cg-opt" data-for="Myself">For myself</button>
-          <button type="button" class="cg-opt" data-for="A loved one">For a loved one</button>
+        <div class="cg-slot">
+          <div class="cg-opts" id="cgOpts">
+            <button type="button" class="cg-opt" data-for="Myself">For myself</button>
+            <button type="button" class="cg-opt" data-for="A loved one">For a loved one</button>
+          </div>
+          <div class="cg-namewrap" id="cgNameWrap">
+            <form class="cg-name" id="cgName" autocomplete="off"><input id="cgNameInput" maxlength="40" placeholder="Their first name" aria-label="Their first name" /><button type="submit">Continue</button></form>
+            <button type="button" class="cg-skip" id="cgSkip">Skip for now</button>
+          </div>
         </div>
-        <form class="cg-name" id="cgName" hidden autocomplete="off"><input id="cgNameInput" maxlength="40" placeholder="Their first name" aria-label="Their first name" /><button type="submit">Continue</button></form>
-        <button type="button" class="cg-skip" id="cgSkip" hidden>Skip for now</button>
       </section>
       <style>
         #dash.cg-only > :not(#concierge){display:none!important}
@@ -115,22 +119,25 @@
         .cg-line.typing::after,.cg-eye.typing::after{content:"";display:inline-block;width:.09em;height:.95em;margin-left:.12em;vertical-align:-.1em;background:#dfe3ea;animation:cgBlink .8s steps(1) infinite}
         .cg-eye.typing::after{width:.5em;height:2px;vertical-align:baseline;margin-left:.2em}
         @keyframes cgBlink{50%{opacity:0}}
-        .cg-opts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;width:100%}
-        .cg-opts[hidden]{display:none}
-        .cg-opt{flex:1 1 200px;max-width:280px;padding:20px 22px;border:0;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));color:#fff;font-size:1.05rem;font-weight:500;font-family:inherit;letter-spacing:.04em;cursor:pointer;opacity:0;transform:translateY(12px);animation:cgIn .6s cubic-bezier(.2,.7,.2,1) forwards;transition:background .25s,box-shadow .25s,transform .25s}
-        .cg-opt:nth-child(2){animation-delay:.18s}
+        .cg-slot{display:grid;width:100%;margin-top:34px}
+        .cg-slot>*{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .28s ease,visibility .28s}
+        .cg-slot>.on{opacity:1;visibility:visible}
+        .cg-opts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-content:flex-start;width:100%}
+        .cg-namewrap{display:flex;flex-direction:column;align-items:center;align-content:flex-start;width:100%}
+        .cg-opt{flex:1 1 200px;max-width:280px;padding:20px 22px;border:0;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));color:#fff;font-size:1.05rem;font-weight:500;font-family:inherit;letter-spacing:.04em;cursor:pointer;transition:background .25s,box-shadow .25s,transform .25s}
         .cg-opt:hover,.cg-opt:focus-visible{background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a;box-shadow:0 0 34px rgba(223,227,234,.35);outline:none;transform:translateY(-2px)}
         @keyframes cgIn{to{opacity:1;transform:none}}
-        .cg-name{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px;width:100%}
-        .cg-name[hidden]{display:none}
+        .cg-name{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;width:100%}
         .cg-name input{flex:1 1 220px;max-width:300px;border:0;border-radius:999px;background:rgba(255,255,255,.08);color:#fff;padding:18px 24px;font-size:1.05rem;text-align:center;letter-spacing:.04em;outline:none}
         .cg-name input:focus{background:rgba(255,255,255,.13);box-shadow:0 0 30px rgba(223,227,234,.25)}
         .cg-name button{border:0;border-radius:999px;padding:18px 30px;background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a;font:inherit;font-weight:600;cursor:pointer}
         .cg-skip{background:none;border:0;color:#9aa0aa;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin-top:14px}
-        @media (prefers-reduced-motion:reduce){.cg-opt{animation:none;opacity:1;transform:none}.cg-line.typing::after,.cg-eye.typing::after{animation:none}}
+        @media (prefers-reduced-motion:reduce){.cg-slot>*{transition:none}.cg-line.typing::after,.cg-eye.typing::after{animation:none}}
       </style>
-      <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s design your ring!</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary sketch and a clear quote.</p>
-        <ol class="w-steps"><li class="on"><b>1</b><span>Your ideas</span></li><li><b>2</b><span>Free sketch &amp; quote</span></li><li><b>3</b><span>CAD &amp; approval</span></li><li><b>4</b><span>Made &amp; delivered</span></li></ol></div>
+      <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s design your ring!</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary initial design and a clear quote.</p>
+        <p style="margin:-4px 0 16px"><button type="button" id="cgChange" style="background:none;border:0;color:#9aa0aa;font:inherit;font-size:.82rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px">Designing for someone else? Change</button></p>
+        <ol class="w-steps"><li class="on"><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></i><span>Your ideas</span></li><li class="w-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li><li><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></svg></i><span>Free initial design &amp; quote</span></li><li class="w-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li><li><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></i><span>CAD &amp; approval</span></li><li class="w-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li><li><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9l3-6z"/><path d="M3 9h18M9 3l3 6 3-6"/></svg></i><span>Creation and delivery</span></li></ol></div>
+      <style>ol.w-steps{display:flex;align-items:flex-start;justify-content:space-between;gap:2px;grid-template-columns:none}ol.w-steps li{flex:1 1 0;min-width:0}ol.w-steps li.w-arrow{flex:0 0 20px;margin-top:16px;color:#6b7078;display:block}ol.w-steps li.w-arrow svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}.w-ico{width:54px;height:54px;border-radius:50%;background:rgba(223,227,234,.07);display:grid;place-items:center;color:#9aa0aa;font-style:normal}.w-ico svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.w-steps li.on .w-ico{background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a}@media(max-width:420px){.w-ico{width:46px;height:46px}.w-ico svg{width:22px;height:22px}ol.w-steps li.w-arrow{flex-basis:14px;margin-top:14px}ol.w-steps li.w-arrow svg{width:14px;height:14px}}</style>
       <style>.welcome{text-align:center;margin:0 0 20px;padding:26px 18px;border:1px solid #3a3e46;border-radius:20px;background:radial-gradient(120% 140% at 50% 0%,#1a1c21 0%,#0b0b0d 70%)}.welcome.hidden{display:none}.w-eyebrow{margin:0 0 8px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c8ccd4}.welcome h2{margin:0 0 8px;font-size:1.6rem}.w-lead{margin:0 auto 20px;max-width:46ch;color:#c8ccd4;line-height:1.55}.w-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.w-steps li{display:grid;justify-items:center;gap:6px;font-size:.74rem;color:#9a9fa8;line-height:1.25}.w-steps b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid #3a3e46;font-weight:600}.w-steps li.on{color:#fff}.w-steps li.on b{background:#dfe3ea;color:#0b0b0d;border-color:#dfe3ea}.rq-progress{height:4px;border-radius:4px;background:#23262c;margin:0 0 16px;overflow:hidden}.rq-progress i{display:block;height:100%;width:0;background:#dfe3ea;transition:width .3s}.rq-count{font-size:.8rem;color:#c8ccd4;margin:-8px 0 14px}</style>
       <div id="optionsBox" class="hidden" hidden></div>
       <button id="newRequestBtn" class="btn ghost hidden" type="button">Start a new request</button>
@@ -139,11 +146,11 @@
       <form id="requestForm" class="card hidden" style="margin-top:18px" novalidate>
         <h2 id="rqHeading">Tell us about your ring</h2>
         <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
-        <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
-        <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
-        <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
+        <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips two"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips three"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="size"><div class="rq-label">Stone size</div><div class="rq-chips"><button type="button" class="chip" data-v="Under 1ct">Under 1ct</button><button type="button" class="chip" data-v="1 - 1.5ct">1 - 1.5ct</button><button type="button" class="chip" data-v="1.5 - 2ct">1.5 - 2ct</button><button type="button" class="chip" data-v="2 - 3ct">2 - 3ct</button><button type="button" class="chip" data-v="3ct+">3ct+</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
-        <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><div class="rq-chips"><button type="button" class="chip" data-v="Yellow gold">Yellow gold</button><button type="button" class="chip" data-v="White gold">White gold</button><button type="button" class="chip" data-v="Rose gold">Rose gold</button><button type="button" class="chip" data-v="Platinum">Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><div class="rq-chips three"><button type="button" class="chip" data-v="Yellow gold">Yellow gold</button><button type="button" class="chip" data-v="White gold">White gold</button><button type="button" class="chip" data-v="Rose gold">Rose gold</button><button type="button" class="chip" data-v="Platinum">Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="row">
           <div class="bud"><label for="rq-budget">Budget (optional)</label>
@@ -158,11 +165,11 @@
         <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label">Anything else? Inspiration, timing, a link to a ring you love</label>
         <textarea id="rq-details" maxlength="2000" placeholder="Tell us in your own words. You can send photos from your account afterwards."></textarea>
-        <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Necklace</option><option>Bracelet</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
-        <button class="btn" type="submit">Send my request</button>
+        <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Other ring</option><option>Necklace</option><option>Bracelet</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
+        <button class="btn" type="submit">Save</button>
         <button class="btn ghost" type="button" id="cancelRequest" style="margin-left:8px">Cancel</button>
         <div id="requestMsg" class="msg" role="status" aria-live="polite"></div>
-        <style>.rq-sub{margin:0 0 14px;opacity:.8}.rq-group{margin:0 0 16px}.rq-label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin:0 0 8px}.rq-chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #3a3e46;background:#0b0b0d;color:#fff;border-radius:999px;padding:9px 14px;font:inherit;font-size:.9rem;cursor:pointer}.chip:hover{border-color:#dfe3ea}.chip[aria-pressed="true"]{background:#dfe3ea;color:#0b0b0d;border-color:#dfe3ea;font-weight:600}</style>
+        <style>.rq-sub{margin:0 0 14px;opacity:.8}.rq-group{margin:0 0 16px}.rq-label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin:0 0 8px}.rq-chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #3a3e46;background:#0b0b0d;color:#fff;border-radius:999px;padding:9px 14px;font:inherit;font-size:.9rem;cursor:pointer}.rq-chips.two{display:grid;grid-template-columns:1fr 1fr}.rq-chips.three{display:grid;grid-template-columns:repeat(3,1fr)}.rq-chips.two .chip,.rq-chips.three .chip{text-align:center;padding:10px 6px;white-space:nowrap}.chip:hover{border-color:#dfe3ea}.chip[aria-pressed="true"]{background:#dfe3ea;color:#0b0b0d;border-color:#dfe3ea;font-weight:600}</style>
       </form>
 
       <div id="paidBanner" class="banner hidden" role="status">Thank you. Your payment is being confirmed and will show here in a moment.</div>
@@ -176,7 +183,7 @@
 
 <script>
 (() => {
-  const STAGES = ["Enquiry received","Complimentary sketch created","Payment received","Design in progress","Design approved","In production","Quality check","Dispatched","Delivered"];
+  const STAGES = ["Enquiry received","Complimentary initial design created","Payment received","Design in progress","Design approved","In production","Quality check","Dispatched","Delivered"];
   const $ = (id) => document.getElementById(id);
   const show = (id) => { for (const s of ["loading","signin","dash"]) $(s).classList.toggle("hidden", s !== id); $("logout").classList.toggle("hidden", id !== "dash"); };
   const api = async (url, opts = {}) => {
@@ -196,7 +203,7 @@
     left.append(el("div", "tag", p.type === "order" ? "Order" + (p.orderReference ? " · " + p.orderReference : "") : "Design request"), el("h2", "", p.title));
     if (p.details) left.append(el("p", "", p.details));
     head.append(left, el("span", "badge", STAGES[p.stage] || "Enquiry received"));
-    card.append(head);
+    if (p.type !== "design-request") card.append(head);
     if (p.estimate) card.append(el("p", "", "Estimated: " + p.estimate + " (an estimate, not a guarantee)"));
 
     const steps = el("ol", "steps");
@@ -308,7 +315,8 @@
     if (res.status === 401) { show("signin"); return; }
     if (!res.ok) { show("signin"); setMsg($("signinMsg"), "We could not load your account just now. Please try again.", "err"); return; }
     hasProjects = data.projects.length > 0;
-    $("hello").textContent = data.customer.name ? "Welcome, " + data.customer.name.split(" ")[0] : "Welcome";
+    savedFor = data.customer.ringFor || ""; savedName = data.customer.ringName || "";
+    $("hello").textContent = data.customer.name ? "Hi " + data.customer.name.split(" ")[0] : "Hi there";
     $("helloSub").textContent = data.projects.length ? "Here is where everything stands." : "";
     const draftBox = $("draftBox");
     if (false && data.draft && /^\/design\/your-ring\?resume=[A-Za-z0-9_%-]+$/.test(data.draft.resumeUrl)) { $("draftLink").setAttribute("href", data.draft.resumeUrl); draftBox.classList.remove("hidden"); } else { draftBox.classList.add("hidden"); }
@@ -328,7 +336,7 @@
 
   let requestKind = "";
 
-  let forWho = "", ringName = "", hasProjects = false;
+  let forWho = "", ringName = "", hasProjects = false, savedFor = "", savedName = "";
   const theRing = () => ringName ? poss(ringName) + " ring" : (forWho === "A loved one" ? "their ring" : "your ring");
   const poss = (n) => n + (/s$/i.test(n) ? "\u2019" : "\u2019s");
   const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -340,21 +348,28 @@
     setTimeout(tick, 250);
   });
   const sleep = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
-  async function concierge(kind) {
-    const first = (($("hello").textContent.match(/,\s*(.+)$/) || [])[1] || "").trim();
+  let lastKind = "design";
+  $("cgChange").addEventListener("click", () => { savedFor = ""; savedName = ""; forWho = ""; ringName = ""; concierge(lastKind, true); });
+  async function concierge(kind, forceAsk) {
+    lastKind = kind;
+    const first = (($("hello").textContent.match(/^Hi\s+(.+)$/) || [])[1] || "").trim();
+    if (savedFor && !forceAsk) {
+      forWho = savedFor; ringName = savedName;
+      $("dash").classList.remove("cg-only"); $("concierge").classList.add("hidden");
+      $("wTitle").textContent = "Let\u2019s design " + theRing() + "!";
+      $("welcome").classList.remove("hidden"); openRequest(kind); return;
+    }
     $("dash").classList.add("cg-only");
     $("welcome").classList.add("hidden"); $("requestForm").classList.add("hidden");
-    $("concierge").classList.remove("hidden"); $("cgOpts").hidden = true;
-    await typeInto($("cgEye"), first ? "Welcome, " + first : "Welcome", 55);
+    $("concierge").classList.remove("hidden"); $("cgOpts").classList.remove("on");
+    await typeInto($("cgEye"), first && first !== "there" ? "Hi " + first : "Hi there", 55);
     await sleep(350);
     await typeInto($("cgLine"), "Who is the ring for?", 52);
-    $("cgOpts").hidden = false;
+    $("cgOpts").classList.add("on");
     const finish = async (name) => {
-      ringName = name;
-      $("cgName").hidden = true; $("cgSkip").hidden = true;
-      if (forWho === "Myself") { await typeInto($("cgEye"), "For you", 45); await typeInto($("cgLine"), "Wonderful. Let\u2019s make it yours.", 40); }
-      else { await typeInto($("cgEye"), name ? "For " + name : "For someone special", 45); await typeInto($("cgLine"), name ? "How lovely. Let\u2019s make " + poss(name) + " ring unforgettable." : "How lovely. Let\u2019s make it unforgettable.", 40); }
-      await sleep(700);
+      ringName = name; savedFor = forWho; savedName = name;
+      post("/.netlify/functions/account", { action: "ring-for", ringFor: forWho, ringName: name });
+      $("cgNameWrap").classList.remove("on"); $("cgOpts").classList.remove("on");
       $("concierge").classList.add("hidden");
       $("dash").classList.remove("cg-only");
       $("wTitle").textContent = "Let\u2019s design " + theRing() + "!";
@@ -363,11 +378,12 @@
     };
     $("cgOpts").onclick = async (e) => {
       const b = e.target.closest(".cg-opt"); if (!b) return;
-      forWho = b.dataset.for; $("cgOpts").hidden = true;
+      forWho = b.dataset.for; $("cgOpts").classList.remove("on");
       if (forWho === "Myself") { finish(""); return; }
-      await typeInto($("cgEye"), "For a loved one", 45);
+      $("cgEye").textContent = "";
       await typeInto($("cgLine"), "What\u2019s their name?", 45);
-      $("cgName").hidden = false; $("cgSkip").hidden = false; $("cgNameInput").focus();
+      $("cgNameWrap").classList.add("on");
+      if (!(window.matchMedia && matchMedia("(pointer:coarse)").matches)) setTimeout(() => $("cgNameInput").focus({ preventScroll: true }), 300);
     };
     $("cgName").onsubmit = (e) => { e.preventDefault(); const n = $("cgNameInput").value.trim(); if (n) finish(n); else $("cgNameInput").focus(); };
     $("cgSkip").onclick = () => finish("");
@@ -385,7 +401,7 @@
   function composeDetails() {
     const lines = [];
     if (requestKind) lines.push("[" + KIND_LABEL[requestKind] + "]");
-    if (forWho) lines.push("Ring is for: " + forWho + (ringName ? " (" + ringName + ")" : ""));
+    if (forWho === "A loved one") lines.push("Ring is for: " + (ringName || "Them"));
     Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
     const rs = $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
     const t = $("rq-details").value.trim(); if (t) lines.push("", t);

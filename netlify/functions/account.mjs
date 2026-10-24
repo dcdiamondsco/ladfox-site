@@ -1,13 +1,19 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
-  publicProject, clean, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
+  publicProject, clean, sheetEvent, customerKey, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
 } from "./account-lib.mjs";
 
 const notifyOwner = async (request, subject, lines) => {
   try {
     const to = String(process.env.ADMIN_NOTIFY_EMAIL || "hello@ladfox.com").trim();
-    const body = lines.map((l) => `<p style="margin:0 0 8px">${escapeHtml(l)}</p>`).join("");
+    const rows = lines.flatMap((l) => String(l).split("\n")).map((l) => l.trim()).filter(Boolean).map((l) => {
+      const m = l.match(/^([A-Za-z][A-Za-z ]{0,24}):\s*(.+)$/);
+      return m
+        ? `<tr><td style="padding:7px 14px 7px 0;color:#8b9099;font-size:14px;white-space:nowrap;vertical-align:top">${escapeHtml(m[1])}</td><td style="padding:7px 0;color:#ffffff;font-size:16px;font-weight:600">${escapeHtml(m[2])}</td></tr>`
+        : `<tr><td colspan="2" style="padding:9px 0;color:#d6d9df;font-size:15px">${escapeHtml(l)}</td></tr>`;
+    }).join("");
+    const body = `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;text-align:left;max-width:100%">${rows}</table>`;
     await sendEmail({
       to, subject, text: lines.join("\n"),
       html: emailShell(subject, body, "Open admin", `${siteUrl(request)}/ladfox-admin`)
@@ -30,13 +36,21 @@ export default async (request) => {
     const openDraft = draft && !draft.projectId && draft.exp > Date.now()
       ? { resumeUrl: `/design/your-ring?resume=${encodeURIComponent(draft.token)}`, updatedAt: draft.updatedAt }
       : null;
-    return json({ customer: { email, name: customer.name || "", phone: customer.phone || "" }, projects, draft: openDraft });
+    return json({ customer: { email, name: customer.name || "", phone: customer.phone || "", ringFor: customer.ringFor || "", ringName: customer.ringName || "" }, projects, draft: openDraft });
   }
 
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "GET, POST" });
 
   let body;
   try { body = await readJsonBody(request, 12_000); } catch (e) { return json({ error: e.message }, 400); }
+
+  if (body.action === "ring-for") {
+    const ringFor = body.ringFor === "Myself" || body.ringFor === "A loved one" ? body.ringFor : "";
+    if (!ringFor) return json({ error: "Invalid choice." }, 400);
+    const existing = (await getCustomer(db, email)) || { email, createdAt: new Date().toISOString() };
+    await db.setJSON(customerKey(email), { ...existing, email, ringFor, ringName: ringFor === "Myself" ? "" : clean(body.ringName, 40) });
+    return json({ ok: true });
+  }
 
   if (body.action === "profile") {
     const name = clean(body.name, 80);
@@ -60,9 +74,12 @@ export default async (request) => {
       email, name: customer.name, type: "design-request", title, details,
       ringType: body.ringType, budget: body.budget
     });
-    await notifyOwner(request, "New design request", [
-      `${customer.name || email} (${email})`, `Title: ${project.title}`,
-      `Type: ${project.ringType || "-"}  Budget: ${project.budget || "-"}`, project.details
+    await sheetEvent({ type: "request", email, name: customer.name || "", title: project.title, ringType: project.ringType || "", budget: project.budget || "", details: project.details });
+    const detailLines = String(project.details || "").split("\n").filter((l) => l.trim() && !/^\[.*\]$/.test(l.trim()));
+    await notifyOwner(request, `New design request: ${customer.name || email}`, [
+      `Name: ${customer.name || "-"}`, `Email: ${email}`,
+      `Budget: ${project.budget || "Not sure yet"}`,
+      ...detailLines
     ]);
     return json({ ok: true, project: publicProject(project) });
   }

@@ -2,7 +2,7 @@ import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 
 export const STAGES = [
   "Enquiry received",
-  "Complimentary sketch created",
+  "Complimentary initial design created",
   "Payment received",
   "Design in progress",
   "Design approved",
@@ -115,6 +115,24 @@ ${buttonUrl ? `<tr><td align="center" style="padding:30px 0 8px"><a href="${esca
 <tr><td align="center" style="font-size:14px;line-height:1.7;color:#d6d9df;padding:12px 10px 0">Questions? Message us on <a href="https://wa.me/447853362904" style="color:#ffffff;font-weight:600">WhatsApp</a> or reply to this email.</td></tr>
 <tr><td align="center" style="font-size:12px;color:#8b9099;padding:20px 10px 0">LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com" style="color:#8b9099">hello@ladfox.com</a></td></tr>
 </table></td></tr></table></body></html>`;
+
+/* ---------- Google Sheet logging (Apps Script web app) ---------- */
+export const sheetEvent = async (payload) => {
+  const url = String(process.env.GOOGLE_SHEET_WEBHOOK_URL || "").trim();
+  if (!url) return false;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ secret: String(process.env.GOOGLE_SHEET_SECRET || ""), createdAt: new Date().toISOString(), ...payload }),
+      signal: AbortSignal.timeout(7000)
+    });
+    return res.ok;
+  } catch (error) {
+    console.error("sheet event failed", error.message);
+    return false;
+  }
+};
 
 /* ---------- data access ---------- */
 export const customerKey = (email) => `customers/${sha(email)}`;

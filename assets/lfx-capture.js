@@ -41,7 +41,7 @@
   section.innerHTML =
     '<div class="lfx-capture__inner">' +
     '<h2 id="lfxCaptureHeading">Prefer to go custom?</h2>' +
-    "<p>Get a complimentary sketch of a ring designed around you. Leave your email and we’ll send you a login link.</p>" +
+    "<p>Get a complimentary initial design of a ring designed around you. Leave your email and we’ll send you a login link.</p>" +
     '<form novalidate><input type="email" name="email" placeholder="Your email address" autocomplete="email" inputmode="email" aria-label="Your email address" required><button type="submit">Submit</button></form>' +
     '<p class="lfx-capture__msg" role="status" aria-live="polite"></p>' +
     '<ul class="lfx-capture__trust"><li>Family-run Hatton Garden jeweller</li><li>Lifetime warranty</li><li>Insured UK delivery</li></ul>' +
@@ -77,7 +77,7 @@
         }
         if (x.ok) {
           form.hidden = true;
-          msg.textContent = "Check your inbox. We’ve sent you a link to request your complimentary sketch.";
+          msg.textContent = "Check your inbox. We’ve sent you a link to request your complimentary initial design.";
           if (window.gtag) { try { gtag("event", "generate_lead", { form_name: "page-sketch-capture" }); gtag("event", "conversion", { send_to: "AW-18173399172/PpNpCLbcpaQdEISh4NlD" }); } catch (err) { /* ignore */ } }
         } else {
           btn.disabled = false;

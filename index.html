@@ -2400,13 +2400,13 @@
           </div>
           <article class="hp-story">
             <div class="hp-steps">
-              <figure class="hp-step"><div class="hp-media hp-media--black"><img src="Images/jamie%20sketch.png" alt="Sketch concept for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>1</span><strong>Complimentary sketch</strong><em>We turn your idea into a hand-drawn sketch and a clear quote, at no cost and with no obligation.</em></figcaption></figure>
+              <figure class="hp-step"><div class="hp-media hp-media--black"><img src="Images/jamie%20sketch.png" alt="Initial design concept for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>1</span><strong>Complimentary initial design</strong><em>We turn your idea into a hand-drawn initial design and a clear quote, at no cost and with no obligation.</em></figcaption></figure>
               <figure class="hp-step"><div class="hp-media"><img src="Images/jamie%20cad.jpeg" alt="CAD design views for a platinum ring design" loading="lazy" decoding="async" /></div><figcaption><span>2</span><strong>CAD design</strong><em>We model your ring in 3D so you can review the setting and proportions from every angle before anything is made.</em></figcaption></figure>
               <figure class="hp-step"><div class="hp-media hp-media--platinum-final"><video src="Images/Jamie%20finished%20hd.mp4" poster="Images/jamie-finished-poster.jpg" preload="auto" muted loop playsinline data-hp-video aria-label="The finished ring"></video></div><figcaption><span>3</span><strong>Final piece</strong><em>Once you approve the design, your ring is crafted, hand-finished and delivered to you.</em></figcaption></figure>
             </div>
           </article>
           <div class="hp-actions">
-            <a class="btn btn-primary" href="/account.html?start=design">Get your free sketch</a>
+            <a class="btn btn-primary" href="/account.html?start=design">Get your free initial design</a>
             <a class="btn btn-secondary" href="ring-gallery.html">See our recent pieces</a>
           </div>
         </section>
@@ -2542,11 +2542,11 @@
     <section class="home-faq home-section" aria-labelledby="faqHeading">
       <div class="home-section-heading"><h2 id="faqHeading">Before you start</h2></div>
       <details><summary>How much does a bespoke ring cost?</summary><p>Bespoke engagement rings ordinarily start from &pound;1,999. Your design, metal and stones determine the final price. We&rsquo;ll provide a quote before you decide to go ahead.</p></details>
-      <details><summary>What is the Ring Collection?</summary><p>A curated selection of made-to-order solitaire, trilogy and lab gemstone rings. Choose a design, customise the available details and see the price online. For a completely original piece, start with a complimentary sketch.</p></details>
-      <details><summary>Do I need a finished design?</summary><p>No. Start with a rough idea, a screenshot or a budget. Your initial sketch is complimentary, and our family-run team will help you work out the details.</p></details>
-      <details><summary>When do I pay, and when will I see the CAD?</summary><p>We start with a complimentary sketch and a quote. Once you choose to go ahead and make payment, we provide your CAD design within a week.</p></details>
+      <details><summary>What is the Ring Collection?</summary><p>A curated selection of made-to-order solitaire, trilogy and lab gemstone rings. Choose a design, customise the available details and see the price online. For a completely original piece, start with a complimentary initial design.</p></details>
+      <details><summary>Do I need a finished design?</summary><p>No. Start with a rough idea, a screenshot or a budget. Your initial design is complimentary, and our family-run team will help you work out the details.</p></details>
+      <details><summary>When do I pay, and when will I see the CAD?</summary><p>We start with a complimentary initial design and a quote. Once you choose to go ahead and make payment, we provide your CAD design within a week.</p></details>
       <details><summary>Can I make changes before the ring is made?</summary><p>Yes. We&rsquo;ll adjust the CAD with you until you&rsquo;re happy with the design. Your approval comes before production begins.</p></details>
-      <details><summary>How long will my ring take?</summary><p>Production can take up to five weeks depending on complexity. Allow time before that for your initial sketch, quote and any CAD adjustments.</p></details>
+      <details><summary>How long will my ring take?</summary><p>Production can take up to five weeks depending on complexity. Allow time before that for your initial design, quote and any CAD adjustments.</p></details>
       <details><summary>What warranty and delivery are included?</summary><p>Your bespoke engagement ring comes with a lifetime manufacturing warranty and insured, tracked delivery. Read the <a href="/terms-and-conditions.html" target="_blank" rel="noopener">full terms and exclusions</a>.</p></details>
     </section>
 
@@ -3118,7 +3118,7 @@
 open.addEventListener("click",function(){form.classList.add("is-visible");form.hidden=false;open.hidden=true;open.setAttribute("aria-expanded","true");msg.textContent="";email.focus()});
 form.addEventListener("submit",function(e){e.preventDefault();var v=email.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){msg.textContent="Please enter a valid email address.";email.focus();return}
 var b=form.querySelector("button");b.disabled=true;msg.textContent="Sending\u2026";
-fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:v,intent:"sketch"})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){if(x.ok&&x.d&&x.d.instant){if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}window.location.href="account.html?start=design";return}if(x.ok){form.hidden=true;msg.textContent="Check your inbox. We\u2019ve sent you a link to request your complimentary sketch.";if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}}else{b.disabled=false;msg.textContent=x.d&&x.d.error||"Something went wrong. Please try again."}}).catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."})});
+fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:v,intent:"sketch"})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){if(x.ok&&x.d&&x.d.instant){if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}window.location.href="account.html?start=design";return}if(x.ok){form.hidden=true;msg.textContent="Check your inbox. We\u2019ve sent you a link to request your complimentary initial design.";if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-sketch"})}catch(e){}}}else{b.disabled=false;msg.textContent=x.d&&x.d.error||"Something went wrong. Please try again."}}).catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."})});
 })();
 </script>
 <style>
@@ -3169,14 +3169,14 @@ fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":
     <button type="button" class="lfx-modal__x" aria-label="Close" data-lfx-close>&times;</button>
     <p class="lfx-modal__eyebrow">Complimentary &middot; No obligation</p>
     <h2 id="lfxStartTitle">Let&rsquo;s design your ring</h2>
-    <p class="lfx-modal__lead" id="lfxStartLead">Tell us where to send your personal design page. In about two minutes you can describe your ring, and we&rsquo;ll create a complimentary sketch and a clear quote.</p>
+    <p class="lfx-modal__lead" id="lfxStartLead">Tell us where to send your personal design page. In about two minutes you can describe your ring, and we&rsquo;ll create a complimentary initial design and a clear quote.</p>
     <form id="lfxStartForm" novalidate>
       <input id="lfxStartName" autocomplete="given-name" maxlength="80" placeholder="Your first name">
       <input id="lfxStartEmail" type="email" autocomplete="email" maxlength="254" placeholder="Your email address" required>
       <button type="submit" class="btn btn-primary">Start my design</button>
       <p class="lfx-modal__msg" id="lfxStartMsg" role="status" aria-live="polite"></p>
     </form>
-    <ul class="lfx-modal__ticks"><li>Free sketch and quote</li><li>Follow every step from sketch to delivery</li><li>Lifetime warranty &middot; Free engraving</li></ul>
+    <ul class="lfx-modal__ticks"><li>Free initial design and quote</li><li>Follow every step from initial design to delivery</li><li>Lifetime warranty &middot; Free engraving</li></ul>
     <div class="lfx-modal__done" id="lfxStartDone" hidden><h3>Check your inbox</h3><p>We&rsquo;ve emailed you a secure link to your personal design page. Open it to finish telling us about your ring.</p><p class="lfx-modal__small">Nothing there? Check spam, or message us on WhatsApp.</p></div>
   </div>
 </div>
@@ -3186,7 +3186,7 @@ fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":
   var m=document.getElementById("lfxStart"),f=document.getElementById("lfxStartForm"),kind="design";
   if(!m||!f)return;
   var $=function(i){return document.getElementById(i)};
-  function open(k){kind=k;$("lfxStartTitle").textContent=k==="price"?"Let\u2019s price your ring":"Let\u2019s design your ring";$("lfxStartLead").textContent=k==="price"?"Tell us where to send your personal page. Describe the ring you want and we\u2019ll come back with a clear quote and a complimentary sketch.":"Tell us where to send your personal design page. In about two minutes you can describe your ring, and we\u2019ll create a complimentary sketch and a clear quote.";f.hidden=false;$("lfxStartDone").hidden=true;$("lfxStartMsg").textContent="";m.hidden=false;document.documentElement.style.overflow="hidden";setTimeout(function(){$("lfxStartEmail").focus()},50)}
+  function open(k){kind=k;$("lfxStartTitle").textContent=k==="price"?"Let\u2019s price your ring":"Let\u2019s design your ring";$("lfxStartLead").textContent=k==="price"?"Tell us where to send your personal page. Describe the ring you want and we\u2019ll come back with a clear quote and a complimentary initial design.":"Tell us where to send your personal design page. In about two minutes you can describe your ring, and we\u2019ll create a complimentary initial design and a clear quote.";f.hidden=false;$("lfxStartDone").hidden=true;$("lfxStartMsg").textContent="";m.hidden=false;document.documentElement.style.overflow="hidden";setTimeout(function(){$("lfxStartEmail").focus()},50)}
   function close(){m.hidden=true;document.documentElement.style.overflow=""}
   document.addEventListener("click",function(e){
     var a=e.target.closest("a[href*='account.html?start=']");
