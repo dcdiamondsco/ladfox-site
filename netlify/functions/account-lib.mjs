@@ -99,6 +99,19 @@ export const sendEmail = async ({ to, subject, text, html }) => {
   throw emailError("Email is not configured.", "email_not_configured");
 };
 
+/* Plain black layout: logo, text, buttons. No card, no borders. Used for customer-facing emails. */
+const BLACK_IMG = "https://ladfox.com/Images/email-black.png";
+export const plainShell = (heading, bodyHtml, buttons) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="supported-color-schemes" content="dark light"></head>
+<body style="margin:0;padding:0;background:#000000;font-family:Arial,Helvetica,sans-serif;color:#ffffff" bgcolor="#000000">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#000000" background="${BLACK_IMG}" style="background:#000000 url(${BLACK_IMG});background-color:#000000"><tr><td align="center" bgcolor="#000000" background="${BLACK_IMG}" style="padding:40px 22px 36px;background:#000000 url(${BLACK_IMG});background-color:#000000">
+<table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%">
+<tr><td align="center" style="padding:0 0 34px"><img src="https://ladfox.com/Images/ladfox-email-logo.png" width="200" alt="LADFOX" style="display:block;border:0;height:auto;width:200px;max-width:60%"></td></tr>
+<tr><td align="center" style="font-size:26px;line-height:1.3;font-weight:700;color:#ffffff;padding:0 0 14px">${escapeHtml(heading)}</td></tr>
+<tr><td align="center" style="font-size:17px;line-height:1.65;color:#d6d9df">${bodyHtml}</td></tr>
+${buttons ? `<tr><td align="center" style="padding:30px 0 0">${buttons}</td></tr>` : ""}
+<tr><td align="center" style="font-size:12px;color:#8b9099;padding:44px 10px 0">LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com" style="color:#8b9099;text-decoration:none">hello@ladfox.com</a></td></tr>
+</table></td></tr></table></body></html>`;
+
 export const emailShell = (heading, bodyHtml, buttonLabel, buttonUrl, opts = {}) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head>
 <body style="margin:0;padding:0;background:#000000;font-family:Arial,Helvetica,sans-serif;color:#ffffff" bgcolor="#000000">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#000000" style="background:#000000"><tr><td align="center" style="padding:32px 14px">

@@ -1,8 +1,11 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
-  getDb, sha, newToken, normaliseEmail, validEmail, clean, siteUrl, sendEmail, emailShell,
-  upsertCustomer, getCustomer, sheetEvent, sessionCookie, LOGIN_TTL_MS, FOLLOWUP_DELAY_MS, followKey, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
+  getDb, sha, newToken, normaliseEmail, validEmail, clean, siteUrl, sendEmail, plainShell,
+  upsertCustomer, getCustomer, sheetEvent, escapeHtml, sessionCookie, LOGIN_TTL_MS, FOLLOWUP_DELAY_MS, followKey, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
 } from "./account-lib.mjs";
+
+const mainBtn = (label, url) => `<a href="${escapeHtml(url)}" style="display:inline-block;background:#dfe3ea;color:#0a0a0a;text-decoration:none;padding:16px 38px;border-radius:999px;font-size:16px;font-weight:700">${escapeHtml(label)}</a>`;
+const emailShell = (heading, body, label, url) => plainShell(heading, body, mainBtn(label, url));
 
 const GENERIC = { ok: true, message: "If that email address is valid, a sign-in link is on its way." };
 
