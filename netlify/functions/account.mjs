@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
-  publicProject, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
+  publicProject, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey, plainShell
 } from "./account-lib.mjs";
 
 const notifyOwner = async (request, subject, lines) => {
@@ -86,6 +86,21 @@ export default async (request) => {
       ...detailLines,
       ...(Number(body.photos) > 0 ? [`Photos: ${Math.min(Number(body.photos), 3)} attached (see admin)`] : [])
     ]);
+    try {
+      const first = String(customer.name || "").trim().split(/\s+/)[0];
+      const hi = first ? `Hi ${first},` : "Hi there,";
+      const link = `${siteUrl(request)}/account`;
+      const bodyHtml = `<p style="margin:0">We have received your design request: <strong style="color:#fff">${escapeHtml(project.title)}</strong>.</p><p style="margin:16px 0 0">We will create your complimentary initial design and be in touch shortly. You can follow every step from your personal design page.</p>`;
+      const buttons = `<a href="${link}" style="display:inline-block;margin:5px 4px;padding:13px 26px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;background:#dfe3ea;color:#0a0a0a">View my design page</a>`;
+      await sendEmail({
+        to: email,
+        subject: "We have received your design request",
+        text: `${hi}\n\nWe have received your design request: ${project.title}.\n\nWe will create your complimentary initial design and be in touch shortly. You can follow every step from your personal design page:\n${link}`,
+        html: plainShell(hi, bodyHtml, buttons)
+      });
+    } catch (error) {
+      console.error("request confirmation email failed", error.message);
+    }
     return json({ ok: true, project: publicProject(project) });
   }
 
