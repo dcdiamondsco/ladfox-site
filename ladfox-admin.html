@@ -109,13 +109,13 @@
     const g = el("div", "grid");
     const sWrap = el("div"); sWrap.append(el("label", "", "Stage"));
     const sel = el("select"); STAGES.forEach((s, i) => { const o = el("option", "", s); o.value = i; if (i === p.stage) o.selected = true; sel.append(o); }); sWrap.append(sel);
-    const eWrap = el("div"); eWrap.append(el("label", "", "Estimated date (shown to customer)"));
+    const eWrap = el("div"); eWrap.append(el("label", "", "Estimated delivery date"));
     const est = el("input"); est.value = p.estimate || ""; est.placeholder = "e.g. 12 December"; eWrap.append(est);
     g.append(sWrap, eWrap); c.append(g);
     c.append(el("label", "", "Note to customer (optional)"));
     const note = el("textarea"); c.append(note);
     const row = el("div", "row"); const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = false; lab.append(ck, document.createTextNode("Email them this update"));
-    const save = el("button", "", "Save update"); row.append(lab, save); c.append(row);
+    const save = el("button", "", "Save update"); row.append(lab, save);
     save.onclick = async () => {
       save.disabled = true;
       const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, estimate: est.value, note: note.value, notify: ck.checked });
@@ -191,6 +191,7 @@
     const log = el("div", "log");
     for (const u of p.updates) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
     c.append(log);
+    c.append(row);
     const dsec = el("div", "sec"); const del = el("button", "danger", "Delete project");
     del.onclick = async () => {
       if (!confirm("Delete \u201c" + p.title + "\u201d for " + p.email + " permanently, including its files? This cannot be undone.")) return;
