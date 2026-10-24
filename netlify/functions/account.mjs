@@ -88,7 +88,7 @@ export default async (request) => {
     ]);
     try {
       const first = String(customer.name || "").trim().split(/\s+/)[0];
-      const hi = first ? `Welcome to LADFOX, ${first}.` : "Welcome to LADFOX.";
+      const hi = first ? `Welcome to LADFOX ${first}` : "Welcome to LADFOX";
       const token = newToken();
       await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + LOGIN_TTL_MS });
       const link = `${siteUrl(request)}/account?token=${encodeURIComponent(token)}`;
