@@ -201,7 +201,7 @@
 
 <script>
 (() => {
-  const STAGES = ["Enquiry received","Complimentary initial design created","Payment received","Design in progress","Design approved","In production","Quality check","Dispatched","Delivered"];
+  const STAGES = ["Enquiry received","Complimentary initial design created","Payment received","CAD in progress","CAD approved","In production","Quality check","Dispatched","Delivered"];
   const $ = (id) => document.getElementById(id);
   const show = (id) => { for (const s of ["loading","signin","dash"]) $(s).classList.toggle("hidden", s !== id); $("logout").classList.toggle("hidden", id !== "dash"); };
   const api = async (url, opts = {}) => {

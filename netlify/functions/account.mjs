@@ -114,7 +114,7 @@ export default async (request) => {
     project.updatedAt = now;
     project.updates.push({ at: now, by: "customer", text: "I approve the design.", stage: 4 });
     await saveProject(db, project);
-    await notifyOwner(request, `Design approved: "${project.title}"`, [`${project.name || email} (${email})`, "The customer approved the design."]);
+    await notifyOwner(request, `CAD approved: "${project.title}"`, [`${project.name || email} (${email})`, "The customer approved the CAD."]);
     return json({ ok: true, project: publicProject(project) });
   }
 
