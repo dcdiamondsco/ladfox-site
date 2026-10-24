@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
-  publicProject, clean, sheetEvent, customerKey, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
+  publicProject, clean, sheetEvent, customerKey, followKey, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
 } from "./account-lib.mjs";
 
 const notifyOwner = async (request, subject, lines) => {
@@ -32,6 +32,8 @@ export default async (request) => {
   if (request.method === "GET") {
     const customer = (await getCustomer(db, email)) || { email };
     const projects = (await listProjects(db, email)).map(publicProject);
+    const pend = await db.get(followKey(email), { type: "json" }).catch(() => null);
+    if (pend && Date.now() - (pend.seen || 0) > 60_000) await db.setJSON(followKey(email), { ...pend, seen: Date.now() }).catch(() => {});
     const draft = await db.get(draftKey(email), { type: "json" });
     const openDraft = draft && !draft.projectId && draft.exp > Date.now()
       ? { resumeUrl: `/design/your-ring?resume=${encodeURIComponent(draft.token)}`, updatedAt: draft.updatedAt }
@@ -70,6 +72,7 @@ export default async (request) => {
       return json({ error: "You have sent several requests today. We will reply to those first." }, 429);
     }
 
+    await db.delete(followKey(email)).catch(() => {});
     const project = await createProject(db, {
       email, name: customer.name, type: "design-request", title, details,
       ringType: body.ringType, budget: body.budget

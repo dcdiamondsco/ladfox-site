@@ -99,17 +99,18 @@ export const sendEmail = async ({ to, subject, text, html }) => {
   throw emailError("Email is not configured.", "email_not_configured");
 };
 
-export const emailShell = (heading, bodyHtml, buttonLabel, buttonUrl) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head>
+export const emailShell = (heading, bodyHtml, buttonLabel, buttonUrl, opts = {}) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head>
 <body style="margin:0;padding:0;background:#000000;font-family:Arial,Helvetica,sans-serif;color:#ffffff" bgcolor="#000000">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#000000" style="background:#000000"><tr><td align="center" style="padding:32px 14px">
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
-<tr><td align="center" style="padding:6px 0 26px"><img src="https://ladfox.com/Images/Logo%20no%20background.png" width="150" alt="LADFOX" style="display:block;border:0;height:auto;width:150px;max-width:60%"></td></tr>
+<tr><td align="center" bgcolor="#000000" style="padding:6px 0 26px;background:#000000"><img src="https://ladfox.com/Images/Logo%20no%20background.png?v=3" width="150" alt="LADFOX" style="display:block;border:0;height:auto;width:150px;max-width:60%"></td></tr>
 <tr><td bgcolor="#111113" style="background:#111113;border-radius:20px;padding:36px 30px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 <tr><td align="center" style="font-size:26px;line-height:1.25;font-weight:700;color:#ffffff;padding:0 0 14px">${escapeHtml(heading)}</td></tr>
 <tr><td align="center" style="font-size:16px;line-height:1.65;color:#d6d9df">${bodyHtml}</td></tr>
 ${buttonUrl ? `<tr><td align="center" style="padding:30px 0 8px"><a href="${escapeHtml(buttonUrl)}" style="background:#dfe3ea;color:#0a0a0a;text-decoration:none;padding:16px 38px;border-radius:999px;font-size:16px;font-weight:700;display:inline-block">${escapeHtml(buttonLabel)}</a></td></tr>
-<tr><td align="center" style="font-size:12px;line-height:1.5;color:#8b9099;padding:14px 0 0">Button not working? Copy this link into your browser:<br><a href="${escapeHtml(buttonUrl)}" style="color:#c8ccd4;word-break:break-all">${escapeHtml(buttonUrl)}</a></td></tr>` : ""}
+${opts.hideLink ? "" : `<tr><td align="center" style="font-size:12px;line-height:1.5;color:#8b9099;padding:14px 0 0">Button not working? Copy this link into your browser:<br><a href="${escapeHtml(buttonUrl)}" style="color:#c8ccd4;word-break:break-all">${escapeHtml(buttonUrl)}</a></td></tr>`}` : ""}
+${opts.extraHtml ? `<tr><td align="center" style="padding:22px 0 0">${opts.extraHtml}</td></tr>` : ""}
 </table></td></tr>
 <tr><td align="center" style="font-size:13px;line-height:1.7;color:#c8ccd4;padding:26px 10px 4px">&#10003; Lifetime warranty &nbsp;&nbsp; &#10003; Insured UK delivery &nbsp;&nbsp; &#10003; Free engraving</td></tr>
 <tr><td align="center" style="font-size:14px;line-height:1.7;color:#d6d9df;padding:12px 10px 0">Questions? Message us on <a href="https://wa.me/447853362904" style="color:#ffffff;font-weight:600">WhatsApp</a> or reply to this email.</td></tr>
@@ -234,3 +235,7 @@ export const emailCustomerNote = async (request, project, subject, heading, body
     html: emailShell(heading, bodyHtml, "Open my account", `${siteUrl(request)}/account`)
   });
 };
+
+/* ---------- delayed "continue your design" follow-up ---------- */
+export const FOLLOWUP_DELAY_MS = 30 * 60 * 1000;
+export const followKey = (email) => `followups/${sha(email)}`;

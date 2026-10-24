@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, sha, newToken, normaliseEmail, validEmail, clean, siteUrl, sendEmail, emailShell,
-  upsertCustomer, getCustomer, sheetEvent, sessionCookie, LOGIN_TTL_MS, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
+  upsertCustomer, getCustomer, sheetEvent, sessionCookie, LOGIN_TTL_MS, FOLLOWUP_DELAY_MS, followKey, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
 } from "./account-lib.mjs";
 
 const GENERIC = { ok: true, message: "If that email address is valid, a sign-in link is on its way." };
@@ -37,6 +37,14 @@ export default async (request) => {
       const sessionId = newToken();
       await db.setJSON(`sessions/${sha(sessionId)}`, { email, exp: Date.now() + SESSION_TTL_MS });
       instantHeaders = { "Set-Cookie": sessionCookie(sessionId, Math.floor(SESSION_TTL_MS / 1000)) };
+    }
+
+    /* New sign-ups get no email now. If they do not submit a request, a single follow-up with
+       their access link goes out later (account-followup.mjs). */
+    if (instantHeaders) {
+      const kind = body.intent === "design" || body.intent === "price" || body.intent === "sketch" ? body.intent : "";
+      await db.setJSON(followKey(email), { email, name, kind, due: Date.now() + FOLLOWUP_DELAY_MS, seen: Date.now() });
+      return json({ ok: true, instant: true }, 200, instantHeaders);
     }
 
     const token = newToken();

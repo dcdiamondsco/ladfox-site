@@ -89,8 +89,8 @@
     <section id="loading"><p>Loading…</p></section>
 
     <section id="signin" class="hidden">
-      <h1>Log in to your LADFOX account</h1>
-      <p>Enter your email and we&rsquo;ll send you a secure link to log in. No password needed. New here? The same link creates your free account, so you can start your design and follow every step from initial design to delivery.</p>
+      <h1>Enter your LADFOX design portal</h1>
+      <p>Enter your email for instant access to your personal design portal. Start your design, track every step and message us any time.</p>
       <form id="signinForm" class="card" novalidate>
         <label for="si-name">Your name (new customers)</label>
         <input id="si-name" name="name" autocomplete="name" maxlength="80" placeholder="Optional" />
@@ -115,12 +115,14 @@
           </div>
           <div class="cg-namewrap" id="cgNameWrap">
             <form class="cg-name" id="cgName" autocomplete="off"><input id="cgNameInput" maxlength="40" placeholder="Their first name" aria-label="Their first name" /><button type="submit">Continue</button></form>
-            <button type="button" class="cg-skip" id="cgSkip">Skip for now</button>
           </div>
         </div>
       </section>
       <style>
         #dash.cg-only > :not(#concierge){display:none!important}
+        .fx-black{position:fixed;inset:0;z-index:60;background:#000;pointer-events:none;animation:fxBlack 1.6s cubic-bezier(.4,0,.2,1) both}
+        @keyframes fxBlack{0%,12%{opacity:1}100%{opacity:0;visibility:hidden}}
+        @media (prefers-reduced-motion:reduce){.fx-black{display:none}}
         .fx-in{animation:fxIn .7s cubic-bezier(.2,.7,.2,1) both}
         @keyframes fxIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
         @media (prefers-reduced-motion:reduce){.fx-in{animation:none}}
@@ -160,7 +162,11 @@
         <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
         <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips two"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips three"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
-        <div class="rq-group" data-key="size"><div class="rq-label">Stone size</div><div class="rq-chips"><button type="button" class="chip" data-v="Under 1ct">Under 1ct</button><button type="button" class="chip" data-v="1 - 1.5ct">1 - 1.5ct</button><button type="button" class="chip" data-v="1.5 - 2ct">1.5 - 2ct</button><button type="button" class="chip" data-v="2 - 3ct">2 - 3ct</button><button type="button" class="chip" data-v="3ct+">3ct+</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="prop" id="rqProp" style="display:none"><div class="rq-label">Proportions</div><div class="rq-chips three"><button type="button" class="chip" data-v="Standard">Standard</button><button type="button" class="chip" data-v="Elongated">Elongated</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group bud untouched" data-key="size" id="rqSize"><div class="rq-label">Stone size</div>
+          <div class="bud-row"><output id="rq-size-out" for="rq-size">Drag to choose</output></div>
+          <input id="rq-size" type="range" min="0" max="41" step="1" value="7" aria-label="Stone size in carats" />
+          <div class="bud-scale"><span>0.3ct</span><span>10ct+</span></div></div>
         <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><div class="rq-chips three"><button type="button" class="chip" data-v="Yellow gold">Yellow gold</button><button type="button" class="chip" data-v="White gold">White gold</button><button type="button" class="chip" data-v="Rose gold">Rose gold</button><button type="button" class="chip" data-v="Platinum">Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="row">
@@ -169,8 +175,9 @@
             <input id="rq-budget" type="range" min="500" max="10000" step="250" value="3000" aria-label="Budget in pounds" />
             <div class="bud-scale"><span>&pound;500</span><span>&pound;10,000+</span></div></div>
           <style>.bud-row{margin:6px 0 10px;text-align:center;font-size:1.5rem;font-weight:700;color:#fff}.bud input[type=range]{width:100%;accent-color:#dfe3ea;height:28px;padding:0;background:transparent;border:0}.bud-scale{display:flex;justify-content:space-between;font-size:.8rem;color:#9a9fa8}.bud-clear{display:block;margin:10px auto 0;background:none;border:0;color:#c8ccd4;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}.bud.untouched input[type=range]{opacity:.45}</style>
-          <div><label for="rq-ringsize">Ring size (optional)</label>
-            <input id="rq-ringsize" maxlength="10" placeholder="e.g. M" /></div>
+          <div><label for="rq-ringsize">Ring size</label>
+            <div class="rs-row"><input id="rq-ringsize" maxlength="6" placeholder="e.g. M" /><button type="button" class="chip" id="rq-rs-unsure" aria-pressed="false">Not sure yet</button></div></div>
+          <style>.rs-row{display:flex;align-items:center;gap:10px}.rs-row input{width:92px;flex:0 0 92px}</style>
         </div>
         <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label">Anything else? Inspiration, timing, a link to a ring you love</label>
@@ -365,9 +372,12 @@
     $("welcome").classList.remove("hidden");
     openRequest(kind, true);
     window.scrollTo(0, 0);
+    document.querySelectorAll(".fx-black").forEach((n) => n.remove());
+    const blk = document.createElement("div"); blk.className = "fx-black"; blk.setAttribute("aria-hidden", "true");
+    blk.addEventListener("animationend", () => blk.remove()); document.body.appendChild(blk);
     [$("hello"), $("helloSub"), $("welcome"), $("requestForm")].forEach((el, i) => {
       el.classList.remove("fx-in"); void el.offsetWidth;
-      el.style.animationDelay = (i * 0.09) + "s"; el.classList.add("fx-in");
+      el.style.animationDelay = (0.5 + i * 0.16) + "s"; el.classList.add("fx-in");
     });
   };
   let lastKind = "design";
@@ -383,9 +393,9 @@
     $("dash").classList.add("cg-only");
     $("welcome").classList.add("hidden"); $("requestForm").classList.add("hidden");
     $("concierge").classList.remove("hidden"); $("cgOpts").classList.remove("on");
-    await typeInto($("cgEye"), first && first !== "there" ? "Hi " + first : "Hi there", 55);
+    await typeInto($("cgEye"), first && first !== "there" ? "Welcome " + first : "Welcome", 55);
     await sleep(350);
-    await typeInto($("cgLine"), "Who is the ring for?", 52);
+    await typeInto($("cgLine"), "Who are we designing for?", 52);
     $("cgOpts").classList.add("on");
     const finish = async (name) => {
       ringName = name; savedFor = forWho; savedName = name;
@@ -407,7 +417,6 @@
       if (!(window.matchMedia && matchMedia("(pointer:coarse)").matches)) setTimeout(() => $("cgNameInput").focus({ preventScroll: true }), 300);
     };
     $("cgName").onsubmit = (e) => { e.preventDefault(); const n = $("cgNameInput").value.trim(); if (n) finish(n); else $("cgNameInput").focus(); };
-    $("cgSkip").onclick = () => finish("");
   }
   const chosen = {};
   document.querySelectorAll("#requestForm .rq-group").forEach((g) => g.addEventListener("click", (e) => {
@@ -415,16 +424,19 @@
     const key = g.dataset.key, on = b.getAttribute("aria-pressed") === "true";
     g.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
     if (on) delete chosen[key]; else { b.setAttribute("aria-pressed", "true"); chosen[key] = b.dataset.v; }
-    const n = Object.keys(chosen).length; $("rqBar").style.width = Math.round(n / 6 * 100) + "%";
+    const pr = $("rqProp"), wants = /^(Radiant|Cushion|Oval)$/.test(chosen.shape || "");
+    if (wants && pr.style.display === "none") { pr.style.display = ""; pr.classList.remove("fx-in"); void pr.offsetWidth; pr.classList.add("fx-in"); }
+    if (!wants && pr.style.display !== "none") { pr.style.display = "none"; delete chosen.prop; pr.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); }
+    const n = Object.keys(chosen).filter((k) => k !== "prop").length; $("rqBar").style.width = Math.round(n / 6 * 100) + "%";
     $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of 6 chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
   }));
-  const LBL = { type: "Piece", stone: "Stone", shape: "Shape", size: "Stone size", metal: "Metal", style: "Style" };
+  const LBL = { type: "Piece", stone: "Stone", shape: "Shape", prop: "Proportions", size: "Stone size", metal: "Metal", style: "Style" };
   function composeDetails() {
     const lines = [];
     if (requestKind) lines.push("[" + KIND_LABEL[requestKind] + "]");
     if (forWho === "A loved one") lines.push("Ring is for: " + (ringName || "Them"));
     Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
-    const rs = $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
+    const rs = $("rq-rs-unsure").getAttribute("aria-pressed") === "true" ? "Not sure yet" : $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
     const t = $("rq-details").value.trim(); if (t) lines.push("", t);
     const out = lines.join("\n");
     return out.length >= 10 ? out : out + " (no details yet, please advise)";
@@ -451,6 +463,21 @@
     window.lfxBudget = () => fmt(r.value);
     paint();
   })();
+  const SIZES = []; for (let v = 3; v <= 30; v++) SIZES.push(v / 10); for (let v = 3.5; v <= 10; v += 0.5) SIZES.push(v);
+  const sizeLabel = (v) => (v >= 10 ? "10ct+" : v.toFixed(1) + "ct");
+  const updateCount = () => {
+    const n = Object.keys(chosen).filter((k) => k !== "prop").length; $("rqBar").style.width = Math.round(n / 6 * 100) + "%";
+    $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of 6 chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
+  };
+  $("rq-size").addEventListener("input", (e) => {
+    const v = SIZES[+e.target.value]; $("rqSize").classList.remove("untouched");
+    $("rq-size-out").textContent = sizeLabel(v); chosen.size = sizeLabel(v); updateCount();
+  });
+  $("rq-rs-unsure").addEventListener("click", (e) => {
+    const on = e.currentTarget.getAttribute("aria-pressed") !== "true";
+    e.currentTarget.setAttribute("aria-pressed", on ? "true" : "false"); if (on) $("rq-ringsize").value = "";
+  });
+  $("rq-ringsize").addEventListener("input", () => { if ($("rq-ringsize").value) $("rq-rs-unsure").setAttribute("aria-pressed", "false"); });
   $("cancelRequest").addEventListener("click", () => $("requestForm").classList.add("hidden"));
 
   /* photos: pick, shrink and upload after the request is saved */
@@ -489,7 +516,7 @@
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
     if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); btn.disabled = true; await uploadPhotos(data.project.id); btn.disabled = false; }
     $("rq-photo-label").textContent = "Add a photo or inspiration image";
-    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "Drag to choose"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
     load();
   });
