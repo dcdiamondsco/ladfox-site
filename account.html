@@ -172,6 +172,8 @@
 
     <section id="dash" class="hidden">
       <h2 id="hello" class="account-title">Hi</h2>
+      <style>.salebar{text-align:center;margin:0 0 18px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06);color:#dfe3ea}.salebar b{display:block;font-size:1.05rem;color:#fff;margin:0 0 3px}.salebar span{font-size:.9rem;font-variant-numeric:tabular-nums}</style>
+      <div class="salebar" id="salebar" hidden><b>20% off your ring this week</b><span id="saleTime"></span></div>
       <p id="helloSub" class="hidden"></p>
       <section id="concierge" class="cg hidden" aria-live="polite">
         <p class="cg-eye" id="cgEye"></p>
@@ -662,6 +664,17 @@
     await load();
     if (!$("dash").classList.contains("hidden")) { if (!hasProjects) { $("newRequestBtn").classList.add("hidden"); concierge("design"); } else { requestKind = "design"; $("newRequestBtn").classList.remove("hidden"); } }
   })();
+})();
+
+(() => {
+  // 20% sale, ends at midnight (UK time) at the end of the Sunday after they open the page.
+  const part = (d) => Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" }).formatToParts(d).map((x) => [x.type, x.value]));
+  const off = (d) => { const p = part(d); return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - Math.floor(d.getTime() / 1000) * 1000; };
+  const ends = () => { const p = part(new Date()); const dow = new Date(Date.UTC(+p.year, +p.month - 1, +p.day)).getUTCDay(); const days = ((8 - dow) % 7) || 7; const t = Date.UTC(+p.year, +p.month - 1, +p.day + days); let u = t - off(new Date(t)); u = t - off(new Date(u)); return u; };
+  const bar = document.getElementById("salebar"), out = document.getElementById("saleTime"); if (!bar || !out) return;
+  const end = ends();
+  const tick = () => { const r = end - Date.now(); if (r <= 0) { bar.hidden = true; return; } const d = Math.floor(r / 864e5), h = Math.floor(r % 864e5 / 36e5), m = Math.floor(r % 36e5 / 6e4), sc = Math.floor(r % 6e4 / 1e3); out.textContent = "Sale ends in " + d + "d " + String(h).padStart(2, "0") + "h " + String(m).padStart(2, "0") + "m " + String(sc).padStart(2, "0") + "s"; bar.hidden = false; };
+  tick(); setInterval(tick, 1000);
 })();
 </script>
 </body>
