@@ -104,6 +104,8 @@
           <button type="button" class="cg-opt" data-for="Myself">For myself</button>
           <button type="button" class="cg-opt" data-for="A loved one">For a loved one</button>
         </div>
+        <form class="cg-name" id="cgName" hidden autocomplete="off"><input id="cgNameInput" maxlength="40" placeholder="Their first name" aria-label="Their first name" /><button type="submit">Continue</button></form>
+        <button type="button" class="cg-skip" id="cgSkip" hidden>Skip for now</button>
       </section>
       <style>
         #dash.cg-only > :not(#concierge){display:none!important}
@@ -119,6 +121,12 @@
         .cg-opt:nth-child(2){animation-delay:.18s}
         .cg-opt:hover,.cg-opt:focus-visible{background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a;box-shadow:0 0 34px rgba(223,227,234,.35);outline:none;transform:translateY(-2px)}
         @keyframes cgIn{to{opacity:1;transform:none}}
+        .cg-name{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px;width:100%}
+        .cg-name[hidden]{display:none}
+        .cg-name input{flex:1 1 220px;max-width:300px;border:0;border-radius:999px;background:rgba(255,255,255,.08);color:#fff;padding:18px 24px;font-size:1.05rem;text-align:center;letter-spacing:.04em;outline:none}
+        .cg-name input:focus{background:rgba(255,255,255,.13);box-shadow:0 0 30px rgba(223,227,234,.25)}
+        .cg-name button{border:0;border-radius:999px;padding:18px 30px;background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a;font:inherit;font-weight:600;cursor:pointer}
+        .cg-skip{background:none;border:0;color:#9aa0aa;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin-top:14px}
         @media (prefers-reduced-motion:reduce){.cg-opt{animation:none;opacity:1;transform:none}.cg-line.typing::after,.cg-eye.typing::after{animation:none}}
       </style>
       <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s design your ring!</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary sketch and a clear quote.</p>
@@ -131,7 +139,7 @@
       <form id="requestForm" class="card hidden" style="margin-top:18px" novalidate>
         <h2 id="rqHeading">Tell us about your ring</h2>
         <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
-        <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Three-stone ring">Three-stone ring</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
+        <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
         <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="size"><div class="rq-label">Stone size</div><div class="rq-chips"><button type="button" class="chip" data-v="Under 1ct">Under 1ct</button><button type="button" class="chip" data-v="1 - 1.5ct">1 - 1.5ct</button><button type="button" class="chip" data-v="1.5 - 2ct">1.5 - 2ct</button><button type="button" class="chip" data-v="2 - 3ct">2 - 3ct</button><button type="button" class="chip" data-v="3ct+">3ct+</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
@@ -147,11 +155,10 @@
           <div><label for="rq-ringsize">Ring size (optional)</label>
             <input id="rq-ringsize" maxlength="10" placeholder="e.g. M" /></div>
         </div>
-        <label for="rq-title">Name your design (optional)</label>
-        <input id="rq-title" maxlength="140" placeholder="e.g. Oval ring with hidden halo" />
+        <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label">Anything else? Inspiration, timing, a link to a ring you love</label>
         <textarea id="rq-details" maxlength="2000" placeholder="Tell us in your own words. You can send photos from your account afterwards."></textarea>
-        <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Three-stone ring</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
+        <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Necklace</option><option>Bracelet</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
         <button class="btn" type="submit">Send my request</button>
         <button class="btn ghost" type="button" id="cancelRequest" style="margin-left:8px">Cancel</button>
         <div id="requestMsg" class="msg" role="status" aria-live="polite"></div>
@@ -160,7 +167,7 @@
 
       <div id="paidBanner" class="banner hidden" role="status">Thank you. Your payment is being confirmed and will show here in a moment.</div>
       <div id="draftBox" class="box hidden"><h3>Your saved ring design</h3><p style="margin:0 0 12px;opacity:.8">You started designing a ring. Pick up exactly where you left off.</p><a class="btn" id="draftLink" href="/design/your-ring">Continue your design</a></div>
-      <div id="designsBox" class="box"><h3>Your saved ring designs</h3><p id="designsEmpty" style="margin:0 0 12px;opacity:.8">Nothing saved yet. Choose your metal, stone and size on any of our rings, then press &ldquo;Save my design&rdquo; to keep it here.</p><div id="designsList"></div><a id="designsBrowse" hidden style="display:none" href="classic-collection.html">Browse our rings</a></div>
+      <div id="designsBox" class="box" hidden style="display:none"><h3>Your saved ring designs</h3><p id="designsEmpty" style="margin:0 0 12px;opacity:.8">Nothing saved yet. Choose your metal, stone and size on any of our rings, then press &ldquo;Save my design&rdquo; to keep it here.</p><div id="designsList"></div><a id="designsBrowse" hidden style="display:none" href="classic-collection.html">Browse our rings</a></div>
       <div id="projects" style="margin-top:22px"></div>
     </section>
   </main>
@@ -321,7 +328,9 @@
 
   let requestKind = "";
 
-  let forWho = "", hasProjects = false;
+  let forWho = "", ringName = "", hasProjects = false;
+  const theRing = () => ringName ? poss(ringName) + " ring" : (forWho === "A loved one" ? "their ring" : "your ring");
+  const poss = (n) => n + (/s$/i.test(n) ? "\u2019" : "\u2019s");
   const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const typeInto = (node, text, speed) => new Promise((done) => {
     if (reduceMotion) { node.textContent = text; done(); return; }
@@ -340,17 +349,28 @@
     await sleep(350);
     await typeInto($("cgLine"), "Who is the ring for?", 52);
     $("cgOpts").hidden = false;
-    $("cgOpts").onclick = async (e) => {
-      const b = e.target.closest(".cg-opt"); if (!b) return;
-      forWho = b.dataset.for; $("cgOpts").hidden = true;
-      await typeInto($("cgEye"), forWho === "Myself" ? "For you" : "For someone special", 45);
-      await typeInto($("cgLine"), forWho === "Myself" ? "Wonderful. Let\u2019s make it yours." : "How lovely. Let\u2019s make it unforgettable.", 40);
+    const finish = async (name) => {
+      ringName = name;
+      $("cgName").hidden = true; $("cgSkip").hidden = true;
+      if (forWho === "Myself") { await typeInto($("cgEye"), "For you", 45); await typeInto($("cgLine"), "Wonderful. Let\u2019s make it yours.", 40); }
+      else { await typeInto($("cgEye"), name ? "For " + name : "For someone special", 45); await typeInto($("cgLine"), name ? "How lovely. Let\u2019s make " + poss(name) + " ring unforgettable." : "How lovely. Let\u2019s make it unforgettable.", 40); }
       await sleep(700);
       $("concierge").classList.add("hidden");
       $("dash").classList.remove("cg-only");
+      $("wTitle").textContent = "Let\u2019s design " + theRing() + "!";
       $("welcome").classList.remove("hidden");
       openRequest(kind);
     };
+    $("cgOpts").onclick = async (e) => {
+      const b = e.target.closest(".cg-opt"); if (!b) return;
+      forWho = b.dataset.for; $("cgOpts").hidden = true;
+      if (forWho === "Myself") { finish(""); return; }
+      await typeInto($("cgEye"), "For a loved one", 45);
+      await typeInto($("cgLine"), "What\u2019s their name?", 45);
+      $("cgName").hidden = false; $("cgSkip").hidden = false; $("cgNameInput").focus();
+    };
+    $("cgName").onsubmit = (e) => { e.preventDefault(); const n = $("cgNameInput").value.trim(); if (n) finish(n); else $("cgNameInput").focus(); };
+    $("cgSkip").onclick = () => finish("");
   }
   const chosen = {};
   document.querySelectorAll("#requestForm .rq-group").forEach((g) => g.addEventListener("click", (e) => {
@@ -365,7 +385,7 @@
   function composeDetails() {
     const lines = [];
     if (requestKind) lines.push("[" + KIND_LABEL[requestKind] + "]");
-    if (forWho) lines.push("Ring is for: " + forWho);
+    if (forWho) lines.push("Ring is for: " + forWho + (ringName ? " (" + ringName + ")" : ""));
     Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
     const rs = $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
     const t = $("rq-details").value.trim(); if (t) lines.push("", t);
@@ -375,7 +395,7 @@
   const KIND_LABEL = { design: "Help me design my ring", price: "Price request" };
   function openRequest(kind) {
     requestKind = kind || "";
-    $("rqHeading").textContent = kind === "price" ? "Tell us what you want and we will price it" : "Tell us about your ring";
+    $("rqHeading").textContent = kind === "price" ? "Tell us what you want and we will price it" : "Tell us about " + theRing();
     
     $("requestForm").classList.remove("hidden");
     $("requestForm").scrollIntoView({ behavior: "smooth", block: "center" });
@@ -405,7 +425,7 @@
     });
     btn.disabled = false;
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
-    e.target.reset(); forWho = ""; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = ""; ringName = ""; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
     load();
   });
