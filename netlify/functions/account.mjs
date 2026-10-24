@@ -90,7 +90,7 @@ export default async (request) => {
       const first = String(customer.name || "").trim().split(/\s+/)[0];
       const hi = first ? `Welcome to LADFOX ${first}` : "Welcome to LADFOX";
       const token = newToken();
-      await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + LOGIN_TTL_MS });
+      await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + 10 * LOGIN_TTL_MS, reusable: true });
       const link = `${siteUrl(request)}/account?token=${encodeURIComponent(token)}`;
       const WA = "https://wa.me/447853362904", CALL = "tel:+447853362904";
       const pill = (href, label, solid) => `<a href="${href}" style="display:inline-block;margin:5px 4px;padding:13px 26px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;${solid ? "background:#dfe3ea;color:#0a0a0a" : "background:#26272b;color:#ffffff"}">${label}</a>`;

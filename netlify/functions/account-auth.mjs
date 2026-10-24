@@ -95,7 +95,7 @@ export default async (request) => {
     const key = `logins/${sha(token)}`;
     const record = await db.get(key, { type: "json" });
     if (!record) return json({ error: "This sign-in link has already been used or is not valid. Please request a new one." }, 400);
-    await db.delete(key);
+    if (!record.reusable) await db.delete(key);
     if (record.exp < Date.now()) return json({ error: "This sign-in link has expired. Please request a new one." }, 400);
 
     const customer = await upsertCustomer(db, record.email, {});
