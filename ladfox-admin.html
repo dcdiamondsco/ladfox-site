@@ -66,6 +66,9 @@
       <label>Details</label><textarea id="a-details"></textarea>
       <div class="row"><label><input type="checkbox" id="a-notify" /> Email them that it's in their account</label><button type="submit">Add</button></div>
     </form>
+    <h2 style="margin:6px 0 10px">Who has been on</h2>
+    <div id="activity"></div>
+    <h2 style="margin:28px 0 10px">Projects</h2>
     <div id="list"></div>
     <h2 style="margin:28px 0 10px">Saved designs (from the website)</h2>
     <div id="designs"></div>
@@ -222,6 +225,18 @@
     if (!res.ok) return status(data.error || "Could not load.", true);
     STAGES = data.stages;
     const rows = data.projects.sort((a, b) => (b.customerUnread ? 1 : 0) - (a.customerUnread ? 1 : 0) || String(b.updatedAt).localeCompare(String(a.updatedAt)));
+    const ago = (iso) => { if (!iso) return ""; const s = Math.max(0, (Date.now() - Date.parse(iso)) / 1000); if (s < 90) return "just now"; if (s < 3600) return Math.round(s / 60) + " min ago"; if (s < 86400) return Math.round(s / 3600) + " hr ago"; return Math.round(s / 86400) + " days ago"; };
+    const when = (iso) => iso ? new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
+    const cs = (Array.isArray(data.customers) ? data.customers : []).slice().sort((a, b) => String(b.lastSeenAt || b.createdAt).localeCompare(String(a.lastSeenAt || a.createdAt)));
+    $("activity").replaceChildren(...(cs.length ? cs.map((u) => {
+      const c = el("div", "card", ""); const online = u.lastSeenAt && Date.now() - Date.parse(u.lastSeenAt) < 5 * 60 * 1000;
+      const head = el("strong", "", (online ? "\u25CF " : "") + (u.name || u.email)); if (online) head.style.color = "#9fe3b0";
+      c.append(head);
+      c.append(el("div", "meta", (u.name ? u.email + "\n" : "") + (u.lastSeenAt ? "Last seen " + when(u.lastSeenAt) + " (" + ago(u.lastSeenAt) + ")" + (online ? " \u00b7 online now" : "") : "Last seen: not recorded yet") + "\n" +
+        (u.lastLoginAt ? "Last login " + when(u.lastLoginAt) + " (" + ago(u.lastLoginAt) + ")" : "") + (u.loginCount ? " \u00b7 " + u.loginCount + " login" + (u.loginCount > 1 ? "s" : "") : "") + "\n" +
+        "Signed up " + (when(u.createdAt) || "unknown") + (u.ringFor ? " \u00b7 " + (u.ringFor === "Myself" ? "for themselves" : "for " + (u.ringName || "a loved one")) : "") + " \u00b7 " + data.projects.filter((p) => p.email === u.email).length + " request(s)"));
+      return c;
+    }) : [el("p", "meta", "No customers yet.")]));
     $("list").replaceChildren(...(rows.length ? rows.map(card) : [el("p", "meta", "Nothing here yet.")]));
     const ds = Array.isArray(data.designs) ? data.designs : [];
     $("designs").replaceChildren(...(ds.length ? ds.map((d) => {

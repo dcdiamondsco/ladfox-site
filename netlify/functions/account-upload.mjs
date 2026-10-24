@@ -35,16 +35,5 @@ export default async (request) => {
   project.updatedAt = now;
   await saveProject(db, project);
 
-  if (body.last === true) {
-    try {
-      const customer = (await getCustomer(db, email)) || {};
-      const to = String(process.env.ADMIN_NOTIFY_EMAIL || "hello@ladfox.com").trim();
-      const line = `${customer.name || email} added ${mine + 1 > 1 ? "photos" : "a photo"} to "${project.title}".`;
-      await sendEmail({
-        to, subject: `Photos added: ${customer.name || email}`, text: line,
-        html: emailShell("Photos added", `<p style="margin:0">${escapeHtml(line)}</p>`, "Open admin", `${siteUrl(request)}/ladfox-admin`)
-      });
-    } catch (error) { console.error("upload notification failed", error.message); }
-  }
   return json({ ok: true });
 };

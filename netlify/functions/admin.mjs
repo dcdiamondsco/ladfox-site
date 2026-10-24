@@ -2,7 +2,7 @@ import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
-  FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, sniffType, newToken, emailCustomerNote,
+  FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
   PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
@@ -39,7 +39,12 @@ export default async (request) => {
     const designs = (await listDesigns(db)).slice(0, 100).map((d) => ({
       ...publicDesign(d), email: d.email, name: d.name || "", marketing: Boolean(d.marketing), selections: d.selections
     }));
-    return json({ stages: STAGES, projects, designs });
+    const { blobs: cb } = await db.list({ prefix: "customers/" });
+    const customers = (await Promise.all(cb.map((x) => db.get(x.key, { type: "json" }).catch(() => null)))).filter(Boolean).map((c) => ({
+      email: c.email, name: c.name || "", createdAt: c.createdAt || "", lastSeenAt: c.lastSeenAt || "", lastLoginAt: c.lastLoginAt || "",
+      loginCount: c.loginCount || 0, logins: (c.logins || []).slice(-5), ringFor: c.ringFor || "", ringName: c.ringName || ""
+    }));
+    return json({ stages: STAGES, projects, designs, customers });
   }
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
 

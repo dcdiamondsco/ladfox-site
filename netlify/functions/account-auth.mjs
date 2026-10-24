@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, sha, newToken, normaliseEmail, validEmail, clean, siteUrl, sendEmail, plainShell,
-  upsertCustomer, getCustomer, sheetEvent, escapeHtml, sessionCookie, LOGIN_TTL_MS, FOLLOWUP_DELAY_MS, followKey, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
+  upsertCustomer, getCustomer, sheetEvent, recordVisit, escapeHtml, sessionCookie, LOGIN_TTL_MS, FOLLOWUP_DELAY_MS, followKey, SESSION_TTL_MS, getSession, readCookie, COOKIE_NAME
 } from "./account-lib.mjs";
 
 const mainBtn = (label, url) => `<a href="${escapeHtml(url)}" style="display:inline-block;background:#dfe3ea;color:#0a0a0a;text-decoration:none;padding:16px 38px;border-radius:999px;font-size:16px;font-weight:700">${escapeHtml(label)}</a>`;
@@ -34,6 +34,7 @@ export default async (request) => {
     await db.setJSON(limitKey, { at: Date.now() });
 
     if (name || instant) await upsertCustomer(db, email, { name });
+    if (instant) await recordVisit(db, email, "login");
     if (instant) await sheetEvent({ type: "signup", email, name, intent: clean(body.intent, 20) || "login" });
     let instantHeaders = null;
     if (instant) {
@@ -98,6 +99,7 @@ export default async (request) => {
     if (record.exp < Date.now()) return json({ error: "This sign-in link has expired. Please request a new one." }, 400);
 
     const customer = await upsertCustomer(db, record.email, {});
+    await recordVisit(db, record.email, "login");
     const sessionId = newToken();
     await db.setJSON(`sessions/${sha(sessionId)}`, { email: record.email, exp: Date.now() + SESSION_TTL_MS });
     return json({ ok: true, name: customer.name || "" }, 200, {

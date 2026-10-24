@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
-  publicProject, clean, sheetEvent, customerKey, followKey, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
+  publicProject, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey
 } from "./account-lib.mjs";
 
 const notifyOwner = async (request, subject, lines) => {
@@ -30,6 +30,7 @@ export default async (request) => {
   const email = session.email;
 
   if (request.method === "GET") {
+    await recordVisit(db, email, "seen");
     const customer = (await getCustomer(db, email)) || { email };
     const projects = (await listProjects(db, email)).map(publicProject);
     const pend = await db.get(followKey(email), { type: "json" }).catch(() => null);
@@ -82,7 +83,8 @@ export default async (request) => {
     await notifyOwner(request, `New design request: ${customer.name || email}`, [
       ...(customer.name ? [`Name: ${customer.name}`] : []), `Email: ${email}`,
       ...(project.budget ? [`Budget: ${project.budget}`] : []),
-      ...detailLines
+      ...detailLines,
+      ...(Number(body.photos) > 0 ? [`Photos: ${Math.min(Number(body.photos), 3)} attached (see admin)`] : [])
     ]);
     return json({ ok: true, project: publicProject(project) });
   }

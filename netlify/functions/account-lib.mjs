@@ -252,3 +252,18 @@ export const emailCustomerNote = async (request, project, subject, heading, body
 /* ---------- delayed "continue your design" follow-up ---------- */
 export const FOLLOWUP_DELAY_MS = 30 * 60 * 1000;
 export const followKey = (email) => `followups/${sha(email)}`;
+
+/* ---------- who is on the site (read by the admin page) ---------- */
+export const recordVisit = async (db, email, kind) => {
+  try {
+    const c = await getCustomer(db, email);
+    if (!c) return;
+    const now = Date.now(), iso = new Date(now).toISOString();
+    const last = c.lastSeenAt ? Date.parse(c.lastSeenAt) : 0;
+    if (kind === "login") {
+      await db.setJSON(customerKey(email), { ...c, lastLoginAt: iso, lastSeenAt: iso, loginCount: (c.loginCount || 0) + 1, logins: [...(c.logins || []).slice(-19), iso] });
+    } else if (now - last > 120000) {
+      await db.setJSON(customerKey(email), { ...c, lastSeenAt: iso });
+    }
+  } catch (error) { console.error("visit record failed", error.message); }
+};
