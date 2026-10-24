@@ -349,10 +349,10 @@
 
     if ((p.files || []).some((f) => f.by !== "customer") && p.stage === 3) {
       const box = el("div", "box");
-      box.append(el("h3", "", "Happy with this design?"), el("p", "", "Approve it and we will move on to production. If you would like changes, send us a message below."));
-      const ap = el("button", "btn", "Approve this design"); ap.type = "button";
+      box.append(el("h3", "", "Happy with your CAD?"), el("p", "", "Approve it and we will move on to making your ring. If you would like changes, send us a message below."));
+      const ap = el("button", "btn", "Approve CAD"); ap.type = "button";
       ap.addEventListener("click", async () => {
-        if (!confirm("Approve this design? We will then start making your piece.")) return;
+        if (!confirm("Approve your CAD? We will then start making your ring.")) return;
         ap.disabled = true;
         const { res, data } = await post("/.netlify/functions/account", { action: "approve", id: p.id });
         ap.disabled = false;
