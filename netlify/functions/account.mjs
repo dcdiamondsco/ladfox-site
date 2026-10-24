@@ -78,7 +78,7 @@ export default async (request) => {
       email, name: customer.name, type: "design-request", title, details,
       ringType: body.ringType, budget: body.budget
     });
-    await sheetEvent({ type: "request", email, name: customer.name || "", title: project.title, ringType: project.ringType || "", budget: project.budget || "", details: project.details });
+    await sheetEvent({ type: "request", email, name: customer.name || "", title: project.title, ringType: project.ringType || "", budget: project.budget || "", details: project.details, ringFor: customer.ringFor || "", ringName: customer.ringName || "" });
     const detailLines = String(project.details || "").split("\n").filter((l) => l.trim() && !/^\[.*\]$/.test(l.trim()));
     await notifyOwner(request, `New design request: ${customer.name || email}`, [
       ...(customer.name ? [`Name: ${customer.name}`] : []), `Email: ${email}`,
