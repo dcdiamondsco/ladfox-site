@@ -7,7 +7,7 @@ import {
 const mainBtn = (label, url) => `<a href="${escapeHtml(url)}" style="display:inline-block;background:#dfe3ea;color:#0a0a0a;text-decoration:none;padding:16px 38px;border-radius:999px;font-size:16px;font-weight:700">${escapeHtml(label)}</a>`;
 const emailShell = (heading, body, label, url) => plainShell(heading, body, mainBtn(label, url));
 
-const GENERIC = { ok: true, message: "If that email address is valid, a sign-in link is on its way." };
+const GENERIC = { ok: true, message: "Welcome back. We have emailed you a sign-in link. It can take a minute, so please check your spam folder too." };
 
 export default async (request) => {
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
@@ -30,7 +30,7 @@ export default async (request) => {
 
     const limitKey = `ratelimit/${sha(email)}`;
     const last = await db.get(limitKey, { type: "json" });
-    if (last && Date.now() - last.at < 60_000) return json(GENERIC);
+    if (last && Date.now() - last.at < 60_000) return json({ ok: true, message: "A link was sent a moment ago. Please check your inbox and spam folder, or wait a minute and try again." });
     await db.setJSON(limitKey, { at: Date.now() });
 
     if (name || instant) await upsertCustomer(db, email, { name });
