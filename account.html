@@ -76,7 +76,74 @@
 .welcome{padding:10px 0 22px!important}
 .cg{background:none!important}
 </style>
-<style>.onroute{text-align:center;margin:18px 0 6px}.onroute h3{margin:6px 0 6px;font-size:1.25rem}.onroute p{margin:0 0 14px;color:#d6d9df}.onroute .van{width:190px;max-width:70%;height:auto;fill:none;stroke:#dfe3ea;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}.onroute .van-body{animation:vanBob 1.1s ease-in-out infinite}.onroute .wheel{animation:vanSpin .8s linear infinite;transform-box:view-box}.onroute .road{stroke:#6b707a;stroke-dasharray:10 14;animation:vanRoad .7s linear infinite}@keyframes vanBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}@keyframes vanSpin{to{transform:rotate(360deg)}}@keyframes vanRoad{to{stroke-dashoffset:-24}}@media (prefers-reduced-motion:reduce){.onroute .van-body,.onroute .wheel,.onroute .road{animation:none}}</style>
+<style>/* Animated stage icons for the customer account timeline. Silver line art on black. */
+.sp{text-align:center;margin:20px 0 10px}
+.sp h3{margin:10px 0 6px;font-size:1.3rem}
+.sp p{margin:0 auto 14px;max-width:30em;color:#d6d9df;line-height:1.55}
+.sp .btn{display:inline-block;margin-top:4px}
+.ico{width:230px;max-width:72%;height:auto;fill:none;stroke:#dfe3ea;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.ico .fb{transform-box:fill-box}
+.ico .solid{fill:#000}
+.ico .soft{stroke:#6b707a}
+.ico .glow{fill:#dfe3ea;stroke:none}
+
+/* 0 enquiry: letter slides out of the envelope */
+.a0 .paper{animation:a0p 2.8s ease-in-out infinite}
+@keyframes a0p{0%,15%{transform:translateY(0)}50%,70%{transform:translateY(-20px)}100%{transform:translateY(0)}}
+.a0 .tw{animation:tw 2.8s ease-in-out infinite;transform-origin:center}
+/* 1 initial design: pencil draws the ring */
+.a1 .draw{stroke-dasharray:150;stroke-dashoffset:150;animation:a1d 3.2s ease-in-out infinite}
+@keyframes a1d{0%{stroke-dashoffset:150}70%,100%{stroke-dashoffset:0}}
+.a1 .pencil{offset-path:circle(24px at 80px 56px);offset-rotate:0deg;animation:a1m 3.2s ease-in-out infinite}
+@keyframes a1m{0%{offset-distance:0%}70%,100%{offset-distance:100%}}
+/* 2 payment received: card, tick draws, pulse */
+.a2 .tick{stroke-dasharray:44;stroke-dashoffset:44;animation:a2t 2.6s ease-out infinite}
+@keyframes a2t{0%,20%{stroke-dashoffset:44}55%,100%{stroke-dashoffset:0}}
+.a2 .pulse{animation:a2p 2.6s ease-out infinite;transform-origin:center}
+@keyframes a2p{0%,40%{opacity:0;transform:scale(.7)}60%{opacity:.8}100%{opacity:0;transform:scale(1.5)}}
+/* 3 CAD in progress: wireframe gem turning */
+.a3 .turn{animation:a3t 3.4s ease-in-out infinite;transform-origin:center}
+@keyframes a3t{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.18)}}
+.a3 .scan{animation:a3s 3.4s ease-in-out infinite}
+@keyframes a3s{0%,100%{transform:translateX(-46px);opacity:.2}50%{transform:translateX(46px);opacity:.9}}
+/* 4 CAD approved: seal pops with tick */
+.a4 .seal{animation:a4s 2.4s ease-in-out infinite;transform-origin:center}
+@keyframes a4s{0%,100%{transform:scale(.94)}45%{transform:scale(1.06)}}
+.a4 .tick{stroke-dasharray:50;stroke-dashoffset:50;animation:a4t 2.4s ease-out infinite}
+@keyframes a4t{0%,10%{stroke-dashoffset:50}50%,100%{stroke-dashoffset:0}}
+/* 5 production: hammer taps the ring, sparks fly */
+.a5 .hammer{animation:a5h 1.1s cubic-bezier(.5,0,.8,.6) infinite;transform-origin:118px 22px}
+@keyframes a5h{0%{transform:rotate(-34deg)}42%{transform:rotate(8deg)}52%{transform:rotate(8deg)}100%{transform:rotate(-34deg)}}
+.a5 .spark{animation:a5s 1.1s ease-out infinite;opacity:0}
+.a5 .spark.s2{animation-delay:.02s}
+@keyframes a5s{0%,40%{opacity:0;transform:translate(0,0)}46%{opacity:1}100%{opacity:0;transform:translate(var(--dx,10px),var(--dy,-12px))}}
+/* 6 quality check: magnifier sweeps over the gem */
+.a6 .lens{animation:a6l 3.2s ease-in-out infinite}
+@keyframes a6l{0%,100%{transform:translate(-34px,4px)}50%{transform:translate(30px,-4px)}}
+.a6 .glint{animation:a6g 3.2s ease-in-out infinite;transform-origin:center}
+@keyframes a6g{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.1)}}
+/* 7 dispatched: van on the road */
+.a7 .bob{animation:a7b .5s ease-in-out infinite}
+@keyframes a7b{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}
+.a7 .wheel{animation:a7w .55s linear infinite}
+@keyframes a7w{to{transform:rotate(360deg)}}
+.a7 .road{stroke:#6b707a;stroke-dasharray:14 16;animation:a7r .5s linear infinite}
+@keyframes a7r{to{stroke-dashoffset:-30}}
+.a7 .scenery{animation:a7s 3s linear infinite}
+@keyframes a7s{to{transform:translateX(-80px)}}
+.a7 .speed{animation:a7sp .6s linear infinite;opacity:0}
+.a7 .speed.l2{animation-delay:.2s}.a7 .speed.l3{animation-delay:.4s}
+@keyframes a7sp{0%{opacity:0;transform:translateX(0)}30%{opacity:.8}100%{opacity:0;transform:translateX(-26px)}}
+/* 8 delivered: box lid opens, sparkle rises */
+.a8 .lid{animation:a8l 3s ease-in-out infinite;transform-origin:44px 50px}
+@keyframes a8l{0%,12%{transform:rotate(0)}40%,80%{transform:rotate(-38deg)}100%{transform:rotate(0)}}
+.a8 .gem{animation:a8g 3s ease-in-out infinite}
+@keyframes a8g{0%,15%{opacity:0;transform:translateY(8px) scale(.6)}45%,80%{opacity:1;transform:translateY(-10px) scale(1)}100%{opacity:0;transform:translateY(8px) scale(.6)}}
+.a8 .twk{animation:a8t 3s ease-in-out infinite;transform-origin:center}
+@keyframes a8t{0%,35%{opacity:0;transform:scale(.2)}55%{opacity:1;transform:scale(1)}80%,100%{opacity:0;transform:scale(.3)}}
+
+@media (prefers-reduced-motion:reduce){.ico *{animation:none!important}.a1 .draw,.a2 .tick,.a4 .tick{stroke-dashoffset:0}.a0 .paper,.a8 .gem{opacity:1}}
+</style>
 <style>.rq-upload{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:12px;text-align:left;margin:14px 0 0;padding:15px 18px;border-radius:999px;background:rgba(255,255,255,.07);color:#dfe3ea;font-size:.95rem;cursor:pointer;transition:background .25s}.rq-upload:hover{background:rgba(255,255,255,.12)}.rq-upload svg{flex:0 0 18px;display:block;margin:0;width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}</style>
 </head>
 <body>
@@ -200,6 +267,25 @@
   <footer>&copy; 2026 LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com">hello@ladfox.com</a> &middot; <a href="privacy-policy.html">Privacy</a></footer>
 
 <script>
+/* window.lfxStageIcon(index) returns an animated SVG string for each order stage. */
+(function () {
+  var gem = function (cls, extra) {
+    return '<path class="' + (cls || "") + '" d="M56 34h48l16 16-40 42L40 50z"/><path class="soft" d="M40 50h80M64 34l-8 16 24 42M96 34l8 16-24 42M80 34l-16 16M80 34l16 16"/>' + (extra || "");
+  };
+  var I = {
+    0: '<svg class="ico a0" viewBox="0 0 160 110" aria-hidden="true"><rect class="paper" x="52" y="40" width="56" height="40" rx="4" fill="#000"/><path class="paper soft" d="M62 52h36M62 60h36M62 68h24"/><path class="solid" d="M32 48l48 30 48-30v42H32z"/><path d="M32 48l48 30 48-30"/><path class="glow tw" d="M128 26l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" style="transform-origin:128px 34px"/></svg>',
+    1: '<svg class="ico a1" viewBox="0 0 160 110" aria-hidden="true"><circle class="soft" cx="80" cy="56" r="24" style="stroke-dasharray:3 6"/><circle class="draw" cx="80" cy="56" r="24"/><path class="draw" d="M70 26l10-10 10 10-10 10z" style="stroke-dasharray:60;stroke-dashoffset:0;animation:none"/><g class="pencil"><path d="M0 0l-14 4 2-14 24-24 12 12z" class="solid"/><path d="M-12 -10l12 12"/></g></svg>',
+    2: '<svg class="ico a2" viewBox="0 0 160 110" aria-hidden="true"><rect x="30" y="32" width="100" height="62" rx="8"/><path d="M30 50h100M44 78h24"/><circle class="solid" cx="116" cy="34" r="19"/><circle class="pulse soft" cx="116" cy="34" r="19"/><path class="tick" d="M106 34l7 8 14-16"/></svg>',
+    3: '<svg class="ico a3" viewBox="0 0 160 110" aria-hidden="true">' + gem("") + '<g class="turn">' + '<path d="M56 34l8 16 16 42M104 34l-8 16-16 42"/></g><path class="scan soft" d="M80 28v70" style="stroke-dasharray:3 5"/><path class="soft" d="M30 100h100M30 96v8M130 96v8"/></svg>',
+    4: '<svg class="ico a4" viewBox="0 0 160 110" aria-hidden="true"><g class="seal fb"><path d="M80 14l30 12v26c0 20-13 36-30 44-17-8-30-24-30-44V26z"/></g><path class="tick" d="M65 56l11 12 22-24"/></svg>',
+    5: '<svg class="ico a5" viewBox="0 0 160 110" aria-hidden="true"><path d="M44 96h72M56 96l6-18h36l6 18" class="solid"/><circle cx="80" cy="64" r="14"/><path class="glow" d="M80 46l6 5-6 4-6-4z"/><g class="hammer"><path d="M118 22l-30 34"/><path class="solid" d="M104 12l24 18-8 10-26-16z"/></g><path class="spark" d="M70 52l-8-8" style="--dx:-10px;--dy:-10px"/><path class="spark s2" d="M92 52l8-8" style="--dx:10px;--dy:-10px"/><path class="spark" d="M80 48v-12" style="--dy:-14px;--dx:0"/></svg>',
+    6: '<svg class="ico a6" viewBox="0 0 160 110" aria-hidden="true">' + gem("") + '<path class="glow glint" d="M80 64l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><g class="lens"><circle class="solid" cx="80" cy="56" r="20" fill-opacity=".15"/><circle cx="80" cy="56" r="20"/><path d="M95 71l20 20" stroke-width="5"/></g></svg>',
+    7: '<svg class="ico a7" viewBox="0 0 240 120" aria-hidden="true"><defs><clipPath id="vclip"><rect x="0" y="0" width="240" height="120"/></clipPath></defs><g clip-path="url(#vclip)"><g class="scenery soft"><path d="M10 82V62l10-8 10 8v20M60 82V50M52 62l8-12 8 12M104 82V66h14v16M150 82V58l10-9 10 9v24M200 82V52M192 64l8-12 8 12M250 82V62l10-8 10 8v20M300 82V50M292 62l8-12 8 12"/></g><path class="road" d="M0 100h240"/><g class="bob"><g class="speed"><path d="M26 56h-14"/></g><g class="speed l2"><path d="M30 68h-18"/></g><g class="speed l3"><path d="M26 80h-12"/></g><path class="solid" d="M34 40q0-6 6-6h92q6 0 6 6v46H34z"/><path class="solid" d="M138 50h26l24 22v14h-50z"/><path d="M146 56h16l16 16h-32z" class="soft"/><path d="M34 70h104" class="soft"/><circle class="glow" cx="184" cy="78" r="2.4"/><path d="M188 86h6" /><g class="wheel" style="transform-origin:70px 90px"><circle class="solid" cx="70" cy="90" r="12"/><path d="M70 80v20M60 90h20"/></g><g class="wheel" style="transform-origin:162px 90px"><circle class="solid" cx="162" cy="90" r="12"/><path d="M162 80v20M152 90h20"/></g></g></g></svg>',
+    8: '<svg class="ico a8" viewBox="0 0 160 110" aria-hidden="true"><path class="solid" d="M44 52h72v40H44z"/><g class="gem fb"><path d="M72 40l8-10 8 10-8 14z"/></g><path class="glow twk" d="M104 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" style="transform-origin:104px 37px"/><g class="lid"><path class="solid" d="M40 40h80v12H40z"/></g><path class="soft" d="M80 52v40"/></svg>'
+  };
+  window.lfxStageIcon = function (i) { return I[i] || I[0]; };
+})();
+
 (() => {
   const STAGES = ["Enquiry received","Complimentary initial design created","Payment received","CAD in progress","CAD approved","In production","Quality check","Dispatched","Delivered"];
   const $ = (id) => document.getElementById(id);
@@ -222,14 +308,15 @@
     if (p.details) left.append(el("p", "", p.details));
     head.append(left, el("span", "badge", STAGES[p.stage] || "Enquiry received"));
     if (p.type !== "design-request") card.append(head);
-    if (p.estimate && p.stage !== 7) card.append(el("p", "", "Estimated: " + p.estimate + " (an estimate, not a guarantee)"));
-    if (p.stage === 7) {
-      const or = el("div", "onroute");
-      or.innerHTML = '<svg class="van" viewBox="0 0 220 90" aria-hidden="true"><g class="van-body"><path d="M18 62V30h86v32M104 40h34l24 18v4h-58"/><path d="M110 44h24l14 12h-38z"/><g class="wheel" style="transform-origin:48px 66px"><circle cx="48" cy="66" r="9"/><path d="M48 59v14M41 66h14"/></g><g class="wheel" style="transform-origin:132px 66px"><circle cx="132" cy="66" r="9"/><path d="M132 59v14M125 66h14"/></g></g><path class="road" d="M0 82h220"/></svg>';
-      or.append(el("h3", "", "On route"));
-      if (p.estimate) or.append(el("p", "", "Estimated delivery: " + p.estimate));
-      if (p.trackingUrl && /^https:\/\//.test(p.trackingUrl)) { const a = el("a", "btn", "Track your parcel"); a.href = p.trackingUrl; a.target = "_blank"; a.rel = "noopener noreferrer"; or.append(a); }
-      card.append(or);
+    {
+      const BL = ["We have received your enquiry and will be in touch shortly.","Your complimentary initial design is ready to view below.","Payment received. Thank you!","We are building your ring in 3D so you can see every detail before it is made.","Your CAD is approved. We are preparing to make your ring.","Your ring is being handcrafted.","A final inspection and hallmark check before it leaves us.","Your ring is on its way to you.","Delivered. We hope you love it."];
+      const sp = el("div", "sp");
+      sp.innerHTML = window.lfxStageIcon(p.stage);
+      sp.append(el("h3", "", p.stage === 7 ? "On route" : (STAGES[p.stage] || "")));
+      sp.append(el("p", "", BL[p.stage] || ""));
+      if (p.estimate) sp.append(el("p", "", "Estimated delivery: " + p.estimate));
+      if (p.stage === 7 && p.trackingUrl && /^https:\/\//.test(p.trackingUrl)) { const a2 = el("a", "btn", "Track your parcel"); a2.href = p.trackingUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer"; sp.append(a2); }
+      card.append(sp);
     }
 
     const steps = el("ol", "steps");

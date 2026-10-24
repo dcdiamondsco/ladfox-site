@@ -48,6 +48,13 @@
     .say{margin:10px 0 6px;padding:12px 14px;background:rgba(255,255,255,.05);border-radius:12px}
     .say span{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#8b9099;margin:0 0 4px}
     .say p{margin:0;white-space:pre-wrap;color:#e6e8ec;line-height:1.55}
+    .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:0 0 16px}
+    .stat{background:#151515;border-radius:14px;padding:14px}.stat b{display:block;font-size:1.7rem}.stat span{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#8b9099}
+    .erow{display:flex;gap:12px;align-items:center;background:#151515;border-radius:14px;padding:13px 16px;margin:0 0 8px;cursor:pointer;width:100%;text-align:left;color:#fff;border:0;font:inherit}
+    .erow:hover{background:#1d1d1d}.erow .who{flex:1;min-width:0}.erow .who strong{display:block}.erow .who small{display:block;color:#8b9099;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .erow .dot{width:9px;height:9px;border-radius:50%;background:#444;flex:none}.erow .dot.on{background:#9fe3b0}
+    .erow .stg{font-size:.72rem;background:rgba(255,255,255,.08);border-radius:999px;padding:3px 10px;white-space:nowrap}
+    .erow .nb{font-size:.68rem;font-weight:700;background:#fff;color:#000;border-radius:999px;padding:3px 9px}
     #status{margin:10px 0;color:#9fe3b0;min-height:1.2em}#status.err{color:#ff9d9d}
   </style>
 </head>
@@ -73,12 +80,15 @@
       <label>Details</label><textarea id="a-details"></textarea>
       <div class="row"><label><input type="checkbox" id="a-notify" /> Email them that it's in their account</label><button type="submit">Add</button></div>
     </form>
-    <h2 style="margin:6px 0 10px">Who has been on</h2>
-    <div id="activity"></div>
-    <h2 style="margin:28px 0 10px">Projects</h2>
-    <div id="list"></div>
-    <h2 style="margin:28px 0 10px">Saved designs (from the website)</h2>
-    <div id="designs"></div>
+    <div id="dash">
+      <div id="stats" class="stats"></div>
+      <div class="row" style="margin:0 0 10px"><input id="q" placeholder="Search name, email or ring" style="max-width:320px" /><select id="flt" style="max-width:200px"><option value="all">All enquiries</option><option value="unread">New messages</option><option value="open">In progress</option><option value="done">Delivered</option></select></div>
+      <div id="list"></div>
+      <h2 style="margin:26px 0 10px">Signed up, no request yet</h2>
+      <div id="activity"></div>
+      <details style="margin:26px 0 0"><summary style="cursor:pointer;font-weight:700;font-size:1.1rem">Saved designs (from the website)</summary><div id="designs" style="margin-top:10px"></div></details>
+    </div>
+    <div id="detail" class="hidden"><button class="ghost" id="back" type="button" style="margin:0 0 12px">&larr; Back to dashboard</button><div id="detailBody"></div></div>
   </div>
 </main>
 <script>
@@ -139,7 +149,7 @@
     const save = el("button", "", "Save update"); row.append(lab, save);
     save.onclick = async () => {
       save.disabled = true;
-      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked });
+      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value });
       save.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
       status("");
@@ -182,6 +192,9 @@
 
     // ----- payments -----
     const psec = el("div", "sec"); psec.append(el("h3", "", "Payment"));
+    const estIn = el("input"); estIn.placeholder = "Estimated delivery date (shown to customer)"; estIn.value = p.estimate || ""; estIn.maxLength = 80;
+    const trkIn = el("input"); trkIn.placeholder = "Tracking link (optional, shown once dispatched)"; trkIn.value = p.trackingUrl || "";
+    psec.append(estIn, trkIn);
     for (const pay of p.payments || []) {
       const r = el("div", "pay");
       r.append(el("span", "pill " + (pay.status === "paid" ? "paid" : "due"), pay.status === "paid" ? "PAID" : "DUE"), document.createTextNode(`£${(pay.amountPence / 100).toFixed(2)} · ${pay.label}`));
@@ -222,7 +235,7 @@
       status(""); load();
     };
     const log = el("div", "log");
-    for (const u of p.updates) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
+    for (const u of p.updates.filter((x) => x.kind === "msg" || (x.by === "customer" && x.stage === undefined))) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
     c.append(log);
     c.append(row);
     const dsec = el("div", "sec"); const del = el("button", "danger", "Delete project");
@@ -238,6 +251,39 @@
     return c;
   }
 
+  let DATA = null;
+  const isOn = (iso) => iso && Date.now() - Date.parse(iso) < 5 * 60 * 1000;
+  function render() {
+    if (!DATA) return;
+    const { rows, cs, ago, when, projects } = DATA;
+    const m = location.hash.match(/^#p=(.+)$/);
+    const cur = m && rows.find((p) => p.id === decodeURIComponent(m[1]));
+    $("dash").classList.toggle("hidden", !!cur); $("detail").classList.toggle("hidden", !cur);
+    if (cur) { $("detailBody").replaceChildren(card(cur)); window.scrollTo(0, 0); return; }
+    const today = new Date().toDateString();
+    const stat = (n, l) => { const d = el("div", "stat"); d.append(el("b", "", String(n)), el("span", "", l)); return d; };
+    $("stats").replaceChildren(stat(cs.length, "Customers"), stat(cs.filter((u) => isOn(u.lastSeenAt)).length, "Online now"), stat(rows.filter((p) => p.stage < 8).length, "Open"), stat(rows.filter((p) => p.customerUnread).length, "New messages"), stat(cs.filter((u) => u.createdAt && new Date(u.createdAt).toDateString() === today).length, "Signed up today"));
+    const q = ($("q").value || "").toLowerCase(), f = $("flt").value;
+    const vis = rows.filter((p) => (f === "all" || (f === "unread" && p.customerUnread) || (f === "open" && p.stage < 8) || (f === "done" && p.stage >= 8)) && (!q || (p.title + " " + p.email + " " + (p.name || "")).toLowerCase().includes(q)));
+    $("list").replaceChildren(...(vis.length ? vis.map((p) => {
+      const u = cs.find((x) => x.email === p.email) || {};
+      const b = el("button", "erow"); b.type = "button";
+      const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? "seen " + ago(u.lastSeenAt) : "updated " + ago(p.updatedAt))));
+      b.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w);
+      if (p.customerUnread) b.append(el("span", "nb", "NEW MESSAGE"));
+      b.append(el("span", "stg", STAGES[p.stage] || ""));
+      b.onclick = () => { location.hash = "p=" + encodeURIComponent(p.id); };
+      return b;
+    }) : [el("p", "meta", "Nothing here.")]));
+    const none = cs.filter((u) => !projects.some((p) => p.email === u.email));
+    $("activity").replaceChildren(...(none.length ? none.map((u) => {
+      const r = el("div", "erow"); r.style.cursor = "default";
+      const w = el("div", "who"); w.append(el("strong", "", u.name || u.email), el("small", "", (u.name ? u.email + " \u00b7 " : "") + (u.lastSeenAt ? "seen " + ago(u.lastSeenAt) : "signed up " + when(u.createdAt)) + (u.loginCount ? " \u00b7 " + u.loginCount + " login" + (u.loginCount > 1 ? "s" : "") : "")));
+      r.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w); return r;
+    }) : [el("p", "meta", "None.")]));
+  }
+  window.addEventListener("hashchange", render);
+
   async function load() {
     const { res, data } = await call();
     if (res.status === 401) { status("Wrong password.", true); $("app").classList.add("hidden"); $("login").classList.remove("hidden"); return; }
@@ -247,16 +293,8 @@
     const ago = (iso) => { if (!iso) return ""; const s = Math.max(0, (Date.now() - Date.parse(iso)) / 1000); if (s < 90) return "just now"; if (s < 3600) return Math.round(s / 60) + " min ago"; if (s < 86400) return Math.round(s / 3600) + " hr ago"; return Math.round(s / 86400) + " days ago"; };
     const when = (iso) => iso ? new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
     const cs = (Array.isArray(data.customers) ? data.customers : []).slice().sort((a, b) => String(b.lastSeenAt || b.createdAt).localeCompare(String(a.lastSeenAt || a.createdAt)));
-    $("activity").replaceChildren(...(cs.length ? cs.map((u) => {
-      const c = el("div", "card", ""); const online = u.lastSeenAt && Date.now() - Date.parse(u.lastSeenAt) < 5 * 60 * 1000;
-      const head = el("strong", "", (online ? "\u25CF " : "") + (u.name || u.email)); if (online) head.style.color = "#9fe3b0";
-      c.append(head);
-      c.append(el("div", "meta", (u.name ? u.email + "\n" : "") + (u.lastSeenAt ? "Last seen " + when(u.lastSeenAt) + " (" + ago(u.lastSeenAt) + ")" + (online ? " \u00b7 online now" : "") : "Last seen: not recorded yet") + "\n" +
-        (u.lastLoginAt ? "Last login " + when(u.lastLoginAt) + " (" + ago(u.lastLoginAt) + ")" : "") + (u.loginCount ? " \u00b7 " + u.loginCount + " login" + (u.loginCount > 1 ? "s" : "") : "") + "\n" +
-        "Signed up " + (when(u.createdAt) || "unknown") + (u.ringFor ? " \u00b7 " + (u.ringFor === "Myself" ? "for themselves" : "for " + (u.ringName || "a loved one")) : "") + " \u00b7 " + data.projects.filter((p) => p.email === u.email).length + " request(s)"));
-      return c;
-    }) : [el("p", "meta", "No customers yet.")]));
-    $("list").replaceChildren(...(rows.length ? rows.map(card) : [el("p", "meta", "Nothing here yet.")]));
+    DATA = { rows, cs, ago, when, projects: data.projects };
+    render();
     const ds = Array.isArray(data.designs) ? data.designs : [];
     $("designs").replaceChildren(...(ds.length ? ds.map((d) => {
       const c = el("div", "card", "");
@@ -271,6 +309,8 @@
   }
   $("login").addEventListener("submit", (e) => { e.preventDefault(); pw = $("pw").value; try { sessionStorage.setItem("lfx_admin", pw); } catch {} load(); });
   $("reload").onclick = load;
+  $("back").onclick = () => { location.hash = ""; };
+  $("q").oninput = render; $("flt").onchange = render;
   $("out").onclick = () => { pw = ""; try { sessionStorage.removeItem("lfx_admin"); } catch {} location.reload(); };
   $("addBtn").onclick = () => $("addForm").classList.toggle("hidden");
   $("addForm").addEventListener("submit", async (e) => {

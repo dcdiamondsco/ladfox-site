@@ -136,7 +136,7 @@ export default async (request) => {
     if (!text) return json({ error: "Write a message first." }, 400);
     if ((project.updates || []).length > 200) return json({ error: "This thread is full." }, 400);
     const now = new Date().toISOString();
-    project.updates.push({ at: now, by: "ladfox", text, stage: project.stage });
+    project.updates.push({ at: now, by: "ladfox", kind: "msg", text, stage: project.stage });
     project.updatedAt = now;
     project.customerUnread = false;
     await saveProject(db, project);
