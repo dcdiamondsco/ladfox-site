@@ -76,7 +76,7 @@
 .welcome{padding:10px 0 22px!important}
 .cg{background:none!important}
 </style>
-<style>.rq-upload{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;margin:14px 0 0;padding:15px 18px;border-radius:999px;background:rgba(255,255,255,.07);color:#dfe3ea;font-size:.95rem;cursor:pointer;transition:background .25s}.rq-upload:hover{background:rgba(255,255,255,.12)}.rq-upload svg{flex:0 0 18px;display:block;margin:0;width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}</style>
+<style>.rq-upload{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:12px;text-align:left;margin:14px 0 0;padding:15px 18px;border-radius:999px;background:rgba(255,255,255,.07);color:#dfe3ea;font-size:.95rem;cursor:pointer;transition:background .25s}.rq-upload:hover{background:rgba(255,255,255,.12)}.rq-upload svg{flex:0 0 18px;display:block;margin:0;width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}</style>
 </head>
 <body>
   <a class="site-skip-link" href="#main-content">Skip to main content</a>
@@ -114,7 +114,7 @@
             <button type="button" class="cg-opt" data-for="A loved one">For a loved one</button>
           </div>
           <div class="cg-namewrap" id="cgNameWrap">
-            <form class="cg-name" id="cgName" autocomplete="off"><input id="cgNameInput" maxlength="40" placeholder="Their first name" aria-label="Their first name" /><button type="submit">Continue</button></form>
+            <form class="cg-name" id="cgName" autocomplete="off"><input id="cgNameInput" maxlength="40" aria-label="Their first name" /><button type="submit">Continue</button></form>
           </div>
         </div>
       </section>
@@ -159,7 +159,7 @@
       <form id="requestForm" class="card hidden" style="margin-top:18px" novalidate>
         <h2 id="rqHeading">Tell us about your ring</h2>
         <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount" hidden style="display:none">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
-        <style>#requestForm .rq-chips,#requestForm .rs-row{justify-content:center}#requestForm .bud-row{text-align:center}#requestForm .rq-upload{text-align:center}</style><div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
+        <style>#requestForm .rq-chips,#requestForm .rs-row{justify-content:center}#requestForm .bud-row{text-align:center}#requestForm .rq-upload{text-align:left}#requestForm .rq-upload span{flex:0 1 auto;max-width:15.5em}</style><div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
         <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips two"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips three"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="rq-group" data-key="prop" id="rqProp" style="display:none"><div class="rq-label">Proportions</div><div class="rq-chips three"><button type="button" class="chip" data-v="Standard">Standard</button><button type="button" class="chip" data-v="Elongated">Elongated</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
@@ -180,8 +180,8 @@
           <style>.rs-row{display:flex;align-items:center;gap:10px}.rs-row input{width:92px;flex:0 0 92px}</style>
         </div>
         <input id="rq-title" type="hidden" />
-        <label for="rq-details" id="rq-details-label">Anything else? Ideas, timing, links</label>
-        <textarea id="rq-details" maxlength="2000" placeholder="Tell us in your own words."></textarea>
+        <label for="rq-details" id="rq-details-label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Anything you&rsquo;d like us to know?</label>
+        <textarea id="rq-details" maxlength="2000" placeholder="Anything you&rsquo;d like us to know? Ideas, timing, a ring you love"></textarea>
         <input id="rq-photos" type="file" accept="image/*" multiple hidden />
         <label class="rq-upload" for="rq-photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 19h14"/></svg><span id="rq-photo-label">Would you like to attach a photo or inspiration image?</span></label>
         <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Other ring</option><option>Necklace</option><option>Bracelet</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
@@ -411,7 +411,8 @@
       const b = e.target.closest(".cg-opt"); if (!b) return;
       forWho = b.dataset.for; $("cgOpts").classList.remove("on");
       if (forWho === "Myself") { finish(""); return; }
-      $("cgLine").textContent = ""; $("cgEye").textContent = "";
+      $("cgEye").textContent = "";
+      await typeInto($("cgLine"), "What\u2019s their name?", 45);
       $("cgNameWrap").classList.add("on");
       if (!(window.matchMedia && matchMedia("(pointer:coarse)").matches)) setTimeout(() => $("cgNameInput").focus({ preventScroll: true }), 300);
     };
