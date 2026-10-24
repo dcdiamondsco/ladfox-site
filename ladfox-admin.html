@@ -143,6 +143,7 @@
     const g = el("div", "grid");
     const sWrap = el("div"); sWrap.append(el("label", "", "Stage"));
     const sel = el("select"); STAGES.forEach((s, i) => { const o = el("option", "", s); o.value = i; if (i === p.stage) o.selected = true; sel.append(o); }); sWrap.append(sel);
+    const upBtn = el("button", "", "Update"); upBtn.type = "button"; upBtn.style.marginTop = "10px"; upBtn.onclick = () => save.click(); sWrap.append(upBtn);
     c.append(sWrap);
     const note = { value: "" };
     const row = el("div", "row"); const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = false; lab.append(ck, document.createTextNode("Email them this update"));
