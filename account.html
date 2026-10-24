@@ -113,9 +113,6 @@
             <button type="button" class="cg-opt" data-for="Myself">For myself</button>
             <button type="button" class="cg-opt" data-for="A loved one">For a loved one</button>
           </div>
-          <div class="cg-namewrap" id="cgNameWrap">
-            <form class="cg-name" id="cgName" autocomplete="off"><input id="cgNameInput" maxlength="40" placeholder="Their first name" aria-label="Their first name" /><button type="submit">Continue</button></form>
-          </div>
         </div>
       </section>
       <style>
@@ -158,25 +155,25 @@
 
       <form id="requestForm" class="card hidden" style="margin-top:18px" novalidate>
         <h2 id="rqHeading">Tell us about your ring</h2>
-        <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
-        <div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
-        <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips two"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
-        <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips three"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
-        <div class="rq-group" data-key="prop" id="rqProp" style="display:none"><div class="rq-label">Proportions</div><div class="rq-chips three"><button type="button" class="chip" data-v="Standard">Standard</button><button type="button" class="chip" data-v="Elongated">Elongated</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount" hidden style="display:none">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
+        <style>#requestForm .rq-label,#requestForm .bud label,#requestForm label{text-align:center;display:block}#requestForm .rq-chips{justify-content:center}#requestForm .rs-row{justify-content:center}#requestForm{text-align:center}#requestForm textarea{text-align:left}</style><div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
+        <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips two"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
+        <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips three"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
+        <div class="rq-group" data-key="prop" id="rqProp" style="display:none"><div class="rq-label">Proportions</div><div class="rq-chips three"><button type="button" class="chip" data-v="Standard">Standard</button><button type="button" class="chip" data-v="Elongated">Elongated</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="rq-group bud untouched" data-key="size" id="rqSize"><div class="rq-label">Stone size</div>
           <div class="bud-row"><output id="rq-size-out" for="rq-size">1.0ct</output></div>
           <input id="rq-size" type="range" min="0" max="41" step="1" value="7" aria-label="Stone size in carats" />
           <div class="bud-scale"><span>0.3ct</span><span>10ct+</span></div></div>
-        <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><style>.mdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:0;opacity:.7;filter:saturate(.7)}</style><div class="rq-chips three"><button type="button" class="chip" data-v="Yellow gold"><i class="mdot" style="background:linear-gradient(135deg,#f6e3a1,#d4a93c 55%,#a97c1c)"></i>Yellow gold</button><button type="button" class="chip" data-v="White gold"><i class="mdot" style="background:linear-gradient(135deg,#ffffff,#d9dce2 55%,#aeb3bd)"></i>White gold</button><button type="button" class="chip" data-v="Rose gold"><i class="mdot" style="background:linear-gradient(135deg,#f6d0c4,#d99a86 55%,#b3705e)"></i>Rose gold</button><button type="button" class="chip" data-v="Platinum"><i class="mdot" style="background:linear-gradient(135deg,#f1f3f7,#c3c8d1 55%,#8f95a1)"></i>Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
-        <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Other">Other</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
+        <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><style>.mdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:0;opacity:.7;filter:saturate(.7)}</style><div class="rq-chips three"><button type="button" class="chip" data-v="Yellow gold"><i class="mdot" style="background:linear-gradient(135deg,#f6e3a1,#d4a93c 55%,#a97c1c)"></i>Yellow gold</button><button type="button" class="chip" data-v="White gold"><i class="mdot" style="background:linear-gradient(135deg,#ffffff,#d9dce2 55%,#aeb3bd)"></i>White gold</button><button type="button" class="chip" data-v="Rose gold"><i class="mdot" style="background:linear-gradient(135deg,#f6d0c4,#d99a86 55%,#b3705e)"></i>Rose gold</button><button type="button" class="chip" data-v="Platinum"><i class="mdot" style="background:linear-gradient(135deg,#f1f3f7,#c3c8d1 55%,#8f95a1)"></i>Platinum</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
+        <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Other">Other</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="row">
           <div class="bud"><label for="rq-budget">Budget</label>
             <div class="bud-row"><output id="rq-budget-out" for="rq-budget">&pound;3,000</output></div>
-            <input id="rq-budget" type="range" min="500" max="10000" step="250" value="3000" aria-label="Budget in pounds" />
-            <div class="bud-scale"><span>&pound;500</span><span>&pound;10,000+</span></div></div>
+            <input id="rq-budget" type="range" min="0" max="36" step="1" value="8" aria-label="Budget in pounds" />
+            <div class="bud-scale"><span>&pound;999</span><span>&pound;10,000+</span></div></div>
           <style>.bud-row{margin:6px 0 10px;text-align:center;font-size:1.5rem;font-weight:700;color:#fff}.bud input[type=range]{width:100%;accent-color:#dfe3ea;height:28px;padding:0;background:transparent;border:0}.bud-scale{display:flex;justify-content:space-between;font-size:.8rem;color:#9a9fa8}.bud-clear{display:block;margin:10px auto 0;background:none;border:0;color:#c8ccd4;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}.bud.untouched input[type=range]{opacity:.45}.bud.untouched .bud-row{opacity:.45}</style>
           <div><label for="rq-ringsize">Ring size</label>
-            <div class="rs-row"><input id="rq-ringsize" maxlength="6" aria-label="Ring size" /><button type="button" class="chip" id="rq-rs-unsure" aria-pressed="false">Not sure yet</button></div></div>
+            <div class="rs-row"><input id="rq-ringsize" maxlength="6" aria-label="Ring size" /><button type="button" class="chip" id="rq-rs-unsure" aria-pressed="false">Not sure</button></div></div>
           <style>.rs-row{display:flex;align-items:center;gap:10px}.rs-row input{width:92px;flex:0 0 92px}</style>
         </div>
         <input id="rq-title" type="hidden" />
@@ -393,14 +390,14 @@
     $("dash").classList.add("cg-only");
     $("welcome").classList.add("hidden"); $("requestForm").classList.add("hidden");
     $("concierge").classList.remove("hidden"); $("cgOpts").classList.remove("on");
-    await typeInto($("cgEye"), first && first !== "there" ? "Welcome " + first : "Welcome", 55);
-    await sleep(350);
+    if (forceAsk) { $("cgEye").textContent = ""; }
+    else { await typeInto($("cgEye"), first && first !== "there" ? "Welcome " + first : "Welcome", 55); await sleep(350); }
     await typeInto($("cgLine"), "Who are we designing for?", 52);
     $("cgOpts").classList.add("on");
     const finish = async (name) => {
       ringName = name; savedFor = forWho; savedName = name;
       post("/.netlify/functions/account", { action: "ring-for", ringFor: forWho, ringName: name });
-      $("cgNameWrap").classList.remove("on"); $("cgOpts").classList.remove("on");
+      $("cgOpts").classList.remove("on");
       $("concierge").style.transition = "opacity .3s ease"; $("concierge").style.opacity = "0";
       await sleep(320);
       $("concierge").classList.add("hidden"); $("concierge").style.opacity = "";
@@ -410,13 +407,8 @@
     $("cgOpts").onclick = async (e) => {
       const b = e.target.closest(".cg-opt"); if (!b) return;
       forWho = b.dataset.for; $("cgOpts").classList.remove("on");
-      if (forWho === "Myself") { finish(""); return; }
-      $("cgEye").textContent = "";
-      await typeInto($("cgLine"), "What\u2019s their name?", 45);
-      $("cgNameWrap").classList.add("on");
-      if (!(window.matchMedia && matchMedia("(pointer:coarse)").matches)) setTimeout(() => $("cgNameInput").focus({ preventScroll: true }), 300);
+      finish(""); return;
     };
-    $("cgName").onsubmit = (e) => { e.preventDefault(); const n = $("cgNameInput").value.trim(); if (n) finish(n); else $("cgNameInput").focus(); };
   }
   const chosen = {};
   document.querySelectorAll("#requestForm .rq-group").forEach((g) => g.addEventListener("click", (e) => {
@@ -436,7 +428,7 @@
     if (requestKind) lines.push("[" + KIND_LABEL[requestKind] + "]");
     if (forWho === "A loved one") lines.push("Ring is for: " + (ringName || "Them"));
     Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
-    const rs = $("rq-rs-unsure").getAttribute("aria-pressed") === "true" ? "Not sure yet" : $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
+    const rs = $("rq-rs-unsure").getAttribute("aria-pressed") === "true" ? "Not sure" : $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
     const t = $("rq-details").value.trim(); if (t) lines.push("", t);
     const out = lines.join("\n");
     return out.length >= 10 ? out : out + " (no details yet, please advise)";
@@ -457,10 +449,12 @@
 
   (function () {
     const r = $("rq-budget"), out = $("rq-budget-out");
+    const VALS = [999]; for (let v = 1250; v <= 10000; v += 250) VALS.push(v);
     const fmt = (v) => "\u00a3" + Number(v).toLocaleString("en-GB") + (Number(v) >= 10000 ? "+" : "");
-    const paint = () => { out.textContent = fmt(r.value); };
+    const cur = () => VALS[+r.value];
+    const paint = () => { out.textContent = fmt(cur()); };
     r.addEventListener("input", paint);
-    window.lfxBudget = () => fmt(r.value);
+    window.lfxBudget = () => fmt(cur());
     paint();
   })();
   const SIZES = []; for (let v = 3; v <= 30; v++) SIZES.push(v / 10); for (let v = 3.5; v <= 10; v += 0.5) SIZES.push(v);
@@ -510,7 +504,7 @@
     e.preventDefault();
     const btn = e.target.querySelector("button[type=submit]"); btn.disabled = true;
     const { res, data } = await post("/.netlify/functions/account", {
-      action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure yet").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: window.lfxBudget(), details: composeDetails()
+      action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: window.lfxBudget(), details: composeDetails()
     });
     btn.disabled = false;
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
