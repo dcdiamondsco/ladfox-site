@@ -46,6 +46,32 @@ function customerTab(ss, d) {
   return name;
 }
 
+// Finds the customer's tab from the Requests tab (newest match on email + title).
+function tabForCustomer(ss, email, title) {
+  var req = ss.getSheetByName("Requests");
+  if (!req || req.getLastRow() < 2) return null;
+  var rows = req.getRange(2, 1, req.getLastRow() - 1, 8).getValues();
+  email = String(email || "").toLowerCase(); title = String(title || "");
+  for (var i = rows.length - 1; i >= 0; i--) {
+    if (String(rows[i][2]).toLowerCase() === email && (!title || String(rows[i][3]) === title) && rows[i][7]) {
+      var sh = ss.getSheetByName(String(rows[i][7]));
+      if (sh) return sh;
+    }
+  }
+  return null;
+}
+
+// Writes the price into the cell to the right of a cell labelled "Price" (searches the top of the tab).
+function writePrice(sh, price) {
+  var vals = sh.getRange(1, 1, 20, 8).getValues();
+  for (var r = 0; r < vals.length; r++) {
+    for (var c = 0; c < vals[r].length; c++) {
+      if (/^\s*(ring\s+)?price\b/i.test(String(vals[r][c]))) { sh.getRange(r + 1, c + 2).setValue(Number(price)); return true; }
+    }
+  }
+  return false;
+}
+
 function doPost(e) {
   var out = function (o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); };
   try {
@@ -58,6 +84,20 @@ function doPost(e) {
       tab(ss, "Sign-ups", ["Signed up", "Name", "Email", "Came from", "Contacted?"])
         .appendRow([d.createdAt, safe(d.name), safe(d.email), safe(d.intent), false]);
       return out({ ok: true });
+    }
+
+    if (d.type === "progress") {
+      var sh = tabForCustomer(ss, d.email, d.title);
+      if (!sh) return out({ ok: true, note: "no customer tab" });
+      // Progress checkboxes F2:F9, in order: Sketch sent, Sketch approved, Price sent, Price approved,
+      // CAD sent, CAD approved, Payment details sent, Paid.
+      if (typeof d.progress === "number") {
+        var n = Math.max(0, Math.min(8, d.progress)), vals = [];
+        for (var i = 0; i < 8; i++) vals.push([i < n]);
+        sh.getRange("F2:F9").setValues(vals);
+      }
+      var priced = d.price ? writePrice(sh, d.price) : null;
+      return out({ ok: true, priceWritten: priced });
     }
 
     if (d.type === "request") {

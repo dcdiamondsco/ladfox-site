@@ -1,9 +1,9 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
-  safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
+  safeEqual, sheetEvent, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
   FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, sniffType, newToken, emailCustomerNote,
-  PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE
+  PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, projectPrefix
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
 
@@ -59,7 +59,15 @@ export default async (request) => {
     if (stageChanged || note) project.updates.push({ at: now, by: "ladfox", text: note || `Status updated to "${STAGES[project.stage]}".`, stage: project.stage });
     project.updatedAt = now;
     project.customerUnread = false;
+    const price = body.price === "" || body.price == null ? "" : Number(body.price);
+    const priceChanged = Number.isFinite(price) && price > 0 && String(price) !== String(project.price || "");
+    if (priceChanged) project.price = String(price);
+    const progress = Number.isInteger(body.progress) && body.progress >= 0 && body.progress <= 8 ? body.progress : null;
+    if (progress !== null) project.progress = progress;
     await saveProject(db, project);
+    if (priceChanged || progress !== null) {
+      await sheetEvent({ type: "progress", email: project.email, title: project.title, price: priceChanged ? price : undefined, progress: progress === null ? undefined : progress });
+    }
     let emailed = false;
     if (body.notify && (stageChanged || note)) {
       try { await emailCustomer(request, project, note); emailed = true; } catch (e) { console.error("customer email failed", e.message); }
@@ -179,9 +187,20 @@ export default async (request) => {
     payment.method = "manual";
     project.updates.push({ at: payment.paidAt, by: "ladfox", text: `Payment received: ${payment.label}.`, stage: project.stage });
     if (project.stage < 2) project.stage = 2;
+    project.progress = 8;
     project.updatedAt = payment.paidAt;
     await saveProject(db, project);
+    await sheetEvent({ type: "progress", email: project.email, title: project.title, progress: 8 });
     return json({ ok: true, project });
+  }
+
+  if (body.action === "delete-project") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    for (const f of project.files || []) { try { await db.delete(fileKey(email, project.id, f.id)); } catch (e) { console.error("file delete failed", e.message); } }
+    await db.delete(`${projectPrefix(email)}${project.id}`);
+    return json({ ok: true });
   }
 
   return json({ error: "Unknown action." }, 400);

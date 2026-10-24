@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { json } from "./http.mjs";
 import {
   getDb, normaliseEmail, validEmail, upsertCustomer, createProject, sendEmail, emailShell, escapeHtml, siteUrl,
-  loadProject, saveProject, emailCustomerNote
+  loadProject, saveProject, emailCustomerNote, sheetEvent
 } from "./account-lib.mjs";
 
 const ALLOWED_PRODUCTS = new Set(["signature-petal-collection", "our-trilogy-ring", "bespoke-ring-cad-service"]);
@@ -111,8 +111,10 @@ const recordAccountPayment = async (request, session) => {
     payment.stripeSessionId = session.id;
     project.updates.push({ at: now, by: "ladfox", text: `Payment received: ${payment.label}. Thank you!`, stage: Math.max(project.stage, 2) });
     if (project.stage < 2) project.stage = 2;
+    project.progress = 8;
     project.updatedAt = now;
     await saveProject(db, project);
+    await sheetEvent({ type: "progress", email: project.email, title: project.title, progress: 8 });
     try {
       await emailCustomerNote(request, project, "Payment received, thank you",
         "Payment received",
