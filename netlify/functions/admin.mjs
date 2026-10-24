@@ -14,6 +14,21 @@ const authorised = (request) => {
   return header.startsWith("Bearer ") && safeEqual(header.slice(7), expected);
 };
 
+// Removes a customer completely so they have to sign up again: record, follow-up, sessions and login links.
+const wipeCustomer = async (db, email) => {
+  await db.delete(customerKey(email)).catch(() => {});
+  await db.delete(followKey(email)).catch(() => {});
+  for (const prefix of ["sessions/", "logins/"]) {
+    try {
+      const { blobs } = await db.list({ prefix });
+      for (const b of blobs) {
+        const rec = await db.get(b.key, { type: "json" }).catch(() => null);
+        if (rec && normaliseEmail(rec.email) === email) await db.delete(b.key).catch(() => {});
+      }
+    } catch {}
+  }
+};
+
 const emailCustomer = async (request, project, note) => {
   const stage = STAGES[project.stage];
   const body = `<p style="margin:0 0 10px">Your ring "<strong>${escapeHtml(project.title)}</strong>" is now: <strong>${escapeHtml(stage)}</strong>.</p>` +
@@ -153,14 +168,14 @@ export default async (request) => {
     if (!project) return json({ error: "Project not found." }, 404);
     for (const f of project.files || []) await db.delete(fileKey(email, project.id, f.id)).catch(() => {});
     await db.delete(`${projectPrefix(email)}${project.id}`);
-    if (!(await listProjects(db, email)).length) { await db.delete(customerKey(email)).catch(() => {}); await db.delete(followKey(email)).catch(() => {}); }
+    if (!(await listProjects(db, email)).length) await wipeCustomer(db, email);
     return json({ ok: true });
   }
 
   if (body.action === "delete-customer") {
     const email = normaliseEmail(body.email);
     if ((await listProjects(db, email)).length) return json({ error: "This customer still has a project." }, 400);
-    await db.delete(customerKey(email)).catch(() => {}); await db.delete(followKey(email)).catch(() => {});
+    await wipeCustomer(db, email);
     return json({ ok: true });
   }
 
