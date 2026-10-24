@@ -652,7 +652,7 @@
     if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); btn.disabled = true; await uploadPhotos(data.project.id); btn.disabled = false; }
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
     e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
-    if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
+    if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 }); if (window.lfxFireLead) lfxFireLead("account"); else if (window.gtag) gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP"});
     load();
   });
 
