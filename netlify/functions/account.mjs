@@ -80,8 +80,8 @@ export default async (request) => {
     await sheetEvent({ type: "request", email, name: customer.name || "", title: project.title, ringType: project.ringType || "", budget: project.budget || "", details: project.details });
     const detailLines = String(project.details || "").split("\n").filter((l) => l.trim() && !/^\[.*\]$/.test(l.trim()));
     await notifyOwner(request, `New design request: ${customer.name || email}`, [
-      `Name: ${customer.name || "-"}`, `Email: ${email}`,
-      `Budget: ${project.budget || "Not sure yet"}`,
+      ...(customer.name ? [`Name: ${customer.name}`] : []), `Email: ${email}`,
+      ...(project.budget ? [`Budget: ${project.budget}`] : []),
       ...detailLines
     ]);
     return json({ ok: true, project: publicProject(project) });

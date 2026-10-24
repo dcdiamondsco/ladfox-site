@@ -158,8 +158,8 @@
 
       <form id="requestForm" class="card hidden" style="margin-top:18px" novalidate>
         <h2 id="rqHeading">Tell us about your ring</h2>
-        <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount" hidden style="display:none">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Tap what you like. Skip anything you are unsure about. We will guide you.</p>
-        <style>#requestForm .rq-chips,#requestForm .rs-row{justify-content:center}#requestForm .bud-row{text-align:center}#requestForm .rq-upload{text-align:left}#requestForm .rq-upload span{flex:0 1 auto;max-width:15.5em}</style><div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
+        <div class="rq-progress" aria-hidden="true"><i id="rqBar"></i></div><p class="rq-count" id="rqCount" hidden style="display:none">Step 1 of 4 &middot; 0 of 6 chosen</p><p class="rq-sub" id="rqSub">Please choose one in each section. Not sure? Pick &ldquo;Not sure&rdquo; and we will guide you.</p>
+        <style>#requestForm .rq-chips,#requestForm .rs-row{justify-content:center}#requestForm .bud-row{text-align:center}#requestForm .rq-upload{text-align:left}#requestForm .row{display:block}#requestForm .bud{margin:0 0 26px}#requestForm #rqRs{margin:0 0 28px}#requestForm #rq-details{margin-top:0}#requestForm .miss{animation:rqMiss 1.2s ease}@keyframes rqMiss{0%,60%{background:rgba(255,255,255,.1)}100%{background:transparent}}#requestForm .rq-upload span{flex:0 1 auto;max-width:15.5em}</style><div class="rq-group" data-key="type"><div class="rq-label">Type of piece</div><div class="rq-chips"><button type="button" class="chip" data-v="Engagement ring">Engagement ring</button><button type="button" class="chip" data-v="Other ring">Other ring</button><button type="button" class="chip" data-v="Necklace">Necklace</button><button type="button" class="chip" data-v="Bracelet">Bracelet</button><button type="button" class="chip" data-v="Wedding band">Wedding band</button><button type="button" class="chip" data-v="Earrings">Earrings</button><button type="button" class="chip" data-v="Pendant">Pendant</button><button type="button" class="chip" data-v="Something else">Something else</button></div></div>
         <div class="rq-group" data-key="stone"><div class="rq-label">Stone</div><div class="rq-chips two"><button type="button" class="chip" data-v="Lab-grown diamond">Lab-grown diamond</button><button type="button" class="chip" data-v="Natural diamond">Natural diamond</button><button type="button" class="chip" data-v="Gemstone">Gemstone</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="rq-group" data-key="shape"><div class="rq-label">Shape</div><div class="rq-chips three"><button type="button" class="chip" data-v="Round">Round</button><button type="button" class="chip" data-v="Oval">Oval</button><button type="button" class="chip" data-v="Emerald">Emerald</button><button type="button" class="chip" data-v="Cushion">Cushion</button><button type="button" class="chip" data-v="Pear">Pear</button><button type="button" class="chip" data-v="Radiant">Radiant</button><button type="button" class="chip" data-v="Marquise">Marquise</button><button type="button" class="chip" data-v="Princess">Princess</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="rq-group" data-key="prop" id="rqProp" style="display:none"><div class="rq-label">Proportions</div><div class="rq-chips three"><button type="button" class="chip" data-v="Standard">Standard</button><button type="button" class="chip" data-v="Elongated">Elongated</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
@@ -170,18 +170,18 @@
         <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><style>.mdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:0;opacity:.7;filter:saturate(.7)}</style><div class="rq-chips three"><button type="button" class="chip" data-v="Yellow gold"><i class="mdot" style="background:linear-gradient(135deg,#f6e3a1,#d4a93c 55%,#a97c1c)"></i>Yellow gold</button><button type="button" class="chip" data-v="White gold"><i class="mdot" style="background:linear-gradient(135deg,#ffffff,#d9dce2 55%,#aeb3bd)"></i>White gold</button><button type="button" class="chip" data-v="Rose gold"><i class="mdot" style="background:linear-gradient(135deg,#f6d0c4,#d99a86 55%,#b3705e)"></i>Rose gold</button><button type="button" class="chip" data-v="Platinum"><i class="mdot" style="background:linear-gradient(135deg,#f1f3f7,#c3c8d1 55%,#8f95a1)"></i>Platinum</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Other">Other</button><button type="button" class="chip" data-v="Not sure">Not sure</button></div></div>
         <div class="row">
-          <div class="bud"><label for="rq-budget">Budget</label>
+          <div class="bud untouched" id="rqBud"><label for="rq-budget">Budget</label>
             <div class="bud-row"><output id="rq-budget-out" for="rq-budget">&pound;3,000</output></div>
             <input id="rq-budget" type="range" min="0" max="36" step="1" value="8" aria-label="Budget in pounds" />
             <div class="bud-scale"><span>&pound;999</span><span>&pound;10,000+</span></div></div>
           <style>.bud-row{margin:6px 0 10px;text-align:center;font-size:1.5rem;font-weight:700;color:#fff}.bud input[type=range]{width:100%;accent-color:#dfe3ea;height:28px;padding:0;background:transparent;border:0}.bud-scale{display:flex;justify-content:space-between;font-size:.8rem;color:#9a9fa8}.bud-clear{display:block;margin:10px auto 0;background:none;border:0;color:#c8ccd4;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}.bud.untouched input[type=range]{opacity:.45}.bud.untouched .bud-row{opacity:.45}</style>
-          <div><label for="rq-ringsize">Ring size</label>
+          <div id="rqRs"><label for="rq-ringsize">Ring size</label>
             <div class="rs-row"><input id="rq-ringsize" maxlength="6" aria-label="Ring size" /><button type="button" class="chip" id="rq-rs-unsure" aria-pressed="false">Not sure</button></div></div>
           <style>.rs-row{display:flex;align-items:center;gap:10px}.rs-row input{width:92px;flex:0 0 92px}</style>
         </div>
         <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Anything you&rsquo;d like us to know?</label>
-        <textarea id="rq-details" maxlength="2000" placeholder="Anything you&rsquo;d like us to know? Ideas, timing, a ring you love"></textarea>
+        <textarea id="rq-details" maxlength="2000" placeholder="Anything else you&rsquo;d like us to know?"></textarea>
         <input id="rq-photos" type="file" accept="image/*" multiple hidden />
         <label class="rq-upload" for="rq-photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 19h14"/></svg><span id="rq-photo-label">Would you like to attach a photo or inspiration image?</span></label>
         <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Other ring</option><option>Necklace</option><option>Bracelet</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
@@ -462,6 +462,7 @@
     const cur = () => VALS[+r.value];
     const paint = () => { out.textContent = fmt(cur()); };
     r.addEventListener("input", paint);
+    r.addEventListener("input", () => { window.lfxBudTouched = true; $("rqBud").classList.remove("untouched"); });
     window.lfxBudget = () => fmt(cur());
     paint();
   })();
@@ -510,6 +511,23 @@
   };
   $("requestForm").addEventListener("submit", async (e) => {
     e.preventDefault();
+    const need = [];
+    const need1 = (ok, label, el) => { if (!ok) need.push([label, el]); };
+    need1(chosen.type, "type of piece", document.querySelector('[data-key="type"]'));
+    need1(chosen.stone, "stone", document.querySelector('[data-key="stone"]'));
+    need1(chosen.shape, "shape", document.querySelector('[data-key="shape"]'));
+    if ($("rqProp").style.display !== "none") need1(chosen.prop, "proportions", $("rqProp"));
+    need1(chosen.size, "stone size", $("rqSize"));
+    need1(chosen.metal, "metal", document.querySelector('[data-key="metal"]'));
+    need1(chosen.style, "style", document.querySelector('[data-key="style"]'));
+    need1(window.lfxBudTouched, "budget", $("rqBud"));
+    need1($("rq-ringsize").value.trim() || $("rq-rs-unsure").getAttribute("aria-pressed") === "true", "ring size", $("rqRs"));
+    if (need.length) {
+      setMsg($("requestMsg"), "Please choose: " + need.map((n) => n[0]).join(", ") + ".", "err");
+      need.forEach(([, el]) => { el.classList.remove("miss"); void el.offsetWidth; el.classList.add("miss"); });
+      need[0][1].scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     const btn = e.target.querySelector("button[type=submit]"); btn.disabled = true;
     const { res, data } = await post("/.netlify/functions/account", {
       action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: window.lfxBudget(), details: composeDetails()
@@ -518,7 +536,7 @@
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
     if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); btn.disabled = true; await uploadPhotos(data.project.id); btn.disabled = false; }
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
-    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
     load();
   });
