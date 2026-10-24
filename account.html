@@ -341,7 +341,7 @@
           const a = el("a"); a.href = url; a.target = "_blank"; a.rel = "noopener";
           const img = el("img"); img.src = url; img.alt = f.name; img.loading = "lazy"; a.append(img); fig.append(a);
         }
-        fig.append(el("figcaption", "", (f.note ? f.note + " \u00b7 " : "") + fmtDate(f.at)));
+        if (f.note) fig.append(el("figcaption", "", f.note));
         grid.append(fig);
       }
       card.append(grid);
@@ -368,9 +368,9 @@
         box.append(el("h3", "", "Paid: " + amount), el("p", "", (pay.paidAt ? fmtDate(pay.paidAt) + ". " : "") + "Thank you."));
       } else {
         const sale = window.lfxSaleEnd && Date.now() < window.lfxSaleEnd;
-        box.append(el("h3", "", "Payment due"));
-        if (sale) { const was = el("div", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "text-align:center;color:rgba(255,255,255,.92);font-weight:700;font-size:.92rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:1.5px;margin:6px 0 8px"; box.append(was); }
-        const pb = el("button", "btn"); pb.type = "button";
+        { const ph = el("h3", "", "Payment due"); ph.style.textAlign = "center"; box.append(ph); }
+        if (sale) { const was = el("div", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "text-align:center;color:rgba(255,255,255,.92);font-weight:700;font-size:1.5rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:2px;margin:10px 0 10px"; box.append(was); }
+        const pb = el("button", "btn"); pb.type = "button"; pb.style.cssText = "display:block;margin:0 auto";
         const lbl = el("span", "", amount); lbl.style.cssText = "display:block;color:" + (sale ? "#c95858" : "inherit") + ";font-weight:800;font-size:1.1rem;letter-spacing:.02em";
         pb.append(lbl);
         if (sale) { const tm = el("span", "", ""); tm.style.cssText = "display:block;color:#c95858;font-weight:700;font-size:.84rem;letter-spacing:.02em;margin-top:4px"; pb.append(tm); const tk = () => { const r = window.lfxSaleEnd - Date.now(); if (r <= 0) { tm.textContent = ""; return; } tm.textContent = "Sale ends in " + Math.floor(r / 864e5) + "d " + String(Math.floor(r % 864e5 / 36e5)).padStart(2, "0") + "h " + String(Math.floor(r % 36e5 / 6e4)).padStart(2, "0") + "m " + String(Math.floor(r % 6e4 / 1e3)).padStart(2, "0") + "s"; }; tk(); setInterval(tk, 1000); }
