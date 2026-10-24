@@ -305,7 +305,20 @@
       const sm = el("p", "meta", d.summary || "");
       const meta = el("p", "meta", (d.name ? d.name + " \u00b7 " : "") + (d.price ? d.price + " \u00b7 " : "") + new Date(d.createdAt).toLocaleString("en-GB") + (d.marketing ? " \u00b7 OK to email offers" : ""));
       c.append(head, sm, meta);
-      if (/^\/(classic-solitaire|signature-solitaire|trilogy-ring)\.html\?[A-Za-z0-9%_.=&+~-]*$/.test(d.resumeUrl || "")) { const a = el("a", "", "Open this design"); a.href = d.resumeUrl; a.target = "_blank"; c.append(a); }
+      const LBL = { Setting: "Setting", MetalBase: "Metal", MetalKarat: "Purity", StoneType: "Stone", Shape: "Shape", Elongated: "Proportion", Gemstone: "Gemstone", Colour: "Colour", Clarity: "Clarity", StoneSize: "Carat", RingSize: "Ring size", TrilogyDesign: "Trilogy design" };
+      const sel = d.selections && typeof d.selections === "object" ? d.selections : {};
+      const tiles = [];
+      if (d.price) tiles.push(["Price", d.price]);
+      for (const [k, v] of Object.entries(sel)) {
+        const key = k.replace(/^(signature|trilogy)/i, "");
+        if (k === "lfxEngraving") { tiles.push(["Engraving", v]); continue; }
+        let val = String(v);
+        if (key === "Elongated") val = val === "Yes" ? "Elongated" : "Standard";
+        if (key === "StoneSize" && /^[0-9.]+$/.test(val)) val += " ct";
+        tiles.push([LBL[key] || key.replace(/([a-z])([A-Z])/g, "$1 $2"), val]);
+      }
+      if (tiles.length) { const gf = el("div", "facts"); for (const [k, v] of tiles) { const t = el("div", "fact"); t.append(el("span", "", k), el("b", "", v)); gf.append(t); } c.append(gf); }
+      if (/^\/(classic-solitaire|signature-solitaire|trilogy-ring)\.html\?[A-Za-z0-9%_.=&+~-]*$/.test(d.resumeUrl || "")) { const a = el("a", "", "Open this design"); a.style.color = "#dfe3ea"; a.href = d.resumeUrl; a.target = "_blank"; c.append(a); }
       return c;
     }) : [el("p", "meta", "No saved designs yet.")]));
     $("login").classList.add("hidden"); $("app").classList.remove("hidden"); status("");
