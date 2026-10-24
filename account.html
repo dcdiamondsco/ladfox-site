@@ -366,12 +366,12 @@
       const box = el("div", "box");
       const amount = "£" + (pay.amountPence / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 });
       if (pay.status === "paid") {
-        box.append(el("h3", "", "Paid: " + amount), el("p", "", pay.label + (pay.paidAt ? " · " + fmtDate(pay.paidAt) : "") + ". Thank you."));
+        box.append(el("h3", "", "Paid: " + amount), el("p", "", (pay.paidAt ? fmtDate(pay.paidAt) + ". " : "") + "Thank you."));
       } else {
         const h3 = el("h3", "", "Payment due: ");
         if (window.lfxSaleEnd && Date.now() < window.lfxSaleEnd) { const was = el("s", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "display:block;color:rgba(255,255,255,.92);font-weight:700;font-size:.92rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:1.5px;margin:0 0 2px"; h3.append(was); }
         h3.append(document.createTextNode(amount));
-        box.append(h3, el("p", "", pay.label + ". Secure card payment through Stripe."));
+        box.append(h3);
         const pb = el("button", "btn", "Pay " + amount + " securely"); pb.type = "button";
         pb.addEventListener("click", async () => {
           pb.disabled = true;
