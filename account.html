@@ -518,6 +518,13 @@
     $("cgName").onsubmit = (e) => { e.preventDefault(); const n = $("cgNameInput").value.trim(); if (n) finish(n); else $("cgNameInput").focus(); };
   }
   const chosen = {};
+  /* "Type of piece" is only asked when they arrive via the other-jewellery route (?type=other).
+     Everyone coming through the engagement ring channels is an engagement ring. */
+  let asksType = false;
+  try { const qs = new URLSearchParams(location.search); if (qs.get("type") === "other") localStorage.setItem("lfxAskType", "1"); else if (qs.get("start")) localStorage.removeItem("lfxAskType"); asksType = localStorage.getItem("lfxAskType") === "1"; } catch (e) { asksType = new URLSearchParams(location.search).get("type") === "other"; }
+  const typeGroup = document.querySelector('#requestForm [data-key="type"]');
+  if (!asksType) { if (typeGroup) typeGroup.style.display = "none"; chosen.type = "Engagement ring"; }
+  const stepTotal = asksType ? 6 : 5;
   document.querySelectorAll("#requestForm .rq-group").forEach((g) => g.addEventListener("click", (e) => {
     const b = e.target.closest(".chip"); if (!b) return;
     const key = g.dataset.key, on = b.getAttribute("aria-pressed") === "true";
@@ -526,8 +533,8 @@
     const pr = $("rqProp"), wants = /^(Radiant|Cushion|Oval)$/.test(chosen.shape || "");
     if (wants && pr.style.display === "none") { pr.style.display = ""; pr.classList.remove("fx-in"); void pr.offsetWidth; pr.classList.add("fx-in"); }
     if (!wants && pr.style.display !== "none") { pr.style.display = "none"; delete chosen.prop; pr.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); }
-    const n = Object.keys(chosen).filter((k) => k !== "prop").length; $("rqBar").style.width = Math.round(n / 6 * 100) + "%";
-    $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of 6 chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
+    const n = Object.keys(chosen).filter((k) => k !== "prop" && (asksType || k !== "type")).length; $("rqBar").style.width = Math.round(n / stepTotal * 100) + "%";
+    $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of " + stepTotal + " chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
   }));
   const LBL = { type: "Piece", stone: "Stone", shape: "Shape", prop: "Proportions", size: "Stone size", metal: "Metal", style: "Style" };
   function composeDetails() {
@@ -568,8 +575,8 @@
   const SIZES = []; for (let v = 3; v <= 30; v++) SIZES.push(v / 10); for (let v = 3.5; v <= 10; v += 0.5) SIZES.push(v);
   const sizeLabel = (v) => (v >= 10 ? "10ct+" : v.toFixed(1) + "ct");
   const updateCount = () => {
-    const n = Object.keys(chosen).filter((k) => k !== "prop").length; $("rqBar").style.width = Math.round(n / 6 * 100) + "%";
-    $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of 6 chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
+    const n = Object.keys(chosen).filter((k) => k !== "prop" && (asksType || k !== "type")).length; $("rqBar").style.width = Math.round(n / stepTotal * 100) + "%";
+    $("rqCount").textContent = "Step 1 of 4 \u00b7 " + n + " of " + stepTotal + " chosen" + (n >= 3 ? " \u00b7 great, nearly there" : "");
   };
   $("rq-size").addEventListener("input", (e) => {
     const v = SIZES[+e.target.value]; $("rqSize").classList.remove("untouched");
@@ -635,7 +642,7 @@
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
     if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); btn.disabled = true; await uploadPhotos(data.project.id); btn.disabled = false; }
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
-    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
     load();
   });
