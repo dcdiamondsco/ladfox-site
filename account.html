@@ -244,7 +244,7 @@
           const a = el("a"); a.href = url; a.target = "_blank"; a.rel = "noopener";
           const img = el("img"); img.src = url; img.alt = f.name; img.loading = "lazy"; a.append(img); fig.append(a);
         }
-        fig.append(el("figcaption", "", (f.note || f.name) + " · " + fmtDate(f.at)));
+        fig.append(el("figcaption", "", (f.note ? f.note + " \u00b7 " : "") + fmtDate(f.at)));
         grid.append(fig);
       }
       card.append(grid);

@@ -137,7 +137,7 @@
         fetch(`/.netlify/functions/account-file?p=${encodeURIComponent(p.id)}&f=${encodeURIComponent(f.id)}&e=${encodeURIComponent(p.email)}`, { headers: { Authorization: "Bearer " + pw } })
           .then((r) => r.ok ? r.blob() : null).then((b) => { if (b) img.src = URL.createObjectURL(b); });
       }
-      t.append(el("div", "", f.note || f.name));
+      const cap = f.by === "customer" ? "Added by customer" : (f.note || ""); if (cap) t.append(el("div", "", cap));
       const del = el("button", "ghost", "Remove");
       del.onclick = async () => { if (!confirm("Remove this file?")) return; const { res, data } = await call({ action: "delete-file", email: p.email, id: p.id, fileId: f.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
       t.append(del); thumbs.append(t);
