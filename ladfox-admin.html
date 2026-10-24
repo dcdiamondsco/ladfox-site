@@ -133,15 +133,13 @@
     const g = el("div", "grid");
     const sWrap = el("div"); sWrap.append(el("label", "", "Stage"));
     const sel = el("select"); STAGES.forEach((s, i) => { const o = el("option", "", s); o.value = i; if (i === p.stage) o.selected = true; sel.append(o); }); sWrap.append(sel);
-    const eWrap = el("div"); eWrap.append(el("label", "", "Estimated delivery date"));
-    const est = el("input"); est.value = p.estimate || ""; est.placeholder = "e.g. 12 December"; eWrap.append(est);
-    g.append(sWrap, eWrap); c.append(g);
+    c.append(sWrap);
     const note = { value: "" };
     const row = el("div", "row"); const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = false; lab.append(ck, document.createTextNode("Email them this update"));
     const save = el("button", "", "Save update"); row.append(lab, save);
     save.onclick = async () => {
       save.disabled = true;
-      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, estimate: est.value, note: note.value, notify: ck.checked });
+      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked });
       save.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
       status("");
