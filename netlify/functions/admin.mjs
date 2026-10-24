@@ -2,7 +2,7 @@ import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
-  FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, sniffType, newToken, emailCustomerNote,
+  FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, sniffType, newToken, emailCustomerNote,
   PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
@@ -116,6 +116,15 @@ export default async (request) => {
       } catch (e) { console.error("design email failed", e.message); }
     }
     return json({ ok: true, emailed, project });
+  }
+
+  if (body.action === "delete-project") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    for (const f of project.files || []) await db.delete(fileKey(email, project.id, f.id)).catch(() => {});
+    await db.delete(`${projectPrefix(email)}${project.id}`);
+    return json({ ok: true });
   }
 
   if (body.action === "delete-file") {
