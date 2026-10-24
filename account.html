@@ -69,6 +69,14 @@
     footer a{color:#fff}
   </style>
 <link rel="stylesheet" href="/assets/lfx-polish.css" />
+<style>
+/* no boxes: sections sit straight on the black page */
+.card,.box,.welcome{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+.card{padding:6px 0!important}
+.welcome{padding:10px 0 22px!important}
+.cg{background:none!important}
+</style>
+<style>.rq-upload{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 0;padding:15px 18px;border-radius:999px;background:rgba(255,255,255,.07);color:#dfe3ea;font-size:.95rem;cursor:pointer;transition:background .25s}.rq-upload:hover{background:rgba(255,255,255,.12)}.rq-upload svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}</style>
 </head>
 <body>
   <a class="site-skip-link" href="#main-content">Skip to main content</a>
@@ -96,7 +104,7 @@
 
     <section id="dash" class="hidden">
       <h2 id="hello" class="account-title">Hi</h2>
-      <p id="helloSub">Everything about your ring, in one place.</p>
+      <p id="helloSub" class="hidden"></p>
       <section id="concierge" class="cg hidden" aria-live="polite">
         <p class="cg-eye" id="cgEye"></p>
         <h2 class="cg-line" id="cgLine"></h2>
@@ -113,6 +121,9 @@
       </section>
       <style>
         #dash.cg-only > :not(#concierge){display:none!important}
+        .fx-in{animation:fxIn .7s cubic-bezier(.2,.7,.2,1) both}
+        @keyframes fxIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+        @media (prefers-reduced-motion:reduce){.fx-in{animation:none}}
         .cg{min-height:46vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:34px 8px 40px;background:radial-gradient(70% 60% at 50% 0%,rgba(223,227,234,.08),transparent 70%)}
         .cg-eye{font:500 .78rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.3em;text-transform:uppercase;color:#9aa0aa;margin:0 0 18px;min-height:1.2em}
         .cg-line{font-size:clamp(1.9rem,7vw,3rem);font-weight:300;letter-spacing:.01em;line-height:1.15;margin:0;color:#fff;min-height:1.2em;text-shadow:0 0 28px rgba(223,227,234,.25)}
@@ -134,7 +145,7 @@
         .cg-skip{background:none;border:0;color:#9aa0aa;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin-top:14px}
         @media (prefers-reduced-motion:reduce){.cg-slot>*{transition:none}.cg-line.typing::after,.cg-eye.typing::after{animation:none}}
       </style>
-      <div class="welcome hidden" id="welcome"><p class="w-eyebrow">Your personal design page</p><h2 id="wTitle">Let&rsquo;s design your ring!</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary initial design and a clear quote.</p>
+      <div class="welcome hidden" id="welcome"><h2 id="wTitle">Let&rsquo;s design your ring!</h2><p class="w-lead" id="wLead">Tell us what you have in mind. It takes about two minutes, and we&rsquo;ll come back with a complimentary initial design and a clear quote.</p>
         <p style="margin:-4px 0 16px"><button type="button" id="cgChange" style="background:none;border:0;color:#9aa0aa;font:inherit;font-size:.82rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px">Designing for someone else? Change</button></p>
         <ol class="w-steps"><li class="on"><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></i><span>Your ideas</span></li><li class="w-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li><li><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></svg></i><span>Free initial design &amp; quote</span></li><li class="w-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li><li><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></i><span>CAD &amp; approval</span></li><li class="w-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li><li><i class="w-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9l3-6z"/><path d="M3 9h18M9 3l3 6 3-6"/></svg></i><span>Creation and delivery</span></li></ol></div>
       <style>ol.w-steps{display:flex;align-items:flex-start;justify-content:space-between;gap:2px;grid-template-columns:none}ol.w-steps li{flex:1 1 0;min-width:0}ol.w-steps li.w-arrow{flex:0 0 20px;margin-top:16px;color:#6b7078;display:block}ol.w-steps li.w-arrow svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}.w-ico{width:54px;height:54px;border-radius:50%;background:rgba(223,227,234,.07);display:grid;place-items:center;color:#9aa0aa;font-style:normal}.w-ico svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.w-steps li.on .w-ico{background:linear-gradient(180deg,#f1f3f7,#c8ccd4);color:#0a0a0a}@media(max-width:420px){.w-ico{width:46px;height:46px}.w-ico svg{width:22px;height:22px}ol.w-steps li.w-arrow{flex-basis:14px;margin-top:14px}ol.w-steps li.w-arrow svg{width:14px;height:14px}}</style>
@@ -153,18 +164,19 @@
         <div class="rq-group" data-key="metal"><div class="rq-label">Metal</div><div class="rq-chips three"><button type="button" class="chip" data-v="Yellow gold">Yellow gold</button><button type="button" class="chip" data-v="White gold">White gold</button><button type="button" class="chip" data-v="Rose gold">Rose gold</button><button type="button" class="chip" data-v="Platinum">Platinum</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="rq-group" data-key="style"><div class="rq-label">Style</div><div class="rq-chips"><button type="button" class="chip" data-v="Classic solitaire">Classic solitaire</button><button type="button" class="chip" data-v="Hidden halo">Hidden halo</button><button type="button" class="chip" data-v="Halo">Halo</button><button type="button" class="chip" data-v="Three-stone">Three-stone</button><button type="button" class="chip" data-v="Pave band">Pave band</button><button type="button" class="chip" data-v="Vintage">Vintage</button><button type="button" class="chip" data-v="Not sure yet">Not sure yet</button></div></div>
         <div class="row">
-          <div class="bud"><label for="rq-budget">Budget (optional)</label>
-            <div class="bud-row"><output id="rq-budget-out" for="rq-budget">Not sure yet</output></div>
+          <div class="bud"><label for="rq-budget">Budget</label>
+            <div class="bud-row"><output id="rq-budget-out" for="rq-budget">&pound;3,000</output></div>
             <input id="rq-budget" type="range" min="500" max="10000" step="250" value="3000" aria-label="Budget in pounds" />
-            <div class="bud-scale"><span>&pound;500</span><span>&pound;10,000+</span></div>
-            <button type="button" class="bud-clear" id="rq-budget-clear">Not sure yet</button></div>
+            <div class="bud-scale"><span>&pound;500</span><span>&pound;10,000+</span></div></div>
           <style>.bud-row{margin:6px 0 10px;text-align:center;font-size:1.5rem;font-weight:700;color:#fff}.bud input[type=range]{width:100%;accent-color:#dfe3ea;height:28px;padding:0;background:transparent;border:0}.bud-scale{display:flex;justify-content:space-between;font-size:.8rem;color:#9a9fa8}.bud-clear{display:block;margin:10px auto 0;background:none;border:0;color:#c8ccd4;font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}.bud.untouched input[type=range]{opacity:.45}</style>
           <div><label for="rq-ringsize">Ring size (optional)</label>
             <input id="rq-ringsize" maxlength="10" placeholder="e.g. M" /></div>
         </div>
         <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label">Anything else? Inspiration, timing, a link to a ring you love</label>
-        <textarea id="rq-details" maxlength="2000" placeholder="Tell us in your own words. You can send photos from your account afterwards."></textarea>
+        <textarea id="rq-details" maxlength="2000" placeholder="Tell us in your own words."></textarea>
+        <input id="rq-photos" type="file" accept="image/*" multiple hidden />
+        <label class="rq-upload" for="rq-photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 19h14"/></svg><span id="rq-photo-label">Add a photo or inspiration image</span></label>
         <select id="rq-type" class="hidden" aria-hidden="true" tabindex="-1"><option>Engagement ring</option><option>Other ring</option><option>Necklace</option><option>Bracelet</option><option>Wedding band</option><option>Earrings</option><option>Pendant</option><option>Something else</option></select>
         <button class="btn" type="submit">Save</button>
         <button class="btn ghost" type="button" id="cancelRequest" style="margin-left:8px">Cancel</button>
@@ -233,7 +245,7 @@
       card.append(grid);
     }
 
-    if ((p.files || []).length && p.stage === 3) {
+    if ((p.files || []).some((f) => f.by !== "customer") && p.stage === 3) {
       const box = el("div", "box");
       box.append(el("h3", "", "Happy with this design?"), el("p", "", "Approve it and we will move on to production. If you would like changes, send us a message below."));
       const ap = el("button", "btn", "Approve this design"); ap.type = "button";
@@ -317,7 +329,7 @@
     hasProjects = data.projects.length > 0;
     savedFor = data.customer.ringFor || ""; savedName = data.customer.ringName || "";
     $("hello").textContent = data.customer.name ? "Hi " + data.customer.name.split(" ")[0] : "Hi there";
-    $("helloSub").textContent = data.projects.length ? "Here is where everything stands." : "";
+    $("helloSub").textContent = "";
     const draftBox = $("draftBox");
     if (false && data.draft && /^\/design\/your-ring\?resume=[A-Za-z0-9_%-]+$/.test(data.draft.resumeUrl)) { $("draftLink").setAttribute("href", data.draft.resumeUrl); draftBox.classList.remove("hidden"); } else { draftBox.classList.add("hidden"); }
     const wrap = $("projects"); wrap.replaceChildren(...data.projects.map(renderProject));
@@ -348,6 +360,16 @@
     setTimeout(tick, 250);
   });
   const sleep = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
+  const reveal = (kind) => {
+    $("wTitle").textContent = "Let\u2019s design " + theRing() + "!";
+    $("welcome").classList.remove("hidden");
+    openRequest(kind, true);
+    window.scrollTo(0, 0);
+    [$("hello"), $("helloSub"), $("welcome"), $("requestForm")].forEach((el, i) => {
+      el.classList.remove("fx-in"); void el.offsetWidth;
+      el.style.animationDelay = (i * 0.09) + "s"; el.classList.add("fx-in");
+    });
+  };
   let lastKind = "design";
   $("cgChange").addEventListener("click", () => { savedFor = ""; savedName = ""; forWho = ""; ringName = ""; concierge(lastKind, true); });
   async function concierge(kind, forceAsk) {
@@ -356,8 +378,7 @@
     if (savedFor && !forceAsk) {
       forWho = savedFor; ringName = savedName;
       $("dash").classList.remove("cg-only"); $("concierge").classList.add("hidden");
-      $("wTitle").textContent = "Let\u2019s design " + theRing() + "!";
-      $("welcome").classList.remove("hidden"); openRequest(kind); return;
+      reveal(kind); return;
     }
     $("dash").classList.add("cg-only");
     $("welcome").classList.add("hidden"); $("requestForm").classList.add("hidden");
@@ -370,11 +391,11 @@
       ringName = name; savedFor = forWho; savedName = name;
       post("/.netlify/functions/account", { action: "ring-for", ringFor: forWho, ringName: name });
       $("cgNameWrap").classList.remove("on"); $("cgOpts").classList.remove("on");
-      $("concierge").classList.add("hidden");
+      $("concierge").style.transition = "opacity .3s ease"; $("concierge").style.opacity = "0";
+      await sleep(320);
+      $("concierge").classList.add("hidden"); $("concierge").style.opacity = "";
       $("dash").classList.remove("cg-only");
-      $("wTitle").textContent = "Let\u2019s design " + theRing() + "!";
-      $("welcome").classList.remove("hidden");
-      openRequest(kind);
+      reveal(kind);
     };
     $("cgOpts").onclick = async (e) => {
       const b = e.target.closest(".cg-opt"); if (!b) return;
@@ -409,12 +430,12 @@
     return out.length >= 10 ? out : out + " (no details yet, please advise)";
   }
   const KIND_LABEL = { design: "Help me design my ring", price: "Price request" };
-  function openRequest(kind) {
+  function openRequest(kind, quiet) {
     requestKind = kind || "";
     $("rqHeading").textContent = kind === "price" ? "Tell us what you want and we will price it" : "Tell us about " + theRing();
     
     $("requestForm").classList.remove("hidden");
-    $("requestForm").scrollIntoView({ behavior: "smooth", block: "center" });
+    if (!quiet) $("requestForm").scrollIntoView({ behavior: "smooth", block: "center" });
   }
   document.querySelectorAll("#optionsBox .opt[data-kind]").forEach((b) => b.addEventListener("click", () => openRequest(b.dataset.kind)));
   $("newRequestBtn").addEventListener("click", () => openRequest(requestKind));
@@ -423,16 +444,41 @@
   rememberStart();
 
   (function () {
-    const r = $("rq-budget"), out = $("rq-budget-out"), box = r.closest(".bud");
-    let touched = false;
+    const r = $("rq-budget"), out = $("rq-budget-out");
     const fmt = (v) => "\u00a3" + Number(v).toLocaleString("en-GB") + (Number(v) >= 10000 ? "+" : "");
-    const paint = () => { out.textContent = touched ? fmt(r.value) : "Not sure yet"; box.classList.toggle("untouched", !touched); };
-    r.addEventListener("input", () => { touched = true; paint(); });
-    $("rq-budget-clear").addEventListener("click", () => { touched = false; r.value = 3000; paint(); });
-    window.lfxBudget = () => (touched ? fmt(r.value) : "");
+    const paint = () => { out.textContent = fmt(r.value); };
+    r.addEventListener("input", paint);
+    window.lfxBudget = () => fmt(r.value);
     paint();
   })();
   $("cancelRequest").addEventListener("click", () => $("requestForm").classList.add("hidden"));
+
+  /* photos: pick, shrink and upload after the request is saved */
+  let photoFiles = [];
+  $("rq-photos").addEventListener("change", (e) => {
+    photoFiles = Array.from(e.target.files || []).slice(0, 3);
+    $("rq-photo-label").textContent = photoFiles.length ? photoFiles.length + (photoFiles.length === 1 ? " photo added" : " photos added") : "Add a photo or inspiration image";
+  });
+  const shrinkPhoto = (file) => new Promise((resolve) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const max = 1600, k = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement("canvas"); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      c.toBlob((b) => { if (!b) return resolve(null); const r = new FileReader(); r.onload = () => resolve(String(r.result).split(",")[1]); r.readAsDataURL(b); }, "image/jpeg", 0.85);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
+    img.src = url;
+  });
+  const uploadPhotos = async (projectId) => {
+    const files = photoFiles; photoFiles = [];
+    for (let i = 0; i < files.length; i++) {
+      const b64 = await shrinkPhoto(files[i]);
+      if (!b64) continue;
+      await post("/.netlify/functions/account-upload", { id: projectId, name: files[i].name.replace(/\.[^.]+$/, "") + ".jpg", data: b64, last: i === files.length - 1 });
+    }
+  };
   $("requestForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = e.target.querySelector("button[type=submit]"); btn.disabled = true;
@@ -441,7 +487,9 @@
     });
     btn.disabled = false;
     if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
-    e.target.reset(); forWho = ""; ringName = ""; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); btn.disabled = true; await uploadPhotos(data.project.id); btn.disabled = false; }
+    $("rq-photo-label").textContent = "Add a photo or inspiration image";
+    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 });
     load();
   });

@@ -102,7 +102,7 @@ export default async (request) => {
   if (body.action === "approve") {
     const project = await loadProject(db, email, clean(body.id, 40));
     if (!project) return json({ error: "Order not found." }, 404);
-    if (!project.files?.length) return json({ error: "There is no design to approve yet." }, 400);
+    if (!(project.files || []).some((f) => f.by !== "customer")) return json({ error: "There is no design to approve yet." }, 400);
     if (project.stage !== 3) return json({ error: "This design is not waiting for approval." }, 400);
     const now = new Date().toISOString();
     project.stage = 4;
