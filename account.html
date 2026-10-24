@@ -315,6 +315,7 @@
       sp.innerHTML = window.lfxStageIcon(p.stage);
       sp.append(el("h3", "", p.stage === 7 ? "On route" : (STAGES[p.stage] || "")));
       sp.append(el("p", "", BL[p.stage] || ""));
+      if (p.estimate && p.stage === 7) sp.append(el("p", "", "Estimated delivery: " + p.estimate));
       if (p.stage === 7 && p.trackingUrl && /^https:\/\//.test(p.trackingUrl)) { const a2 = el("a", "btn", "Track your parcel"); a2.href = p.trackingUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer"; sp.append(a2); }
       card.append(sp);
     }
@@ -328,7 +329,7 @@
       steps.append(li);
     });
     card.append(steps);
-    if (p.estimate) { const ed = el("p", "", "Estimated delivery: " + p.estimate); ed.style.cssText = "text-align:center;margin:14px 0;color:#dfe3ea;font-weight:600"; card.append(ed); }
+    if (p.estimate && p.stage < 7) { const ed = el("p", "", "Estimated delivery: " + p.estimate); ed.style.cssText = "text-align:center;margin:14px 0;color:#dfe3ea;font-weight:600"; card.append(ed); }
 
     if ((p.files || []).length) {
       const grid = el("div", "files");
