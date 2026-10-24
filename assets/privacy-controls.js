@@ -59,3 +59,17 @@
     };
   }
 })();
+
+/* Google Ads: count a click on any WhatsApp link as a "Contact" conversion (label created 24 Oct 2026). */
+(function () {
+  "use strict";
+  const WA_LABEL = "AW-18173399172/ngBKCJ3En6gdEISh4NlD";
+  document.addEventListener("click", function (ev) {
+    try {
+      const a = ev.target && ev.target.closest ? ev.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="whatsapp.com/send"]') : null;
+      if (!a || typeof window.gtag !== "function") return;
+      window.gtag("event", "conversion", { send_to: WA_LABEL, value: 1, currency: "GBP", transport_type: "beacon" });
+      window.gtag("event", "whatsapp_click", { link_url: "wa.me" });
+    } catch (e) { /* never block the link */ }
+  }, true);
+})();
