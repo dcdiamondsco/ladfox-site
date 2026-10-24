@@ -667,10 +667,10 @@
       const { res, data } = await post("/.netlify/functions/account-auth", { action: "verify", token });
       if (!res.ok) { show("signin"); setMsg($("signinMsg"), data.error || "That link did not work.", "err"); return; }    }
     const startKind = takeStart();
-    if (startKind) { await load(); if (!$("dash").classList.contains("hidden")) { $("optionsBox").classList.add("hidden"); $("newRequestBtn").classList.add("hidden"); concierge(startKind); } else { try { localStorage.setItem("lfxStart", startKind); } catch (e) {} } return; }
+    if (startKind) { await load(); if (!$("dash").classList.contains("hidden")) { $("optionsBox").classList.add("hidden"); $("newRequestBtn").classList.add("hidden"); if (!hasProjects) concierge(startKind); } else { try { localStorage.setItem("lfxStart", startKind); } catch (e) {} } return; }
     if (wantNew) {
       await load();
-      $("requestForm").classList.remove("hidden");
+      if (!hasProjects) $("requestForm").classList.remove("hidden");
       
       return;
     }
