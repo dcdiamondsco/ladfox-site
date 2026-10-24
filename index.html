@@ -53,7 +53,7 @@
     @keyframes xsSnowA{from{background-position:0 0}to{background-position:-40px 200px}}
     @keyframes xsSnowB{from{background-position:0 0}to{background-position:30px 160px}}
     @media (prefers-reduced-motion:reduce){.xmas-strip::before,.xmas-strip::after{animation:none}}
-    .xmas-strip .xs-orn{display:block;color:rgba(255,255,255,.7);letter-spacing:.7em;font-size:.8rem;margin:0 0 10px;padding-left:.7em}
+    .xmas-strip .xs-orn{font-family:'Segoe UI Symbol','Arial Unicode MS',Arial,sans-serif;display:block;color:rgba(255,255,255,.7);letter-spacing:.7em;font-size:.8rem;margin:0 0 10px;padding-left:.7em}
     .xmas-strip h2{margin:0 0 8px;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.15;color:#fff;text-shadow:0 2px 18px rgba(214,180,120,.35)}
     .xmas-strip p{position:relative;margin:0 auto 18px;max-width:34em;font-size:1rem;line-height:1.55;color:rgba(255,255,255,.88)}
     .xmas-strip a{position:relative;display:inline-block;color:#000;background:#fff;border-radius:999px;padding:12px 28px;font-weight:700;font-size:.92rem;letter-spacing:.03em;text-decoration:none}
@@ -2259,7 +2259,7 @@
 
   <main id="main" class="shell">
     <aside class="xmas-strip" aria-label="Christmas proposals">
-      <span class="xs-orn" aria-hidden="true">&#10052; &#10022; &#10052;</span>
+      <span class="xs-orn" aria-hidden="true">&#10052;&#xFE0E; &#10022;&#xFE0E; &#10052;&#xFE0E;</span>
       <h2>Give them a Christmas they&rsquo;ll never forget.</h2>
       <p>With our festive Guarantee, it will be on their hand by Christmas morning.</p>
       <div class="xs-sketch">
@@ -2995,6 +2995,9 @@
         return Math.min(Math.max(visibleHeight / normalizedHeight, 0), 1);
       };
 
+      const gateEl = document.querySelector(".xs-btns");
+      const xmasStrip = document.querySelector(".xmas-strip") || document.body;
+      let heroScrolled = window.scrollY > 2;
       const updateHeroFade = () => {
         const processRect = processSection.getBoundingClientRect();
         const topbarHeight = topbar.offsetHeight;
@@ -3017,9 +3020,12 @@
           block.classList.toggle("is-visible", visible);
         });
 
+        if (window.scrollY > 2) heroScrolled = true;
         scrollBlackoutTargets.forEach((element) => {
           const rect = element.getBoundingClientRect();
-          const visible = getViewportVisibility(rect) > 0.16;
+          /* Everything after the two top buttons stays hidden until the visitor first scrolls */
+          const held = !heroScrolled && gateEl && !xmasStrip.contains(element) && (gateEl.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING);
+          const visible = !held && getViewportVisibility(rect) > 0.16;
           element.classList.toggle("is-visible", visible);
         });
       };
@@ -3159,7 +3165,7 @@ fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":
 </script>
 <style>@media (max-width:720px){.hero{padding-bottom:0!important}.hero .hero-visual{padding-bottom:16px!important}.testimonials{margin-top:16px!important}}</style>
 <style>.testimonials{margin-top:34px!important;margin-bottom:34px!important}.proposal-showcase{margin-top:0!important}.testimonials-controls{margin-top:6px!important;margin-bottom:0!important}@media(max-width:720px){.hero{padding-bottom:0!important;margin-bottom:0!important}.hero .hero-visual{padding-bottom:0!important}}</style>
-<style>@media(max-width:900px){.hp-steps{display:flex!important;grid-template-columns:none!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0 6px}.hp-steps::-webkit-scrollbar{display:none}.hp-step{flex:0 0 82%!important;scroll-snap-align:center;display:flex!important;flex-direction:column;grid-row:auto!important}.hp-step{flex-basis:76%!important}.hp-dots{display:flex;justify-content:center;gap:8px;margin:12px 0 0}.hp-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:background .2s,transform .2s}.hp-dots i.on{background:#dfe3ea;transform:scale(1.25)}}@media(min-width:901px){.hp-dots{display:none}}</style>
+<style>@media(max-width:900px){.hp-steps{display:flex!important;grid-template-columns:none!important;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0 6px}.hp-steps::-webkit-scrollbar{display:none}.hp-step{flex:0 0 82%!important;display:flex!important;flex-direction:column;grid-row:auto!important}.hp-step{flex-basis:76%!important}.hp-dots{display:flex;justify-content:center;gap:8px;margin:12px 0 0}.hp-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:background .2s,transform .2s}.hp-dots i.on{background:#dfe3ea;transform:scale(1.25)}}@media(min-width:901px){.hp-dots{display:none}}</style>
 <script>(function(){var t=document.querySelector(".hp-steps");if(!t)return;var n=t.children.length,d=document.createElement("div");d.className="hp-dots";d.setAttribute("aria-hidden","true");for(var i=0;i<n;i++)d.appendChild(document.createElement("i"));t.parentNode.insertBefore(d,t.nextSibling);var dots=d.children;function up(){var w=t.scrollWidth/n,k=Math.round(t.scrollLeft/w);for(var i=0;i<n;i++)dots[i].className=i===k?"on":""}t.addEventListener("scroll",function(){requestAnimationFrame(up)},{passive:true});up()})();</script>
 <style>.hp-media{aspect-ratio:1/1!important}.hp-media img{padding:4%;box-sizing:border-box}.hp-media--black img{padding:16%}@media(max-width:900px){.hp-step{flex-basis:70%!important}}.hp-media--platinum-final video{object-position:center center!important}.hp-step figcaption em{font-size:.9rem}@media(max-width:900px){.hp-step figcaption{min-height:10.5em}.hp-step .hp-media{width:100%;margin-top:auto;flex:0 0 auto}}.hp-media{aspect-ratio:1/1!important;width:100%}</style>
 <style>.testimonial::before{content:"\2605\2605\2605\2605\2605";display:block;margin:0 0 10px;color:#dfe3ea;font-size:1.15rem;letter-spacing:.14em;line-height:1}</style>
