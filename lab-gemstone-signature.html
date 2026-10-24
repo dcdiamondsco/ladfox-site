@@ -3102,7 +3102,7 @@ document.querySelectorAll(".option-pill--gem[data-option-value]").forEach(functi
     else if(specFields&&wrap.parentNode!==specFields)specFields.insertBefore(wrap,specFields.firstChild);
   }
   function fixNote(visible){
-    if(!note)return;var base=note.textContent.replace(/^(9k|14k|18k) gold( \u00b7 )?/,'').replace(/^[0-9.]+ ct( \u00b7 )?/,'');
+    if(!note)return;var mm=note.textContent.match(/[A-Z]+ colour \u00b7 [A-Z0-9]+ clarity/);var base=mm?mm[0]:'';
     var cfld=document.querySelector('[data-colour-field]');var gem=!!(cfld&&cfld.hidden);
     base=base.replace(/ included as standard| \(your selection\)/,'');
     var sq=document.querySelector('input[id$="StoneSize"]');var sz=(sq&&sq.value)?sq.value.trim():'';
