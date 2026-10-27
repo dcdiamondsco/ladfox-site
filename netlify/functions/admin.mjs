@@ -86,6 +86,14 @@ export default async (request) => {
       const u = clean(body.trackingUrl, 500);
       project.trackingUrl = /^https:\/\/[^\s"'<>]{4,480}$/.test(u) ? u : "";
     }
+    // Choosing "Payment received" from the stage list also marks any open payment request as paid.
+    if (stageChanged && project.stage === 2) {
+      for (const pay of project.payments || []) {
+        if (pay.status !== "requested") continue;
+        pay.status = "paid"; pay.paidAt = now; pay.method = "manual";
+        project.updates.push({ at: now, by: "ladfox", text: `Payment received: ${pay.label}.`, stage: 2 });
+      }
+    }
     if (stageChanged || note) project.updates.push({ at: now, by: "ladfox", text: note || `Status updated to "${STAGES[project.stage]}".`, stage: project.stage });
     project.updatedAt = now;
     project.customerUnread = false;

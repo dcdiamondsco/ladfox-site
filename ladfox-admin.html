@@ -221,8 +221,8 @@
     }
     const vfile = el("input"); vfile.type = "file"; vfile.accept = "video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm";
     const vup = el("button", "", (p.videos || []).length ? "Add another video" : "Upload video"); vup.type = "button";
-    const vmsg = el("p", "muted", "MP4, MOV or WebM, up to 60 MB each, up to 6 videos. Each plays on a loop on their account page.");
-    vbox.append(vcur, vfile, vup, vmsg, el("p", "muted", "Or paste a link instead (YouTube, Vimeo, a direct .mp4):"), vidIn, el("p", "muted", "Link changes need Save update. Untick and save to remove all videos."));
+    
+    vbox.append(vcur, vfile, vup, vidIn, el("p", "muted", "Link changes need Save update. Untick and save to remove all videos."));
     vbox.style.display = vck.checked ? "" : "none";
     vck.onchange = () => { vbox.style.display = vck.checked ? "" : "none"; };
     vup.onclick = async () => {
@@ -253,9 +253,7 @@
       if (pay.status !== "paid") {
         const cancel = el("button", "ghost", "Cancel request");
         cancel.onclick = async () => { const { res, data } = await call({ action: "cancel-payment", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
-        const manual = el("button", "ghost", "Mark as paid");
-        manual.onclick = async () => { if (!confirm("Mark this as paid?")) return; const { res, data } = await call({ action: "mark-paid", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
-        r.append(cancel, manual);
+        r.append(cancel);
       }
       psec.append(r);
     }
