@@ -371,22 +371,23 @@
     card.append(steps);
     if (p.estimate && p.stage < 7) { const ed = el("p", "", "Estimated delivery: " + p.estimate); ed.style.cssText = "text-align:center;margin:14px 0;color:#dfe3ea;font-weight:600"; card.append(ed); }
 
-    const hasVideo = !!(p.video || (p.videoUrl && /^https:\/\//.test(p.videoUrl)));
+    const vlist = p.videos || []; const hasVideo = !!(vlist.length || (p.videoUrl && /^https:\/\//.test(p.videoUrl)));
     if ((p.files || []).length || hasVideo) {
       const grid = el("div", "files");
-      if (hasVideo) {
+      const sources = vlist.map((x) => ({ file: x })); if (p.videoUrl && /^https:\/\//.test(p.videoUrl)) sources.push({ url: p.videoUrl });
+      for (const src0 of sources) {
         const vfig = el("figure");
-        const isFile = !!p.video || /\.(mp4|webm|mov)(\?|#|$)/i.test(p.videoUrl);
+        const isFile = !!src0.file || /\.(mp4|webm|mov)(\?|#|$)/i.test(src0.url);
         if (isFile) {
           const v = document.createElement("video");
-          v.src = p.video ? "/.netlify/functions/account-video?p=" + encodeURIComponent(p.id) + "&v=" + encodeURIComponent(p.video.id) : p.videoUrl;
+          v.src = src0.file ? "/.netlify/functions/account-video?p=" + encodeURIComponent(p.id) + "&v=" + encodeURIComponent(src0.file.id) : src0.url;
           v.autoplay = true; v.loop = true; v.muted = true; v.defaultMuted = true; v.playsInline = true; v.controls = false; v.preload = "auto";
           v.disablePictureInPicture = true; v.setAttribute("controlslist", "nodownload noplaybackrate nofullscreen"); v.setAttribute("aria-label", "Your diamond video");
           v.style.cssText = "display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#000;pointer-events:none";
           v.addEventListener("loadeddata", () => { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); });
           vfig.append(v);
         } else {
-          const u = p.videoUrl; let src = "", m;
+          const u = src0.url; let src = "", m;
           if ((m = u.match(/^https:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/))) src = "https://www.youtube-nocookie.com/embed/" + m[1] + "?autoplay=1&mute=1&loop=1&playlist=" + m[1] + "&playsinline=1&rel=0&controls=0&disablekb=1";
           else if ((m = u.match(/^https:\/\/(?:www\.)?vimeo\.com\/(?:video\/)?(\d+)(?:\/([\w]+))?/))) src = "https://player.vimeo.com/video/" + m[1] + "?autoplay=1&muted=1&loop=1&playsinline=1&controls=0" + (m[2] ? "&h=" + m[2] : "");
           else if (!/^https:\/\/(?:drive|docs)\.google\.com\//.test(u)) src = u;

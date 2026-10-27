@@ -208,14 +208,21 @@
     psec.append(estIn, trkIn);
     const vidIn = el("input"); vidIn.placeholder = "Diamond video link (https, shown to the customer)"; vidIn.value = p.videoUrl || "";
     const vsec = el("div"); vsec.style.marginTop = "16px";
-    const vck = el("input"); vck.type = "checkbox"; vck.checked = !!(p.videoUrl || p.video); vck.style.cssText = "width:auto;margin:0";
+    const vck = el("input"); vck.type = "checkbox"; vck.checked = !!(p.videoUrl || (p.videos || []).length); vck.style.cssText = "width:auto;margin:0";
     const vlab = el("label"); vlab.style.cssText = "display:flex;gap:8px;align-items:center;color:#ddd;font-size:.95rem;margin:10px 0"; vlab.append(vck, document.createTextNode("Add a diamond video for this client"));
     const vbox = el("div");
-    const vcur = el("p", "muted", p.video ? `Uploaded: ${p.video.name} (${(p.video.size / 1048576).toFixed(1)} MB). Choose a new file to replace it.` : "");
+    const vcur = el("div");
+    for (const v of p.videos || []) {
+      const r = el("div", "row"); r.style.cssText = "justify-content:space-between;margin:6px 0";
+      r.append(el("span", "muted", `${v.name} (${(v.size / 1048576).toFixed(1)} MB)`));
+      const rm = el("button", "ghost", "Remove"); rm.type = "button";
+      rm.onclick = async () => { if (!confirm("Remove this video?")) return; const { res, data } = await call({ action: "video-delete", email: p.email, id: p.id, videoId: v.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
+      r.append(rm); vcur.append(r);
+    }
     const vfile = el("input"); vfile.type = "file"; vfile.accept = "video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm";
-    const vup = el("button", "", "Upload video"); vup.type = "button";
-    const vmsg = el("p", "muted", "MP4, MOV or WebM, up to 60 MB. It plays on a loop on their account page.");
-    vbox.append(vcur, vfile, vup, vmsg, el("p", "muted", "Or paste a link instead (YouTube, Vimeo, a direct .mp4):"), vidIn, el("p", "muted", "Link changes need Save update. Untick and save to remove the video."));
+    const vup = el("button", "", (p.videos || []).length ? "Add another video" : "Upload video"); vup.type = "button";
+    const vmsg = el("p", "muted", "MP4, MOV or WebM, up to 60 MB each, up to 6 videos. Each plays on a loop on their account page.");
+    vbox.append(vcur, vfile, vup, vmsg, el("p", "muted", "Or paste a link instead (YouTube, Vimeo, a direct .mp4):"), vidIn, el("p", "muted", "Link changes need Save update. Untick and save to remove all videos."));
     vbox.style.display = vck.checked ? "" : "none";
     vck.onchange = () => { vbox.style.display = vck.checked ? "" : "none"; };
     vup.onclick = async () => {
@@ -237,7 +244,7 @@
         }
         status(""); load();
       } catch (e) { status(e.message, true); }
-      vup.disabled = false; vup.textContent = "Upload video";
+      vup.disabled = false; vup.textContent = (p.videos || []).length ? "Add another video" : "Upload video";
     };
     vsec.append(vlab, vbox);
     for (const pay of p.payments || []) {

@@ -2,7 +2,7 @@ import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
-  FILE_TYPES, MAX_FILE_BYTES, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
+  FILE_TYPES, MAX_FILE_BYTES, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, videosOf, VIDEOS_MAX, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
   PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey, sheetEvent
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
@@ -179,6 +179,7 @@ export default async (request) => {
     if (!buf.length || buf.length > VIDEO_CHUNK) return json({ error: "Invalid video chunk." }, 400);
     if (index === 0 && !sniffVideo(buf)) return json({ error: "Only MP4, MOV or WebM videos are allowed." }, 400);
     const prefix = videoPrefix(email, project.id, vid);
+    if (index === 0 && videosOf(project).length >= VIDEOS_MAX) return json({ error: `You can add up to ${VIDEOS_MAX} videos. Remove one first.` }, 400);
     await db.set(`${prefix}${index}`, buf);
     if (index < total - 1) return json({ ok: true });
     // last chunk: check every piece arrived, then publish
@@ -188,9 +189,21 @@ export default async (request) => {
     const type = sniffVideo(Buffer.from(first));
     const size = Number.parseInt(body.size, 10);
     if (!type || !(size > (total - 1) * VIDEO_CHUNK && size <= total * VIDEO_CHUNK)) return json({ error: "Video upload failed. Please try again." }, 400);
-    const old = project.video;
-    project.video = { id: vid, name: clean(body.name, 100).replace(/[^\w .()-]/g, "_") || "diamond-video", type, size, chunks: total, at: new Date().toISOString() };
-    if (old && old.id !== vid) { const keep = project.video; project.video = old; await dropVideo(db, email, project); project.video = keep; }
+    const list = videosOf(project);
+    if (list.length >= VIDEOS_MAX) return json({ error: `You can add up to ${VIDEOS_MAX} videos. Remove one first.` }, 400);
+    project.videos = [...list, { id: vid, name: clean(body.name, 100).replace(/[^\w .()-]/g, "_") || "diamond-video", type, size, chunks: total, at: new Date().toISOString() }];
+    project.video = null;
+    project.updatedAt = new Date().toISOString();
+    await saveProject(db, project);
+    return json({ ok: true, project: publicProject(project) });
+  }
+
+  if (body.action === "video-delete") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    const vid = clean(body.videoId, 24);
+    if (!project || !videosOf(project).some((v) => v.id === vid)) return json({ error: "Video not found." }, 404);
+    await dropVideo(db, email, project, vid);
     project.updatedAt = new Date().toISOString();
     await saveProject(db, project);
     return json({ ok: true, project: publicProject(project) });

@@ -203,7 +203,7 @@ export const publicProject = (p) => ({
   id: p.id, type: p.type, title: p.title, details: p.details, ringType: p.ringType, budget: p.budget,
   orderReference: p.orderReference, standard: p.standard === true,
   files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "", videoUrl: p.videoUrl || "",
-  video: p.video ? { id: p.video.id, name: p.video.name, type: p.video.type, size: p.video.size } : null,
+  videos: videosOf(p).map((v) => ({ id: v.id, name: v.name, type: v.type, size: v.size })),
   createdAt: p.createdAt, updatedAt: p.updatedAt, updates: p.updates
 });
 
@@ -228,10 +228,16 @@ export const sniffVideo = (buf) => {
   if (buf.length > 4 && buf[0] === 0x1a && buf[1] === 0x45 && buf[2] === 0xdf && buf[3] === 0xa3) return "video/webm";
   return "";
 };
-export const dropVideo = async (db, email, project) => {
-  if (!project.video) return;
-  const { blobs } = await db.list({ prefix: videoPrefix(email, project.id, project.video.id) });
-  await Promise.all(blobs.map((b) => db.delete(b.key).catch(() => {})));
+export const VIDEOS_MAX = 6;
+export const videosOf = (p) => (Array.isArray(p.videos) ? p.videos : p.video ? [p.video] : []);
+export const dropVideo = async (db, email, project, onlyId) => {
+  const all = videosOf(project);
+  for (const v of all) {
+    if (onlyId && v.id !== onlyId) continue;
+    const { blobs } = await db.list({ prefix: videoPrefix(email, project.id, v.id) });
+    await Promise.all(blobs.map((b) => db.delete(b.key).catch(() => {})));
+  }
+  project.videos = onlyId ? all.filter((v) => v.id !== onlyId) : [];
   project.video = null;
 };
 export const fileKey = (email, projectId, fileId) => `files/${sha(email)}/${projectId}/${fileId}`;

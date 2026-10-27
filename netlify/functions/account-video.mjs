@@ -1,5 +1,5 @@
 import { json } from "./http.mjs";
-import { getDb, getSession, loadProject, videoPrefix, VIDEO_CHUNK, normaliseEmail, clean, safeEqual } from "./account-lib.mjs";
+import { getDb, getSession, loadProject, videoPrefix, videosOf, VIDEO_CHUNK, normaliseEmail, clean, safeEqual } from "./account-lib.mjs";
 
 const isAdmin = (request) => {
   const expected = String(process.env.ADMIN_PASSWORD || "");
@@ -22,7 +22,9 @@ export default async (request) => {
     email = session.email;
   }
   const project = email ? await loadProject(db, email, projectId) : null;
-  const v = project?.video;
+  const vids = project ? videosOf(project) : [];
+  const want = clean(url.searchParams.get("v"), 24);
+  const v = vids.find((x) => x.id === want) || (want ? null : vids[0]);
   if (!v) return json({ error: "Not found." }, 404);
   const total = v.size;
 
