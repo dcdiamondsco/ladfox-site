@@ -153,15 +153,15 @@
     const g = el("div", "grid");
     const sWrap = el("div"); sWrap.append(el("label", "", "Stage"));
     const sel = el("select"); STAGES.forEach((s, i) => { const o = el("option", "", s); o.value = i; if (i === p.stage) o.selected = true; sel.append(o); }); sWrap.append(sel);
-    const upBtn = el("button", "", "Update"); upBtn.type = "button"; upBtn.style.marginTop = "10px"; upBtn.onclick = () => save.click(); sWrap.append(upBtn);
+    const upBtn = el("button", "", "Update"); upBtn.type = "button";
+    const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = false; lab.append(ck, document.createTextNode("Email them this update"));
+    const upRow = el("div", "row"); upRow.append(lab, upBtn); sWrap.append(upRow);
     c.append(sWrap);
     const note = { value: "" };
-    const row = el("div", "row"); const lab = el("label"); const ck = el("input"); ck.type = "checkbox"; ck.checked = false; lab.append(ck, document.createTextNode("Email them this update"));
-    const save = el("button", "", "Save update"); row.append(lab, save);
-    save.onclick = async () => {
-      save.disabled = true;
+    upBtn.onclick = async () => {
+      upBtn.disabled = true;
       const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value });
-      save.disabled = false;
+      upBtn.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
       status("");
       load();
@@ -248,7 +248,6 @@
     const log = el("div", "log");
     for (const u of p.updates.filter((x) => x.kind === "msg" || (x.by === "customer" && x.stage === undefined))) { const d = el("div"); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), document.createTextNode(u.text)); log.append(d); }
     c.append(log);
-    c.append(row);
     const dsec = el("div", "sec"); const del = el("button", "danger", "Delete project");
     del.onclick = async () => {
       if (!confirm("Delete \u201c" + p.title + "\u201d for " + p.email + " permanently, including its files? This cannot be undone.")) return;
