@@ -55,7 +55,7 @@
     ol.steps li.current .dot{background:#000;border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.2)}
     .files{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:18px 0 6px;align-items:start}
     .files figure{margin:0;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-    .files img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#000}
+    .files img{display:block;width:100%;height:auto;background:#000}
     .files a{display:block;cursor:zoom-in}
     .lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);display:flex;align-items:center;justify-content:center;padding:56px 16px 24px;cursor:zoom-out}
     .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;background:#000}
@@ -373,7 +373,7 @@
 
     const vlist = p.videos || []; const hasVideo = !!(vlist.length || (p.videoUrl && /^https:\/\//.test(p.videoUrl)));
     if ((p.files || []).length || hasVideo) {
-      const grid = el("div", "files");
+      const grid = el("div", "files"); const vgrid = el("div", "files"); vgrid.style.marginBottom = "0";
       const sources = vlist.map((x) => ({ file: x })); if (p.videoUrl && /^https:\/\//.test(p.videoUrl)) sources.push({ url: p.videoUrl });
       for (const src0 of sources) {
         const vfig = el("figure");
@@ -398,7 +398,7 @@
             vfig.append(f);
           } else { const a = el("a", "pdf", "Watch diamond video"); a.href = u; a.target = "_blank"; a.rel = "noopener noreferrer"; vfig.append(a); }
         }
-        grid.append(vfig);
+        vgrid.append(vfig);
       }
       for (const f of (p.files || [])) {
         const url = "/.netlify/functions/account-file?p=" + encodeURIComponent(p.id) + "&f=" + encodeURIComponent(f.id);
@@ -413,7 +413,8 @@
         if (f.note) fig.append(el("figcaption", "", f.note));
         grid.append(fig);
       }
-      card.append(grid);
+      if (vgrid.children.length) card.append(vgrid);
+      if ((p.files || []).length) card.append(grid);
     }
 
     if ((p.files || []).some((f) => f.by !== "customer") && p.stage === 3) {
