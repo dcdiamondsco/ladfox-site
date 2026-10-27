@@ -365,7 +365,7 @@
       vs.append(el("h3", "", "Your diamond video"));
       if (/\.(mp4|webm|mov)(\?|#|$)/i.test(p.videoUrl)) {
         const v = document.createElement("video");
-        v.src = p.videoUrl; v.controls = true; v.playsInline = true; v.preload = "metadata";
+        v.src = p.videoUrl; v.controls = true; v.loop = true; v.muted = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
         v.style.cssText = "width:100%;max-width:560px;border-radius:12px;background:#000;display:block;margin:10px auto";
         vs.append(v);
       }
