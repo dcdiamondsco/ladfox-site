@@ -263,7 +263,7 @@
       const lab2 = { value: "Full payment" };
       prow.append(amt); psec.append(prow);
       const prow2 = el("div", "row"); const plab = el("label"); const pck = el("input"); pck.type = "checkbox"; pck.checked = false; plab.append(pck, document.createTextNode("Email them"));
-      const pbtn = el("button", "", "Request payment"); prow2.append(plab, pbtn); psec.append(prow2);
+      const pbtn = el("button", "", "Add price"); prow2.append(plab, pbtn); psec.append(prow2);
       pbtn.onclick = async () => {
         const { res, data } = await call({ action: "request-payment", email: p.email, id: p.id, amount: amt.value, label: lab2.value, notify: pck.checked });
         if (!res.ok) return status(data.error || "Failed", true);
