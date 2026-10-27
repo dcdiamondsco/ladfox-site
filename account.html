@@ -437,7 +437,7 @@
       } else {
         const sale = window.lfxSaleEnd && Date.now() < window.lfxSaleEnd;
         { const ph = el("h3", "", "Payment due"); ph.style.textAlign = "center"; box.append(ph); }
-        if (sale) { const was = el("div", "", "£" + (pay.amountPence * 1.2 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "text-align:center;color:rgba(255,255,255,.92);font-weight:700;font-size:1.5rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:2px;margin:10px 0 10px"; box.append(was); }
+        if (sale) { const was = el("div", "", "£" + (pay.amountPence / 0.8 / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })); was.style.cssText = "text-align:center;color:rgba(255,255,255,.92);font-weight:700;font-size:1.5rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:2px;margin:10px 0 10px"; box.append(was); }
         const pb = el("button", "btn"); pb.type = "button"; pb.style.cssText = "display:block;margin:0 auto";
         const lbl = el("span", "", amount); lbl.style.cssText = "display:block;color:" + (sale ? "#c95858" : "inherit") + ";font-weight:800;font-size:1.1rem;letter-spacing:.02em";
         pb.append(lbl);
