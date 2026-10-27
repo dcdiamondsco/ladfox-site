@@ -1,7 +1,7 @@
 import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, getSession, getCustomer, upsertCustomer, listProjects, createProject, loadProject, saveProject,
-  publicProject, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey, plainShell, newToken, sha, LOGIN_TTL_MS
+  publicProject, paymentPricing, clean, sheetEvent, customerKey, followKey, recordVisit, sendEmail, emailShell, escapeHtml, siteUrl, getStripe, draftKey, plainShell, newToken, sha, LOGIN_TTL_MS
 } from "./account-lib.mjs";
 
 const notifyOwner = async (request, subject, lines) => {
@@ -155,6 +155,7 @@ export default async (request) => {
     const stripe = await getStripe();
     if (!stripe) return json({ error: "Payments are temporarily unavailable. Please contact hello@ladfox.com." }, 503);
     const origin = siteUrl(request);
+    const price = paymentPricing(payment);
     try {
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
@@ -164,11 +165,11 @@ export default async (request) => {
           quantity: 1,
           price_data: {
             currency: "gbp",
-            unit_amount: payment.amountPence,
+            unit_amount: price.payPence,
             product_data: { name: `LADFOX: ${project.title}`, description: payment.label }
           }
         }],
-        metadata: { account_payment: "1", project_id: project.id, payment_id: payment.id, customer_email: email, product: project.title },
+        metadata: { account_payment: "1", project_id: project.id, payment_id: payment.id, customer_email: email, product: project.title, pay_pence: String(price.payPence) },
         payment_intent_data: { metadata: { account_payment: "1", project_id: project.id, payment_id: payment.id } },
         success_url: `${origin}/account?paid=1`,
         cancel_url: `${origin}/account`

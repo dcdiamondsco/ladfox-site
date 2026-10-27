@@ -249,7 +249,7 @@
     vsec.append(vlab, vbox);
     for (const pay of p.payments || []) {
       const r = el("div", "pay");
-      r.append(el("span", "pill " + (pay.status === "paid" ? "paid" : "due"), pay.status === "paid" ? "PAID" : "DUE"), document.createTextNode(`£${(pay.amountPence / 100).toFixed(2)} · ${pay.label}`));
+      r.append(el("span", "pill " + (pay.status === "paid" ? "paid" : "due"), pay.status === "paid" ? "PAID" : "DUE"), document.createTextNode(`£${((pay.status === "paid" ? (pay.paidPence || pay.amountPence) : pay.payPence ?? pay.amountPence) / 100).toFixed(2)} · ${pay.label}` + (pay.status !== "paid" && pay.sale === false ? " (sale ended, higher price)" : pay.status !== "paid" && pay.sale ? " (sale price)" : "")));
       if (pay.status !== "paid") {
         const cancel = el("button", "ghost", "Cancel request");
         cancel.onclick = async () => { const { res, data } = await call({ action: "cancel-payment", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };

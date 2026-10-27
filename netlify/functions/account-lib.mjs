@@ -1,4 +1,5 @@
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { saleEndsAt } from "./sale.mjs";
 
 export const STAGES = [
   "Enquiry received",
@@ -202,7 +203,7 @@ export const createProject = async (db, fields) => {
 export const publicProject = (p) => ({
   id: p.id, type: p.type, title: p.title, details: p.details, ringType: p.ringType, budget: p.budget,
   orderReference: p.orderReference, standard: p.standard === true,
-  files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "", videoUrl: p.videoUrl || "",
+  files: p.files || [], payments: (p.payments || []).map(withPricing), amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "", videoUrl: p.videoUrl || "",
   videos: videosOf(p).map((v) => ({ id: v.id, name: v.name, type: v.type, size: v.size })),
   createdAt: p.createdAt, updatedAt: p.updatedAt, updates: p.updates
 });
@@ -220,6 +221,18 @@ export const getSession = async (db, request) => {
 export const FILE_TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "application/pdf": "pdf" };
 export const MAX_FILE_BYTES = 4 * 1024 * 1024;
 export const MAX_FILES_PER_PROJECT = 30;
+/* A payment request is a one-off sale: the price is held until midnight at the end of the Sunday after it was
+   requested (UK time); after that it reverts to the higher price (the sale price is 20% off it, whole pounds). */
+export const wasPence = (pence) => Math.round(pence / 0.8 / 100) * 100;
+export const paymentPricing = (pay, now = Date.now()) => {
+  const created = Date.parse(pay.createdAt);
+  if (!Number.isFinite(created)) return { sale: false, saleEndsAt: "", payPence: pay.amountPence, wasPence: pay.amountPence };
+  const endsAt = saleEndsAt(new Date(created));
+  const sale = now < Date.parse(endsAt);
+  return { sale, saleEndsAt: endsAt, payPence: sale ? pay.amountPence : wasPence(pay.amountPence), wasPence: wasPence(pay.amountPence) };
+};
+export const withPricing = (pay) => (pay.status === "paid" ? pay : { ...pay, ...paymentPricing(pay) });
+
 export const VIDEO_CHUNK = 3 * 1024 * 1024;
 export const VIDEO_MAX_CHUNKS = 20; // 60 MB
 export const videoPrefix = (email, projectId, vid) => `videos/${sha(email)}/${projectId}/${vid}/`;

@@ -2,7 +2,7 @@ import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
-  FILE_TYPES, MAX_FILE_BYTES, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, videosOf, VIDEOS_MAX, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
+  FILE_TYPES, MAX_FILE_BYTES, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, withPricing, paymentPricing, videosOf, VIDEOS_MAX, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
   PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey, sheetEvent
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
@@ -51,7 +51,7 @@ export default async (request) => {
   const db = await getDb();
 
   if (request.method === "GET") {
-    const projects = await listProjects(db);
+    const projects = (await listProjects(db)).map((p) => ({ ...p, payments: (p.payments || []).map(withPricing) }));
     const designs = (await listDesigns(db)).slice(0, 100).map((d) => ({
       ...publicDesign(d), email: d.email, name: d.name || "", marketing: Boolean(d.marketing), selections: d.selections
     }));
@@ -262,12 +262,15 @@ export default async (request) => {
     project.updatedAt = now;
     await saveProject(db, project);
     let emailed = false;
+    const pr = paymentPricing(project.payments[project.payments.length - 1]);
+    const endDay = new Date(Date.parse(pr.saleEndsAt) - 60000).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/London" });
+    const was = pr.wasPence / 100;
     if (body.notify) {
       try {
         await emailCustomerNote(request, project, "Your LADFOX payment is ready",
           "Your payment is ready",
-          `<p style="margin:0 0 10px">Your payment of <strong>£${(pence / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</strong> for "<strong>${escapeHtml(project.title)}</strong>" is ready.</p><p style="margin:0">Sign in to your account and choose Pay securely. Payment is handled by Stripe.</p>`,
-          `Your payment of £${(pence / 100).toFixed(2)} for "${project.title}" is ready. Sign in to pay securely.`);
+          `<p style="margin:0 0 10px">Your payment of <strong>£${(pence / 100).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</strong> for "<strong>${escapeHtml(project.title)}</strong>" is ready.</p><p style="margin:0 0 10px">This price is held until midnight on ${endDay}. After that it is £${was.toLocaleString("en-GB")}.</p><p style="margin:0">Sign in to your account and choose Pay securely. Payment is handled by Stripe.</p>`,
+          `Your payment of £${(pence / 100).toFixed(2)} for "${project.title}" is ready. This price is held until midnight on ${endDay}; after that it is £${was.toLocaleString("en-GB")}. Sign in to pay securely.`);
         emailed = true;
       } catch (e) { console.error("payment email failed", e.message); }
     }

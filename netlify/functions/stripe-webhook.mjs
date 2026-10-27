@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { json } from "./http.mjs";
 import {
-  getDb, normaliseEmail, validEmail, upsertCustomer, createProject, sendEmail, emailShell, escapeHtml, siteUrl,
+  getDb, wasPence, normaliseEmail, validEmail, upsertCustomer, createProject, sendEmail, emailShell, escapeHtml, siteUrl,
   loadProject, saveProject, emailCustomerNote
 } from "./account-lib.mjs";
 
@@ -100,7 +100,7 @@ const recordAccountPayment = async (request, session) => {
     const project = validEmail(email) ? await loadProject(db, email, m.project_id) : null;
     const payment = project?.payments?.find((p) => p.id === m.payment_id);
     if (!payment || payment.status === "paid") return;
-    if (session.amount_total !== payment.amountPence || session.currency !== "gbp") {
+    if ((session.amount_total !== payment.amountPence && session.amount_total !== wasPence(payment.amountPence)) || session.currency !== "gbp") {
       console.error("account payment amount mismatch", session.id);
       return;
     }
@@ -108,6 +108,7 @@ const recordAccountPayment = async (request, session) => {
     payment.status = "paid";
     payment.paidAt = now;
     payment.method = "stripe";
+    payment.paidPence = session.amount_total;
     payment.stripeSessionId = session.id;
     project.updates.push({ at: now, by: "ladfox", text: `Payment received: ${payment.label}. Thank you!`, stage: Math.max(project.stage, 2) });
     if (project.stage < 2) project.stage = 2;
@@ -116,8 +117,8 @@ const recordAccountPayment = async (request, session) => {
     try {
       await emailCustomerNote(request, project, "Payment received, thank you",
         "Payment received",
-        `<p style="margin:0">Thank you. We have received your payment of £${(payment.amountPence / 100).toFixed(2)} for "<strong>${escapeHtml(project.title)}</strong>".</p>`,
-        `Thank you. We have received your payment of £${(payment.amountPence / 100).toFixed(2)} for "${project.title}".`);
+        `<p style="margin:0">Thank you. We have received your payment of £${(session.amount_total / 100).toFixed(2)} for "<strong>${escapeHtml(project.title)}</strong>".</p>`,
+        `Thank you. We have received your payment of £${(session.amount_total / 100).toFixed(2)} for "${project.title}".`);
     } catch (error) { console.error("payment email failed", error.message); }
   } catch (error) {
     console.error("recording account payment failed", error);
