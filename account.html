@@ -375,7 +375,7 @@
     if ((p.files || []).length || hasVideo) {
       const grid = el("div", "files");
       if (hasVideo) {
-        const vfig = el("figure"); vfig.style.gridColumn = "span 2";
+        const vfig = el("figure");
         const isFile = !!p.video || /\.(mp4|webm|mov)(\?|#|$)/i.test(p.videoUrl);
         if (isFile) {
           const v = document.createElement("video");
