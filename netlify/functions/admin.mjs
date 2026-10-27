@@ -77,6 +77,10 @@ export default async (request) => {
     const stageChanged = Number.isInteger(stage) && stage >= 0 && stage < STAGES.length && stage !== project.stage;
     if (Number.isInteger(stage) && stage >= 0 && stage < STAGES.length) project.stage = stage;
     if (typeof body.estimate === "string") project.estimate = clean(body.estimate, 80);
+    if (typeof body.videoUrl === "string") {
+      const v = clean(body.videoUrl, 500);
+      project.videoUrl = /^https:\/\/[^\s"'<>]{4,480}$/.test(v) ? v : "";
+    }
     if (typeof body.trackingUrl === "string") {
       const u = clean(body.trackingUrl, 500);
       project.trackingUrl = /^https:\/\/[^\s"'<>]{4,480}$/.test(u) ? u : "";

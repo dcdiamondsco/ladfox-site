@@ -202,7 +202,7 @@ export const createProject = async (db, fields) => {
 export const publicProject = (p) => ({
   id: p.id, type: p.type, title: p.title, details: p.details, ringType: p.ringType, budget: p.budget,
   orderReference: p.orderReference, standard: p.standard === true,
-  files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "",
+  files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "", videoUrl: p.videoUrl || "",
   createdAt: p.createdAt, updatedAt: p.updatedAt, updates: p.updates
 });
 

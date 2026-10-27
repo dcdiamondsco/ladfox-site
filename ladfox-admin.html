@@ -160,7 +160,7 @@
     const note = { value: "" };
     upBtn.onclick = async () => {
       upBtn.disabled = true;
-      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value });
+      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value, videoUrl: vidIn.value });
       upBtn.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
       status("");
@@ -206,6 +206,8 @@
     const estIn = el("input"); estIn.placeholder = "Estimated delivery date (shown to customer)"; estIn.value = p.estimate || ""; estIn.maxLength = 80;
     const trkIn = el("input"); trkIn.placeholder = "Tracking link (optional, shown once dispatched)"; trkIn.value = p.trackingUrl || "";
     psec.append(estIn, trkIn);
+    const vidIn = el("input"); vidIn.placeholder = "Diamond video link (https, shown to the customer)"; vidIn.value = p.videoUrl || "";
+    const vsec = el("div", "sec"); vsec.append(el("h3", "", "Diamond video"), vidIn, el("p", "muted", "Paste a link to the video (Nivoda/IGI viewer, YouTube, Vimeo, Drive or a direct .mp4). Press Save update to publish it; clear the box to remove it."));
     for (const pay of p.payments || []) {
       const r = el("div", "pay");
       r.append(el("span", "pill " + (pay.status === "paid" ? "paid" : "due"), pay.status === "paid" ? "PAID" : "DUE"), document.createTextNode(`£${(pay.amountPence / 100).toFixed(2)} · ${pay.label}`));
@@ -231,7 +233,7 @@
         status(""); load();
       };
     }
-    c.append(psec);
+    c.append(vsec); c.append(psec);
 
     const csec = el("div", "sec"); csec.append(el("h3", "", "Message"));
     const msg = el("textarea"); msg.placeholder = "Write a message to the customer"; csec.append(msg);

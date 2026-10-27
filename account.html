@@ -360,6 +360,18 @@
       if (p.stage === 7 && p.trackingUrl && /^https:\/\//.test(p.trackingUrl)) { const a2 = el("a", "btn", "Track your parcel"); a2.href = p.trackingUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer"; sp.append(a2); }
       card.append(sp);
     }
+    if (p.videoUrl && /^https:\/\//.test(p.videoUrl)) {
+      const vs = el("div", "sp");
+      vs.append(el("h3", "", "Your diamond video"));
+      if (/\.(mp4|webm|mov)(\?|#|$)/i.test(p.videoUrl)) {
+        const v = document.createElement("video");
+        v.src = p.videoUrl; v.controls = true; v.playsInline = true; v.preload = "metadata";
+        v.style.cssText = "width:100%;max-width:560px;border-radius:12px;background:#000;display:block;margin:10px auto";
+        vs.append(v);
+      }
+      const va = el("a", "btn", "Watch your diamond video"); va.href = p.videoUrl; va.target = "_blank"; va.rel = "noopener noreferrer"; vs.append(va);
+      card.append(vs);
+    }
 
     const steps = el("ol", "steps");
     STAGES.forEach((label, i) => {
