@@ -253,7 +253,7 @@
       if (pay.status !== "paid") {
         const cancel = el("button", "ghost", "Cancel request");
         cancel.onclick = async () => { const { res, data } = await call({ action: "cancel-payment", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
-        const manual = el("button", "ghost", "Mark as paid (bank transfer)");
+        const manual = el("button", "ghost", "Mark as paid");
         manual.onclick = async () => { if (!confirm("Mark this as paid?")) return; const { res, data } = await call({ action: "mark-paid", email: p.email, id: p.id, paymentId: pay.id }); if (!res.ok) return status(data.error || "Failed", true); load(); };
         r.append(cancel, manual);
       }
