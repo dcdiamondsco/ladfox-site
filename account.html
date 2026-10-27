@@ -373,7 +373,7 @@
 
     const vlist = p.videos || []; const hasVideo = !!(vlist.length || (p.videoUrl && /^https:\/\//.test(p.videoUrl)));
     if ((p.files || []).length || hasVideo) {
-      const grid = el("div", "files"); const vgrid = el("div", "files"); vgrid.style.marginBottom = "0";
+      const grid = el("div", "files"); const vgrid = el("div", "files"); vgrid.style.marginBottom = "0"; vgrid.style.gridTemplateColumns = "repeat(auto-fill,minmax(120px,160px))"; vgrid.style.justifyContent = "start";
       const sources = vlist.map((x) => ({ file: x })); if (p.videoUrl && /^https:\/\//.test(p.videoUrl)) sources.push({ url: p.videoUrl });
       for (const src0 of sources) {
         const vfig = el("figure");
