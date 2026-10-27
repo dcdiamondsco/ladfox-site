@@ -369,7 +369,19 @@
         v.style.cssText = "width:100%;max-width:560px;border-radius:12px;background:#000;display:block;margin:10px auto";
         vs.append(v);
       }
-      const va = el("a", "btn", "Watch your diamond video"); va.href = p.videoUrl; va.target = "_blank"; va.rel = "noopener noreferrer"; vs.append(va);
+      else {
+        const u = p.videoUrl; let src = "", m;
+        if ((m = u.match(/^https:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/))) src = "https://www.youtube-nocookie.com/embed/" + m[1] + "?autoplay=1&mute=1&loop=1&playlist=" + m[1] + "&playsinline=1&rel=0";
+        else if ((m = u.match(/^https:\/\/(?:www\.)?vimeo\.com\/(?:video\/)?(\d+)(?:\/([\w]+))?/))) src = "https://player.vimeo.com/video/" + m[1] + "?autoplay=1&muted=1&loop=1&playsinline=1" + (m[2] ? "&h=" + m[2] : "");
+        else if (!/^https:\/\/(?:drive|docs)\.google\.com\//.test(u)) src = u;
+        if (src) {
+          const f = document.createElement("iframe");
+          f.src = src; f.allow = "autoplay; fullscreen; picture-in-picture"; f.allowFullscreen = true; f.loading = "lazy"; f.title = "Your diamond video";
+          f.style.cssText = "width:100%;max-width:560px;aspect-ratio:1/1;border:0;border-radius:12px;background:#000;display:block;margin:10px auto";
+          vs.append(f);
+        }
+      }
+      const va = el("a", "btn", "Open video full screen"); va.href = p.videoUrl; va.target = "_blank"; va.rel = "noopener noreferrer"; vs.append(va);
       card.append(vs);
     }
 
