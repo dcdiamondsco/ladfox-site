@@ -160,7 +160,7 @@
     const note = { value: "" };
     upBtn.onclick = async () => {
       upBtn.disabled = true;
-      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value, videoUrl: vidIn.value });
+      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value, videoUrl: vck.checked ? vidIn.value : "" });
       upBtn.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
       status("");
@@ -207,7 +207,13 @@
     const trkIn = el("input"); trkIn.placeholder = "Tracking link (optional, shown once dispatched)"; trkIn.value = p.trackingUrl || "";
     psec.append(estIn, trkIn);
     const vidIn = el("input"); vidIn.placeholder = "Diamond video link (https, shown to the customer)"; vidIn.value = p.videoUrl || "";
-    const vsec = el("div", "sec"); vsec.append(el("h3", "", "Diamond video"), vidIn, el("p", "muted", "Paste a link to the video (Nivoda/IGI viewer, YouTube, Vimeo, Drive or a direct .mp4). Press Save update to publish it; clear the box to remove it."));
+    const vsec = el("div", "sec");
+    const vck = el("input"); vck.type = "checkbox"; vck.checked = !!p.videoUrl;
+    const vlab = el("label", "", ""); vlab.append(vck, document.createTextNode(" Add a diamond video for this client"));
+    const vbox = el("div", ""); vbox.append(vidIn, el("p", "muted", "Paste a link to the video (Nivoda/IGI viewer, YouTube, Vimeo, Drive or a direct .mp4). Press Save update to publish it. Untick and save to remove it."));
+    vbox.style.display = vck.checked ? "" : "none";
+    vck.onchange = () => { vbox.style.display = vck.checked ? "" : "none"; };
+    vsec.append(vlab, vbox);
     for (const pay of p.payments || []) {
       const r = el("div", "pay");
       r.append(el("span", "pill " + (pay.status === "paid" ? "paid" : "due"), pay.status === "paid" ? "PAID" : "DUE"), document.createTextNode(`£${(pay.amountPence / 100).toFixed(2)} · ${pay.label}`));
