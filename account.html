@@ -31,6 +31,10 @@
     input:focus,select:focus,textarea:focus{outline:2px solid #fff;outline-offset:1px}
     .btn{display:inline-block;background:#fff;color:#000;border:0;border-radius:999px;padding:13px 24px;font:inherit;font-weight:600;cursor:pointer;margin-top:18px;text-decoration:none}
     .btn[disabled]{opacity:.55;cursor:wait}
+    .btn.busy,.btn.busy[disabled]{opacity:.9;cursor:progress}
+    .btn.busy::before{content:"";display:inline-block;width:.9em;height:.9em;margin:0 9px -2px 0;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:lfxspin .7s linear infinite}
+    @keyframes lfxspin{to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion:reduce){.btn.busy::before{animation-duration:2s}}
     .btn.ghost{background:none;color:#fff;border:1px solid var(--line)}
     .msg{margin-top:14px;font-size:.92rem;min-height:1.2em}
     .msg.err{color:#ff9d9d}.msg.ok{color:#9fe3b0}
@@ -49,11 +53,16 @@
     ol.steps li.done .dot{background:#fff;border-color:#fff}
     ol.steps li.current{color:#fff;font-weight:600}
     ol.steps li.current .dot{background:#000;border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.2)}
-    .files{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:18px 0 6px}
+    .files{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:18px 0 6px;align-items:start}
     .files figure{margin:0;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-    .files img{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#000}
+    .files img{display:block;width:100%;height:auto;background:#000}
+    .files a{display:block;cursor:zoom-in}
+    .lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.93);display:flex;align-items:center;justify-content:center;padding:56px 16px 24px;cursor:zoom-out}
+    .lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;background:#000}
+    .lb-x{position:absolute;top:10px;right:14px;background:none;border:0;color:#fff;font-size:2.4rem;line-height:1;padding:4px 10px;cursor:pointer}
+    .lb-o{position:absolute;top:20px;left:18px;color:#dfe3ea;font-size:.9rem;text-decoration:underline}
     .files figcaption{padding:8px 10px;font-size:.78rem;color:var(--mute);word-break:break-word}
-    .files a.pdf{display:flex;align-items:center;justify-content:center;aspect-ratio:1;color:#fff;font-weight:600;text-decoration:none;background:#111}
+    .files a.pdf{display:flex;align-items:center;justify-content:center;aspect-ratio:1;color:#fff;font-weight:600;text-decoration:none;background:#111;cursor:pointer}
     .box{background:#0b0b0b;border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0 0}
     .box h3{margin:0 0 6px;font-size:1rem}
     .banner{background:#10261a;border:1px solid #2f6b47;color:#bff0cf;border-radius:14px;padding:14px 16px;margin:14px 0}
@@ -308,9 +317,33 @@
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
   const fmtDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   const setMsg = (node, text, kind) => { node.textContent = text || ""; node.className = "msg" + (kind ? " " + kind : ""); };
+  /* button that shows a spinner and a short label while it works */
+  const busy = (btn, on, label) => {
+    if (!btn) return;
+    if (on) { if (btn.dataset.label === undefined) btn.dataset.label = btn.textContent; btn.textContent = label || "Sending…"; btn.classList.add("busy"); btn.disabled = true; }
+    else { if (btn.dataset.label !== undefined) { btn.textContent = btn.dataset.label; delete btn.dataset.label; } btn.classList.remove("busy"); btn.disabled = false; }
+  };
+
+  /* click a picture to see it full size; Esc, the cross or a click outside closes it */
+  let lbBox = null;
+  const lbClose = () => { if (lbBox) { lbBox.remove(); lbBox = null; document.removeEventListener("keydown", lbKey); } };
+  const lbKey = (e) => { if (e.key === "Escape") lbClose(); };
+  const lightbox = (src, alt) => {
+    lbClose();
+    const box = el("div", "lb"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", alt || "Image");
+    const img = el("img"); img.src = src; img.alt = alt || "";
+    const x = el("button", "lb-x", "×"); x.type = "button"; x.setAttribute("aria-label", "Close");
+    const open = el("a", "lb-o", "Open full size"); open.href = src; open.target = "_blank"; open.rel = "noopener";
+    open.addEventListener("click", (e) => e.stopPropagation());
+    box.append(img, x, open);
+    box.addEventListener("click", lbClose);
+    document.addEventListener("keydown", lbKey);
+    document.body.append(box); lbBox = box; x.focus();
+  };
 
   const renderProject = (p) => {
     const card = el("article", "card");
+    card.dataset.pid = p.id; card.dataset.sig = JSON.stringify(p);
     const head = el("div", "proj-head");
     const left = el("div");
     left.append(el("div", "tag", p.type === "order" ? "Order" + (p.orderReference ? " · " + p.orderReference : "") : "Design request"), el("h2", "", p.title));
@@ -349,6 +382,7 @@
         } else {
           const a = el("a"); a.href = url; a.target = "_blank"; a.rel = "noopener";
           const img = el("img"); img.src = url; img.alt = f.name; img.loading = "lazy"; a.append(img); fig.append(a);
+          a.addEventListener("click", (e) => { if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; e.preventDefault(); lightbox(url, f.note || f.name); });
         }
         if (f.note) fig.append(el("figcaption", "", f.note));
         grid.append(fig);
@@ -452,6 +486,41 @@
     loadDesigns();
     show("dash");
   }
+
+  /* live updates: new messages, files and progress appear without a page refresh */
+  let liveStop = false, liveBusy = false, liveChanged = Date.now();
+  const typedIn = (card) => { const i = card && card.querySelector(".reply input"); return i ? { v: i.value, f: document.activeElement === i, a: i.selectionStart, b: i.selectionEnd } : null; };
+  const typeBack = (card, k) => { const i = k && card.querySelector(".reply input"); if (!i) return; i.value = k.v; if (k.f) { i.focus({ preventScroll: true }); try { i.setSelectionRange(k.a, k.b); } catch (e) {} } };
+  async function refresh() {
+    if (liveBusy || liveStop) return;
+    liveBusy = true;
+    try {
+      const { res, data } = await api("/.netlify/functions/account");
+      if (res.status === 401) { liveStop = true; return; }
+      if (!res.ok || !Array.isArray(data.projects)) return;
+      const wrap = $("projects");
+      const old = new Map(Array.from(wrap.children).map((c) => [c.dataset.pid, c]));
+      const later = [];
+      const next = data.projects.map((p) => {
+        const had = old.get(p.id);
+        if (had && had.dataset.sig === JSON.stringify(p)) return had;
+        const card = renderProject(p);
+        const kept = typedIn(had);
+        if (kept) later.push(() => typeBack(card, kept));
+        return card;
+      });
+      const same = next.length === wrap.children.length && next.every((n, i) => n === wrap.children[i]);
+      if (!same) { wrap.replaceChildren(...next); later.forEach((f) => f()); liveChanged = Date.now(); hasProjects = next.length > 0; }
+    } catch (e) { /* offline or a slow reply: try again next time */ }
+    finally { liveBusy = false; }
+  }
+  const livePage = () => document.visibilityState === "visible" && !$("dash").classList.contains("hidden");
+  const liveLoop = async () => {
+    if (!liveStop && livePage()) await refresh();
+    setTimeout(liveLoop, Date.now() - liveChanged > 15 * 60e3 ? 60000 : 20000);
+  };
+  setTimeout(liveLoop, 20000);
+  document.addEventListener("visibilitychange", () => { if (livePage()) refresh(); });
 
   $("signinForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -643,13 +712,19 @@
       need[0][1].scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    const btn = e.target.querySelector("button[type=submit]"); btn.disabled = true;
-    const { res, data } = await post("/.netlify/functions/account", {
+    const btn = e.target.querySelector("button[type=submit]"); busy(btn, true, "Sending…");
+    const reqBody = {
       action: "request", title: $("rq-title").value.trim() || [chosen.style, chosen.shape, chosen.type || "ring"].filter((x) => x && x !== "Not sure").join(" ") || "My ring", ringType: chosen.style || chosen.type || "", budget: window.lfxBudget(), details: composeDetails(), photos: photoFiles.length
-    });
-    btn.disabled = false;
-    if (!res.ok) { setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
-    if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); btn.disabled = true; await uploadPhotos(data.project.id); btn.disabled = false; }
+    };
+    let res, data;
+    try {
+      ({ res, data } = await post("/.netlify/functions/account", reqBody));
+      // a timed-out first reply is tried once more; the server ignores an identical repeat, so nothing is sent twice
+      if (res.status >= 500) { setMsg($("requestMsg"), "Still sending\u2026", "ok"); await new Promise((r) => setTimeout(r, 1500)); ({ res, data } = await post("/.netlify/functions/account", reqBody)); }
+    } catch (err) { busy(btn, false); setMsg($("requestMsg"), "We could not reach LADFOX. Please check your connection and try again.", "err"); return; }
+    if (!res.ok) { busy(btn, false); setMsg($("requestMsg"), data.error || "Could not send your request.", "err"); return; }
+    if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); busy(btn, true, "Uploading photos\u2026"); try { await uploadPhotos(data.project.id); } catch (err) { /* the request is saved; photos can be added from the dashboard */ } }
+    busy(btn, false);
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
     e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 }); if (window.lfxFireLead) lfxFireLead("account"); else if (window.gtag) gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP"});

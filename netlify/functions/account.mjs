@@ -69,6 +69,10 @@ export default async (request) => {
     if (!title || details.length < 10) return json({ error: "Please give your design a name and describe what you have in mind." }, 400);
 
     const existing = await listProjects(db, email);
+    // An identical request in the last 10 minutes is a repeat (the customer pressed send again after a slow reply):
+    // hand back the one we already have instead of creating and emailing a second copy.
+    const repeat = existing.find((p) => p.type === "design-request" && p.title === title && p.details === details && Date.now() - Date.parse(p.createdAt) < 10 * 60_000);
+    if (repeat) return json({ ok: true, project: publicProject(repeat) });
     if (existing.filter((p) => p.type === "design-request" && Date.now() - Date.parse(p.createdAt) < 24 * 3600_000).length >= 5) {
       return json({ error: "You have sent several requests today. We will reply to those first." }, 429);
     }
@@ -78,14 +82,16 @@ export default async (request) => {
       email, name: customer.name, type: "design-request", title, details,
       ringType: body.ringType, budget: body.budget
     });
-    await sheetEvent({ type: "request", email, name: customer.name || "", title: project.title, ringType: project.ringType || "", budget: project.budget || "", details: project.details, ringFor: customer.ringFor || "", ringName: customer.ringName || "" });
+    // The sheet log and both emails run side by side (not one after another) so a slow mail server can't push the reply past Netlify's time limit.
+    const sheetJob = sheetEvent({ type: "request", email, name: customer.name || "", title: project.title, ringType: project.ringType || "", budget: project.budget || "", details: project.details, ringFor: customer.ringFor || "", ringName: customer.ringName || "" });
     const detailLines = String(project.details || "").split("\n").filter((l) => l.trim() && !/^\[.*\]$/.test(l.trim()));
-    await notifyOwner(request, `New design request: ${customer.name || email}`, [
+    const ownerJob = notifyOwner(request, `New design request: ${customer.name || email}`, [
       ...(customer.name ? [`Name: ${customer.name}`] : []), `Email: ${email}`,
       ...(project.budget ? [`Budget: ${project.budget}`] : []),
       ...detailLines,
       ...(Number(body.photos) > 0 ? [`Photos: ${Math.min(Number(body.photos), 3)} attached (see admin)`] : [])
     ]);
+    const welcomeJob = (async () => {
     try {
       const first = String(customer.name || "").trim().split(/\s+/)[0];
       const hi = first ? `Welcome to LADFOX ${first}` : "Welcome to LADFOX";
@@ -105,6 +111,10 @@ export default async (request) => {
     } catch (error) {
       console.error("request confirmation email failed", error.message);
     }
+    })();
+    let timer;
+    await Promise.race([Promise.allSettled([sheetJob, ownerJob, welcomeJob]), new Promise((resolve) => { timer = setTimeout(resolve, 8000); })]);
+    clearTimeout(timer);
     return json({ ok: true, project: publicProject(project) });
   }
 

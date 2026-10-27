@@ -235,7 +235,7 @@
 
     const csec = el("div", "sec"); csec.append(el("h3", "", "Message"));
     const msg = el("textarea"); msg.placeholder = "Write a message to the customer"; csec.append(msg);
-    const mrow = el("div", "row"); const mlab = el("label"); const mck = el("input"); mck.type = "checkbox"; mck.checked = false; mlab.append(mck, document.createTextNode("Email them"));
+    const mrow = el("div", "row"); const mlab = el("label"); const mck = el("input"); mck.type = "checkbox"; mck.checked = true; mlab.append(mck, document.createTextNode("Email them"));
     const msend = el("button", "", "Send message"); mrow.append(mlab, msend); csec.append(mrow); c.append(csec);
     msend.onclick = async () => {
       if (!msg.value.trim()) return;
@@ -266,6 +266,7 @@
   function render() {
     if (!DATA) return;
     const { rows, cs, ago, when, projects } = DATA;
+    const lastOnline = (iso) => "last online " + when(iso) + " (" + ago(iso) + ")";
     const m = location.hash.match(/^#p=(.+)$/);
     const cur = m && rows.find((p) => p.id === decodeURIComponent(m[1]));
     $("dash").classList.toggle("hidden", !!cur); $("detail").classList.toggle("hidden", !cur);
@@ -278,7 +279,7 @@
     $("list").replaceChildren(...(vis.length ? vis.map((p) => {
       const u = cs.find((x) => x.email === p.email) || {};
       const b = el("button", "erow"); b.type = "button";
-      const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? "seen " + ago(u.lastSeenAt) : "updated " + ago(p.updatedAt))));
+      const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? lastOnline(u.lastSeenAt) : "not online yet · updated " + ago(p.updatedAt))));
       b.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w);
       if (p.customerUnread) b.append(el("span", "nb", "NEW MESSAGE"));
       b.append(el("span", "stg", STAGES[p.stage] || ""));
@@ -288,7 +289,7 @@
     const none = cs.filter((u) => !projects.some((p) => p.email === u.email));
     $("activity").replaceChildren(...(none.length ? none.map((u) => {
       const r = el("div", "erow"); r.style.cursor = "default";
-      const w = el("div", "who"); w.append(el("strong", "", u.name || u.email), el("small", "", (u.name ? u.email + " \u00b7 " : "") + (u.lastSeenAt ? "seen " + ago(u.lastSeenAt) : "signed up " + when(u.createdAt)) + (u.loginCount ? " \u00b7 " + u.loginCount + " login" + (u.loginCount > 1 ? "s" : "") : "")));
+      const w = el("div", "who"); w.append(el("strong", "", u.name || u.email), el("small", "", (u.name ? u.email + " \u00b7 " : "") + (u.lastSeenAt ? lastOnline(u.lastSeenAt) : "not online yet · signed up " + when(u.createdAt)) + (u.loginCount ? " \u00b7 " + u.loginCount + " login" + (u.loginCount > 1 ? "s" : "") : "")));
       const rm = el("button", "ghost", "Remove"); rm.type = "button";
       rm.onclick = async () => { if (!confirm("Remove " + (u.name || u.email) + " from the dashboard?")) return; const { res, data } = await call({ action: "delete-customer", email: u.email }); if (!res.ok) return status(data.error || "Failed", true); status(""); load(); };
       r.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w, rm); return r;
