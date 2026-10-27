@@ -438,7 +438,6 @@
         box.append(el("h3", "", "Paid: " + amount), el("p", "", (pay.paidAt ? fmtDate(pay.paidAt) + ". " : "") + "Thank you."));
       } else {
         const saleEnd = pay.saleEndsAt ? Date.parse(pay.saleEndsAt) : 0; const sale = !!pay.sale && Date.now() < saleEnd;
-        { const ph = el("h3", "", "Payment due"); ph.style.textAlign = "center"; box.append(ph); }
         if (sale) { const was = el("div", "", "£" + Math.round((pay.wasPence || pay.amountPence) / 100).toLocaleString("en-GB")); was.style.cssText = "text-align:center;color:rgba(255,255,255,.92);font-weight:700;font-size:1.5rem;letter-spacing:.04em;text-decoration:line-through;text-decoration-thickness:2px;margin:10px 0 10px"; box.append(was); }
         const pb = el("button", "btn"); pb.type = "button"; pb.style.cssText = "display:block;margin:0 auto";
         const lbl = el("span", "", amount); lbl.style.cssText = "display:block;color:" + (sale ? "#c95858" : "inherit") + ";font-weight:800;font-size:1.1rem;letter-spacing:.02em";
