@@ -203,6 +203,7 @@ export const publicProject = (p) => ({
   id: p.id, type: p.type, title: p.title, details: p.details, ringType: p.ringType, budget: p.budget,
   orderReference: p.orderReference, standard: p.standard === true,
   files: p.files || [], payments: p.payments || [], amountTotal: p.amountTotal, stage: p.stage, estimate: p.estimate, trackingUrl: p.trackingUrl || "", videoUrl: p.videoUrl || "",
+  video: p.video ? { id: p.video.id, name: p.video.name, type: p.video.type, size: p.video.size } : null,
   createdAt: p.createdAt, updatedAt: p.updatedAt, updates: p.updates
 });
 
@@ -219,6 +220,20 @@ export const getSession = async (db, request) => {
 export const FILE_TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "application/pdf": "pdf" };
 export const MAX_FILE_BYTES = 4 * 1024 * 1024;
 export const MAX_FILES_PER_PROJECT = 30;
+export const VIDEO_CHUNK = 3 * 1024 * 1024;
+export const VIDEO_MAX_CHUNKS = 20; // 60 MB
+export const videoPrefix = (email, projectId, vid) => `videos/${sha(email)}/${projectId}/${vid}/`;
+export const sniffVideo = (buf) => {
+  if (buf.length > 12 && buf.slice(4, 8).toString("latin1") === "ftyp") return buf.slice(8, 12).toString("latin1").startsWith("qt") ? "video/quicktime" : "video/mp4";
+  if (buf.length > 4 && buf[0] === 0x1a && buf[1] === 0x45 && buf[2] === 0xdf && buf[3] === 0xa3) return "video/webm";
+  return "";
+};
+export const dropVideo = async (db, email, project) => {
+  if (!project.video) return;
+  const { blobs } = await db.list({ prefix: videoPrefix(email, project.id, project.video.id) });
+  await Promise.all(blobs.map((b) => db.delete(b.key).catch(() => {})));
+  project.video = null;
+};
 export const fileKey = (email, projectId, fileId) => `files/${sha(email)}/${projectId}/${fileId}`;
 
 // Checks the real bytes, not just the name or declared type the browser sent.

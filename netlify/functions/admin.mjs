@@ -2,7 +2,7 @@ import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
-  FILE_TYPES, MAX_FILE_BYTES, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
+  FILE_TYPES, MAX_FILE_BYTES, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
   PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey, sheetEvent
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
@@ -77,6 +77,7 @@ export default async (request) => {
     const stageChanged = Number.isInteger(stage) && stage >= 0 && stage < STAGES.length && stage !== project.stage;
     if (Number.isInteger(stage) && stage >= 0 && stage < STAGES.length) project.stage = stage;
     if (typeof body.estimate === "string") project.estimate = clean(body.estimate, 80);
+    if (body.removeVideo === true) await dropVideo(db, email, project);
     if (typeof body.videoUrl === "string") {
       const v = clean(body.videoUrl, 500);
       project.videoUrl = /^https:\/\/[^\s"'<>]{4,480}$/.test(v) ? v : "";
@@ -166,11 +167,41 @@ export default async (request) => {
     return json({ ok: true, emailed, project });
   }
 
+  if (body.action === "video-chunk") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    const vid = clean(body.vid, 24);
+    const index = Number.parseInt(body.index, 10), total = Number.parseInt(body.total, 10);
+    if (!/^[\w-]{6,24}$/.test(vid) || !(total >= 1 && total <= VIDEO_MAX_CHUNKS) || !(index >= 0 && index < total)) return json({ error: "Invalid video upload (maximum 60 MB)." }, 400);
+    let buf;
+    try { buf = Buffer.from(String(body.data || ""), "base64"); } catch { return json({ error: "Invalid video." }, 400); }
+    if (!buf.length || buf.length > VIDEO_CHUNK) return json({ error: "Invalid video chunk." }, 400);
+    if (index === 0 && !sniffVideo(buf)) return json({ error: "Only MP4, MOV or WebM videos are allowed." }, 400);
+    const prefix = videoPrefix(email, project.id, vid);
+    await db.set(`${prefix}${index}`, buf);
+    if (index < total - 1) return json({ ok: true });
+    // last chunk: check every piece arrived, then publish
+    const { blobs } = await db.list({ prefix });
+    if (blobs.length !== total) return json({ error: "Some parts of the video did not arrive. Please upload it again." }, 400);
+    const first = await db.get(`${prefix}0`, { type: "arrayBuffer" });
+    const type = sniffVideo(Buffer.from(first));
+    const size = Number.parseInt(body.size, 10);
+    if (!type || !(size > (total - 1) * VIDEO_CHUNK && size <= total * VIDEO_CHUNK)) return json({ error: "Video upload failed. Please try again." }, 400);
+    const old = project.video;
+    project.video = { id: vid, name: clean(body.name, 100).replace(/[^\w .()-]/g, "_") || "diamond-video", type, size, chunks: total, at: new Date().toISOString() };
+    if (old && old.id !== vid) { const keep = project.video; project.video = old; await dropVideo(db, email, project); project.video = keep; }
+    project.updatedAt = new Date().toISOString();
+    await saveProject(db, project);
+    return json({ ok: true, project: publicProject(project) });
+  }
+
   if (body.action === "delete-project") {
     const email = normaliseEmail(body.email);
     const project = await loadProject(db, email, clean(body.id, 40));
     if (!project) return json({ error: "Project not found." }, 404);
     for (const f of project.files || []) await db.delete(fileKey(email, project.id, f.id)).catch(() => {});
+    await dropVideo(db, email, project).catch(() => {});
     await db.delete(`${projectPrefix(email)}${project.id}`);
     if (!(await listProjects(db, email)).length) await wipeCustomer(db, email);
     return json({ ok: true });

@@ -360,16 +360,17 @@
       if (p.stage === 7 && p.trackingUrl && /^https:\/\//.test(p.trackingUrl)) { const a2 = el("a", "btn", "Track your parcel"); a2.href = p.trackingUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer"; sp.append(a2); }
       card.append(sp);
     }
-    if (p.videoUrl && /^https:\/\//.test(p.videoUrl)) {
+    if (p.video || (p.videoUrl && /^https:\/\//.test(p.videoUrl))) {
       const vs = el("div", "sp");
       vs.append(el("h3", "", "Your diamond video"));
-      if (/\.(mp4|webm|mov)(\?|#|$)/i.test(p.videoUrl)) {
+      const vsrc = p.video ? "/.netlify/functions/account-video?p=" + encodeURIComponent(p.id) + "&v=" + encodeURIComponent(p.video.id) : p.videoUrl;
+      if (p.video || /\.(mp4|webm|mov)(\?|#|$)/i.test(p.videoUrl)) {
         const v = document.createElement("video");
-        v.src = p.videoUrl; v.controls = true; v.loop = true; v.muted = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
+        v.src = vsrc; v.controls = true; v.loop = true; v.muted = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
         v.style.cssText = "width:100%;max-width:560px;border-radius:12px;background:#000;display:block;margin:10px auto";
         vs.append(v);
       }
-      else {
+      else if (p.videoUrl) {
         const u = p.videoUrl; let src = "", m;
         if ((m = u.match(/^https:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/))) src = "https://www.youtube-nocookie.com/embed/" + m[1] + "?autoplay=1&mute=1&loop=1&playlist=" + m[1] + "&playsinline=1&rel=0";
         else if ((m = u.match(/^https:\/\/(?:www\.)?vimeo\.com\/(?:video\/)?(\d+)(?:\/([\w]+))?/))) src = "https://player.vimeo.com/video/" + m[1] + "?autoplay=1&muted=1&loop=1&playsinline=1" + (m[2] ? "&h=" + m[2] : "");
@@ -381,7 +382,7 @@
           vs.append(f);
         }
       }
-      const va = el("a", "btn", "Open video full screen"); va.href = p.videoUrl; va.target = "_blank"; va.rel = "noopener noreferrer"; vs.append(va);
+      const va = el("a", "btn", "Open video full screen"); va.href = vsrc; va.target = "_blank"; va.rel = "noopener noreferrer"; vs.append(va);
       card.append(vs);
     }
 

@@ -160,7 +160,7 @@
     const note = { value: "" };
     upBtn.onclick = async () => {
       upBtn.disabled = true;
-      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value, videoUrl: vck.checked ? vidIn.value : "" });
+      const { res, data } = await call({ action: "update", email: p.email, id: p.id, stage: sel.value, note: note.value, notify: ck.checked, estimate: estIn.value, trackingUrl: trkIn.value, videoUrl: vck.checked ? vidIn.value : "", removeVideo: !vck.checked });
       upBtn.disabled = false;
       if (!res.ok) return status(data.error || "Failed", true);
       status("");
@@ -208,11 +208,37 @@
     psec.append(estIn, trkIn);
     const vidIn = el("input"); vidIn.placeholder = "Diamond video link (https, shown to the customer)"; vidIn.value = p.videoUrl || "";
     const vsec = el("div", "sec");
-    const vck = el("input"); vck.type = "checkbox"; vck.checked = !!p.videoUrl;
-    const vlab = el("label", "", ""); vlab.append(vck, document.createTextNode(" Add a diamond video for this client"));
-    const vbox = el("div", ""); vbox.append(vidIn, el("p", "muted", "Paste a link to the video (Nivoda/IGI viewer, YouTube, Vimeo, Drive or a direct .mp4). Press Save update to publish it. Untick and save to remove it."));
+    const vck = el("input"); vck.type = "checkbox"; vck.checked = !!(p.videoUrl || p.video); vck.style.cssText = "width:auto;margin:0";
+    const vlab = el("label"); vlab.style.cssText = "display:flex;gap:8px;align-items:center;color:#ddd;font-size:.95rem;margin:10px 0"; vlab.append(vck, document.createTextNode("Add a diamond video for this client"));
+    const vbox = el("div");
+    const vcur = el("p", "muted", p.video ? `Uploaded: ${p.video.name} (${(p.video.size / 1048576).toFixed(1)} MB). Choose a new file to replace it.` : "");
+    const vfile = el("input"); vfile.type = "file"; vfile.accept = "video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm";
+    const vup = el("button", "", "Upload video"); vup.type = "button";
+    const vmsg = el("p", "muted", "MP4, MOV or WebM, up to 60 MB. It plays on a loop on their account page.");
+    vbox.append(vcur, vfile, vup, vmsg, el("p", "muted", "Or paste a link instead (YouTube, Vimeo, a direct .mp4):"), vidIn, el("p", "muted", "Link changes need Save update. Untick and save to remove the video."));
     vbox.style.display = vck.checked ? "" : "none";
     vck.onchange = () => { vbox.style.display = vck.checked ? "" : "none"; };
+    vup.onclick = async () => {
+      const file = vfile.files[0]; if (!file) return status("Choose a video first.", true);
+      const CH = 3 * 1024 * 1024, total = Math.ceil(file.size / CH);
+      if (file.size > 60 * 1024 * 1024) return status("That video is over 60 MB. Trim or compress it first.", true);
+      vup.disabled = true; status("");
+      const vid = Array.from(crypto.getRandomValues(new Uint8Array(9)), (b) => b.toString(16).padStart(2, "0")).join("");
+      try {
+        for (let i = 0; i < total; i++) {
+          vup.textContent = `Uploading ${Math.round((i / total) * 100)}%`;
+          const data = await readB64(file.slice(i * CH, (i + 1) * CH));
+          let out, res;
+          for (let t = 0; t < 3; t++) {
+            ({ res, data: out } = await call({ action: "video-chunk", email: p.email, id: p.id, vid, index: i, total, size: file.size, name: file.name, data }));
+            if (res.ok || res.status < 500) break;
+          }
+          if (!res.ok) throw new Error(out.error || "Video upload failed");
+        }
+        status(""); load();
+      } catch (e) { status(e.message, true); }
+      vup.disabled = false; vup.textContent = "Upload video";
+    };
     vsec.append(vlab, vbox);
     for (const pay of p.payments || []) {
       const r = el("div", "pay");
