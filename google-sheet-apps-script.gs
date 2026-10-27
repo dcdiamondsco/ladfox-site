@@ -1,4 +1,4 @@
-// LADFOX sheet logging: saved designs, sign-ups, requests and a tab per customer.
+// LADFOX sheet logging: saved designs and a new tab for every new enquiry (no separate Requests / Sign-ups tabs).
 // SETUP (once, or again after replacing this file):
 // 1. Open your sheet > Extensions > Apps Script, paste this whole file over the old one, save.
 // 2. Project Settings (gear) > Script properties: SECRET = your long random phrase (keep the existing one).
@@ -31,10 +31,20 @@ function detail(details, label) {
 
 function customerTab(ss, d) {
   var tpl = ss.getSheetByName("Template");
-  if (!tpl) return "";
   var base = String(d.name || d.email || "Customer").replace(/[\[\]\*\?\:\\\/]/g, "").trim().slice(0, 40) || "Customer";
   var name = base, n = 2;
   while (ss.getSheetByName(name)) { name = base + " " + n++; }
+  if (!tpl) {
+    // No Template tab yet: build a plain enquiry tab so nothing is lost.
+    var np = ss.insertSheet(name);
+    var rows = [["Received", d.createdAt], ["Name", safe(d.name)], ["Email", safe(d.email)], ["Title", safe(d.title)],
+      ["Piece", safe(d.ringType)], ["Budget", safe(d.budget)], ["Ring for", safe(d.ringFor)], ["Details", safe(d.details)]];
+    np.getRange(1, 1, rows.length, 2).setValues(rows);
+    np.getRange(1, 1, rows.length, 1).setFontWeight("bold");
+    np.setColumnWidth(1, 110); np.setColumnWidth(2, 520);
+    np.getRange(1, 2, rows.length, 1).setWrap(true).setVerticalAlignment("top");
+    return name;
+  }
   var sh = tpl.copyTo(ss).setName(name);
   try {
     sh.getRange("F2:F9").setValue(false); // reset the Progress checkboxes
@@ -54,16 +64,12 @@ function doPost(e) {
     if (!secret || d.secret !== secret) return out({ ok: false, error: "unauthorised" });
     var ss = SpreadsheetApp.openById(SHEET_ID);
 
-    if (d.type === "signup") {
-      tab(ss, "Sign-ups", ["Signed up", "Name", "Email", "Came from", "Contacted?"])
-        .appendRow([d.createdAt, safe(d.name), safe(d.email), safe(d.intent), false]);
-      return out({ ok: true });
-    }
+    // Sign-ups are no longer logged to their own tab (the enquiry tab below is created when they send a request).
+    if (d.type === "signup" || d.type === "price") return out({ ok: true });
 
+    // Every new enquiry becomes its own tab, named after the customer.
     if (d.type === "request") {
-      tab(ss, "Requests", ["Received", "Name", "Email", "Title", "Piece", "Budget", "Details", "Customer tab"])
-        .appendRow([d.createdAt, safe(d.name), safe(d.email), safe(d.title), safe(d.ringType), safe(d.budget), safe(d.details), safe(customerTab(ss, d))]);
-      return out({ ok: true });
+      return out({ ok: true, tab: customerTab(ss, d) });
     }
 
     // default: saved design from the ring pages
