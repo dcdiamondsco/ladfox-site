@@ -13,7 +13,18 @@ export default async (request) => {
 
   const emails = [...new Set((Array.isArray(body.emails) ? body.emails : []).slice(0, 100).map(normaliseEmail).filter(validEmail))];
   const db = await getDb();
+  const sentTo = [...new Set((Array.isArray(body.sent) ? body.sent : []).slice(0, 100).map(normaliseEmail).filter(validEmail))];
   const marked = [];
+  // Emails YOU sent to a customer from Gmail: mark their enquiry as responded (unless they wrote back after, which resets it).
+  for (const email of sentTo) {
+    const projects = await listProjects(db, email);
+    for (const p of projects) {
+      if (p.type !== "design-request" || p.responded) continue;
+      p.responded = true; p.respondedBy = "gmail"; p.respondedAt = new Date().toISOString();
+      await saveProject(db, p);
+      marked.push(`sent:${email}/${p.id}`);
+    }
+  }
   for (const email of emails) {
     const projects = await listProjects(db, email);
     for (const p of projects) {

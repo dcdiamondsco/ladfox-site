@@ -98,24 +98,33 @@ function installReplyTrigger() {
 
 function checkReplies() {
   var props = PropertiesService.getScriptProperties();
-  var since = Number(props.getProperty("REPLY_SINCE")) || (Date.now() - 24 * 3600 * 1000);
-  var started = Date.now();
-  var seen = {};
+  var now = Date.now();
+  var since = Number(props.getProperty("REPLY_SINCE")) || (now - 24 * 3600 * 1000);
+  var sentSince = Number(props.getProperty("SENT_SINCE")) || (now - 3 * 24 * 3600 * 1000);
+  var seen = {}, sent = {};
+  function addr(s) { s = String(s); var a = s.match(/<([^>]+)>/); return (a ? a[1] : s).trim().toLowerCase(); }
+  // Customers who wrote to us
   GmailApp.search("in:inbox newer_than:2d -from:me", 0, 50).forEach(function (thread) {
     thread.getMessages().forEach(function (m) {
       if (m.getDate().getTime() <= since) return;
-      var from = String(m.getFrom()), a = from.match(/<([^>]+)>/);
-      var addr = (a ? a[1] : from).trim().toLowerCase();
-      if (addr) seen[addr] = true;
+      var a = addr(m.getFrom()); if (a) seen[a] = true;
     });
   });
-  var emails = Object.keys(seen);
-  if (emails.length) {
+  // Customers we have written to (so their enquiry is marked "responded" without ticking it)
+  GmailApp.search("in:sent newer_than:4d", 0, 50).forEach(function (thread) {
+    thread.getMessages().forEach(function (m) {
+      if (m.getDate().getTime() <= sentSince) return;
+      String(m.getTo()).split(",").forEach(function (t) { var a = addr(t); if (a) sent[a] = true; });
+    });
+  });
+  var emails = Object.keys(seen), sentTo = Object.keys(sent);
+  if (emails.length || sentTo.length) {
     var res = UrlFetchApp.fetch(REPLY_URL, {
       method: "post", contentType: "application/json", muteHttpExceptions: true,
-      payload: JSON.stringify({ secret: props.getProperty("SECRET"), emails: emails })
+      payload: JSON.stringify({ secret: props.getProperty("SECRET"), emails: emails, sent: sentTo })
     });
-    if (res.getResponseCode() !== 200) return; // try again next time without moving the checkpoint
+    if (res.getResponseCode() !== 200) return; // try again next time without moving the checkpoints
   }
-  props.setProperty("REPLY_SINCE", String(started));
+  props.setProperty("REPLY_SINCE", String(now));
+  props.setProperty("SENT_SINCE", String(now));
 }
