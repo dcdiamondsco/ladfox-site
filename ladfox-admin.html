@@ -319,10 +319,10 @@
       status(""); load();
     };
     const log = el("div", "log");
-    for (const u of p.updates.filter((x) => x.kind === "msg" || (x.by === "customer" && x.stage === undefined))) { const d = el("div"); const tx = document.createTextNode(u.text + (u.editedAt ? " (edited)" : "")); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), tx);
+    for (const u of p.updates.filter((x) => x.kind === "msg" || (x.by === "customer" && x.stage === undefined))) { const d = el("div"); const tx = document.createTextNode(u.text); d.append(el("b", "", (u.by === "customer" ? "Customer" : "You") + " · " + fmt(u.at) + ": "), tx);
       if (u.by !== "customer" && u.kind === "msg") {
         const ed = el("button", "ghost", "Edit"), rm = el("button", "ghost", "Delete"); ed.type = rm.type = "button"; ed.style.cssText = rm.style.cssText = "margin-left:8px;padding:2px 10px;font-size:.8rem";
-        ed.onclick = async () => { const t = prompt("Edit this message (the customer sees the change on their account page; an email already sent can't be changed):", u.text); if (t === null || !t.trim() || t.trim() === u.text) return; const { res, data } = await call({ action: "edit-message", email: p.email, id: p.id, at: u.at, text: t.trim() }); if (!res.ok) return status(data.error || "Failed", true); u.text = t.trim(); u.editedAt = new Date().toISOString(); tx.nodeValue = u.text + " (edited)"; status("Message edited."); };
+        ed.onclick = async () => { const t = prompt("Edit this message (the customer sees the change on their account page; an email already sent can't be changed):", u.text); if (t === null || !t.trim() || t.trim() === u.text) return; const { res, data } = await call({ action: "edit-message", email: p.email, id: p.id, at: u.at, text: t.trim() }); if (!res.ok) return status(data.error || "Failed", true); u.text = t.trim(); u.editedAt = new Date().toISOString(); tx.nodeValue = u.text; status("Message edited."); };
         rm.onclick = async () => { if (!confirm("Delete this message from the customer's account? An email already sent can't be unsent.")) return; const { res, data } = await call({ action: "delete-message", email: p.email, id: p.id, at: u.at }); if (!res.ok) return status(data.error || "Failed", true); d.remove(); status("Message deleted."); };
         d.append(ed, rm);
       }
