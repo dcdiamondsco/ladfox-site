@@ -65,6 +65,8 @@ export const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c)
 const emailError = (message, code) => { const e = new Error(message); e.code = code; return e; };
 
 export const sendEmail = async ({ to, subject, text, html }) => {
+  // customer emails carry the same sign-off in the plain-text copy as in the HTML one
+  if (text && html && /Kindest regards/.test(html) && !/Kindest regards/.test(text)) text = `${text}\n\nKindest regards,\nLydia, LADFOX`;
   const smtpUser = String(process.env.SMTP_USER || "").trim();
   const smtpPass = String(process.env.SMTP_PASS || "").replace(/\s+/g, "");
   const resendKey = String(process.env.RESEND_API_KEY || "").trim();
@@ -103,13 +105,14 @@ export const sendEmail = async ({ to, subject, text, html }) => {
 
 /* Plain black layout: logo, text, buttons. No card, no borders. Used for customer-facing emails. */
 const BLACK_IMG = "https://ladfox.com/Images/email-black.png";
-export const plainShell = (heading, bodyHtml, buttons) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="supported-color-schemes" content="dark light"></head>
+const SIGN_OFF = `<p style="margin:22px 0 0">Kindest regards,<br>Lydia, LADFOX</p>`;
+export const plainShell = (heading, bodyHtml, buttons, opts = {}) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="supported-color-schemes" content="dark light"></head>
 <body style="margin:0;padding:0;background:#000000;font-family:Arial,Helvetica,sans-serif;color:#ffffff" bgcolor="#000000">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#000000" background="${BLACK_IMG}" style="background:#000000 url(${BLACK_IMG});background-color:#000000"><tr><td align="center" bgcolor="#000000" background="${BLACK_IMG}" style="padding:40px 22px 36px;background:#000000 url(${BLACK_IMG});background-color:#000000">
 <table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%">
 <tr><td align="center" style="padding:0 0 34px"><img src="https://ladfox.com/Images/ladfox-email-logo.png" width="200" alt="LADFOX" style="display:block;border:0;height:auto;width:200px;max-width:60%"></td></tr>
 <tr><td align="center" style="font-size:26px;line-height:1.3;font-weight:700;color:#ffffff;padding:0 0 14px">${escapeHtml(heading)}</td></tr>
-<tr><td align="center" style="font-size:17px;line-height:1.65;color:#d6d9df">${bodyHtml}</td></tr>
+<tr><td align="center" style="font-size:17px;line-height:1.65;color:#d6d9df">${bodyHtml}${opts.noSign ? "" : SIGN_OFF}</td></tr>
 ${buttons ? `<tr><td align="center" style="padding:30px 0 0">${buttons}</td></tr>` : ""}
 <tr><td align="center" style="font-size:12px;color:#8b9099;padding:44px 10px 0">LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com" style="color:#8b9099;text-decoration:none">hello@ladfox.com</a></td></tr>
 </table></td></tr></table></body></html>`;
@@ -122,7 +125,7 @@ export const emailShell = (heading, bodyHtml, buttonLabel, buttonUrl, opts = {})
 <tr><td bgcolor="#111113" style="background:#111113;border-radius:20px;padding:36px 30px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 <tr><td align="center" style="font-size:26px;line-height:1.25;font-weight:700;color:#ffffff;padding:0 0 14px">${escapeHtml(heading)}</td></tr>
-<tr><td align="center" style="font-size:16px;line-height:1.65;color:#d6d9df">${bodyHtml}</td></tr>
+<tr><td align="center" style="font-size:16px;line-height:1.65;color:#d6d9df">${bodyHtml}${opts.noSign ? "" : SIGN_OFF}</td></tr>
 ${buttonUrl ? `<tr><td align="center" style="padding:30px 0 8px"><a href="${escapeHtml(buttonUrl)}" style="background:#dfe3ea;color:#0a0a0a;text-decoration:none;padding:16px 38px;border-radius:999px;font-size:16px;font-weight:700;display:inline-block">${escapeHtml(buttonLabel)}</a></td></tr>
 ${opts.hideLink ? "" : `<tr><td align="center" style="font-size:12px;line-height:1.5;color:#8b9099;padding:14px 0 0">Button not working? Copy this link into your browser:<br><a href="${escapeHtml(buttonUrl)}" style="color:#c8ccd4;word-break:break-all">${escapeHtml(buttonUrl)}</a></td></tr>`}` : ""}
 ${opts.extraHtml ? `<tr><td align="center" style="padding:22px 0 0">${opts.extraHtml}</td></tr>` : ""}
