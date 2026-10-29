@@ -82,3 +82,40 @@ function doPost(e) {
     return out({ ok: false, error: String(err) });
   }
 }
+
+// ---------------------------------------------------------------------------------------------
+// AUTO "THEY HAVE REPLIED": when a customer emails you, their enquiry is marked replied on the admin page
+// (so it drops off "Needs reply" and they are not nudged). It watches the Gmail inbox of the account that owns this script,
+// so hello@ladfox.com must arrive in that inbox (or be forwarded to it).
+// SETUP: run installReplyTrigger once from the editor (Run button), accept the Gmail permission prompt. That is all.
+var REPLY_URL = "https://ladfox.com/.netlify/functions/email-reply";
+
+function installReplyTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === "checkReplies") ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger("checkReplies").timeBased().everyMinutes(5).create();
+  checkReplies();
+}
+
+function checkReplies() {
+  var props = PropertiesService.getScriptProperties();
+  var since = Number(props.getProperty("REPLY_SINCE")) || (Date.now() - 24 * 3600 * 1000);
+  var started = Date.now();
+  var seen = {};
+  GmailApp.search("in:inbox newer_than:2d -from:me", 0, 50).forEach(function (thread) {
+    thread.getMessages().forEach(function (m) {
+      if (m.getDate().getTime() <= since) return;
+      var from = String(m.getFrom()), a = from.match(/<([^>]+)>/);
+      var addr = (a ? a[1] : from).trim().toLowerCase();
+      if (addr) seen[addr] = true;
+    });
+  });
+  var emails = Object.keys(seen);
+  if (emails.length) {
+    var res = UrlFetchApp.fetch(REPLY_URL, {
+      method: "post", contentType: "application/json", muteHttpExceptions: true,
+      payload: JSON.stringify({ secret: props.getProperty("SECRET"), emails: emails })
+    });
+    if (res.getResponseCode() !== 200) return; // try again next time without moving the checkpoint
+  }
+  props.setProperty("REPLY_SINCE", String(started));
+}
