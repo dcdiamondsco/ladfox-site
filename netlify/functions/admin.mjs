@@ -29,8 +29,18 @@ const wipeCustomer = async (db, email) => {
   }
 };
 
-const emailCustomer = async (request, project, note) => {
+const emailCustomer = async (request, project, note, opts = {}) => {
   const stage = STAGES[project.stage];
+  if (opts.messageOnly && note) {
+    const ring = /['\u2019\d]/.test(project.title) ? project.title : String(project.title).toLowerCase();
+    await sendEmail({
+      to: project.email,
+      subject: `A message about your LADFOX ${ring}`,
+      text: `You have a new message about your ${ring}:\n\n${note}\n\nView and reply: ${siteUrl(request)}/account`,
+      html: emailShell("You have a new message", `<p style="margin:0 0 10px">You have a new message about your <strong>${escapeHtml(ring)}</strong>:</p><p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px;text-align:left">${escapeHtml(note)}</p>`, "View and reply", `${siteUrl(request)}/account`)
+    });
+    return;
+  }
   const body = `<p style="margin:0 0 10px">Your ring "<strong>${escapeHtml(project.title)}</strong>" is now: <strong>${escapeHtml(stage)}</strong>.</p>` +
     (project.estimate ? `<p style="margin:0 0 10px">Estimated date: ${escapeHtml(project.estimate)} (this is an estimate, not a guarantee).</p>` : "") +
     (project.stage === 7 && project.trackingUrl ? `<p style="margin:0 0 10px"><a href="${escapeHtml(project.trackingUrl)}" style="color:#dfe3ea">Track your parcel</a></p>` : "") +
@@ -100,7 +110,7 @@ export default async (request) => {
     await saveProject(db, project);
     let emailed = false;
     if (body.notify && (stageChanged || note)) {
-      try { await emailCustomer(request, project, note); emailed = true; } catch (e) { console.error("customer email failed", e.message); }
+      try { await emailCustomer(request, project, note, { messageOnly: !stageChanged }); emailed = true; } catch (e) { console.error("customer email failed", e.message); }
     }
     return json({ ok: true, emailed, project });
   }
@@ -170,7 +180,7 @@ export default async (request) => {
     await saveProject(db, project);
     let emailed = false;
     if (body.notify) {
-      try { await emailCustomer(request, project, text); emailed = true; } catch (e) { console.error("customer email failed", e.message); }
+      try { await emailCustomer(request, project, text, { messageOnly: true }); emailed = true; } catch (e) { console.error("customer email failed", e.message); }
     }
     return json({ ok: true, emailed, project });
   }
