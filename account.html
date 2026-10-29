@@ -262,6 +262,12 @@
             <div class="rs-row"><input id="rq-ringsize" maxlength="6" aria-label="Ring size" /><button type="button" class="chip" id="rq-rs-unsure" aria-pressed="false">Not sure</button></div></div>
           <style>.rs-row{display:flex;align-items:center;gap:10px}.rs-row input{width:92px;flex:0 0 92px}</style>
         </div>
+        <div class="bud untouched" id="rqWhen" style="margin:6px 0 18px"><label for="rq-when">When would you like it by?</label>
+          <div class="bud-row"><output id="rq-when-out" for="rq-when">Within 3 months</output></div>
+          <input id="rq-when" type="range" min="0" max="11" step="1" value="6" aria-label="When you would like the piece by" />
+          <div class="bud-scale"><span>1 week</span><span>1 year</span></div>
+          <div class="rs-row" style="justify-content:center;margin-top:10px"><button type="button" class="chip" id="rq-norush" aria-pressed="false">No rush</button></div>
+          <p id="rq-when-note" style="display:none;margin:8px 0 0;text-align:center;font-size:.82rem;color:#9a9fa8">Handmade rings take a few weeks. We will always be honest about what is possible.</p></div>
         <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Anything you&rsquo;d like us to know?</label>
         <textarea id="rq-details" maxlength="2000" placeholder="Anything else you&rsquo;d like us to know?"></textarea>
@@ -647,6 +653,7 @@
     if (forWho === "A loved one") lines.push("Ring is for: " + (ringName || "Them"));
     Object.keys(LBL).forEach((k) => { if (chosen[k]) lines.push(LBL[k] + ": " + chosen[k]); });
     const rs = $("rq-rs-unsure").getAttribute("aria-pressed") === "true" ? "Not sure" : $("rq-ringsize").value.trim(); if (rs) lines.push("Ring size: " + rs);
+    const when = window.lfxWhen ? window.lfxWhen() : ""; if (when) lines.push("Timeframe: " + when);
     const t = $("rq-details").value.trim(); if (t) lines.push("", t);
     const out = lines.join("\n");
     return out.length >= 10 ? out : out + " (no details yet, please advise)";
@@ -674,6 +681,16 @@
     r.addEventListener("input", paint);
     r.addEventListener("input", () => { window.lfxBudTouched = true; $("rqBud").classList.remove("untouched"); });
     window.lfxBudget = () => fmt(cur());
+    paint();
+  })();
+  (function () {
+    const r = $("rq-when"), out = $("rq-when-out"), nr = $("rq-norush"), note = $("rq-when-note");
+    const W = ["1 week", "2 weeks", "3 weeks", "1 month", "6 weeks", "2 months", "3 months", "4 months", "5 months", "6 months", "9 months", "a year"];
+    const paint = () => { const rush = nr.getAttribute("aria-pressed") === "true"; out.textContent = rush ? "No rush" : "Within " + W[+r.value]; note.style.display = !rush && +r.value <= 3 && !$("rqWhen").classList.contains("untouched") ? "" : "none"; $("rqWhen").style.opacity = ""; r.style.opacity = rush ? ".35" : ""; };
+    r.addEventListener("input", () => { $("rqWhen").classList.remove("untouched"); window.lfxWhenTouched = true; nr.setAttribute("aria-pressed", "false"); paint(); });
+    nr.addEventListener("click", () => { const on = nr.getAttribute("aria-pressed") !== "true"; nr.setAttribute("aria-pressed", on ? "true" : "false"); if (on) { $("rqWhen").classList.remove("untouched"); window.lfxWhenTouched = true; } else if (!window.lfxWhenTouched) $("rqWhen").classList.add("untouched"); paint(); });
+    window.lfxWhen = () => (nr.getAttribute("aria-pressed") === "true" ? "No rush" : window.lfxWhenTouched ? "Within " + W[+r.value] : "");
+    window.lfxWhenReset = () => { window.lfxWhenTouched = false; r.value = 6; nr.setAttribute("aria-pressed", "false"); $("rqWhen").classList.add("untouched"); paint(); };
     paint();
   })();
   const SIZES = []; for (let v = 3; v <= 30; v++) SIZES.push(v / 10); for (let v = 3.5; v <= 10; v += 0.5) SIZES.push(v);
@@ -752,7 +769,7 @@
     if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); busy(btn, true, "Uploading photos\u2026"); try { await uploadPhotos(data.project.id); } catch (err) { /* the request is saved; photos can be added from the dashboard */ } }
     busy(btn, false);
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
-    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); if (window.lfxWhenReset) window.lfxWhenReset(); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 }); if (window.lfxFireLead) lfxFireLead("account"); else if (window.gtag) gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP"});
     load();
   });
