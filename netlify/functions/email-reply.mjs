@@ -17,8 +17,10 @@ export default async (request) => {
   for (const email of emails) {
     const projects = await listProjects(db, email);
     for (const p of projects) {
-      if (p.type !== "design-request" || p.replied) continue;
+      if (p.type !== "design-request") continue;
+      if (p.replied && !p.responded) continue;
       p.replied = true;
+      p.responded = false; // they wrote to us, so it needs an answer again
       p.repliedAt = new Date().toISOString();
       p.repliedBy = "email";
       await saveProject(db, p);

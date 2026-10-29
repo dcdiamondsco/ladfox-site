@@ -104,6 +104,7 @@ export default async (request) => {
         project.updates.push({ at: now, by: "ladfox", text: `Payment received: ${pay.label}.`, stage: 2 });
       }
     }
+    if (note) { project.responded = true; project.respondedAt = now; }
     if (stageChanged || note) project.updates.push({ at: now, by: "ladfox", text: note || `Status updated to "${STAGES[project.stage]}".`, stage: project.stage });
     project.updatedAt = now;
     project.customerUnread = false;
@@ -175,6 +176,7 @@ export default async (request) => {
     if ((project.updates || []).length > 200) return json({ error: "This thread is full." }, 400);
     const now = new Date().toISOString();
     project.updates.push({ at: now, by: "ladfox", kind: "msg", text, stage: project.stage });
+    project.responded = true; project.respondedAt = now;
     project.updatedAt = now;
     project.customerUnread = false;
     await saveProject(db, project);
@@ -214,6 +216,16 @@ export default async (request) => {
     project.updatedAt = new Date().toISOString();
     await saveProject(db, project);
     return json({ ok: true, project: publicProject(project) });
+  }
+
+  if (body.action === "set-responded") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    project.responded = body.value === true;
+    project.respondedAt = project.responded ? new Date().toISOString() : "";
+    await saveProject(db, project);
+    return json({ ok: true, project });
   }
 
   if (body.action === "set-replied") {

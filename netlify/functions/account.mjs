@@ -139,6 +139,7 @@ export default async (request) => {
     project.updatedAt = now;
     project.customerUnread = true;
     project.replied = true;
+    project.responded = false; // they wrote to us, so it needs an answer again
     await saveProject(db, project);
     await notifyOwner(request, `Message about "${project.title}"`, [`${project.name || email} (${email})`, text]);
     return json({ ok: true, project: publicProject(project) });
