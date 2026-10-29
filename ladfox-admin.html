@@ -83,7 +83,7 @@
     </form>
     <div id="dash">
       <div id="stats" class="stats"></div>
-      <div class="row" style="margin:0 0 10px"><input id="q" placeholder="Search name, email or ring" style="max-width:320px" /><select id="flt" style="max-width:200px"><option value="all">All enquiries</option><option value="noreply">No reply yet</option><option value="unread">New messages</option><option value="open">In progress</option><option value="done">Delivered</option></select></div>
+      <div class="row" style="margin:0 0 10px"><input id="q" placeholder="Search name, email or ring" style="max-width:320px" /><select id="flt" style="max-width:200px"><option value="all">All enquiries</option><option value="noreply">Needs reply</option><option value="unread">New messages</option><option value="open">In progress</option><option value="done">Delivered</option></select></div>
       <div id="list"></div>
       <h2 style="margin:26px 0 10px">Signed up, no request yet</h2>
       <div id="activity"></div>
@@ -345,7 +345,7 @@
       const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? (isOn(u.lastSeenAt) ? "online now" : "online " + ago(u.lastSeenAt)) : "not online yet")));
       b.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w);
       if (p.customerUnread) b.append(el("span", "nb", "NEW MESSAGE"));
-      if (p.type === "design-request" && p.stage === 0 && !p.replied) b.append(el("span", "nb", p.nudgedAt ? "NO REPLY \u00b7 NUDGED" : "NO REPLY YET"));
+      if (p.type === "design-request" && p.stage === 0 && !p.replied) b.append(el("span", "nb", p.nudgedAt ? "NEEDS REPLY \u00b7 NUDGED" : "NEEDS REPLY"));
       b.append(el("span", "stg", STAGES[p.stage] || ""));
       b.onclick = () => { location.hash = "p=" + encodeURIComponent(p.id); };
       return b;
