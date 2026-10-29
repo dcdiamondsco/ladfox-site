@@ -303,12 +303,25 @@ export const getStripe = async () => {
   return new Stripe(key);
 };
 
+/* A one-tap sign-in link for the button in customer emails: opens their account straight away on any device,
+   and the visit shows in admin ("Last online" / sign-in count) so you can see they have read it. */
+export const accountLink = async (request, email) => {
+  const plain = `${siteUrl(request)}/account`;
+  try {
+    const db = await getDb();
+    const token = newToken();
+    await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + 90 * 24 * 60 * 60 * 1000, reusable: true });
+    return `${plain}?token=${encodeURIComponent(token)}`;
+  } catch (e) { return plain; }
+};
+
 export const emailCustomerNote = async (request, project, subject, heading, bodyHtml, bodyText) => {
+  const link = await accountLink(request, project.email);
   await sendEmail({
     to: project.email,
     subject,
-    text: `${bodyText}\n\n${siteUrl(request)}/account`,
-    html: emailShell(heading, bodyHtml, "Open my account", `${siteUrl(request)}/account`)
+    text: `${bodyText}\n\n${link}`,
+    html: emailShell(heading, bodyHtml, "Open my account", link)
   });
 };
 

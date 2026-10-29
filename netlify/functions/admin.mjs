@@ -2,7 +2,7 @@ import { json, readJsonBody } from "./http.mjs";
 import {
   getDb, listProjects, loadProject, saveProject, createProject, normaliseEmail, validEmail, clean,
   safeEqual, sendEmail, emailShell, escapeHtml, siteUrl, upsertCustomer, STAGES, publicProject,
-  FILE_TYPES, MAX_FILE_BYTES, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, withPricing, paymentPricing, videosOf, VIDEOS_MAX, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
+  FILE_TYPES, MAX_FILE_BYTES, accountLink, VIDEO_CHUNK, VIDEO_MAX_CHUNKS, videoPrefix, sniffVideo, dropVideo, withPricing, paymentPricing, videosOf, VIDEOS_MAX, MAX_FILES_PER_PROJECT, fileKey, projectPrefix, customerKey, sniffType, newToken, emailCustomerNote,
   PAYMENT_MIN_PENCE, PAYMENT_MAX_PENCE, followKey, sheetEvent
 } from "./account-lib.mjs";
 import { listDesigns, publicDesign } from "./design-lib.mjs";
@@ -33,11 +33,12 @@ const emailCustomer = async (request, project, note, opts = {}) => {
   const stage = STAGES[project.stage];
   if (opts.messageOnly && note) {
     const ring = /['\u2019\d]/.test(project.title) ? project.title : String(project.title).toLowerCase();
+    const link = await accountLink(request, project.email);
     await sendEmail({
       to: project.email,
       subject: `A message about your LADFOX ${ring}`,
-      text: `You have a new message about your ${ring}:\n\n${note}\n\nView and reply: ${siteUrl(request)}/account`,
-      html: emailShell(`You have a new message about your ${ring}:`, `<p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px;text-align:left">${escapeHtml(note)}</p>`, "View and reply", `${siteUrl(request)}/account`)
+      text: `You have a new message about your ${ring}:\n\n${note}\n\nView and reply: ${link}`,
+      html: emailShell(`You have a new message about your ${ring}:`, `<p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px;text-align:left">${escapeHtml(note)}</p>`, "View and reply", link)
     });
     return;
   }
@@ -45,11 +46,12 @@ const emailCustomer = async (request, project, note, opts = {}) => {
     (project.estimate ? `<p style="margin:0 0 10px">Estimated date: ${escapeHtml(project.estimate)} (this is an estimate, not a guarantee).</p>` : "") +
     (project.stage === 7 && project.trackingUrl ? `<p style="margin:0 0 10px"><a href="${escapeHtml(project.trackingUrl)}" style="color:#dfe3ea">Track your parcel</a></p>` : "") +
     (note ? `<p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px">${escapeHtml(note)}</p>` : "");
+  const link = await accountLink(request, project.email);
   await sendEmail({
     to: project.email,
     subject: `Update on your LADFOX ring: ${stage}`,
-    text: `Your ring "${project.title}" is now: ${stage}.${project.estimate ? `\nEstimated date: ${project.estimate}` : ""}${note ? `\n\n${note}` : ""}\n\n${siteUrl(request)}/account`,
-    html: emailShell("An update on your ring", body, "View progress", `${siteUrl(request)}/account`)
+    text: `Your ring "${project.title}" is now: ${stage}.${project.estimate ? `\nEstimated date: ${project.estimate}` : ""}${note ? `\n\n${note}` : ""}\n\n${link}`,
+    html: emailShell("An update on your ring", body, "View progress", link)
   });
 };
 
