@@ -78,6 +78,8 @@ export default async (request) => {
     }
 
     await db.delete(followKey(email)).catch(() => {});
+    const phone = String(body.phone || "").replace(/[^\d+\s()-]/g, "").trim().slice(0, 20);
+    if (/\d{6,}/.test(phone.replace(/\D/g, "")) && phone !== customer.phone) await upsertCustomer(db, email, { phone }).catch(() => {});
     const project = await createProject(db, {
       email, name: customer.name, type: "design-request", title, details,
       ringType: body.ringType, budget: body.budget
@@ -134,6 +136,7 @@ export default async (request) => {
     project.updates.push({ at: now, by: "customer", text });
     project.updatedAt = now;
     project.customerUnread = true;
+    project.replied = true;
     await saveProject(db, project);
     await notifyOwner(request, `Message about "${project.title}"`, [`${project.name || email} (${email})`, text]);
     return json({ ok: true, project: publicProject(project) });

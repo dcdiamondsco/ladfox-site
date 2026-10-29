@@ -82,7 +82,7 @@
     </form>
     <div id="dash">
       <div id="stats" class="stats"></div>
-      <div class="row" style="margin:0 0 10px"><input id="q" placeholder="Search name, email or ring" style="max-width:320px" /><select id="flt" style="max-width:200px"><option value="all">All enquiries</option><option value="unread">New messages</option><option value="open">In progress</option><option value="done">Delivered</option></select></div>
+      <div class="row" style="margin:0 0 10px"><input id="q" placeholder="Search name, email or ring" style="max-width:320px" /><select id="flt" style="max-width:200px"><option value="all">All enquiries</option><option value="noreply">No reply yet</option><option value="unread">New messages</option><option value="open">In progress</option><option value="done">Delivered</option></select></div>
       <div id="list"></div>
       <h2 style="margin:26px 0 10px">Signed up, no request yet</h2>
       <div id="activity"></div>
@@ -137,6 +137,22 @@
     head.append(t);
     c.append(head);
     c.append(el("div", "meta", `${p.name ? p.name + " \u00b7 " : ""}${p.email}\nCreated ${fmt(p.createdAt)}`));
+    {
+      const row = el("div", "row"); row.style.cssText = "margin:8px 0;gap:12px;flex-wrap:wrap";
+      const rl = el("label"); const rc = el("input"); rc.type = "checkbox"; rc.checked = !!p.replied;
+      rl.append(rc, document.createTextNode("They have replied" + (p.nudgedAt ? " (nudge email sent " + fmt(p.nudgedAt) + ")" : "")));
+      rc.onchange = async () => { const { res, data } = await call({ action: "set-replied", email: p.email, id: p.id, value: rc.checked }); if (!res.ok) { rc.checked = !rc.checked; return status(data.error || "Failed", true); } status(""); };
+      row.append(rl);
+      const ph = (String(p.details || "").match(/^Phone:\s*(.+)$/mi) || [])[1];
+      if (ph) {
+        let d = ph.replace(/\D/g, ""); if (d.startsWith("00")) d = d.slice(2); else if (d.startsWith("0")) d = "44" + d.slice(1);
+        const first = String(p.name || "").trim().split(/\s+/)[0];
+        const msg = `Hi ${first || "there"}, it's Lydia from LADFOX. Thanks for sending your ring request! A quick question so we can start your design: is there a style or shape you're drawn to, or shall we surprise you? A one-word reply is plenty.`;
+        const wa = el("a", "", "WhatsApp them"); wa.href = "https://wa.me/" + d + "?text=" + encodeURIComponent(msg); wa.target = "_blank"; wa.rel = "noopener noreferrer"; wa.style.cssText = "color:#dfe3ea;font-size:.9rem";
+        row.append(wa);
+      }
+      c.append(row);
+    }
     const facts = [], said = [];
     for (const raw of String(p.details || "").split("\n")) {
       const line = raw.trim(); if (!line || /^\[.*\]$/.test(line)) continue;
@@ -314,13 +330,14 @@
     const stat = (n, l) => { const d = el("div", "stat"); d.append(el("b", "", String(n)), el("span", "", l)); return d; };
     $("stats").replaceChildren(stat(rows.length, "Enquiries"), stat(rows.filter((p) => p.stage < 8).length, "Open"), stat(rows.filter((p) => p.customerUnread).length, "New messages"));
     const q = ($("q").value || "").toLowerCase(), f = $("flt").value;
-    const vis = rows.filter((p) => (f === "all" || (f === "unread" && p.customerUnread) || (f === "open" && p.stage < 8) || (f === "done" && p.stage >= 8)) && (!q || (p.title + " " + p.email + " " + (p.name || "")).toLowerCase().includes(q)));
+    const vis = rows.filter((p) => (f === "all" || (f === "unread" && p.customerUnread) || (f === "noreply" && p.type === "design-request" && p.stage === 0 && !p.replied) || (f === "open" && p.stage < 8) || (f === "done" && p.stage >= 8)) && (!q || (p.title + " " + p.email + " " + (p.name || "")).toLowerCase().includes(q)));
     $("list").replaceChildren(...(vis.length ? vis.map((p) => {
       const u = cs.find((x) => x.email === p.email) || {};
       const b = el("button", "erow"); b.type = "button";
       const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? lastOnline(u.lastSeenAt) : "not online yet · updated " + ago(p.updatedAt))));
       b.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w);
       if (p.customerUnread) b.append(el("span", "nb", "NEW MESSAGE"));
+      if (p.type === "design-request" && p.stage === 0 && !p.replied) b.append(el("span", "nb", p.nudgedAt ? "NO REPLY \u00b7 NUDGED" : "NO REPLY YET"));
       b.append(el("span", "stg", STAGES[p.stage] || ""));
       b.onclick = () => { location.hash = "p=" + encodeURIComponent(p.id); };
       return b;

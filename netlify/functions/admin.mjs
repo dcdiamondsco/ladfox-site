@@ -206,6 +206,15 @@ export default async (request) => {
     return json({ ok: true, project: publicProject(project) });
   }
 
+  if (body.action === "set-replied") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    project.replied = body.value === true;
+    await saveProject(db, project);
+    return json({ ok: true, project });
+  }
+
   if (body.action === "video-delete") {
     const email = normaliseEmail(body.email);
     const project = await loadProject(db, email, clean(body.id, 40));
