@@ -146,10 +146,10 @@ export const followUpQuestions = (details) => {
     out.push("You have not chosen a shape yet. Is there one you are drawn to, such as round, oval, pear or emerald? If you are not sure, just tell us the look you love and we will suggest a few.");
   }
   if ((!style || /^not sure$/i.test(style)) && !STYLE_WORDS.test(text)) {
-    out.push("You have not settled on a style yet. Have you seen a ring you like? If so, send us a picture or a link and we will take inspiration from it. Or, if you would rather, we are very happy to put together a fresh design for you from scratch.");
+    out.push("Have you seen a ring you like? If so, please feel free to send us a picture or a link and we will take inspiration from it. Or, if you would rather, we are very happy to put together a fresh design for you from scratch.");
   }
   if (/^gemstone$/i.test(stone)) {
-    if (!GEM_WORDS.test(text)) out.push("You mentioned a gemstone. Which one are you looking for? If you have seen a particular stone, or a colour you love, tell us and we will take it from there. If you are not sure yet, describe the colour and feel you are after and we will suggest a few.");
+    if (!GEM_WORDS.test(text)) out.push("If you have seen a particular stone, or a colour you love, tell us and we will take it from there. If you are not sure yet, describe the colour and feel you are after and we will suggest a few.");
   } else if ((!stone || /^not sure$/i.test(stone)) && !STONE_WORDS.test(text)) {
     out.push("You have not mentioned the stone yet. Are you leaning towards a diamond or a gemstone? If it is a diamond, we can show you both lab-grown and natural options and talk you through the difference.");
   }
