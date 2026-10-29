@@ -132,6 +132,27 @@ ${opts.extraHtml ? `<tr><td align="center" style="padding:22px 0 0">${opts.extra
 <tr><td align="center" style="font-size:12px;color:#8b9099;padding:20px 10px 0">LADFOX Ltd &middot; <a href="mailto:hello@ladfox.com" style="color:#8b9099">hello@ladfox.com</a></td></tr>
 </table></td></tr></table></body></html>`;
 
+
+/* Follow-up questions for the confirmation email, based on what the request form left out. */
+const detailOf = (details, label) => { const m = String(details || "").match(new RegExp("^" + label + ":\\s*(.+)$", "mi")); return m ? m[1].trim() : ""; };
+const STYLE_WORDS = /solitaire|halo|three[- ]?stone|trilogy|trilogie|pav[eé]|vintage|toi et moi|bezel|cluster|eternity/i;
+const STONE_WORDS = /diamond|lab[- ]?grown|natural|moissanite|sapphire|emerald|ruby|morganite|aquamarine|tourmaline|opal|spinel|alexandrite|amethyst|topaz|garnet|peridot|tanzanite|agate|zircon|citrine|pearl|onyx|turquoise|jade/i;
+const GEM_WORDS = /moissanite|sapphire|emerald|ruby|morganite|aquamarine|tourmaline|opal|spinel|alexandrite|amethyst|topaz|garnet|peridot|tanzanite|agate|zircon|citrine|pearl|onyx|turquoise|jade/i;
+export const followUpQuestions = (details) => {
+  const text = String(details || "").split("\n").filter((x) => !/^\s*[\w ]{1,24}:\s/.test(x) && !/^\[.*\]$/.test(x.trim())).join(" ");
+  const style = detailOf(details, "Style"), stone = detailOf(details, "Stone");
+  const out = [];
+  if ((!style || /^not sure$/i.test(style)) && !STYLE_WORDS.test(text)) {
+    out.push("You have not settled on a style yet. Have you seen a ring you like? If so, send us a picture or a link and we will take inspiration from it. Or, if you would rather, we are very happy to put together a fresh design for you from scratch.");
+  }
+  if (/^gemstone$/i.test(stone)) {
+    if (!GEM_WORDS.test(text)) out.push("You mentioned a gemstone. Which one are you looking for? If you have seen a particular stone, or a colour you love, tell us and we will take it from there. If you are not sure yet, describe the colour and feel you are after and we will suggest a few.");
+  } else if ((!stone || /^not sure$/i.test(stone)) && !STONE_WORDS.test(text)) {
+    out.push("You have not mentioned the stone yet. Are you leaning towards a diamond or a gemstone? If it is a diamond, we can show you both lab-grown and natural options and talk you through the difference.");
+  }
+  return out;
+};
+
 /* ---------- Google Sheet logging (Apps Script web app) ---------- */
 export const sheetEvent = async (payload) => {
   const url = String(process.env.GOOGLE_SHEET_WEBHOOK_URL || "").trim();
