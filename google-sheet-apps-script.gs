@@ -110,8 +110,8 @@ function checkReplies() {
       var a = addr(m.getFrom()); if (a) seen[a] = true;
     });
   });
-  // Customers we have written to (so their enquiry is marked "responded" without ticking it)
-  GmailApp.search("in:sent newer_than:4d", 0, 50).forEach(function (thread) {
+  // Customers we have written to by hand (the site's automatic emails are excluded above) so their enquiry is marked "responded" without ticking it)
+  GmailApp.search('in:sent newer_than:4d -subject:"Welcome to LADFOX" -subject:"sign-in link" -subject:"design is waiting" -subject:"A quick question about your ring" -subject:"New design request"', 0, 50).forEach(function (thread) {
     thread.getMessages().forEach(function (m) {
       if (m.getDate().getTime() <= sentSince) return;
       String(m.getTo()).split(",").forEach(function (t) { var a = addr(t); if (a) sent[a] = true; });
