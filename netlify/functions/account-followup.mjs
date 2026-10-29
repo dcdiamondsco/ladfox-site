@@ -39,6 +39,8 @@ const nudgeQuietEnquiries = async (db) => {
   for (const p of projects) {
     try {
       if (p.type !== "design-request" || p.stage !== 0 || p.replied || p.nudgedAt) continue;
+      // Only for people who have heard nothing from us: skip anyone already messaged personally (admin message, or ticked as responded).
+      if (p.responded || (p.updates || []).some((u) => u.by === "ladfox" && u.kind === "msg")) continue;
       const age = Date.now() - Date.parse(p.createdAt);
       if (!(age >= NUDGE_AFTER_MS && age <= NUDGE_WINDOW_MS)) continue;
       const customer = (await getCustomer(db, p.email)) || {};
