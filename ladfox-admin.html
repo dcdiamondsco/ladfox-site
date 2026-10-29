@@ -51,10 +51,11 @@
     .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:0 0 16px}
     .stat{background:#151515;border-radius:14px;padding:14px}.stat b{display:block;font-size:1.7rem}.stat span{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#8b9099}
     .erow{display:flex;gap:12px;align-items:center;background:#151515;border-radius:14px;padding:13px 16px;margin:0 0 8px;cursor:pointer;width:100%;text-align:left;color:#fff;border:0;font:inherit}
-    .erow:hover{background:#1d1d1d}.erow .who{flex:1;min-width:0}.erow .who strong{display:block}.erow .who small{display:block;color:#8b9099;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .erow:hover{background:#1d1d1d}.erow .who{flex:1;min-width:0}.erow .who strong{display:block}.erow .who small{display:block;color:#8b9099;white-space:normal;overflow-wrap:anywhere}
     .erow .dot{width:9px;height:9px;border-radius:50%;background:transparent;flex:none}.erow .dot.on{background:#9fe3b0}
     .erow .stg{font-size:.72rem;background:rgba(255,255,255,.08);border-radius:999px;padding:3px 10px;white-space:nowrap}
     .erow .nb{font-size:.68rem;font-weight:700;background:#fff;color:#000;border-radius:999px;padding:3px 9px}
+    @media(max-width:600px){.erow{flex-wrap:wrap;row-gap:8px}.erow .who{flex:1 1 calc(100% - 30px)}.erow .nb,.erow .stg{margin-left:21px}.erow .nb+.stg{margin-left:0}}
     #status{margin:10px 0;color:#9fe3b0;min-height:1.2em}#status.err{color:#ff9d9d}
   </style>
 </head>
@@ -137,6 +138,13 @@
     head.append(t);
     c.append(head);
     c.append(el("div", "meta", `${p.name ? p.name + " \u00b7 " : ""}${p.email}\nCreated ${fmt(p.createdAt)}`));
+    {
+      const cu = (DATA && DATA.cs || []).find((x) => x.email === p.email) || {};
+      const on = isOn(cu.lastSeenAt);
+      const lo = el("div", "meta", cu.lastSeenAt ? `Last online ${DATA.when(cu.lastSeenAt)} (${on ? "online now" : DATA.ago(cu.lastSeenAt)})${cu.loginCount ? "\nSigned in " + cu.loginCount + (cu.loginCount === 1 ? " time" : " times") : ""}` : "Not online yet");
+      if (on) lo.style.color = "#9fe3b0";
+      c.append(lo);
+    }
     {
       const row = el("div", "row"); row.style.cssText = "margin:8px 0;gap:12px;flex-wrap:wrap";
       const rl = el("label"); const rc = el("input"); rc.type = "checkbox"; rc.checked = !!p.replied;
@@ -334,7 +342,7 @@
     $("list").replaceChildren(...(vis.length ? vis.map((p) => {
       const u = cs.find((x) => x.email === p.email) || {};
       const b = el("button", "erow"); b.type = "button";
-      const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? lastOnline(u.lastSeenAt) : "not online yet · updated " + ago(p.updatedAt))));
+      const w = el("div", "who"); w.append(el("strong", "", p.title || "Enquiry"), el("small", "", (u.name || p.name || p.email) + " \u00b7 " + (u.lastSeenAt ? (isOn(u.lastSeenAt) ? "online now" : "online " + ago(u.lastSeenAt)) : "not online yet")));
       b.append(el("span", "dot" + (isOn(u.lastSeenAt) ? " on" : "")), w);
       if (p.customerUnread) b.append(el("span", "nb", "NEW MESSAGE"));
       if (p.type === "design-request" && p.stage === 0 && !p.replied) b.append(el("span", "nb", p.nudgedAt ? "NO REPLY \u00b7 NUDGED" : "NO REPLY YET"));
@@ -359,7 +367,7 @@
     if (!res.ok) return status(data.error || "Could not load.", true);
     STAGES = data.stages;
     const rows = data.projects.sort((a, b) => (b.customerUnread ? 1 : 0) - (a.customerUnread ? 1 : 0) || String(b.updatedAt).localeCompare(String(a.updatedAt)));
-    const ago = (iso) => { if (!iso) return ""; const s = Math.max(0, (Date.now() - Date.parse(iso)) / 1000); if (s < 90) return "just now"; if (s < 3600) return Math.round(s / 60) + " min ago"; if (s < 86400) return Math.round(s / 3600) + " hr ago"; return Math.round(s / 86400) + " days ago"; };
+    const ago = (iso) => { if (!iso) return ""; const s = Math.max(0, (Date.now() - Date.parse(iso)) / 1000); if (s < 90) return "just now"; if (s < 3600) return Math.round(s / 60) + " min ago"; if (s < 86400) return Math.round(s / 3600) + " hr ago"; { const d = Math.round(s / 86400); return d + (d === 1 ? " day ago" : " days ago"); } };
     const when = (iso) => iso ? new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
     const cs = (Array.isArray(data.customers) ? data.customers : []).slice().sort((a, b) => String(b.lastSeenAt || b.createdAt).localeCompare(String(a.lastSeenAt || a.createdAt)));
     DATA = { rows, cs, ago, when, projects: data.projects };
