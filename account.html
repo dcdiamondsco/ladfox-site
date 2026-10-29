@@ -270,7 +270,7 @@
           <div class="rs-row" style="justify-content:center;margin-top:10px"><button type="button" class="chip" id="rq-norush" aria-pressed="false">No rush</button></div>
           <p id="rq-when-note" style="display:none;margin:8px 0 0;text-align:center;font-size:.82rem;color:#9a9fa8">Handmade rings take a few weeks. We will always be honest about what is possible.</p></div>
         <div id="rqContact" style="margin:0 0 18px"><label for="rq-phone">Phone or WhatsApp number (optional)</label>
-          <div class="rs-row"><input id="rq-phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="07..." aria-label="Phone or WhatsApp number" style="width:190px;flex:0 0 190px" /><button type="button" class="chip" id="rq-wa" aria-pressed="false" style="display:none">Prefer WhatsApp</button></div></div>
+          <div class="rs-row"><input id="rq-phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="07..." aria-label="Phone or WhatsApp number" style="width:190px;flex:0 0 190px" /><button type="button" class="chip" id="rq-wa" aria-pressed="false">Prefer WhatsApp</button></div></div>
         <input id="rq-title" type="hidden" />
         <label for="rq-details" id="rq-details-label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Anything you&rsquo;d like us to know?</label>
         <textarea id="rq-details" maxlength="2000" placeholder="Anything else you&rsquo;d like us to know?"></textarea>
@@ -704,8 +704,8 @@
     window.lfxWhenReset = () => { window.lfxWhenTouched = false; r.value = 5; nr.setAttribute("aria-pressed", "false"); $("rqWhen").classList.add("untouched"); paint(); };
     paint();
   })();
-  $("rq-phone").addEventListener("input", () => { const has = /\d{6,}/.test($("rq-phone").value.replace(/\D/g, "")); $("rq-wa").style.display = has ? "" : "none"; if (!has) $("rq-wa").setAttribute("aria-pressed", "false"); });
-  $("rq-wa").addEventListener("click", (e) => { const on = e.currentTarget.getAttribute("aria-pressed") !== "true"; e.currentTarget.setAttribute("aria-pressed", on ? "true" : "false"); });
+  $("rq-phone").addEventListener("input", () => { const has = /\d{6,}/.test($("rq-phone").value.replace(/\D/g, "")); if (!has) $("rq-wa").setAttribute("aria-pressed", "false"); });
+  $("rq-wa").addEventListener("click", (e) => { if (!/\d{6,}/.test($("rq-phone").value.replace(/\D/g, ""))) { $("rq-phone").focus(); return; } const on = e.currentTarget.getAttribute("aria-pressed") !== "true"; e.currentTarget.setAttribute("aria-pressed", on ? "true" : "false"); });
   const SIZES = []; for (let v = 3; v <= 30; v++) SIZES.push(v / 10); for (let v = 3.5; v <= 10; v += 0.5) SIZES.push(v);
   const sizeLabel = (v) => (v >= 10 ? "10ct+" : v.toFixed(1) + "ct");
   const updateCount = () => {
@@ -782,7 +782,7 @@
     if (photoFiles.length && data.project) { setMsg($("requestMsg"), "Uploading your photos\u2026", "ok"); busy(btn, true, "Uploading photos\u2026"); try { await uploadPhotos(data.project.id); } catch (err) { /* the request is saved; photos can be added from the dashboard */ } }
     busy(btn, false);
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
-    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rqGem").style.display = "none"; $("rq-gem-other").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); if (window.lfxWhenReset) window.lfxWhenReset(); $("rq-wa").style.display = "none"; $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
+    e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rqGem").style.display = "none"; $("rq-gem-other").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); if (window.lfxWhenReset) window.lfxWhenReset(); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
     if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 }); if (window.lfxFireLead) lfxFireLead("account"); else if (window.gtag) gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP"});
     load();
   });
