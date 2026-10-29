@@ -34,7 +34,7 @@ const emailCustomer = async (request, project, note) => {
   const body = `<p style="margin:0 0 10px">Your ring "<strong>${escapeHtml(project.title)}</strong>" is now: <strong>${escapeHtml(stage)}</strong>.</p>` +
     (project.estimate ? `<p style="margin:0 0 10px">Estimated date: ${escapeHtml(project.estimate)} (this is an estimate, not a guarantee).</p>` : "") +
     (project.stage === 7 && project.trackingUrl ? `<p style="margin:0 0 10px"><a href="${escapeHtml(project.trackingUrl)}" style="color:#dfe3ea">Track your parcel</a></p>` : "") +
-    (note ? `<p style="margin:0 0 10px;padding:12px;background:#f4f2ee;border-radius:8px">${escapeHtml(note)}</p>` : "");
+    (note ? `<p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px">${escapeHtml(note)}</p>` : "");
   await sendEmail({
     to: project.email,
     subject: `Update on your LADFOX ring: ${stage}`,
@@ -148,7 +148,7 @@ export default async (request) => {
       try {
         await emailCustomerNote(request, project, "A design is ready to view",
           "Your design is ready to view",
-          `<p style="margin:0 0 10px">We have uploaded a design for "<strong>${escapeHtml(project.title)}</strong>".</p>${note ? `<p style="margin:0 0 10px;padding:12px;background:#f4f2ee;border-radius:8px">${escapeHtml(note)}</p>` : ""}<p style="margin:0">Sign in to your account to view it and approve it, or message us with any changes.</p>`,
+          `<p style="margin:0 0 10px">We have uploaded a design for "<strong>${escapeHtml(project.title)}</strong>".</p>${note ? `<p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px">${escapeHtml(note)}</p>` : ""}<p style="margin:0">Sign in to your account to view it and approve it, or message us with any changes.</p>`,
           `We have uploaded a design for "${project.title}". Sign in to view and approve it.`);
         emailed = true;
       } catch (e) { console.error("design email failed", e.message); }
