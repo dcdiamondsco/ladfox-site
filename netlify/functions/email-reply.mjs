@@ -20,7 +20,7 @@ export default async (request) => {
       if (p.type !== "design-request") continue;
       if (p.replied && !p.responded) continue;
       p.replied = true;
-      p.responded = false; // they wrote to us, so it needs an answer again
+      p.responded = false; p.respondedBy = ""; // they wrote to us, so it needs an answer again
       p.repliedAt = new Date().toISOString();
       p.repliedBy = "email";
       await saveProject(db, p);

@@ -153,7 +153,14 @@
       const sl = el("label"); const sc = el("input"); sc.type = "checkbox"; sc.checked = !!p.responded;
       sl.append(sc, document.createTextNode("I have responded" + (p.respondedAt ? " (" + fmt(p.respondedAt) + ")" : "")));
       sc.onchange = async () => { const { res, data } = await call({ action: "set-responded", email: p.email, id: p.id, value: sc.checked }); if (!res.ok) { sc.checked = !sc.checked; return status(data.error || "Failed", true); } status(""); };
-      row.append(sl, rl);
+      // The tick boxes are only for replies the system can't see (WhatsApp, phone, Gmail). Once a real reply is recorded, they give way to a plain line.
+      const note1 = (txt) => { const sp = el("span", "", txt); sp.style.opacity = ".75"; return sp; };
+      const autoReplied = p.replied && (p.repliedBy === "email" || p.repliedBy === "dashboard");
+      const autoResponded = p.responded && p.respondedBy === "admin";
+      row.append(
+        autoResponded ? note1("You responded " + fmt(p.respondedAt)) : sl,
+        autoReplied ? note1("They replied" + (p.repliedBy === "email" ? " by email " : " ") + fmt(p.repliedAt) + (p.nudgedAt ? " (nudge email sent " + fmt(p.nudgedAt) + ")" : "")) : rl
+      );
       const ph = (String(p.details || "").match(/^Phone:\s*(.+)$/mi) || [])[1];
       if (ph) {
         let d = ph.replace(/\D/g, ""); if (d.startsWith("00")) d = d.slice(2); else if (d.startsWith("0")) d = "44" + d.slice(1);
