@@ -37,7 +37,7 @@ const emailCustomer = async (request, project, note, opts = {}) => {
       to: project.email,
       subject: `A message about your LADFOX ${ring}`,
       text: `You have a new message about your ${ring}:\n\n${note}\n\nView and reply: ${siteUrl(request)}/account`,
-      html: emailShell("You have a new message", `<p style="margin:0 0 10px">You have a new message about your <strong>${escapeHtml(ring)}</strong>:</p><p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px;text-align:left">${escapeHtml(note)}</p>`, "View and reply", `${siteUrl(request)}/account`)
+      html: emailShell(`You have a new message about your ${ring}:`, `<p style="margin:0 0 10px;padding:12px 14px;background:#17181b;color:#e8eaee;border-radius:12px;text-align:left">${escapeHtml(note)}</p>`, "View and reply", `${siteUrl(request)}/account`)
     });
     return;
   }
