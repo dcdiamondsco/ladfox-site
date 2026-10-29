@@ -95,7 +95,8 @@ export default async (request) => {
     ]);
     const welcomeJob = (async () => {
     try {
-      const first = String(customer.name || "").trim().split(/\s+/)[0];
+      const first0 = String(customer.name || "").trim().split(/\s+/)[0];
+      const first = first0 ? first0.charAt(0).toUpperCase() + first0.slice(1) : "";
       const hi = first ? `Welcome to LADFOX ${first}` : "Welcome to LADFOX";
       const token = newToken();
       await db.setJSON(`logins/${sha(token)}`, { email, exp: Date.now() + 10 * LOGIN_TTL_MS, reusable: true });
