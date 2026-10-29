@@ -140,8 +140,11 @@ const STONE_WORDS = /diamond|lab[- ]?grown|natural|moissanite|sapphire|emerald|r
 const GEM_WORDS = /moissanite|sapphire|emerald|ruby|morganite|aquamarine|tourmaline|opal|spinel|alexandrite|amethyst|topaz|garnet|peridot|tanzanite|agate|zircon|citrine|pearl|onyx|turquoise|jade/i;
 export const followUpQuestions = (details) => {
   const text = String(details || "").split("\n").filter((x) => !/^\s*[\w ]{1,24}:\s/.test(x) && !/^\[.*\]$/.test(x.trim())).join(" ");
-  const style = detailOf(details, "Style"), stone = detailOf(details, "Stone");
+  const style = detailOf(details, "Style"), stone = detailOf(details, "Stone"), shape = detailOf(details, "Shape");
   const out = [];
+  if ((!shape || /^not sure$/i.test(shape)) && !/round|oval|emerald|cushion|pear|radiant|marquise|princess|heart|asscher/i.test(text)) {
+    out.push("You have not chosen a shape yet. Is there one you are drawn to, such as round, oval, pear or emerald? If you are not sure, just tell us the look you love and we will suggest a few.");
+  }
   if ((!style || /^not sure$/i.test(style)) && !STYLE_WORDS.test(text)) {
     out.push("You have not settled on a style yet. Have you seen a ring you like? If so, send us a picture or a link and we will take inspiration from it. Or, if you would rather, we are very happy to put together a fresh design for you from scratch.");
   }
