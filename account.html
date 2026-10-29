@@ -264,7 +264,7 @@
         </div>
         <div class="bud untouched" id="rqWhen" style="margin:6px 0 18px"><label for="rq-when">When would you like it by?</label>
           <div class="bud-row"><output id="rq-when-out" for="rq-when">Within 3 months</output></div>
-          <input id="rq-when" type="range" min="0" max="11" step="1" value="6" aria-label="When you would like the piece by" />
+          <input id="rq-when" type="range" min="0" max="10" step="1" value="5" aria-label="When you would like the piece by" />
           <div class="bud-scale"><span>1 week</span><span>1 year</span></div>
           <div class="rs-row" style="justify-content:center;margin-top:10px"><button type="button" class="chip" id="rq-norush" aria-pressed="false">No rush</button></div>
           <p id="rq-when-note" style="display:none;margin:8px 0 0;text-align:center;font-size:.82rem;color:#9a9fa8">Handmade rings take a few weeks. We will always be honest about what is possible.</p></div>
@@ -685,12 +685,12 @@
   })();
   (function () {
     const r = $("rq-when"), out = $("rq-when-out"), nr = $("rq-norush"), note = $("rq-when-note");
-    const W = ["1 week", "2 weeks", "3 weeks", "1 month", "6 weeks", "2 months", "3 months", "4 months", "5 months", "6 months", "9 months", "a year"];
+    const W = ["1 week", "2 weeks", "3 weeks", "1 month", "2 months", "3 months", "4 months", "5 months", "6 months", "9 months", "a year"];
     const paint = () => { const rush = nr.getAttribute("aria-pressed") === "true"; out.textContent = rush ? "No rush" : "Within " + W[+r.value]; note.style.display = !rush && +r.value <= 3 && !$("rqWhen").classList.contains("untouched") ? "" : "none"; $("rqWhen").style.opacity = ""; r.style.opacity = rush ? ".35" : ""; };
     r.addEventListener("input", () => { $("rqWhen").classList.remove("untouched"); window.lfxWhenTouched = true; nr.setAttribute("aria-pressed", "false"); paint(); });
     nr.addEventListener("click", () => { const on = nr.getAttribute("aria-pressed") !== "true"; nr.setAttribute("aria-pressed", on ? "true" : "false"); if (on) { $("rqWhen").classList.remove("untouched"); window.lfxWhenTouched = true; } else if (!window.lfxWhenTouched) $("rqWhen").classList.add("untouched"); paint(); });
     window.lfxWhen = () => (nr.getAttribute("aria-pressed") === "true" ? "No rush" : window.lfxWhenTouched ? "Within " + W[+r.value] : "");
-    window.lfxWhenReset = () => { window.lfxWhenTouched = false; r.value = 6; nr.setAttribute("aria-pressed", "false"); $("rqWhen").classList.add("untouched"); paint(); };
+    window.lfxWhenReset = () => { window.lfxWhenTouched = false; r.value = 5; nr.setAttribute("aria-pressed", "false"); $("rqWhen").classList.add("untouched"); paint(); };
     paint();
   })();
   const SIZES = []; for (let v = 3; v <= 30; v++) SIZES.push(v / 10); for (let v = 3.5; v <= 10; v += 0.5) SIZES.push(v);
