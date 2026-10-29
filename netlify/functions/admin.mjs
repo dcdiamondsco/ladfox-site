@@ -218,6 +218,23 @@ export default async (request) => {
     return json({ ok: true, project: publicProject(project) });
   }
 
+  if (body.action === "edit-message" || body.action === "delete-message") {
+    const email = normaliseEmail(body.email);
+    const project = await loadProject(db, email, clean(body.id, 40));
+    if (!project) return json({ error: "Project not found." }, 404);
+    const i = (project.updates || []).findIndex((u) => u.at === String(body.at || "") && u.by === "ladfox" && u.kind === "msg");
+    if (i < 0) return json({ error: "Message not found." }, 404);
+    if (body.action === "delete-message") project.updates.splice(i, 1);
+    else {
+      const text = clean(body.text, 2000);
+      if (!text) return json({ error: "A message can't be empty. Use Delete to remove it." }, 400);
+      project.updates[i].text = text;
+      project.updates[i].editedAt = new Date().toISOString();
+    }
+    await saveProject(db, project);
+    return json({ ok: true, project });
+  }
+
   if (body.action === "set-responded") {
     const email = normaliseEmail(body.email);
     const project = await loadProject(db, email, clean(body.id, 40));

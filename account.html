@@ -466,7 +466,7 @@
     const thread = el("div", "thread");
     for (const u of (p.updates || []).filter((x) => x.kind === "msg" || (x.by === "customer" && x.stage === undefined))) {
       const b = el("div", "bubble " + (u.by === "customer" ? "customer" : "ladfox"), u.text);
-      b.append(el("small", "", (u.by === "customer" ? "You" : "LADFOX") + " · " + fmtDate(u.at)));
+      b.append(el("small", "", (u.by === "customer" ? "You" : "LADFOX") + " · " + fmtDate(u.at) + (u.editedAt ? " · edited" : "")));
       thread.append(b);
     }
     const reply = el("form", "reply");
