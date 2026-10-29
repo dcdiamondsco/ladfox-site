@@ -108,14 +108,14 @@ export default async (request) => {
       const ringPhrase = /['\u2019\d]/.test(project.title) ? project.title : project.title.toLowerCase();
       const questions = [...gaps, ...(gaps.length || /^Timeframe:/mi.test(project.details || "") ? [] : ["Is there a date you are hoping to have it by, or are you just starting to look? A one-line reply is plenty, and it helps us plan around you."])];
       const qHtml = questions.length ? `${questions.map((q) => `<p style="margin:12px 0 0;padding:12px 14px;border-radius:12px;background:#17181b;color:#e8eaee">${escapeHtml(q)}</p>`).join("")}<p style="margin:12px 0 0">Just reply to this email, or message us from your dashboard.</p>` : "";
-      const signHtml = `<p style="margin:22px 0 0">Warm regards,<br>Lydia, LADFOX</p>`;
+      const signHtml = `<p style="margin:16px 0 0">We look forward to hearing from you.</p><p style="margin:22px 0 0">Warm regards,<br>Lydia, LADFOX</p>`;
       const qText = questions.length ? `\n\n${questions.join("\n\n")}\n\nJust reply to this email, or message us from your dashboard.` : "";
       const bodyHtml = `<p style="margin:0">We can’t wait to begin designing your <strong style="color:#fff">${escapeHtml(ringPhrase)}</strong>.</p><p style="margin:16px 0 0">We will create your complimentary initial design and be in touch shortly. Your personal design dashboard is open whenever you want to check progress, add details or message us.</p>${qHtml}${signHtml}`;
       const buttons = `${pill(link, "Go to my dashboard", true)}<p style="margin:30px 0 8px;font-size:14px;color:#8b9099">Prefer to talk it through?</p>${pill(WA, "WhatsApp us")}${pill(CALL, "Call us")}`;
       await sendEmail({
         to: email,
         subject: `Welcome to LADFOX: we have your ${ringPhrase} request`,
-        text: `${hi}\n\nWe can’t wait to begin designing your ${ringPhrase}.\n\nWe will create your complimentary initial design and be in touch shortly.${qText}\n\nWarm regards,\nLydia, LADFOX\n\nGo to your dashboard:\n${link}\n\nPrefer to talk it through? WhatsApp us: ${WA}\nOr call us: ${CALL}`,
+        text: `${hi}\n\nWe can’t wait to begin designing your ${ringPhrase}.\n\nWe will create your complimentary initial design and be in touch shortly.${qText}\n\nWe look forward to hearing from you.\n\nWarm regards,\nLydia, LADFOX\n\nGo to your dashboard:\n${link}\n\nPrefer to talk it through? WhatsApp us: ${WA}\nOr call us: ${CALL}`,
         html: plainShell(hi, bodyHtml, buttons)
       });
     } catch (error) {
