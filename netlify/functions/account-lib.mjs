@@ -149,7 +149,8 @@ export const followUpQuestions = (details) => {
     out.push("Have you seen a ring you like? If so, please feel free to send us a picture or a link and we will take inspiration from it. Or, if you would rather, we are very happy to put together a fresh design for you from scratch.");
   }
   if (/^gemstone$/i.test(stone)) {
-    if (!GEM_WORDS.test(text)) out.push("If you have seen a particular stone, or a colour you love, tell us and we will take it from there. If you are not sure yet, describe the colour and feel you are after and we will suggest a few.");
+    const gem = detailOf(details, "Gemstone");
+    if (!(gem && !/^(other|not sure yet)$/i.test(gem)) && !GEM_WORDS.test(text)) out.push("If you have seen a particular stone, or a colour you love, tell us and we will take it from there. If you are not sure yet, describe the colour and feel you are after and we will suggest a few.");
   } else if ((!stone || /^not sure$/i.test(stone)) && !STONE_WORDS.test(text)) {
     out.push("You have not mentioned the stone yet. Are you leaning towards a diamond or a gemstone? If it is a diamond, we can show you both lab-grown and natural options and talk you through the difference.");
   }
