@@ -3116,7 +3116,7 @@
       videos.forEach((v) => io.observe(v));
     })();
   </script>
-<script src="assets/privacy-controls.js?v=20261024-2" defer></script>
+<script src="assets/privacy-controls.js?v=20261031-1" defer></script>
 <script>
 (function(){var s=document.querySelector(".xmas-strip");if(!s)return;function f(){var r=s.getBoundingClientRect(),y=window.pageYOffset,e=document.querySelector(".eyebrow-hero"),d=0;if(e){d=Math.max(0,e.getBoundingClientRect().top-r.bottom-16)}s.style.setProperty("--xs-up",Math.max(0,r.top+y)+"px");s.style.setProperty("--xs-down",d+"px")}f();window.addEventListener("load",f);window.addEventListener("resize",f);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)})();
 </script>
@@ -3207,7 +3207,7 @@ fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":
     b.disabled=true;msg.textContent="Sending\u2026";
     fetch("/.netlify/functions/account-auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"request",email:em,name:$("lfxStartName").value,intent:kind})})
     .then(function(r){return r.json().catch(function(){return {}}).then(function(d){return {ok:r.ok,d:d}})})
-    .then(function(x){b.disabled=false;if(x.ok&&x.d&&x.d.instant){if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/PpNpCLbcpaQdEISh4NlD"})}catch(err){}}window.location.href="account.html?start="+kind;return}if(x.ok){f.hidden=true;$("lfxStartDone").hidden=false;if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/PpNpCLbcpaQdEISh4NlD"})}catch(err){}}}else msg.textContent=(x.d&&x.d.error)||"Something went wrong. Please try again."})
+    .then(function(x){b.disabled=false;if(x.ok&&x.d&&x.d.instant){if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP",transport_type:"beacon"})}catch(err){}}window.location.href="account.html?start="+kind;return}if(x.ok){f.hidden=true;$("lfxStartDone").hidden=false;if(window.gtag){try{gtag("event","generate_lead",{form_name:"homepage-start-"+kind});gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP",transport_type:"beacon"})}catch(err){}}}else msg.textContent=(x.d&&x.d.error)||"Something went wrong. Please try again."})
     .catch(function(){b.disabled=false;msg.textContent="We could not send that just now. Please try again."});
   });
 })();

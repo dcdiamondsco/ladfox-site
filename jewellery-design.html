@@ -1120,7 +1120,7 @@
           .then(function(x){
             btn.disabled = false;
             if (x.ok && x.d && x.d.instant) {
-              if (typeof gtag === "function") { try { gtag("event", "generate_lead", { form_name: "jewellery-design-start" }); gtag("event", "conversion", { send_to: "AW-18173399172/PpNpCLbcpaQdEISh4NlD" }); } catch (err) {} }
+              if (typeof gtag === "function") { try { gtag("event", "generate_lead", { form_name: "jewellery-design-start" }); gtag("event", "conversion", { send_to: "AW-18173399172/Ly6MCOPyp6gdEISh4NlD", value: 1, currency: "GBP", transport_type: "beacon" }); } catch (err) {} }
               window.location.href = "account.html?start=design&type=other";
               return;
             }

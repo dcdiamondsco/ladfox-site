@@ -9,7 +9,6 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
     gtag("js", new Date());
-    gtag("consent", "default", { ad_storage: "denied", analytics_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
     gtag("config", "AW-18173399172");
     var gs = document.createElement("script");
     gs.async = true;
@@ -71,14 +70,14 @@
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (x) {
         if (x.ok && x.d && x.d.instant) {
-          if (window.gtag) { try { gtag("event", "generate_lead", { form_name: "page-sketch-capture" }); gtag("event", "conversion", { send_to: "AW-18173399172/PpNpCLbcpaQdEISh4NlD" }); } catch (err) { /* ignore */ } }
+          if (window.gtag) { try { gtag("event", "generate_lead", { form_name: "page-sketch-capture" }); gtag("event", "conversion", { send_to: "AW-18173399172/Ly6MCOPyp6gdEISh4NlD", value: 1, currency: "GBP", transport_type: "beacon" }); } catch (err) { /* ignore */ } }
           window.location.href = "account.html?start=design";
           return;
         }
         if (x.ok) {
           form.hidden = true;
           msg.textContent = "Check your inbox. We’ve sent you a link to request your complimentary initial design.";
-          if (window.gtag) { try { gtag("event", "generate_lead", { form_name: "page-sketch-capture" }); gtag("event", "conversion", { send_to: "AW-18173399172/PpNpCLbcpaQdEISh4NlD" }); } catch (err) { /* ignore */ } }
+          if (window.gtag) { try { gtag("event", "generate_lead", { form_name: "page-sketch-capture" }); gtag("event", "conversion", { send_to: "AW-18173399172/Ly6MCOPyp6gdEISh4NlD", value: 1, currency: "GBP", transport_type: "beacon" }); } catch (err) { /* ignore */ } }
         } else {
           btn.disabled = false;
           msg.textContent = (x.d && x.d.error) || "Something went wrong. Please try again.";

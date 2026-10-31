@@ -39,7 +39,7 @@
     } catch (e) { /* ignore */ }
     try {
       if (typeof window.gtag === "function") {
-        window.gtag("event", "conversion", { send_to: LABEL, value: 1, currency: "GBP" });
+        window.gtag("event", "conversion", { send_to: LABEL, value: 1, currency: "GBP", transport_type: "beacon" });
         window.gtag("event", "generate_lead", { form_name: source || "site-form" });
       }
     } catch (e) { /* ignore */ }

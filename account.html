@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18173399172"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18173399172');
+  </script>
   <title>My Account | LADFOX</title>
   <meta name="description" content="Sign in to follow your LADFOX ring's progress, request a design and message us." />
   <meta name="robots" content="noindex,follow" />
@@ -783,7 +791,7 @@
     busy(btn, false);
     $("rq-photo-label").textContent = "Would you like to attach a photo or inspiration image?";
     e.target.reset(); forWho = savedFor; ringName = savedName; Object.keys(chosen).forEach((k) => delete chosen[k]); if (!asksType) chosen.type = "Engagement ring"; e.target.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false")); $("rqProp").style.display = "none"; $("rqGem").style.display = "none"; $("rq-gem-other").style.display = "none"; $("rq-budget").dispatchEvent(new Event("input")); window.lfxBudTouched = false; $("rqBud").classList.add("untouched"); $("rqRs"); $("rqSize").classList.add("untouched"); if (window.lfxWhenReset) window.lfxWhenReset(); $("rq-size").value = 7; $("rq-size-out").textContent = "1.0ct"; e.target.classList.add("hidden"); setMsg($("requestMsg"), "");
-    if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 }); if (window.lfxFireLead) lfxFireLead("account"); else if (window.gtag) gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP"});
+    if (window.gtag) gtag("event", "generate_lead", { currency: "GBP", value: 1 }); if (window.lfxFireLead) lfxFireLead("account"); else if (window.gtag) gtag("event","conversion",{send_to:"AW-18173399172/Ly6MCOPyp6gdEISh4NlD",value:1,currency:"GBP",transport_type:"beacon"});
     load();
   });
 
