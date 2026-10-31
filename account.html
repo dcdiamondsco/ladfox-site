@@ -569,6 +569,7 @@
     e.preventDefault();
     const btn = e.target.querySelector("button"); btn.disabled = true; setMsg($("signinMsg"), "");
     const { res, data } = await post("/.netlify/functions/account-auth", { action: "request", email: $("si-email").value, name: $("si-name").value });
+    if (res.ok && window.gtag) { try { gtag("event", "generate_lead", { form_name: "account-signin" }); gtag("event", "conversion", { send_to: "AW-18173399172/Ly6MCOPyp6gdEISh4NlD", value: 1, currency: "GBP", transport_type: "beacon" }); } catch (err) { /* never block sign-in */ } }
     if (res.ok && data.instant) { window.location.href = "account.html?start=design"; return; }
     btn.disabled = false;
     setMsg($("signinMsg"), res.ok ? data.message : (data.error || "Something went wrong."), res.ok ? "ok" : "err");
